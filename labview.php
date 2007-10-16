@@ -9,7 +9,7 @@ $user_level= $_SESSION['level'];
 require("mise_en_page.php");
 
 
-en_tete("Liste des programmes Labview du LEGI:");
+en_tete(" Liste des programmes Labview du LEGI:");
 
 
 //recuper la methode de tri
@@ -32,11 +32,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>
 	<br></td>
 
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_demandes.php">Ajouter<br>une manip</a>
-	<br></td>
-
-<td style="vertical-align: top; text-align: center;">
-	<a href="historique_demandes.php">Historique<br>des manip</a>
+	<a href="add_labview.php">Ajouter<br>une manip Labview</a>
 	<br></td>
 
 
@@ -55,7 +51,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>
 
 
 <br>
-Liste des demandes en cours : <br>
+Liste des manip labview en cours : <br>
 
 
 
@@ -72,12 +68,12 @@ Liste des demandes en cours : <br>
       </th>
 
 <th style="vertical-align: top; text-align: center;">
-	Technicien<br>
+	Developpeur<br>
       </th>
 
 
       <th style="vertical-align: top; text-align: center;">
-	Localisation<br>
+	 Salle de la manip<br>
       </th>
      <th style="vertical-align: top; text-align: center;">
 	Matériel d'acquisition ou de commande<br>
@@ -99,12 +95,10 @@ Liste des demandes en cours : <br>
 
   
 <th style="vertical-align: top; text-align: center;">
-	Impression écran<br>
+	Impression écran+doc pdf manip<br>
       </th>
 
-<th style="vertical-align: top; text-align: center;">
-	Doc pdf<br>
-      </th>
+
 
 
 <?php if ( $user_level >=2 ) 	
@@ -121,7 +115,7 @@ if ( $connex = connect_db() ){
 	
 
 
-	$querry = "SELECT * FROM demandes where termine='non'";
+	$querry = "SELECT * FROM labview order by '$tri'";
 	list($qh,$num) = query_db($querry);
 	
 	$last_id=0;
@@ -132,37 +126,50 @@ $data = result_db($qh);
 
 echo "<tr>";
  echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[tache];
+	echo $data[manipch];
     
        echo"</td><td style=\"vertical-align: top;\">";
-echo $data[nomdemandeur];
+echo $data[technicien];
 
   echo"</td><td style=\"vertical-align: top;\">";
 
-echo $data[details];
+echo $data[localisation];
       
   echo"</td><td style=\"vertical-align: top;\">";
-echo $data[achat];
+echo $data[matos];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[avancement];
+echo $data[code];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[termine];
+echo $data[driver];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[piecesjointes];
+echo $data[module];
+ echo"</td><td style=\"vertical-align: top;\">";
 
+$dossier_lab ="data/labview/".$data[manipch];
 	
-	
-	 if ( $user_level >=2) {	
+
+	//remplace les espaces par des underscore
+	$dossier_lab = str_replace(" ", "_", $dossier_lab);
+	// cherche l'existence de ce dossier
+	//echo $dossier_lab;
+	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
+	if (@opendir($dossier_lab) != FALSE){
+		//si trouvé ajoute un bouton
+		echo "Voir : <a href =\"doclabview.php?id=". $data[id]."\">".$data[manipch]."<img src=\"images/filefind.png\" nosave title =\"Voir la face avant du programme\"></a><br>";
+    }
+
+
+		
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_demandes.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Modifier\"></a>";
-      echo"</td>";
-	}//end if
- if ( $user_level >=3 ) {
-      echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_demandes.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\"></a>";
+      echo "<a href=\"add_labview.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Modifier\"></a>";
       echo"</td>";
 	
-}
+
+      echo"</td><td style=\"vertical-align: top;\">";
+      echo "<a href=\"del_labview.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\"></a>";
+      echo"</td>";
+	
+
 echo"</tr>";
 
 
@@ -172,54 +179,53 @@ while ($data = result_db($qh)) {
 	// remplit le tableau
 
      echo"<tr><td style=\"vertical-align: top;\">";
-echo $data[tache];
+echo $data[manipch];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[nomdemandeur];
+echo $data[technicien];
 echo"</td><td style=\"vertical-align: top;\">";
-echo $data[details];
+echo $data[localisation];
 echo"</td><td style=\"vertical-align: top;\">";
 
-echo $data[achat];
+echo $data[matos];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[avancement];
+echo $data[code];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[termine];
+echo $data[driver];
 
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[piecesjointes];
+echo $data[module];
 
-	
-	///bouton lien vers la doc
-	$dossier_proj ="data/instru/demandes/".$data[tache];
+ echo"</td><td style=\"vertical-align: top;\">";
+
+///bouton lien vers la doc
+	$dossier_lab ="data/labview/".$data[manipch];
 	
 
 	//remplace les espaces par des underscore
-	$dossier_proj = str_replace(" ", "_", $dossier_proj);
+	$dossier_lab = str_replace(" ", "_", $dossier_lab);
 	// cherche l'existence de ce dossier
-	//echo $dossier_proj;
+	//echo $dossier_lab;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
-	if (@opendir($dossier_proj) != FALSE){
+	if (@opendir($dossier_lab) != FALSE){
 		//si trouvé ajoute un bouton
-		echo "Voir : <a href =\"jointdemandes.php?id=". $data[id]."\">".$data[tache]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\"></a><br>";
-    
-	}
-
-
+		echo "Voir : <a href =\"doclabview.php?id=". $data[id]."\">".$data[manipch]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\"></a><br>";
+    }
+//echo $data[ecran];
 
        
    
 
- if ( $user_level >=2) {	
+	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_demandes.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Modifier\"></a>";
-      echo"</td>";
-	}//end if
- if ( $user_level >=3 ) {
-      echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_demandes.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\"></a>";
+      echo "<a href=\"add_labview.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Modifier\"></a>";
       echo"</td>";
 	
-}
+ 
+      echo"</td><td style=\"vertical-align: top;\">";
+      echo "<a href=\"del_labview.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\"></a>";
+      echo"</td>";
+	
+
 echo"</tr>";
 	
 
