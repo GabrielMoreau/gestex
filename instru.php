@@ -1,6 +1,6 @@
 <?php
 
-// Authenticate
+// Authenticate.
 
 include("session_auth.php");
 
