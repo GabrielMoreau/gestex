@@ -41,7 +41,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://www.legi.hmg.inpg.fr/intranet/intra.html">Retour a<br>l'intranet</a>
+ <a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour à<br>la page du service</a>
 	<br></td>
 <?php
 if (empty($eq))
@@ -90,10 +90,12 @@ Liste des appareils : <br>
   <tbody>
     <tr bgcolor="#f7d709">
 
+<?php
 
+?>
 
  <th style="vertical-align: top; text-align: center;">
-	<a href ="instru.php?tri=categorie">Catégorie<br>
+	<a href ="instru1.php?tri=categorie">Catégorie<br>
       </th>
 
       <th style="vertical-align: top; text-align: center;">
@@ -164,11 +166,11 @@ $data = result_db($qh);
 
 
 echo "<tr>";
+
      echo"<td style=\"vertical-align: top;\">";
 $querry = "SELECT id, nom FROM categorie WHERE id='$data[categorie]'";
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
-
       		echo $equip[nom];
  echo"</td><td style=\"vertical-align: top;\">";
 	echo "<a href =\"fiche_vie.php?id=".$data[id]."\">". $data[nom]."</a>";
@@ -238,7 +240,7 @@ echo"</tr>";
 
 
 
-while ($data = result_db($qh)){
+while (($data = result_db($qh))){
 
 	// remplit le tableau
 
@@ -246,6 +248,7 @@ while ($data = result_db($qh)){
 $querry = "SELECT id, nom FROM categorie WHERE id='$data[categorie]'";
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
+
 
       		echo $equip[nom];
 
@@ -305,6 +308,7 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data[categorie]'";
 	}
 	
 
+	
 
   if (!empty($eq))
 
