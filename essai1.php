@@ -35,13 +35,10 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://www.legi.hmg.inpg.fr/intranet/intra.html">Retour a<br>l'intranet</a>
-	<br></td>
+	 <a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour à<br>la page du service</a>
+		<br></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="list_fourn1.php">Liste<br>des fournisseurs</a>
-	<br></td>
-<td style="vertical-align: top; text-align: center;">
-	<a href="pret.php">Prets<br>des appareils du service</a>
 	<br></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="login.php?variable=instru">Accès<br>restreint</a>
@@ -58,7 +55,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>
 <br>
 Liste des appareils : <br>
 <i>Cliquer sur une categorie pour voir la liste...</i><br>
-<br><table cellpadding="2" cellspacing="2" border="1"
+<br><table cellpadding="20" cellspacing="4" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
@@ -72,6 +69,16 @@ Liste des appareils : <br>
 
 	<a href ="instru1.php?equipe= 15">Appareils en prêt au service instru</a><br>
       </th>
+	  </tr></tbody>
+	  </table>
+	  <br>
+Liste des appareils par catégorie : <br>
+
+<i>Cliquer sur une categorie pour voir la liste...</i><br>
+<br><table cellpadding="10" cellspacing="2" border="1"
+ style="width: 70%; text-align: center; margin-left: auto; margin-right: auto;">
+  <tbody>
+    <tr bgcolor="#f7d709">
 <?php
 
 $tri = $_GET[tri];
