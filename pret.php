@@ -2,17 +2,17 @@
 //prets.php
 // Authenticate
 
-include("session_auth.php");
+//include("session_auth.php");
 
-
+include("db_functions.php");
 //if (!auth(1))
 	//Header("Location: instru.php");
 
 
 
-//$user_id = $_SESSION['user_id'];
-//$logged_in_user = strtolower($_SESSION['logged_in_user']);
-//$user_level= $_SESSION['level'];
+$user_id = $_SESSION['user_id'];
+$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$user_level= $_SESSION['level'];
 
 require("mise_en_page.php");
 
@@ -25,7 +25,7 @@ en_tete("Liste des prets:");
 $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
-
+//echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>";
 
 ?>
 
@@ -37,7 +37,7 @@ if (empty($tri))
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://www.legi.hmg.inpg.fr/intranet/intra.html">Retour a<br>l'intranet</a>
+	<a href="http://intranet.legi.grenoble-inp.fr">Retour a<br>l'intranet</a>
 	<br></td>
 <?php
 
@@ -70,16 +70,18 @@ echo "</td>";
 }
 ?>
 
+
  
 <td style="vertical-align: top; text-align: center;">
 	<a href="reserva.php">Liste<br>des réservations</a>
 	<br></td>
  
-
+<td style="vertical-align: top; text-align: center;">
+	<a href="login.php?variable=pret">Accès<br>restreint</a>
+	<br></td>
 
 </tr></tbody>
 </table>
-
 
 <?php pied_page() ?>
 </body>

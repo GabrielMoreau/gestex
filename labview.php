@@ -28,7 +28,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://www.legi.hmg.inpg.fr/intranet/intra.html">Retour a<br>l'intranet</a>
+	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour a<br>la page du service</a>
 	<br></td>
 
  <td style="vertical-align: top; text-align: center;">

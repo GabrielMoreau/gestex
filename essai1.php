@@ -62,7 +62,7 @@ Liste des appareils : <br>
 	
 	 <th style="vertical-align: top; text-align: center;">
 
-	<a href ="instru1.php?categorie= ">Liste globale</a><br>
+	<a href ="instru1.php?list=">Liste globale</a><br>
       </th>
 
  <th style="vertical-align: top; text-align: center;">
@@ -97,15 +97,15 @@ if ( $connex = connect_db() ){
 $data = result_db($qh);
  echo"<td style=\"vertical-align: top;\">";
 echo "<a href =\"instru1.php?categorie=".$data[id]."\">". $data[nom]."</a>";
-echo "</td>";
+echo "<br>";
 	
 
 while ($data = result_db($qh))
 
-  {     echo"<td style=\"vertical-align: top;\">";
+  {    // echo"<td style=\"vertical-align: top;\">";
 
 	echo "<a href =\"instru1.php?categorie=".$data[id]."\">". $data[nom]."</a>";
-echo "</td>";
+echo "<br>";
 
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-// Authenticate.
+// Authenticate
 
 include("session_auth.php");
 
@@ -30,6 +30,9 @@ if (empty($tri))
 $cat=$_GET[categorie];
 //echo "$cat";
 
+//recupere l'équipe
+$eq=$_GET[equipe];
+echo "$eq";
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>";
 ?>
@@ -39,9 +42,10 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://www.legi.hmg.inpg.fr/intranet/intra.html">Retour a<br>l'intranet</a>
+<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour à<br>la page du service</a>	
+
 	<br></td>
-<?php if ( $user_level >=2 ) {	
+<?php if (empty($eq)) {	
 ?>
 
  <td style="vertical-align: top; text-align: center;">
@@ -95,8 +99,7 @@ echo "<a href =\"add_app2.php?categorie=".$data[id]."\">Ajout<br>d'un appareil</
 
 
 
- <td style="vertical-align: top; text-align: center;">
-	<a href="logout.php?variable=instru">Quitter</a>
+
 <?php }	?>
 
 	<br></td> </tr></tbody>
@@ -163,12 +166,12 @@ if ( $connex = connect_db() ){
 	// recupere la liste de appareils
 
 
-if (!empty($cat))
+if ((!empty($cat))||(!empty($eq)))
 
 
 {
 
-$querry = "SELECT * FROM Listing where categorie='$cat'";
+$querry = "SELECT * FROM Listing where (equipe='$eq'||categorie='$cat') order by nom ASC";
 	list($qh,$num) = query_db($querry);
 	
 	$last_id=0;
@@ -176,7 +179,7 @@ $querry = "SELECT * FROM Listing where categorie='$cat'";
 
 }
 
-if (empty($cat))
+if ((empty($cat))&&(empty($eq)))
 {
 	$querry = "SELECT * FROM Listing order by $tri";
 	list($qh,$num) = query_db($querry);
@@ -241,12 +244,16 @@ echo $data[gamme];
 		echo "Voir : <a href =\"notice.php?id=". $data[id]."\">".$data[nom]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\"></a><br>";
     
 	}
-	 if ( $user_level >=2) {	
+	if (( $user_level >=2)&&($eq=="15 pret=15")) {
+echo"</td><td style=\"vertical-align: top;\">";
+      echo "<a href=\"add-pret.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Demande de pret\"></a>";
+     echo"</td>"; }
+	 if (( $user_level >=2)&&($eq!="15 pret=15")) {	
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_app2.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
- if ( $user_level >=3 ) {
+ if (( $user_level >=3 )&&($eq!="15 pret=15")) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_app2.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\"></a>";
       echo"</td>";
@@ -324,14 +331,17 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data[categorie]'";
 	
 
 
-   
-
- if ( $user_level >=2) {	
+  if (( $user_level >=2)&&($eq=="15 pret=15")) {
+echo"</td><td style=\"vertical-align: top;\">";
+      echo "<a href=\"add-pret.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Demande de pret\"></a>";
+     echo"</td>"; 
+}
+ if (( $user_level >=2)&&($eq!="15 pret=15")) {	
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_app2.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
- if ( $user_level >=3 ) {
+ if (( $user_level >=3 )&&($eq!="15 pret=15")) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_app2.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\"></a>";
       echo"</td>";

@@ -95,7 +95,7 @@ Liste des appareils : <br>
 ?>
 
  <th style="vertical-align: top; text-align: center;">
-	<a href ="instru1.php?tri=categorie">Catégorie<br>
+	Catégorie<br>
       </th>
 
       <th style="vertical-align: top; text-align: center;">
@@ -142,7 +142,7 @@ if ((!empty($cat))||(!empty($eq)))
 
 {
 
-$querry = "SELECT * FROM Listing where (equipe='$eq'||categorie='$cat') order by categorie DESC";
+$querry = "SELECT * FROM Listing where (equipe='$eq'||categorie='$cat') order by categorie";
 	list($qh,$num) = query_db($querry);
 	
 	$last_id=0;
@@ -152,7 +152,7 @@ $querry = "SELECT * FROM Listing where (equipe='$eq'||categorie='$cat') order by
 
 if ((empty($cat))&&(empty($eq)))
 {
-	$querry = "SELECT * FROM Listing order by categorie DESC";
+	$querry = "SELECT * FROM Listing order by categorie ";
 	list($qh,$num) = query_db($querry);
 	
 	$last_id=0;
