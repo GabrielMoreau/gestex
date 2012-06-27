@@ -1,0 +1,72 @@
+<?php
+///
+///
+
+function en_tete( $titre){
+/////echo"<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n";
+echo"<html><head>\n";
+echo"  <meta http-equiv=\"content-type\" content=\"text/html; charset=ISO-8859-1\">\n";
+echo"  <title>$titre</title>\n";
+echo"<link href=\"pool_project.css\" rel=\"stylesheet\" type=\"text/css\">\n";
+echo"</head><body>\n";
+echo"<div width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\"><br>\n";
+echo"<br><table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" style=\"text-align: left; width: 75%;\" align=\"center\">";
+echo"<tbody> <tr  bgcolor=\"#f7d709\">  <td style=\"vertical-align: center;\">";
+echo"<img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\">";
+echo"      </td>      <td style=\"vertical-align: top;\"><br>";
+echo"<h1>Pool Projects</h1>";
+echo $titre;
+echo"  </td> </tr> </tbody> </table>";
+echo"<br>\n";echo"</div>";
+}
+
+
+function pied_page(){
+echo"<center>\n";
+echo"<img src=\"images/striped.gif\" nosave=\"\" border=\"0\" height=\"13\"  width=\"532\" align=\"bottom\">\n";
+
+//ne garde que le nom de fichier
+$filetmp = explode('/',$_SERVER['PHP_SELF']);
+$file = $filetmp[count($filetmp)-1];
+///mise a jour de ce fichier
+echo"<table cellpadding=\"2\" cellspacing=\"2\" border=\"0\" style=\"text-align: center; width: 95%;\">\n";
+echo" <tbody>   <tr><td>\n";
+echo"<img src=\"images/php-small-purple.gif\" align=\"top\" nosave=\"\" ></td>\n";
+echo"<td><address><a href=\"mailto:Pierre.Carecchio@hmg.inpg.fr?subject=to%20WebMaster\">\n";
+echo"Pierre Carecchio</a></address><br><i>derni&egrave;re mise &agrave; jour :\n";
+ echo strftime('%d/%m/%y',filemtime($file)); 
+echo"</i></td>";
+echo"<td><img src=\"images/mysql.png\"  align=\"top\" nosave=\"\" ></td>";
+echo"</tr></tbody></table></center>\n";
+echo"</body></html>\n";
+}
+
+function check_mail($mail)
+{
+$atom = '[-a-z0-9!#$%&\'*+/=?^_`{|}~]';    // allowed characters for part before "at" character
+$domain = '([a-z]([-a-z0-9]*[a-z0-9]+)?)'; // allowed characters for part after "at" character
+
+$regex = '^' . $atom . '+' .        // One or more atom characters.
+'(\.' . $atom . '+)*'.              // Followed by zero or more dot separated sets of one or more atom characters.
+'@'.                                // Followed by an "at" character.
+'(' . $domain . '{1,63}\.)+'.        // Followed by one or max 63 domain characters (dot separated).
+$domain . '{2,63}'.                  // Must be followed by one set consisting a period of two
+'$';                                // or max 63 domain characters.
+  
+  $erreur =0;
+
+   if (strlen($mail) == 0):
+       //echo '&nbsp;<br>';
+       $erreur =1;
+   else:
+     if (eregi($regex, $mail)):
+      // echo $mail . ' matched<br>';
+      $erreur =0;
+     else:
+      // echo '<strong>'. $mail . ' not matched</strong><br>';
+      $erreur =2;
+     endif;
+   endif;
+  return $erreur;
+}
+?>
