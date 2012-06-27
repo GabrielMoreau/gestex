@@ -9,12 +9,12 @@
 <body>
 <br>
 <div width="100%" height="100%" align="center" valign="center">
-<?php require("html_functions.php"); en_tete("gestion des manips du LEGI");?>
+<?php require("html_functions.php"); en_tete("Gestion des plateformes expérimentales du LEGI");?>
   <br>
 
-PoolProject est un ensemble de scripts PHP/MySQL developp&eacute;s au Legi (Pool Technique du Bat. G)
-destin&eacute; &agrave; gerer l'historique des montages exerimentaux du labo.<br>
-Il faut &ecirc;tre utilisateur referenc&eacute; pour pouvoir acceder &agrave; ce systeme.
+GestEx est une application web developp&eacute;s au LEGI (collaboration entre les services technique / intrumentation / informatique)
+destin&eacute; &agrave; g&eacute;rer l'historique des montages exerimentaux du laboratoire.<br>
+Il faut &ecirc;tre utilisateur referenc&eacute; pour pouvoir acc&eacute;der &agrave; ce systeme.
 <br>
 <table cellpadding="2" cellspacing="2" border="0"
  style="text-align: center; width: 75%;" align="center">
