@@ -4,9 +4,9 @@
 //infos de connexions a la base mySQL 
 
 define('USER', "pool");
-define ('PASSWD', "web;2pool");
-define('SERVER',"localhost");
-define('DATABASE',"pool");
+define('PASSWD', "web;2pool");
+define('SERVER', "localhost");
+define('DATABASE', "pool");
 
-define('ADMIN_MAIL',"Pierre.Carecchio@hmg.inpg.fr");
+define('ADMIN_MAIL', "Gabriel.Moreau@legi.grenoble-inp.fr");
 ?>
