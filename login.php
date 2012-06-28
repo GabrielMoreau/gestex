@@ -67,7 +67,7 @@ echo "<title>Gestion des prêts du matériel instrumentation du LEGI</title>";
 </head>
 <body align="center" valign="center" onLoad="document.loginForm.username.focus();">
 <?php
-echo $login_failure ."<br>";
+echo $login_failure ."<br />";
 
 ?>
 
@@ -77,7 +77,7 @@ echo $login_failure ."<br>";
   <tbody>
     <tr bgcolor="#f7d709">
 
-      <td style="vertical-align: top;"><br>
+      <td style="vertical-align: top;"><br />
 <img src="images/logo_legi.jpg" width="150"  border="0" hspace="0" vspace="0"> 
 </td>
 
@@ -89,7 +89,7 @@ echo $login_failure ."<br>";
 
  if ($truc == "projet")
  { echo  "<td style=\"vertical-align: top;\"><h1>Gestion de Projet LEGI</h1>";
-echo	"<br>Pour acc&eacute;der &agrave; l'outil de gestion de projets du Legi, il faut y etre r&eacute;f&eacute;renc&eacute;.<br>
+echo	"<br />Pour acc&eacute;der &agrave; l'outil de gestion de projets du LEGI, il faut y etre r&eacute;f&eacute;renc&eacute;.<br />
 Si ce n'est pas deja fait, vous pouvez en faire la demande <a href=\"add_user.php\">ici </a>";
  
 }
@@ -99,7 +99,7 @@ Si ce n'est pas deja fait, vous pouvez en faire la demande <a href=\"add_user.ph
 
 
  </td>
-         <td style="vertical-align: top;"><br>
+         <td style="vertical-align: top;"><br />
 
 <?php
 if ($truc =="projet")
@@ -118,9 +118,9 @@ echo "<img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\">";
 					<table width="300" cellspacing="0" cellpadding="5" bgcolor="#1F32F0" align="center" class="box">
 						<tr>
 							<td><img src="../images/logolegi.gif" width="69" height="69" border="0" hspace="0" vspace="0"></td>
-							<td><span class="box_text"> Nom de Loggin :</span><br><input type="text" name="username" size="25" maxlength="25"></td>
-							<td><span class="box_text"> Mot de passe :</span><br><input type="password" name="password" size="25" maxlength="25"></td>
-							<td><br><input type="submit" name="Login" value="Entrer"> </td>
+							<td><span class="box_text"> Nom de Loggin :</span><br /><input type="text" name="username" size="25" maxlength="25"></td>
+							<td><span class="box_text"> Mot de passe :</span><br /><input type="password" name="password" size="25" maxlength="25"></td>
+							<td><br /><input type="submit" name="Login" value="Entrer"> </td>
 						</tr>
 						<?php if (isset($login_failure)) { ?>
 						<tr>

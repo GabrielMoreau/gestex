@@ -2,11 +2,11 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
-  <title>Gestion de Projets Legi</title>
+  <title>Gestion de Projets LEGI</title>
   <link href="pool_project.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<br>
+<br />
 <div width="100%" height="100%" align="center" valign="center">
 <?php require("html_functions.php"); en_tete("Gestion des plateformes exp&eacute;rimentales du LEGI");?>
 <br />
@@ -24,7 +24,7 @@ destin&eacute;e &agrave; g&eacute;rer l'historique des montages exp&eacute;rimen
         <a href="add_user.php">Demander son inscription</a>
       </td>
       <td style="vertical-align: top;">
-        <a href="login.php?variable=projet">Acceder au gestionnaire de Projets</a>
+        <a href="login.php?variable=projet">Acc&eacute;der au gestionnaire de Projets</a>
       </td>
     </tr>
   </tbody>
