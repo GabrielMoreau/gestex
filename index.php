@@ -10,18 +10,21 @@
 <div width="100%" height="100%" align="center" valign="center">
 <?php require("html_functions.php"); en_tete("Gestion des plateformes exp&eacute;rimentales du LEGI");?>
 <br />
-GestEx est une application web developp&eacute;e au LEGI (collaboration entre les services technique / instrumentation / informatique)
-destin&eacute;e &agrave; g&eacute;rer l'historique des montages exp&eacute;rimentaux du laboratoire.<br>
-Il faut &ecirc;tre utilisateur r&eacute;f&eacute;renc&eacute; pour pouvoir acc&eacute;der &agrave; ce syst&egrave;me.
+
+<p>GestEx est une application web developp&eacute;e au LEGI (collaboration entre les services technique / instrumentation / informatique)
+destin&eacute;e &agrave; g&eacute;rer l'historique des montages exp&eacute;rimentaux du laboratoire.</p>
+<p>Il faut &ecirc;tre un utilisateur r&eacute;f&eacute;renc&eacute; pour pouvoir acc&eacute;der &agrave; ce syst&egrave;me.</p>
+
 <br />
+
 <table cellpadding="2" cellspacing="2" border="0" style="text-align: center; width: 75%;" align="center">
   <tbody>
     <tr>
       <td style="vertical-align: top;">
-        <a href="add_user.php">Demander son inscription</a><br />
+        <a href="add_user.php">Demander son inscription</a>
       </td>
       <td style="vertical-align: top;">
-        <a href="login.php?variable=projet">Acceder au gestionnaire de Projets</a><br />
+        <a href="login.php?variable=projet">Acceder au gestionnaire de Projets</a>
       </td>
     </tr>
   </tbody>
