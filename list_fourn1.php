@@ -105,10 +105,10 @@ while ($data = result_db($qh)) {
       echo $data[fax];
       echo"</td><td style=\"vertical-align: top;\">";
 	if (!empty($data[mail]))
-     	 echo "<a href=\"mailto:".$data[mail]."\"><img src=\"images/mail_generic.png\" nosave ></a>";
+     	 echo "<a href=\"mailto:".$data[mail]."\"><img src=\"images/mail_generic.png\" nosave=\"\" ></a>";
       echo"</td><td style=\"vertical-align: top;\">";
 	if (!empty($data[www]))
- 		 echo "<a href=\"http://".$data[www]."\" target=\"_fournView\"><img src=\"images/html.png\" nosave width=\"22\"></a>";
+ 		 echo "<a href=\"http://".$data[www]."\" target=\"_fournView\"><img src=\"images/html.png\" nosave=\"\" width=\"22\"></a>";
 
       echo"</td><td style=\"vertical-align: top;\">";
          echo  $data[contact];
@@ -118,12 +118,12 @@ while ($data = result_db($qh)) {
       echo"</td>";
  if ( $user_level >=2 && $data[nom]!="aucun" ) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_fourn.php?id=".$data[id]."\"><img src=\"images/edit.png\" nosave title=\">Modifier\"></a>";
+      echo "<a href=\"add_fourn.php?id=".$data[id]."\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 && $data[nom]!="aucun" ) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_fourn.php?id=".$data[id]."\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\"></a>";
+      echo "<a href=\"del_fourn.php?id=".$data[id]."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 	
 	}//end if

@@ -154,11 +154,11 @@ while ($data = result_db($qh)) {
 		}
 	if ($user_level>=2){
      		echo"</td><td style=\"vertical-align: top;\">";
- 		echo "<a href=\"add_manip.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\"Modifier\" /></a>";
+ 		echo "<a href=\"add_manip.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\"Modifier\" /></a>";
 	}
 	if ($user_level==3){
   	  	echo"</td><td style=\"vertical-align: top;\">";
- 		echo "<a href=\"del_manip.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\" /></a>";
+ 		echo "<a href=\"del_manip.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
 	}
  echo"</td></tr>";
 	}//end while

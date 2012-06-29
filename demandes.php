@@ -154,12 +154,12 @@ echo $data[piecesjointes];
 	
 	 if ( $user_level >=2) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_demandes.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Modifier\" /></a>";
+      echo "<a href=\"add_demandes.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_demandes.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_demandes.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 	
 }
@@ -200,7 +200,7 @@ echo $data[piecesjointes];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
 		//si trouvé ajoute un bouton
-		echo "Voir : <a href =\"jointdemandes.php?id=". $data[id]."\">".$data[tache]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\" /></a><br />";
+		echo "Voir : <a href =\"jointdemandes.php?id=". $data[id]."\">".$data[tache]."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
     
 	}
 
@@ -211,12 +211,12 @@ echo $data[piecesjointes];
 
  if ( $user_level >=2) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_demandes.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Modifier\" /></a>";
+      echo "<a href=\"add_demandes.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_demandes.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_demandes.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 	
 }

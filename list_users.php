@@ -39,12 +39,12 @@ else	{ //edition/modif de ses propres coordonnées
 ?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_user.php?id=<?php echo $user_id ?>">
-		<img src="images/edit.png" nosave title="modifier son profil"></a>
+		<img src="images/edit.png" nosave=\"\" title="modifier son profil"></a>
 	<br /></td>
  <?php } ?>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="changepwd.php?id=<?php echo $user_id ?>">
-		<img src="images/unlock.png" nosave title="changer son mot de passe"></a>
+		<img src="images/unlock.png" nosave=\"\" title="changer son mot de passe"></a>
 	<br /></td>
 	
  <td style="vertical-align: top; text-align: center;">
@@ -107,7 +107,7 @@ while ($data = result_db($qh)) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo $data[tel];
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"mailto:".$data[email]."\"> <img src=\"images/mail_generic.png\" nosave></a>";
+      echo "<a href=\"mailto:".$data[email]."\"> <img src=\"images/mail_generic.png\" nosave=\"\"></a>";
       echo"</td><td style=\"vertical-align: top;\">";
  			// recupere la liste de equipes
 	$querry = "SELECT nom FROM equipe WHERE id ='$data[equipe]'";
@@ -119,10 +119,10 @@ while ($data = result_db($qh)) {
      if ($user_level==3){
 		 echo"</td><td style=\"vertical-align: top;\">";
 		echo "<a href=\"changepwd.php?id=".$data[id]."\">";
-		echo "<img src=\"images/unlock.png\" nosave title=\"changer le mot de passe\"></a>";
+		echo "<img src=\"images/unlock.png\" nosave=\"\" title=\"changer le mot de passe\"></a>";
 		 echo"</td><td style=\"vertical-align: top;\">";
 		echo "<a href=\"del_user.php?id=".$data[id]."\">";
-		echo "<img src=\"images/kill.png\" nosave title=\"supprimer l'utilisateur!\"></a>";
+		echo "<img src=\"images/kill.png\" nosave=\"\" title=\"supprimer l'utilisateur!\"></a>";
 		 echo"</td><td style=\"vertical-align: top;\">";
 		if ($data['valid']==0)
 			echo "Non Validé";

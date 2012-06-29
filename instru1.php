@@ -216,23 +216,23 @@ echo $data[gamme];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
 		//si trouvé ajoute un bouton
-		echo "Voir : <a href =\"notice.php?id=". $data[id]."\">".$data[nom]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\" /></a><br />";
+		echo "Voir : <a href =\"notice.php?id=". $data[id]."\">".$data[nom]."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
     
 	}
 if (!empty($eq))
 {
  echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add-pret.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Demande de pret\" /></a>";
+      echo "<a href=\"add-pret.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Demande de pret\" /></a>";
       echo"</td>";
 }
 	 if ( $user_level >=2) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app2.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Modifier\" /></a>";
+      echo "<a href=\"add_app2.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_app2.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_app2.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 	
 }
@@ -303,7 +303,7 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data[categorie]'";
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
 		//si trouvé ajoute un bouton
-		echo "Voir : <a href =\"notice.php?id=". $data[id]."\">".$data[nom]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\" /></a><br />";
+		echo "Voir : <a href =\"notice.php?id=". $data[id]."\">".$data[nom]."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
     
 	}
 	
@@ -314,18 +314,18 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data[categorie]'";
 
 {
 echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add-pret.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Demande de pret\" /></a>";
+      echo "<a href=\"add-pret.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Demande de pret\" /></a>";
      echo"</td>";
 }
 
  if ( $user_level >=2) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app2.php?id=$data[id]\"><img src=\"images/edit.png\" nosave title=\">Modifier\" /></a>";
+      echo "<a href=\"add_app2.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_app2.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_app2.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 	
 }

@@ -172,7 +172,7 @@ echo $data[commentaire];
 	if ( $use >=3 ) 	{
  
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del-pret.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\"></a>";
+      echo "<a href=\"del-pret.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";}
 	
 
@@ -226,7 +226,7 @@ echo"</td><td style=\"vertical-align: top;\">";
  
  if ( $use >=3 ) 	{
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del-pret.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave title=\"Supprimer\"></a>";
+      echo "<a href=\"del-pret.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 	}
 
