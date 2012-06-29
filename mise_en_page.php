@@ -29,7 +29,7 @@ function pied_page(){
    echo "<table cellpadding=\"2\" cellspacing=\"2\" border=\"0\" style=\"text-align: center; width: 95%;\">\n";
    echo " <tbody>   <tr><td>\n";
    echo "<!-- <img src=\"images/php-small-purple.gif\" align=\"top\" nosave=\"\" /> --></td>\n";
-   echo "<td><address><a href=\"mailto:Muriel.Lagauzere@hmg.inpg.fr?subject=to%20WebMaster\">\n";
+   echo "<td><address><a href=\"mailto:Muriel.Lagauzere@hmg.inpg.fr?Subject=GestEx%20to%20WebMaster\">\n";
    echo "Muriel Lagauzere</a></address><br /><i>Derni&egrave;re mise &agrave; jour :\n";
    echo strftime('%d/%m/%Y',filemtime($file)); 
    echo "</i></td>";

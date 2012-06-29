@@ -31,7 +31,7 @@ function pied_page(){
    echo "<table cellpadding=\"2\" cellspacing=\"2\" border=\"0\" style=\"text-align: center; width: 95%;\">\n";
    echo " <tbody>   <tr><td>\n";
    echo "<!-- <img src=\"images/php-small-purple.gif\" align=\"top\" nosave=\"\" /> --></td>\n";
-   echo "<td><address><a href=\"mailto:webmaster@legi.grenoble-inp.fr?subject=GestEx%20to%20WebMaster\">\n";
+   echo "<td><address><a href=\"mailto:webmaster@legi.grenoble-inp.fr?Subject=GestEx%20to%20WebMaster\">\n";
    echo "LEGI WebMaster</a></address><br /><i>Derni&egrave;re mise &agrave; jour :\n";
    echo strftime('%d/%m/%Y',filemtime($file)); 
    echo "</i></td>";
