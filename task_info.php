@@ -123,7 +123,7 @@ $fourn = explode (",",  $tasks[fourniss]);
 
    while ( $temp = array_shift($timings)) {
     /// nom date durée remarques 
-    echo $temp ."(".array_shift($timings).") ".array_shift($timings)." h : ".array_shift($timings)."<br>";
+    echo $temp ."(".array_shift($timings).") ".array_shift($timings)." h : ".array_shift($timings)."<br />";
 
   } ?>
  </td></tr>
@@ -132,8 +132,8 @@ $fourn = explode (",",  $tasks[fourniss]);
 <?php }//end if connect
 ?>
   
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

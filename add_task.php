@@ -88,13 +88,13 @@ echo $texte;
 
     <tr>
     
-      <td style="vertical-align: top;">Nom *<br>
+      <td style="vertical-align: top;">Nom *<br />
       </td>
       <td colspan="2" style="vertical-align: top;">
- <input type="text" name="nom" size="25" maxlength="30" value="<?php echo $data[nom] ?>" ><br>
+ <input type="text" name="nom" size="25" maxlength="30" value="<?php echo $data[nom] ?>" ><br />
       </td>
     </tr><tr>
-      <td style="vertical-align: top;">Description<br>
+      <td style="vertical-align: top;">Description<br />
       </td>
       <td colspan="2" style="vertical-align: top;">
  <textarea name="descr" cols="80" rows="10"><?php echo $data[descr] ?></textarea>
@@ -108,7 +108,7 @@ echo $texte;
   $querry = "SELECT id,nom FROM fournisseurs";
   list($qheq,$numeq) = query_db($querry);
   ?>
-      <td style="vertical-align: top;">Fournisseurs <br>
+      <td style="vertical-align: top;">Fournisseurs <br />
       <i> plusieurs peuvent etre selectionnés parmi les <?php echo $numeq ?> enregistrés!</i>
  <!---- <?php echo $data[fourniss].":".count($liste_fourn) ?> ----->
  </td>
@@ -140,7 +140,7 @@ echo $texte;
 
 
     <tr>
-      <td style="vertical-align: top;">Date * <i>format:YYYY-MM-JJ</i><br>
+      <td style="vertical-align: top;">Date * <i>format:YYYY-MM-JJ</i><br />
       </td>
       <td colspan="2" style="vertical-align: top;">
  <input type="text" name="date" size="10" maxlength="10" value="<?php 
@@ -148,12 +148,12 @@ echo $texte;
      echo $data[date];
     else  //ajout->aujourd'hui
      echo date('Y-m-d', time() ); 
-      ?> " ><br>
+      ?> " ><br />
       </td>
     </tr>
  <tr style="vertical-align: middle; text-align: center">
    <td ><i>les champs avec * sont &agrave;
-remplir obligatoirement, les autres sont optionnels.</i><br>
+remplir obligatoirement, les autres sont optionnels.</i><br />
       </td>
       <td >
  <input type="submit" name="Login" value="<?php echo strtoupper($mode) ?>">
@@ -168,8 +168,8 @@ remplir obligatoirement, les autres sont optionnels.</i><br>
  </form>  
 </tbody>
 </table>
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

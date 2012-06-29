@@ -37,7 +37,7 @@ $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
 
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>";
+echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 
 
@@ -46,18 +46,18 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>
   <tbody>
     <tr> 
 	<td style="vertical-align: top; text-align: center;">
-	<a href="instru.php">Retour a<br>la liste</a>
-	<br></td>
+	<a href="instru.php">Retour a<br />la liste</a>
+	<br /></td>
 	
  
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php?variable=instru">Quitter</a>
-	<br></td></tr></tbody>
+	<br /></td></tr></tbody>
 </table>
-<br>
+<br />
 
 <?php
-echo "L'appareil <b>".$data[nom]."</b> a deja subi les interventions suivantes :<br>";
+echo "L'appareil <b>".$data[nom]."</b> a deja subi les interventions suivantes :<br />";
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1"
@@ -65,24 +65,24 @@ echo "L'appareil <b>".$data[nom]."</b> a deja subi les interventions suivantes :
   <tbody>
     <tr bgcolor="#f7d709">
       <th style="vertical-align: top; text-align: center;">
-		<a href ="fiche_vie.php?tri=nom">Nom<br>
+		<a href ="fiche_vie.php?tri=nom">Nom<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Modele<br>
+	Modele<br />
       </th>
      <th style="vertical-align: top; text-align: center;">
-	Achat<br>
+	Achat<br />
       </th>
     <th style="vertical-align: top; text-align: center;">
-	Accessoires<br><br>
+	Accessoires<br /><br />
       </th>
 
   <th style="vertical-align: top; text-align: center;">
-	Réparation / Etalonnages<br><br>
+	Réparation / Etalonnages<br /><br />
       </th>
 
 <th style="vertical-align: top; text-align: center;">
-	Numéro<br>
+	Numéro<br />
       </th>
 
 
@@ -138,7 +138,7 @@ echo $data[id];
 ?>
   </tbody>
 </table>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

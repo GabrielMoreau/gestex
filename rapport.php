@@ -57,7 +57,7 @@ if ( $connex = connect_db() ){
 en_tete("Création de rapport");
 
 
-$texte = $logged_in_user." (".$user_id.") Voila un formulaire pour créér un rapport<br>";
+$texte = $logged_in_user." (".$user_id.") Voila un formulaire pour créér un rapport<br />";
 echo $texte;
 
 }//end if connex
@@ -65,20 +65,20 @@ echo $texte;
 		Header("Location :accueil.php");
 ?>
  
-<br>
+<br />
 <table cellpadding="2" cellspacing="2" border="0"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr class=menu>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="accueil.php">Retour a l'accueil</a>
-	<br></td>
+	<br /></td>
 
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php?variable=projet">Quitter</a>
-	<br></td> </tr></tbody>
+	<br /></td> </tr></tbody>
 </table>
-<br>
+<br />
 
 <table cellpadding="2" cellspacing="2" border="0" style="text-align: left; width: 75%;" align="center">
   <tbody>
@@ -86,7 +86,7 @@ echo $texte;
 <form action="print_rapport.php" method="POST" name="rappForm">
     <tr>
     
-      <td style="vertical-align: top;">pour l'<b>Equipe</b><br><i>choisissez dans la liste</i><br>
+      <td style="vertical-align: top;">pour l'<b>Equipe</b><br /><i>choisissez dans la liste</i><br />
    </td>
       <td style="vertical-align: top;">
 	<select name="equipe"  size="5" onchange="location.href='rapport.php?ide=' + this.options[this.selectedIndex].value;" >
@@ -105,7 +105,7 @@ echo $texte;
     </td>    </tr>		
     <tr>
 
-      <td style="vertical-align: top;">pour la <b>manip</b> de cette equipe<br>
+      <td style="vertical-align: top;">pour la <b>manip</b> de cette equipe<br />
    </td>
       <td style="vertical-align: top;">
 	<select name="manip"  size="5" onchange="location.href='rapport.php?ide=' + equipe.options[equipe.selectedIndex].value + '&idm=' + this.options[this.selectedIndex].value;" >
@@ -125,7 +125,7 @@ echo $texte;
 	?>
     </td>    </tr>
 	<tr>
-      <td style="vertical-align: top;">pour le <b>Projet</b> de cette manip<br>
+      <td style="vertical-align: top;">pour le <b>Projet</b> de cette manip<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="projet"  size="5" onchange="location.href='rapport.php?ide=' + equipe.options[equipe.selectedIndex].value + '&idm=' + manip.options[manip.selectedIndex].value + '&idp=' + this.options[this.selectedIndex].value;" >
@@ -144,7 +144,7 @@ echo $texte;
   </td>    </tr>  
     
 	<tr>
-      <td style="vertical-align: top;">pour la <b>Tachet</b> de ce projet<br>
+      <td style="vertical-align: top;">pour la <b>Tachet</b> de ce projet<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="tache"  size="5" >
@@ -163,13 +163,13 @@ echo $texte;
   </td>    </tr>  
     
     <tr>
-      <td style="vertical-align: top;">Depuis la Date<br><i>format:YYYY-MM-JJ<br>0 : depuis toujours...</i>
+      <td style="vertical-align: top;">Depuis la Date<br /><i>format:YYYY-MM-JJ<br />0 : depuis toujours...</i>
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="date" size="10" maxlength="10" value="<?php 
 				  //ajout->aujourd'hui par defaut
 					echo date('Y-m-d', time() ); 
-						?> " ><br>
+						?> " ><br />
       </td>
     </tr>
 
@@ -187,8 +187,8 @@ echo $texte;
 	</form>  
 </tbody>
 </table>
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

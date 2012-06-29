@@ -22,12 +22,12 @@ $id_manip = $_GET[id];
 if (empty($id_manip))
  Header( "Location : accueil.php");
 
-echo "Manip:".$id_manip. " ok :".$valid."<br>";
+echo "Manip:".$id_manip. " ok :".$valid."<br />";
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
- echo "Sur de supprimer la Manip ".$manip_id. " ainsi que tous ses projets et taches ?<br>";
- echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_manip."&ok=yes\">OUI</a><br>";
-  echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br>";
+ echo "Sur de supprimer la Manip ".$manip_id. " ainsi que tous ses projets et taches ?<br />";
+ echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_manip."&ok=yes\">OUI</a><br />";
+  echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
  
 }
 else{if ( $connex = connect_db() ){
@@ -53,13 +53,13 @@ $result=1;
    if (!$result){
    //inscription !ok
    $erreur = mysql_error();
-   echo "<br>erreur :".$erreur;
+   echo "<br />erreur :".$erreur;
  
  }
 else 
- echo "Manip ".$manip_id." supprimée, ainsi que ses projets et taches!<br>"; 
+ echo "Manip ".$manip_id." supprimée, ainsi que ses projets et taches!<br />"; 
 //on retourne a la page precedente
-  echo "<a href=\"accueil.php\">Suite</a><br>";
+  echo "<a href=\"accueil.php\">Suite</a><br />";
 }} 
 
 ?>

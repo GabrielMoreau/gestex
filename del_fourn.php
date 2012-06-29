@@ -22,9 +22,9 @@ if (empty($id_fourn))
 
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
- echo "Sur de supprimer le Fournisseur ".$id_fourn." ?<br>";
- echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_fourn."&ok=yes\">OUI</a><br>";
-  echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br>";
+ echo "Sur de supprimer le Fournisseur ".$id_fourn." ?<br />";
+ echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_fourn."&ok=yes\">OUI</a><br />";
+  echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
  
 }
 else{
@@ -37,15 +37,15 @@ if ( $connex = connect_db() ){
    if (!$result){
    //inscription !ok
    $erreur = mysql_error();
-   echo "<br>erreur :".$erreur;
+   echo "<br />erreur :".$erreur;
  
   }
  else 
-  echo "Fournisseur ".$id_fourn." supprimé!<br>"; 
+  echo "Fournisseur ".$id_fourn." supprimé!<br />"; 
 
  }//end if connect
 //on retourne a la page precedente
-  echo "<a href=\"list_fourn.php"\">Suite</a><br>";
+  echo "<a href=\"list_fourn.php"\">Suite</a><br />";
 } //else end
 
 ?>

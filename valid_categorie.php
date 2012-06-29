@@ -25,8 +25,8 @@ if (!empty($erreur) ){
 
 	//erreur
 
-	echo "<br>erreur :".$erreur;
-	echo"<br><a href=\"add_categorie.php\">Suite</a><br>\n";
+	echo "<br />erreur :".$erreur;
+	echo"<br /><a href=\"add_categorie.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -48,16 +48,16 @@ if ( $connex = connect_db() ){
 if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
-		echo "<br>erreur :".$erreur;
+		echo "<br />erreur :".$erreur;
 		}
 		
 	}//end if connect
 
 ////en_tete("inscription Valid&eacute;e");
 
-echo "<br>ajout de ".$nom."<br>";
+echo "<br />ajout de ".$nom."<br />";
 echo" est valid&eacute;e ";
-echo"<br><br><a href=\"instru.php\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"instru.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
 }

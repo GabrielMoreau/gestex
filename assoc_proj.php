@@ -49,7 +49,7 @@ echo "Projets deja associés :".$data[assoc_proj];
   <input type="hidden" name="id_manip" value="<?php echo $manip_id ?>" >
    <tr>
     
-      <td style="vertical-align: top;">Voici la liste des projets n'appartenant pas a cette manip :<br>
+      <td style="vertical-align: top;">Voici la liste des projets n'appartenant pas a cette manip :<br />
  <i>vous pouvez selectionner plusieurs projets associés</i>
       </td>
      
@@ -86,7 +86,7 @@ echo "Projets deja associés :".$data[assoc_proj];
     </tr>
    
     <tr>
-   <td style="vertical-align: top;"><br>
+   <td style="vertical-align: top;"><br />
       </td>
       <td style="vertical-align: top;" align="right">
 <input type="submit" name="Login" value="Associer">
@@ -101,8 +101,8 @@ echo "Projets deja associés :".$data[assoc_proj];
  </form>  
 </tbody>
 </table>
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

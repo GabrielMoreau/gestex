@@ -46,8 +46,8 @@ if (!empty($erreur) ){
 
 	//erreur
 
-	echo "<br>erreur :".$erreur;
-	echo"<br><a href=\"list_user.php\">Suite</a><br>\n";
+	echo "<br />erreur :".$erreur;
+	echo"<br /><a href=\"list_user.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -99,11 +99,11 @@ if ( $connex = connect_db() ){
 
 		$result = mysql_query($querry);
 		if ($user_level>= 3)
-			echo "MySQL Querry : ". $querry."<br>";
+			echo "MySQL Querry : ". $querry."<br />";
  		if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
-		echo "<br>erreur :".$erreur;
+		echo "<br />erreur :".$erreur;
 		}
 		if ($user_level == 3 && $valid==1 ){
 			//validation d'un user acceptée
@@ -113,10 +113,10 @@ if ( $connex = connect_db() ){
 		}
 	}//end if connect
 
-echo "inscription de ".$prenom." ".$nom." ".$mail."<br>";
+echo "inscription de ".$prenom." ".$nom." ".$mail."<br />";
 echo" <img src=\"images/pool_project.jpg\"  height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 echo" est modifi&eacute;e  !";
-echo"<br><br><a href=\"list_users.php\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"list_users.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
 }

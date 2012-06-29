@@ -96,30 +96,30 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 			switch ( strtolower(substr($file, $pos+1))){
 				case "htm":
 				case "html":
-					echo "images/html.png\" ><br>";
+					echo "images/html.png\" ><br />";
 					break;
 				case "doc":
-					echo "images/document.png\" ><br>";
+					echo "images/document.png\" ><br />";
 					break;
 				case "xls":
-					echo "images/spreadsheet.png\" ><br>";
+					echo "images/spreadsheet.png\" ><br />";
 					break;
 				case "pdf":
-					echo "images/pdf.png\" ><br>";
+					echo "images/pdf.png\" ><br />";
 					break;
 				case "gif":
 				case "jpg":
 				case "png":///image
-					echo $dossier_lab.$file."\" width=\"150\"><br>";
+					echo $dossier_lab.$file."\" width=\"150\"><br />";
 
 					break;
 				case "avi":
 				case "mov":
 				case "mpg":///videos
-					echo "images/video.png\" ><br>";
+					echo "images/video.png\" ><br />";
 					break;
 				default :
-					echo "images/unknown.png\" ><br>";
+					echo "images/unknown.png\" ><br />";
 					break;
 			}//end switch
 			//ajoute le nom du fichier sous l'image
@@ -130,7 +130,7 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 					//inclue le fichier
 					if ( $text_handle = fopen( $dossier_lab.$autres, "r")){
 						while (!feof($text_handle)) 
-    							echo  fgets($text_handle, 4096)."<br>";
+    							echo  fgets($text_handle, 4096)."<br />";
     						fclose($text_handle);
 					}//end if fopen
 				}//while end autres
@@ -145,12 +145,12 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 <?php
 	}
 	else
-		echo "pas de documents disponibles pour ce projet!<br>";
+		echo "pas de documents disponibles pour ce projet!<br />";
 	}//end if connect
 ?>
   
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

@@ -54,8 +54,8 @@ if (!empty($erreur) ){
 
 	//erreur
 
-	echo "<br>erreur :".$erreur;
-	echo"<br><a href=\"add_app.php?id=".$id_app ."\" >Suite</a><br>\n";
+	echo "<br />erreur :".$erreur;
+	echo"<br /><a href=\"add_app.php?id=".$id_app ."\" >Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -74,10 +74,10 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 
 /*
-echo $nom." ".$data['nom']."<br>";
-echo $descr." ".$data['descr']."<br>";
-echo $compte." ".$data['compte']."<br>";
-echo $chef." ".$data['chef']."<br>";*/
+echo $nom." ".$data['nom']."<br />";
+echo $descr." ".$data['descr']."<br />";
+echo $compte." ".$data['compte']."<br />";
+echo $chef." ".$data['chef']."<br />";*/
 
 		//modification app
 $modif=0;
@@ -131,12 +131,12 @@ $modif=0;
  		if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
-			echo "<br>erreur :".$erreur;
+			echo "<br />erreur :".$erreur;
 		}
 	}//end if modif
 	else{
 		echo "aucune modif a faire";
-		echo"<br><br><a href=\"list_app.php\">Suite</a><br><br>\n";
+		echo"<br /><br /><a href=\"list_app.php\">Suite</a><br /><br />\n";
 		pied_page();
 		exit();
 		}//else end
@@ -144,10 +144,10 @@ $modif=0;
 
 ////en_tete("modification appareil Valid&eacute;e");
 
-echo "<br>".$nom."modifi&eacute; ";
+echo "<br />".$nom."modifi&eacute; ";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 echo"  valid&eacute;e !!";
-echo"<br><br><a href=\"list_app.php\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"list_app.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
 }

@@ -51,63 +51,63 @@ echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
   <tbody>
     <tr>
-      <td style="vertical-align: top;">Nom de loggin *<br>
+      <td style="vertical-align: top;">Nom de loggin *<br />
       </td>
       <td style="vertical-align: top;">
 	<?php if ($mode=="ajouter"){ ?>
-	<input type="text" name="loggin" size="25" maxlength="25" value="" ><br>
+	<input type="text" name="loggin" size="25" maxlength="25" value="" ><br />
 	<?php } 
 		else {
 			// on ne change pas le loggin
-			echo $logged_in_user."<br>";
+			echo $logged_in_user."<br />";
  	}	?>
       </td>
     </tr>
     <?php if ($mode=="ajouter"){ ?>
 	<tr>
-      <td style="vertical-align: top;">mot de passe *<br>
+      <td style="vertical-align: top;">mot de passe *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="password" name="password" size="25" maxlength="25" value="<?php echo $data[password] ?>" ><br>
+	<input type="password" name="password" size="25" maxlength="25" value="<?php echo $data[password] ?>" ><br />
       </td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">mot de passe (pour confirmer) *<br>
+      <td style="vertical-align: top;">mot de passe (pour confirmer) *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="password" name="password2" size="25" maxlength="25" value="<?php echo $data[password] ?>" ><br>
+	<input type="password" name="password2" size="25" maxlength="25" value="<?php echo $data[password] ?>" ><br />
       </td>
     </tr>
  	<?php } //end if mode ?>
  <tr>
-      <td style="vertical-align: top;">Nom *<br>
+      <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nom" size="25" maxlength="25" value="<?php echo $data[nom] ?>" ><br>
+	<input type="text" name="nom" size="25" maxlength="25" value="<?php echo $data[nom] ?>" ><br />
       </td>
     </tr><tr>
-      <td style="vertical-align: top;">Prenom<br>
+      <td style="vertical-align: top;">Prenom<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="prenom" size="25" maxlength="25" value="<?php echo $data[prenom] ?>" ><br>
+	<input type="text" name="prenom" size="25" maxlength="25" value="<?php echo $data[prenom] ?>" ><br />
       </td>
     </tr>  
     <tr>
-      <td style="vertical-align: top;">Adresse mail *<br>
+      <td style="vertical-align: top;">Adresse mail *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="addr_mail" size="25" maxlength="50" value="<?php echo $data[email] ?>" ><br>
+	<input type="text" name="addr_mail" size="25" maxlength="50" value="<?php echo $data[email] ?>" ><br />
       </td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Telephone<br>
+      <td style="vertical-align: top;">Telephone<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="phone" size="10" maxlength="10" value="<?php echo $data[tel] ?>" ><br>
+	<input type="text" name="phone" size="10" maxlength="10" value="<?php echo $data[tel] ?>" ><br />
       </td>
     </tr>
      <tr>
-      <td style="vertical-align: top;">Equipe<br>
+      <td style="vertical-align: top;">Equipe<br />
       </td>
 	<?php // recupere la liste des equipes
 		$querry = "SELECT id,nom FROM equipe";
@@ -125,35 +125,35 @@ echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
 			echo ">".$equipes['nom']."</option>";
 		}//end while	?>
 
-		</select><br>
+		</select><br />
       </td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Qualit&eacute;<br>
+      <td style="vertical-align: top;">Qualit&eacute;<br />
       </td>
       <td style="vertical-align: top;">
 	<?php  if ($user_level==3 || !isset($user_level) ){ //admin loggé ou premiere inscription: modif possible
 	 ?>
-	<input type="radio" name="level" value="0" <?php if ($data[level]==0) echo "checked=\"checked\"" ?> >Etudiant<br>
-	<input type="radio" name="level" value="1" <?php if ($data[level]==1) echo "checked=\"checked\"" ?> >Chercheur<br>
-	<input type="radio" name="level" value="2" <?php if ($data[level]==2) echo "checked=\"checked\"" ?> >ITA<br>
+	<input type="radio" name="level" value="0" <?php if ($data[level]==0) echo "checked=\"checked\"" ?> >Etudiant<br />
+	<input type="radio" name="level" value="1" <?php if ($data[level]==1) echo "checked=\"checked\"" ?> >Chercheur<br />
+	<input type="radio" name="level" value="2" <?php if ($data[level]==2) echo "checked=\"checked\"" ?> >ITA<br />
 	<?php }	
 	if (isset($user_level) && $user_level==3) { ?>
-		<input type="radio" name="level" value="3" <?php if ($data[level]==3) echo "checked=\"checked\"" ?> >Admin<br>
+		<input type="radio" name="level" value="3" <?php if ($data[level]==3) echo "checked=\"checked\"" ?> >Admin<br />
 	<?php }
 	if ( isset($user_level) && ($user_level < 3 )){ ///consultation seulement
 		switch($data[level]){
-			case 0: echo "Etudiant<br>";break;
-			case 1: echo "Chercheur<br>";break;
-			case 2: echo "ITA<br>";break;
-			case 3: echo "Admin<br>";
+			case 0: echo "Etudiant<br />";break;
+			case 1: echo "Chercheur<br />";break;
+			case 2: echo "ITA<br />";break;
+			case 3: echo "Admin<br />";
 		}
 	} ?>
       </td>
     </tr>
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
-remplir obligatoirement, les autres sont optionnels.<br>
+remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">
 <input type="submit" name="Login" value="<?php echo $mode; ?>" >
@@ -163,8 +163,8 @@ remplir obligatoirement, les autres sont optionnels.<br>
 </table></form>	<?php	}
 			else //if connect_db
 		{	Header("Location :list_users.php");exit(0);	}	?>
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

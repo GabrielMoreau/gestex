@@ -22,56 +22,56 @@ $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="nom";
 
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>";
+echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
-Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :<br>
+Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :<br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="accueil.php">Retour a<br>l'accueil</a>
-	<br></td>
+	<a href="accueil.php">Retour a<br />l'accueil</a>
+	<br /></td>
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_app2.php">Ajout<br>d'un appareil</a>
-	<br></td>
+	<a href="add_app2.php">Ajout<br />d'un appareil</a>
+	<br /></td>
 <?php }	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php">Quitter</a>
-	<br></td> </tr></tbody>
+	<br /></td> </tr></tbody>
 </table>
-<br>
-<i>Cliquer sur le nom d'un appareil pour voir la liste des interventions qu'il a subi...</i><br>
+<br />
+<i>Cliquer sur le nom d'un appareil pour voir la liste des interventions qu'il a subi...</i><br />
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app2.php?tri=nom">Nom</a><br>
+	<a href ="list_app2.php?tri=nom">Nom</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Description<br>
+	Description<br />
       </th>
 
   <th style="vertical-align: top; text-align: center;">
-	Gamme<br>
+	Gamme<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app2.php?tri=equipe">Equipe</a><br>
+	<a href ="list_app2.php?tri=equipe">Equipe</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app2.php?tri=tech">Responsable</a><br>
+	<a href ="list_app2.php?tri=tech">Responsable</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app.php?tri=fournisseur">Fournisseur</a><br>
+	<a href ="list_app.php?tri=fournisseur">Fournisseur</a><br />
       </th>
     <th style="vertical-align: top; text-align: center;">
-	date AChat<br>
+	date AChat<br />
       </th>
     <th style="vertical-align: top; text-align: center;">
-	reparation<br>
+	reparation<br />
       </th>
 <?php if ( $user_level >=2 ) 	
 		echo "</th><th>";
@@ -152,7 +152,7 @@ echo $data[gamme];
 ?>
   </tbody>
 </table>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

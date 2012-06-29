@@ -24,12 +24,12 @@ $id_proj = $_GET[idp];
 if (empty($id_proj))
  Header( "Location : manip_maint.php");
 
-echo "Projet:".$id_proj. " ok :".$valid."<br>";
+echo "Projet:".$id_proj. " ok :".$valid."<br />";
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
- echo "Sur de supprimer le projet ".$id_proj. " à la manip ".$id_manip." et toutes ses taches?<br>";
- echo "<a href=\"".$_SERVER[PHP_SELF]."?idm=".$id_manip."&idp=".$id_proj."&ok=yes\">OUI</a><br>";
-  echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br>";
+ echo "Sur de supprimer le projet ".$id_proj. " à la manip ".$id_manip." et toutes ses taches?<br />";
+ echo "<a href=\"".$_SERVER[PHP_SELF]."?idm=".$id_manip."&idp=".$id_proj."&ok=yes\">OUI</a><br />";
+  echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
  
 }
 else{
@@ -48,13 +48,13 @@ if ( $connex = connect_db() ){
    if (!$result){
    //inscription !ok
    $erreur = mysql_error();
-   echo "<br>erreur :".$erreur;
+   echo "<br />erreur :".$erreur;
  
  }
 else 
- echo "Projet ".$id_proj." supprimé, ainsi que toutes ses taches!<br>"; 
+ echo "Projet ".$id_proj." supprimé, ainsi que toutes ses taches!<br />"; 
 //on retourne a la page precedente
-  echo "<a href=\"manip_maint.php?id=".$id_manip."\">Suite</a><br>";
+  echo "<a href=\"manip_maint.php?id=".$id_manip."\">Suite</a><br />";
 }
 } 
 

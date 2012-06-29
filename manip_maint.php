@@ -37,11 +37,11 @@ if ( $connex = connect_db() ){
  list($qh,$num) = query_db($querry);
  
 $data = result_db($qh);
-echo " Bienvenue $data[prenom] $data[nom] ($user_id)<br><br>";
+echo " Bienvenue $data[prenom] $data[nom] ($user_id)<br /><br />";
 ?>
 
-<br>
-Voici la liste des Projets de la manip :<br>
+<br />
+Voici la liste des Projets de la manip :<br />
 <?php
  $querry = "SELECT * FROM manip where id='$manip_id' " ;
  list($qh,$num) = query_db($querry);
@@ -54,8 +54,8 @@ Voici la liste des Projets de la manip :<br>
 <table cellpadding="1" cellspacing="1" border=1 style="width: 90%; text-align: center; margin-left: auto; margin-right: auto;">
   <tbody><tr bgcolor="#f7d709">
  <?php
- echo "<td rowspan=2><h2>".$data[nom]." (".$data[id].")</h2> <i>Date</i> :".$data[date]."<br></td>";
-  echo "<td style=\" text-align: left;\">".$data[descr]."<br></td>";
+ echo "<td rowspan=2><h2>".$data[nom]." (".$data[id].")</h2> <i>Date</i> :".$data[date]."<br /></td>";
+  echo "<td style=\" text-align: left;\">".$data[descr]."<br /></td>";
     // recupere le nom de de equipes
   $querry = "SELECT nom FROM equipe WHERE id ='$data[equipe]'";
   list($qheq,$numeq) = query_db($querry);
@@ -63,21 +63,21 @@ Voici la liste des Projets de la manip :<br>
 
  echo "<tr bgcolor=\"#f7d709\">";
 
-  echo "<td style=\" text-align: center;\"><i>Equipe</i> :".$eq[nom]."<br>";
+  echo "<td style=\" text-align: center;\"><i>Equipe</i> :".$eq[nom]."<br />";
     // recupere le nom du chercheur
   $querry = "SELECT nom FROM users WHERE id ='$data[chercheur]'";
   list($qheq,$numeq) = query_db($querry);
   $eq = result_db($qheq)  ;
 
 
-  echo "<i>Chercheur</i> :".$eq[nom]."<br>";
+  echo "<i>Chercheur</i> :".$eq[nom]."<br />";
 
 
-  echo "<i>Local</i> :".$data[local]."<br></td>";
+  echo "<i>Local</i> :".$data[local]."<br /></td>";
  echo "</tr>";
  ?>
 </tr></tbody></table>
-<br>
+<br />
 
 <!-- menu commandes -->
 <table cellpadding="1" cellspacing="1" border="0"
@@ -87,20 +87,20 @@ Voici la liste des Projets de la manip :<br>
  <?php if ($user_level >=2){ ?>
    <td style="vertical-align: top; text-align: center;">
   <a href="add_proj.php?idm=<?php echo $manip_id ?>">Ajout d'un Projet</a>
-  <br></td>
+  <br /></td>
    <td style="vertical-align: top; text-align: center;">
   <a href="assoc_proj.php?id=<?php echo $manip_id ?>">Association d'un Projet</a>
-  <br></td>
+  <br /></td>
  <?php } ?>
    <td style="vertical-align: top; text-align: center;">
  <a href="accueil.php">Retour a l'accueil</a>
- <br></td>
+ <br /></td>
   
   <td style="vertical-align: top; text-align: center;">
  <a href="logout.php?variable=projet">Quitter</a>
- <br></td> </tr></tbody>
+ <br /></td> </tr></tbody>
 </table>
-<br>
+<br />
 
 <!-- tableau(x) des projets -->
 <?php
@@ -126,7 +126,7 @@ wnd.focus();
     <tr bgcolor="#f7bb09">
   <th style="vertical-align: top; text-align: left;" colspan="4" >
 <?php  echo "Projet :<a href=\"#\" onclick=\"windowToTop('proj_info.php?idm=". $manip_id ."&idp=". $proj_id ."');\" title =\"Détails de ce projet\">";
-  echo $manips[nom]." (".$manips[id].")"; ?> </a><br>
+  echo $manips[nom]." (".$manips[id].")"; ?> </a><br />
       </th>
   <th style="vertical-align: top; text-align: left;">
  <?php
@@ -139,7 +139,7 @@ wnd.focus();
  /// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
  if (@opendir($dossier_proj) != FALSE){
   //si trouvé ajoute un bouton
-  echo "Voir : <a href =\"browse_proj.php?idm=". $manip_id ."&idp=".$proj_id."\"><img src=\"images/filefind.png\" nosave width=\"15\" title =\"Voir les docs de ce projet\"></a><br>";
+  echo "Voir : <a href =\"browse_proj.php?idm=". $manip_id ."&idp=".$proj_id."\"><img src=\"images/filefind.png\" nosave width=\"15\" title =\"Voir les docs de ce projet\"></a><br />";
  
  }
  ?>
@@ -148,13 +148,13 @@ wnd.focus();
   <!-- <th colspan="3"></th> //ajout de doc   -->
     <th style="vertical-align: top; text-align: left;">
   
-  <a href ="add_doc.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/stockattach.png" nosave width=\"20\"  title ="ajouter un document à ce projet"></a><br>
+  <a href ="add_doc.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/stockattach.png" nosave width=\"20\"  title ="ajouter un document à ce projet"></a><br />
   </th>
    <th style="vertical-align: top; text-align: right;">
-  <a href ="add_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/editcopy.png" nosave width=\"20\" title ="Modifier ce projet"></a><br>
+  <a href ="add_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/editcopy.png" nosave width=\"20\" title ="Modifier ce projet"></a><br />
    </th>
     <th style="vertical-align: top; text-align: right;">
-  <a href ="del_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/edittrash.png" nosave width=\"20\" title="Supprimer ce projet"></a><br>
+  <a href ="del_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/edittrash.png" nosave width=\"20\" title="Supprimer ce projet"></a><br />
    </th>
   
   
@@ -163,14 +163,14 @@ wnd.focus();
   } ?>
  </tr>
  <!-- <tr bgcolor="#f7d709">
-  <th style="vertical-align: top; text-align: center;">Taches<br>      </th>
-  <th style="vertical-align: top; text-align: center;">Debut :<br>      </th>
-  <th style="vertical-align: top; text-align: center;">Par :<br>      </th>
-  <th style="vertical-align: top; text-align: center;">Temps pass&eacute;:<br>      </th>
+  <th style="vertical-align: top; text-align: center;">Taches<br />      </th>
+  <th style="vertical-align: top; text-align: center;">Debut :<br />      </th>
+  <th style="vertical-align: top; text-align: center;">Par :<br />      </th>
+  <th style="vertical-align: top; text-align: center;">Temps pass&eacute;:<br />      </th>
  
  <?php if ($user_level >=2){ ?>
   <th colspan="2" style="vertical-align: top; text-align: right;" >
-  <a href ="add_task.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>">Ajouter une tache</a><br>
+  <a href ="add_task.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>">Ajouter une tache</a><br />
     </th>
  <?php }
   else {
@@ -236,7 +236,7 @@ wnd.focus();
 
    echo"<tr><td style=\"vertical-align: top;text-align: left;\" >"; 
  if ($user_level >=2){
- echo" <a href =\"add_task.php?idm=".$manip_id." ?>&idp=". $proj_id ."?>\"><img src=\"images/edit_add.png\" nosave width=\"15\"  title=\"Ajouter une tache\"></a><br>";
+ echo" <a href =\"add_task.php?idm=".$manip_id." ?>&idp=". $proj_id ."?>\"><img src=\"images/edit_add.png\" nosave width=\"15\"  title=\"Ajouter une tache\"></a><br />";
  }
 
 echo"</td><td style=\"vertical-align: top;text-align: right;\" colspan=3 >";
@@ -247,7 +247,7 @@ echo"</td><td style=\"vertical-align: top;text-align: right;\" colspan=3 >";
  echo"</tbody></table>";
  $total_manip+=$total_projet; 
 }//end while manip
-echo "<br>temps total manip : ".$total_manip." heures<br><br>";
+echo "<br />temps total manip : ".$total_manip." heures<br /><br />";
 
 
 ////////projets associés
@@ -272,8 +272,8 @@ echo "</ul>";
 }//end if connect
 ?>
   
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

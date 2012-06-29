@@ -58,13 +58,13 @@ else if ($mode=="modifier"){
 		<input type="hidden" name="id_manip" value="<?php echo $manip_id ?>" >
    <tr>
     
-      <td style="vertical-align: top;">Nom *<br>
+      <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nom" size="20" maxlength="20" value="<?php echo $data[nom] ?>" ><br>
+	<input type="text" name="nom" size="20" maxlength="20" value="<?php echo $data[nom] ?>" ><br />
       </td>
     </tr><tr>
-      <td style="vertical-align: top;">Description<br>
+      <td style="vertical-align: top;">Description<br />
       </td>
       <td style="vertical-align: top;">
 	<textarea name="descr" cols="50" rows="5"> <?php echo $data[descr] ?>
@@ -72,10 +72,10 @@ else if ($mode=="modifier"){
       </td>
     </tr>  
     <tr>
-      <td style="vertical-align: top;">Local *<br>
+      <td style="vertical-align: top;">Local *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="local" size="5" maxlength="10" value="<?php echo $data[local] ?>" ><br>
+	<input type="text" name="local" size="5" maxlength="10" value="<?php echo $data[local] ?>" ><br />
       </td>
     </tr>
     <tr>
@@ -83,7 +83,7 @@ else if ($mode=="modifier"){
 		$querry = "SELECT id,nom FROM equipe order by nom";
 		list($qheq,$numeq) = query_db($querry);
 		?>
-      <td style="vertical-align: top;">Equipe <i> qui utilisera la manip</i><br>
+      <td style="vertical-align: top;">Equipe <i> qui utilisera la manip</i><br />
       </td>
       <td style="vertical-align: top;">
 	<select name="equipe"   >
@@ -104,7 +104,7 @@ else if ($mode=="modifier"){
 		$querry = "SELECT id,nom FROM users WHERE level=1 AND valid=1 order by nom";
 		list($qheq,$numeq) = query_db($querry);
 		?>
-      <td style="vertical-align: top;">Chercheur <i>( qui commande la manip)</i><br>
+      <td style="vertical-align: top;">Chercheur <i>( qui commande la manip)</i><br />
       </td>
       <td style="vertical-align: top;">
 	<select name="cherch"   >
@@ -124,7 +124,7 @@ else if ($mode=="modifier"){
 		$querry = "SELECT id,nom FROM users WHERE level<=2 AND valid=1 order by nom ";
 		list($qheq,$numeq) = query_db($querry);
 		?>
-	<td style="vertical-align: top;">Chercheur/Etudiant <i>( qui utilisera la manip)</i><br>
+	<td style="vertical-align: top;">Chercheur/Etudiant <i>( qui utilisera la manip)</i><br />
       </td>
       <td style="vertical-align: top;">
 	<select name="cherch_bis"   >
@@ -143,7 +143,7 @@ else if ($mode=="modifier"){
  </tr>
 
     <tr>
-      <td style="vertical-align: top;">Date <i>format:YYYY-MM-JJ</i><br>
+      <td style="vertical-align: top;">Date <i>format:YYYY-MM-JJ</i><br />
       </td>
       <th style="vertical-align: top;">
 	<input type="text" name="date" size="10" maxlength="10" value="<?php 
@@ -151,13 +151,13 @@ else if ($mode=="modifier"){
 					echo $data[date];
 				else  //ajout->aujourd'hui
 					echo date('Y-m-d', time() ); 
-						?> " ><br>
+						?> " ><br />
       </td>
     </tr>
    
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
-remplir obligatoirement, les autres sont optionnels.<br>
+remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">
 <input type="submit" name="Login" value="<?php echo $mode ?>">
@@ -172,8 +172,8 @@ remplir obligatoirement, les autres sont optionnels.<br>
 	</form>  
 </tbody>
 </table>
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

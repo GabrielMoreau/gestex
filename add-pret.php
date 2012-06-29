@@ -57,7 +57,7 @@ else if ($mode=="modifier"){
  
 
   <tr>
-      <td style="vertical-align: top;">Nom<br>
+      <td style="vertical-align: top;">Nom<br />
       </td>
       
   <td style="vertical-align: top;">
@@ -81,7 +81,7 @@ if ($mode=="ajouter" )
 
 	?>
 </select>
-<br>
+<br />
       </td>
     </tr>
 
@@ -90,7 +90,7 @@ if ($mode=="ajouter" )
   
 
     <tr>
-      <td style="vertical-align: top;">Equipe *<br>
+      <td style="vertical-align: top;">Equipe *<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="equipe">
@@ -105,7 +105,7 @@ if ($mode=="ajouter" )
 			echo ">".$chef[nom]."</option>";
 		}//end while
 		 ?>
-	</select><br>
+	</select><br />
       </td>
     </tr>
 
@@ -114,7 +114,7 @@ if ($mode=="ajouter" )
     
   <tr>
     
-      <td style="vertical-align: top;">Date demande pret *<i>format YYYY-MM-DD</i><br>
+      <td style="vertical-align: top;">Date demande pret *<i>format YYYY-MM-DD</i><br />
       </td>
       <th style="vertical-align: top;">
 	<input type="text" name="emprunt" size="10" maxlength="10" value="<?php
@@ -122,7 +122,7 @@ if ($mode=="ajouter" )
 			echo $data[emprunt];
 		else 
 			echo date('Y-m-d', time() );
-	?>" ><br>
+	?>" ><br />
       </td>
     </tr>
 
@@ -130,7 +130,7 @@ if ($mode=="ajouter" )
 
   <tr>
     
-      <td style="vertical-align: top;">Date de retour estimée *<i>format YYYY-MM-DD</i><br>
+      <td style="vertical-align: top;">Date de retour estimée *<i>format YYYY-MM-DD</i><br />
  </td>
       <td style="vertical-align: top;">
 <input type="text" name="retour" size="10" maxlength="10" value="<?php
@@ -138,7 +138,7 @@ if ($mode=="ajouter" )
 			echo $data[retour];
 		else 
 			echo date('Y-m-d', time() );
-	?>" ><br>
+	?>" ><br />
 
 
 
@@ -146,10 +146,10 @@ if ($mode=="ajouter" )
      
     </tr>
 <tr>
- <td style="vertical-align: top;">Commentaire<br>
+ <td style="vertical-align: top;">Commentaire<br />
       </td>
 <td style="vertical-align: top;">
-<input type="text" name="commentaire" size="30" maxlength="30" value="<?php echo $data[commentaire] ?>" ><br>
+<input type="text" name="commentaire" size="30" maxlength="30" value="<?php echo $data[commentaire] ?>" ><br />
 
 
       </td>
@@ -163,7 +163,7 @@ if ($mode=="ajouter" )
 
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
-remplir obligatoirement, les autres sont optionnels.<br>
+remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">
 <input type="submit" name="Login" value="<?php echo $mode ?>">
@@ -179,13 +179,13 @@ remplir obligatoirement, les autres sont optionnels.<br>
 	</form>  
 </tbody>
 </table>
-<br>
+<br />
 
 
 <?php }
 	else 
 	{	Header("Location :instru.php");	}	?>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

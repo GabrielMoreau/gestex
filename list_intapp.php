@@ -37,7 +37,7 @@ $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="date";
 
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>";
+echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 
 
@@ -46,27 +46,27 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>
   <tbody>
     <tr> 
 	<td style="vertical-align: top; text-align: center;">
-	<a href="accueil.php">Retour a<br>l'accueil</a>
-	<br></td>
+	<a href="accueil.php">Retour a<br />l'accueil</a>
+	<br /></td>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="list_app.php">Retour a<br>liste des Appareils</a>
-	<br></td>
+	<a href="list_app.php">Retour a<br />liste des Appareils</a>
+	<br /></td>
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_intapp.php?app=<?php echo $id_app; ?>">Ajout d'une<br>intervention</a>
-	<br></td>
+	<a href="add_intapp.php?app=<?php echo $id_app; ?>">Ajout d'une<br />intervention</a>
+	<br /></td>
 <?php }	?>
  <td style="vertical-align: top; text-align: center;">
-	<a href="rapport_int.php?id=<?php echo $id_app; ?>">Rapport des<br>interventions</a>
-	<br></td>
+	<a href="rapport_int.php?id=<?php echo $id_app; ?>">Rapport des<br />interventions</a>
+	<br /></td>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php">Quitter</a>
-	<br></td></tr></tbody>
+	<br /></td></tr></tbody>
 </table>
-<br>
+<br />
 
 <?php
-echo "L'appareil <b>".$data[nom]."</b> a deja subi les interventions suivantes :<br>";
+echo "L'appareil <b>".$data[nom]."</b> a deja subi les interventions suivantes :<br />";
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1"
@@ -74,19 +74,19 @@ echo "L'appareil <b>".$data[nom]."</b> a deja subi les interventions suivantes :
   <tbody>
     <tr bgcolor="#f7d709">
       <th style="vertical-align: top; text-align: center;">
-	Description<br>
+	Description<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_intapp.php?tri=tech">Tech</a><br>
+	<a href ="list_intapp.php?tri=tech">Tech</a><br />
       </th>
      <th style="vertical-align: top; text-align: center;">
-	<a href ="list_intapp.php?tri=fournisseur">Fournisseur</a><br>
+	<a href ="list_intapp.php?tri=fournisseur">Fournisseur</a><br />
       </th>
     <th style="vertical-align: top; text-align: center;">
-	<a href ="list_intapp.php?tri=date">date</a><br><br>
+	<a href ="list_intapp.php?tri=date">date</a><br /><br />
       </th>
     <th style="vertical-align: top; text-align: center;">
-	facture<br>
+	facture<br />
       </th>
 <?php if ( $user_level >=2 ) 	
 		echo "</th><th>";
@@ -147,7 +147,7 @@ while ($data = result_db($qh)) {
 ?>
   </tbody>
 </table>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

@@ -59,7 +59,7 @@ en_tete($titre);
 		<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
 		<input type="hidden" name="id_int" value="<?php echo $int_id ?>" >
     <tr>
-      <td style="vertical-align: top;">Description<br>
+      <td style="vertical-align: top;">Description<br />
       </td>
       <td style="vertical-align: top;">
       <textarea name="descr" cols="50" rows="5"> <?php echo $data[descr] ?></textarea>
@@ -67,7 +67,7 @@ en_tete($titre);
     </tr>  
    
     <tr>
-      <td style="vertical-align: top;">Responsable<br>
+      <td style="vertical-align: top;">Responsable<br />
       </td>
       <td style="vertical-align: top;">
 		
@@ -83,12 +83,12 @@ en_tete($titre);
 			echo ">".$chef[nom]."</option>";
 		}//end while
 		 ?>
-	</select><br>
+	</select><br />
       </td>
     </tr>
    
    <tr>
-      <td style="vertical-align: top;">Fournisseur<br>
+      <td style="vertical-align: top;">Fournisseur<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="fourn">
@@ -103,12 +103,12 @@ en_tete($titre);
 			echo ">".$chef[nom]."</option>";
 		}//end while
 		 ?>
-	</select><br>
+	</select><br />
       </td>
     </tr>
   <tr>
     
-      <td style="vertical-align: top;">Date <i>format YYYY-MM-DD</i><br>
+      <td style="vertical-align: top;">Date <i>format YYYY-MM-DD</i><br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="date" size="10" maxlength="10" value="
@@ -117,20 +117,20 @@ en_tete($titre);
 		echo $data[date] ;
 	else
 		echo date('Y-m-d', time() );
-       ?>"><br></td>
+       ?>"><br /></td>
     </tr><tr>
   <tr>
     
-      <td style="vertical-align: top;">Facture<br>
+      <td style="vertical-align: top;">Facture<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="facture" size="30" maxlength="30" value="<?php echo $data[facture] ?>" ><br>
+	<input type="text" name="facture" size="30" maxlength="30" value="<?php echo $data[facture] ?>" ><br />
       </td>
     </tr><tr>
 
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
-remplir obligatoirement, les autres sont optionnels.<br>
+remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">
 <input type="submit" name="Login" value="<?php echo $mode ?>">
@@ -145,11 +145,11 @@ remplir obligatoirement, les autres sont optionnels.<br>
 	</form>  
 </tbody>
 </table>
-<br>
+<br />
 <?php }
 	else 
 	{	Header("Location :accueil.php");	}	?>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

@@ -34,17 +34,17 @@ $cat=$_GET[categorie];
 $eq=$_GET[equipe];
 echo "$eq";
 
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>";
+echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
-<br>
+<br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour à<br>la page du service</a>	
+<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour à<br />la page du service</a>	
 
-	<br></td>
+	<br /></td>
 <?php if (empty($eq)) {	
 ?>
 
@@ -61,7 +61,7 @@ $querry = "SELECT * FROM categorie where id='$cat'" ;
 	$last_id=0;
 $data = result_db($qh);
  
-echo "<a href =\"add_app2.php?categorie=".$data[id]."\">Ajout<br>d'un appareil</a>";
+echo "<a href =\"add_app2.php?categorie=".$data[id]."\">Ajout<br />d'un appareil</a>";
 
 
 
@@ -69,18 +69,18 @@ echo "<a href =\"add_app2.php?categorie=".$data[id]."\">Ajout<br>d'un appareil</
 }
 ?>
 	
-	<br></td>
+	<br /></td>
 
 
 
  <td style="vertical-align: top; text-align: center;">
-	<a href="list_fourn.php">Liste<br>des fournisseurs</a>
-	<br></td>
+	<a href="list_fourn.php">Liste<br />des fournisseurs</a>
+	<br /></td>
 
 
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_fourn.php">Ajout<br>d'un fournisseur</a>
-	<br></td>
+	<a href="add_fourn.php">Ajout<br />d'un fournisseur</a>
+	<br /></td>
 
 <?php }	?>
 
@@ -88,13 +88,13 @@ echo "<a href =\"add_app2.php?categorie=".$data[id]."\">Ajout<br>d'un appareil</
 	
 
 	<a href="essai.php">Retour aux categories</a>
-<br></td>
+<br /></td>
 
 
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_categorie.php">Ajout<br>d'une categorie</a>
-	<br></td>
+	<a href="add_categorie.php">Ajout<br />d'une categorie</a>
+	<br /></td>
 
 
 
@@ -102,16 +102,16 @@ echo "<a href =\"add_app2.php?categorie=".$data[id]."\">Ajout<br>d'un appareil</
 
 <?php }	?>
 
-	<br></td> </tr></tbody>
+	<br /></td> </tr></tbody>
 </table>
 
 
 
 
 
-<br>
-Liste des appareils : <br>
-<i>Cliquer sur le nom d'un appareil pour connaitre son modèle, sa date d'achat, ses accessoires...</i><br>
+<br />
+Liste des appareils : <br />
+<i>Cliquer sur le nom d'un appareil pour connaitre son modèle, sa date d'achat, ses accessoires...</i><br />
 
 
 
@@ -124,32 +124,32 @@ Liste des appareils : <br>
 
 
  <th style="vertical-align: top; text-align: center;">
-	<a href ="instru.php?tri=categorie">Catégorie<br>
+	<a href ="instru.php?tri=categorie">Catégorie<br />
       </th>
 
       <th style="vertical-align: top; text-align: center;">
-	Nom<br>
+	Nom<br />
       </th>
      <th style="vertical-align: top; text-align: center;">
-	Modele<br>
+	Modele<br />
       </th>
 
 
  <th style="vertical-align: top; text-align: center;">
-	Gamme<br>
+	Gamme<br />
       </th>
 
       <th style="vertical-align: top; text-align: center;">
-	Equipe<br>
+	Equipe<br />
       </th>
      
       <th style="vertical-align: top; text-align: center;">
-	Fournisseur<br>
+	Fournisseur<br />
       </th>
 
   
 <th style="vertical-align: top; text-align: center;">
-	Notice<br>
+	Notice<br />
       </th>
 
 
@@ -241,7 +241,7 @@ echo $data[gamme];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
 		//si trouvé ajoute un bouton
-		echo "Voir : <a href =\"notice.php?id=". $data[id]."\">".$data[nom]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\"></a><br>";
+		echo "Voir : <a href =\"notice.php?id=". $data[id]."\">".$data[nom]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\"></a><br />";
     
 	}
 	if (( $user_level >=2)&&($eq=="15 pret=15")) {
@@ -325,7 +325,7 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data[categorie]'";
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
 		//si trouvé ajoute un bouton
-		echo "Voir : <a href =\"notice.php?id=". $data[id]."\">".$data[nom]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\"></a><br>";
+		echo "Voir : <a href =\"notice.php?id=". $data[id]."\">".$data[nom]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\"></a><br />";
     
 	}
 	
@@ -367,7 +367,7 @@ echo"</tr>";
 ?>
   </tbody>
 </table>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

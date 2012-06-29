@@ -65,7 +65,7 @@ if ( $connex = connect_db() ){
   ///interro db table temps
   $querry = "SELECT * FROM temps WHERE id_tache=$taches[id] ORDER BY date";
   list($qh4,$num4) = query_db($querry);
-  $temps_tache=0; $allremarks="<br>";
+  $temps_tache=0; $allremarks="<br />";
   $users = "par: ";
   while($temps = result_db($qh4)){
    $temps_tache+= $temps[duree];
@@ -80,7 +80,7 @@ if ( $connex = connect_db() ){
 
 // cree une chaine de remarques liées a ces temps
  if (!empty( $temps[remarks]) )
- $allremarks .= $temps[date].":".$temps[remarks]."<br>";
+ $allremarks .= $temps[date].":".$temps[remarks]."<br />";
 
   }
  $temps_total += $temps_tache;
@@ -100,9 +100,9 @@ if ( $connex = connect_db() ){
 <?php }//end if connect
 ?>
 
-<br><center>
+<br /><center>
   <a href="#" onclick="javascript:self.close();">Fermer</a>
-<br></center>
+<br /></center>
 </div>
 <?php pied_page() ?>
 </body>

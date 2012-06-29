@@ -40,8 +40,8 @@ if (!empty($erreur) ){
 
  //erreur
 
- echo "<br>erreur :".$erreur;
- echo"<br><a href=\"add_proj.php?id=".$id_manip."\">Suite</a><br>\n";
+ echo "<br />erreur :".$erreur;
+ echo"<br /><a href=\"add_proj.php?id=".$id_manip."\">Suite</a><br />\n";
 
  pied_page();
  exit();
@@ -73,8 +73,8 @@ if ( $connex = connect_db() ){
    if (!$result){
    //inscription !ok
    $erreur = mysql_error();
-  echo "<br>erreur :".$erreur;
-  echo"<br><br><a href=\"add_proj.php?idm=".$id_manip."\">Suite</a><br><br>\n";
+  echo "<br />erreur :".$erreur;
+  echo"<br /><br /><a href=\"add_proj.php?idm=".$id_manip."\">Suite</a><br /><br />\n";
   }
   else{ //result=ok
   $result = mysql_query("SELECT nom FROM manip WHERE id='$id_manip'");
@@ -93,10 +93,10 @@ $dossier .= "/".$nom;
 mkdir($dossier);
 
 
-echo "inscription du projet ".$nom." a la manip ".$nom_manip."<br>";
+echo "inscription du projet ".$nom." a la manip ".$nom_manip."<br />";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 echo" est valid&eacute;e ";
-echo"<br><br><a href=\"manip_maint.php?id=".$id_manip."\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"manip_maint.php?id=".$id_manip."\">Suite</a><br /><br />\n";
   }
  }//end if connect
 

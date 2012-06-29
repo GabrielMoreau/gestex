@@ -67,13 +67,13 @@ else if ($mode=="modifier"){
 		<input type="hidden" name="id_proj" value="<?php echo $proj_id ?>" >
  <tr>
     
-      <td style="vertical-align: top;">Nom *<br>
+      <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nom" size="20" maxlength="20" value="<?php echo $projs[nom] ?>" ><br>
+	<input type="text" name="nom" size="20" maxlength="20" value="<?php echo $projs[nom] ?>" ><br />
       </td>
     </tr><tr>
-      <td style="vertical-align: top;">Description<br>
+      <td style="vertical-align: top;">Description<br />
       </td>
       <td style="vertical-align: top;">
 	<textarea name="descr" cols="50" rows=5"><?php echo $projs[descr] ?> </textarea>
@@ -81,7 +81,7 @@ else if ($mode=="modifier"){
     </tr>  
 
     <tr>
-      <td style="vertical-align: top;">Date <i>format:YYYY-MM-JJ</i><br>
+      <td style="vertical-align: top;">Date <i>format:YYYY-MM-JJ</i><br />
       </td>
       <th style="vertical-align: top;">
 	<input type="text" name="date" size="10" maxlength="10" value="<?php 
@@ -89,13 +89,13 @@ else if ($mode=="modifier"){
 					echo $data[date];
 				else  //ajout->aujourd'hui
 					echo date('Y-m-d', time() ); 
-						?> " ><br>
+						?> " ><br />
       </td>
     </tr>
    
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
-remplir obligatoirement, les autres sont optionnels.<br>
+remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">
 <input type="submit" name="Login" value="<?php echo $mode ?>">
@@ -110,8 +110,8 @@ remplir obligatoirement, les autres sont optionnels.<br>
 	</form>  
 </tbody>
 </table>
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

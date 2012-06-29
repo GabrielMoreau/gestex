@@ -38,8 +38,8 @@ if (!empty($erreur) ){
 
  //erreur
 
- echo "<br>erreur :".$erreur;
- echo"<br><a href=\"add_task.php?idm=".$manip_id."&idp=".$proj_id."\">Suite</a><br>\n";
+ echo "<br />erreur :".$erreur;
+ echo"<br /><a href=\"add_task.php?idm=".$manip_id."&idp=".$proj_id."\">Suite</a><br />\n";
 
  pied_page();
  exit();
@@ -62,8 +62,8 @@ if ( $connex = connect_db() ){
    if (!$result){
    //inscription !ok
    $erreur = mysql_error();
-  echo "<br>erreur :".$erreur;
-  echo"<br><br><a href=\"add_task.php\">Suite</a><br><br>\n";
+  echo "<br />erreur :".$erreur;
+  echo"<br /><br /><a href=\"add_task.php\">Suite</a><br /><br />\n";
   }
   else{ //result=ok
 
@@ -89,10 +89,10 @@ $dossier .= "/".$nom;
  $dossier = str_replace(" ", "_", $dossier );
 mkdir($dossier);
 
-echo "ajout de la tache ".$nom." au projet ".$nom_proj. "(manip : ".$nom_manip.")<br>";
+echo "ajout de la tache ".$nom." au projet ".$nom_proj. "(manip : ".$nom_manip.")<br />";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 echo" est valid&eacute;e ";
-echo"<br><br><a href=\"manip_maint.php?id=".$manip_id."\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"manip_maint.php?id=".$manip_id."\">Suite</a><br /><br />\n";
   }
  }//end if connect
 

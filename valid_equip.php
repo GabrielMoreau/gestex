@@ -31,8 +31,8 @@ if (!empty($erreur) ){
 
 	//erreur
 
-	echo "<br>erreur :".$erreur;
-	echo"<br><a href=\"add_aquip.php\">Suite</a><br>\n";
+	echo "<br />erreur :".$erreur;
+	echo"<br /><a href=\"add_aquip.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -53,17 +53,17 @@ if ( $connex = connect_db() ){
  		if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
-		echo "<br>erreur :".$erreur;
+		echo "<br />erreur :".$erreur;
 		}
 		
 	}//end if connect
 
 ////en_tete("inscription Valid&eacute;e");
 
-echo "inscription de ".$nom."<br>";
+echo "inscription de ".$nom."<br />";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 echo" est valid&eacute;e ";
-echo"<br><br><a href=\"list_equip.php\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"list_equip.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
 }

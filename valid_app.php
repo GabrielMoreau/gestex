@@ -42,8 +42,8 @@ if (!empty($erreur) ){
 
 	//erreur
 
-	echo "<br>erreur :".$erreur;
-	echo"<br><a href=\"add_app.php\">Suite</a><br>\n";
+	echo "<br />erreur :".$erreur;
+	echo"<br /><a href=\"add_app.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -64,17 +64,17 @@ if ( $connex = connect_db() ){
  		if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
-		echo "<br>erreur :".$erreur;
+		echo "<br />erreur :".$erreur;
 		}
 		
 	}//end if connect
 
 ////en_tete("inscription Valid&eacute;e");
 
-echo "ajout de ".$nom."<br>";
+echo "ajout de ".$nom."<br />";
 echo" <img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\" align=\"middle\" alt=\"\">";
 echo" est valid&eacute;e ";
-echo"<br><br><a href=\"list_app.php\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"list_app.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
 }

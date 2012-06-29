@@ -64,20 +64,20 @@ if ( $connex = connect_db() ){
 
 /*if (!empty($_POST[loggin]))
   echo "loggin :".$_POST[loggin].".";
-echo "<br>passwd :".$password.".";
-echo "<br>passwd :".$password2.".";
-echo "<br>nom :".$nom.".";
-echo "<br>mail :".$mail.".";
-echo "<br>tel :".$phone.".";
-echo "<br>Level :".$level.".";*/
+echo "<br />passwd :".$password.".";
+echo "<br />passwd :".$password2.".";
+echo "<br />nom :".$nom.".";
+echo "<br />mail :".$mail.".";
+echo "<br />tel :".$phone.".";
+echo "<br />Level :".$level.".";*/
 
 
 if (!empty($erreur) ){
 
   //erreur
 
-    echo "<br><b>erreur de saisie :</b>".$erreur;
-    echo"<br><center><a href=\"add_user.php?".$loggin."\">Suite</a></center><br>\n";
+    echo "<br /><b>erreur de saisie :</b>".$erreur;
+    echo"<br /><center><a href=\"add_user.php?".$loggin."\">Suite</a></center><br />\n";
 
     pied_page();
     exit();
@@ -96,7 +96,7 @@ if (!empty($erreur) ){
      if (!$result){
       //inscription !ok
       $erreur = mysql_error();
-      echo "<br><b>erreur mySQL:</b>".$erreur;
+      echo "<br /><b>erreur mySQL:</b>".$erreur;
     }
     else{
       //inscription enregistrée mais pas encore validée!
@@ -105,12 +105,12 @@ if (!empty($erreur) ){
       mail(ADMIN_MAIL, "[PoolProject] ajout user", $texte);
 
 
-      echo "inscription de ".$prenom." ".$nom."<br>";
+      echo "inscription de ".$prenom." ".$nom."<br />";
       echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
       echo" est propos&eacute;e avec le loggin : ".$loggin;
-      echo"<br>Vous serez prevenu de sa validation par mail....";
+      echo"<br />Vous serez prevenu de sa validation par mail....";
       }//end else
-    echo "<br><center><a href=\"list_users.php\">Suite</a></center><br><br>\n";
+    echo "<br /><center><a href=\"list_users.php\">Suite</a></center><br /><br />\n";
     pied_page();
     exit();
   }//else end

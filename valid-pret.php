@@ -57,8 +57,8 @@ if (!empty($erreur) ){
 
 	//erreur
 
-	echo "<br>erreur :".$erreur;
-	echo"<br><a href=\"add-pret.php\">Suite</a><br>\n";
+	echo "<br />erreur :".$erreur;
+	echo"<br /><a href=\"add-pret.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -83,7 +83,7 @@ if ( $connex = connect_db() ){
 if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
-		echo "<br>erreur :".$erreur;
+		echo "<br />erreur :".$erreur;
 		}
 		$querry = "SELECT * FROM pret ";
 	list($qh,$num) = query_db($querry);
@@ -93,7 +93,7 @@ if (!$result){
 
 
 $data = result_db($qh);
-		echo "de $nom[nom]$equipe $nom<br>";
+		echo "de $nom[nom]$equipe $nom<br />";
 //	}//end if connect
 
 $querry = "SELECT id, nom FROM equipe WHERE id='$equipe'";
@@ -104,15 +104,15 @@ $querry = "SELECT id, nom FROM equipe WHERE id='$equipe'";
 	list($qheeq,$numeeq) = query_db($querry);
 		$nom = result_db($qheeq);
 
-echo "de   $equip[nom] <br>";
+echo "de   $equip[nom] <br />";
    
-echo "de  $nom[nom]  <br>";	
+echo "de  $nom[nom]  <br />";	
 						
 		
-			//echo "<br>ajout <br>";
-//echo "de $nom[nom] $equip[nom]<br>";
+			//echo "<br />ajout <br />";
+//echo "de $nom[nom] $equip[nom]<br />";
 //echo" est valid&eacute;e ";
-echo"<br><br><a href=\"reserva?user=3.php\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"reserva?user=3.php\">Suite</a><br /><br />\n";
 
 $querry = "SELECT email FROM users WHERE id='2'";
 	list($qheh,$numeh) = query_db($querry);

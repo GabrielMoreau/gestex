@@ -36,11 +36,11 @@ return mysql_select_db(DATABASE, $connexion);
   function check_val( $table, $col, $value )
   {
   //teste l'existence de $value dans le champ $col de la table $table
-	//echo "check in:".$table.":".$col." for ".$value."<br>";
+	//echo "check in:".$table.":".$col." for ".$value."<br />";
 
 	$reponse = mysql_query ("select * from $table where $col='$value' ");
 	
-	///echo "check_val:".numrows_db($reponse)."<br>";
+	///echo "check_val:".numrows_db($reponse)."<br />";
 
   //renvoie 0 si non trouvé
   //renvoie le nbre d'occurences autrement

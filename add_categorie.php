@@ -42,10 +42,10 @@ if ($mode=="ajouter"){
 
   <tr>
     
-      <td style="vertical-align: top;">categorie *<br>
+      <td style="vertical-align: top;">categorie *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="categorie" size="30"  value="<?php echo $data[categorie] ?>" ><br>
+	<input type="text" name="categorie" size="30"  value="<?php echo $data[categorie] ?>" ><br />
       </td>
     </tr>
 
@@ -54,7 +54,7 @@ if ($mode=="ajouter"){
  
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
-remplir obligatoirement, les autres sont optionnels.<br>
+remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">
 <input type="submit" name="Login" value="<?php echo $mode ?>">
@@ -69,7 +69,7 @@ remplir obligatoirement, les autres sont optionnels.<br>
 	</form>  
 </tbody>
 </table>
-<br>
+<br />
 
 
 </div>

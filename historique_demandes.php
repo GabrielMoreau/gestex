@@ -31,21 +31,21 @@ $cat=$_GET[categorie];
 //echo "$cat";
 
 
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>";
+echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
-<br>
+<br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://www.legi.hmg.inpg.fr/intranet/intra.html">Retour a<br>l'intranet</a>
-	<br></td>
+	<a href="http://www.legi.hmg.inpg.fr/intranet/intra.html">Retour a<br />l'intranet</a>
+	<br /></td>
 
 
 <td style="vertical-align: top; text-align: center;">
-	<a href="demandes.php">Retour aux<br>demandes en cours</a>
-	<br></td>
+	<a href="demandes.php">Retour aux<br />demandes en cours</a>
+	<br /></td>
 
 
 <?php if ( $user_level >=2 ) {	
@@ -55,15 +55,15 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>
 	<a href="logout.php?variable=instru">Quitter</a>
 <?php }	?>
 
-	<br></td> </tr></tbody>
+	<br /></td> </tr></tbody>
 </table>
 
 
 
 
 
-<br>
-Liste des demandes terminées : <br>
+<br />
+Liste des demandes terminées : <br />
 
 
 
@@ -76,33 +76,33 @@ Liste des demandes terminées : <br>
 
 
  <th style="vertical-align: top; text-align: center;">
-	Tâche<br>
+	Tâche<br />
       </th>
 
       <th style="vertical-align: top; text-align: center;">
-	Nom du demandeur<br>
+	Nom du demandeur<br />
       </th>
      <th style="vertical-align: top; text-align: center;">
-	Détails<br>
+	Détails<br />
       </th>
 
 
  <th style="vertical-align: top; text-align: center;">
-	Date de demande<br>
+	Date de demande<br />
       </th>
 
       <th style="vertical-align: top; text-align: center;">
-	Avancement<br>
+	Avancement<br />
       </th>
      
      
 <th style="vertical-align: top; text-align: center;">
-	Terminé?<br>
+	Terminé?<br />
       </th>
 
   
 <th style="vertical-align: top; text-align: center;">
-	Pièces jointes<br>
+	Pièces jointes<br />
       </th>
 
 
@@ -197,7 +197,7 @@ echo $data[piecesjointes];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
 		//si trouvé ajoute un bouton
-		echo "Voir : <a href =\"jointdemandes.php?id=". $data[id]."\">".$data[tache]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\"></a><br>";
+		echo "Voir : <a href =\"jointdemandes.php?id=". $data[id]."\">".$data[tache]."<img src=\"images/filefind.png\" nosave title =\"Voir ce projet\"></a><br />";
     
 	}
 
@@ -239,7 +239,7 @@ echo"</tr>";
    
   </tbody>
 </table>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

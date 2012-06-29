@@ -11,7 +11,7 @@ if ( $connex = connect_db() ){
  		if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
-		echo "<br>erreur :".$erreur;
+		echo "<br />erreur :".$erreur;
 	}
 
 		$mot_crypte = md5('lemans4!');
@@ -23,7 +23,7 @@ if ( $connex = connect_db() ){
  		if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
-		echo "<br>erreur :".$erreur;
+		echo "<br />erreur :".$erreur;
 		}
 
 	}//end if connect

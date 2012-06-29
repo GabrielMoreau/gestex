@@ -32,58 +32,58 @@ if ( $connex = connect_db() ){
 	list($qh,$num) = query_db($querry);
 	
 $data = result_db($qh);
-echo " Bienvenue $data[prenom] $data[nom] ($user_id)<br><br>";
+echo " Bienvenue $data[prenom] $data[nom] ($user_id)<br /><br />";
 ?>
-<br>
+<br />
 <table cellpadding="2" cellspacing="2" border="0"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr class=menu>
 	 <th style="vertical-align: top; text-align: center; ">
-	<a href="list_fourn.php?raison=1">Liste des<br>Fournisseurs</a>
-	<br></th>
+	<a href="list_fourn.php?raison=1">Liste des<br />Fournisseurs</a>
+	<br /></th>
 	<!-- <td style="vertical-align: top; text-align: center;">
-	<a href="list_app.php">Liste des<br>Appareils</a>
-	<br></td> -->
+	<a href="list_app.php">Liste des<br />Appareils</a>
+	<br /></td> -->
 	 <th style="vertical-align: top; text-align: center; " >
-	<a href="list_users.php">Liste des<br>Utilisateurs</a>
-	<br></th>
+	<a href="list_users.php">Liste des<br />Utilisateurs</a>
+	<br /></th>
  	 <th style="vertical-align: top; text-align: center; " >
-	<a href="list_equip.php">Liste des<br>Equipes</a>
-	<br></th>
+	<a href="list_equip.php">Liste des<br />Equipes</a>
+	<br /></th>
 	<?php if ($user_level>=2){  ?>
 		 <th style="vertical-align: top; text-align: center; " >
-		<a href="add_manip.php">Ajouter<br>une Manip</a>
-		<br></th>
+		<a href="add_manip.php">Ajouter<br />une Manip</a>
+		<br /></th>
 		 <th style="vertical-align: top; text-align: center; class:menu;" >
-		<a href="rapport.php">Editer<br>les rapports</a>
-		<br></th>
+		<a href="rapport.php">Editer<br />les rapports</a>
+		<br /></th>
 	<?php } ?>
 
 
 	
 	 <th style="vertical-align: top; text-align: center; " >
 	<a href="logout.php?variable=projet">Quitter</a>
-	<br></th> </tr></tbody>
+	<br /></th> </tr></tbody>
 </table>
-<br>
+<br />
 Voici la liste des manips
  d&eacute;j&agrave; rentr&eacute;es dans la base de donn&eacute;es :
-<br><table cellpadding="2" cellspacing="2" border="1"
+<br /><table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
 	 <th style="vertical-align: top; text-align: center;">
-	<a href ="accueil.php?tri=date">Date</a><br>
+	<a href ="accueil.php?tri=date">Date</a><br />
       </th>
 	 <th style="vertical-align: top; text-align: center;">
-	<a href ="accueil.php?tri=nom">Nom</a><br>
+	<a href ="accueil.php?tri=nom">Nom</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="accueil.php?tri=descr">Description</a><br>
+	<a href ="accueil.php?tri=descr">Description</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="accueil.php?tri=local">Local</a> <br>
+	<a href ="accueil.php?tri=local">Local</a> <br />
       </th>
    		  <th style="vertical-align: top; text-align: center;">
 		<a href ="accueil.php?tri=equipe">Equipe</a></th>
@@ -93,10 +93,10 @@ Voici la liste des manips
  		  <th style="vertical-align: top; text-align: center;">
 		<a href ="accueil.php?tri=chercheur">Chercheur</a></th>
      		 <th style="vertical-align: top; text-align: center;">
-		<br></th> 
+		<br /></th> 
 	<?php } ?>
       <th style="vertical-align: top; text-align: center;">
-	<br></th>
+	<br /></th>
     </tr>
 <?php	//interrogation base de données
 
@@ -166,7 +166,7 @@ while ($data = result_db($qh)) {
 ?>
   </tbody>
 </table>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

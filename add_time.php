@@ -37,7 +37,7 @@ if ( $connex = connect_db() ){
  list($qh,$num) = query_db($querry);
  $projet = result_db($qh);
 
-$titre= $logged_in_user." (".$user_id.")<br>Voila un formulaire pour ajouter du temps à <ul>la tache :";
+$titre= $logged_in_user." (".$user_id.")<br />Voila un formulaire pour ajouter du temps à <ul>la tache :";
 
 
  // recupere la tache selectionnée
@@ -67,7 +67,7 @@ echo $titre;
   <input type="hidden" name="id_user" value="<?php echo $user_id ?>" >
     <tr>
     
-      <td style="vertical-align: top;">utilisateur :<br>
+      <td style="vertical-align: top;">utilisateur :<br />
       </td>
       <td style="vertical-align: top;" colspan ="2">
  <?php if ($user_level ==2)
@@ -90,23 +90,23 @@ echo $titre;
     </tr>
     <tr>
 
-      <td style="vertical-align: top;">date :<br>
+      <td style="vertical-align: top;">date :<br />
       </td>
       <td style="vertical-align: top;" colspan ="2">
  <input type="text" name="date" value="<?php echo date('Y-m-d', time() ); ?>" >
   </td>
     </tr><tr>
-      <td style="vertical-align: top;">Temps passé :<br>
+      <td style="vertical-align: top;">Temps passé :<br />
       </td>
       <td style="vertical-align: top;">
- <input type="text" name="temps" size="25" maxlength="30" value="1" ><br>
+ <input type="text" name="temps" size="25" maxlength="30" value="1" ><br />
       </td>
       <td style="vertical-align: top;"> heures
       </td>
     </tr>  
     <tr>
   
-      <td style="vertical-align: top;">Remarques :<br>
+      <td style="vertical-align: top;">Remarques :<br />
       </td>
       <td style="vertical-align: top;" colspan ="2">
   <textarea name="remark" cols="50" rows=5"> </textarea>
@@ -126,8 +126,8 @@ echo $titre;
  </form>  
 </tbody>
 </table>
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

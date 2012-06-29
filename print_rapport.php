@@ -40,27 +40,27 @@ if ( $connex = connect_db() ){
 	list($qh,$num) = query_db($querry);
 	
 $data = result_db($qh);
-echo " Bienvenue $data[prenom] $data[nom] ($user_id)<br><br>";
-/////echo "equipe:".$equip_id." manip :".$manip_id." projet :".$projet_id." tache :".$tache_id."<br>";
+echo " Bienvenue $data[prenom] $data[nom] ($user_id)<br /><br />";
+/////echo "equipe:".$equip_id." manip :".$manip_id." projet :".$projet_id." tache :".$tache_id."<br />";
 ?>
-<br>
+<br />
 <table cellpadding="2" cellspacing="2" border="0"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr class=menu>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="accueil.php">Retour a l'accueil</a>
-	<br></td>
+	<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="rapport.php">Retour à la création de rapport</a>
-	<br></td>
+	<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php?variable=projet">Quitter</a>
-	<br></td> </tr></tbody>
+	<br /></td> </tr></tbody>
 </table>
-<br>
+<br />
 
-<br>
+<br />
 <h1>Rapport de temps passé depuis :
 <?php
 	echo $depuis."</h1>";
@@ -89,7 +89,7 @@ $temps_equip = 0;
 	while($manips = result_db($qh1)){
 
 		echo "<tr class=manip colspan=3><td>";
-		echo "<h3>Manip :".$manips[nom]." (".$manips[id].") debut:".$manips[date]."<br>".$manips[descr]."</h3>";
+		echo "<h3>Manip :".$manips[nom]." (".$manips[id].") debut:".$manips[date]."<br />".$manips[descr]."</h3>";
 		/// recherche les noms des chercheurs associés
 			$querry =" select nom FROM users WHERE id=".$manips[chercheur];
 			list($qhc,$num) = query_db($querry);
@@ -113,7 +113,7 @@ $temps_equip = 0;
 			///recupere les infos des projets
 			while($projets = result_db($qh2)){
 				echo "<tr class=projet><td></td><td colspan=2>";
-				echo "<h4>Projet :".$projets[nom]." (".$projets[id].") debut:".$projets[date]."<br>".$projets[descr]."</h4>";
+				echo "<h4>Projet :".$projets[nom]." (".$projets[id].") debut:".$projets[date]."<br />".$projets[descr]."</h4>";
 
 				$querry = "SELECT * FROM tache WHERE projet='$projets[id]' " ;
 				if ( $tache_id !=0)	// pour une tache, sinon pour toutes
@@ -124,7 +124,7 @@ $temps_equip = 0;
 				///recupere les infos des taches
 				while($taches = result_db($qh3)){
 					echo "<tr class=tache><td></td><td></td><td>";
-					echo "Tache :".$taches[nom]." (".$taches[id].") debut:".$taches[date]."<br>".$taches[descr]."<br>";
+					echo "Tache :".$taches[nom]." (".$taches[id].") debut:".$taches[date]."<br />".$taches[descr]."<br />";
 					echo " Temps passé pour cette tache : ";
 					$temps_tache=0; unset($user_tache);
 					// recuper les temps passés pour cette tache
@@ -174,8 +174,8 @@ $temps_equip = 0;
 }//end if connect
 ?>
   
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

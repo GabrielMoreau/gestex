@@ -46,8 +46,8 @@ if (!empty($erreur) ){
 
 	//erreur
 
-	echo "<br>erreur :".$erreur;
-	echo"<br><a href=\"add_manip.php?id=".$id_manip ."\" >Suite</a><br>\n";
+	echo "<br />erreur :".$erreur;
+	echo"<br /><a href=\"add_manip.php?id=".$id_manip ."\" >Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -95,23 +95,23 @@ if ( $connex = connect_db() ){
 		//ajoute la clause
 		$querry.=" WHERE id='$id_manip'";
 		if ($user_level>= 3)
-			echo "MySQL Querry : ".$querry."<br>";
+			echo "MySQL Querry : ".$querry."<br />";
 		$result = mysql_query($querry);
 			//
  		if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
-			echo "<br>erreur :".$erreur;
+			echo "<br />erreur :".$erreur;
 		}
 		
 	}//end if connect
 
 ////en_tete("modification manip Valid&eacute;e");
 
-echo "<br>".$nom." modification ";
+echo "<br />".$nom." modification ";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 echo"  valid&eacute;e !!";
-echo"<br><br><a href=\"accueil.php\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"accueil.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
 }

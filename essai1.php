@@ -27,22 +27,22 @@ $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
 
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>";
+echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
-<br>
+<br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 70%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	 <a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour à<br>la page du service</a>
-		<br></td>
+	 <a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour à<br />la page du service</a>
+		<br /></td>
  <td style="vertical-align: top; text-align: center;">
-	<a href="list_fourn1.php">Liste<br>des fournisseurs</a>
-	<br></td>
+	<a href="list_fourn1.php">Liste<br />des fournisseurs</a>
+	<br /></td>
  <td style="vertical-align: top; text-align: center;">
-	<a href="login.php?variable=instru">Accès<br>restreint</a>
-	<br></td>
+	<a href="login.php?variable=instru">Accès<br />restreint</a>
+	<br /></td>
 
 
 </tr></tbody>
@@ -52,30 +52,30 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>
 
 
 
-<br>
-Liste des appareils : <br>
-<i>Cliquer sur une categorie pour voir la liste...</i><br>
-<br><table cellpadding="20" cellspacing="4" border="1"
+<br />
+Liste des appareils : <br />
+<i>Cliquer sur une categorie pour voir la liste...</i><br />
+<br /><table cellpadding="20" cellspacing="4" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
 	
 	 <th style="vertical-align: top; text-align: center;">
 
-	<a href ="instru1.php?list=">Liste globale</a><br>
+	<a href ="instru1.php?list=">Liste globale</a><br />
       </th>
 
  <th style="vertical-align: top; text-align: center;">
 
-	<a href ="instru1.php?equipe= 15">Appareils en prêt au service instru</a><br>
+	<a href ="instru1.php?equipe= 15">Appareils en prêt au service instru</a><br />
       </th>
 	  </tr></tbody>
 	  </table>
-	  <br>
-Liste des appareils par catégorie : <br>
+	  <br />
+Liste des appareils par catégorie : <br />
 
-<i>Cliquer sur une categorie pour voir la liste...</i><br>
-<br><table cellpadding="10" cellspacing="2" border="1"
+<i>Cliquer sur une categorie pour voir la liste...</i><br />
+<br /><table cellpadding="10" cellspacing="2" border="1"
  style="width: 70%; text-align: center; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
@@ -97,7 +97,7 @@ if ( $connex = connect_db() ){
 $data = result_db($qh);
  echo"<td style=\"vertical-align: top;\">";
 echo "<a href =\"instru1.php?categorie=".$data[id]."\">". $data[nom]."</a>";
-echo "<br>";
+echo "<br />";
 	
 
 while ($data = result_db($qh))
@@ -105,7 +105,7 @@ while ($data = result_db($qh))
   {    // echo"<td style=\"vertical-align: top;\">";
 
 	echo "<a href =\"instru1.php?categorie=".$data[id]."\">". $data[nom]."</a>";
-echo "<br>";
+echo "<br />";
 
 }
 
@@ -117,7 +117,7 @@ echo "<br>";
 </tbody>
 </table>
 
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

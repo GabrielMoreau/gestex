@@ -22,56 +22,56 @@ if (empty($tri))
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 ?>
-<br>
+<br />
 <table cellpadding="2" cellspacing="2" border="0"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr class=menu>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="accueil.php">Retour a l'accueil</a>
-	<br></td>
+	<br /></td>
 <?php if ( $user_level ==3) {	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_user.php">Ajout d'un utilisateur</a>
-	<br></td>
+	<br /></td>
 <?php }	
 else	{ //edition/modif de ses propres coordonnées
 ?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_user.php?id=<?php echo $user_id ?>">
 		<img src="images/edit.png" nosave title="modifier son profil"></a>
-	<br></td>
+	<br /></td>
  <?php } ?>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="changepwd.php?id=<?php echo $user_id ?>">
 		<img src="images/unlock.png" nosave title="changer son mot de passe"></a>
-	<br></td>
+	<br /></td>
 	
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php?variable=projet">Quitter</a>
-	<br></td> </tr></tbody>
+	<br /></td> </tr></tbody>
 </table>
-<br>
+<br />
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
       <th style="vertical-align: top; text-align: center;">
-	Prenom<br>
+	Prenom<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_users.php?tri=nom">Nom</a><br>
+	<a href ="list_users.php?tri=nom">Nom</a><br />
       </th>
 
       <th style="vertical-align: top; text-align: center;">
-	Telephone<br>
+	Telephone<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Email <br>
+	Email <br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_users.php?tri=equipe">Equipe</a><br>
+	<a href ="list_users.php?tri=equipe">Equipe</a><br />
       </th>
     </tr>
 <?php	//interrogation base de données
@@ -136,7 +136,7 @@ while ($data = result_db($qh)) {
 ?>
   </tbody>
 </table>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

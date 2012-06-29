@@ -67,10 +67,10 @@ else if ($mode=="modifier"){
 
  <tr>
     
-      <td style="vertical-align: top;">Manip+chercheur *<br>
+      <td style="vertical-align: top;">Manip+chercheur *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="manipch" size="30"  value="<?php echo $data[manipch] ?>" ><br>
+	<input type="text" name="manipch" size="30"  value="<?php echo $data[manipch] ?>" ><br />
       </td>
     </tr>
 
@@ -81,33 +81,33 @@ else if ($mode=="modifier"){
 
     <tr>
     
-      <td style="vertical-align: top;">Développeur *<br>
+      <td style="vertical-align: top;">Développeur *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="technicien" size="30"  value="<?php echo $data[technicien] ?>" ><br>
+	<input type="text" name="technicien" size="30"  value="<?php echo $data[technicien] ?>" ><br />
       </td>
     </tr>
 
 <tr>
-  <td style="vertical-align: top;">Salle de la manip<br>
+  <td style="vertical-align: top;">Salle de la manip<br />
       </td>
       <td style="vertical-align: top;">
-<input type="text" name="localisation" size="30"  value="<?php echo $data[localisation] ?>" ><br>
+<input type="text" name="localisation" size="30"  value="<?php echo $data[localisation] ?>" ><br />
       </td>
 	
 </tr>
 
 <tr>
-  <td style="vertical-align: top;">Materiel d'acquisition ou de commande *<br>
+  <td style="vertical-align: top;">Materiel d'acquisition ou de commande *<br />
       </td>
       <td style="vertical-align: top;">
-<input type="text" name="matos" size="30"  value="<?php echo $data[matos] ?>" ><br>
+<input type="text" name="matos" size="30"  value="<?php echo $data[matos] ?>" ><br />
       </td>
 	
 </tr>
 
 <tr>
-  <td style="vertical-align: top;">Descriptif du code *<br>
+  <td style="vertical-align: top;">Descriptif du code *<br />
       </td>
       <td style="vertical-align: top;">
 	<textarea name="code" cols="50" rows="8" > <?php echo $data[code] ?></textarea>
@@ -116,19 +116,19 @@ else if ($mode=="modifier"){
     
 <tr>
     
-      <td style="vertical-align: top;">Driver d'instrument<br>
+      <td style="vertical-align: top;">Driver d'instrument<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="driver" size="30"  value="<?php echo $data[driver] ?>" ><br>
+	<input type="text" name="driver" size="30"  value="<?php echo $data[driver] ?>" ><br />
       </td>
     </tr>
 
 <tr>
     
-      <td style="vertical-align: top;">Module spécifique Labview<br>
+      <td style="vertical-align: top;">Module spécifique Labview<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="module" size="30"  value="<?php echo $data[module] ?>" ><br>
+	<input type="text" name="module" size="30"  value="<?php echo $data[module] ?>" ><br />
       </td>
     </tr>
   
@@ -137,19 +137,19 @@ else if ($mode=="modifier"){
 
   <tr>
     
-      <td style="vertical-align: top;">Impression écran<br>
+      <td style="vertical-align: top;">Impression écran<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="ecran" size="30"  value="<?php echo $data[ecran] ?>" ><br>
+	<input type="text" name="ecran" size="30"  value="<?php echo $data[ecran] ?>" ><br />
       </td>
     </tr>
 
 <tr>
     
-      <td style="vertical-align: top;">Doc pdf<br>
+      <td style="vertical-align: top;">Doc pdf<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="pdf" size="30"  value="<?php echo $data[pdf] ?>" ><br>
+	<input type="text" name="pdf" size="30"  value="<?php echo $data[pdf] ?>" ><br />
       </td>
     </tr>
 
@@ -160,7 +160,7 @@ else if ($mode=="modifier"){
 
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
-remplir obligatoirement, les autres sont optionnels.<br>
+remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">
 <input type="submit" name="Login" value="<?php echo $mode ?>">
@@ -176,13 +176,13 @@ remplir obligatoirement, les autres sont optionnels.<br>
 	</form>  
 </tbody>
 </table>
-<br>
+<br />
 
 
 <?php }
 	else 
 	{	Header("Location :labview.php");	}	?>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

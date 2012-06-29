@@ -24,40 +24,40 @@ if (empty($tri))
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 ?>
-<br>
+<br />
 <table cellpadding="2" cellspacing="2" border="0"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr class=menu>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="accueil.php">Retour a l'accueil</a>
-	<br></td>
+	<br /></td>
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_equip.php">Ajout d'une equipe</a>
-	<br></td>
+	<br /></td>
 <?php }	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php?variable=projet">Quitter</a>
-	<br></td> </tr></tbody>
+	<br /></td> </tr></tbody>
 </table>
-<br>
+<br />
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_fourn.php?tri=nom">Nom</a><br>
+	<a href ="list_fourn.php?tri=nom">Nom</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Description<br>
+	Description<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Compte<br>
+	Compte<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Chef d'equipe <br>
+	Chef d'equipe <br />
       </th>
       
 <?php if ( $user_level >=2 ) 	
@@ -115,7 +115,7 @@ while ($data = result_db($qh)) {
 ?>
   </tbody>
 </table>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

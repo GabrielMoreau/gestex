@@ -26,37 +26,37 @@ $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
 
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>";
+echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
-Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :<br>
+Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :<br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://www.legi.hmg.inpg.fr/intranet/intra.html">Retour a<br>l'intranet</a>
-	<br></td>
+	<a href="http://www.legi.hmg.inpg.fr/intranet/intra.html">Retour a<br />l'intranet</a>
+	<br /></td>
 <?php if ( $user_level >=2 ) {	?>
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_app2.php">Ajout<br>d'un appareil</a>
-	<br></td>
+	<a href="add_app2.php">Ajout<br />d'un appareil</a>
+	<br /></td>
  <td style="vertical-align: top; text-align: center;">
-	<a href="list_fourn.php">Liste<br>des fournisseurs</a>
-	<br></td>
+	<a href="list_fourn.php">Liste<br />des fournisseurs</a>
+	<br /></td>
 
 
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_fourn.php">Ajout<br>d'un fournisseur</a>
-	<br></td>
+	<a href="add_fourn.php">Ajout<br />d'un fournisseur</a>
+	<br /></td>
 
 
 <?php }	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php?variable=instru">Quitter</a>
-	<br></td> </tr></tbody>
+	<br /></td> </tr></tbody>
 </table>
-<br>
-<i>Cliquer sur le nom d'un appareil pour connaitre son modèle, sa date d'achat, ses accessoires...</i><br>
+<br />
+<i>Cliquer sur le nom d'un appareil pour connaitre son modèle, sa date d'achat, ses accessoires...</i><br />
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -64,30 +64,30 @@ Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :
     <tr bgcolor="#f7d709">
 
  <th style="vertical-align: top; text-align: center;">
-	<a href ="instru.php?tri=categorie">Catégorie<br>
+	<a href ="instru.php?tri=categorie">Catégorie<br />
       </th>
 
       <th style="vertical-align: top; text-align: center;">
-	Nom<br>
+	Nom<br />
       </th>
      
 
  <th style="vertical-align: top; text-align: center;">
-	Gamme<br>
+	Gamme<br />
       </th>
 
       <th style="vertical-align: top; text-align: center;">
-	Equipe<br>
+	Equipe<br />
       </th>
      
       <th style="vertical-align: top; text-align: center;">
-	Fournisseur<br>
+	Fournisseur<br />
       </th>
 
   
 
 <th style="vertical-align: top; text-align: center;">
-	Responsable<br>
+	Responsable<br />
       </th>
 
    
@@ -177,7 +177,7 @@ echo $data[gamme];
 ?>
   </tbody>
 </table>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

@@ -65,8 +65,8 @@ else if ($mode=="modifier"){
 ?>
 
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_categorie.php?">Ajout<br>d'une categorie</a>
-	<br></td>
+	<a href="add_categorie.php?">Ajout<br />d'une categorie</a>
+	<br /></td>
 
 
 
@@ -80,7 +80,7 @@ else if ($mode=="modifier"){
  
 
   <tr>
-      <td style="vertical-align: top;">Categorie<br>
+      <td style="vertical-align: top;">Categorie<br />
       </td>
       
   <td style="vertical-align: top;">
@@ -108,7 +108,7 @@ if ($mode=="ajouter" && $chef[id] == $cat) {
 
 	?>
 </select>
-<br>
+<br />
       </td>
     </tr>
 
@@ -116,32 +116,32 @@ if ($mode=="ajouter" && $chef[id] == $cat) {
 
     <tr>
     
-      <td style="vertical-align: top;">Nom *<br>
+      <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nom" size="30"  value="<?php echo $data[nom] ?>" ><br>
+	<input type="text" name="nom" size="30"  value="<?php echo $data[nom] ?>" ><br />
       </td>
     </tr>
 
 <tr>
-      <td style="vertical-align: top;">Modele *<br>
+      <td style="vertical-align: top;">Modele *<br />
       </td>
       <td style="vertical-align: top;">
-      <input type="text"name="modele" size="30" value="<?php echo $data[modele] ?>"<br>
+      <input type="text"name="modele" size="30" value="<?php echo $data[modele] ?>"<br />
 	</td>
     </tr>  
 <tr>
- <td style="vertical-align: top;">Gamme *<br>
+ <td style="vertical-align: top;">Gamme *<br />
       </td>
       <td style="vertical-align: top;">
-     	<input type="text" name="gamme" size="10" maxlength="30" value="<?php echo $data[gamme] ?>" ><br>
+     	<input type="text" name="gamme" size="10" maxlength="30" value="<?php echo $data[gamme] ?>" ><br />
 
 	</td>
     </tr>  
  
 
     <tr>
-      <td style="vertical-align: top;">Equipe *<br>
+      <td style="vertical-align: top;">Equipe *<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="equipe">
@@ -156,12 +156,12 @@ if ($mode=="ajouter" && $chef[id] == $cat) {
 			echo ">".$chef[nom]."</option>";
 		}//end while
 		 ?>
-	</select><br>
+	</select><br />
       </td>
     </tr>
 
   <tr>
-      <td style="vertical-align: top;">Fournisseur *<br>
+      <td style="vertical-align: top;">Fournisseur *<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="fourn">
@@ -176,14 +176,14 @@ if ($mode=="ajouter" && $chef[id] == $cat) {
 			echo ">".$chef[nom]."</option>";
 		}//end while
 		 ?>
-	</select><br>
+	</select><br />
       </td>
     </tr>
 
     
   <tr>
     
-      <td style="vertical-align: top;">Date achat *<i>format YYYY-MM-DD</i><br>
+      <td style="vertical-align: top;">Date achat *<i>format YYYY-MM-DD</i><br />
       </td>
       <th style="vertical-align: top;">
 	<input type="text" name="achat" size="10" maxlength="10" value="<?php
@@ -191,11 +191,11 @@ if ($mode=="ajouter" && $chef[id] == $cat) {
 			echo $data[achat];
 		else 
 			echo date('Y-m-d', time() );
-	?>" ><br>
+	?>" ><br />
       </td>
     </tr><tr>
 
-<td style="vertical-align: top;">Responsable *<br>
+<td style="vertical-align: top;">Responsable *<br />
       </td>
       <td style="vertical-align: top;">
 
@@ -211,39 +211,39 @@ if ($mode=="ajouter" && $chef[id] == $cat) {
 			echo ">".$chef[nom]."</option>";
 		}//end while
 		 ?>
-	</select><br>
+	</select><br />
       </td>
     </tr>
 
   <tr>
     
-      <td style="vertical-align: top;">Reparation *<br>
+      <td style="vertical-align: top;">Reparation *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="reparation" size="30" maxlength="30" value="<?php echo $data[reparation] ?>" ><br>
+	<input type="text" name="reparation" size="30" maxlength="30" value="<?php echo $data[reparation] ?>" ><br />
       </td>
     </tr>
 <tr>
- <td style="vertical-align: top;">Accessoires *<br>
+ <td style="vertical-align: top;">Accessoires *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="accessoires" size="30" maxlength="30" value="<?php echo $data[accessoires] ?>" ><br>
-      </td>
-    </tr>
-
-<tr>
- <td style="vertical-align: top;">Inventaire (facultatif)<br>
-      </td>
-      <td style="vertical-align: top;">
-	<input type="text" name="inventaire" size="30" maxlength="30" value="<?php echo $data[inventaire] ?>" ><br>
+	<input type="text" name="accessoires" size="30" maxlength="30" value="<?php echo $data[accessoires] ?>" ><br />
       </td>
     </tr>
 
 <tr>
- <td style="vertical-align: top;">Notice (facultatif)<br>
+ <td style="vertical-align: top;">Inventaire (facultatif)<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="notice" size="30" maxlength="30" value="<?php echo $data[notice] ?>" ><br>
+	<input type="text" name="inventaire" size="30" maxlength="30" value="<?php echo $data[inventaire] ?>" ><br />
+      </td>
+    </tr>
+
+<tr>
+ <td style="vertical-align: top;">Notice (facultatif)<br />
+      </td>
+      <td style="vertical-align: top;">
+	<input type="text" name="notice" size="30" maxlength="30" value="<?php echo $data[notice] ?>" ><br />
       </td>
     </tr>
 
@@ -251,7 +251,7 @@ if ($mode=="ajouter" && $chef[id] == $cat) {
 
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
-remplir obligatoirement, les autres sont optionnels.<br>
+remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">
 <input type="submit" name="Login" value="<?php echo $mode ?>">
@@ -267,13 +267,13 @@ remplir obligatoirement, les autres sont optionnels.<br>
 	</form>  
 </tbody>
 </table>
-<br>
+<br />
 
 
 <?php }
 	else 
 	{	Header("Location :instru.php");	}	?>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

@@ -35,27 +35,27 @@ if (isset($_POST[descr]))
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 ?>
-<br>
+<br />
 <table cellpadding="2" cellspacing="2" border="0"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="accueil.php">Retour a l'accueil</a>
-	<br></td>
+	<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="list_fourn.php">Liste des fournisseurs</a>
-	<br></td> 
+	<br /></td> 
 <?php if ( $user_level >=2 ) {	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_fourn.php">Ajout d'un fournisseur</a>
-	<br></td>
+	<br /></td>
 <?php }	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php">Quitter</a>
-	<br></td> </tr></tbody>
+	<br /></td> </tr></tbody>
 </table>
-<br>
+<br />
 
 <!--------  table criteres de recherche ----->
 <table cellpadding="2" cellspacing="2" border="1"
@@ -63,10 +63,10 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
   <tbody>
     <tr bgcolor="#f7d709">
       <th style="vertical-align: top; text-align: center;">
-	le Nom contient <br>
+	le Nom contient <br />
       </th>
      <th style="vertical-align: top; text-align: center;">
-	la description contient <br>
+	la description contient <br />
       </th> <th>   </th></tr>
 	<form action="find_fourn.php" method="POST" name="findForm">
 	<tr><td>
@@ -79,7 +79,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 	</td></tr></form>  
 </tbody>
 </table>
-<br>  
+<br />  
 
 <?php
 if (isset($find_nom) || isset($find_descr)){
@@ -90,36 +90,36 @@ if (isset($find_nom) || isset($find_descr)){
 		echo " description :".$find_descr; 
 	}	
 ?>
-<br>
+<br />
 <!--------  table resultats ----->
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_fourn.php?tri=nom">Nom</a><br>
+	<a href ="list_fourn.php?tri=nom">Nom</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Adresse<br>
+	Adresse<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Telephone<br>
+	Telephone<br />
       </th>
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Fax<br>
+	Fax<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Email <br>
+	Email <br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	WWW <br>
+	WWW <br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Contacts <br>
+	Contacts <br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Description <br>
+	Description <br />
       </th>
 <?php if ( $user_level >=2 ) {	?>
 	</th><th></th><th>
@@ -180,7 +180,7 @@ while ($data = result_db($qh)) {
 ?>
   </tbody>
 </table>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

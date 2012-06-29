@@ -15,7 +15,7 @@ include("session_auth.php");
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>";
+echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 require("mise_en_page.php");
 
 
@@ -33,24 +33,24 @@ $use = $_GET[user];
 $eq=$_GET[equipe];
 
 ?>
-<br>
+<br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article=16">Retour a<br>la page du service</a>
-	<br></td>
+	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article=16">Retour a<br />la page du service</a>
+	<br /></td>
 
 
 
 <td style="vertical-align: top; text-align: center;">
 <?php if ( $use >=3 ) 	{?>
-	<a href="pret1.php">Retour<br>à la liste des prets</a>
-	<br></td>
+	<a href="pret1.php">Retour<br />à la liste des prets</a>
+	<br /></td>
 <?php }
 else{	?>
-<a href="pret.php">Retour<br>à la liste des prets</a>
+<a href="pret.php">Retour<br />à la liste des prets</a>
 <?php }?>
 </tr></tbody>
 </table>
@@ -59,8 +59,8 @@ else{	?>
 
 
 
-<br>
-Liste des prets : <br><br><br>
+<br />
+Liste des prets : <br /><br /><br />
 
 
 
@@ -74,27 +74,27 @@ Liste des prets : <br><br><br>
  
 
       <th style="vertical-align: top; text-align: center;">
-	Nom<br>
+	Nom<br />
       </th>
     
  
 
       <th style="vertical-align: top; text-align: center;">
-	Equipe<br>
+	Equipe<br />
       </th>
      
        <th style="vertical-align: top; text-align: center;">
-	Date<br>
+	Date<br />
       </th>
  <th style="vertical-align: top; text-align: center;">
-	Retour<br>
+	Retour<br />
       </th>
   
  <th style="vertical-align: top; text-align: center;">
-	Commentaire<br>
+	Commentaire<br />
       </th>
 	  <th style="vertical-align: top; text-align: center;">
-	Numéro de l'appareil<br>
+	Numéro de l'appareil<br />
       </th>
 
 
@@ -250,7 +250,7 @@ echo"</tr>";
 ?>
   </tbody>
 </table>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

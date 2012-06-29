@@ -48,27 +48,27 @@ else if ($mode=="modifier"){
 		<input type="hidden" name="id_equip" value="<?php echo $equip_id ?>" >
     <tr>
     
-      <td style="vertical-align: top;">Nom *<br>
+      <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nom" size="10" maxlength="10" value="<?php echo $data[nom] ?>" ><br>
+	<input type="text" name="nom" size="10" maxlength="10" value="<?php echo $data[nom] ?>" ><br />
       </td>
     </tr><tr>
-      <td style="vertical-align: top;">Description<br>
+      <td style="vertical-align: top;">Description<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="descr" size="25" maxlength="255" value="<?php echo $data[descr] ?>" ><br>
+	<input type="text" name="descr" size="25" maxlength="255" value="<?php echo $data[descr] ?>" ><br />
       </td>
     </tr>  
     <tr>
-      <td style="vertical-align: top;">Compte *<br>
+      <td style="vertical-align: top;">Compte *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="compte" size="5" maxlength="5" value="<?php echo $data[compte] ?>" ><br>
+	<input type="text" name="compte" size="5" maxlength="5" value="<?php echo $data[compte] ?>" ><br />
       </td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Chef d'Equipe<br>
+      <td style="vertical-align: top;">Chef d'Equipe<br />
       </td>
       <td style="vertical-align: top;">
 <?php echo $data[chef]; ?>
@@ -84,14 +84,14 @@ else if ($mode=="modifier"){
 			echo ">".$chef[nom]."</option>";
 		}//end while
 		 ?>
-	</select><br>
+	</select><br />
       </td>
     </tr>
    
    
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
-remplir obligatoirement, les autres sont optionnels.<br>
+remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">
 <input type="submit" name="Login" value="<?php echo $mode ?>">
@@ -106,11 +106,11 @@ remplir obligatoirement, les autres sont optionnels.<br>
 	</form>  
 </tbody>
 </table>
-<br>
+<br />
 <?php }
 	else 
 	{	Header("Location :accueil.php");	}	?>
-<br>
+<br />
 </div>
 <?php pied_page() ?>
 </body>

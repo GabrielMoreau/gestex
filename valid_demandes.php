@@ -64,8 +64,8 @@ if (!empty($erreur) ){
 
 	//erreur
 
-	echo "<br>erreur :".$erreur;
-	echo"<br><a href=\"add_demandes.php\">Suite</a><br>\n";
+	echo "<br />erreur :".$erreur;
+	echo"<br /><a href=\"add_demandes.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -87,7 +87,7 @@ if ( $connex = connect_db() ){
 if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
-		echo "<br>erreur :".$erreur;
+		echo "<br />erreur :".$erreur;
 		}
 		
 	}//end if connect
@@ -103,9 +103,9 @@ $querry = "SELECT * FROM categorie where id='$cat'" ;
 $datax = result_db($qh);}
 
 
-echo "<br>ajout de ".$nom."<br>";
+echo "<br />ajout de ".$nom."<br />";
 echo" est valid&eacute;e ";
-echo"<br><br><a href=\"demandes.php\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"demandes.php\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
 pied_page();
 exit();

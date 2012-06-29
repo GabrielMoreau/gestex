@@ -50,8 +50,8 @@ if (!empty($erreur) ){
 
  //erreur
 
- echo "<br>erreur :".$erreur;
- echo"<br><a href=\"add_time.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$task_id."\">Suite</a><br>\n";
+ echo "<br />erreur :".$erreur;
+ echo"<br /><a href=\"add_time.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$task_id."\">Suite</a><br />\n";
 
  pied_page();
  exit();
@@ -68,19 +68,19 @@ if ( $connex = connect_db() ){
  $querry = "INSERT INTO temps (id_tache,date,user,duree, remarks)".
    " VALUES ('$task_id', '$date', '$user_id',  '$temps', '$remark')";
   $result = mysql_query($querry);
-   //echo $querry."<br>";
+   //echo $querry."<br />";
 
    if (!$result){
    //inscription !ok
    $erreur = mysql_error();
-  echo "<br>erreur :".$erreur;
-  echo"<br><br><a href=\"add_time.php\">Suite</a><br><br>\n";
+  echo "<br />erreur :".$erreur;
+  echo"<br /><br /><a href=\"add_time.php\">Suite</a><br /><br />\n";
   }
   else{ //result=ok
-echo "ajout de ".$temps."heures à la tache ".$task_id."<br>";
+echo "ajout de ".$temps."heures à la tache ".$task_id."<br />";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 echo" est valid&eacute;e ";
-echo"<br><br><a href=\"manip_maint.php?id=".$manip_id."\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"manip_maint.php?id=".$manip_id."\">Suite</a><br /><br />\n";
   }
  }//end if connect
 

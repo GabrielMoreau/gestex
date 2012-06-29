@@ -36,7 +36,7 @@ if (!empty($task_id)){
  $nom_tache = mysql_result($result,0);
  }
 
-$texte = $logged_in_user." (".$user_id.") Voila un formulaire pour jouter un document <br>";
+$texte = $logged_in_user." (".$user_id.") Voila un formulaire pour jouter un document <br />";
 
 
 
@@ -44,7 +44,7 @@ $texte = $logged_in_user." (".$user_id.") Voila un formulaire pour jouter un doc
  $texte.= "à <b>".$nom_manip.":".$nom_projet;
  if (!empty($nom_tache))
    $texte.=":". $nom_tache;
- $texte .="</b><br>";
+ $texte .="</b><br />";
 
 
 en_tete($titre);
@@ -62,7 +62,7 @@ echo "test de ".$dossier."...";
  if (!is_dir ($dossier) ){
    //data/nom_manip n'existe pas
    mkdir ($dossier);
- echo "creation de ".$dossier."<br>";
+ echo "creation de ".$dossier."<br />";
 }
 $dossier .="/". $nom_projet;
  $dossier = str_replace(" ", "_", $dossier );
@@ -70,7 +70,7 @@ echo "test de ".$dossier."...";
  if (!is_dir ($dossier) ){
     //data/nom_manip/nom_projet n'existe pas
     mkdir ($dossier);
- echo "creation de ".$dossier."<br>";
+ echo "creation de ".$dossier."<br />";
 }
 // creation du repertoire associé a cette tache
 $dossier .= "/".$nom;
@@ -80,7 +80,7 @@ echo "test de ".$dossier."...";
  if (!is_dir ($dossier) ){
    //data/nom_manip/nom_projet/nom_tache n'existe pas
  mkdir($dossier);
- echo "creation de ".$dossier."<br>";
+ echo "creation de ".$dossier."<br />";
 }
 
 
@@ -91,8 +91,8 @@ echo "test de ".$dossier."...";
 ?>
  
 
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

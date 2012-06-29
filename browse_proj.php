@@ -114,7 +114,7 @@ if (count($images) || count($fichiers)){
       if ( $text_handle = @fopen( $dossier_proj."/".$thedir."/".$autres, "r")){
        echo "<b>".$autres."</b> ";
    while (!feof($text_handle)) 
-              echo  fgets($text_handle, 4096)."<br>";
+              echo  fgets($text_handle, 4096)."<br />";
            fclose($text_handle);
        }//end if fopen
    echo "</td></tr><tr>";   
@@ -130,36 +130,36 @@ while ( $file = array_pop($images) ){
    switch ( strtolower(substr($file, $pos+1))){
     case "htm":
     case "html":
-     echo "images/html.png\" ><br>";
+     echo "images/html.png\" ><br />";
      break;
     case "doc":
-     echo "images/document.png\" ><br>";
+     echo "images/document.png\" ><br />";
      break;
     case "xls":
-     echo "images/spreadsheet.png\" ><br>";
+     echo "images/spreadsheet.png\" ><br />";
      break;
     case "pdf":
-     echo "images/pdf.png\" ><br>";
+     echo "images/pdf.png\" ><br />";
      break;
     case "ps":
-     echo "images/kghostview.png\" ><br>";
+     echo "images/kghostview.png\" ><br />";
      break;
     case "dat":
     case "csv":
-     echo "images/txt.png\" ><br>";
+     echo "images/txt.png\" ><br />";
      break;
    case "gif":
     case "jpg":
     case "png":///image
-     echo   $dossier_proj."/".$thedir."/".$file."\" width=\"80\"></a><br>";
+     echo   $dossier_proj."/".$thedir."/".$file."\" width=\"80\"></a><br />";
      break;
     case "avi":
     case "mov":
     case "mpg":///videos
-     echo "images/video.png\" ><br>";
+     echo "images/video.png\" ><br />";
      break;
     default :
-     echo "images/unknown.png\" ><br>";
+     echo "images/unknown.png\" ><br />";
      break;
    }//end switch
    //ajoute le nom du fichier sous l'image
@@ -181,12 +181,12 @@ while ( $file = array_pop($images) ){
  }//end foreach
  }
  else
-  echo "pas de documents disponibles pour ce projet!<br>";
+  echo "pas de documents disponibles pour ce projet!<br />";
  }//end if connect
 ?>
   
-<br>
-<br>
+<br />
+<br />
 </div>
 <?php pied_page() ?>
 </body>

@@ -22,12 +22,12 @@ $id_equip = $_GET[id];
 if (empty($id_equip))
  Header( "Location : list_equip.php");
 
-echo "equipe:".$id_equip. " ok :".$valid."<br>";
+echo "equipe:".$id_equip. " ok :".$valid."<br />";
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
- echo "Sur de supprimer l'équipe ".$id_equip. " ?<br>";
- echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_equip."&ok=yes\">OUI</a><br>";
-  echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br>";
+ echo "Sur de supprimer l'équipe ".$id_equip. " ?<br />";
+ echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_equip."&ok=yes\">OUI</a><br />";
+  echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
  
 }
 else{
@@ -40,13 +40,13 @@ if ( $connex = connect_db() ){
    if (!$result){
    //inscription !ok
    $erreur = mysql_error();
-   echo "<br>erreur :".$erreur;
+   echo "<br />erreur :".$erreur;
  
  }
 else 
- echo "Equipe  ".$id_equip." supprimée!<br>"; 
+ echo "Equipe  ".$id_equip." supprimée!<br />"; 
 //on retourne a la page precedente
-  echo "<a href=\"list_equip.php\">Suite</a><br>";
+  echo "<a href=\"list_equip.php\">Suite</a><br />";
 } 
 }
 

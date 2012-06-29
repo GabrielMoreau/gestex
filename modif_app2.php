@@ -74,8 +74,8 @@ if (!empty($erreur) ){
 
 	//erreur
 
-	echo "<br>erreur :".$erreur;
-	echo"<br><a href=\"add_app2.php?id=".$id_app ."\" >Suite</a><br>\n";
+	echo "<br />erreur :".$erreur;
+	echo"<br /><a href=\"add_app2.php?id=".$id_app ."\" >Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -94,10 +94,10 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 
 /*
-echo $nom." ".$data['nom']."<br>";
-echo $modele." ".$data['modele']."<br>";
-echo $compte." ".$data['compte']."<br>";
-echo $chef." ".$data['chef']."<br>";*/
+echo $nom." ".$data['nom']."<br />";
+echo $modele." ".$data['modele']."<br />";
+echo $compte." ".$data['compte']."<br />";
+echo $chef." ".$data['chef']."<br />";*/
 
 		//modification app
 $modif=0;
@@ -181,12 +181,12 @@ if ($notice!=$data['notice']){
  		if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
-			echo "<br>erreur :".$erreur;
+			echo "<br />erreur :".$erreur;
 		}
 	}//end if modif
 	else{
 		echo "aucune modif a faire";
-		echo"<br><br><a href=\"instru.php\">Suite</a><br><br>\n";
+		echo"<br /><br /><a href=\"instru.php\">Suite</a><br /><br />\n";
 		pied_page();
 		exit();
 		}//else end
@@ -205,9 +205,9 @@ $querry = "SELECT * FROM categorie where id='$cat'" ;
 $datax = result_db($qh);}
 
 echo "$cat";
-echo "<br>modification de ".$nom."<br>";
+echo "<br />modification de ".$nom."<br />";
 echo" est valid&eacute;e ";
-echo"<br><br><a href=\"instru.php?categorie=".$datax[id]."\">Suite</a><br><br>\n";
+echo"<br /><br /><a href=\"instru.php?categorie=".$datax[id]."\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
 
 

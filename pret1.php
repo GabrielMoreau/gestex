@@ -25,19 +25,19 @@ en_tete("Liste des prets:");
 $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br>";
+echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 
 ?>
 
-<i> Consulter la liste des équipement communs disponibles au service instrumentation et choisir : 'Demande de prêt' en face de l'appareil souhaité</i><br>
-<br>
+<i> Consulter la liste des équipement communs disponibles au service instrumentation et choisir : 'Demande de prêt' en face de l'appareil souhaité</i><br />
+<br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 70%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://intranet.legi.grenoble-inp.fr">Retour a<br>l'intranet</a>
-	<br></td>
+	<a href="http://intranet.legi.grenoble-inp.fr">Retour a<br />l'intranet</a>
+	<br /></td>
 <?php
 
 $tri = $_GET[tri];
@@ -65,7 +65,7 @@ echo "</td>";
  
   echo"<td style=\"vertical-align: top;\">";
 	echo "<a href =\"reserva.php?user=".$user_level." \">Liste des réservations</a>";
-echo"<br></td>";
+echo"<br /></td>";
 }
 
 }
