@@ -10,7 +10,7 @@ function en_tete( $titre){
    echo "<div width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\"><br />\n";
    echo "<br /><table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" style=\"text-align: left; width: 75%;\" align=\"center\">";
    echo "<tbody> <tr bgcolor=\"#f7d709\"> <td style=\"vertical-align: center;\">";
-   echo "<img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\">";
+   echo "<img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\" />";
    echo "      </td> <td style=\"vertical-align: top;\"><br />";
    echo "<h1>GestEx Application</h1>";
    echo $titre;
