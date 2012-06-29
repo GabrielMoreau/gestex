@@ -118,8 +118,8 @@ echo "<img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\">";
 					<table width="300" cellspacing="0" cellpadding="5" bgcolor="#1F32F0" align="center" class="box">
 						<tr>
 							<td><img src="../images/logolegi.gif" width="69" height="69" border="0" hspace="0" vspace="0"></td>
-							<td><span class="box_text"> Nom de Loggin :</span><br /><input type="text" name="username" size="25" maxlength="25"></td>
-							<td><span class="box_text"> Mot de passe :</span><br /><input type="password" name="password" size="25" maxlength="25"></td>
+							<td><span class="box_text">Identifiant</span><br /><input type="text" name="username" size="25" maxlength="25"></td>
+							<td><span class="box_text">Mot de passe</span><br /><input type="password" name="password" size="25" maxlength="25"></td>
 							<td><br /><input type="submit" name="Login" value="Entrer"> </td>
 						</tr>
 						<?php if (isset($login_failure)) { ?>
