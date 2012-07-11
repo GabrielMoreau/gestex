@@ -8,9 +8,9 @@ if (!auth(1))
 	Header("Location: login.php");
 
 
-$user_id = $_SESSION['user_id'];
+$user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level= $_SESSION['level'];
+$user_level     = $_SESSION['level'];
 
 require("html_functions.php");
 
@@ -20,7 +20,7 @@ require("html_functions.php");
 unset($erreur); unset($nom);unset($user_id );
 //variables ne pouvant etre nulles
 	if (empty($_POST[user2ch_id]))
-		$erreur="id user non pr&eacute;cis&eacute;";	
+		$erreur="identifiant utilisateur non pr&eacute;cis&eacute;";	
 	else{
 		$user2ch_id =$_POST[user2ch_id];
 	
@@ -30,7 +30,7 @@ unset($erreur); unset($nom);unset($user_id );
 					$nom =$_POST[nom];
 	
 						if (empty($_POST[addr_mail]))
-							$erreur="mail non pr&eacute;cis&eacute;";
+							$erreur="adresse de courriel non pr&eacute;cis&eacute;";
 						else{
 							$mail=$_POST[addr_mail];
 							//variables pouvant etre nulles
@@ -107,14 +107,14 @@ if ( $connex = connect_db() ){
 		}
 		if ($user_level == 3 && $valid==1 ){
 			//validation d'un user acceptée
-			// envoi d'un mail a cet user
-		$texte = $prenom." ".$nom." votre inscription au systeme PoolProject a été acceptée !";
-			mail($mail, "[PoolProject]inscription acceptée", $texte);
+			//envoi d'un mail a cet user
+		$texte = $prenom." ".$nom." votre inscription au systeme GestEx a été acceptée !";
+			mail($mail, "[GestEx] inscription acceptée - ".$nom." ".$prenom, $texte);
 		}
 	}//end if connect
 
 echo "inscription de ".$prenom." ".$nom." ".$mail."<br />";
-echo" <img src=\"images/pool_project.jpg\"  height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
+echo" <img src=\"images/pool_project.jpg\"  height=\"100\" nosave=\"\" align=\"middle\" alt=\"\" />";
 echo" est modifi&eacute;e  !";
 echo"<br /><br /><a href=\"list_users.php\">Suite</a><br /><br />\n";
 pied_page();

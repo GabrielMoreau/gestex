@@ -50,16 +50,16 @@ if ( $connex = connect_db() ){
 
   if (check_val('users', 'nom', $nom)!=0){
     //nom existant deja dans db
-    $erreur ="le nom <i>".$nom."</i> est deja entré dans la base de données";
+    $erreur ="le nom <i>".$nom."</i> est déjà entré dans la base de données";
     }
   elseif ( check_val('users', 'loggin', $loggin)!=0){
     //nom existant deja dans db
-    $erreur ="le loggin <i>".$loggin."</i> est deja utilisé dans la base de données";
+    $erreur ="l'identifiant <i>".$loggin."</i> est déjà utilisé dans la base de données";
     }
 
   if (check_mail($mail) !=0){
     //adresse mail incorrecte
-    $erreur ="l'adresse mail <i>".$mail."</i> est incorrecte";
+    $erreur ="l'adresse de courriel <i>".$mail."</i> est incorrecte";
     }
 
 /*if (!empty($_POST[loggin]))
@@ -90,7 +90,7 @@ if (!empty($erreur) ){
     $mot_crypte = md5($password);
   $table = "users";
     $result = mysql_query("INSERT INTO $table ".
-      "(nom,prenom,loggin,password, email, level, tel, equipe, valid)".
+      "(nom, prenom, loggin, password, email, level, tel, equipe, valid)".
       " VALUES ('$nom', '$prenom', '$loggin', '$mot_crypte', '$mail', '$level', '$phone', '$equipe', 0)");
       //
      if (!$result){
@@ -102,11 +102,11 @@ if (!empty($erreur) ){
       //inscription enregistrée mais pas encore validée!
       //envoi d'un mail a l'admin
       $texte = "Inscription de ".$prenom." ".$nom;
-      mail(ADMIN_MAIL, "[PoolProject] ajout user", $texte);
+      mail(ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
 
 
       echo "inscription de ".$prenom." ".$nom."<br />";
-      echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
+      echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\" />";
       echo" est propos&eacute;e avec le loggin : ".$loggin;
       echo"<br />Vous serez prevenu de sa validation par mail....";
       }//end else
