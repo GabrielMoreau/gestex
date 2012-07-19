@@ -144,7 +144,7 @@ echo "<br />";
  <td style="vertical-align: top; text-align: center;">
 	<a href="demandes.php">Demandes en cours</a>
 <td style="vertical-align: top; text-align: center;">
-	<a href="prêts.html">Prets en cours</a>
+	<a href="prets.html">Prets en cours</a>
 <?php } ?>
 
 <br /><br /><br />
