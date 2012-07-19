@@ -34,7 +34,7 @@ Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://www.legi.hmg.inpg.fr/intranet/intra.html">Retour a<br />l'intranet</a>
+	<a href="http://intranet.legi.grenoble-inp.fr">Retour a<br />l'intranet</a>
 	<br /></td>
 <?php if ( $user_level >=2 ) {	?>
  <td style="vertical-align: top; text-align: center;">
