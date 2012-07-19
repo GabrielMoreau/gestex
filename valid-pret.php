@@ -112,7 +112,7 @@ echo "de  $nom[nom]  <br />";
 			//echo "<br />ajout <br />";
 //echo "de $nom[nom] $equip[nom]<br />";
 //echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"reserva?user=3.php\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"reserva.php?user=3.php\">Suite</a><br /><br />\n";
 
 $querry = "SELECT email FROM users WHERE id='2'";
 	list($qheh,$numeh) = query_db($querry);
