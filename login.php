@@ -7,8 +7,12 @@ require("session_auth.php");
 //valeur par defaut
 if (isset( $_GET[variable]) && !empty( $_GET[variable]))
 	$truc = $_GET[variable];
-else 
-	$truc ="projet";
+else {
+	if (isset( $_POST[variable]) && !empty( $_POST[variable]))
+		$truc = $_POST[variable];
+	else
+		$truc ="projet";
+	}
 
 //check that this form has been submitted
 if (isset($username) && isset($password)) {
