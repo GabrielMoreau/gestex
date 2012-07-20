@@ -11,7 +11,7 @@ else {
 	if (isset( $_POST[variable]) && !empty( $_POST[variable]))
 		$truc = $_POST[variable];
 	else
-		$truc ="projet";
+		$truc ="pret";
 	}
 
 //check that this form has been submitted
@@ -115,7 +115,7 @@ echo "<img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\">";
  </tbody>
 </table>
 
-<form action="login.php?variable=<?php echo $_GET[variable]?>" method="POST" name="loginForm">
+<form action="login.php?variable=<?php echo $truc ?>" method="POST" name="loginForm">
 		<table width="100%" height="200" cellspacing="0" cellpadding="1" valign="center">
 			<tr>
 				<td>
