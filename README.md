@@ -50,25 +50,30 @@ git clone git@gricad-gitlab.univ-grenoble-alpes.fr:legi/soft/gestex.git
 cd gestex
 touch README.md
 git add README.md
-git commit -m "add README"
+git difftool
+git commit README.md # -m "add README"
 git push -u origin master
 ```
+Il est préférable de toujours mettre le nom des fichiers que l'on commit.
+Le message est à mettre de préférence dans l'éditeur
+(`vi` par exemple),
+ce qui permet de vérifier le commit et de l'annuler.
 
 ## Ancien serveur SVN
 
 ### Accès aux sources
 
 On récupère la branche principale sur le repository
-{{{
+```bash
 svn checkout https://servcode.legi.grenoble-inp.fr/svn/soft-gestex/trunk soft-gestex
-}}}
+```
 
 '''Attention''' : le 2012/07/19, le projet à changer de nom.
-Si vous aviez un accès à l'ancien repository {{{instru-materiel}}},
-ceui-ci est maintenant {{{soft-gestex}}}
-{{{
+Si vous aviez un accès à l'ancien repository `instru-materiel`,
+ceui-ci est maintenant `soft-gestex`
+```bash
 svn switch --relocate https://servcode.legi.grenoble-inp.fr/svn/instru-materiel https://servcode.legi.grenoble-inp.fr/svn/soft-gestex
-}}}
+```
 
 ### Mise à jour de l'application sur le serveur web
 
@@ -77,16 +82,17 @@ ni on ne fait de copie externe.
 L'idée est de passer par une mise à jour (update) du repository.
 C'est un peu lourd mais c'est un mal nécessaire afin d'avoir enfin une vue un peu historique et globale dans le temps.
 
-On se connecte au serveur {{{legilnx06}}},
+On se connecte au serveur `legilnx06`,
 puis les sources sont synchronisées et pousser dans le bon dossier.
-{{{
+
+```bash
 ssh krialforzh@legilnx06
 cd soft-gestex
 svn update
 sudo rsync -av --exclude .svn ./ /var/www/web-legi/pool/public_html/PoolProject/
 sudo chown -R :www-data /var/www/web-legi/pool/public_html/PoolProject/
 sudo chown -R www-data:www-data /var/www/web-legi/pool/public_html/PoolProject/data
-}}}
+```
 
 Une procédure plus performante sera mise en place dès que l'application sera de nouveau pleinement opérationnelle.
 Chaque chose en son temps !
