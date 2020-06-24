@@ -10,34 +10,40 @@
 		//start/continue the session		
 		session_start();
 		if (!empty($_SESSION['logged_in_user']))
-				return true;
+			return true;
 
 		$check = !empty($logged_in_user);
 		
 		if ($check) {
-			//echo " not empty!";
-			$dbh = connect_db();
-			list($qh,$num) = query_db("select password , nom , id , level ".
-			                         "from users where loggin='$logged_in_user'");
-			$data = result_db($qh);
+			// echo " not empty!";
+			$pdo = connect_db();
+			// list($qh,$num) = query_db("select password , nom , id , level ".
+			// 						 "from users where loggin='$logged_in_user'");
+			// $data = result_db($qh);
+			$sql = 'SELECT password, id, level FROM users WHERE loggin = ?';
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array($logged_in_user));
+			$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			// var_dump ($user);
+
 			//echo "db->".$num." (".$data[password].") ".$data[nom]."  pour ".$password."=".md5($password);
 			//is the password correct 
-			if ($data[password] != md5($password))
+			if ($user[0]['password'] != md5($password))
 				//pas le bon ppasswd
 				return 0;//false;
-			else if ($reqlevel > $data['level'])
+			else if ($reqlevel > $user['level'])
 				//pas le niveau d'autorisation requis
 				return 0;//false;
 			
 			else {	///tout ok
 				//set session variables
 				$_SESSION['logged_in_user'] = $logged_in_user;
-     				$_SESSION['user_id'] = $data['id'];
-				$_SESSION['level'] = $data['level'];
-				return $data['level'];//true
+     			$_SESSION['user_id'] = $user['id'];
+				$_SESSION['level'] = $user['level'];
+				// return $user['level'];//true
+				return 1;
 			}
-		}
-		else {
+		}else {
 			//unset all the variables
 			session_unset();
 
