@@ -16,9 +16,9 @@ require("html_functions.php");
 
 en_tete("Liste de tous les utilisateurs:");
 //recuper la methode de tri
-$tri = $_GET[tri];
-if (empty($tri))
-	$tri ="nom";
+$tri = $_GET['tri'];
+// if (empty($tri))
+// 	$tri ="nom";
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 ?>
@@ -35,16 +35,16 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 	<a href="add_user.php">Ajout d'un utilisateur</a>
 	<br /></td>
 <?php }	
-else	{ //edition/modif de ses propres coordonnées
+else	{ //edition/modif de ses propres coordonnï¿½es
 ?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_user.php?id=<?php echo $user_id ?>">
-		<img src="images/edit.png" nosave=\"\" title="modifier son profil"></a>
+		<img src="images/edit.png" nosave="" title="modifier son profil"></a>
 	<br /></td>
  <?php } ?>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="changepwd.php?id=<?php echo $user_id ?>">
-		<img src="images/unlock.png" nosave=\"\" title="changer son mot de passe"></a>
+		<img src="images/unlock.png" nosave="" title="changer son mot de passe"></a>
 	<br /></td>
 	
  <td style="vertical-align: top; text-align: center;">
@@ -74,21 +74,24 @@ else	{ //edition/modif de ses propres coordonnées
 	<a href ="list_users.php?tri=equipe">Equipe</a><br />
       </th>
     </tr>
-<?php	//interrogation base de données
+<?php	//interrogation base de donnï¿½es
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 	// recupere la liste des users
-	if ($user_level==3)
-		$querry = "SELECT * FROM users order by $tri";
-	else
-		$querry = "SELECT * FROM users WHERE valid=1 order by $tri";
-	list($qh,$num) = query_db($querry);
-	
-	$last_id=0;
+	if ($user_level==3){
+		$sql = 'SELECT * FROM users ORDER by ?';
+	}
+	else{
+		$sql = 'SELECT * FROM users WHERE valid = 1 ORDER by ?';
+	}
+	// list($qh,$num) = query_db($querry);
+	$stmt = $pdo->prepare($sql);
+    $stmt->execute(array($tri));
+	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$num_line=0;
 
-while ($data = result_db($qh)) {
-
+// while ($data = result_db($qh)) {
+	foreach($user as $data){
 	// remplit le tableau
 	if (($num_line % 2 )==0)
  		echo"<tr class=pair>";
@@ -96,38 +99,41 @@ while ($data = result_db($qh)) {
 		echo"<tr class=impair>";
 
  echo "<td style=\"vertical-align: top;\">";
-	echo $data[prenom];
+	echo $data['prenom'];
        echo"</td><td style=\"vertical-align: top;\">";
-	//l'utilisateur a la possiblité de modifier ses coordonnées
-	if ($user_id == $data[id] || $user_level==3)
-		echo "<a href=\"add_user.php?id=".$data[id]."\">".$data[nom]."</a>";
+	//l'utilisateur a la possiblitï¿½ de modifier ses coordonnï¿½es
+	if ($user_id == $data['id'] || $user_level==3)
+		echo "<a href=\"add_user.php?id=".$data['id']."\">".$data['nom']."</a>";
 	else
-		echo $data[nom];
+		echo $data['nom'];
 	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo $data[tel];
+      echo $data['tel'];
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"mailto:".$data[email]."\"> <img src=\"images/mail_generic.png\" nosave=\"\"></a>";
+      echo "<a href=\"mailto:".$data['email']."\"> <img src=\"images/mail_generic.png\" nosave=\"\"></a>";
       echo"</td><td style=\"vertical-align: top;\">";
  			// recupere la liste de equipes
-	$querry = "SELECT nom FROM equipe WHERE id ='$data[equipe]'";
-	list($qheq,$numeq) = query_db($querry);
-		$eq = result_db($qheq)	 ;
-		echo $eq['nom'];
+	$sql = 'SELECT nom FROM equipe WHERE id =?';
+	// list($qheq,$numeq) = query_db($querry);
+	// 	$eq = result_db($qheq)	 ;
+		$stmt = $pdo->prepare($sql);
+        $stmt->execute(array($data['equipe']));
+        $equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		echo $equipe[0]['nom'];
 		
-      echo " (".$data[equipe].")";
+      echo " (".$data['equipe'].")";
      if ($user_level==3){
 		 echo"</td><td style=\"vertical-align: top;\">";
-		echo "<a href=\"changepwd.php?id=".$data[id]."\">";
+		echo "<a href=\"changepwd.php?id=".$data['id']."\">";
 		echo "<img src=\"images/unlock.png\" nosave=\"\" title=\"changer le mot de passe\"></a>";
 		 echo"</td><td style=\"vertical-align: top;\">";
-		echo "<a href=\"del_user.php?id=".$data[id]."\">";
+		echo "<a href=\"del_user.php?id=".$data['id']."\">";
 		echo "<img src=\"images/kill.png\" nosave=\"\" title=\"supprimer l'utilisateur!\"></a>";
 		 echo"</td><td style=\"vertical-align: top;\">";
 		if ($data['valid']==0)
-			echo "Non Validé";
+			echo "Non Validï¿½";
 		else
-			echo "Validé";
+			echo "Validï¿½";
 		}
 
       echo"</td></tr>";$num_line++;
