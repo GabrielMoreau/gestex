@@ -22,56 +22,56 @@ en_tete("Liste des prets:");
 
 
 //recuper la methode de tri
-$tri = $_GET[tri];
+$tri = $_GET['tri'];
 if (empty($tri))
 	$tri ="id";
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 
 ?>
 
-<i> Consulter la liste des équipement communs disponibles au service instrumentation et choisir : 'Demande de prêt' en face de l'appareil souhaité</i><br />
+<i> Consulter la liste des ï¿½quipement communs disponibles au service instrumentation et choisir : 'Demande de prï¿½t' en face de l'appareil souhaitï¿½</i><br />
 <br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 70%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://intranet.legi.grenoble-inp.fr">Retour a<br />l'intranet</a>
+	<a href="http://intranet.legi.grenoble-inp.fr">Retour Ã <br />l'intranet</a>
 	<br /></td>
 <?php
 
-$tri = $_GET[tri];
-if (empty($tri))
-	$tri ="id";
-if ( $connex = connect_db() ){
+
 
 	// recupere les refs du user
+	$pdo = connect_db();
 
-
-
-	$querry = "SELECT * FROM equipe order by '$tri'" ;
-	list($qh,$num) = query_db($querry);
-	$last_id=0;
-$data = result_db($qh);
+	$sql = 'SELECT id from equipe ORDER by ?';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($tri));
+	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// 	$querry = "SELECT * FROM equipe order by '$tri'" ;
+// 	list($qh,$num) = query_db($querry);
+// 	$last_id=0;
+// $data = result_db($qh);
 
 	
-while ($data = result_db($qh)){
-if ($data[id] == 15)
+// while ($data = result_db($qh)){
+	foreach($equipe as $data){
+if ($data['id'] == 15)
 
   {     echo"<td style=\"vertical-align: top;\">";
 
-	echo "<a href =\"instru.php?equipe=".$data[id]." pret=".$data[id]."\">Liste des appareils en prêt</a>";
+	echo "<a href =\"instru.php?equipe=".$data['id']." pret=".$data['id']."\">Liste des appareils en prï¿½t</a>";
 echo "</td>";
  
   echo"<td style=\"vertical-align: top;\">";
-	echo "<a href =\"reserva.php?user=".$user_level." \">Liste des réservations</a>";
+	echo "<a href =\"reserva.php?user=".$user_level." \">Liste des rï¿½servations</a>";
 echo"<br /></td>";
 }
 
 }
 
       
-}
 ?>
 
 
