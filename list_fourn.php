@@ -20,7 +20,7 @@ en_tete("Liste de tous les fournisseurs:");
 
 
 //recuper la methode de tri
-$tri = $_GET[tri];
+$tri = $_GET['tri'];
 if (empty($tri))
 	$tri ="nom";
 
@@ -33,7 +33,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="<?php echo $_SERVER['HTTP_REFERER']?>">Retour a l'accueil</a>
+	<a href="accueil.php?tri=nom">Retour a l'accueil</a>
 	<br /></td>
 <?php if ( $user_level >=2 ) {	?>
  <td style="vertical-align: top; text-align: center;">
@@ -83,47 +83,51 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 		echo"</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de données
+<?php	//interrogation base de donnï¿½es
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 	// recupere la liste de fournisseurs
-	$querry = "SELECT * FROM fournisseurs order by $tri";
-	list($qh,$num) = query_db($querry);
-	
-	$last_id=0;
-
-while ($data = result_db($qh)) {
+// 	$querry = "SELECT * FROM fournisseurs order by $tri";
+// 	list($qh,$num) = query_db($querry);
+      // 	$last_id=0;
+      $sql = 'SELECT * from fournisseurs ORDER by ?';
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute(array($tri));
+      $fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      // var_dump($fournisseur);
+// while ($data = result_db($qh)) {
+      foreach( $fournisseur as $data){
 
 	// remplit le tableau
  echo"<tr><td style=\"vertical-align: top;\">";
-	echo $data[nom];
+	echo $data['nom'];
       echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[adresse];
+	echo $data['adresse'];
        echo"</td><td style=\"vertical-align: top;\" nowrap>";
-      echo $data[tel];
+      echo $data['tel'];
        echo"</td><td style=\"vertical-align: top;\" nowrap>";
-      echo $data[fax];
+      echo $data['fax'];
       echo"</td><td style=\"vertical-align: top;\">";
-	if (!empty($data[mail]))
-     	 echo "<a href=\"mailto:".$data[mail]."\"><img src=\"images/mail_generic.png\" nosave=\"\" ></a>";
+	if (!empty($data['mail']))
+     	 echo "<a href=\"mailto:".$data['mail']."\"><img src=\"images/mail_generic.png\" nosave=\"\" ></a>";
       echo"</td><td style=\"vertical-align: top;\">";
-	if (!empty($data[www]))
- 		 echo "<a href=\"http://".$data[www]."\" target=\"_fournView\"><img src=\"images/html.png\" nosave=\"\" width=\"22\"></a>";
+	if (!empty($data['www']))
+ 		 echo "<a href=\"http://".$data['www']."\" target=\"_fournView\"><img src=\"images/html.png\" nosave=\"\" width=\"22\"></a>";
 
       echo"</td><td style=\"vertical-align: top;\">";
-         echo  $data[contact];
+         echo  $data['contact'];
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo $data[descr];
+      echo $data['descr'];
       echo"</td>";
- if ( $user_level >=2 && $data[nom]!="aucun" ) {	
+ if ( $user_level >=2 && $data['nom']!="aucun" ) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_fourn.php?id=".$data[id]."\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_fourn.php?id=".$data['id']."\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
- if ( $user_level >=3 && $data[nom]!="aucun" ) {	
+ if ( $user_level >=3 && $data['nom']!="aucun" ) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_fourn.php?id=".$data[id]."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_fourn.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 	
 	}//end if
