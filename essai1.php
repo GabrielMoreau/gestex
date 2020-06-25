@@ -5,29 +5,22 @@
 
 include("db_functions.php");
 
+// if (!auth(1))
+	// Header("Location: instru.php");
 
-//if (!auth(1))
-	//Header("Location: instru.php");
+require("html_functions.php");
 
 
+// $user_id = $_SESSION['user_id'];
+// $logged_in_user = strtolower($_SESSION['logged_in_user']);
+// $user_level= $_SESSION['level'];
 
-$user_id = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level= $_SESSION['level'];
-
-require("mise_en_page.php");
 
 
 
 en_tete("Liste des appareils:");
 
-
-//recuper la methode de tri
-$tri = $_GET[tri];
-if (empty($tri))
-	$tri ="id";
-
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
+// echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 <br />
 <table cellpadding="2" cellspacing="2" border="1"
@@ -35,13 +28,13 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	 <a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour à<br />la page du service</a>
+	 <a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour ï¿½<br />la page du service</a>
 		<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="list_fourn1.php">Liste<br />des fournisseurs</a>
 	<br /></td>
  <td style="vertical-align: top; text-align: center;">
-	<a href="login.php?variable=instru">Accès<br />restreint</a>
+	<a href="login.php?variable=instru">Accï¿½s<br />restreint</a>
 	<br /></td>
 
 
@@ -67,12 +60,12 @@ Liste des appareils : <br />
 
  <th style="vertical-align: top; text-align: center;">
 
-	<a href ="instru1.php?equipe= 15">Appareils en prêt au service instru</a><br />
+	<a href ="instru1.php?equipe= 15">Appareils en prï¿½t au service instru</a><br />
       </th>
 	  </tr></tbody>
 	  </table>
 	  <br />
-Liste des appareils par catégorie : <br />
+Liste des appareils par catï¿½gorie : <br />
 
 <i>Cliquer sur une categorie pour voir la liste...</i><br />
 <br /><table cellpadding="10" cellspacing="2" border="1"
@@ -80,33 +73,35 @@ Liste des appareils par catégorie : <br />
   <tbody>
     <tr bgcolor="#f7d709">
 <?php
-
-$tri = $_GET[tri];
-if (empty($tri))
+ // rÃ©cupÃ©ration de la mÃ©thode de tri et valeur par defaut mise Ã  'nom'
+if (empty($_GET['tri']))
 	$tri ="nom";
+else
+	$tri = $_GET['tri'];
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 
 	// recupere les refs du user
 
 
 
-	$querry = "SELECT * FROM categorie order by '$tri'" ;
-	list($qh,$num) = query_db($querry);
-	$last_id=0;
-$data = result_db($qh);
+	$sql = 'SELECT id, nom FROM categorie order by ?;';
+	$stmt =$pdo->prepare($sql);
+	$stmt->execute(array($tri));
+	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	// list($qh,$num) = query_db($querry);
+	// $last_id=0;
+// // $data = result_db($qh);
  echo"<td style=\"vertical-align: top;\">";
-echo "<a href =\"instru1.php?categorie=".$data[id]."\">". $data[nom]."</a>";
-echo "<br />";
+// echo "<a href =\"instru1.php?categorie=".$categorie[0]['id']."\">". $categorie[0]['nom']."</a>";
+// echo "<br />";
 	
 
-while ($data = result_db($qh))
+// while ($data = result_db($qh))
+foreach($categorie as $data){    
 
-  {    // echo"<td style=\"vertical-align: top;\">";
-
-	echo "<a href =\"instru1.php?categorie=".$data[id]."\">". $data[nom]."</a>";
-echo "<br />";
-
+	echo "<a href =\"instru1.php?categorie=".$data['id']."\">". $data['nom']."</a>";
+	echo "<br />";
 }
 
       echo"</tr>";
@@ -120,7 +115,4 @@ echo "<br />";
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>
-
 
