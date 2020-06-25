@@ -18,7 +18,7 @@ en_tete("Liste de toutes les equipes:");
 
 
 //recuper la methode de tri
-$tri = $_GET[tri];
+$tri = $_GET['tri'];
 if (empty($tri))
 	$tri ="nom";
 
@@ -30,7 +30,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
   <tbody>
     <tr class=menu>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="accueil.php">Retour a l'accueil</a>
+	<a href="accueil.php?tri=date">Retour a l'accueil</a>
 	<br /></td>
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
@@ -66,17 +66,21 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 		echo "</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de données
+<?php	//interrogation base de donnï¿½es
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 	// recupere la liste de fournisseurs
-	$querry = "SELECT * FROM equipe order by $tri";
-	list($qh,$num) = query_db($querry);
+	$sql = 'SELECT * FROM equipe order by ?';
+	// list($qh,$num) = query_db($querry);
 	
-	$last_id=0;
+	// $last_id=0;
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($tri));
+	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$num_line=0;
 
-while ($data = result_db($qh)) {
+// while ($data = result_db($qh)) {
+	foreach($equipe as $data){
 
 	// remplit le tableau
 	if (($num_line % 2 )==0)
@@ -85,26 +89,29 @@ while ($data = result_db($qh)) {
 		echo"<tr class=impair>";
 
  echo "<td style=\"vertical-align: top;\">";
-	echo $data[nom];
+	echo $data['nom'];
       echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[descr];
+	echo $data['descr'];
        echo"</td><td style=\"vertical-align: top;\">";
-      echo $data[compte];
+      echo $data['compte'];
       echo"</td><td style=\"vertical-align: top;\">";
 	// recupere la nom d chef d'equipe
-	$querry = "SELECT id, nom FROM users WHERE id=".$data[chef];
-	list($qheq,$numeq) = query_db($querry);
-		$chef = result_db($qheq);
-      		echo $chef[nom];
+	$sql = 'SELECT id, nom FROM users WHERE id = ?';
+	// list($qheq,$numeq) = query_db($querry);
+		// $chef = result_db($qheq);
+		$stmt = $pdo->prepare($sql);
+        $stmt->execute(array($data['chef']));
+        $chef = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      		echo $chef[0]['nom'];
       echo"</td>";
  if ( $user_level >=2 ) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_equip.php?id=".$data[id]."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_equip.php?id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_equip.php?id=".$data[id]."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_equip.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 	
 	}//end if
