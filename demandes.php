@@ -22,12 +22,18 @@ en_tete("Liste des demandes en cours:");
 
 
 //recuper la methode de tri
-$tri = $_GET[tri];
-if (empty($tri))
+if (empty($_GET['tri']))
 	$tri ="id";
+else
+	$tri = $_GET['tri'];
 
-//recupère la categorie
-$cat=$_GET[categorie];
+
+//recupï¿½re la categorie
+// $cat=$_GET['categorie'];
+if (empty($_GET['categorie']))
+	$cat ="";
+else
+	$cat = $_GET['categorie'];
 //echo "$cat";
 
 
@@ -79,14 +85,14 @@ Liste des demandes en cours : <br />
 
 
  <th style="vertical-align: top; text-align: center;">
-	Tâche<br />
+	Tï¿½che<br />
       </th>
 
       <th style="vertical-align: top; text-align: center;">
 	Nom du demandeur<br />
       </th>
      <th style="vertical-align: top; text-align: center;">
-	Détails<br />
+	Dï¿½tails<br />
       </th>
 
 
@@ -100,12 +106,12 @@ Liste des demandes en cours : <br />
      
      
 <th style="vertical-align: top; text-align: center;">
-	Terminé?<br />
+	Terminï¿½?<br />
       </th>
 
   
 <th style="vertical-align: top; text-align: center;">
-	Pièces jointes<br />
+	Piï¿½ces jointes<br />
       </th>
 
 
@@ -115,82 +121,87 @@ Liste des demandes en cours : <br />
 		echo "</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de données
+<?php	//interrogation base de donnï¿½es
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 	
 
 
-	$querry = "SELECT * FROM demandes where termine='non'";
-	list($qh,$num) = query_db($querry);
+	$sql = 'SELECT * FROM demandes where termine="non";';
+	// list($qh,$num) = query_db($querry);
 	
-	$last_id=0;
+	// $last_id=0;
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
+	$demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
-$data = result_db($qh);
+// $data = result_db($qh);
 
-echo "<tr>";
- echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[tache];
+
+// echo "<tr>";
+//  echo"</td><td style=\"vertical-align: top;\">";
+// 	echo $demandes[0]['tache'];
     
-       echo"</td><td style=\"vertical-align: top;\">";
-echo $data[nomdemandeur];
+//        echo"</td><td style=\"vertical-align: top;\">";
+// echo $demandes[0]['nomdemandeur'];
 
-  echo"</td><td style=\"vertical-align: top;\">";
+//   echo"</td><td style=\"vertical-align: top;\">";
 
-echo $data[details];
+// echo $demandes[0]['details'];
       
-  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[achat];
- echo"</td><td style=\"vertical-align: top;\">";
-echo $data[avancement];
- echo"</td><td style=\"vertical-align: top;\">";
-echo $data[termine];
- echo"</td><td style=\"vertical-align: top;\">";
-echo $data[piecesjointes];
+//   echo"</td><td style=\"vertical-align: top;\">";
+// echo $demandes[0]['achat'];
+//  echo"</td><td style=\"vertical-align: top;\">";
+// echo $demandes[0]['avancement'];
+//  echo"</td><td style=\"vertical-align: top;\">";
+// echo $demandes[0]['termine'];
+//  echo"</td><td style=\"vertical-align: top;\">";
+// echo $demandes[0]['piecesjointes'];
 
 	
 	
-	 if ( $user_level >=2) {	
-      echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_demandes.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
-      echo"</td>";
-	}//end if
- if ( $user_level >=3 ) {
-      echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_demandes.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
-      echo"</td>";
+// 	 if ( $user_level >=2) {	
+//       echo"</td><td style=\"vertical-align: top;\">";
+//       echo "<a href=\"add_demandes.php?id=$demandes[0][id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+//       echo"</td>";
+// 	}//end if
+//  if ( $user_level >=3 ) {
+//       echo"</td><td style=\"vertical-align: top;\">";
+//       echo "<a href=\"del_demandes.php?id=$demandes[0][id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+//       echo"</td>";
 	
-}
-echo"</tr>";
+// }
+// echo"</tr>";
 
 
 
-while ($data = result_db($qh)) {
+// while ($data = result_db($qh)) {
+	foreach($demandes as $data){
 
 	// remplit le tableau
 
      echo"<tr><td style=\"vertical-align: top;\">";
-echo $data[tache];
+echo $data['tache'];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[nomdemandeur];
+echo $data['nomdemandeur'];
 echo"</td><td style=\"vertical-align: top;\">";
-echo $data[details];
+echo $data['details'];
 echo"</td><td style=\"vertical-align: top;\">";
 
-echo $data[achat];
+echo $data['achat'];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[avancement];
+echo $data['avancement'];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[termine];
+echo $data['termine'];
 
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[piecesjointes];
+echo $data['piecesjointes'];
 
 	
 	///bouton lien vers la doc
-	$dossier_proj ="data/instru/demandes/".$data[tache];
+	$dossier_proj ="data/instru/demandes/".$data['tache'];
 	
 
 	//remplace les espaces par des underscore
@@ -199,8 +210,8 @@ echo $data[piecesjointes];
 	//echo $dossier_proj;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
-		//si trouvé ajoute un bouton
-		echo "Voir : <a href =\"jointdemandes.php?id=". $data[id]."\">".$data[tache]."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
+		//si trouvï¿½ ajoute un bouton
+		echo "Voir : <a href =\"jointdemandes.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
     
 	}
 
@@ -211,7 +222,7 @@ echo $data[piecesjointes];
 
  if ( $user_level >=2) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_demandes.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+      echo "<a href=\"add_demandes.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\"Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
@@ -231,7 +242,7 @@ echo"</tr>";
       
 
 
-	}//end while
+	}//end foreach
 
 
 
