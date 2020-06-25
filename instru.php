@@ -35,11 +35,13 @@ if (empty($_GET['categorie']))
 else
 	$cat = $_GET['categorie'];
 
+//recupere l'�quipe
+
 if (empty($_GET['equipe']))
 	$eq = 0;
 else
 	$eq = $_GET['equipe'];
-//recupere l'�quipe
+
 // $eq=$_GET['equipe'];
 // echo "$eq";
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
@@ -53,8 +55,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 <a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour �<br />la page du service</a>	
 
 	<br /></td>
-<?php if (empty($eq)) {	
-?>
+<?php if (empty($eq)) {	?>
 
  <td style="vertical-align: top; text-align: center;">
 
@@ -178,18 +179,17 @@ if ( $pdo = connect_db() ){
 
 
 // if ((!empty($cat))||(!empty($eq)))
-if($cat == 0 )
+if($cat == 0 && $eq != 0)
 
 {
-
 $sql = 'SELECT * FROM Listing where equipe= ? order by nom ASC;';
 	// list($qh,$num) = query_db($querry);
 	
 	// $last_id=0;
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($cat));
+	$stmt->execute(array($eq));
 
-}else if($eq == 0){
+}else if($eq == 0 && $cat != 0){
 	$sql = 'SELECT * FROM Listing where categorie= ? order by nom ASC;';
 	// list($qh,$num) = query_db($querry);
 	
@@ -210,7 +210,6 @@ if ($cat == 0 && $eq == 0)
 
 // $data = result_db($qh);
 $listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
 // echo "<tr>";
 //      echo"<td style=\"vertical-align: top;\">";
