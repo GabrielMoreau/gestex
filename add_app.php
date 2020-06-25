@@ -9,14 +9,15 @@
 	$user_id = $_SESSION['user_id'];
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-$app_id = $_GET[id];
-if (empty($app_id)){
+if (empty($_GET['id'])){
 	//->nouvel appareil
+	$app_id = "";
 	$mode ="ajouter";
 	$action="valid_app.php";
 }
 else{
 	//->modif appareil
+	$app_id = $_GET['id'];
 	$mode ="modifier";
 	$action="modif_app.php";
 
@@ -31,7 +32,7 @@ if ($mode=="ajouter"){
 else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les caracteristiques d'un appareil");
 
-	// recupere le appareil selectionné
+	// recupere le appareil selectionnï¿½
 	$querry = "SELECT * FROM appareils WHERE id='$app_id'";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
@@ -51,13 +52,13 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nom" size="10" maxlength="10" value="<?php echo $data[nom] ?>" ><br />
+	<input type="text" name="nom" size="10" maxlength="10" value="<?php echo $data['nom'] ?>" ><br />
       </td>
     </tr><tr>
       <td style="vertical-align: top;">Description<br />
       </td>
       <td style="vertical-align: top;">
-      <textarea name="descr" cols="50" rows="5"> <?php echo $data[descr] ?></textarea>
+      <textarea name="descr" cols="50" rows="5"> <?php echo $data['descr'] ?></textarea>
 	</td>
     </tr>  
 
@@ -71,10 +72,10 @@ else if ($mode=="modifier"){
 	$querry = "SELECT id, nom FROM equipe";
 	list($qheq,$numeq) = query_db($querry);
 		while ($chef = result_db($qheq)){
-			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data[equipe]) {
+			echo "<option value=\"".$chef['id']."\"";
+			if ($mode=="modifier" && $chef['id'] == $data['equipe']) {
 				echo " selected";	}
-			echo ">".$chef[nom]."</option>";
+			echo ">".$chef['nom']."</option>";
 		}//end while
 		 ?>
 	</select><br />
@@ -92,10 +93,10 @@ else if ($mode=="modifier"){
 	$querry = "SELECT id, nom FROM users WHERE level >1";
 	list($qheq,$numeq) = query_db($querry);
 		while ($chef = result_db($qheq)){
-			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data[tech]) {
+			echo "<option value=\"".$chef['id']."\"";
+			if ($mode=="modifier" && $chef['id'] == $data['tech']) {
 				echo " selected";	}
-			echo ">".$chef[nom]."</option>";
+			echo ">".$chef['nom']."</option>";
 		}//end while
 		 ?>
 	</select><br />
@@ -112,10 +113,10 @@ else if ($mode=="modifier"){
 	$querry = "SELECT id, nom FROM fournisseurs ";
 	list($qheq,$numeq) = query_db($querry);
 		while ($chef = result_db($qheq)){
-			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data[fournisseur]) {
+			echo "<option value=\"".$chef['id']."\"";
+			if ($mode=="modifier" && $chef['id'] == $data['fournisseur']) {
 				echo " selected";	}
-			echo ">".$chef[nom]."</option>";
+			echo ">".$chef['nom']."</option>";
 		}//end while
 		 ?>
 	</select><br />
@@ -128,7 +129,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">
 	<input type="text" name="date" size="10" maxlength="10" value="
 		<?php if ($mode =="modifier")
-			echo $data[achat];
+			echo $data['achat'];
 		else 
 			echo date('Y-m-d', time() );
 	?>" ><br />
