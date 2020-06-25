@@ -22,9 +22,11 @@ en_tete("Liste des appareils:");
 
 
 //recuper la methode de tri
-$tri = $_GET[tri];
-if (empty($tri))
+
+if (empty($_GET['tri']))
 	$tri ="id";
+else 
+	$tri = $_GET['tri'];
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
@@ -34,7 +36,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour à<br />la page du service</a>
+	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour ï¿½<br />la page du service</a>
 	<br /></td>
 <?php if ( $user_level >=2 ) {	?>
  <td style="vertical-align: top; text-align: center;">
@@ -69,7 +71,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 
 <br />
 Liste des appareils : <br />
-<i>Affichage de la liste globale ou bien des appareils en prêt au service instrumentation...</i><br />
+<i>Affichage de la liste globale ou bien des appareils en prï¿½t au service instrumentation...</i><br />
 <br /><table cellpadding="20" cellspacing="4" border="1"
  style="width: 70%; text-align: left; margin-left: auto; margin-right: auto;">
 
@@ -78,7 +80,7 @@ Liste des appareils : <br />
 	
 	 <th style="vertical-align: top; text-align: center;">
 
-	<a href ="instru.php?categorie= ">Liste globale</a><br />
+	<a href ="instru.php?categorie=0 ">Liste globale</a><br />
       </th>
 
  <th style="vertical-align: top; text-align: center;">
@@ -89,7 +91,7 @@ Liste des appareils : <br />
 
 </table>
 <br />
-Liste des appareils par catégorie : <br />
+Liste des appareils par catï¿½gorie : <br />
 
 <i>Cliquer sur une categorie pour voir la liste...</i><br />
 <br /><table cellpadding="10" cellspacing="2" border="1"
@@ -100,31 +102,29 @@ Liste des appareils par catégorie : <br />
 	
 
 <?php
-
-$tri = $_GET[tri];
-if (empty($tri))
-	$tri ="nom";
-
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 
 	// recupere les refs du user
 
 
 
-	$querry = "SELECT * FROM categorie order by nom ASC" ;
-	list($qh,$num) = query_db($querry);
-	$last_id=0;
-$data = result_db($qh);
- echo"<td style=\"vertical-align: top;\">";
-echo "<a href =\"instru.php?categorie=".$data[id]."\">". $data[nom]."</a>";
-echo "<br />";
+	$sql = 'SELECT * FROM categorie order by ? ASC' ;
+	// list($qh,$num) = query_db($querry);
+	// $last_id=0;
+// $data = result_db($qh);
+
 	
+	$stmt =$pdo->prepare($sql);
+	$stmt->execute(array($tri));
+	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	echo"<td style=\"vertical-align: top;\">";
+	// echo "<a href =\"instru.php?categorie=".$data['id']."\">". $data['nom']."</a>";
+	// echo "<br />";
+// while ($data = result_db($qh))
+foreach($categorie as $data){
+	//  echo"<td style=\"vertical-align: top;\">";
 
-while ($data = result_db($qh))
-
-  {   //  echo"<td style=\"vertical-align: top;\">";
-
-	echo "<a href =\"instru.php?categorie=".$data[id]."\">". $data[nom]."</a>";
+	echo "<a href =\"instru.php?categorie=".$data['id']."\">". $data['nom']."</a>";
 echo "<br />";
 
 }
@@ -138,7 +138,7 @@ echo "<br />";
 </table>
 
 <?php
- if (( $user_id ==33)|| ( $user_id ==2)) 
+ if (( $user_id ==33)|| ( $user_id ==2) || $user_id == 105) 
 {?>
 <br /><br /><br />
  <td style="vertical-align: top; text-align: center;">
