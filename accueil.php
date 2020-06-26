@@ -9,11 +9,9 @@ include("session_auth.php");
 if (!auth(1))
 	Header("Location: login.php");
 
-$user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level= $_SESSION['level'];
-
-
+$user_id = $_SESSION['user_id'];
+$user_level = $_SESSION['level'];
 require("html_functions.php");
 
 en_tete("Liste des Manips");
@@ -23,18 +21,6 @@ $tri = $_GET['tri'];
 if (empty($tri))
 	$tri ="nom";
 
-
-try{
-	$pdo = connect_db();
-	$sql = 'SELECT nom, prenom FROM users where loggin = ? ;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($logged_in_user));
-	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-}catch (PDOException $exception){
-	error_log('Request error: '.$exception->getMessage());
-	return false;
-}
 
 
 
@@ -51,6 +37,7 @@ if ( $pdo = connect_db() ){
 
 
 	echo 'Bienvenue ',$user[0]['prenom'],'', $user[0]['nom'] , '(',$user_id,')<br /><br />';
+	echo '<br>';
 
 	?>
 	<br />
@@ -69,7 +56,7 @@ if ( $pdo = connect_db() ){
 					<br />
 				</th>
 				<th style="vertical-align: top; text-align: center; " >
-					<a href="list_equip.php">Liste des<br />Equipes</a>
+					<a href="list_equip.php?tri=nom">Liste des<br />Equipes</a>
 					<br />
 				</th>
 				<?php if ($user_level>=2){  ?>
