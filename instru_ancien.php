@@ -104,7 +104,7 @@ while ($data = result_db($qh)) {
 
      echo"<tr><td style=\"vertical-align: top;\">";
 
-$querry = "SELECT id, nom FROM categorie WHERE id='$data[categorie]'";
+$querry = "SELECT id, nom FROM categorie WHERE id='$data['categorie']'";
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
 
@@ -112,17 +112,17 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data[categorie]'";
        echo"</td><td style=\"vertical-align: top;\">";
 
  echo"</td><td style=\"vertical-align: top;\">";
-	echo "<a href =\"fiche_vie.php?id=".$data[id]."\">". $data[nom]."</a>";
+	echo "<a href =\"fiche_vie.php?id=".$data['id']."\">". $data['nom']."</a>";
     
        echo"</td><td style=\"vertical-align: top;\">";
 
-echo $data[gamme];
+echo $data['gamme'];
 
        echo"</td><td style=\"vertical-align: top;\">";
 
 	// recupere la nom d'equipe
 
-	$querry = "SELECT id, nom FROM equipe WHERE id='$data[equipe]'";
+	$querry = "SELECT id, nom FROM equipe WHERE id='$data['equipe']'";
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
 
@@ -130,14 +130,14 @@ echo $data[gamme];
        echo"</td><td style=\"vertical-align: top;\">";
 	
 	// recupere la nom du fournisseur
-	$querry = "SELECT id, nom FROM fournisseurs WHERE id='$data[fournisseur]'";
+	$querry = "SELECT id, nom FROM fournisseurs WHERE id='$data['fournisseur']'";
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
       		echo $equip[nom];
       echo"</td><td style=\"vertical-align: top;\">";
 
 // recupere le nom du tech
-	$querry = "SELECT id, nom FROM users WHERE id='$data[responsable]'";
+	$querry = "SELECT id, nom FROM users WHERE id='$data['responsable']'";
 	list($qheq,$numeq) = query_db($querry);
 
 		$resp = result_db($qheq);
@@ -146,12 +146,12 @@ echo $data[gamme];
 
  if ( $user_level >=2 ) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app2.php?id=".$data[id]."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+      echo "<a href=\"add_app2.php?id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_app2.php?id=".$data[id]."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_app2.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 	
 	}//end if

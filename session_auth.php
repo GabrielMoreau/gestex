@@ -26,7 +26,7 @@
 			$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			// var_dump ($user);
 
-			//echo "db->".$num." (".$data[password].") ".$data[nom]."  pour ".$password."=".md5($password);
+			//echo "db->".$num." (".$data['password'].") ".$data['nom']."  pour ".$password."=".md5($password);
 			//is the password correct 
 			if ($user[0]['password'] != md5($password)){
 				//pas le bon ppasswd

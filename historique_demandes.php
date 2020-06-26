@@ -35,7 +35,6 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 				<br />
 			</td>
 
-
 			<td style="vertical-align: top; text-align: center;">
 				<a href="demandes.php">Retour aux<br />demandes en cours</a>
 				<br />
@@ -78,7 +77,6 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 			Avancement<br />
 		</th>
 
-
 		<th style="vertical-align: top; text-align: center;">
 			Terminé?<br />
 		</th>
@@ -108,32 +106,32 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 
 	echo "<tr>";
 	echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[tache];
+	echo $data['tache'];
 
 	echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[nomdemandeur];
+	echo $data['nomdemandeur'];
 
 	echo"</td><td style=\"vertical-align: top;\">";
 
-	echo $data[details];
+	echo $data['details'];
 
 	echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[achat];
+	echo $data['achat'];
 	echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[avancement];
+	echo $data['avancement'];
 	echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[termine];
+	echo $data['termine'];
 	echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[piecesjointes];
+	echo $data['piecesjointes'];
 
 	if ( $user_level >=2) {	
 		echo"</td><td style=\"vertical-align: top;\">";
-		echo "<a href=\"add_demandes.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+		echo "<a href=\"add_demandes.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
 		echo"</td>";
 	}
 	if ( $user_level >=3 ) {
 		echo"</td><td style=\"vertical-align: top;\">";
-		echo "<a href=\"del_demandes.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+		echo "<a href=\"del_demandes.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
 		echo"</td>";
 
 	}
@@ -142,24 +140,24 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	while ($data = result_db($qh)) {
 		// remplit le tableau
 		echo"<tr><td style=\"vertical-align: top;\">";
-		echo $data[tache];
+		echo $data['tache'];
 		echo"</td><td style=\"vertical-align: top;\">";
-		echo $data[nomdemandeur];
+		echo $data['nomdemandeur'];
 		echo"</td><td style=\"vertical-align: top;\">";
-		echo $data[details];
+		echo $data['details'];
 		echo"</td><td style=\"vertical-align: top;\">";
 
-		echo $data[achat];
+		echo $data['achat'];
 		echo"</td><td style=\"vertical-align: top;\">";
-		echo $data[avancement];
+		echo $data['avancement'];
 		echo"</td><td style=\"vertical-align: top;\">";
-		echo $data[termine];
+		echo $data['termine'];
 
 		echo"</td><td style=\"vertical-align: top;\">";
-		echo $data[piecesjointes];
+		echo $data['piecesjointes'];
 
 		///bouton lien vers la doc
-		$dossier_proj ="data/instru/demandes/".$data[tache];
+		$dossier_proj ="data/instru/demandes/".$data['tache'];
 
 		//remplace les espaces par des underscore
 		$dossier_proj = str_replace(" ", "_", $dossier_proj);
@@ -168,17 +166,17 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 		// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 		if (@opendir($dossier_proj) != FALSE){
 		// si trouvé ajoute un bouton
-			echo "Voir : <a href =\"jointdemandes.php?id=". $data[id]."\">".$data[tache]."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
+			echo "Voir : <a href =\"jointdemandes.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
 		}
 
 		if ( $user_level >=2) {	
 			echo"</td><td style=\"vertical-align: top;\">";
-			echo "<a href=\"add_demandes.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+			echo "<a href=\"add_demandes.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
 			echo"</td>";
 		}
 		if ( $user_level >=3 ) {
 			echo"</td><td style=\"vertical-align: top;\">";
-			echo "<a href=\"del_demandes.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+			echo "<a href=\"del_demandes.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
 			echo"</td>";
 		}
 		echo"</tr>";

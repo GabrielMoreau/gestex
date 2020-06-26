@@ -57,13 +57,13 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nom" size="20" maxlength="20" value="<?php echo $data[nom] ?>" ><br />
+	<input type="text" name="nom" size="20" maxlength="20" value="<?php echo $data['nom'] ?>" ><br />
       </td>
     </tr><tr>
       <td style="vertical-align: top;">Description<br />
       </td>
       <td style="vertical-align: top;">
-	<textarea name="descr" cols="50" rows="5"> <?php echo $data[descr] ?>
+	<textarea name="descr" cols="50" rows="5"> <?php echo $data['descr'] ?>
 	</textarea>
       </td>
     </tr>  
@@ -71,7 +71,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Local *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="local" size="5" maxlength="10" value="<?php echo $data[local] ?>" ><br />
+	<input type="text" name="local" size="5" maxlength="10" value="<?php echo $data['local'] ?>" ><br />
       </td>
     </tr>
     <tr>
@@ -144,7 +144,7 @@ else if ($mode=="modifier"){
       <th style="vertical-align: top;">
 	<input type="text" name="date" size="10" maxlength="10" value="<?php 
 				if ($mode=="modifier")
-					echo $data[date];
+					echo $data['date'];
 				else  //ajout->aujourd'hui
 					echo date('Y-m-d', time() ); 
 						?> " ><br />

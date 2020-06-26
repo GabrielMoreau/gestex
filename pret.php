@@ -50,11 +50,11 @@ $data = result_db($qh);
 
 	
 while ($data = result_db($qh)){
-if ($data[id] == 15)
+if ($data['id'] == 15)
 
   {     echo"<td style=\"vertical-align: top;\">";
 
-	echo "<a href =\"instru1.php?equipe=".$data[id]."\">Liste des appareils en prêt</a>";
+	echo "<a href =\"instru1.php?equipe=".$data['id']."\">Liste des appareils en prêt</a>";
 echo "</td>";
 
 }}

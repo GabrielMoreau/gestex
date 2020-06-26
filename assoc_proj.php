@@ -28,8 +28,8 @@ if ( $connex = connect_db() ){
  $data = result_db($qh);
 
 ///tableau des projets associes
-$assoc = explode(',' , $data[assoc_proj]);
-echo "Projets deja associés :".$data[assoc_proj];
+$assoc = explode(',' , $data['assoc_proj']);
+echo "Projets deja associés :".$data['assoc_proj'];
  
 }//end if connex
  else 

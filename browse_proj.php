@@ -30,13 +30,13 @@ if ( $connex = connect_db() ){
  $querry = "SELECT nom FROM manip where id='$manip_id' " ;
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
- $nom_manip= $data[nom];
+ $nom_manip= $data['nom'];
 
  // recupere le nom du projet
  $querry = "SELECT nom FROM projet where id='$proj_id' " ;
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
- $nom_proj= $data[nom];
+ $nom_proj= $data['nom'];
 
 $titre ="Documents de la manip : ".$nom_manip . " projet : ".$nom_proj;
 

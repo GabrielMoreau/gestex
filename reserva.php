@@ -105,7 +105,7 @@ echo "<tr>";
       		
  echo"</td><td style=\"vertical-align: top;\">";
 
-	$querry = "SELECT id, nom FROM Listing WHERE id='$data[nom]'";
+	$querry = "SELECT id, nom FROM Listing WHERE id='$data['nom']'";
 	list($qheeq,$numeeq) = query_db($querry);
 		$nom = result_db($qheeq);
 
@@ -116,7 +116,7 @@ echo "<tr>";
 
 	// recupere la nom d'equipe
 
-	$querry = "SELECT id, nom FROM equipe WHERE id='$data[equipe]'";
+	$querry = "SELECT id, nom FROM equipe WHERE id='$data['equipe']'";
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
 
@@ -124,15 +124,15 @@ echo "<tr>";
        echo"</td><td style=\"vertical-align: top;\">";
 	
 	
-echo $data[emprunt];
+echo $data['emprunt'];
 
 	 echo"</td><td style=\"vertical-align: top;\">";
 	
-echo $data[retour];
+echo $data['retour'];
 	
  echo"</td><td style=\"vertical-align: top;\">";
 	
-echo $data[commentaire];
+echo $data['commentaire'];
  echo"</td><td style=\"vertical-align: top;\">";
 
       		echo $nom[id];
@@ -143,7 +143,7 @@ echo $data[commentaire];
 	if ( $use >=3 ) 	{
  
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del-pret.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del-pret.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";}
 	
 
@@ -155,7 +155,7 @@ while ($data = result_db($qh)){
 
  echo"</td><td style=\"vertical-align: top;\">";
 	
-   $querry = "SELECT id, nom FROM Listing WHERE id='$data[nom]'";
+   $querry = "SELECT id, nom FROM Listing WHERE id='$data['nom']'";
 	list($qheeq,$numeeq) = query_db($querry);
 		$nom = result_db($qheeq);
 
@@ -167,22 +167,22 @@ while ($data = result_db($qh)){
 
 	// recupere la nom d'equipe
 
-	$querry = "SELECT id, nom FROM equipe WHERE id='$data[equipe]'";
+	$querry = "SELECT id, nom FROM equipe WHERE id='$data['equipe']'";
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
 
       		echo $equip[nom];
        echo"</td><td style=\"vertical-align: top;\">";
 	
-echo $data[emprunt];
+echo $data['emprunt'];
 
 	 echo"</td><td style=\"vertical-align: top;\">";
 	
-echo $data[retour];
+echo $data['retour'];
 	
  echo"</td><td style=\"vertical-align: top;\">";
 	
-echo $data[commentaire];
+echo $data['commentaire'];
 echo"</td><td style=\"vertical-align: top;\">";
 	
       		echo $nom[id];
@@ -192,7 +192,7 @@ echo"</td><td style=\"vertical-align: top;\">";
  
  if ( $use >=3 ) 	{
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del-pret.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del-pret.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 	}
 

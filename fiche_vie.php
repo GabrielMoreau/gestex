@@ -27,7 +27,7 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 	$last_id=0;
 
-en_tete("Caractéristiques de l'appareil :<b>".$data[nom]."</b>");
+en_tete("Caractéristiques de l'appareil :<b>".$data['nom']."</b>");
 
 //recuper la methode de tri
 $tri = $_GET[tri];
@@ -60,7 +60,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 <br />
 
 <?php
-echo "L'appareil <b>".$data[nom]."</b> a les caractéristiques suivantes :<br />";
+echo "L'appareil <b>".$data['nom']."</b> a les caractéristiques suivantes :<br />";
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1"
@@ -113,20 +113,20 @@ while ($data = result_db($qh)) {
 
 	// remplit le tableau
  echo"<tr><td style=\"vertical-align: top;\">";
-	echo $data[nom];
+	echo $data['nom'];
          echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[modele];
+	echo $data['modele'];
    echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[achat];
+	echo $data['achat'];
 echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[accessoires];
+	echo $data['accessoires'];
 echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[reparation];
+	echo $data['reparation'];
 
  echo"</td><td style=\"vertical-align: top;\">";
 
 // recupere le nom du tech
-	$querry = "SELECT id, nom FROM users WHERE id='$data[responsable]'";
+	$querry = "SELECT id, nom FROM users WHERE id='$data['responsable']'";
 	list($qheq,$numeq) = query_db($querry);
 
 		$resp = result_db($qheq);
@@ -135,19 +135,19 @@ echo"</td><td style=\"vertical-align: top;\">";
  
 
   echo"</td><td style=\"vertical-align: top;\">";
-echo $data[id];
+echo $data['id'];
 
   echo"</td><td style=\"vertical-align: top;\">";
-echo $data[inventaire];
+echo $data['inventaire'];
 
  if ( $user_level >=2 ) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app2.php?app=".$id_app."&id=".$data[id]."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+      echo "<a href=\"add_app2.php?app=".$id_app."&id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_intapp.php?id=".$data[id]."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_intapp.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 	
 	}//end if

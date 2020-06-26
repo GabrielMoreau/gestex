@@ -24,9 +24,9 @@ if ( $connex = connect_db() ){
 	$querry = "SELECT manipch FROM labview where id='$nom_id' " ;
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
-	$nom_nom= $data[manipch];
+	$nom_nom= $data['manipch'];
 
-$titre ="Documents de la manip : ".$data[manipch];
+$titre ="Documents de la manip : ".$data['manipch'];
 
 en_tete($titre);
 

@@ -52,7 +52,7 @@ else if ($mode=="modifier"){
     //  <td style="vertical-align: top;">Categorie *<br />
    //   </td>
     //  <td style="vertical-align: top;">
-	//<input type="text" name="categorie" size="20" value="<?php echo $data[categorie] ?>" ><br />
+	//<input type="text" name="categorie" size="20" value="<?php echo $data['categorie'] ?>" ><br />
     //  </td>
   //  </tr>
 
@@ -67,7 +67,7 @@ else if ($mode=="modifier"){
 	list($qheq,$numeq) = query_db($querry);
 		while ($chef = result_db($qheq)){
 			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data[categorie]) {
+			if ($mode=="modifier" && $chef[id] == $data['categorie']) {
 				echo " selected";	}
 			echo ">".$chef[nom]."</option>";
 		}//end while
@@ -81,7 +81,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nom" size="30"  value="<?php echo $data[nom] ?>" ><br />
+	<input type="text" name="nom" size="30"  value="<?php echo $data['nom'] ?>" ><br />
       </td>
     </tr>
 
@@ -89,14 +89,14 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Modele<br />
       </td>
       <td style="vertical-align: top;">
-      <input type="text"name="modele" size="30" value="<?php echo $data[modele] ?>"<br />
+      <input type="text"name="modele" size="30" value="<?php echo $data['modele'] ?>"<br />
 	</td>
     </tr>  
 <tr>
  <td style="vertical-align: top;">Gamme<br />
       </td>
       <td style="vertical-align: top;">
-     	<input type="text" name="gamme" size="10" maxlength="30" value="<?php echo $data[gamme] ?>" ><br />
+     	<input type="text" name="gamme" size="10" maxlength="30" value="<?php echo $data['gamme'] ?>" ><br />
 
 	</td>
     </tr>  
@@ -113,7 +113,7 @@ else if ($mode=="modifier"){
 	list($qheq,$numeq) = query_db($querry);
 		while ($chef = result_db($qheq)){
 			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data[equipe]) {
+			if ($mode=="modifier" && $chef[id] == $data['equipe']) {
 				echo " selected";	}
 			echo ">".$chef[nom]."</option>";
 		}//end while
@@ -133,7 +133,7 @@ else if ($mode=="modifier"){
 	list($qheq,$numeq) = query_db($querry);
 		while ($chef = result_db($qheq)){
 			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data[fournisseur]) {
+			if ($mode=="modifier" && $chef[id] == $data['fournisseur']) {
 				echo " selected";	}
 			echo ">".$chef[nom]."</option>";
 		}//end while
@@ -150,7 +150,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">
 	<input type="text" name="achat" size="10" maxlength="10" value="
 		<?php if ($mode =="modifier")
-			echo $data[achat];
+			echo $data['achat'];
 		else 
 			echo date('Y-m-d', time() );
 	?>" ><br />
@@ -168,7 +168,7 @@ else if ($mode=="modifier"){
 	list($qheq,$numeq) = query_db($querry);
 		while ($chef = result_db($qheq)){
 			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data[responsable]) {
+			if ($mode=="modifier" && $chef[id] == $data['responsable']) {
 				echo " selected";	}
 			echo ">".$chef[nom]."</option>";
 		}//end while
@@ -182,14 +182,14 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Reparation<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="reparation" size="30" maxlength="30" value="<?php echo $data[reparation] ?>" ><br />
+	<input type="text" name="reparation" size="30" maxlength="30" value="<?php echo $data['reparation'] ?>" ><br />
       </td>
     </tr>
 <tr>
  <td style="vertical-align: top;">Accessoires<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="accessoires" size="30" maxlength="30" value="<?php echo $data[accessoires] ?>" ><br />
+	<input type="text" name="accessoires" size="30" maxlength="30" value="<?php echo $data['accessoires'] ?>" ><br />
       </td>
     </tr>
 

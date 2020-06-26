@@ -5,7 +5,6 @@
 // Authenticate
 include("session_auth.php");
 
-
 if (!auth(1))
 	Header("Location: login.php");
 
@@ -21,10 +20,6 @@ $tri = $_GET['tri'];
 if (empty($tri))
 	$tri ="nom";
 
-
-
-
-
 if ( $pdo = connect_db() ){
 	// recupere les refs du user
 	// $querry = "SELECT * FROM users where loggin='$logged_in_user' " ;
@@ -34,7 +29,6 @@ if ( $pdo = connect_db() ){
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($logged_in_user));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
 	echo 'Bienvenue ',$user[0]['prenom'],'', $user[0]['nom'] , '(',$user_id,')<br /><br />';
 	echo '<br>';
@@ -153,7 +147,7 @@ if ( $pdo = connect_db() ){
 				echo $manip['local'];
 				echo '</td><td style="vertical-align: top;">';
 				// recupere la liste de equipes
-				// $querry = "SELECT nom FROM equipe WHERE id ='$data[equipe]'";
+				// $querry = "SELECT nom FROM equipe WHERE id ='$data['equipe']'";
 				// list($qheq,$numeq) = query_db($querry);
 				// 	$eq = result_db($qheq)	 ;
 				$sql = "SELECT nom FROM equipe where id = ?;";
@@ -165,7 +159,7 @@ if ( $pdo = connect_db() ){
 					//si chercheur logg� pas necessaire
 					echo '</td><td style="vertical-align: top;">';
 						// recupere la liste des chercheurs
-					// $querry = "SELECT nom FROM users WHERE id ='$data[chercheur]'";
+					// $querry = "SELECT nom FROM users WHERE id ='$data['chercheur']'";
 					// list($qheq,$numeq) = query_db($querry);
 					// 	$equipe = result_db($qheq)	 ;
 					// 	echo $eq['nom'];
@@ -190,7 +184,6 @@ if ( $pdo = connect_db() ){
  		</tbody>
 	</table>
 	<br />
-
 
 <?php
 }//end if

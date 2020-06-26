@@ -35,7 +35,7 @@ if ( $connex = connect_db() ){
 	list($qh,$num) = query_db($querry);
 	
 $data = result_db($qh);
-echo " Bienvenue $data[prenom] $data[nom] ($user_id)<br /><br />";
+echo " Bienvenue $data['prenom'] $data['nom'] ($user_id)<br /><br />";
 /////echo "equipe:".$equip_id." manip :".$manip_id." projet :".$projet_id." tache :".$tache_id."<br />";
 ?>
 <br />
@@ -89,12 +89,12 @@ $temps_equip = 0;
 			$querry =" select nom FROM users WHERE id=".$manips[chercheur];
 			list($qhc,$num) = query_db($querry);
 			$data =  result_db($qhc);
-		echo "Pour :".$data[nom];
+		echo "Pour :".$data['nom'];
 		if (!empty($manips[chercheur_bis])){
 			$querry =" select nom FROM users WHERE id=".$manips[chercheur_bis];
 			list($qhc,$num) = query_db($querry);
 			$data =  result_db($qhc);
-			echo " et ".$data[nom];
+			echo " et ".$data['nom'];
 
 		}//end if empty
 		echo "</td></tr>";

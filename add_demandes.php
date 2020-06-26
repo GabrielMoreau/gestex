@@ -70,7 +70,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Tâche *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="tache" size="30"  value="<?php echo $data[tache] ?>" ><br />
+	<input type="text" name="tache" size="30"  value="<?php echo $data['tache'] ?>" ><br />
       </td>
     </tr>
 
@@ -79,7 +79,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Nom du demandeur *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nomdemandeur" size="30"  value="<?php echo $data[nomdemandeur] ?>" ><br />
+	<input type="text" name="nomdemandeur" size="30"  value="<?php echo $data['nomdemandeur'] ?>" ><br />
       </td>
     </tr>
 
@@ -87,7 +87,7 @@ else if ($mode=="modifier"){
   <td style="vertical-align: top;">Details<br />
       </td>
       <td style="vertical-align: top;">
-	<textarea name="details" cols="100" rows="5"> <?php echo $data[details] ?>
+	<textarea name="details" cols="100" rows="5"> <?php echo $data['details'] ?>
 	</textarea>
 </tr>
     
@@ -98,7 +98,7 @@ else if ($mode=="modifier"){
       <th style="vertical-align: top;">
 	<input type="text" name="achat" size="10" maxlength="10" value="<?php
  if ($mode =="modifier")
-			echo $data[achat];
+			echo $data['achat'];
 		else 
 			echo date('Y-m-d', time() );
 	?>" ><br />
@@ -110,7 +110,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Avancement*<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="avancement" size="70"  value="<?php echo $data[avancement] ?>" ><br />
+	<input type="text" name="avancement" size="70"  value="<?php echo $data['avancement'] ?>" ><br />
       </td>
     </tr>
 
@@ -134,7 +134,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Pièces Jointes<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="piecesjointes" size="30" maxlength="30" value="<?php echo $data[piecesjointes] ?>" ><br />
+	<input type="text" name="piecesjointes" size="30" maxlength="30" value="<?php echo $data['piecesjointes'] ?>" ><br />
       </td>
     </tr>
 

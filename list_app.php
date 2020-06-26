@@ -86,43 +86,43 @@ while ($data = result_db($qh)) {
 
 	// remplit le tableau
  echo"<tr><td style=\"vertical-align: top;\">";
-	echo "<a href =\"list_intapp.php?id=".$data[id]."\">". $data[nom]."</a>";
+	echo "<a href =\"list_intapp.php?id=".$data['id']."\">". $data['nom']."</a>";
       echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[descr];
+	echo $data['descr'];
        echo"</td><td style=\"vertical-align: top;\">";
 	// recupere la nom d'equipe
-	$querry = "SELECT id, nom FROM equipe WHERE id=".$data[equipe];
+	$querry = "SELECT id, nom FROM equipe WHERE id=".$data['equipe'];
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
       		echo $equip[nom];
        echo"</td><td style=\"vertical-align: top;\">";
 	// recupere la nom du tech
-	$querry = "SELECT id, nom FROM users WHERE id=".$data[tech];
+	$querry = "SELECT id, nom FROM users WHERE id=".$data['tech'];
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
       		echo $equip[nom];
        echo"</td><td style=\"vertical-align: top;\">";
 	// recupere la nom du fournisseur
-	$querry = "SELECT id, nom FROM fournisseurs WHERE id=".$data[fournisseur];
+	$querry = "SELECT id, nom FROM fournisseurs WHERE id=".$data['fournisseur'];
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
       		echo $equip[nom];
       echo"</td><td style=\"vertical-align: top;\">";
 	// date achat
-		echo $data[achat];
+		echo $data['achat'];
       echo"</td><td style=\"vertical-align: top;\">";
 	// facture
-		echo $data[facture];
+		echo $data['facture'];
       echo"</td>";
 
  if ( $user_level >=2 ) {	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app.php?id=".$data[id]."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_app.php?id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_app.php?id=".$data[id]."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_app.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 	
 	}//end if

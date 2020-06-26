@@ -103,26 +103,26 @@ $data = result_db($qh);
 
 echo "<tr>";
  echo"</td><td style=\"vertical-align: top;\">";
-	echo $data[manipch];
+	echo $data['manipch'];
     
        echo"</td><td style=\"vertical-align: top;\">";
-echo $data[technicien];
+echo $data['technicien'];
 
   echo"</td><td style=\"vertical-align: top;\">";
 
-echo $data[localisation];
+echo $data['localisation'];
       
   echo"</td><td style=\"vertical-align: top;\">";
-echo $data[matos];
+echo $data['matos'];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[code];
+echo $data['code'];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[driver];
+echo $data['driver'];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[module];
+echo $data['module'];
  echo"</td><td style=\"vertical-align: top;\">";
 
-$dossier_lab ="data/labview/".$data[manipch];
+$dossier_lab ="data/labview/".$data['manipch'];
 	
 
 	//remplace les espaces par des underscore
@@ -132,17 +132,17 @@ $dossier_lab ="data/labview/".$data[manipch];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_lab) != FALSE){
 		//si trouvé ajoute un bouton
-		echo "Voir : <a href =\"doclabview.php?id=". $data[id]."\">".$data[manipch]."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir la face avant du programme\"></a><br />";
+		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir la face avant du programme\"></a><br />";
     }
 
 		
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_labview.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_labview.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_labview.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 	
 
@@ -153,26 +153,26 @@ while ($data = result_db($qh)) {
 	// remplit le tableau
 
      echo"<tr><td style=\"vertical-align: top;\">";
-echo $data[manipch];
+echo $data['manipch'];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[technicien];
+echo $data['technicien'];
 echo"</td><td style=\"vertical-align: top;\">";
-echo $data[localisation];
+echo $data['localisation'];
 echo"</td><td style=\"vertical-align: top;\">";
 
-echo $data[matos];
+echo $data['matos'];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[code];
+echo $data['code'];
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[driver];
+echo $data['driver'];
 
  echo"</td><td style=\"vertical-align: top;\">";
-echo $data[module];
+echo $data['module'];
 
  echo"</td><td style=\"vertical-align: top;\">";
 
 ///bouton lien vers la doc
-	$dossier_lab ="data/labview/".$data[manipch];
+	$dossier_lab ="data/labview/".$data['manipch'];
 	
 
 	//remplace les espaces par des underscore
@@ -182,21 +182,21 @@ echo $data[module];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_lab) != FALSE){
 		//si trouvé ajoute un bouton
-		echo "Voir : <a href =\"doclabview.php?id=". $data[id]."\">".$data[manipch]."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\"></a><br />";
+		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\"></a><br />";
     }
-//echo $data[ecran];
+//echo $data['ecran'];
 
        
    
 
 	
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_labview.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	
  
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_labview.php?id=$data[id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_labview.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 	
 

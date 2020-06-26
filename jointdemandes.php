@@ -24,9 +24,9 @@ if ( $connex = connect_db() ){
 	$querry = "SELECT tache FROM demandes where id='$tache_id' " ;
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
-	$tache_tache= $data[tache];
+	$tache_tache= $data['tache'];
 
-$titre ="Documents de l'appareil : ".$data[tache];
+$titre ="Documents de l'appareil : ".$data['tache'];
 
 en_tete($titre);
 

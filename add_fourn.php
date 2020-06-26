@@ -56,48 +56,48 @@ if ( $connex = connect_db() ){
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nom" size="50" maxlength="50" value="<?php echo $data[nom] ?>" ><br />
+	<input type="text" name="nom" size="50" maxlength="50" value="<?php echo $data['nom'] ?>" ><br />
       </td>
     </tr><tr>
       <td style="vertical-align: top;">Adresse<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="adresse" size="50" maxlength="50" value="<?php echo $data[adresse] ?>" ><br />
+	<input type="text" name="adresse" size="50" maxlength="50" value="<?php echo $data['adresse'] ?>" ><br />
       </td>
     </tr>  
     <tr>
       <td style="vertical-align: top;">Adresse mail *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="addr_mail" size="50" maxlength="50" value="<?php echo $data[mail] ?>" ><br />
+	<input type="text" name="addr_mail" size="50" maxlength="50" value="<?php echo $data['mail'] ?>" ><br />
       </td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Telephone<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="phone" size="15" maxlength="15" value="<?php echo $data[tel] ?>" ><br />
+	<input type="text" name="phone" size="15" maxlength="15" value="<?php echo $data['tel'] ?>" ><br />
       </td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Fax<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="fax" size="15" maxlength="15" value="<?php echo $data[fax] ?>" ><br />
+	<input type="text" name="fax" size="15" maxlength="15" value="<?php echo $data['fax'] ?>" ><br />
       </td>
     </tr>
     <tr>
       <td style="vertical-align: top;">URL<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="www" size="50" maxlength="50" value="<?php echo $data[www] ?>" ><br />
+	<input type="text" name="www" size="50" maxlength="50" value="<?php echo $data['www'] ?>" ><br />
       </td>
     </tr>
      <tr>
       <td style="vertical-align: top;">Contact(s)<br />
       nom, fonction, telephone....</td>
       <td style="vertical-align: top;">
-	<textarea name="contact" cols="50" rows="5"><?php echo $data[contact] ?> </textarea>
+	<textarea name="contact" cols="50" rows="5"><?php echo $data['contact'] ?> </textarea>
       </td>
     </tr>
      <tr>
@@ -105,7 +105,7 @@ if ( $connex = connect_db() ){
 	pour faciliter la recherche de fournisseurs, il serait bon d'utiliser des mots stanadards (capteurs, moteur, profilés...)
       </td>
       <td style="vertical-align: top;">
-	<textarea name="descr" cols="50" rows="5"> <?php echo $data[descr] ?></textarea>
+	<textarea name="descr" cols="50" rows="5"> <?php echo $data['descr'] ?></textarea>
       </td>
     </tr>
    

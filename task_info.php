@@ -37,13 +37,13 @@ if ( $connex = connect_db() ){
  $querry = "SELECT nom FROM manip WHERE id='$manip_id'";
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
-  echo "<h1>Manip :".$data[nom]."</h1>";
+  echo "<h1>Manip :".$data['nom']."</h1>";
 
 // recupere le projet selectionné
  $querry = "SELECT nom FROM projet WHERE id='$proj_id'";
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
-  echo "<h2>Projet :".$data[nom]."</h2>";
+  echo "<h2>Projet :".$data['nom']."</h2>";
 
 // recupere la tache selectionnée
  $querry = "SELECT * FROM tache WHERE id='$task_id'";

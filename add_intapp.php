@@ -35,11 +35,11 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 
 if ($mode=="ajouter"){
-	$titre= "Formulaire pour ajouter une intervention à ".$data[nom];
+	$titre= "Formulaire pour ajouter une intervention à ".$data['nom'];
 
 }
 else if ($mode=="modifier"){
-	$titre="Formulaire pour modifier les caracteristiques d'une intervention à ".$data[nom];
+	$titre="Formulaire pour modifier les caracteristiques d'une intervention à ".$data['nom'];
 
 	// recupere l'intervention selectionnée
 	$querry = "SELECT * FROM intervention WHERE id='$int_id'";
@@ -62,7 +62,7 @@ en_tete($titre);
       <td style="vertical-align: top;">Description<br />
       </td>
       <td style="vertical-align: top;">
-      <textarea name="descr" cols="50" rows="5"> <?php echo $data[descr] ?></textarea>
+      <textarea name="descr" cols="50" rows="5"> <?php echo $data['descr'] ?></textarea>
 	</td>
     </tr>  
    
@@ -78,7 +78,7 @@ en_tete($titre);
 	list($qheq,$numeq) = query_db($querry);
 		while ($chef = result_db($qheq)){
 			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data[tech]) {
+			if ($mode=="modifier" && $chef[id] == $data['tech']) {
 				echo " selected";	}
 			echo ">".$chef[nom]."</option>";
 		}//end while
@@ -98,7 +98,7 @@ en_tete($titre);
 	list($qheq,$numeq) = query_db($querry);
 		while ($chef = result_db($qheq)){
 			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data[fournisseur]) {
+			if ($mode=="modifier" && $chef[id] == $data['fournisseur']) {
 				echo " selected";	}
 			echo ">".$chef[nom]."</option>";
 		}//end while
@@ -114,7 +114,7 @@ en_tete($titre);
 	<input type="text" name="date" size="10" maxlength="10" value="
 	<?php 
 	if ($mode == "modifier")
-		echo $data[date] ;
+		echo $data['date'] ;
 	else
 		echo date('Y-m-d', time() );
        ?>"><br /></td>
@@ -124,7 +124,7 @@ en_tete($titre);
       <td style="vertical-align: top;">Facture<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="facture" size="30" maxlength="30" value="<?php echo $data[facture] ?>" ><br />
+	<input type="text" name="facture" size="30" maxlength="30" value="<?php echo $data['facture'] ?>" ><br />
       </td>
     </tr><tr>
 

@@ -33,7 +33,7 @@ if ( $connex = connect_db() ){
  list($qh,$num) = query_db($querry);
  
 $data = result_db($qh);
-echo " Bienvenue $data[prenom] $data[nom] ($user_id)<br /><br />";
+echo " Bienvenue $data['prenom'] $data['nom'] ($user_id)<br /><br />";
 ?>
 
 <br />
@@ -43,17 +43,17 @@ Voici la liste des Projets de la manip :<br />
  list($qh,$num) = query_db($querry);
  ///recupere les infos de la manip
  $data = result_db($qh);
- $dossier_manip=$data[nom];
+ $dossier_manip=$data['nom'];
  ?>
 
 <!-- titre -->
 <table cellpadding="1" cellspacing="1" border=1 style="width: 90%; text-align: center; margin-left: auto; margin-right: auto;">
   <tbody><tr bgcolor="#f7d709">
  <?php
- echo "<td rowspan=2><h2>".$data[nom]." (".$data[id].")</h2> <i>Date</i> :".$data[date]."<br /></td>";
-  echo "<td style=\" text-align: left;\">".$data[descr]."<br /></td>";
+ echo "<td rowspan=2><h2>".$data['nom']." (".$data['id'].")</h2> <i>Date</i> :".$data['date']."<br /></td>";
+  echo "<td style=\" text-align: left;\">".$data['descr']."<br /></td>";
     // recupere le nom de de equipes
-  $querry = "SELECT nom FROM equipe WHERE id ='$data[equipe]'";
+  $querry = "SELECT nom FROM equipe WHERE id ='$data['equipe']'";
   list($qheq,$numeq) = query_db($querry);
   $eq = result_db($qheq)  ;
 
@@ -61,13 +61,13 @@ Voici la liste des Projets de la manip :<br />
 
   echo "<td style=\" text-align: center;\"><i>Equipe</i> :".$eq[nom]."<br />";
     // recupere le nom du chercheur
-  $querry = "SELECT nom FROM users WHERE id ='$data[chercheur]'";
+  $querry = "SELECT nom FROM users WHERE id ='$data['chercheur']'";
   list($qheq,$numeq) = query_db($querry);
   $eq = result_db($qheq)  ;
 
   echo "<i>Chercheur</i> :".$eq[nom]."<br />";
 
-  echo "<i>Local</i> :".$data[local]."<br /></td>";
+  echo "<i>Local</i> :".$data['local']."<br /></td>";
  echo "</tr>";
  ?>
 </tr></tbody></table>
@@ -243,9 +243,9 @@ echo "<br />temps total manip : ".$total_manip." heures<br /><br />";
 
 ////////projets associés
 
-if (!empty($data[assoc_proj])){
+if (!empty($data['assoc_proj'])){
  echo "<h3>Projet(s) associé(s) :</h3><ul>";
- $assoc = explode(',',$data[assoc_proj]);
+ $assoc = explode(',',$data['assoc_proj']);
 foreach($assoc as $a){
   // recupere l'identité du projet associé
   $querry = "SELECT id,nom FROM projet WHERE id=".$a;

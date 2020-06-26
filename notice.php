@@ -24,9 +24,9 @@ if ( $connex = connect_db() ){
 	$querry = "SELECT nom FROM Listing where id='$nom_id' " ;
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
-	$nom_nom= $data[nom];
+	$nom_nom= $data['nom'];
 
-$titre ="Documents de l'appareil : ".$data[nom];
+$titre ="Documents de l'appareil : ".$data['nom'];
 
 en_tete($titre);
 

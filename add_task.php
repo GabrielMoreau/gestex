@@ -59,7 +59,7 @@ else if ($mode=="modifier"){
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
 
- $texte.=$data[nom]. "</b> du projet <b>";
+ $texte.=$data['nom']. "</b> du projet <b>";
  }
 
 en_tete($titre);
@@ -88,26 +88,26 @@ echo $texte;
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td colspan="2" style="vertical-align: top;">
- <input type="text" name="nom" size="25" maxlength="30" value="<?php echo $data[nom] ?>" ><br />
+ <input type="text" name="nom" size="25" maxlength="30" value="<?php echo $data['nom'] ?>" ><br />
       </td>
     </tr><tr>
       <td style="vertical-align: top;">Description<br />
       </td>
       <td colspan="2" style="vertical-align: top;">
- <textarea name="descr" cols="80" rows="10"><?php echo $data[descr] ?></textarea>
+ <textarea name="descr" cols="80" rows="10"><?php echo $data['descr'] ?></textarea>
       </td>
     </tr>  
     <tr>
  <?php 
  // chaine liste des fournisseurs -> tableau
- $liste_fourn = explode(",", $data[fourniss]);
+ $liste_fourn = explode(",", $data['fourniss']);
  // recupere la liste des fournisseurs
   $querry = "SELECT id,nom FROM fournisseurs";
   list($qheq,$numeq) = query_db($querry);
   ?>
       <td style="vertical-align: top;">Fournisseurs <br />
       <i> plusieurs peuvent etre selectionnés parmi les <?php echo $numeq ?> enregistrés!</i>
- <!---- <?php echo $data[fourniss].":".count($liste_fourn) ?> ----->
+ <!---- <?php echo $data['fourniss'].":".count($liste_fourn) ?> ----->
  </td>
       <td colspan="2" style="vertical-align: top;">
  <select name="fourn[]" multiple="yes" size="5" >
@@ -138,7 +138,7 @@ echo $texte;
       <td colspan="2" style="vertical-align: top;">
  <input type="text" name="date" size="10" maxlength="10" value="<?php 
     if ($mode=="modifier")
-     echo $data[date];
+     echo $data['date'];
     else  //ajout->aujourd'hui
      echo date('Y-m-d', time() ); 
       ?> " ><br />

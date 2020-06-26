@@ -36,12 +36,12 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 
 if ($mode=="ajouter"){
-	$titre = "Voila un formulaire pour inscrire une nouveau projet dans la manip ".$data[nom];
+	$titre = "Voila un formulaire pour inscrire une nouveau projet dans la manip ".$data['nom'];
 	en_tete($titre);
 
 }
 else if ($mode=="modifier"){
-	$titre = "Voila un formulaire pour modifier les caracteristiques du projet".$data[nom];
+	$titre = "Voila un formulaire pour modifier les caracteristiques du projet".$data['nom'];
 	// recupere le projet selectionné
 	$querry = "SELECT * FROM projet WHERE id='$proj_id'";
 	list($qh,$num) = query_db($querry);
@@ -84,7 +84,7 @@ else if ($mode=="modifier"){
       <th style="vertical-align: top;">
 	<input type="text" name="date" size="10" maxlength="10" value="<?php 
 				if ($mode=="modifier")
-					echo $data[date];
+					echo $data['date'];
 				else  //ajout->aujourd'hui
 					echo date('Y-m-d', time() ); 
 						?> " ><br />

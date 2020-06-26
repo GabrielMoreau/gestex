@@ -42,7 +42,7 @@ $titre= $logged_in_user." (".$user_id.")<br />Voila un formulaire pour ajouter d
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
 
- $titre.="<b>".$data[nom]. "</b><ul> du projet <b>";
+ $titre.="<b>".$data['nom']. "</b><ul> du projet <b>";
  
 $titre.=$projet[nom]. "</b><ul> de la manip <b>".$manip[nom]."</b></ul></ul></ul>";
 en_tete("Ajout de temps");

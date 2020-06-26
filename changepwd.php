@@ -43,7 +43,7 @@ if (isset($passwd1) && isset($passwd2)){
 
 	if (!isset($errormsg) && isset($old_pass) && $user_level<3 )
 	{
-			if(md5($old_pass) != $data[password] )
+			if(md5($old_pass) != $data['password'] )
 		 				 $errormsg = "Wrong password, sorry!";
 	}
 		
@@ -69,7 +69,7 @@ if ($errormsg)
 require("html_functions.php");
 $titre = "Changement de mot de Passe";
 en_tete($titre);
-echo  $titre."pour <i>".$data[nom]."</i>";
+echo  $titre."pour <i>".$data['nom']."</i>";
 ?>
 	<p>
 	<form action="changepwd.php" method="post">

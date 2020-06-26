@@ -85,7 +85,7 @@ if ($mode=="ajouter" )
 	list($qheq,$numeq) = query_db($querry);
 		while ($chef = result_db($qheq)){
 			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data[equipe]) {
+			if ($mode=="modifier" && $chef[id] == $data['equipe']) {
 				echo " selected";	}
 			echo ">".$chef[nom]."</option>";
 		}//end while
@@ -104,7 +104,7 @@ if ($mode=="ajouter" )
       <th style="vertical-align: top;">
 	<input type="text" name="emprunt" size="10" maxlength="10" value="<?php
  if ($mode =="modifier")
-			echo $data[emprunt];
+			echo $data['emprunt'];
 		else 
 			echo date('Y-m-d', time() );
 	?>" ><br />
@@ -118,7 +118,7 @@ if ($mode=="ajouter" )
       <td style="vertical-align: top;">
 <input type="text" name="retour" size="10" maxlength="10" value="<?php
  if ($mode =="modifier")
-			echo $data[retour];
+			echo $data['retour'];
 		else 
 			echo date('Y-m-d', time() );
 	?>" ><br />
@@ -130,7 +130,7 @@ if ($mode=="ajouter" )
  <td style="vertical-align: top;">Commentaire<br />
       </td>
 <td style="vertical-align: top;">
-<input type="text" name="commentaire" size="30" maxlength="30" value="<?php echo $data[commentaire] ?>" ><br />
+<input type="text" name="commentaire" size="30" maxlength="30" value="<?php echo $data['commentaire'] ?>" ><br />
 
       </td>
     
