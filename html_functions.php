@@ -16,10 +16,10 @@ function en_tete($titre){
    echo '  <tbody>';
    echo '    <tr bgcolor="#f7d709">';
    echo '      <td style="vertical-align: center;">';
-   echo '        <img src="images/pool_project.jpg" nosave="" height="100" />';
+   echo '        <a href="/"></a><img src="images/pool_project.jpg" nosave="" height="100" /></a>';
    echo '      </td>';
    echo '      <td style="vertical-align: top;"><br />';
-   echo '        <h1>GestEx - Gestion des plateformes Exp&eacute;rimentales</h1>';
+   echo '        <h1><a href="/">GestEx</a> - Gestion des plateformes Exp&eacute;rimentales</h1>';
       if(!empty($_SESSION)){
          $pdo            = connect_db();
          $logged_in_user = $_SESSION['logged_in_user'];
