@@ -16,7 +16,7 @@ $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
-require("mise_en_page.php");
+require("html_functions.php");
 
 
 en_tete("Liste des prets:");

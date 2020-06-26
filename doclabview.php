@@ -20,7 +20,7 @@ if (empty($nom_id))
 	Header("Location : labview.php");
 
 
-require("mise_en_page.php");
+require("html_functions.php");
 
 
 

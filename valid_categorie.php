@@ -1,6 +1,6 @@
 <?php
 
-require("mise_en_page.php");
+require("html_functions.php");
 require("db_functions.php");
 
 /// valid_categorie.php

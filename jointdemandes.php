@@ -20,7 +20,7 @@ if (empty($tache_id))
 	Header("Location : demandes.php");
 
 
-require("mise_en_page.php");
+require("html_functions.php");
 
 
 

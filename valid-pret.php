@@ -1,6 +1,6 @@
 <?php
 
-require("mise_en_page.php");
+require("html_functions.php");
 //recuper la methode de tri
 
 /// valid_pret.php

@@ -27,7 +27,7 @@ $pret=$_GET[id];
 
 
 
-require("mise_en_page.php");
+require("html_functions.php");
 if ( $connex = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete("Voila un formulaire pour ajouter un pret");
