@@ -1,20 +1,29 @@
 <?php
 
 require("mise_en_page.php");
+require("db_functions.php");
 
 /// valid_categorie.php
 //validation d'un nouvel appareil
 unset($erreur);
 //variables ne pouvant etre nulles
 
-if (empty($_POST[categorie]))
+if (empty($_POST['categorie']))
 	$erreur="categorie non pr&eacute;cis&eacute;";	
 else{
-	$categorie =$_POST[categorie];
-
+	$categorie =$_POST['categorie'];
+	if($pdo = connect_db()){
+		$sql = 'SELECT * FROM categorie WHERE nom = ?';
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($categorie));
+		$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if(!empty($categories)){
+			$erreur = "le categorie existe deja";
+		}
+	}	
+	
 
 	}				
-							
 
 
 en_tete("resultat ajout appareil ");
@@ -35,23 +44,22 @@ else{
 ///tout est ok
 //pas d'erreur
 ///on inscrit
-require("db_functions.php");
 
-if ( $connex = connect_db() ){
+
 		//inscription
-	$table = "categorie";
-
-		$result = mysql_query("INSERT INTO $table ".
-			"(nom)".
-			" VALUES ('$categorie')");
+if(	$pdo = connect_db()){
+	$sql ='INSERT INTO categorie (nom) VALUE (?);';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($categorie));
+		// $result = mysql_query("INSERT INTO $table ".
+		// 	"(nom)".
+		// 	" VALUES ('$categorie')");
 			//	
-if (!$result){
-			//inscription !ok
-			$erreur = mysql_error();
-		echo "<br />erreur :".$erreur;
-		}
+}else 
+// catch  (PDOException $exception){
+	echo 'Request error: ';
 		
-	}//end if connect
+//end if connect
 
 ////en_tete("inscription Valid&eacute;e");
 
