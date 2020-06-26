@@ -19,9 +19,7 @@ if (empty($proj_id))
 
 $task_id = $_GET[idt]; 
 
-
 require("html_functions.php");
-
 
 if ( $connex = connect_db() ){
  // recupere les nom de manip, projet et tache selectionnés
@@ -38,22 +36,17 @@ if (!empty($task_id)){
 
 $texte = $logged_in_user." (".$user_id.") Voila un formulaire pour jouter un document <br />";
 
-
-
  $titre.="Ajouter un document";
  $texte.= "à <b>".$nom_manip.":".$nom_projet;
  if (!empty($nom_tache))
    $texte.=":". $nom_tache;
  $texte .="</b><br />";
 
-
 en_tete($titre);
 
 echo $texte;
 
-
 //verif de l'existence des repertoires dans /data
-
 
 //ajout d'un repertoire dans data/nom_manip/nom_projet
  $dossier = "data/".$nom_manip;
@@ -83,8 +76,6 @@ echo "test de ".$dossier."...";
  echo "creation de ".$dossier."<br />";
 }
 
-
-
 }//end if connex
  else 
   Header("Location :accueil.php");
@@ -95,5 +86,3 @@ echo "test de ".$dossier."...";
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

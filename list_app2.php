@@ -7,7 +7,6 @@ include("session_auth.php");
 if (!auth(1))
 	Header("Location: login.php");
 
-
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
@@ -15,7 +14,6 @@ $user_level= $_SESSION['level'];
 require("html_functions.php");
 
 en_tete("Liste des appareils:");
-
 
 //recuper la methode de tri
 $tri = $_GET[tri];
@@ -129,11 +127,6 @@ echo $data[gamme];
 		echo $data[notice];
       echo"</td>";
 
-
-
-
-
-
  if ( $user_level >=2 ) {	
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_app2.php?id=".$data[id]."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
@@ -155,5 +148,3 @@ echo $data[gamme];
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

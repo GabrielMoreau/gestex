@@ -4,12 +4,8 @@
 
 include("db_functions.php");
 
-
-
 //if (!auth(1))
 	//Header("Location: login.php");
-
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -17,9 +13,7 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-
 en_tete("Liste des appareils:");
-
 
 //recuper la methode de tri
 $tri = $_GET[tri];
@@ -55,7 +49,6 @@ if (empty($eq))
 }
 ?>
 
-
 <td style="vertical-align: top; text-align: center;">
 	<a href="essai1.php">Retour<br />aux categories</a>
 	<br /></td>
@@ -74,16 +67,9 @@ if (empty($eq))
 </tr></tbody>
 </table>
 
-
-
-
-
 <br />
 Liste des appareils : <br />
 <i>Cliquer sur le nom d'un appareil pour connaitre son modèle, sa date d'achat, ses accessoires...</i><br />
-
-
-
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -105,7 +91,6 @@ Liste des appareils : <br />
 	Modele<br />
       </th>
 
-
  <th style="vertical-align: top; text-align: center;">
 	Gamme<br />
       </th>
@@ -123,7 +108,6 @@ Liste des appareils : <br />
 	Notice<br />
       </th>
 
-
    
 <?php if ( $user_level >=2 ) 	
 		echo "</th><th>";
@@ -136,9 +120,7 @@ Liste des appareils : <br />
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils
 
-
 if ((!empty($cat))||(!empty($eq)))
-
 
 {
 
@@ -146,7 +128,6 @@ $querry = "SELECT * FROM Listing where (equipe='$eq'||categorie='$cat') order by
 	list($qh,$num) = query_db($querry);
 	
 	$last_id=0;
-
 
 }
 
@@ -158,12 +139,7 @@ if ((empty($cat))&&(empty($eq)))
 	$last_id=0;
 }
 
-
 $data = result_db($qh);
-
-
-
-
 
 echo "<tr>";
 
@@ -181,8 +157,6 @@ echo $data[modele];
   echo"</td><td style=\"vertical-align: top;\">";
 
 echo $data[gamme];
-
-
 
        echo"</td><td style=\"vertical-align: top;\">";
 
@@ -238,8 +212,6 @@ if (!empty($eq))
 }
 echo"</tr>";
 
-
-
 while (($data = result_db($qh))){
 
 	// remplit le tableau
@@ -249,9 +221,7 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data[categorie]'";
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
 
-
       		echo $equip[nom];
-
 
  echo"</td><td style=\"vertical-align: top;\">";
 	echo "<a href =\"fiche_vie.php?id=".$data[id]."\">". $data[nom]."</a>";
@@ -263,8 +233,6 @@ echo $data[modele];
   echo"</td><td style=\"vertical-align: top;\">";
 
 echo $data[gamme];
-
-
 
        echo"</td><td style=\"vertical-align: top;\">";
 
@@ -332,19 +300,13 @@ echo"</td><td style=\"vertical-align: top;\">";
 echo"</tr>";
 	
 
-
 	
-
-
 
       
 
-
 	}//end while
 
-
 }//end if
-
 
 ?>
   </tbody>
@@ -352,5 +314,3 @@ echo"</tr>";
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

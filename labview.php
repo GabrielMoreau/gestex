@@ -8,17 +8,12 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-
 en_tete(" Liste des programmes Labview du LEGI:");
-
 
 //recuper la methode de tri
 $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
-
-
-
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
@@ -35,7 +30,6 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	<a href="add_labview.php">Ajouter<br />une manip Labview</a>
 	<br /></td>
 
-
 <?php if ( $user_level >=2 ) {	
 ?>
 
@@ -46,22 +40,13 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	<br /></td> </tr></tbody>
 </table>
 
-
-
-
-
 <br />
 Liste des manip labview en cours : <br />
-
-
-
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
-
-
 
  <th style="vertical-align: top; text-align: center;">
 	Manip + chercheur<br />
@@ -71,14 +56,12 @@ Liste des manip labview en cours : <br />
 	Developpeur<br />
       </th>
 
-
       <th style="vertical-align: top; text-align: center;">
 	 Salle de la manip<br />
       </th>
      <th style="vertical-align: top; text-align: center;">
 	Matériel d'acquisition ou de commande<br />
       </th>
-
 
  <th style="vertical-align: top; text-align: center;">
 	Descriptif du code<br />
@@ -98,9 +81,6 @@ Liste des manip labview en cours : <br />
 	Impression écran+doc pdf manip<br />
       </th>
 
-
-
-
 <?php if ( $user_level >=2 ) 	
 		echo "</th><th>";
 	if ( $user_level >=3 ) 	
@@ -108,19 +88,16 @@ Liste des manip labview en cours : <br />
 	  ?>
     </tr>
 
-
 <?php	//interrogation base de données
 
 if ( $connex = connect_db() ){
 	
-
 
 	$querry = "SELECT * FROM labview order by '$tri'";
 	list($qh,$num) = query_db($querry);
 	
 	$last_id=0;
 }
-
 
 $data = result_db($qh);
 
@@ -158,7 +135,6 @@ $dossier_lab ="data/labview/".$data[manipch];
 		echo "Voir : <a href =\"doclabview.php?id=". $data[id]."\">".$data[manipch]."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir la face avant du programme\"></a><br />";
     }
 
-
 		
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_labview.php?id=$data[id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
@@ -171,8 +147,6 @@ $dossier_lab ="data/labview/".$data[manipch];
 	
 
 echo"</tr>";
-
-
 
 while ($data = result_db($qh)) {
 
@@ -229,19 +203,11 @@ echo $data[module];
 echo"</tr>";
 	
 
-
 	
-
-
 
       
 
-
 	}//end while
-
-
-
-
 
 ?>
 
@@ -251,5 +217,3 @@ echo"</tr>";
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

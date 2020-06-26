@@ -4,12 +4,8 @@
 
 include("session_auth.php");
 
-
-
 if (!auth(1))
 	Header("Location: login.php");
-
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -17,9 +13,7 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-
 en_tete("Liste des appareils:");
-
 
 //recuper la methode de tri
 
@@ -61,7 +55,6 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 
 <?php
 
-
 // if ( $pdo = connect_db() ){
 	//recup�re la categorie
 
@@ -75,20 +68,14 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
  
 echo "<a href =\"add_app2.php?categorie=".$cat."\">Ajout<br />d'un appareil</a>";
 
-
-
-
 // }
 ?>
 	
 	<br /></td>
 
-
-
  <td style="vertical-align: top; text-align: center;">
 	<a href="list_fourn.php">Liste<br />des fournisseurs</a>
 	<br /></td>
-
 
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_fourn.php">Ajout<br />d'un fournisseur</a>
@@ -102,38 +89,24 @@ echo "<a href =\"add_app2.php?categorie=".$cat."\">Ajout<br />d'un appareil</a>"
 	<a href="essai.php">Retour aux categories</a>
 <br /></td>
 
-
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_categorie.php">Ajout<br />d'une categorie</a>
 	<br /></td>
-
-
-
-
 
 <?php }	?>
 
 	<br /></td> </tr></tbody>
 </table>
 
-
-
-
-
 <br />
 Liste des appareils : <br />
 <i>Cliquer sur le nom d'un appareil pour connaitre son mod�le, sa date d'achat, ses accessoires...</i><br />
-
-
-
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
-
-
 
  <th style="vertical-align: top; text-align: center;">
 	<a href ="instru.php?tri=categorie">Cat�gorie<br />
@@ -145,7 +118,6 @@ Liste des appareils : <br />
      <th style="vertical-align: top; text-align: center;">
 	Modele<br />
       </th>
-
 
  <th style="vertical-align: top; text-align: center;">
 	Gamme<br />
@@ -164,7 +136,6 @@ Liste des appareils : <br />
 	Notice<br />
       </th>
 
-
    
 <?php if ( $user_level >=2 ) 	
 		echo "</th><th>";
@@ -176,7 +147,6 @@ Liste des appareils : <br />
 
 if ( $pdo = connect_db() ){
 	// recupere la liste de appareils
-
 
 // if ((!empty($cat))||(!empty($eq)))
 if($cat == 0 && $eq != 0)
@@ -207,7 +177,6 @@ if ($cat == 0 && $eq == 0)
 	// $last_id=0;
 }
 
-
 // $data = result_db($qh);
 $listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -230,8 +199,6 @@ $listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // echo $listing[0]['gamme'];
 
-
-
 //        echo"</td><td style=\"vertical-align: top;\">";
 
 // 	// recupere la nom d'equipe
@@ -252,7 +219,6 @@ $listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 // 	$stmt = $pdo->prepare($sql);
 // 	$stmt->execute(array($listing[0]['fournisseur']));
 // 	$fournisseur =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
 //       		echo $fournisseur[0]['nom'];
       
@@ -291,8 +257,6 @@ $listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 // }
 // echo"</tr>";
 
-
-
 // while ($data = result_db($qh)) {
 foreach($listing as $data){
 	// remplit le tableau
@@ -306,7 +270,6 @@ foreach($listing as $data){
 	$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo $categorie[0]['nom'];
 
-
  echo"</td><td style=\"vertical-align: top;\">";
 	echo "<a href =\"fiche_vie.php?id=".$data['id']."\">". $data['nom']."</a>";
     
@@ -317,8 +280,6 @@ echo $data['modele'];
   echo"</td><td style=\"vertical-align: top;\">";
 
 echo $data['gamme'];
-
-
 
        echo"</td><td style=\"vertical-align: top;\">";
 
@@ -370,7 +331,6 @@ $sql = 'SELECT id, nom FROM categorie WHERE id = ?';
 	}
 	
 
-
   if (( $user_level >=2)&&($eq=="15 pret=15")) {
 echo '</td><td style="vertical-align: top;">';
       echo '<a href="add-pret.php?id=',$data['id'],'"><img src="images/edit.png" nosave="" title="Demande de pret" /></a>';
@@ -390,19 +350,13 @@ echo '</td><td style="vertical-align: top;">';
 echo"</tr>";
 	
 
-
 	
-
-
 
       
 
-
 	}//end while
 
-
 }//end if
-
 
 ?>
   </tbody>
@@ -410,5 +364,3 @@ echo"</tr>";
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

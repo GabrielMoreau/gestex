@@ -75,9 +75,6 @@ remplir obligatoirement, les autres sont optionnels.<br />
 </table>
 <br />
 
-
 </div>
 <?php pied_page() ?>
-</body>
-</html>
 

@@ -5,12 +5,8 @@
 //include("db_functions.php");
 include("session_auth.php");
 
-
-
 //if (!auth(1))
 	//Header("Location: login.php");
-
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -18,9 +14,7 @@ $user_level= $_SESSION['level'];
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 require("html_functions.php");
 
-
 en_tete("Liste des prets:");
-
 
 //recuper la methode de tri
 $tri = $_GET[tri];
@@ -42,8 +36,6 @@ $eq=$_GET[equipe];
 	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article=16">Retour a<br />la page du service</a>
 	<br /></td>
 
-
-
 <td style="vertical-align: top; text-align: center;">
 <?php if ( $use >=3 ) 	{?>
 	<a href="pret1.php">Retour<br />à la liste des prets</a>
@@ -55,21 +47,13 @@ else{	?>
 </tr></tbody>
 </table>
 
-
-
-
-
 <br />
 Liste des prets : <br /><br /><br />
-
-
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
-
-
 
  
 
@@ -97,7 +81,6 @@ Liste des prets : <br /><br /><br />
 	Numéro de l'appareil<br />
       </th>
 
-
    
 <?php if ( $user_level >=2 ) 	
 		echo "</th><th>";
@@ -110,9 +93,6 @@ Liste des prets : <br /><br /><br />
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils
 
-
-
-
 $querry = "SELECT * FROM pret";
 	list($qh,$num) = query_db($querry);
 	
@@ -120,16 +100,10 @@ $querry = "SELECT * FROM pret";
 
 $data = result_db($qh);
 
-
-
-
-
 echo "<tr>";
-
 
       		
  echo"</td><td style=\"vertical-align: top;\">";
-
 
 	$querry = "SELECT id, nom FROM Listing WHERE id='$data[nom]'";
 	list($qheeq,$numeeq) = query_db($querry);
@@ -139,7 +113,6 @@ echo "<tr>";
     
  
   echo"</td><td style=\"vertical-align: top;\">";
-
 
 	// recupere la nom d'equipe
 
@@ -162,11 +135,9 @@ echo $data[retour];
 echo $data[commentaire];
  echo"</td><td style=\"vertical-align: top;\">";
 
-
       		echo $nom[id];
 
 	
-
 
 	
 	if ( $use >=3 ) 	{
@@ -178,13 +149,9 @@ echo $data[commentaire];
 
 echo"</tr>";
 
-
-
 while ($data = result_db($qh)){
 
 	// remplit le tableau
-
-
 
  echo"</td><td style=\"vertical-align: top;\">";
 	
@@ -195,7 +162,6 @@ while ($data = result_db($qh)){
       		echo $nom[nom];
 
   
-
 
        echo"</td><td style=\"vertical-align: top;\">";
 
@@ -233,19 +199,13 @@ echo"</td><td style=\"vertical-align: top;\">";
 echo"</tr>";
 	
 
-
 	
-
-
 
       
 
-
 	}//end while
 
-
 }//end if
-
 
 ?>
   </tbody>
@@ -253,5 +213,3 @@ echo"</tr>";
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

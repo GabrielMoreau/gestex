@@ -5,10 +5,8 @@
 // Authenticate
 include("session_auth.php");
 
-
 if (!auth(1))
  Header("Location: login.php");
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -189,5 +187,3 @@ while ( $file = array_pop($images) ){
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

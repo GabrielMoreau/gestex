@@ -20,7 +20,6 @@ $id_fourn = $_GET[id];
 if (empty($id_fourn))
  Header( "Location : list_fourn.php");
 
-
 if (!isset($valid) || empty($valid) || $valid=="no"){
  echo "Sur de supprimer le Fournisseur ".$id_fourn." ?<br />";
  echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_fourn."&ok=yes\">OUI</a><br />";
@@ -50,5 +49,3 @@ if ( $connex = connect_db() ){
 
 ?>
 <?php pied_page() ?>
-</body>
-</html>

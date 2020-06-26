@@ -8,18 +8,13 @@ include("db_functions.php");
 //if (!auth(1))
 	//Header("Location: instru.php");
 
-
-
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-
-
 en_tete("Liste des prets:");
-
 
 //recuper la methode de tri
 $tri = $_GET[tri];
@@ -48,8 +43,6 @@ if ( $connex = connect_db() ){
 
 	// recupere les refs du user
 
-
-
 	$querry = "SELECT * FROM equipe order by '$tri'" ;
 	list($qh,$num) = query_db($querry);
 	$last_id=0;
@@ -70,7 +63,6 @@ echo "</td>";
 }
 ?>
 
-
  
 <td style="vertical-align: top; text-align: center;">
 	<a href="reserva.php">Liste<br />des réservations</a>
@@ -84,6 +76,4 @@ echo "</td>";
 </table>
 
 <?php pied_page() ?>
-</body>
-</html>
 

@@ -4,11 +4,8 @@
 
 include("session_auth.php");
 
-
 if (!auth(1))
 	Header("Location: instru.php");
-
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -16,10 +13,7 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-
-
 en_tete("Liste des appareils:");
-
 
 //recuper la methode de tri
 
@@ -46,7 +40,6 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	<a href="list_fourn.php">Liste<br />des fournisseurs</a>
 	<br /></td>
 
-
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_fourn.php">Ajout<br />d'un fournisseur</a>
 	<br /></td>
@@ -60,14 +53,8 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 
 <?php }	?>
 
-
-
 </tr></tbody>
 </table>
-
-
-
-
 
 <br />
 Liste des appareils : <br />
@@ -106,8 +93,6 @@ if ( $pdo = connect_db() ){
 
 	// recupere les refs du user
 
-
-
 	$sql = 'SELECT * FROM categorie order by ? ASC' ;
 	// list($qh,$num) = query_db($querry);
 	// $last_id=0;
@@ -131,7 +116,6 @@ echo "<br />";
 
       echo"</tr>";
 
-
 }
 ?>
 </tbody>
@@ -150,6 +134,4 @@ echo "<br />";
 <br /><br /><br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>
 

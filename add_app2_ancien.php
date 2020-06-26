@@ -36,7 +36,6 @@ else if ($mode=="modifier"){
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 
-
 	
 }
 ?>
@@ -57,7 +56,6 @@ else if ($mode=="modifier"){
     //  </td>
   //  </tr>
 
-
   <tr>
       <td style="vertical-align: top;">Categorie<br />
       </td>
@@ -77,8 +75,6 @@ else if ($mode=="modifier"){
 	</select><br />
       </td>
     </tr>
-
-
 
     <tr>
     
@@ -197,8 +193,6 @@ else if ($mode=="modifier"){
       </td>
     </tr>
 
-
-
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
@@ -223,5 +217,3 @@ remplir obligatoirement, les autres sont optionnels.<br />
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

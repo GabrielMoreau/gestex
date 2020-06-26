@@ -168,5 +168,3 @@ remplir obligatoirement, les autres sont optionnels.<br />
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

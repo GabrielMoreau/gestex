@@ -4,12 +4,8 @@
 
 include("session_auth.php");
 
-
-
 if (!auth(1))
 	Header("Location: login.php");
-
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -17,16 +13,13 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-
 en_tete("Liste des demandes en cours:");
-
 
 //recuper la methode de tri
 if (empty($_GET['tri']))
 	$tri ="id";
 else
 	$tri = $_GET['tri'];
-
 
 //recup�re la categorie
 // $cat=$_GET['categorie'];
@@ -35,7 +28,6 @@ if (empty($_GET['categorie']))
 else
 	$cat = $_GET['categorie'];
 //echo "$cat";
-
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
@@ -56,7 +48,6 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	<a href="historique_demandes.php">Historique<br />des demandes</a>
 	<br /></td>
 
-
 <?php if ( $user_level >=2 ) {	
 ?>
 
@@ -67,22 +58,13 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	<br /></td> </tr></tbody>
 </table>
 
-
-
-
-
 <br />
 Liste des demandes en cours : <br />
-
-
-
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
-
-
 
  <th style="vertical-align: top; text-align: center;">
 	T�che<br />
@@ -94,7 +76,6 @@ Liste des demandes en cours : <br />
      <th style="vertical-align: top; text-align: center;">
 	D�tails<br />
       </th>
-
 
  <th style="vertical-align: top; text-align: center;">
 	Date de demande<br />
@@ -114,7 +95,6 @@ Liste des demandes en cours : <br />
 	Pi�ces jointes<br />
       </th>
 
-
 <?php if ( $user_level >=2 ) 	
 		echo "</th><th>";
 	if ( $user_level >=3 ) 	
@@ -126,7 +106,6 @@ Liste des demandes en cours : <br />
 if ( $pdo = connect_db() ){
 	
 
-
 	$sql = 'SELECT * FROM demandes where termine="non";';
 	// list($qh,$num) = query_db($querry);
 	
@@ -136,9 +115,7 @@ if ( $pdo = connect_db() ){
 	$demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
 // $data = result_db($qh);
-
 
 // echo "<tr>";
 //  echo"</td><td style=\"vertical-align: top;\">";
@@ -174,8 +151,6 @@ if ( $pdo = connect_db() ){
 	
 // }
 // echo"</tr>";
-
-
 
 // while ($data = result_db($qh)) {
 	foreach($demandes as $data){
@@ -215,8 +190,6 @@ echo $data['piecesjointes'];
     
 	}
 
-
-
        
    
 
@@ -234,19 +207,11 @@ echo $data['piecesjointes'];
 echo"</tr>";
 	
 
-
 	
-
-
 
       
 
-
 	}//end foreach
-
-
-
-
 
 ?>
 
@@ -256,5 +221,3 @@ echo"</tr>";
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

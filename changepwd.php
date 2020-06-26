@@ -4,7 +4,6 @@ include("session_auth.php");
 if (!auth(1))
 	Header("Location: login.php");
 
-
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
@@ -13,7 +12,6 @@ $user_level= $_SESSION['level'];
 
 if (empty($user2chg ))
 	Header("Location :accueil.php");
-
 
 if ( $connex = connect_db() ){
 
@@ -43,7 +41,6 @@ if (isset($passwd1) && isset($passwd2)){
 	if ($passwd1 != $passwd2)
  		 $errormsg = "Passwords do not match, please try again";
 
-
 	if (!isset($errormsg) && isset($old_pass) && $user_level<3 )
 	{
 			if(md5($old_pass) != $data[password] )
@@ -68,7 +65,6 @@ if ($errormsg)
   Header("Location: error.php?errormsg=$errormsg");
   exit;
 }
-
 
 require("html_functions.php");
 $titre = "Changement de mot de Passe";
@@ -125,9 +121,6 @@ echo  $titre."pour <i>".$data[nom]."</i>";
 	</form>
 			
 
-
 </div>
 
 <?php pied_page() ?>
-</body>
-</html>

@@ -5,16 +5,12 @@
 // Authenticate
 include("session_auth.php");
 
-
 if (!auth(1))
  Header("Location: login.php");
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
-
-
 
 //et le numero de manip
 $manip_id=$_GET['idm'];
@@ -78,7 +74,6 @@ if ( $connex = connect_db() ){
 
  }
 
-
 //fournisseurs -> tableau
 $fourn = explode (",",  $tasks[fourniss]);
  ?>
@@ -136,5 +131,3 @@ $fourn = explode (",",  $tasks[fourniss]);
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

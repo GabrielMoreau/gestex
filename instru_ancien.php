@@ -4,11 +4,8 @@
 
 include("session_auth.php");
 
-
 if (!auth(1))
 	Header("Location: login.php");
-
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -16,10 +13,7 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-
-
 en_tete("Liste des appareils:");
-
 
 //recuper la methode de tri
 $tri = $_GET[tri];
@@ -44,11 +38,9 @@ Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :
 	<a href="list_fourn.php">Liste<br />des fournisseurs</a>
 	<br /></td>
 
-
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_fourn.php">Ajout<br />d'un fournisseur</a>
 	<br /></td>
-
 
 <?php }	?>
  <td style="vertical-align: top; text-align: center;">
@@ -119,19 +111,12 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data[categorie]'";
       		echo $equip[nom];
        echo"</td><td style=\"vertical-align: top;\">";
 
-
-
-
-
-
  echo"</td><td style=\"vertical-align: top;\">";
 	echo "<a href =\"fiche_vie.php?id=".$data[id]."\">". $data[nom]."</a>";
     
        echo"</td><td style=\"vertical-align: top;\">";
 
 echo $data[gamme];
-
-
 
        echo"</td><td style=\"vertical-align: top;\">";
 
@@ -180,5 +165,3 @@ echo $data[gamme];
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

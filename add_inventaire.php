@@ -11,9 +11,7 @@
 
 $app_id = $_GET[id];
 
-
 	en_tete("Voila un formulaire pour ajouter un numéro d'inventaire");
-
 
 	
 ?>
@@ -41,8 +39,6 @@ $app_id = $_GET[id];
 	</select><br />
       </td>
     </tr>
-
-
 
     <tr>
     
@@ -161,8 +157,6 @@ $app_id = $_GET[id];
       </td>
     </tr>
 
-
-
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
@@ -187,5 +181,3 @@ remplir obligatoirement, les autres sont optionnels.<br />
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

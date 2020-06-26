@@ -5,10 +5,8 @@
 // Authenticate
 include("session_auth.php");
 
-
 //if (!auth(1))
 	//Header("Location: login.php");
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -19,10 +17,7 @@ $nom_id=$_GET['id'];
 if (empty($nom_id))
 	Header("Location : instru.php");
 
-
 require("html_functions.php");
-
-
 
 if ( $connex = connect_db() ){
 
@@ -31,14 +26,11 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 	$nom_nom= $data[nom];
 
-
 $titre ="Documents de l'appareil : ".$data[nom];
 
 en_tete($titre);
 
 echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour à la page catégories...</a>";
-
-
 
 	
 $dossier_proj ="data/instru/".$nom_nom."/";
@@ -136,8 +128,6 @@ $dossier_proj ="data/instru/".$nom_nom."/";
 			
 		<tbody></table>
 
-
-
 <?php
 	}
 	else
@@ -149,5 +139,3 @@ $dossier_proj ="data/instru/".$nom_nom."/";
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>
