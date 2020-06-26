@@ -7,12 +7,11 @@ include("session_auth.php");
 if (!auth(1))
 	Header("Location: login.php");
 
-
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
 
-require("mise_en_page.php");
+require("html_functions.php");
 
 if (empty($_GET[id]))
 	Header("Location: instru.php");
@@ -28,9 +27,7 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 	$last_id=0;
 
-
 en_tete("Liste des interventions sur l'appareil :<b>".$data[nom]."</b>");
-
 
 //recuper la methode de tri
 $tri = $_GET[tri];
@@ -39,7 +36,6 @@ if (empty($tri))
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
-
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -85,8 +81,6 @@ echo "L'appareil <b>".$data[nom]."</b> a deja subi les interventions suivantes :
 	Numéro<br />
       </th>
 
-
-
     
 <?php if ( $user_level >=2 ) 	
 		echo "</th><th>";
@@ -118,8 +112,6 @@ echo"</td><td style=\"vertical-align: top;\">";
   echo"</td><td style=\"vertical-align: top;\">";
 echo $data[id];
 
-
-
  if ( $user_level >=2 ) {	
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_app2.php?app=".$id_app."&id=".$data[id]."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
@@ -141,5 +133,3 @@ echo $data[id];
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

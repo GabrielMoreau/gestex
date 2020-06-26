@@ -5,10 +5,8 @@
 // Authenticate
 include("session_auth.php");
 
-
 if (!auth(1))
  Header("Location: login.php");
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -27,8 +25,6 @@ if (empty($manip_id))
 require("html_functions.php");
 
 en_tete("Historique Manip");
-
-
 
 if ( $connex = connect_db() ){
 
@@ -69,9 +65,7 @@ Voici la liste des Projets de la manip :<br />
   list($qheq,$numeq) = query_db($querry);
   $eq = result_db($qheq)  ;
 
-
   echo "<i>Chercheur</i> :".$eq[nom]."<br />";
-
 
   echo "<i>Local</i> :".$data[local]."<br /></td>";
  echo "</tr>";
@@ -119,7 +113,6 @@ wnd = window.open(lien,  'Project Info','location=0,directories=no,status=no,men
 wnd.focus();
 }
 </script>
-
 
 <table cellpadding="1" cellspacing="1" border="1" style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
@@ -231,7 +224,6 @@ wnd.focus();
   }
    echo"</td></tr>";
 
-
  }//end while taches
 
    echo"<tr><td style=\"vertical-align: top;text-align: left;\" >"; 
@@ -248,7 +240,6 @@ echo"</td><td style=\"vertical-align: top;text-align: right;\" colspan=3 >";
  $total_manip+=$total_projet; 
 }//end while manip
 echo "<br />temps total manip : ".$total_manip." heures<br /><br />";
-
 
 ////////projets associés
 
@@ -276,5 +267,3 @@ echo "</ul>";
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

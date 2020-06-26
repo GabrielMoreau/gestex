@@ -26,10 +26,7 @@ else{
 
 require("html_functions.php");
 
-
 if ( $connex = connect_db() ){
-
-
 
 if ($mode=="ajouter"){
 	en_tete("Voila un formulaire pour inscrire une nouvelle manip");
@@ -51,7 +48,6 @@ else if ($mode=="modifier"){
  
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
-
 
   <tbody>
  <form action="<?php echo $action ?>" method="POST" name="inscrForm">
@@ -176,5 +172,3 @@ remplir obligatoirement, les autres sont optionnels.<br />
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

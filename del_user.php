@@ -30,7 +30,6 @@ if (!isset($valid) || empty($valid) || $valid=="no"){
 else{
 if ( $connex = connect_db() ){
 
-
  
   //on supprime cet user
   
@@ -53,5 +52,3 @@ else
 
 ?>
 <?php pied_page() ?>
-</body>
-</html>

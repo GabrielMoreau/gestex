@@ -5,10 +5,8 @@
 // Authenticate
 include("session_auth.php");
 
-
 //if (!auth(1))
 	//Header("Location: login.php");
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -19,10 +17,7 @@ $tache_id=$_GET['id'];
 if (empty($tache_id))
 	Header("Location : demandes.php");
 
-
-require("mise_en_page.php");
-
-
+require("html_functions.php");
 
 if ( $connex = connect_db() ){
 
@@ -31,14 +26,11 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 	$tache_tache= $data[tache];
 
-
 $titre ="Documents de l'appareil : ".$data[tache];
 
 en_tete($titre);
 
 echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour à la page des demandes...</a>";
-
-
 
 	
 $dossier_proj ="data/instru/demandes/".$tache_tache."/";
@@ -136,8 +128,6 @@ $dossier_proj ="data/instru/demandes/".$tache_tache."/";
 			
 		<tbody></table>
 
-
-
 <?php
 	}
 	else
@@ -149,5 +139,3 @@ $dossier_proj ="data/instru/demandes/".$tache_tache."/";
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

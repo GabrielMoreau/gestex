@@ -12,7 +12,6 @@ require("html_functions.php");
 
 en_tete("Suppression Manip");
 
-
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
@@ -64,5 +63,3 @@ else
 
 ?>
 <?php pied_page() ?>
-</body>
-</html>

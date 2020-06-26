@@ -7,7 +7,6 @@ include("session_auth.php");
 if (!auth(1))
 	Header("Location: login.php");
 
-
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
@@ -28,9 +27,7 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 	$last_id=0;
 
-
 en_tete("Liste des interventions sur l'appareil :<b>".$data[nom]."</b>");
-
 
 //recuper la methode de tri
 $tri = $_GET[tri];
@@ -39,7 +36,6 @@ if (empty($tri))
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
-
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -126,9 +122,6 @@ while ($data = result_db($qh)) {
 		echo $data[facture];
       echo"</td>";
 
-
-
-
  if ( $user_level >=2 ) {	
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_intapp.php?app=".$id_app."&id=".$data[id]."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
@@ -150,5 +143,3 @@ while ($data = result_db($qh)) {
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

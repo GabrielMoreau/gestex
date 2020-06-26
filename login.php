@@ -42,9 +42,9 @@
 	if ($truc == "projet")
 		require("html_functions.php");
 	if ($truc == "instru")
-		require("mise_en_page.php");
+		require("html_functions.php");
 	if ($truc == "pret")
-		require("mise_en_page.php");
+		require("html_functions.php");
 		
 ?>
 

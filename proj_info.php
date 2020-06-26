@@ -5,16 +5,12 @@
 // Authenticate
 include("session_auth.php");
 
-
 if (!auth(1))
  Header("Location: login.php");
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
-
-
 
 //et le numero de manip
 $manip_id=$_GET['idm'];
@@ -29,8 +25,6 @@ if (empty($proj_id))
 require("html_functions.php");
 
 en_tete("Infos Projet");
-
-
 
 if ( $connex = connect_db() ){
 
@@ -105,5 +99,3 @@ if ( $connex = connect_db() ){
 <br /></center>
 </div>
 <?php pied_page() ?>
-</body>
-</html>

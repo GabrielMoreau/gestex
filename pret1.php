@@ -8,18 +8,13 @@ include("session_auth.php");
 if (!auth(1))
 	Header("Location: login.php");
 
-
-
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
 
-require("mise_en_page.php");
-
-
+require("html_functions.php");
 
 en_tete("Liste des prets:");
-
 
 //recuper la methode de tri
 $tri = $_GET['tri'];
@@ -39,8 +34,6 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	<a href="http://intranet.legi.grenoble-inp.fr">Retour à<br />l'intranet</a>
 	<br /></td>
 <?php
-
-
 
 	// recupere les refs du user
 	$pdo = connect_db();
@@ -74,14 +67,10 @@ echo"<br /></td>";
       
 ?>
 
-
  
-
 
 </tr></tbody>
 </table>
 
 <?php pied_page() ?>
-</body>
-</html>
 

@@ -23,9 +23,7 @@ $task_id = $_GET[idt];
 if (empty($task_id))
   Header("Location :accueil.php");
 
-
 require("html_functions.php");
-
 
 if ( $connex = connect_db() ){
  // recupere la manip selectionnée
@@ -38,7 +36,6 @@ if ( $connex = connect_db() ){
  $projet = result_db($qh);
 
 $titre= $logged_in_user." (".$user_id.")<br />Voila un formulaire pour ajouter du temps à <ul>la tache :";
-
 
  // recupere la tache selectionnée
  $querry = "SELECT * FROM tache WHERE id='$task_id'";
@@ -130,5 +127,3 @@ echo $titre;
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

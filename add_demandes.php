@@ -16,12 +16,10 @@ if (empty($tri))
 
 $app_id = $_GET[id];
 
-
 if (empty($app_id)){
 
 	// recupere la liste de appareils
 if ( $connex = connect_db() ){
-
 
 $querry = "SELECT * FROM categorie where id='$cat'" ;
 	list($qh,$num) = query_db($querry);
@@ -35,14 +33,13 @@ $datax = result_db($qh);}
 }
 else{
 
-
 	//->modif appareil
 	$mode ="modifier";
 	$action="modif_demandes.php";
 
 }
 
-require("mise_en_page.php");
+require("html_functions.php");
 if ( $connex = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete("Voila un formulaire pour ajouter une demande");
@@ -56,14 +53,9 @@ else if ($mode=="modifier"){
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 
-
 	
 }
 ?>
-
-
-
-
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
@@ -73,7 +65,6 @@ else if ($mode=="modifier"){
 
  
 
-
  <tr>
     
       <td style="vertical-align: top;">Tâche *<br />
@@ -82,11 +73,6 @@ else if ($mode=="modifier"){
 	<input type="text" name="tache" size="30"  value="<?php echo $data[tache] ?>" ><br />
       </td>
     </tr>
-
-
-
-
-
 
     <tr>
     
@@ -135,7 +121,6 @@ else if ($mode=="modifier"){
       </td>
       <td style="vertical-align: top;">
 
-
 <SELECT NAME="termine" multiple size=2>
  <OPTION VALUE="oui">Oui
  <OPTION VALUE="non">Non
@@ -143,7 +128,6 @@ else if ($mode=="modifier"){
 	
       </td>
     </tr>
-
 
   <tr>
     
@@ -153,8 +137,6 @@ else if ($mode=="modifier"){
 	<input type="text" name="piecesjointes" size="30" maxlength="30" value="<?php echo $data[piecesjointes] ?>" ><br />
       </td>
     </tr>
-
-
 
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
@@ -176,12 +158,9 @@ remplir obligatoirement, les autres sont optionnels.<br />
 </table>
 <br />
 
-
 <?php }
 	else 
 	{	Header("Location :demandes.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

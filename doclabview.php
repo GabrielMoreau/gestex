@@ -5,10 +5,8 @@
 // Authenticate
 include("session_auth.php");
 
-
 //if (!auth(1))
 	//Header("Location: login.php");
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -19,10 +17,7 @@ $nom_id=$_GET['id'];
 if (empty($nom_id))
 	Header("Location : labview.php");
 
-
-require("mise_en_page.php");
-
-
+require("html_functions.php");
 
 if ( $connex = connect_db() ){
 
@@ -31,14 +26,11 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 	$nom_nom= $data[manipch];
 
-
 $titre ="Documents de la manip : ".$data[manipch];
 
 en_tete($titre);
 
 echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour à la page liste des programmes labview...</a>";
-
-
 
 	
 $dossier_lab ="data/labview/".$nom_nom."/";
@@ -90,7 +82,6 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 <?php		while ( $file = array_pop($images) ){
 		echo "<tr style=\"width: 40%; text-align: center;\" ><td><a href=\"".$dossier_lab.$file."\" target=\"_newFrame\"><img src=\"";
 
-
 			//teste l'etension
 			$pos = strrpos($file, ".");
 			switch ( strtolower(substr($file, $pos+1))){
@@ -140,8 +131,6 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 			
 		<tbody></table>
 
-
-
 <?php
 	}
 	else
@@ -153,5 +142,3 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

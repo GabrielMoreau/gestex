@@ -34,7 +34,6 @@ else{
 
 require("html_functions.php");
 
-
 if ( $connex = connect_db() ){
  // recupere la manip selectionnée
  $querry = "SELECT id,nom FROM manip WHERE id='$manip_id'";
@@ -47,7 +46,6 @@ if ( $connex = connect_db() ){
 
 $texte = $logged_in_user." (".$user_id.") Voila un formulaire pour ".$mode;
 
-
 if ($mode=="ajouter"){
  $titre.="inscrire une nouvelle tache au projet ";
  $texte.= " une nouvelle tache au projet <b>";
@@ -55,7 +53,6 @@ if ($mode=="ajouter"){
 else if ($mode=="modifier"){
  $titre.="modifier les caracteristiques de la tache ";
  $texte.= " la tache <b>";
-
 
  // recupere la tache selectionnée
  $querry = "SELECT * FROM tache WHERE id='$task_id'";
@@ -116,7 +113,6 @@ echo $texte;
  <select name="fourn[]" multiple="yes" size="5" >
   <?php  
 
-
   while( $fournis = result_db($qheq) ){
 
    echo "<option value=\"".$fournis['id']."\" ";
@@ -135,9 +131,6 @@ echo $texte;
  </select>
       </td>
     </tr>
-
-
-
 
     <tr>
       <td style="vertical-align: top;">Date * <i>format:YYYY-MM-JJ</i><br />
@@ -172,5 +165,3 @@ remplir obligatoirement, les autres sont optionnels.</i><br />
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

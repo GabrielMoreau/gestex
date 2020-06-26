@@ -28,7 +28,6 @@ else
 
 require("html_functions.php");
 
-
 if ( $connex = connect_db() ){
 	// recupere l'equip selectionnée
 	$querry = "SELECT id,nom FROM equipe";
@@ -55,7 +54,6 @@ if ( $connex = connect_db() ){
 	}
 }
 en_tete("Création de rapport");
-
 
 $texte = $logged_in_user." (".$user_id.") Voila un formulaire pour créér un rapport<br />";
 echo $texte;
@@ -173,7 +171,6 @@ echo $texte;
       </td>
     </tr>
 
-
       <td colspan="2" style="vertical-align: top;" align="right">
 <input type="submit" name="valid" value="Valider">
       </td>
@@ -191,5 +188,3 @@ echo $texte;
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

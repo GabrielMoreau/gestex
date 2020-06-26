@@ -5,11 +5,9 @@
 // Authenticate
 include("session_auth.php");
 
-
 if (!auth(2))
 //il faut etre au moins ita
 	Header("Location: login.php");
-
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -26,12 +24,9 @@ if (!empty($_POST[tache]))
 if (!empty($_POST[date]))
 	$depuis=$_POST[date];
 
-
 require("html_functions.php");
 
 en_tete("rapport");
-
-
 
 if ( $connex = connect_db() ){
 
@@ -155,7 +150,6 @@ $temps_equip = 0;
 					echo "</td></tr>";
 						$temps_proj+= $temps_tache;
 
-
 					}//while end taches
 				echo "<tr><td>Temps passé pour ce projet : ".$temps_proj." heures</td></tr>>";
 				$temps_manip += $temps_proj;
@@ -178,5 +172,3 @@ $temps_equip = 0;
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

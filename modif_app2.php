@@ -9,7 +9,7 @@
 
 //$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-require("mise_en_page.php");
+require("html_functions.php");
 require ("db_functions.php");
 
 

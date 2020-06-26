@@ -7,7 +7,6 @@ include("session_auth.php");
 if (!auth(1))
 	Header("Location: login.php");
 
-
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
@@ -15,7 +14,6 @@ $user_level= $_SESSION['level'];
 require("html_functions.php");
 
 en_tete("Rechercher un fournisseur:");
-
 
 //recuper la methode de tri
 $tri = $_GET[tri];
@@ -183,5 +181,3 @@ while ($data = result_db($qh)) {
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

@@ -26,12 +26,8 @@ if (empty($_GET['id']))
 else
 	$app_id = $_GET['id'];
 
-
-
-
 	// recupere la liste de appareils
 if ( $pdo = connect_db() ){
-
 
 $sql = 'SELECT * FROM categorie where id = ?;' ;
 // 	list($qh,$num) = query_db($querry);
@@ -48,7 +44,6 @@ if (empty($app_id)){
 }
 else{
 
-
 	//->modif appareil
 	$mode ="modifier";
 	$action="modif_app2.php?categorie=".$cat;
@@ -56,7 +51,7 @@ else{
 }
 }
 
-require("mise_en_page.php");
+require("html_functions.php");
 if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete("Voila un formulaire pour ajouter un appareil");
@@ -81,9 +76,6 @@ else if ($mode=="modifier"){
 	<a href="add_categorie.php?">Ajout<br />d'une categorie</a>
 	<br /></td>
 
-
-
-
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
   <tbody>
@@ -97,9 +89,6 @@ else if ($mode=="modifier"){
       </td>
       
   <td style="vertical-align: top;">
-
-
-
 
 <select name="categorie">
 //listing des categories
@@ -123,14 +112,11 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
 			echo ">".$chef['nom']."</option>";
 		}//end while
 
-
 	?>
 </select>
 <br />
       </td>
     </tr>
-
-
 
     <tr>
     
@@ -278,8 +264,6 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
       </td>
     </tr>
 
-
-
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
@@ -300,12 +284,9 @@ remplir obligatoirement, les autres sont optionnels.<br />
 </table>
 <br />
 
-
 <?php }
 	else 
 	{	Header("Location :instru.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

@@ -39,12 +39,10 @@ else if ($mode=="modif"){
 		list($qh,$num) = query_db($querry);
 		$data = result_db($qh);
 
-
 }
 
 echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
 ?>
-
 
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
 	<input type="hidden" name="user2ch_id"  value="<?php echo $user2ch_id ?>" >
@@ -167,5 +165,3 @@ remplir obligatoirement, les autres sont optionnels.<br />
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

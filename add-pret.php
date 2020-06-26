@@ -14,20 +14,14 @@ $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
 
-
-
 $pret=$_GET[id];
-
-
 
 	//->nouvel appareil
 	$mode ="ajouter";
 	$action="valid-pret.php";
 //transmet la valeur de la categorie à la page valid appareil
 
-
-
-require("mise_en_page.php");
+require("html_functions.php");
 if ( $connex = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete("Voila un formulaire pour ajouter un pret");
@@ -41,12 +35,9 @@ else if ($mode=="modifier"){
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 
-
 	
 }
 ?>
-
-
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
@@ -62,9 +53,6 @@ else if ($mode=="modifier"){
       
   <td style="vertical-align: top;">
 
-
-
-
 <select name="nom">
 //listing des appareils
 <?php
@@ -78,14 +66,11 @@ if ($mode=="ajouter" )
 			echo ">".$chef[nom]."</option>";
 		}//end while
 
-
 	?>
 </select>
 <br />
       </td>
     </tr>
-
-
 
   
 
@@ -126,8 +111,6 @@ if ($mode=="ajouter" )
       </td>
     </tr>
 
-
-
   <tr>
     
       <td style="vertical-align: top;">Date de retour estimée *<i>format YYYY-MM-DD</i><br />
@@ -140,8 +123,6 @@ if ($mode=="ajouter" )
 			echo date('Y-m-d', time() );
 	?>" ><br />
 
-
-
       </td>
      
     </tr>
@@ -151,15 +132,9 @@ if ($mode=="ajouter" )
 <td style="vertical-align: top;">
 <input type="text" name="commentaire" size="30" maxlength="30" value="<?php echo $data[commentaire] ?>" ><br />
 
-
       </td>
     
     </tr>
-
-
-
-
-
 
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
@@ -181,12 +156,9 @@ remplir obligatoirement, les autres sont optionnels.<br />
 </table>
 <br />
 
-
 <?php }
 	else 
 	{	Header("Location :instru.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

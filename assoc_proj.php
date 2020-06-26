@@ -18,11 +18,7 @@ if (empty($manip_id)){
 
 require("html_functions.php");
 
-
 if ( $connex = connect_db() ){
-
-
-
 
  en_tete("Voila un formulaire pour associer un projet parallele à une manip");
 
@@ -42,7 +38,6 @@ echo "Projets deja associés :".$data[assoc_proj];
  
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
-
 
   <tbody>
  <form action="valid_assoc.php" method="POST" name="inscrForm">
@@ -105,5 +100,3 @@ echo "Projets deja associés :".$data[assoc_proj];
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

@@ -14,7 +14,6 @@ if (empty($tri))
 
 $app_id = $_GET[id];
 
-
 if (empty($app_id)){
 
 	// recupere la liste de appareils
@@ -26,14 +25,13 @@ if (empty($app_id)){
 }
 else{
 
-
 	//->modif appareil
 	$mode ="modifier";
 	$action="modif_labview.php";
 
 }
 
-require("mise_en_page.php");
+require("html_functions.php");
 if ( $connex = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete("Voila un formulaire pour ajouter une manip labview");
@@ -47,14 +45,9 @@ else if ($mode=="modifier"){
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 
-
 	
 }
 ?>
-
-
-
-
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
@@ -64,7 +57,6 @@ else if ($mode=="modifier"){
 
  
 
-
  <tr>
     
       <td style="vertical-align: top;">Manip+chercheur *<br />
@@ -73,11 +65,6 @@ else if ($mode=="modifier"){
 	<input type="text" name="manipch" size="30"  value="<?php echo $data[manipch] ?>" ><br />
       </td>
     </tr>
-
-
-
-
-
 
     <tr>
     
@@ -157,7 +144,6 @@ else if ($mode=="modifier"){
 
  
 
-
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
@@ -178,12 +164,9 @@ remplir obligatoirement, les autres sont optionnels.<br />
 </table>
 <br />
 
-
 <?php }
 	else 
 	{	Header("Location :labview.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>

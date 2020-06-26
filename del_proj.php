@@ -35,7 +35,6 @@ if (!isset($valid) || empty($valid) || $valid=="no"){
 else{
 if ( $connex = connect_db() ){
 
-
  // on supprime toutes les taches liées a ce projet
  $querry = "DELETE LOW_PRIORITY FROM tache WHERE projet=$id_proj";
     $result = mysql_query($querry);
@@ -60,5 +59,3 @@ else
 
 ?>
 <?php pied_page() ?>
-</body>
-</html>
