@@ -1,35 +1,43 @@
 <?php
 
-function en_tete( $titre){
+function en_tete($titre){
    /////echo"<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n";
-   echo "<html><head>\n";
-   echo "  <meta http-equiv=\"content-type\" content=\"text/html; charset=ISO-8859-1\" />\n";
-   echo "  <title>$titre</title>\n";
-   echo "  <link href=\"pool_project.css\" rel=\"stylesheet\" type=\"text/css\" />\n";
-   echo "</head><body>\n";
-   echo "<div width=\"100%\" height=\"100%\" align=\"center\" valign=\"center\"><br />\n";
-   echo "<br /><table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" style=\"text-align: left; width: 75%;\" align=\"center\">";
-   echo "<tbody> <tr bgcolor=\"#f7d709\"> <td style=\"vertical-align: center;\">";
-   echo "<img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\" />";
-   echo "      </td> <td style=\"vertical-align: top;\"><br />";
-   echo "<h1>GestEx - Gestion des Exp&eacute;rimentations</h1>";
+   echo '<html>';
+   echo '<head>';
+   echo '  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />';
+   echo '  <title>$titre</title>';
+   echo '  <link href="pool_project.css" rel="stylesheet" type="text/css" />';
+   echo '</head>';
+   echo '<body>';
+   echo '<div width="100%" height="100%" align="center" valign="center">';
+   echo '<br />';
+   echo '<br />';
+   echo '<table cellpadding="2" cellspacing="0" border="0" style="text-align: left; width: 75%;" align="center">';
+   echo '  <tbody>';
+   echo '    <tr bgcolor="#f7d709">';
+   echo '      <td style="vertical-align: center;">';
+   echo '        <img src="images/pool_project.jpg" nosave="" height="100" />';
+   echo '      </td>';
+   echo '      <td style="vertical-align: top;"><br />';
+   echo '        <h1>GestEx - Gestion des plateformes Exp&eacute;rimentales</h1>';
       if(!empty($_SESSION)){
-         $pdo = connect_db();
+         $pdo            = connect_db();
          $logged_in_user = $_SESSION['logged_in_user'];
-         $sql = 'SELECT nom, prenom FROM users WHERE loggin = ?;';
-         $stmt = $pdo->prepare($sql);
+         $sql            = 'SELECT nom, prenom FROM users WHERE loggin = ?;';
+         $stmt           = $pdo->prepare($sql);
          $stmt->execute(array($logged_in_user));
          $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-         echo "<p> <strong>".$user[0]['nom']."  </strong>".$user[0]['prenom']."<p>";
+         echo '<p><strong>'.$user[0]['nom'].'</strong> '.$user[0]['prenom'].'</p>';
       }else{
-         echo "<p>Vous n'êtes pas connecté </p>";
+         echo "<p>Vous n'&ecirc;tes pas connect&eacute;</p>";
       }
    echo $titre;
-   echo "  </td></tr></tbody></table>";
-   echo "<br />\n";
-  
-   echo "</div>";
-  
+   echo '      </td>';
+   echo '    </tr>';
+   echo '  </tbody>';
+   echo '</table>';
+   echo '<br />\n';
+   echo '</div>';
 }
 
 
@@ -64,18 +72,18 @@ function check_mail($mail){
       $domain . '{2,63}'.                  // Must be followed by one set consisting a period of two
       '$';                                // or max 63 domain characters.
   
-   $erreur =0;
+   $erreur = 0;
 
    if (strlen($mail) == 0):
       //echo '&nbsp;<br />';
-      $erreur =1;
+      $erreur = 1;
    else:
       if (eregi($regex, $mail)):
          // echo $mail . ' matched<br />';
-         $erreur =0;
+         $erreur = 0;
       else:
          // echo '<strong>'. $mail . ' not matched</strong><br />';
-         $erreur =2;
+         $erreur = 2;
       endif;
    endif;
    return $erreur;
