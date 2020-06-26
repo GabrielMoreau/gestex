@@ -46,7 +46,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour &agrave;<br />la page du service</a>	
+<a href="<?php GESTEX_URL_SERVICE ?>">Retour &agrave;<br />la page du service</a>	
 
 	<br /></td>
 <?php if (empty($eq)) {	?>
@@ -86,12 +86,12 @@ echo "<a href =\"add_app2.php?categorie=".$cat."\">Ajout<br />d'un appareil</a>"
 <td style="vertical-align: top; text-align: center;">
 	
 
-	<a href="essai.php">Retour aux categories</a>
+	<a href="essai.php">Retour aux cat&eacute;gories</a>
 <br /></td>
 
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_categorie.php">Ajout<br />d'une categorie</a>
+	<a href="add_categorie.php">Ajout<br />d'une cat&eacute;gorie</a>
 	<br /></td>
 
 <?php }	?>
@@ -107,31 +107,24 @@ Liste des appareils : <br />
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
-
  <th style="vertical-align: top; text-align: center;">
 	<a href ="instru.php?tri=categorie">Cat&eacute;gorie<br />
       </th>
-
       <th style="vertical-align: top; text-align: center;">
 	Nom<br />
       </th>
      <th style="vertical-align: top; text-align: center;">
 	Mod&egrave;le<br />
       </th>
-
  <th style="vertical-align: top; text-align: center;">
 	Gamme<br />
       </th>
-
       <th style="vertical-align: top; text-align: center;">
 	&Eacute;quipe<br />
       </th>
-     
       <th style="vertical-align: top; text-align: center;">
 	Fournisseur<br />
       </th>
-
-  
 <th style="vertical-align: top; text-align: center;">
 	Notice<br />
       </th>
@@ -314,10 +307,8 @@ $sql = 'SELECT id, nom FROM categorie WHERE id = ?';
 		$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
       		//echo $cat[nom];
 
-	
 	///bouton lien vers la doc
 	$dossier_proj ="data/instru/".$data['nom'];
-	
 
 	//remplace les espaces par des underscore
 	$dossier_proj = str_replace(" ", "_", $dossier_proj);
@@ -327,9 +318,7 @@ $sql = 'SELECT id, nom FROM categorie WHERE id = ?';
 	if (@opendir($dossier_proj) != FALSE){
 		//si trouve ajoute un bouton
 		echo 'Voir : <a href ="notice.php?id=', $data['id'],'\">',$data['nom'],'<img src="images/filefind.png" nosave="" title ="Voir ce projet" /></a><br />';
-    
 	}
-	
 
   if (( $user_level >=2)&&($eq=="15 pret=15")) {
 echo '</td><td style="vertical-align: top;">';
@@ -348,11 +337,6 @@ echo '</td><td style="vertical-align: top;">';
 	
 }
 echo"</tr>";
-	
-
-	
-
-      
 
 	}//end while
 
