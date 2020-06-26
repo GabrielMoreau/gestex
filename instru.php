@@ -2,7 +2,7 @@
 
 // Authenticate
 
-include("session_auth.php");
+require("session_auth.php");
 
 if (!auth(1))
 	Header("Location: login.php");
@@ -46,7 +46,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-<a href="<?php GESTEX_URL_SERVICE ?>">Retour &agrave;<br />la page du service</a>	
+<a href="<?php echo GESTEX_URL_SERVICE ?>">Retour &agrave;<br />la page du service</a>	
 
 	<br /></td>
 <?php if (empty($eq)) {	?>
