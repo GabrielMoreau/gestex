@@ -13,11 +13,24 @@ function en_tete( $titre){
    echo "<img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\" />";
    echo "      </td> <td style=\"vertical-align: top;\"><br />";
    echo "<h1>GestEx - Gestion des Exp&eacute;rimentations</h1>";
+      if(!empty($_SESSION)){
+         $pdo = connect_db();
+         $logged_in_user = $_SESSION['logged_in_user'];
+         $sql = 'SELECT nom, prenom FROM users WHERE loggin = ?;';
+         $stmt = $pdo->prepare($sql);
+         $stmt->execute(array($logged_in_user));
+         $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+         echo "<p> <strong>".$user[0]['nom']."  </strong>".$user[0]['prenom']."<p>";
+      }else{
+         echo "<p>Vous n'êtes pas connecté </p>";
+      }
    echo $titre;
    echo "  </td></tr></tbody></table>";
    echo "<br />\n";
+  
    echo "</div>";
-   }
+  
+}
 
 
 function pied_page(){
