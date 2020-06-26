@@ -2,8 +2,8 @@
 	// Authenticate
 	require("session_auth.php");
 
-	$username=$_POST['username'];
-	$password= $_POST['password'];
+	$username = $_POST['username'];
+	$password = $_POST['password'];
 	//valeur par defaut
 	$login_failure = false;
 	if (isset( $_GET['variable']) && !empty( $_GET['variable']))
@@ -57,7 +57,7 @@
 				if ($truc == "instru")
 					echo "<title>Gestion du parc d'instrumentation LEGI</title>";
 				if ($truc == "pret")
-					echo "<title>Gestion des pr�ts du mat�riel instrumentation du LEGI</title>";
+					echo "<title>Gestion des pr&ecirc;ts du mat&eacute;riel instrumentation du LEGI</title>";
 			?>
 
 			<link href="pool_project.css" rel="stylesheet" type="text/css">
@@ -77,7 +77,7 @@
 								if ($truc == "instru")
 									echo  "<td style=\"vertical-align: top;\"><h1>Gestion du Parc Instrumentation LEGI</h1>";
 								if ($truc == "pret")
-									echo  "<td style=\"vertical-align: top;\"><h1>Gestion des pr�ts du mat�riel instrumentation du LEGI</h1>";   	
+									echo  "<td style=\"vertical-align: top;\"><h1>Gestion des pr&ecirc;ts du mat&eacute;riel instrumentation du LEGI</h1>";   	
 								if ($truc == "projet"){
 									echo  "<td style=\"vertical-align: top;\"><h1>Gestion de Projet LEGI</h1>";
 									echo	"<br />Pour acc&eacute;der &agrave; l'outil de gestion de projets du LEGI, il faut y etre r&eacute;f&eacute;renc&eacute;.<br />
@@ -114,7 +114,7 @@
 												<tr>
 													<td>
 														<table width="100%" border="0" bgcolor="yellow">
-															<tr><td class="login_error"> loggin ou mot de passe invalide!
+															<tr><td class="login_error"> login ou mot de passe invalide!
 																</td></tr>
 														</table>
 													</td>
@@ -122,7 +122,7 @@
 											</table>
 										</td>
 									</tr>
-									<?php } ?>						
+									<?php } ?>
 								</table>
 							</td>
 						</tr>
