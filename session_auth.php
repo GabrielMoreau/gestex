@@ -28,18 +28,18 @@
 
 			//echo "db->".$num." (".$data[password].") ".$data[nom]."  pour ".$password."=".md5($password);
 			//is the password correct 
-			if ($user[0]['password'] != md5($password))
+			if ($user[0]['password'] != md5($password)){
 				//pas le bon ppasswd
 				return 0;//false;
-			else if ($reqlevel > $user['level'])
+			}else if ($reqlevel > $user['level']){
 				//pas le niveau d'autorisation requis
 				return 0;//false;
 			
-			else {	///tout ok
+			}else {	///tout ok
 				//set session variables
+				$_SESSION['user_id'] = $user[0]['id'];
 				$_SESSION['logged_in_user'] = $logged_in_user;
-     			$_SESSION['user_id'] = $user['id'];
-				$_SESSION['level'] = $user['level'];
+				$_SESSION['level'] = $user[0]['level'];
 				// return $user['level'];//true
 				return 1;
 			}
