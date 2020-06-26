@@ -27,9 +27,9 @@ function en_tete($titre){
          $stmt           = $pdo->prepare($sql);
          $stmt->execute(array($logged_in_user));
          $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-         echo '<p><strong>'.$user[0]['nom'].'</strong> '.$user[0]['prenom'].'</p>';
+         echo '<p><strong>'.$user[0]['nom'].'</strong> '.$user[0]['prenom'].' (<a href="logout.php">logout</a>)</p>';
       }else{
-         echo "<p>Vous n'&ecirc;tes pas connect&eacute;</p>";
+         echo "<p>Vous n'&ecirc;tes pas connect&eacute; (<a href=\"login.php\">login</a>)</p>";
       }
    echo $titre;
    echo '      </td>';
@@ -42,23 +42,34 @@ function en_tete($titre){
 
 
 function pied_page(){
-   echo "<center>\n";
-   echo "<img src=\"images/striped.gif\" nosave=\"\" border=\"0\" height=\"13\"  width=\"532\" align=\"bottom\" />\n";
+   echo '<center>';
+   echo '<img src="images/striped.gif" nosave="" border="0" height="13"  width="532" align="bottom" />';
 
    //ne garde que le nom de fichier
    $filetmp = explode('/',$_SERVER['PHP_SELF']);
    $file = $filetmp[count($filetmp)-1];
    ///mise a jour de ce fichier
-   echo "<table cellpadding=\"2\" cellspacing=\"2\" border=\"0\" style=\"text-align: center; width: 95%;\">\n";
-   echo " <tbody>   <tr><td>\n";
-   echo "<!-- <img src=\"images/php-small-purple.gif\" align=\"top\" nosave=\"\" /> --></td>\n";
-   echo "<td><address><a href=\"mailto:webmaster@legi.grenoble-inp.fr?Subject=GestEx%20to%20WebMaster\">\n";
-   echo "LEGI WebMaster</a></address><br /><i>Derni&egrave;re mise &agrave; jour :\n";
-   echo strftime('%d/%m/%Y',filemtime($file)); 
-   echo "</i></td>";
-   echo "<td><!-- <img src=\"images/mysql.png\"  align=\"top\" nosave=\"\" /> --></td>";
-   echo "</tr></tbody></table></center>\n";
-   echo "</body></html>\n";
+   echo '<table cellpadding="2" cellspacing="2" border="0" style="text-align: center; width: 95%;">';
+   echo '  <tbody>';
+   echo '    <tr>';
+   echo '      <td>';
+   echo '        <!-- <img src="images/php-small-purple.gif" align="top" nosave="" /> -->';
+   echo '      </td>';
+   echo '      <td>';
+   echo '        <address><a href=\"mailto:webmaster@legi.grenoble-inp.fr?Subject=GestEx%20to%20WebMaster\">LEGI WebMaster</a></address>';
+   echo '        <br />';
+   echo '        <i>Derni&egrave;re mise &agrave; jour : ';
+   echo            strftime('%Y-%m-%d', filemtime($file)); 
+   echo '        </i>';
+   echo '      </td>';
+   echo '      <td><!-- <img src="images/mysql.png"  align="top" nosave="" /> -->';
+   echo '      </td>';
+   echo '    </tr>';
+   echo '  </tbody>';
+   echo '</table>';
+   echo '</center>';
+   echo '</body>';
+   echo '</html>';
    }
 
 function check_mail($mail){
