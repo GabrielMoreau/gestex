@@ -24,7 +24,7 @@ else{
 }
 
 require("html_functions.php");
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete("Voila un formulaire pour ajouter un appareil");
 
@@ -33,10 +33,12 @@ else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les caracteristiques d'un appareil");
 
 	// recupere le appareil selectionn�
-	$querry = "SELECT * FROM appareils WHERE id='$app_id'";
-	list($qh,$num) = query_db($querry);
-	$data = result_db($qh);
-
+	$sql = 'SELECT * FROM appareils WHERE id = ?;';
+	// list($qh,$num) = query_db($querry);
+	// $data = result_db($qh);
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($app_id));
+	$appareils = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	
 }
 ?>
@@ -52,13 +54,13 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nom" size="10" maxlength="10" value="<?php echo $data['nom'] ?>" ><br />
+	<input type="text" name="nom" size="10" maxlength="10" value="<?php if($mode == "modifier"){ echo $appareils[0]['nom'];} ?>" ><br />
       </td>
     </tr><tr>
       <td style="vertical-align: top;">Description<br />
       </td>
       <td style="vertical-align: top;">
-      <textarea name="descr" cols="50" rows="5"> <?php echo $data['descr'] ?></textarea>
+      <textarea name="descr" cols="50" rows="5"> <?php if($mode == "modifier"){ echo $appareils[0]['descr'];} ?></textarea>
 	</td>
     </tr>  
 
@@ -69,11 +71,15 @@ else if ($mode=="modifier"){
 	<select name="equipe">
 	<?php 
 	// recupere la liste des equipes
-	$querry = "SELECT id, nom FROM equipe";
-	list($qheq,$numeq) = query_db($querry);
-		while ($chef = result_db($qheq)){
+	$sql = 'SELECT id, nom FROM equipe';
+	// list($qheq,$numeq) = query_db($querry);
+		// while ($chef = result_db($qheq)){
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute();
+		$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		foreach($equipe as $chef){
 			echo "<option value=\"".$chef['id']."\"";
-			if ($mode=="modifier" && $chef['id'] == $data['equipe']) {
+			if ($mode=="modifier" && $chef['id'] == $appareils[0]['equipe']) {
 				echo " selected";	}
 			echo ">".$chef['nom']."</option>";
 		}//end while
@@ -90,11 +96,15 @@ else if ($mode=="modifier"){
 	<select name="tech">
 	<?php 
 	// recupere la liste des tech
-	$querry = "SELECT id, nom FROM users WHERE level >1";
-	list($qheq,$numeq) = query_db($querry);
-		while ($chef = result_db($qheq)){
+	$sql = 'SELECT id, nom FROM users WHERE level >1';
+	// list($qheq,$numeq) = query_db($querry);
+	// 	while ($chef = result_db($qheq)){
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute();
+		$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		foreach($user as $chef){
 			echo "<option value=\"".$chef['id']."\"";
-			if ($mode=="modifier" && $chef['id'] == $data['tech']) {
+			if ($mode=="modifier" && $chef['id'] == $appareils[0]['tech']) {
 				echo " selected";	}
 			echo ">".$chef['nom']."</option>";
 		}//end while
@@ -110,11 +120,15 @@ else if ($mode=="modifier"){
 	<select name="fourn">
 	<?php 
 	// recupere la liste des fournisseurs
-	$querry = "SELECT id, nom FROM fournisseurs ";
-	list($qheq,$numeq) = query_db($querry);
-		while ($chef = result_db($qheq)){
+	$sql = 'SELECT id, nom FROM fournisseurs';
+	// list($qheq,$numeq) = query_db($querry);
+	// 	while ($chef = result_db($qheq)){
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute();
+		$fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		foreach($fournisseur as $chef){
 			echo "<option value=\"".$chef['id']."\"";
-			if ($mode=="modifier" && $chef['id'] == $data['fournisseur']) {
+			if ($mode=="modifier" && $chef['id'] == $appareils[0]['fournisseur']) {
 				echo " selected";	}
 			echo ">".$chef['nom']."</option>";
 		}//end while
@@ -129,7 +143,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">
 	<input type="text" name="date" size="10" maxlength="10" value="
 		<?php if ($mode =="modifier")
-			echo $data['achat'];
+			echo $appareils[0]['achat'];
 		else 
 			echo date('Y-m-d', time() );
 	?>" ><br />
@@ -140,7 +154,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Facture<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="facture" size="30" maxlength="30" value="<?php echo $data[facture] ?>" ><br />
+	<input type="text" name="facture" size="30" maxlength="30" value="<?php if($mode == "modifier"){echo $appareils[0]['facture'];} ?>" ><br />
       </td>
     </tr><tr>
 
@@ -162,11 +176,9 @@ remplir obligatoirement, les autres sont optionnels.<br />
 </tbody>
 </table>
 <br />
-<?php }
+<?php } //end if
 	else 
 	{	Header("Location :accueil.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>
-</body>
-</html>
