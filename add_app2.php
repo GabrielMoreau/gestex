@@ -20,7 +20,7 @@ if (empty($_GET['categorie']))
 else
 	$cat=$_GET['categorie'];
 //echo "$cat";
-//recup�re la cat�gorie de la page categorie
+//recupere la categorie de la page categorie
 if (empty($_GET['id']))
 	$app_id = "";
 else
@@ -40,7 +40,7 @@ if (empty($app_id)){
 	//->nouvel appareil
 	$mode ="ajouter";
 	$action="valid_app2.php?categorie=".$cat;
-//transmet la valeur de la categorie � la page valid appareil
+//transmet la valeur de la categorie a la page valid appareil
 }
 else{
 
@@ -60,7 +60,7 @@ if ($mode=="ajouter"){
 else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les caracteristiques d'un appareil");
 
-	// recupere le appareil selectionn�
+	// recupere le appareil selectionne
 	$sql = 'SELECT * FROM Listing WHERE id = ?';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
@@ -107,7 +107,7 @@ else if ($mode=="modifier"){
 if ($mode=="ajouter" && $chef['id'] == $cat) {
 				echo " selected";	}
 
-//si on choisit ajouter, le listing pr�s�lectionne la categorie
+//si on choisit ajouter, le listing preselectionne la categorie
 
 			echo ">".$chef['nom']."</option>";
 		}//end while

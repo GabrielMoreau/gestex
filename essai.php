@@ -15,7 +15,7 @@ require("html_functions.php");
 
 en_tete("Liste des appareils:");
 
-//recuper la methode de tri
+//recupere la methode de tri
 
 if (empty($_GET['tri']))
 	$tri ="id";
@@ -30,7 +30,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour �<br />la page du service</a>
+	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour &agrave;<br /> la page du service</a>
 	<br /></td>
 <?php if ( $user_level >=2 ) {	?>
  <td style="vertical-align: top; text-align: center;">
@@ -48,7 +48,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_categorie.php">Ajout<br />d'une categorie</a>
+	<a href="add_categorie.php">Ajout<br />d'une cat&eacute;gorie</a>
 	<br /></td>
 
 <?php }	?>
@@ -58,7 +58,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 
 <br />
 Liste des appareils : <br />
-<i>Affichage de la liste globale ou bien des appareils en pr�t au service instrumentation...</i><br />
+<i>Affichage de la liste globale ou bien des appareils en pr&ecirc;t au service instrumentation...</i><br />
 <br /><table cellpadding="20" cellspacing="4" border="1"
  style="width: 70%; text-align: left; margin-left: auto; margin-right: auto;">
 
@@ -72,15 +72,15 @@ Liste des appareils : <br />
 
  <th style="vertical-align: top; text-align: center;">
 
-	<a href ="instru.php?equipe=15">Appareils au service instru</a><br />
+	<a href ="instru.php?equipe=15">Appareils au service instrumentation</a><br />
       </th>
 </tr></tbody>
 
 </table>
 <br />
-Liste des appareils par cat�gorie : <br />
+Liste des appareils par cat&eacute;gorie : <br />
 
-<i>Cliquer sur une categorie pour voir la liste...</i><br />
+<i>Cliquer sur une cat&eacute;gorie pour voir la liste...</i><br />
 <br /><table cellpadding="10" cellspacing="2" border="1"
  style="width: 70%; text-align: center; margin-left: auto; margin-right: auto;">
   <tbody>
@@ -93,7 +93,7 @@ if ( $pdo = connect_db() ){
 
 	// recupere les refs du user
 
-	$sql = 'SELECT * FROM categorie order by ? ASC' ;
+	$sql = 'SELECT * FROM categorie order by ? ASC';
 	// list($qh,$num) = query_db($querry);
 	// $last_id=0;
 // $data = result_db($qh);
@@ -128,7 +128,7 @@ echo "<br />";
  <td style="vertical-align: top; text-align: center;">
 	<a href="demandes.php">Demandes en cours</a>
 <td style="vertical-align: top; text-align: center;">
-	<a href="prets.html">Prets en cours</a>
+	<a href="prets.html">Pr&ecirc;ts en cours</a>
 <?php } ?>
 
 <br /><br /><br />

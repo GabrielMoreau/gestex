@@ -89,7 +89,7 @@ if ( $pdo = connect_db() ){
 					<a href ="accueil.php?tri=local">Local</a> <br />
 				</th>
 				<th style="vertical-align: top; text-align: center;">
-					<a href ="accueil.php?tri=equipe">Equipe</a>
+					<a href ="accueil.php?tri=equipe">&Eacute;quipe</a>
 				</th>
 				<?php if ($user_level!=1){
 				//pas necessaire si chercheur logue

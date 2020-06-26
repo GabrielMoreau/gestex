@@ -21,7 +21,7 @@ if (empty($_GET['tri']))
 	$tri ="id";
 else
 	$tri = $_GET['tri'];
-//recup�re la categorie
+//recupere la categorie
 // $cat=$_GET['categorie'];
 //echo "$cat";
 if (empty($_GET['categorie']))
@@ -29,7 +29,7 @@ if (empty($_GET['categorie']))
 else
 	$cat = $_GET['categorie'];
 
-//recupere l'�quipe
+//recupere l'equipe
 
 if (empty($_GET['equipe']))
 	$eq = 0;
@@ -46,7 +46,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour �<br />la page du service</a>	
+<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour &agrave;<br />la page du service</a>	
 
 	<br /></td>
 <?php if (empty($eq)) {	?>
@@ -56,7 +56,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 <?php
 
 // if ( $pdo = connect_db() ){
-	//recup�re la categorie
+	//recupere la categorie
 
 // $sql = 'SELECT * FROM categorie where id = ?' ;
 // 	list($qh,$num) = query_db($querry);
@@ -101,7 +101,7 @@ echo "<a href =\"add_app2.php?categorie=".$cat."\">Ajout<br />d'un appareil</a>"
 
 <br />
 Liste des appareils : <br />
-<i>Cliquer sur le nom d'un appareil pour connaitre son mod�le, sa date d'achat, ses accessoires...</i><br />
+<i>Cliquer sur le nom d'un appareil pour connaitre son mod&egrave;le, sa date d'achat, ses accessoires...</i><br />
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -109,14 +109,14 @@ Liste des appareils : <br />
     <tr bgcolor="#f7d709">
 
  <th style="vertical-align: top; text-align: center;">
-	<a href ="instru.php?tri=categorie">Cat�gorie<br />
+	<a href ="instru.php?tri=categorie">Cat&eacute;gorie<br />
       </th>
 
       <th style="vertical-align: top; text-align: center;">
 	Nom<br />
       </th>
      <th style="vertical-align: top; text-align: center;">
-	Modele<br />
+	Mod&egrave;le<br />
       </th>
 
  <th style="vertical-align: top; text-align: center;">
@@ -124,7 +124,7 @@ Liste des appareils : <br />
       </th>
 
       <th style="vertical-align: top; text-align: center;">
-	Equipe<br />
+	&Eacute;quipe<br />
       </th>
      
       <th style="vertical-align: top; text-align: center;">
@@ -143,7 +143,7 @@ Liste des appareils : <br />
 		echo "</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de donn�es
+<?php	//interrogation base de donnees
 
 if ( $pdo = connect_db() ){
 	// recupere la liste de appareils
@@ -236,7 +236,7 @@ $listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 // 	//echo $dossier_proj;
 // 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 // 	if (@opendir($dossier_proj) != FALSE){
-// 		//si trouv� ajoute un bouton
+// 		//si trouve ajoute un bouton
 // 		echo "Voir : <a href =\"notice.php?id=". $data['id']."\">".$data['nom']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
     
 // 	}
@@ -325,7 +325,7 @@ $sql = 'SELECT id, nom FROM categorie WHERE id = ?';
 	//echo $dossier_proj;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
-		//si trouv� ajoute un bouton
+		//si trouve ajoute un bouton
 		echo 'Voir : <a href ="notice.php?id=', $data['id'],'\">',$data['nom'],'<img src="images/filefind.png" nosave="" title ="Voir ce projet" /></a><br />';
     
 	}

@@ -54,7 +54,7 @@ function check_val( $table, $col, $value ){
 	
 	///echo "check_val:".numrows_db($reponse)."<br />";
 
-  //renvoie 0 si non trouv�
+  //renvoie 0 si non trouve
   //renvoie le nbre d'occurences autrement
 	return @mysql_num_rows($reponse);
 }

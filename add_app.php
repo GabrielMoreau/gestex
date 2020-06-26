@@ -32,7 +32,7 @@ if ($mode=="ajouter"){
 else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les caracteristiques d'un appareil");
 
-	// recupere le appareil selectionn�
+	// recupere le appareil selectionne
 	$sql = 'SELECT * FROM appareils WHERE id = ?;';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);

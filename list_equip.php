@@ -28,11 +28,11 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
   <tbody>
     <tr class=menu>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="accueil.php?tri=date">Retour a l'accueil</a>
+	<a href="accueil.php?tri=date">Retour &agrave; l'accueil</a>
 	<br /></td>
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_equip.php">Ajout d'une equipe</a>
+	<a href="add_equip.php">Ajout d'une &eacute;quipe</a>
 	<br /></td>
 <?php }	?>
  <td style="vertical-align: top; text-align: center;">
@@ -64,7 +64,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 		echo "</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de donn�es
+<?php	//interrogation base de donnees
 
 if ( $pdo = connect_db() ){
 	// recupere la liste de fournisseurs

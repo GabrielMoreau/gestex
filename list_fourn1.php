@@ -79,7 +79,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 		echo"</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de donn�es
+<?php	//interrogation base de donnees
 
 if ( $pdo = connect_db() ){
 	// recupere la liste de fournisseurs

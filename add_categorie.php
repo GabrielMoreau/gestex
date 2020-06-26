@@ -21,31 +21,26 @@ else
 require("html_functions.php");
 if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
-	en_tete("Voila un formulaire pour ajouter une categorie");
+	en_tete("Voila un formulaire pour ajouter une cat&eacute;gorie");
 
 }
 
-	// recupere le appareil selectionn�
+	// recupere le appareil selectionne
 	$sql = 'SELECT * FROM categorie ';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-	
 }
 ?>
- 
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
   <tbody>
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
 		<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
-
   <tr>
-    
       <td style="vertical-align: top;">categorie *<br />
       </td>
       <td style="vertical-align: top;">
@@ -53,9 +48,6 @@ if ($mode=="ajouter"){
       </td>
     </tr>
 
- 
-
- 
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />

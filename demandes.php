@@ -15,13 +15,13 @@ require("html_functions.php");
 
 en_tete("Liste des demandes en cours:");
 
-//recuper la methode de tri
+//recupere la methode de tri
 if (empty($_GET['tri']))
 	$tri ="id";
 else
 	$tri = $_GET['tri'];
 
-//recup�re la categorie
+//recupere la categorie
 // $cat=$_GET['categorie'];
 if (empty($_GET['categorie']))
 	$cat ="";
@@ -37,7 +37,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://intranet.legi.grenoble-inp.fr">Retour a<br />l'intranet</a>
+	<a href="http://intranet.legi.grenoble-inp.fr">Retour &agrave;<br />l'intranet</a>
 	<br /></td>
 
  <td style="vertical-align: top; text-align: center;">
@@ -67,14 +67,14 @@ Liste des demandes en cours : <br />
     <tr bgcolor="#f7d709">
 
  <th style="vertical-align: top; text-align: center;">
-	T�che<br />
+	T&acirc;che<br />
       </th>
 
       <th style="vertical-align: top; text-align: center;">
 	Nom du demandeur<br />
       </th>
      <th style="vertical-align: top; text-align: center;">
-	D�tails<br />
+	D&eacute;tails<br />
       </th>
 
  <th style="vertical-align: top; text-align: center;">
@@ -87,12 +87,11 @@ Liste des demandes en cours : <br />
      
      
 <th style="vertical-align: top; text-align: center;">
-	Termin�?<br />
+	Termin&eacute;e<br />
       </th>
 
-  
 <th style="vertical-align: top; text-align: center;">
-	Pi�ces jointes<br />
+	Pi&egrave;ces jointes<br />
       </th>
 
 <?php if ( $user_level >=2 ) 	
@@ -101,7 +100,7 @@ Liste des demandes en cours : <br />
 		echo "</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de donn�es
+<?php	//interrogation base de donnees
 
 if ( $pdo = connect_db() ){
 	
@@ -174,10 +173,8 @@ echo $data['termine'];
  echo"</td><td style=\"vertical-align: top;\">";
 echo $data['piecesjointes'];
 
-	
 	///bouton lien vers la doc
 	$dossier_proj ="data/instru/demandes/".$data['tache'];
-	
 
 	//remplace les espaces par des underscore
 	$dossier_proj = str_replace(" ", "_", $dossier_proj);
@@ -185,13 +182,8 @@ echo $data['piecesjointes'];
 	//echo $dossier_proj;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
-		//si trouv� ajoute un bouton
+		//si trouve ajoute un bouton
 		echo "Voir : <a href =\"jointdemandes.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
-    
-	}
-
-       
-   
 
  if ( $user_level >=2) {	
       echo"</td><td style=\"vertical-align: top;\">";
@@ -205,17 +197,11 @@ echo $data['piecesjointes'];
 	
 }
 echo"</tr>";
-	
-
-	
-
-      
 
 	}//end foreach
 
 ?>
 
-   
   </tbody>
 </table>
 <br />
