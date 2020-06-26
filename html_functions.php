@@ -36,7 +36,7 @@ function en_tete($titre){
    echo '    </tr>';
    echo '  </tbody>';
    echo '</table>';
-   echo '<br />\n';
+   echo '<br />';
    echo '</div>';
 }
 
@@ -56,7 +56,7 @@ function pied_page(){
    echo '        <!-- <img src="images/php-small-purple.gif" align="top" nosave="" /> -->';
    echo '      </td>';
    echo '      <td>';
-   echo '        <address><a href=\"mailto:webmaster@legi.grenoble-inp.fr?Subject=GestEx%20to%20WebMaster\">LEGI WebMaster</a></address>';
+   echo '        <address><a href="mailto:webmaster@legi.grenoble-inp.fr?Subject=GestEx%20to%20WebMaster">LEGI WebMaster</a></address>';
    echo '        <br />';
    echo '        <i>Derni&egrave;re mise &agrave; jour : ';
    echo            strftime('%Y-%m-%d', filemtime($file)); 
