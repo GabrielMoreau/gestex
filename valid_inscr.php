@@ -102,7 +102,7 @@ if (!empty($erreur) ){
       //inscription enregistrée mais pas encore validée!
       //envoi d'un mail a l'admin
       $texte = "Inscription de ".$prenom." ".$nom;
-      mail(ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
+      mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
 
 
       echo "inscription de ".$prenom." ".$nom."<br />";
