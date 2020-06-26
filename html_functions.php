@@ -12,7 +12,7 @@ function en_tete( $titre){
    echo "<tbody> <tr bgcolor=\"#f7d709\"> <td style=\"vertical-align: center;\">";
    echo "<img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\" />";
    echo "      </td> <td style=\"vertical-align: top;\"><br />";
-   echo "<h1>GestEx Application</h1>";
+   echo "<h1>GestEx - Gestion des Exp&eacute;rimentations</h1>";
    echo $titre;
    echo "  </td></tr></tbody></table>";
    echo "<br />\n";
