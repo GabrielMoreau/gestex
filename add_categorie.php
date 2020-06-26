@@ -9,25 +9,29 @@
 	$user_id = $_SESSION['user_id'];
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-$app_id = $_GET[id];
-if (empty($app_id)){
+if (empty($_GET['id'])){
 	//->nouvelle categorie
 	$mode ="ajouter";
 	$action="valid_categorie.php";
+	$cat_id="";
 }
+else
+	$cat_id = $_GET['id'];
 
-require("mise_en_page.php");
-if ( $connex = connect_db() ){
+require("html_functions.php");
+if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete("Voila un formulaire pour ajouter une categorie");
 
 }
 
-	// recupere le appareil selectionné
-	$querry = "SELECT * FROM categorie WHERE id='$cat_id'";
-	list($qh,$num) = query_db($querry);
-	$data = result_db($qh);
-
+	// recupere le appareil selectionnï¿½
+	$sql = 'SELECT * FROM categorie ';
+	// list($qh,$num) = query_db($querry);
+	// $data = result_db($qh);
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
+	$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	
 }
@@ -45,7 +49,7 @@ if ($mode=="ajouter"){
       <td style="vertical-align: top;">categorie *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="categorie" size="30"  value="<?php echo $data[categorie] ?>" ><br />
+	<input type="text" name="categorie" size="30"  value="" ><br />
       </td>
     </tr>
 
