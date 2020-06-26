@@ -5,7 +5,7 @@ function en_tete($titre){
    echo '<html>';
    echo '<head>';
    echo '  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />';
-   echo '  <title>$titre</title>';
+   echo '  <title>GestEx - '.$titre.'</title>';
    echo '  <link href="pool_project.css" rel="stylesheet" type="text/css" />';
    echo '</head>';
    echo '<body>';
