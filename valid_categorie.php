@@ -9,7 +9,7 @@ unset($erreur);
 //variables ne pouvant etre nulles
 
 if (empty($_POST['categorie']))
-	$erreur="categorie non pr&eacute;cis&eacute;";	
+	$erreur="categorie non pr&eacute;cis&eacute;";
 else{
 	$categorie =$_POST['categorie'];
 	if($pdo = connect_db()){
@@ -20,15 +20,11 @@ else{
 		if(!empty($categories)){
 			$erreur = "le categorie existe deja";
 		}
-	}	
-	
+	}
 
-	}				
-
+	}
 
 en_tete("resultat ajout appareil ");
-
-
 
 if (!empty($erreur) ){
 
@@ -45,7 +41,6 @@ else{
 //pas d'erreur
 ///on inscrit
 
-
 		//inscription
 if(	$pdo = connect_db()){
 	$sql ='INSERT INTO categorie (nom) VALUE (?);';
@@ -54,11 +49,11 @@ if(	$pdo = connect_db()){
 		// $result = mysql_query("INSERT INTO $table ".
 		// 	"(nom)".
 		// 	" VALUES ('$categorie')");
-			//	
-}else 
+			//
+}else
 // catch  (PDOException $exception){
 	echo 'Request error: ';
-		
+
 //end if connect
 
 ////en_tete("inscription Valid&eacute;e");

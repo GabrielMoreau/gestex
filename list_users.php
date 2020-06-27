@@ -33,7 +33,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_user.php">Ajout d'un utilisateur</a>
 	<br /></td>
-<?php }	
+<?php }
 else	{ //edition/modif de ses propres coordonnees
 ?>
  <td style="vertical-align: top; text-align: center;">
@@ -45,7 +45,7 @@ else	{ //edition/modif de ses propres coordonnees
 	<a href="changepwd.php?id=<?php echo $user_id ?>">
 		<img src="images/unlock.png" nosave="" title="Changer son mot de passe"></a>
 	<br /></td>
-	
+
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php?variable=projet">Quitter</a>
 	<br /></td> </tr></tbody>
@@ -104,7 +104,7 @@ if ( $pdo = connect_db() ){
 		echo "<a href=\"add_user.php?id=".$data['id']."\">".$data['nom']."</a>";
 	else
 		echo $data['nom'];
-	
+
       echo"</td><td style=\"vertical-align: top;\">";
       echo $data['tel'];
       echo"</td><td style=\"vertical-align: top;\">";
@@ -118,7 +118,7 @@ if ( $pdo = connect_db() ){
         $stmt->execute(array($data['equipe']));
         $equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo $equipe[0]['nom'];
-		
+
       echo " (".$data['equipe'].")";
      if ($user_level==3){
 		 echo"</td><td style=\"vertical-align: top;\">";

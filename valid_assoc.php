@@ -20,14 +20,12 @@ if (empty($_POST[id_manip]))
 else {
  $id_manip=$_POST[id_manip];
     if (empty($_POST[assoc_p]))
-     $erreur="aucune association pr&eacute;cis&eacute;"; 
-   else 
+     $erreur="aucune association pr&eacute;cis&eacute;";
+   else
  $assoc_p= $_POST[assoc_p];
 }
 
 en_tete("resultat association projet annexe");
-
-
 
 if (!empty($erreur) ){
 
@@ -51,8 +49,7 @@ if ( $connex = connect_db() ){
  $querry = "UPDATE manip SET assoc_proj=".$assoc_p ." WHERE id=".$id_manip;
   $result = mysql_query($querry);
    //
- 
-  
+
    if (!$result){
    //inscription !ok
    $erreur = mysql_error();

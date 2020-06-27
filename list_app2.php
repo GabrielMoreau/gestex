@@ -71,9 +71,9 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
     <th style="vertical-align: top; text-align: center;">
 	reparation<br />
       </th>
-<?php if ( $user_level >=2 ) 	
+<?php if ( $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 ) 	
+	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -83,7 +83,7 @@ if ( $connex = connect_db() ){
 	// recupere la liste de appareils
 	$querry = "SELECT * FROM Listing order by $tri";
 	list($qh,$num) = query_db($querry);
-	
+
 	$last_id=0;
 
 while ($data = result_db($qh)) {
@@ -127,7 +127,7 @@ echo $data['gamme'];
 		echo $data['notice'];
       echo"</td>";
 
- if ( $user_level >=2 ) {	
+ if ( $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_app2.php?id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
@@ -136,7 +136,7 @@ echo $data['gamme'];
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_app.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
-	
+
 	}//end if
       echo"</tr>";
 	}//end while

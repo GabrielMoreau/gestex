@@ -57,10 +57,10 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
       <th style="vertical-align: top; text-align: center;">
 	Chef d'equipe <br />
       </th>
-      
-<?php if ( $user_level >=2 ) 	
+
+<?php if ( $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 ) 	
+	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -70,7 +70,7 @@ if ( $pdo = connect_db() ){
 	// recupere la liste de fournisseurs
 	$sql = 'SELECT * FROM equipe order by ?';
 	// list($qh,$num) = query_db($querry);
-	
+
 	// $last_id=0;
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($tri));
@@ -83,7 +83,7 @@ if ( $pdo = connect_db() ){
 	// remplit le tableau
 	if (($num_line % 2 )==0)
  		echo"<tr class=pair>";
-	else 
+	else
 		echo"<tr class=impair>";
 
  echo "<td style=\"vertical-align: top;\">";
@@ -102,7 +102,7 @@ if ( $pdo = connect_db() ){
         $chef = $stmt->fetchAll(PDO::FETCH_ASSOC);
       		echo $chef[0]['nom'];
       echo"</td>";
- if ( $user_level >=2 ) {	
+ if ( $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_equip.php?id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
@@ -111,7 +111,7 @@ if ( $pdo = connect_db() ){
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_equip.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
-	
+
 	}//end if
       echo"</tr>"; $num_line++;
 	}//end while

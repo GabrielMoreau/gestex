@@ -12,8 +12,6 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-
-
 //modification d'un fournisseur
 
 unset($erreur);
@@ -31,14 +29,14 @@ else {
 		$erreur="adresse non pr&eacute;cis&eacute;";
 	else {
 		$adresse=$_POST[adresse];
-				
+
 							$tel=$_POST[phone];
 							$fax=$_POST[fax];
 							$mail =$_POST[addr_mail];
 							$www=$_POST[www];
 							$contact =$_POST[contact];
 							$descr =$_POST[descr];
-							
+
 }}}
 
 en_tete("resultat modification ");
@@ -108,7 +106,7 @@ if ($user_level>= 3)
 			$erreur = mysql_error();
 			echo "<br />erreur :".$erreur;
 		}
-		
+
 	}//end if connect
 
 ////en_tete("modification fournisseur Valid&eacute;e");

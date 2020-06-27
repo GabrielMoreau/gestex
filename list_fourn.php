@@ -38,7 +38,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 <?php }	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="find_fourn.php">Rechercher</a>
-	<br /></td> 
+	<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php">Quitter</a>
 	<br /></td> </tr></tbody>
@@ -116,16 +116,16 @@ if ( $pdo = connect_db() ){
       echo"</td><td style=\"vertical-align: top;\">";
       echo $data['descr'];
       echo"</td>";
- if ( $user_level >=2 && $data['nom']!="aucun" ) {	
+ if ( $user_level >=2 && $data['nom']!="aucun" ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_fourn.php?id=".$data['id']."\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
- if ( $user_level >=3 && $data['nom']!="aucun" ) {	
+ if ( $user_level >=3 && $data['nom']!="aucun" ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_fourn.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
-	
+
 	}//end if
       echo"</tr>";
 	}//end while

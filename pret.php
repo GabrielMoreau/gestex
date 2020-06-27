@@ -65,7 +65,7 @@ echo "</td>";
 <td style="vertical-align: top; text-align: center;">
 	<a href="reserva.php">Liste<br />des r&eacute;servations</a>
 	<br /></td>
- 
+
 <td style="vertical-align: top; text-align: center;">
 	<a href="login.php?variable=pret">Acc&egrave;s<br />restreint</a>
 	<br /></td>

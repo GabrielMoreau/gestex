@@ -27,7 +27,7 @@ if (!isset($valid) || empty($valid) || $valid=="no"){
  echo "Sur de supprimer la Manip ".$manip_id. " ainsi que tous ses projets et taches ?<br />";
  echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_manip."&ok=yes\">OUI</a><br />";
   echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
- 
+
 }
 else{if ( $connex = connect_db() ){
 $result=1;
@@ -46,20 +46,20 @@ $result=1;
  if ($result){
   //on supprime la manip
   $querry = "DELETE LOW_PRIORITY FROM manip WHERE id=$id_manip";
- 
+
     $result = mysql_query($querry);
      }
    if (!$result){
    //inscription !ok
    $erreur = mysql_error();
    echo "<br />erreur :".$erreur;
- 
+
  }
-else 
- echo "Manip ".$manip_id." supprimée, ainsi que ses projets et taches!<br />"; 
+else
+ echo "Manip ".$manip_id." supprimée, ainsi que ses projets et taches!<br />";
 //on retourne a la page precedente
   echo "<a href=\"accueil.php\">Suite</a><br />";
-}} 
+}}
 
 ?>
 <?php pied_page() ?>

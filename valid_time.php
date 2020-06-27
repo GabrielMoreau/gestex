@@ -1,6 +1,5 @@
 <?php
 
-
 require("html_functions.php");
 
 /// valid_time.php
@@ -9,21 +8,21 @@ unset($erreur); unset($nom);
 //variables ne pouvant etre nulles
 
 if (empty($_POST[id_manip]))
- $erreur="manip non pr&eacute;cis&eacute;"; 
+ $erreur="manip non pr&eacute;cis&eacute;";
 else{
  $manip_id =$_POST[id_manip];
 if (empty($_POST[id_proj]))
- $erreur="projet non pr&eacute;cis&eacute;"; 
+ $erreur="projet non pr&eacute;cis&eacute;";
 else{
  $proj_id =$_POST[id_proj];
 
  if (empty($_POST[id_task]))
-  $erreur="tache non pr&eacute;cis&eacute;"; 
+  $erreur="tache non pr&eacute;cis&eacute;";
  else{
   $task_id =$_POST[id_task];
 
  if (empty($_POST[id_user]))
-  $erreur="utilisateur non pr&eacute;cis&eacute;"; 
+  $erreur="utilisateur non pr&eacute;cis&eacute;";
  else{
   if ($_POST[id_user] == 1) //admin
    $user_id =$_POST[user];
@@ -31,20 +30,19 @@ else{
    $user_id =$_POST[id_user];
 
   if (empty($_POST[date]))
-   $erreur="date non pr&eacute;cis&eacute;"; 
+   $erreur="date non pr&eacute;cis&eacute;";
   else{
    $date =$_POST[date];
    if (empty($_POST[temps]))
-    $erreur="temps non pr&eacute;cis&eacute;"; 
-   else{   
-    $temps= $_POST[temps]; 
+    $erreur="temps non pr&eacute;cis&eacute;";
+   else{
+    $temps= $_POST[temps];
     $remark=$_POST[remark];
-       
+
 }}}}}}
 
 en_tete("resultat ajout de temps");
 echo"<center>";
-
 
 if (!empty($erreur) ){
 
@@ -63,7 +61,7 @@ else{
 require("db_functions.php");
 
 if ( $connex = connect_db() ){
- 
+
  //ajout du temps a  la tache
  $querry = "INSERT INTO temps (id_tache,date,user,duree, remarks)".
    " VALUES ('$task_id', '$date', '$user_id',  '$temps', '$remark')";

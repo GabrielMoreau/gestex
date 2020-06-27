@@ -43,16 +43,15 @@ $titre= $logged_in_user." (".$user_id.")<br />Voila un formulaire pour ajouter d
  $data = result_db($qh);
 
  $titre.="<b>".$data['nom']. "</b><ul> du projet <b>";
- 
+
 $titre.=$projet[nom]. "</b><ul> de la manip <b>".$manip[nom]."</b></ul></ul></ul>";
 en_tete("Ajout de temps");
 
 echo $titre;
 }//end if connex
- else 
+ else
   Header("Location :accueil.php");
 ?>
- 
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
   <tbody>
@@ -63,7 +62,7 @@ echo $titre;
   <input type="hidden" name="id_task" value="<?php echo $task_id ?>" >
   <input type="hidden" name="id_user" value="<?php echo $user_id ?>" >
     <tr>
-    
+
       <td style="vertical-align: top;">utilisateur :<br />
       </td>
       <td style="vertical-align: top;" colspan ="2">
@@ -75,12 +74,12 @@ echo $titre;
   $querry = "SELECT id,nom FROM users WHERE level>=2 AND valid=1 ";
   list($qheq,$numeq) = query_db($querry);
  echo "<select name=\"user\" size=\"5\" >";
-   
+
   while( $utilisateurs = result_db($qheq) ){
 
    echo "<option value=\"".$utilisateurs ['id']."\" ";
    echo ">".$utilisateurs ['nom'];echo "</option>";
-  }//end while 
+  }//end while
  echo "</select>";
   } ?>
   </td>
@@ -100,9 +99,9 @@ echo $titre;
       </td>
       <td style="vertical-align: top;"> heures
       </td>
-    </tr>  
+    </tr>
     <tr>
-  
+
       <td style="vertical-align: top;">Remarques :<br />
       </td>
       <td style="vertical-align: top;" colspan ="2">
@@ -119,8 +118,8 @@ echo $titre;
  <form action="manip_maint.php?id=<?php echo $manip_id ?>" method="POST" name="annulForm">
   <tr >   <td colspan="3" style="vertical-align: top; text-align: right;">
  <input type="submit" name="annul" value="Annuler">
-  </td>    </tr> 
- </form>  
+  </td>    </tr>
+ </form>
 </tbody>
 </table>
 <br />

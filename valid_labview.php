@@ -7,49 +7,37 @@ require("html_functions.php");
 //validation des manip labview
 unset($erreur);
 
-
 if (empty($_POST[manipch]))
-	$erreur="manipch non pr&eacute;cis&eacute;";	
+	$erreur="manipch non pr&eacute;cis&eacute;";
 else{
 	$manipch =$_POST[manipch];
 
-
 if (empty($_POST[technicien]))
-	$erreur="technicien non pr&eacute;cis&eacute;";	
+	$erreur="technicien non pr&eacute;cis&eacute;";
 else{
 	$technicien =$_POST[technicien];
 
-	
-	$localisation =$_POST[localisation];		
-
-							
+	$localisation =$_POST[localisation];
 
 if (empty($_POST[matos]))
-		$erreur="matériel non pr&eacute;cis&eacute;";	
+		$erreur="matériel non pr&eacute;cis&eacute;";
 	else{
 		$matos=$_POST[matos];
 
 if (empty($_POST[code]))
-		$erreur="descriptif du code non pr&eacute;cis&eacute;";	
+		$erreur="descriptif du code non pr&eacute;cis&eacute;";
 	else{
 		$code=$_POST[code];
 
 				$driver =$_POST[driver];
 
-
 		$module=$_POST[module];
 
-
-				
 				$ecran =$_POST[ecran];
 
 				$pdf =$_POST[pdf];
 
-
-
 	}}}}
-							
-
 
 en_tete("resultat ajout appareil ");
 
@@ -59,7 +47,7 @@ if (empty($tri))
 
 $cat=$_GET[categorie];
 //echo "$cat";
-//récupère la catégorie de le page ajout appareil 
+//récupère la catégorie de le page ajout appareil
 
 if (!empty($erreur) ){
 
@@ -84,25 +72,23 @@ if ( $connex = connect_db() ){
 		$result = mysql_query("INSERT INTO $table ".
 			"(manipch,technicien,localisation,matos,code,driver,module,ecran,pdf)".
 			" VALUES ('$manipch','$technicien','$localisation','$matos','$code','$driver','$module', '$ecran', '$pdf')");
-			//	
+			//
 if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
 		echo "<br />erreur :".$erreur;
 		}
-		
+
 	}//end if connect
 
 ////en_tete("inscription Valid&eacute;e");
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils
 
-
 $querry = "SELECT * FROM categorie where id='$cat'" ;
 	list($qh,$num) = query_db($querry);
 	$last_id=0;
 $datax = result_db($qh);}
-
 
 echo "<br />ajout de ".$nom."<br />";
 echo" est valid&eacute;e ";

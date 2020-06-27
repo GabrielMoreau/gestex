@@ -32,7 +32,6 @@ en_tete($titre);
 
 echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour à la page liste des programmes labview...</a>";
 
-	
 $dossier_lab ="data/labview/".$nom_nom."/";
 
 	//remplace les espaces par des underscore
@@ -42,15 +41,15 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 	//echo $dossier_lab;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if ( ($handle = @opendir($dossier_lab)) != FALSE)
-		
-	{	
-		
+
+	{
+
 	$images = array();	$fichiers= array();
    while (false !== ($file = readdir($handle))) {
    ////echo count($images);
        if ($file != "." && $file != "..") {
            if ( eregi("^[a-zA-Z0-9_\-]+(:?\.jpg|\.gif|\.png|\.pdf|\.doc|\.xls|\.mov|\.avi|\.mpg|\.html|\.htm)$", $file) == TRUE ){
-		///entasse les images	
+		///entasse les images
 		////echo $file;
 			array_push( $images,$file );
 		 }
@@ -71,14 +70,13 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 
    closedir($handle);
 
-		
 		//si trouvé on créé un tableau 2 colonnes :
 		//	a gauche les images
 		//	a droite le texte
-		
+
 ?>		<table cellpadding="1" cellspacing="1" border="1" style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   		<tbody>
-    			
+
 <?php		while ( $file = array_pop($images) ){
 		echo "<tr style=\"width: 40%; text-align: center;\" ><td><a href=\"".$dossier_lab.$file."\" target=\"_newFrame\"><img src=\"";
 
@@ -120,7 +118,7 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 					echo "<h3>".$autres."</h3>";
 					//inclue le fichier
 					if ( $text_handle = fopen( $dossier_lab.$autres, "r")){
-						while (!feof($text_handle)) 
+						while (!feof($text_handle))
     							echo  fgets($text_handle, 4096)."<br />";
     						fclose($text_handle);
 					}//end if fopen
@@ -128,7 +126,7 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 		 echo "</td></tr>";
 		}//while end  file
 ?>
-			
+
 		<tbody></table>
 
 <?php
@@ -137,7 +135,7 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 		echo "pas de documents disponibles pour ce projet!<br />";
 	}//end if connect
 ?>
-  
+
 <br />
 <br />
 </div>

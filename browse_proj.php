@@ -89,33 +89,32 @@ echo "dossier : ".$dossier_proj;
       closedir($handle);
 
  }//end if readdir
- 
-///tri par ordre alphabetique 
+
+///tri par ordre alphabetique
 sort($fichiers); sort($images);
-  
+
   //si trouvé on créé un tableau 5 colonnes :
   // texte (1 colonne)
   // images... (5 colonnes)
-  
+
 if (count($images) || count($fichiers)){
-?>  
+?>
 <table cellpadding="1" cellspacing="1" border="1" style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
     <tbody>
 <?php
     echo  "<tr bgcolor=\"#f7bb09\"><th colspan=\"5\">".  $nom_proj." (".$thedir .") : " ."</th></tr>";
  //fichiers textes
  while ( $autres = array_pop($fichiers) ){
- 
- 
+
   echo "<tr><td colspan=\"5\">";
       //inclus le fichier
       if ( $text_handle = @fopen( $dossier_proj."/".$thedir."/".$autres, "r")){
        echo "<b>".$autres."</b> ";
-   while (!feof($text_handle)) 
+   while (!feof($text_handle))
               echo  fgets($text_handle, 4096)."<br />";
            fclose($text_handle);
        }//end if fopen
-   echo "</td></tr><tr>";   
+   echo "</td></tr><tr>";
      }//while end autres
 
 $i=0;
@@ -171,8 +170,8 @@ while ( $file = array_pop($images) ){
   while (($i%5)!=0){
      echo "<td></br></td>";
     $i++;
-   } 
-?> 
+   }
+?>
   </tr><tbody></table>
 <?php
   }//end if count
@@ -182,7 +181,7 @@ while ( $file = array_pop($images) ){
   echo "pas de documents disponibles pour ce projet!<br />";
  }//end if connect
 ?>
-  
+
 <br />
 <br />
 </div>

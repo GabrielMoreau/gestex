@@ -62,7 +62,6 @@ Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :
       <th style="vertical-align: top; text-align: center;">
 	Nom<br />
       </th>
-     
 
  <th style="vertical-align: top; text-align: center;">
 	Gamme<br />
@@ -71,21 +70,18 @@ Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :
       <th style="vertical-align: top; text-align: center;">
 	&Eacute;quipe<br />
       </th>
-     
+
       <th style="vertical-align: top; text-align: center;">
 	Fournisseur<br />
       </th>
-
-  
 
 <th style="vertical-align: top; text-align: center;">
 	Responsable<br />
       </th>
 
-   
-<?php if ( $user_level >=2 ) 	
+<?php if ( $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 ) 	
+	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -95,7 +91,7 @@ if ( $connex = connect_db() ){
 	// recupere la liste de appareils
 	$querry = "SELECT * FROM Listing order by $tri";
 	list($qh,$num) = query_db($querry);
-	
+
 	$last_id=0;
 
 while ($data = result_db($qh)) {
@@ -113,7 +109,7 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data['categorie']'";
 
  echo"</td><td style=\"vertical-align: top;\">";
 	echo "<a href =\"fiche_vie.php?id=".$data['id']."\">". $data['nom']."</a>";
-    
+
        echo"</td><td style=\"vertical-align: top;\">";
 
 echo $data['gamme'];
@@ -128,7 +124,7 @@ echo $data['gamme'];
 
       		echo $equip[nom];
        echo"</td><td style=\"vertical-align: top;\">";
-	
+
 	// recupere la nom du fournisseur
 	$querry = "SELECT id, nom FROM fournisseurs WHERE id='$data['fournisseur']'";
 	list($qheq,$numeq) = query_db($querry);
@@ -142,9 +138,8 @@ echo $data['gamme'];
 
 		$resp = result_db($qheq);
       		echo $resp[nom];
-   
 
- if ( $user_level >=2 ) {	
+ if ( $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_app2.php?id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
@@ -153,7 +148,7 @@ echo $data['gamme'];
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_app2.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
-	
+
 	}//end if
       echo"</tr>";
 	}//end while

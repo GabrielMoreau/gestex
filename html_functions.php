@@ -40,7 +40,6 @@ function en_tete($titre){
    echo '</div>';
 }
 
-
 function pied_page(){
    echo '<center>';
    echo '<img src="images/striped.gif" nosave="" border="0" height="13"  width="532" align="bottom" />';
@@ -59,7 +58,7 @@ function pied_page(){
    echo '        <address><a href="mailto:webmaster@legi.grenoble-inp.fr?Subject=GestEx%20to%20WebMaster">LEGI WebMaster</a></address>';
    echo '        <br />';
    echo '        <i>Derni&egrave;re mise &agrave; jour : ';
-   echo            strftime('%Y-%m-%d', filemtime($file)); 
+   echo            strftime('%Y-%m-%d', filemtime($file));
    echo '        </i>';
    echo '      </td>';
    echo '      <td><!-- <img src="images/mysql.png"  align="top" nosave="" /> -->';
@@ -82,7 +81,7 @@ function check_mail($mail){
       '(' . $domain . '{1,63}\.)+'.        // Followed by one or max 63 domain characters (dot separated).
       $domain . '{2,63}'.                  // Must be followed by one set consisting a period of two
       '$';                                // or max 63 domain characters.
-  
+
    $erreur = 0;
 
    if (strlen($mail) == 0):

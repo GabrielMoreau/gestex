@@ -25,14 +25,13 @@ if (!isset($valid) || empty($valid) || $valid=="no"){
  echo "Sur de supprimer l'utilisateur ".$user_id. " ?<br />";
  echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$user_id."&ok=yes\">OUI</a><br />";
   echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
- 
+
 }
 else{
 if ( $connex = connect_db() ){
 
- 
   //on supprime cet user
-  
+
   $querry = "DELETE LOW_PRIORITY FROM users WHERE id=$user_id LIMIT 1";
 $result = mysql_query($querry);
    //
@@ -40,14 +39,14 @@ $result = mysql_query($querry);
    //inscription !ok
    $erreur = mysql_error();
    echo "<br />erreur :".$erreur;
- 
+
  }
-else 
- echo "Utilisateur ".$user_id." supprimé!<br />"; 
+else
+ echo "Utilisateur ".$user_id." supprimé!<br />";
 //on retourne a la page precedente
   echo "<a href=\"list_user.php\">Suite</a><br />";
-}  
- 
+}
+
 }
 
 ?>

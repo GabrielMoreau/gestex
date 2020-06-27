@@ -36,10 +36,8 @@ else if ($mode=="modifier"){
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 
-	
 }
 ?>
- 
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
@@ -47,7 +45,7 @@ else if ($mode=="modifier"){
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
 		<input type="hidden" name="id_equip" value="<?php echo $equip_id ?>" >
     <tr>
-    
+
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
@@ -59,7 +57,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">
 	<input type="text" name="descr" size="25" maxlength="255" value="<?php echo $data['descr'] ?>" ><br />
       </td>
-    </tr>  
+    </tr>
     <tr>
       <td style="vertical-align: top;">Compte *<br />
       </td>
@@ -73,7 +71,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">
 <?php echo $data['chef']; ?>
 	<select name="chef">
-	<?php 
+	<?php
 	// recupere laliste des chercheurs
 	$querry = "SELECT id, nom FROM users WHERE level =1";
 	list($qheq,$numeq) = query_db($querry);
@@ -87,8 +85,7 @@ else if ($mode=="modifier"){
 	</select><br />
       </td>
     </tr>
-   
-   
+
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
@@ -102,13 +99,13 @@ remplir obligatoirement, les autres sont optionnels.<br />
 	<form action="list_equip.php" method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
-	 </td>    </tr> 
-	</form>  
+	 </td>    </tr>
+	</form>
 </tbody>
 </table>
 <br />
 <?php }
-	else 
+	else
 	{	Header("Location :accueil.php");	}	?>
 <br />
 </div>

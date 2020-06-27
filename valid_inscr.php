@@ -16,18 +16,18 @@ else {
   else {
     $password=$_POST[password];
     if (empty($_POST[password2]))
-      $erreur="confirmation de password non pr&eacute;cis&eacute;";    
+      $erreur="confirmation de password non pr&eacute;cis&eacute;";
     else {
       $password2=$_POST[password2];
       if ($password!=$password2)
         $erreur="les passwords diff&egrave;rent";
       else {
         if (empty($_POST[nom]))
-          $erreur="nom non pr&eacute;cis&eacute;";  
+          $erreur="nom non pr&eacute;cis&eacute;";
         else {
           $nom =$_POST[nom];
           if (!isset($_POST[level]))
-            $erreur="Qualit&eacute; non pr&eacute;cis&eacute;";  
+            $erreur="Qualit&eacute; non pr&eacute;cis&eacute;";
           else
             $level = $_POST[level];
 
@@ -71,7 +71,6 @@ echo "<br />mail :".$mail.".";
 echo "<br />tel :".$phone.".";
 echo "<br />Level :".$level.".";*/
 
-
 if (!empty($erreur) ){
 
   //erreur
@@ -104,7 +103,6 @@ if (!empty($erreur) ){
       $texte = "Inscription de ".$prenom." ".$nom;
       mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
 
-
       echo "inscription de ".$prenom." ".$nom."<br />";
       echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\" />";
       echo" est propos&eacute;e avec le loggin : ".$loggin;
@@ -115,6 +113,5 @@ if (!empty($erreur) ){
     exit();
   }//else end
 }//end if connect
-
 
 ?>

@@ -15,7 +15,7 @@ require("html_functions.php");
 
 if (empty($_GET[id]))
 	Header("Location: list_app.php");
-else 
+else
 	$id_app=$_GET[id];
 
 	//interrogation base de données
@@ -40,7 +40,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
-    <tr> 
+    <tr>
 	<td style="vertical-align: top; text-align: center;">
 	<a href="accueil.php">Retour a<br />l'accueil</a>
 	<br /></td>
@@ -84,9 +84,9 @@ echo "L'appareil <b>".$data['nom']."</b> a deja subi les interventions suivantes
     <th style="vertical-align: top; text-align: center;">
 	facture<br />
       </th>
-<?php if ( $user_level >=2 ) 	
+<?php if ( $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 ) 	
+	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -115,14 +115,14 @@ while ($data = result_db($qh)) {
 		$equip = result_db($qheq);
       		echo $equip[nom];
       echo"</td><td style=\"vertical-align: top;\">";
-	// date 
+	// date
 		echo $data['date'];
       echo"</td><td style=\"vertical-align: top;\">";
 	// facture
 		echo $data['facture'];
       echo"</td>";
 
- if ( $user_level >=2 ) {	
+ if ( $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_intapp.php?app=".$id_app."&id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
@@ -131,7 +131,7 @@ while ($data = result_db($qh)) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_intapp.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
-	
+
 	}//end if
       echo"</tr>";
 	}//end while

@@ -9,22 +9,21 @@ include("session_auth.php");
 	$user_id = $_SESSION['user_id'];
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
- if (!empty($_GET[ide]))	
+ if (!empty($_GET[ide]))
 	$equip_id = $_GET[ide];
-else 
+else
 	$equip_id =0;
- if (!empty($_GET[idm]))	
+ if (!empty($_GET[idm]))
 	$manip_id = $_GET[idm];
-else 
+else
 	$manip_id =0;
 
- if (!empty($_GET[idp]))	
+ if (!empty($_GET[idp]))
 	$projet_id = $_GET[idp];
-else 
-	$projet_id =0;	
+else
+	$projet_id =0;
 
 	$tache_id =0;
-	
 
 require("html_functions.php");
 
@@ -32,7 +31,7 @@ if ( $connex = connect_db() ){
 	// recupere l'equip selectionnée
 	$querry = "SELECT id,nom FROM equipe";
 	list($qhe,$num) = query_db($querry);
-	
+
 	if ($equip_id!=0){
 
 	// recupere la manip selectionnée
@@ -59,10 +58,10 @@ $texte = $logged_in_user." (".$user_id.") Voila un formulaire pour créér un rapp
 echo $texte;
 
 }//end if connex
-	else 
+	else
 		Header("Location :accueil.php");
 ?>
- 
+
 <br />
 <table cellpadding="2" cellspacing="2" border="0"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -83,7 +82,7 @@ echo $texte;
 
 <form action="print_rapport.php" method="POST" name="rappForm">
     <tr>
-    
+
       <td style="vertical-align: top;">pour l'<b>&Eacute;quipe</b><br /><i>choisissez dans la liste</i><br />
    </td>
       <td style="vertical-align: top;">
@@ -100,7 +99,7 @@ echo $texte;
 						echo " selected ";
 			echo ">".$equip_list['nom'];echo "</option>";
 		}//end while	?>
-    </td>    </tr>		
+    </td>    </tr>
     <tr>
 
       <td style="vertical-align: top;">pour la <b>manip</b> de cette equipe<br />
@@ -119,7 +118,7 @@ echo $texte;
 				if ($manip_list['id'] == $manip_id )
 						echo " selected ";
 			echo ">".$manip_list['nom'];echo "</option>";
-		}//end while	
+		}//end while
 	?>
     </td>    </tr>
 	<tr>
@@ -127,7 +126,7 @@ echo $texte;
       </td>
       <td style="vertical-align: top;">
 	<select name="projet"  size="5" onchange="location.href='rapport.php?ide=' + equipe.options[equipe.selectedIndex].value + '&idm=' + manip.options[manip.selectedIndex].value + '&idp=' + this.options[this.selectedIndex].value;" >
-  <?php 	 
+  <?php
 		echo "<option value=\"0\"";
 			if ($projet_id == 0)	echo " selected ";
 		echo">Tous</option>";
@@ -138,15 +137,15 @@ echo $texte;
 				if ($projet_list['id'] == $projet_id )
 						echo " selected ";
 			echo ">".$projet_list['nom'];echo "</option>";
-		}//end while	?>    
-  </td>    </tr>  
-    
+		}//end while	?>
+  </td>    </tr>
+
 	<tr>
       <td style="vertical-align: top;">pour la <b>Tachet</b> de ce projet<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="tache"  size="5" >
-  <?php 	
+  <?php
 		echo "<option value=\"0\"";
 			if ($tache_id == 0)	echo " selected ";
 		echo ">Toutes</option>";
@@ -157,16 +156,16 @@ echo $texte;
 				if ($tache_list['id'] == $tache_id )
 						echo " selected ";
 			echo ">".$tache_list['nom'];echo "</option>";
-		}//end while	?>    
-  </td>    </tr>  
-    
+		}//end while	?>
+  </td>    </tr>
+
     <tr>
       <td style="vertical-align: top;">Depuis la Date<br /><i>format:YYYY-MM-JJ<br />0 : depuis toujours...</i>
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="date" size="10" maxlength="10" value="<?php 
+	<input type="text" name="date" size="10" maxlength="10" value="<?php
 				  //ajout->aujourd'hui par defaut
-					echo date('Y-m-d', time() ); 
+					echo date('Y-m-d', time() );
 						?> " ><br />
       </td>
     </tr>
@@ -180,8 +179,8 @@ echo $texte;
 	<form action="accueil.php" method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
-	 </td>    </tr> 
-	</form>  
+	 </td>    </tr>
+	</form>
 </tbody>
 </table>
 <br />

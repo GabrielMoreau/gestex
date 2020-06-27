@@ -12,50 +12,44 @@
 require("html_functions.php");
 require ("db_functions.php");
 
-
-
 //modification d'une demande
 unset($erreur);
 //variables ne pouvant etre nulles
 if (empty($_POST[id_app]))
-	$erreur="id non pr&eacute;cis&eacute;";	
+	$erreur="id non pr&eacute;cis&eacute;";
 else{
 	$id_app =$_POST[id_app];
 
 if (empty($_POST[tache]))
-	$erreur="tache non pr&eacute;cis&eacute;";	
+	$erreur="tache non pr&eacute;cis&eacute;";
 else{
 	$tache =$_POST[tache];
 
 if (empty($_POST[nomdemandeur]))
-	$erreur="nomdemandeur non pr&eacute;cis&eacute;";	
+	$erreur="nomdemandeur non pr&eacute;cis&eacute;";
 else{
 	$nomdemandeur =$_POST[nomdemandeur];
 
 	if (empty($_POST[details]))
-		$erreur="details non pr&eacute;cis&eacute;";	
+		$erreur="details non pr&eacute;cis&eacute;";
 	else{
 		$details=$_POST[details];
 
-
 		if (empty($_POST[achat]))
-			$erreur="achat non pr&eacute;cis&eacute;";	
+			$erreur="achat non pr&eacute;cis&eacute;";
 		else{
 			$achat =$_POST[achat];
 
 			if (empty($_POST[avancement]))
-				$erreur="avancement non pr&eacute;cis&eacute;";	
+				$erreur="avancement non pr&eacute;cis&eacute;";
 			else{
 				$avancement =$_POST[avancement];
-
-				
 
 							//variables pouvant etre nulles
 					$termine = $_POST[termine];
 
 					$piecesjointes = $_POST[piecesjointes];
-					
-							
+
 }}}}}}
 
 en_tete("resultat modification demandes");
@@ -66,8 +60,7 @@ if (empty($tri))
 
 $cat=$_GET[categorie];
 echo "$cat";
-//récupère la catégorie de le page ajout appareil 
-
+//récupère la catégorie de le page ajout appareil
 
 if (!empty($erreur) ){
 
@@ -142,8 +135,6 @@ if ($achat!=$data['achat']){
 			$modif=1;
 			$querry.="piecesjointes='$piecesjointes',";
 		}
-		
-
 
 		// supprime la derniere virgule
 		$querry[strlen($querry)-1]=' ';
@@ -175,12 +166,10 @@ if ( $connex = connect_db() ){
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);}
 
-
 //echo "<br />modification de ".$nom."<br />";
 echo" est valid&eacute;e ";
 echo"<br /><br /><a href=\"demandes.php\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
-
 
 pied_page();
 exit();

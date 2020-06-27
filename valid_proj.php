@@ -20,21 +20,19 @@ if (empty($_POST[id_manip]))
 else {
  $id_manip=$_POST[id_manip];
     if (empty($_POST[nom]))
-     $erreur="nom non pr&eacute;cis&eacute;"; 
+     $erreur="nom non pr&eacute;cis&eacute;";
     else{
      $nom =$_POST[nom];
      if (empty($_POST[date]))
-      $erreur="Date non pr&eacute;cis&eacute;"; 
-     else{      
+      $erreur="Date non pr&eacute;cis&eacute;";
+     else{
        $descr=$_POST[descr];
        //variables pouvant etre nulles
        $date =$_POST[date];
-       
+
 }}}
 
 en_tete("resultat ajout projet ");
-
-
 
 if (!empty($erreur) ){
 
@@ -69,7 +67,7 @@ if ( $connex = connect_db() ){
      " VALUES ('$proj_id', '$nomt',  '$descr', '$date')";
     $result = mysql_query($querry);
     }
-  
+
    if (!$result){
    //inscription !ok
    $erreur = mysql_error();
@@ -91,7 +89,6 @@ $dossier .= "/".$nom;
 //remplace les espaces par des underscore
  $dossier = str_replace(" ", "_", $dossier );
 mkdir($dossier);
-
 
 echo "inscription du projet ".$nom." a la manip ".$nom_manip."<br />";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";

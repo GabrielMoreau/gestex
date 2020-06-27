@@ -23,7 +23,7 @@ if (empty($tri))
 if ( $pdo = connect_db() ){
 	// recupere les refs du user
 	// $querry = "SELECT * FROM users where loggin='$logged_in_user' " ;
-	// list($qh,$num) = query_db($querry);	
+	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
 	$sql = "SELECT nom, prenom FROM users where loggin = ? ;";
 	$stmt = $pdo->prepare($sql);
@@ -99,7 +99,7 @@ if ( $pdo = connect_db() ){
 				</th>
 				<th style="vertical-align: top; text-align: center;">
 					<br />
-				</th> 
+				</th>
 				<?php } ?>
 				<th style="vertical-align: top; text-align: center;">
 					<br />
@@ -108,7 +108,7 @@ if ( $pdo = connect_db() ){
 			<?php	//interrogation base de donnees
 
 			// recupere la liste de manips
-			// $querry = "SELECT * FROM manip ";	
+			// $querry = "SELECT * FROM manip ";
 
 			// $querry.="order by '$tri' ";
 			// list($qh,$num) = query_db($querry);
@@ -116,7 +116,7 @@ if ( $pdo = connect_db() ){
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(array($tri));
 			$manip = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			
+
 			// while ($data = result_db($qh)) {
 				foreach($manip as $manip){
 				$relief =0;
@@ -187,5 +187,5 @@ if ( $pdo = connect_db() ){
 
 <?php
 }//end if
- pied_page() 
+ pied_page()
  ?>

@@ -10,7 +10,7 @@
 	$dbh = dbConnect();
 	$context_user = strtolower($_SESSION['context_user']);
 
-  //define the command menu	
+  //define the command menu
 /*	//$commandmenu->addCommand("admin.php", "Admin Homepage");
 	$commandmenu->addCommand("client_maint.php", "Clients");
 	$commandmenu->addCommand("user_maint.php", "Users");
@@ -25,7 +25,7 @@
   // Set default months
   if (!$month) $month = (int)date('m');
   if (!$year) $year = (int)date('Y');
-  
+
   // Calculate the previous month.
   $next_month = $month + 1;
   $next_year = $year;
@@ -77,11 +77,11 @@
 							<b><a href="<?php echo $PHP_SELF?>?orderby=<?php echo $PROJECT_TABLE; ?>.proj_id&month=<?php echo $month; ?>&year=<?php echo $year; ?>" class="inner_table_column_heading">Project</a>&nbsp;/&nbsp;
 							<a href="<?php echo $PHP_SELF?>?orderby=<?php echo $TASK_TABLE; ?>.task_id&month=<?php echo $month; ?>&year=<?php echo $year; ?>" class="inner_table_column_heading">Task</a></b>
 						</td>
-					</tr>				
+					</tr>
 <?php {
 
   if ($orderby == '') $orderby="username";
-    
+
   $query = "select distinct first_name, last_name, $USER_TABLE.username, $PROJECT_TABLE.title, $PROJECT_TABLE.proj_id, ".
 					 "$TASK_TABLE.name, $TASK_TABLE.task_id ".
 		"FROM $USER_TABLE, $PROJECT_TABLE, $TASK_TABLE, $ASSIGNMENTS_TABLE, $TASK_ASSIGNMENTS_TABLE WHERE ".
@@ -92,19 +92,18 @@
   list ($qh,$num) = dbQuery($query);
   $last_username = "";
 
-
   while ($name_data = dbResult($qh))
 	{
     $query = "select sec_to_time(sum(unix_timestamp(end_time) - unix_timestamp(start_time))) as diff from $TIMES_TABLE where ".
       "start_time >= '$year-$month-1' and end_time < '$next_year-$next_month-1' and end_time > 0 ".
       "and uid='$name_data[username]' and task_id=$name_data[task_id] and proj_id=$name_data[proj_id]";
-    
+
     list($qh2, $num2) = dbQuery($query);
     if ($num2 > 0)
       $time_data = dbResult($qh2);
-    
+
     print "<TR>\n";
-    
+
     if ($last_username != $name_data[username])
     {
 			$last_username = $name_data[username];
@@ -119,7 +118,7 @@
       print "<TD ALIGN=CENTER><TT>${time_data[diff]}</TT></TD>\n\n";
     else
       print "<TD ALIGN=CENTER><TT>00:00:00</TT></TD>\n";
-    
+
     print "<TD><A HREF=\"javascript:void(0)\" ONCLICK=window.open(\"proj_info.php?proj_id=$name_data[proj_id]\",\"Info\",\"location=0,directories=no,status=no,menubar=no,resizable=1,scrollbar=yes,width=580,height=200\")>$name_data[title]</A> ".
           "<A HREF=\"javascript:void(0)\" ONCLICK=window.open(\"task_info.php?proj_id=$name_data[proj_id]&task_id=$name_data[task_id]\",\"TaskInfo\",\"location=0,directories=no,status=no,scrollbar=yes,menubar=no,resizable=1,width=580,height=220\")>$name_data[name]</A></TD>\n";
     print "</TR>\n";

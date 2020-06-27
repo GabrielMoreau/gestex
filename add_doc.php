@@ -17,7 +17,7 @@ $proj_id = $_GET[idp];
 if (empty($proj_id))
  Header("Location :accueil.php");
 
-$task_id = $_GET[idt]; 
+$task_id = $_GET[idt];
 
 require("html_functions.php");
 
@@ -77,10 +77,9 @@ echo "test de ".$dossier."...";
 }
 
 }//end if connex
- else 
+ else
   Header("Location :accueil.php");
 ?>
- 
 
 <br />
 <br />

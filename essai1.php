@@ -1,4 +1,3 @@
-
 <?php
 //essai1.php
 // Authenticate
@@ -10,13 +9,9 @@ include("db_functions.php");
 
 require("html_functions.php");
 
-
 // $user_id = $_SESSION['user_id'];
 // $logged_in_user = strtolower($_SESSION['logged_in_user']);
 // $user_level= $_SESSION['level'];
-
-
-
 
 en_tete("Liste des appareils:");
 
@@ -37,13 +32,8 @@ en_tete("Liste des appareils:");
 	<a href="login.php?variable=instru">Acc&egrave;s<br />restreint</a>
 	<br /></td>
 
-
 </tr></tbody>
 </table>
-
-
-
-
 
 <br />
 Liste des appareils : <br />
@@ -52,7 +42,7 @@ Liste des appareils : <br />
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
-	
+
 	 <th style="vertical-align: top; text-align: center;">
 
 	<a href ="instru1.php?list=">Liste globale</a><br />
@@ -83,8 +73,6 @@ if ( $pdo = connect_db() ){
 
 	// recupere les refs du user
 
-
-
 	$sql = 'SELECT id, nom FROM categorie order by ?;';
 	$stmt =$pdo->prepare($sql);
 	$stmt->execute(array($tri));
@@ -95,17 +83,15 @@ if ( $pdo = connect_db() ){
  echo"<td style=\"vertical-align: top;\">";
 // echo "<a href =\"instru1.php?categorie=".$categorie[0]['id']."\">". $categorie[0]['nom']."</a>";
 // echo "<br />";
-	
 
 // while ($data = result_db($qh))
-foreach($categorie as $data){    
+foreach($categorie as $data){
 
 	echo "<a href =\"instru1.php?categorie=".$data['id']."\">". $data['nom']."</a>";
 	echo "<br />";
 }
 
       echo"</tr>";
-
 
 }
 ?>

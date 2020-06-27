@@ -19,7 +19,7 @@ en_tete("Liste des appareils:");
 
 if (empty($_GET['tri']))
 	$tri ="id";
-else 
+else
 	$tri = $_GET['tri'];
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
@@ -64,7 +64,7 @@ Liste des appareils : <br />
 
  <tbody>
     <tr bgcolor="#f7d709">
-	
+
 	 <th style="vertical-align: top; text-align: center;">
 
 	<a href ="instru.php?categorie=0 ">Liste globale</a><br />
@@ -85,8 +85,6 @@ Liste des appareils par cat&eacute;gorie : <br />
  style="width: 70%; text-align: center; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
-	
-	
 
 <?php
 if ( $pdo = connect_db() ){
@@ -98,7 +96,6 @@ if ( $pdo = connect_db() ){
 	// $last_id=0;
 // $data = result_db($qh);
 
-	
 	$stmt =$pdo->prepare($sql);
 	$stmt->execute(array($tri));
 	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -122,7 +119,7 @@ echo "<br />";
 </table>
 
 <?php
- if (( $user_id ==33)|| ( $user_id ==2) || $user_id == 105) 
+ if (( $user_id ==33)|| ( $user_id ==2) || $user_id == 105)
 {?>
 <br /><br /><br />
  <td style="vertical-align: top; text-align: center;">

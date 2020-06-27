@@ -127,7 +127,7 @@
 			$sep = '?';
 		$r .= '<select name="lang"
 			onchange="window.location=\''.$dir_base._SPIP_LOADER_SCRIPT.$sep.'lang=\'+this.value;">';
-		
+
 		foreach ($GLOBALS['langues'] as $l => $nom)
 			$r .= '<option value="'.$l.'"' . ($l == $lang ? ' selected="selected"' : '')
 				. '>'.$nom."</option>\n";
@@ -136,13 +136,12 @@
 		return $r;
 	}
 
-
 	//
 	// Gestion des droits d'acces
 	//
 	function tester_repertoire() {
 		global $chmod;
-		
+
 		$ok = false;
 		$self = basename($_SERVER['PHP_SELF']);
 		$uid = @fileowner('.');
@@ -392,7 +391,7 @@
 		$menu_langues = menu_languesT($GLOBALS['lang']);
 
 		echo <<<EOD
-		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 		<html "xml:lang='{$GLOBALS['lang']}' dir='{$GLOBALS['spip_lang_dir']}'">
 		<head>
 		<title>$titre</title>
@@ -572,9 +571,9 @@ EOD;
 			//
 			if ($_GET['charger'] != 'oui') {
 				debut_html();
-				$dest = (_DEST_PAQUET_ZIP == '') ? 
+				$dest = (_DEST_PAQUET_ZIP == '') ?
 					_TT('tradloader:ce_repertoire') :
-					_TT('tradloader:du_repertoire').' <tt>'._DEST_PAQUET_ZIP.'</tt>';   
+					_TT('tradloader:du_repertoire').' <tt>'._DEST_PAQUET_ZIP.'</tt>';
 				echo _TT('tradloader:texte_intro', array('paquet'=>strtoupper(_NOM_PAQUET_ZIP),'dest'=> $dest));
 				echo "<div style='text-align:".$GLOBALS['spip_lang_right']."'>";
 				echo "<form action='".$dir_base._SPIP_LOADER_SCRIPT."' method='get'><div>";

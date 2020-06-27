@@ -1,7 +1,7 @@
 <?php
 
 //connect.php
-//infos de connexions a la base mySQL 
+//infos de connexions a la base mySQL
 
 define('GESTEX_DB_USER',     "pool");
 define('GESTEX_DB_PASSWORD', "web;2pool");

@@ -12,54 +12,44 @@
 require("html_functions.php");
 require ("db_functions.php");
 
-
-
 //modification d'une manip labview
 unset($erreur);
 //variables ne pouvant etre nulles
 if (empty($_POST[id_app]))
-	$erreur="id non pr&eacute;cis&eacute;";	
+	$erreur="id non pr&eacute;cis&eacute;";
 else{
 	$id_app =$_POST[id_app];
 
 if (empty($_POST[manipch]))
-	$erreur="manipch non pr&eacute;cis&eacute;";	
+	$erreur="manipch non pr&eacute;cis&eacute;";
 else{
 	$manipch =$_POST[manipch];
 
 if (empty($_POST[technicien]))
-	$erreur="développeur non pr&eacute;cis&eacute;";	
+	$erreur="développeur non pr&eacute;cis&eacute;";
 else{
 	$technicien =$_POST[technicien];
 
-	
 		$localisation=$_POST[localisation];
 
-
 		if (empty($_POST[matos]))
-			$erreur="matériel non pr&eacute;cis&eacute;";	
+			$erreur="matériel non pr&eacute;cis&eacute;";
 		else{
 			$matos =$_POST[matos];
 
 			if (empty($_POST[code]))
-				$erreur="descriptif du code non pr&eacute;cis&eacute;";	
+				$erreur="descriptif du code non pr&eacute;cis&eacute;";
 			else{
 				$code =$_POST[code];
 
-											
 					$driver = $_POST[driver];
 
 					$module = $_POST[module];
 
-
-
-
 					$ecran = $_POST[ecran];
 
-
 					$pdf = $_POST[pdf];
-					
-							
+
 }}}}}
 
 en_tete("resultat modification labview");
@@ -70,8 +60,7 @@ if (empty($tri))
 
 $cat=$_GET[categorie];
 echo "$cat";
-//récupère la catégorie de le page ajout appareil 
-
+//récupère la catégorie de le page ajout appareil
 
 if (!empty($erreur) ){
 
@@ -95,8 +84,6 @@ if ( $connex = connect_db() ){
 	$querry="SELECT * FROM labview WHERE id='$id_app'";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
-
-
 
 		//modification manip Labview
 $modif=0;
@@ -142,7 +129,7 @@ if ($matos!=$data['matos']){
 			$modif=1;
 			$querry.="module='$module',";
 		}
-		
+
 		if ($ecran!=$data['ecran']){
 			//modif des impressions écran
 			$modif=1;
@@ -153,7 +140,6 @@ if ($matos!=$data['matos']){
 			$modif=1;
 			$querry.="pdf='$pdf',";
 		}
-
 
 		// supprime la derniere virgule
 		$querry[strlen($querry)-1]=' ';
@@ -185,12 +171,10 @@ if ( $connex = connect_db() ){
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);}
 
-
 //echo "<br />modification de ".$nom."<br />";
 echo" est valid&eacute;e ";
 echo"<br /><br /><a href=\"labview.php\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
-
 
 pied_page();
 exit();

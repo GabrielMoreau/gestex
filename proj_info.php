@@ -88,7 +88,7 @@ if ( $connex = connect_db() ){
 
  <td> Temps Total Projet : <?php echo $temps_total?> h</td>
  </tr>
- 
+
 </tbody>
 </table>
 <?php }//end if connect

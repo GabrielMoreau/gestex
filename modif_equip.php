@@ -12,8 +12,6 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-
-
 //modification d'une equipe
 
 unset($erreur);
@@ -33,11 +31,10 @@ else {
 			$compte=$_POST[compte];
 			$chef=$_POST[chef];
 			$descr =$_POST[descr];
-							
+
 }}}
 
 en_tete("resultat modification ");
-
 
 if (!empty($erreur) ){
 
@@ -61,7 +58,6 @@ if ( $connex = connect_db() ){
 	$querry="SELECT * FROM equipe WHERE id='$id_equip'";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
-
 
 echo $nom." ".$data['nom']."<br />";
 echo $descr." ".$data['descr']."<br />";

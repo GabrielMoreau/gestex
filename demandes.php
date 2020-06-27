@@ -48,7 +48,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	<a href="historique_demandes.php">Historique<br />des demandes</a>
 	<br /></td>
 
-<?php if ( $user_level >=2 ) {	
+<?php if ( $user_level >=2 ) {
 ?>
 
  <td style="vertical-align: top; text-align: center;">
@@ -84,8 +84,7 @@ Liste des demandes en cours : <br />
       <th style="vertical-align: top; text-align: center;">
 	Avancement<br />
       </th>
-     
-     
+
 <th style="vertical-align: top; text-align: center;">
 	Termin&eacute;e<br />
       </th>
@@ -94,20 +93,19 @@ Liste des demandes en cours : <br />
 	Pi&egrave;ces jointes<br />
       </th>
 
-<?php if ( $user_level >=2 ) 	
+<?php if ( $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 ) 	
+	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
 <?php	//interrogation base de donnees
 
 if ( $pdo = connect_db() ){
-	
 
 	$sql = 'SELECT * FROM demandes where termine="non";';
 	// list($qh,$num) = query_db($querry);
-	
+
 	// $last_id=0;
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
@@ -119,14 +117,14 @@ if ( $pdo = connect_db() ){
 // echo "<tr>";
 //  echo"</td><td style=\"vertical-align: top;\">";
 // 	echo $demandes[0]['tache'];
-    
+
 //        echo"</td><td style=\"vertical-align: top;\">";
 // echo $demandes[0]['nomdemandeur'];
 
 //   echo"</td><td style=\"vertical-align: top;\">";
 
 // echo $demandes[0]['details'];
-      
+
 //   echo"</td><td style=\"vertical-align: top;\">";
 // echo $demandes[0]['achat'];
 //  echo"</td><td style=\"vertical-align: top;\">";
@@ -136,9 +134,7 @@ if ( $pdo = connect_db() ){
 //  echo"</td><td style=\"vertical-align: top;\">";
 // echo $demandes[0]['piecesjointes'];
 
-	
-	
-// 	 if ( $user_level >=2) {	
+// 	 if ( $user_level >=2) {
 //       echo"</td><td style=\"vertical-align: top;\">";
 //       echo "<a href=\"add_demandes.php?id=$demandes[0][id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
 //       echo"</td>";
@@ -147,7 +143,7 @@ if ( $pdo = connect_db() ){
 //       echo"</td><td style=\"vertical-align: top;\">";
 //       echo "<a href=\"del_demandes.php?id=$demandes[0][id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
 //       echo"</td>";
-	
+
 // }
 // echo"</tr>";
 
@@ -185,7 +181,7 @@ echo $data['piecesjointes'];
 		//si trouve ajoute un bouton
 		echo "Voir : <a href =\"jointdemandes.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
 
- if ( $user_level >=2) {	
+ if ( $user_level >=2) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_demandes.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\"Modifier\" /></a>";
       echo"</td>";
@@ -194,7 +190,7 @@ echo $data['piecesjointes'];
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_demandes.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
-	
+
 }
 echo"</tr>";
 

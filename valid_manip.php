@@ -9,26 +9,24 @@ unset($erreur); unset($nom);
 //variables ne pouvant etre nulles
 
     if (empty($_POST[nom]))
-     $erreur="nom non pr&eacute;cis&eacute;"; 
+     $erreur="nom non pr&eacute;cis&eacute;";
     else{
      $nom =$_POST[nom];
      if (empty($_POST[local]))
-      $erreur="Local non pr&eacute;cis&eacute;"; 
+      $erreur="Local non pr&eacute;cis&eacute;";
      else{
       $local = $_POST[local];
-      
+
        $descr=$_POST[descr];
        //variables pouvant etre nulles
        $equipe =$_POST[equipe];
        $chercheur =$_POST[cherch];
        $chercheur_bis =$_POST[cherch_bis];
        $date =$_POST[date];
-       
+
 }}
 
 en_tete("resultat inscription ");
-
-
 
 if (!empty($erreur) ){
 

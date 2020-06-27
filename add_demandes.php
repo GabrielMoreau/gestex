@@ -53,7 +53,6 @@ else if ($mode=="modifier"){
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 
-	
 }
 ?>
 
@@ -63,10 +62,8 @@ else if ($mode=="modifier"){
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
 		<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
 
- 
-
  <tr>
-    
+
       <td style="vertical-align: top;">Tâche *<br />
       </td>
       <td style="vertical-align: top;">
@@ -75,7 +72,7 @@ else if ($mode=="modifier"){
     </tr>
 
     <tr>
-    
+
       <td style="vertical-align: top;">Nom du demandeur *<br />
       </td>
       <td style="vertical-align: top;">
@@ -90,23 +87,23 @@ else if ($mode=="modifier"){
 	<textarea name="details" cols="100" rows="5"> <?php echo $data['details'] ?>
 	</textarea>
 </tr>
-    
+
   <tr>
-    
+
       <td style="vertical-align: top;">Date  *<i>format YYYY-MM-DD</i><br />
       </td>
       <th style="vertical-align: top;">
 	<input type="text" name="achat" size="10" maxlength="10" value="<?php
  if ($mode =="modifier")
 			echo $data['achat'];
-		else 
+		else
 			echo date('Y-m-d', time() );
 	?>" ><br />
       </td>
     </tr>
 
   <tr>
-    
+
       <td style="vertical-align: top;">Avancement*<br />
       </td>
       <td style="vertical-align: top;">
@@ -115,7 +112,6 @@ else if ($mode=="modifier"){
     </tr>
 
  <tr>
-  
 
       <td style="vertical-align: top;">Terminé?<br />
       </td>
@@ -125,12 +121,12 @@ else if ($mode=="modifier"){
  <OPTION VALUE="oui">Oui
  <OPTION VALUE="non">Non
 </SELECT> <P>
-	
+
       </td>
     </tr>
 
   <tr>
-    
+
       <td style="vertical-align: top;">Pièces Jointes<br />
       </td>
       <td style="vertical-align: top;">
@@ -152,14 +148,14 @@ remplir obligatoirement, les autres sont optionnels.<br />
 	<form action="demandes.php"method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
-	 </td>    </tr> 
-	</form>  
+	 </td>    </tr>
+	</form>
 </tbody>
 </table>
 <br />
 
 <?php }
-	else 
+	else
 	{	Header("Location :demandes.php");	}	?>
 <br />
 </div>

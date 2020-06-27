@@ -1,4 +1,4 @@
-<?php 
+<?php
 require("db_functions.php");
 
 if ( $connex = connect_db() ){

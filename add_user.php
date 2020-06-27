@@ -19,7 +19,7 @@ if (empty($user2ch_id)){
 }
 else{
 	//->modif coordonnées
-	
+
 	$mode ="modif";
 	$action="modif_inscr.php";
 
@@ -54,7 +54,7 @@ echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
       <td style="vertical-align: top;">
 	<?php if ($mode=="ajouter"){ ?>
 	<input type="text" name="loggin" size="25" maxlength="25" value="" ><br />
-	<?php } 
+	<?php }
 		else {
 			// on ne change pas le loggin
 			echo $logged_in_user."<br />";
@@ -89,7 +89,7 @@ echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
       <td style="vertical-align: top;">
 	<input type="text" name="prenom" size="25" maxlength="25" value="<?php echo $data['prenom'] ?>" ><br />
       </td>
-    </tr>  
+    </tr>
     <tr>
       <td style="vertical-align: top;">Adresse courriel *<br />
       </td>
@@ -113,7 +113,7 @@ echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
 		?>
       <td style="vertical-align: top;">
 		<select  name="equipe">
-		<?php 	
+		<?php
 		while(	$equipes = result_db($qheq)	){
 
 			echo "<option value=\"".$equipes['id']."\"";
@@ -135,7 +135,7 @@ echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
 	<input type="radio" name="level" value="0" <?php if ($data['level']==0) echo "checked=\"checked\"" ?> >&Eacute;tudiant<br />
 	<input type="radio" name="level" value="1" <?php if ($data['level']==1) echo "checked=\"checked\"" ?> >Chercheur<br />
 	<input type="radio" name="level" value="2" <?php if ($data['level']==2) echo "checked=\"checked\"" ?> >ITA<br />
-	<?php }	
+	<?php }
 	if (isset($user_level) && $user_level==3) { ?>
 		<input type="radio" name="level" value="3" <?php if ($data['level']==3) echo "checked=\"checked\"" ?> >Admin<br />
 	<?php }

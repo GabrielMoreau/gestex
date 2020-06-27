@@ -85,13 +85,13 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 			Pièces jointes<br />
 		</th>
 
-		<?php if ( $user_level >=2 ) 	
+		<?php if ( $user_level >=2 )
 		echo "</th><th>";
-		if ( $user_level >=3 ) 	
+		if ( $user_level >=3 )
 			echo "</th><th>";
 		?>
 	</tr>
-	<?php	
+	<?php
 // interrogation base de données
 
 	if ( $connex = connect_db() ){
@@ -124,7 +124,7 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	echo"</td><td style=\"vertical-align: top;\">";
 	echo $data['piecesjointes'];
 
-	if ( $user_level >=2) {	
+	if ( $user_level >=2) {
 		echo"</td><td style=\"vertical-align: top;\">";
 		echo "<a href=\"add_demandes.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
 		echo"</td>";
@@ -169,7 +169,7 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 			echo "Voir : <a href =\"jointdemandes.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
 		}
 
-		if ( $user_level >=2) {	
+		if ( $user_level >=2) {
 			echo"</td><td style=\"vertical-align: top;\">";
 			echo "<a href=\"add_demandes.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
 			echo"</td>";

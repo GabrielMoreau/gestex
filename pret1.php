@@ -47,7 +47,6 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 // 	$last_id=0;
 // $data = result_db($qh);
 
-	
 // while ($data = result_db($qh)){
 	foreach($equipe as $data){
 if ($data['id'] == 15)
@@ -56,7 +55,7 @@ if ($data['id'] == 15)
 
 	echo "<a href =\"instru.php?equipe=".$data['id']." pret=".$data['id']."\">Liste des appareils en pr&ecirc;t</a>";
 echo "</td>";
- 
+
   echo"<td style=\"vertical-align: top;\">";
 	echo "<a href =\"reserva.php?user=".$user_level." \">Liste des r&eacute;servations</a>";
 echo"<br /></td>";
@@ -64,10 +63,7 @@ echo"<br /></td>";
 
 }
 
-      
 ?>
-
- 
 
 </tr></tbody>
 </table>

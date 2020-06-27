@@ -9,14 +9,14 @@ unset($erreur);unset($loggin);unset($password);unset($password2); unset($nom);
 //variables ne pouvant etre nulles
 
 				if (empty($_POST[nom]))
-					$erreur="nom non pr&eacute;cis&eacute;";	
+					$erreur="nom non pr&eacute;cis&eacute;";
 				else{
 					$nom =$_POST[nom];
 					if (empty($_POST[adresse]))
-						$erreur="Adresse non pr&eacute;cis&eacute;";	
+						$erreur="Adresse non pr&eacute;cis&eacute;";
 					else{
 						$adresse = $_POST[adresse];
-						
+
 							$mail=$_POST[addr_mail];
 							//variables pouvant etre nulles
 							$www =$_POST[www];
@@ -27,8 +27,6 @@ unset($erreur);unset($loggin);unset($password);unset($password2); unset($nom);
 }}
 
 en_tete("resultat inscription ");
-
-
 
 if (!empty($erreur) ){
 
@@ -58,7 +56,7 @@ if ( $connex = connect_db() ){
 			$erreur = mysql_error();
 		echo "<br />erreur :".$erreur;
 		}
-		
+
 	}//end if connect
 
 ////en_tete("inscription Valid&eacute;e");

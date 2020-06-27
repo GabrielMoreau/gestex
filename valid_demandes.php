@@ -9,46 +9,38 @@ unset($erreur);
 //variables ne pouvant etre nulles
 
 if (empty($_POST[tache]))
-	$erreur="tache non pr&eacute;cis&eacute;";	
+	$erreur="tache non pr&eacute;cis&eacute;";
 else{
 	$tache =$_POST[tache];
 
-
 if (empty($_POST[nomdemandeur]))
-	$erreur="nomdemandeur non pr&eacute;cis&eacute;";	
+	$erreur="nomdemandeur non pr&eacute;cis&eacute;";
 else{
 	$nomdemandeur =$_POST[nomdemandeur];
 
 	if (empty($_POST[details]))
 
-			$erreur="details non pr&eacute;cis&eacute;";	
+			$erreur="details non pr&eacute;cis&eacute;";
 else{
 	$details =$_POST[details];
-
-
-			
 
 							//variables pouvant etre nulles
 
 if (empty($_POST[achat]))
-		$erreur="achat non pr&eacute;cis&eacute;";	
+		$erreur="achat non pr&eacute;cis&eacute;";
 	else{
 		$achat=$_POST[achat];
 
 if (empty($_POST[avancement]))
-		$erreur="avancement non pr&eacute;cis&eacute;";	
+		$erreur="avancement non pr&eacute;cis&eacute;";
 	else{
 		$avancement=$_POST[avancement];
 
 				$termine =$_POST[termine];
 
-
 				$piecesjointes =$_POST[piecesjointes];
 
-
-	}}}}}	
-							
-
+	}}}}}
 
 en_tete("resultat ajout appareil ");
 
@@ -58,7 +50,7 @@ if (empty($tri))
 
 $cat=$_GET[categorie];
 //echo "$cat";
-//récupère la catégorie de le page ajout appareil 
+//récupère la catégorie de le page ajout appareil
 
 if (!empty($erreur) ){
 
@@ -83,25 +75,23 @@ if ( $connex = connect_db() ){
 		$result = mysql_query("INSERT INTO $table ".
 			"(tache,nomdemandeur,details,achat,avancement,termine,piecesjointes)".
 			" VALUES ('$tache','$nomdemandeur','$details','$achat','$avancement','$termine','$piecesjointes')");
-			//	
+			//
 if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
 		echo "<br />erreur :".$erreur;
 		}
-		
+
 	}//end if connect
 
 ////en_tete("inscription Valid&eacute;e");
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils
 
-
 $querry = "SELECT * FROM categorie where id='$cat'" ;
 	list($qh,$num) = query_db($querry);
 	$last_id=0;
 $datax = result_db($qh);}
-
 
 echo "<br />ajout de ".$nom."<br />";
 echo" est valid&eacute;e ";

@@ -27,7 +27,7 @@ if (!isset($valid) || empty($valid) || $valid=="no"){
  echo "Sur de supprimer l'&eacute;quipe ".$id_equip. " ?<br />";
  echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_equip."&ok=yes\">OUI</a><br />";
   echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
- 
+
 }
 else{
 if ( $connex = connect_db() ){
@@ -40,13 +40,13 @@ if ( $connex = connect_db() ){
    //inscription !ok
    $erreur = mysql_error();
    echo "<br />erreur :".$erreur;
- 
+
  }
-else 
- echo "&Eacute;quipe  ".$id_equip." supprim&eacute;e!<br />"; 
+else
+ echo "&Eacute;quipe  ".$id_equip." supprim&eacute;e!<br />";
 //on retourne a la page precedente
   echo "<a href=\"list_equip.php\">Suite</a><br />";
-} 
+}
 }
 
 ?>

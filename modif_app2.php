@@ -12,41 +12,39 @@
 require("html_functions.php");
 require ("db_functions.php");
 
-
-
 //modification d'un appareil
 unset($erreur);
 //variables ne pouvant etre nulles
 if (empty($_POST[id_app]))
-	$erreur="id non pr&eacute;cis&eacute;";	
+	$erreur="id non pr&eacute;cis&eacute;";
 else{
 	$id_app =$_POST[id_app];
 
 if (empty($_POST[categorie]))
-	$erreur="categorie non pr&eacute;cis&eacute;";	
+	$erreur="categorie non pr&eacute;cis&eacute;";
 else{
 	$categorie =$_POST[categorie];
 
 if (empty($_POST[nom]))
-	$erreur="nom non pr&eacute;cis&eacute;";	
+	$erreur="nom non pr&eacute;cis&eacute;";
 else{
 	$nom =$_POST[nom];
 	if (empty($_POST[modele]))
-		$erreur="Modele non pr&eacute;cis&eacute;";	
+		$erreur="Modele non pr&eacute;cis&eacute;";
 	else{
 		$modele=$_POST[modele];
 $gamme=$_POST[gamme];
 
 		if (empty($_POST[equipe]))
-			$erreur="equipe non pr&eacute;cis&eacute;";	
+			$erreur="equipe non pr&eacute;cis&eacute;";
 		else{
 			$equipe =$_POST[equipe];
 			if (empty($_POST[tech]))
-				$erreur="tech non pr&eacute;cis&eacute;";	
+				$erreur="tech non pr&eacute;cis&eacute;";
 			else{
 				$tech =$_POST[tech];
 				if (empty($_POST[fourn]))
-					$erreur="fournisseur non pr&eacute;cis&eacute;";	
+					$erreur="fournisseur non pr&eacute;cis&eacute;";
 				else{
 					$fourn =$_POST[fourn];
 
@@ -56,7 +54,7 @@ $gamme=$_POST[gamme];
 	$accessoires=$_POST[accessoires];
 $inventaire=$_POST[inventaire];
 $notice=$_POST[notice];
-							
+
 }}}}}}}
 
 en_tete("resultat modification appareil");
@@ -67,8 +65,7 @@ if (empty($tri))
 
 $cat=$_GET[categorie];
 echo "$cat";
-//récupère la catégorie de le page ajout appareil 
-
+//récupère la catégorie de le page ajout appareil
 
 if (!empty($erreur) ){
 
@@ -169,7 +166,6 @@ if ($notice!=$data['notice']){
 			$querry.="notice='$notice',";
 		}
 
-
 		// supprime la derniere virgule
 		$querry[strlen($querry)-1]=' ';
 		//ajoute la clause
@@ -194,10 +190,8 @@ if ($notice!=$data['notice']){
 
 ////en_tete("modification appareil Valid&eacute;e");
 
-
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils
-
 
 $querry = "SELECT * FROM categorie where id='$cat'" ;
 	list($qh,$num) = query_db($querry);
@@ -209,8 +203,6 @@ echo "<br />modification de ".$nom."<br />";
 echo" est valid&eacute;e ";
 echo"<br /><br /><a href=\"instru.php?categorie=".$datax[id]."\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
-
-
 
 pied_page();
 exit();

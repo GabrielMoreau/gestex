@@ -3,7 +3,6 @@
 	// Authenticate
 	include("session_auth.php");
 
-	
 	$user_id = $_SESSION['user_id'];
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
@@ -45,7 +44,6 @@ else if ($mode=="modifier"){
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 
-	
 }
 ?>
 
@@ -55,10 +53,8 @@ else if ($mode=="modifier"){
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
 		<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
 
- 
-
  <tr>
-    
+
       <td style="vertical-align: top;">Manip+chercheur *<br />
       </td>
       <td style="vertical-align: top;">
@@ -67,7 +63,7 @@ else if ($mode=="modifier"){
     </tr>
 
     <tr>
-    
+
       <td style="vertical-align: top;">Développeur *<br />
       </td>
       <td style="vertical-align: top;">
@@ -81,7 +77,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">
 <input type="text" name="localisation" size="30"  value="<?php echo $data['localisation'] ?>" ><br />
       </td>
-	
+
 </tr>
 
 <tr>
@@ -90,7 +86,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">
 <input type="text" name="matos" size="30"  value="<?php echo $data['matos'] ?>" ><br />
       </td>
-	
+
 </tr>
 
 <tr>
@@ -98,11 +94,11 @@ else if ($mode=="modifier"){
       </td>
       <td style="vertical-align: top;">
 	<textarea name="code" cols="50" rows="8" > <?php echo $data['code'] ?></textarea>
-     
+
 </tr>
-    
+
 <tr>
-    
+
       <td style="vertical-align: top;">Driver d'instrument<br />
       </td>
       <td style="vertical-align: top;">
@@ -111,19 +107,16 @@ else if ($mode=="modifier"){
     </tr>
 
 <tr>
-    
+
       <td style="vertical-align: top;">Module spécifique Labview<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="module" size="30"  value="<?php echo $data['module'] ?>" ><br />
       </td>
     </tr>
-  
-    
-     
 
   <tr>
-    
+
       <td style="vertical-align: top;">Impression écran<br />
       </td>
       <td style="vertical-align: top;">
@@ -132,17 +125,13 @@ else if ($mode=="modifier"){
     </tr>
 
 <tr>
-    
+
       <td style="vertical-align: top;">Doc pdf<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="pdf" size="30"  value="<?php echo $data['pdf'] ?>" ><br />
       </td>
     </tr>
-
- 
-
- 
 
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
@@ -158,14 +147,14 @@ remplir obligatoirement, les autres sont optionnels.<br />
 	<form action="labview.php"method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
-	 </td>    </tr> 
-	</form>  
+	 </td>    </tr>
+	</form>
 </tbody>
 </table>
 <br />
 
 <?php }
-	else 
+	else
 	{	Header("Location :labview.php");	}	?>
 <br />
 </div>

@@ -40,11 +40,10 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 
 	}
-	else 
+	else
 		Header("Location :accueil.php");
 }
 ?>
- 
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
@@ -52,7 +51,7 @@ if ( $connex = connect_db() ){
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
 		<input type="hidden" name="id_fourn" value="<?php echo $fourn_id ?>" >
     <tr>
-    
+
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
@@ -64,7 +63,7 @@ if ( $connex = connect_db() ){
       <td style="vertical-align: top;">
 	<input type="text" name="adresse" size="50" maxlength="50" value="<?php echo $data['adresse'] ?>" ><br />
       </td>
-    </tr>  
+    </tr>
     <tr>
       <td style="vertical-align: top;">Adresse courriel *<br />
       </td>
@@ -108,7 +107,7 @@ if ( $connex = connect_db() ){
 	<textarea name="descr" cols="50" rows="5"> <?php echo $data['descr'] ?></textarea>
       </td>
     </tr>
-   
+
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
@@ -122,8 +121,8 @@ remplir obligatoirement, les autres sont optionnels.<br />
 	<form action="list_fourn.php" method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
-	 </td>    </tr> 
-	</form>  
+	 </td>    </tr>
+	</form>
 </tbody>
 </table>
 <br />

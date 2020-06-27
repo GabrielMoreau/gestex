@@ -11,42 +11,39 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 require("html_functions.php");
 
-
-
 //modification d'une intervention sur  appareil
 unset($erreur);
 //variables ne pouvant etre nulles
 if (empty($_POST[id_app]))
-	$erreur="id appareil non pr&eacute;cis&eacute;";	
+	$erreur="id appareil non pr&eacute;cis&eacute;";
 else{
 	$id_app =$_POST[id_app];
 if (empty($_POST[id_int]))
-	$erreur="id intervention non pr&eacute;cis&eacute;";	
+	$erreur="id intervention non pr&eacute;cis&eacute;";
 else{
 	$id_int =$_POST[id_int];
 
 	if (empty($_POST[descr]))
-		$erreur="Description non pr&eacute;cis&eacute;";	
+		$erreur="Description non pr&eacute;cis&eacute;";
 	else{
 		$descr=$_POST[descr];
-		
+
 			if (empty($_POST[tech]))
-				$erreur="tech non pr&eacute;cis&eacute;";	
+				$erreur="tech non pr&eacute;cis&eacute;";
 			else{
 				$tech =$_POST[tech];
 				if (empty($_POST[fourn]))
-					$erreur="fournisseur non pr&eacute;cis&eacute;";	
+					$erreur="fournisseur non pr&eacute;cis&eacute;";
 				else{
 					$fourn =$_POST[fourn];
 
 							//variables pouvant etre nulles
 					$date = $_POST[date];
 					$facture=$_POST[facture];
-							
+
 }}}}}
 
 en_tete("resultat modification intervention ".$id_int." sur l'appareil".$id_app);
-
 
 if (!empty($erreur) ){
 
@@ -81,7 +78,7 @@ echo $chef." ".$data['chef']."<br />";*/
 $modif=0;
 //on construit la demande
 	$querry = "UPDATE LOW_PRIORITY intervention SET ";
-		
+
 		if ($descr!=$data['descr']){
 			//modif de la descr
 			$modif=1;
@@ -92,7 +89,7 @@ $modif=0;
 			$modif=1;
 			$querry.="teche='$tech',";
 		}
-	
+
 		if ($fourn!=$data['fourn']){
 			//modif du fourn
 			$modif=1;
@@ -108,7 +105,6 @@ $modif=0;
 			$modif=1;
 			$querry.="facture='$facture',";
 		}
-
 
 		// supprime la derniere virgule
 		$querry[strlen($querry)-1]=' ';

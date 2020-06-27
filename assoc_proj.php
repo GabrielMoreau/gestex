@@ -12,7 +12,7 @@
 
 $manip_id = $_GET[id];
 if (empty($manip_id)){
- 
+
   Header("Location :accueil.php");
 }
 
@@ -30,12 +30,11 @@ if ( $connex = connect_db() ){
 ///tableau des projets associes
 $assoc = explode(',' , $data['assoc_proj']);
 echo "Projets deja associés :".$data['assoc_proj'];
- 
+
 }//end if connex
- else 
+ else
   Header("Location :accueil.php");
 ?>
- 
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
@@ -43,23 +42,20 @@ echo "Projets deja associés :".$data['assoc_proj'];
  <form action="valid_assoc.php" method="POST" name="inscrForm">
   <input type="hidden" name="id_manip" value="<?php echo $manip_id ?>" >
    <tr>
-    
+
       <td style="vertical-align: top;">Voici la liste des projets n'appartenant pas a cette manip :<br />
  <i>vous pouvez selectionner plusieurs projets associés</i>
       </td>
-     
+
  <?php // recupere la liste des projets n'appartennant pas a cette manip
   $querry = "SELECT id,nom,manip FROM projet WHERE manip!=".$manip_id. " ORDER BY manip";
   list($qh1,$num1) = query_db($querry);
 
-  
-
   ?>
       <td style="vertical-align: top;">
  <select name="assoc_p"  multiple size=10 >
-  <?php  
+  <?php
   while( $projets = result_db($qh1) ){
-  
 
    echo "<option value=\"".$projets['id']."\"";
    if (!empty($assoc)){
@@ -79,7 +75,7 @@ echo "Projets deja associés :".$data['assoc_proj'];
  </select>
       </td>
     </tr>
-   
+
     <tr>
    <td style="vertical-align: top;"><br />
       </td>
@@ -92,8 +88,8 @@ echo "Projets deja associés :".$data['assoc_proj'];
  <form action="accueil.php" method="POST" name="annulForm">
   <tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
  <input type="submit" name="annul" value="Annuler">
-  </td>    </tr> 
- </form>  
+  </td>    </tr>
+ </form>
 </tbody>
 </table>
 <br />

@@ -32,14 +32,14 @@ function query_db($statement) {
 function numrows_db($result) {
 	return @mysql_num_rows($result);
 }
-  
+
 function result_db($result,$i=-1) {
 	if ($i >= 0) {
 		@mysql_data_seek($result,$i);
 	}
 	return mysql_fetch_array($result);
 }
-  
+
 function last_id_db() {
 	return mysql_insert_id();
 }

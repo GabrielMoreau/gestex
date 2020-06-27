@@ -98,20 +98,18 @@ Liste des appareils : <br />
       <th style="vertical-align: top; text-align: center;">
 	&Eacute;quipe<br />
       </th>
-     
+
       <th style="vertical-align: top; text-align: center;">
 	Fournisseur<br />
       </th>
 
-  
 <th style="vertical-align: top; text-align: center;">
 	Notice<br />
       </th>
 
-   
-<?php if ( $user_level >=2 ) 	
+<?php if ( $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 ) 	
+	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -126,7 +124,7 @@ if ((!empty($cat))||(!empty($eq)))
 
 $querry = "SELECT * FROM Listing where (equipe='$eq'||categorie='$cat') order by categorie";
 	list($qh,$num) = query_db($querry);
-	
+
 	$last_id=0;
 
 }
@@ -135,7 +133,7 @@ if ((empty($cat))&&(empty($eq)))
 {
 	$querry = "SELECT * FROM Listing order by categorie ";
 	list($qh,$num) = query_db($querry);
-	
+
 	$last_id=0;
 }
 
@@ -150,7 +148,7 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data['categorie']'";
       		echo $equip[nom];
  echo"</td><td style=\"vertical-align: top;\">";
 	echo "<a href =\"fiche_vie.php?id=".$data['id']."\">". $data['nom']."</a>";
-    
+
        echo"</td><td style=\"vertical-align: top;\">";
 echo $data['modele'];
 
@@ -168,20 +166,17 @@ echo $data['gamme'];
 
       		echo $equip[nom];
        echo"</td><td style=\"vertical-align: top;\">";
-	
+
 	// recupere la nom du fournisseur
 	$querry = "SELECT id, nom FROM fournisseurs WHERE id='$data['fournisseur']'";
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
       		echo $equip[nom];
-      
 
   echo"</td><td style=\"vertical-align: top;\">";
 
-	
 	///bouton lien vers la doc
 	$dossier_proj ="data/instru/".$data['nom'];
-	
 
 	//remplace les espaces par des underscore
 	$dossier_proj = str_replace(" ", "_", $dossier_proj);
@@ -191,7 +186,7 @@ echo $data['gamme'];
 	if (@opendir($dossier_proj) != FALSE){
 		//si trouve ajoute un bouton
 		echo "Voir : <a href =\"notice.php?id=". $data['id']."\">".$data['nom']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
-    
+
 	}
 if (!empty($eq))
 {
@@ -199,7 +194,7 @@ if (!empty($eq))
       echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Demande de pret\" /></a>";
       echo"</td>";
 }
-	 if ( $user_level >=2) {	
+	 if ( $user_level >=2) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_app2.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
@@ -208,7 +203,7 @@ if (!empty($eq))
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_app2.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
-	
+
 }
 echo"</tr>";
 
@@ -225,7 +220,7 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data['categorie']'";
 
  echo"</td><td style=\"vertical-align: top;\">";
 	echo "<a href =\"fiche_vie.php?id=".$data['id']."\">". $data['nom']."</a>";
-    
+
        echo"</td><td style=\"vertical-align: top;\">";
 
 echo $data['modele'];
@@ -244,13 +239,12 @@ echo $data['gamme'];
 
       		echo $equip[nom];
        echo"</td><td style=\"vertical-align: top;\">";
-	
+
 	// recupere la nom du fournisseur
 	$querry = "SELECT id, nom FROM fournisseurs WHERE id='$data['fournisseur']'";
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
       		echo $equip[nom];
-      
 
   echo"</td><td style=\"vertical-align: top;\">";
 $querry = "SELECT id, nom FROM categorie WHERE id='$data['categorie']'";
@@ -259,10 +253,8 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data['categorie']'";
 
       		//echo $cat[nom];
 
-	
 	///bouton lien vers la doc
 	$dossier_proj ="data/instru/".$data['nom'];
-	
 
 	//remplace les espaces par des underscore
 	$dossier_proj = str_replace(" ", "_", $dossier_proj);
@@ -272,11 +264,8 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data['categorie']'";
 	if (@opendir($dossier_proj) != FALSE){
 		//si trouve ajoute un bouton
 		echo "Voir : <a href =\"notice.php?id=". $data['id']."\">".$data['nom']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
-    
-	}
-	
 
-	
+	}
 
   if (!empty($eq))
 
@@ -286,7 +275,7 @@ echo"</td><td style=\"vertical-align: top;\">";
      echo"</td>";
 }
 
- if ( $user_level >=2) {	
+ if ( $user_level >=2) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_app2.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
@@ -295,14 +284,9 @@ echo"</td><td style=\"vertical-align: top;\">";
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_app2.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
-	
+
 }
 echo"</tr>";
-	
-
-	
-
-      
 
 	}//end while
 
