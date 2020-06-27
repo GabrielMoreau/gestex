@@ -48,16 +48,16 @@ require("db_functions.php");
 
 if ( $connex = connect_db() ){
 
-  if (check_val('users', 'nom', $nom)!=0){
+  if (check_val('users', 'nom', $nom) != 0){
     //nom existant deja dans db
-    $erreur ="le nom <i>".$nom."</i> est déjà entré dans la base de données";
+    $erreur ="le nom <i>".$nom."</i> est d&eacute;j&agrave; entr&eacute; dans la base de donn&eacute;es";
     }
-  elseif ( check_val('users', 'loggin', $loggin)!=0){
+  elseif (check_val('users', 'loggin', $loggin) != 0){
     //nom existant deja dans db
-    $erreur ="l'identifiant <i>".$loggin."</i> est déjà utilisé dans la base de données";
+    $erreur ="l'identifiant <i>".$loggin."</i> est d&eacute;j&agrave; utilis&eacute; dans la base de donn&eacute;es";
     }
 
-  if (check_mail($mail) !=0){
+  if (check_mail($mail) != 0){
     //adresse mail incorrecte
     $erreur ="l'adresse de courriel <i>".$mail."</i> est incorrecte";
     }
@@ -99,8 +99,8 @@ if (!empty($erreur) ){
       echo "<br /><b>erreur mySQL:</b>".$erreur;
     }
     else{
-      //inscription enregistrée mais pas encore validée!
-      //envoi d'un mail a l'admin
+      //inscription enregistree mais pas encore validee!
+      //envoi d'un courriel a l'admin
       $texte = "Inscription de ".$prenom." ".$nom;
       mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
 
@@ -108,7 +108,7 @@ if (!empty($erreur) ){
       echo "inscription de ".$prenom." ".$nom."<br />";
       echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\" />";
       echo" est propos&eacute;e avec le loggin : ".$loggin;
-      echo"<br />Vous serez prevenu de sa validation par mail....";
+      echo"<br />Vous serez pr&eacute;venu de sa validation par courriel...";
       }//end else
     echo "<br /><center><a href=\"list_users.php\">Suite</a></center><br /><br />\n";
     pied_page();

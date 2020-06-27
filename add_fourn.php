@@ -66,7 +66,7 @@ if ( $connex = connect_db() ){
       </td>
     </tr>  
     <tr>
-      <td style="vertical-align: top;">Adresse mail *<br />
+      <td style="vertical-align: top;">Adresse courriel *<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="addr_mail" size="50" maxlength="50" value="<?php echo $data['mail'] ?>" ><br />
