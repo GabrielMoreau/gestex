@@ -57,7 +57,7 @@ else	{ //edition/modif de ses propres coordonnees
   <tbody>
     <tr bgcolor="#f7d709">
       <th style="vertical-align: top; text-align: center;">
-	Prenom<br />
+	Pr&eacute;nom<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
 	<a href ="list_users.php?tri=nom">Nom</a><br />

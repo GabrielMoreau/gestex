@@ -84,7 +84,7 @@ echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
 	<input type="text" name="nom" size="25" maxlength="25" value="<?php echo $data['nom'] ?>" ><br />
       </td>
     </tr><tr>
-      <td style="vertical-align: top;">Prenom<br />
+      <td style="vertical-align: top;">Pr&eacute;nom<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="prenom" size="25" maxlength="25" value="<?php echo $data['prenom'] ?>" ><br />
