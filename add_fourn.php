@@ -73,7 +73,7 @@ if ( $connex = connect_db() ){
       </td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Telephone<br />
+      <td style="vertical-align: top;">T&eacute;l&eacute;phone<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="phone" size="15" maxlength="15" value="<?php echo $data['tel'] ?>" ><br />

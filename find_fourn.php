@@ -101,7 +101,7 @@ if (isset($find_nom) || isset($find_descr)){
 	Adresse<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Telephone<br />
+	T&eacute;l&eacute;phone<br />
       </th>
       </th>
       <th style="vertical-align: top; text-align: center;">

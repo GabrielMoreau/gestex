@@ -98,7 +98,7 @@ echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
       </td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Telephone<br />
+      <td style="vertical-align: top;">T&eacute;l&eacute;phone<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="phone" size="10" maxlength="10" value="<?php echo $data['tel'] ?>" ><br />

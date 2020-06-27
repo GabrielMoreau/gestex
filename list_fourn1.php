@@ -56,7 +56,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 	Adresse<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Telephone<br />
+	T&eacute;l&eacute;phone<br />
       </th>
       <th style="vertical-align: top; text-align: center; " >
 	Fax<br />

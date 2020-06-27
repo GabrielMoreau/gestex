@@ -64,7 +64,7 @@ else	{ //edition/modif de ses propres coordonnees
       </th>
 
       <th style="vertical-align: top; text-align: center;">
-	Telephone<br />
+	T&eacute;l&eacute;phone<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
 	Email <br />
