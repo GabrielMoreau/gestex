@@ -130,6 +130,3 @@ remplir obligatoirement, les autres sont optionnels.<br />
 
 </div>
 <?php pied_page() ?>
-</body>
-
-</html>
