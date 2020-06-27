@@ -38,12 +38,12 @@ else	{ //edition/modif de ses propres coordonnees
 ?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_user.php?id=<?php echo $user_id ?>">
-		<img src="images/edit.png" nosave="" title="modifier son profil"></a>
+		<img src="images/edit.png" nosave="" title="Modifier son profil"></a>
 	<br /></td>
  <?php } ?>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="changepwd.php?id=<?php echo $user_id ?>">
-		<img src="images/unlock.png" nosave="" title="changer son mot de passe"></a>
+		<img src="images/unlock.png" nosave="" title="Changer son mot de passe"></a>
 	<br /></td>
 	
  <td style="vertical-align: top; text-align: center;">
@@ -60,7 +60,7 @@ else	{ //edition/modif de ses propres coordonnees
 	Pr&eacute;nom<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_users.php?tri=nom">Nom</a><br />
+	<a href ="list_users.php?tri=nom">Nom de famille</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
 	T&eacute;l&eacute;phone<br />
