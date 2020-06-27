@@ -24,7 +24,8 @@ if (empty($tri))
 
 ?>
 
-<i> Consulter la liste des équipement communs disponibles au service instrumentation et choisir : 'Demande de prêt' en face de l'appareil souhaité</i><br />
+<i>Consulter la liste des &eacute;quipements communs disponibles au service instrumentation et choisir :
+'Demande de pr&ecirc;t' en face de l'appareil souhait&eacute;</i><br />
 
 <br />
 <table cellpadding="2" cellspacing="2" border="1"
@@ -48,28 +49,25 @@ if ( $connex = connect_db() ){
 	$last_id=0;
 $data = result_db($qh);
 
-	
 while ($data = result_db($qh)){
 if ($data['id'] == 15)
 
   {     echo"<td style=\"vertical-align: top;\">";
 
-	echo "<a href =\"instru1.php?equipe=".$data['id']."\">Liste des appareils en prêt</a>";
+	echo "<a href =\"instru1.php?equipe=".$data['id']."\">Liste des appareils en pr&ecirc;t</a>";
 echo "</td>";
 
 }}
 
-      
 }
 ?>
 
- 
 <td style="vertical-align: top; text-align: center;">
-	<a href="reserva.php">Liste<br />des réservations</a>
+	<a href="reserva.php">Liste<br />des r&eacute;servations</a>
 	<br /></td>
  
 <td style="vertical-align: top; text-align: center;">
-	<a href="login.php?variable=pret">Accès<br />restreint</a>
+	<a href="login.php?variable=pret">Acc&egrave;s<br />restreint</a>
 	<br /></td>
 
 </tr></tbody>
