@@ -16,11 +16,11 @@ destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l
 
 <br />
 
-<h2>Gestion intrumention</h2>
+<h2>Gestion instrumentation</h2>
 <ul>
-  <li><a href="essai1.php">inventaire des matériels</a> sous sa responsabilité.</li>
-  <li><a href="pret.php">gestion des prêts des appareils</a> du service instrumentation</li>
-  <li><a href="labview.php">liste des programmes Labview développés</a> au LEGI</li>
+  <li><a href="essai1.php">Inventaire des matériels</a> sous sa responsabilité.</li>
+  <li><a href="pret.php">Gestion des prêts des appareils</a> du service instrumentation</li>
+  <li><a href="labview.php">Liste des programmes Labview développés</a> au LEGI</li>
 </ul>
 
 <h2>Gestion des projets techniques</h2>
