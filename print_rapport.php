@@ -69,7 +69,7 @@ $temps_equip = 0;
 	//pour toutes les equipes
 /***	while($equipes = result_db($qh)){
 
-	echo "<h2>Equipe :".$equipes[nom]." (".$equipes[id].")</h2><ul>";	****/
+	echo "<h2>&Eacute;quipe :".$equipes[nom]." (".$equipes[id].")</h2><ul>";	****/
 
 		$querry = "SELECT * FROM manip ";
 		if ($manip_id != 0)	// pour une manip, sinon pour toutes

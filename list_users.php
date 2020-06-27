@@ -69,7 +69,7 @@ else	{ //edition/modif de ses propres coordonnees
 	Courriel<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_users.php?tri=equipe">Equipe</a><br />
+	<a href ="list_users.php?tri=equipe">&Eacute;quipe</a><br />
       </th>
     </tr>
 <?php	//interrogation base de donnees

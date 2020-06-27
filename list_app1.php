@@ -58,7 +58,7 @@ Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :
       </th>
 
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app1.php?tri=equipe">Equipe</a><br />
+	<a href ="list_app1.php?tri=equipe">&Eacute;quipe</a><br />
       </th>
         
 

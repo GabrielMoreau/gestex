@@ -64,7 +64,7 @@ Liste des prets : <br /><br /><br />
  
 
       <th style="vertical-align: top; text-align: center;">
-	Equipe<br />
+	&Eacute;quipe<br />
       </th>
      
        <th style="vertical-align: top; text-align: center;">

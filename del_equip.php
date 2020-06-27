@@ -10,7 +10,7 @@ if (!auth(3))
 
 require("html_functions.php");
 
-en_tete("Suppression Equipe");
+en_tete("Suppression &eacute;quipe");
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -21,10 +21,10 @@ $id_equip = $_GET[id];
 if (empty($id_equip))
  Header( "Location : list_equip.php");
 
-echo "equipe:".$id_equip. " ok :".$valid."<br />";
+echo "&Eacute;quipe:".$id_equip. " ok :".$valid."<br />";
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
- echo "Sur de supprimer l'équipe ".$id_equip. " ?<br />";
+ echo "Sur de supprimer l'&eacute;quipe ".$id_equip. " ?<br />";
  echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_equip."&ok=yes\">OUI</a><br />";
   echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
  
@@ -43,7 +43,7 @@ if ( $connex = connect_db() ){
  
  }
 else 
- echo "Equipe  ".$id_equip." supprimée!<br />"; 
+ echo "&Eacute;quipe  ".$id_equip." supprim&eacute;e!<br />"; 
 //on retourne a la page precedente
   echo "<a href=\"list_equip.php\">Suite</a><br />";
 } 

@@ -105,7 +105,7 @@ echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
       </td>
     </tr>
      <tr>
-      <td style="vertical-align: top;">Equipe<br />
+      <td style="vertical-align: top;">&Eacute;quipe<br />
       </td>
 	<?php // recupere la liste des equipes
 		$querry = "SELECT id,nom FROM equipe";

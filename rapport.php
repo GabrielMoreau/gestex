@@ -84,7 +84,7 @@ echo $texte;
 <form action="print_rapport.php" method="POST" name="rappForm">
     <tr>
     
-      <td style="vertical-align: top;">pour l'<b>Equipe</b><br /><i>choisissez dans la liste</i><br />
+      <td style="vertical-align: top;">pour l'<b>&Eacute;quipe</b><br /><i>choisissez dans la liste</i><br />
    </td>
       <td style="vertical-align: top;">
 	<select name="equipe"  size="5" onchange="location.href='rapport.php?ide=' + this.options[this.selectedIndex].value;" >

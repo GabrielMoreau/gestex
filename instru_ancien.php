@@ -69,7 +69,7 @@ Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :
       </th>
 
       <th style="vertical-align: top; text-align: center;">
-	Equipe<br />
+	&Eacute;quipe<br />
       </th>
      
       <th style="vertical-align: top; text-align: center;">

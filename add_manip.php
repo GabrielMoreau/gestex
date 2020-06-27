@@ -79,7 +79,7 @@ else if ($mode=="modifier"){
 		$querry = "SELECT id,nom FROM equipe order by nom";
 		list($qheq,$numeq) = query_db($querry);
 		?>
-      <td style="vertical-align: top;">Equipe <i> qui utilisera la manip</i><br />
+      <td style="vertical-align: top;">&Eacute;quipe <i> qui utilisera la manip</i><br />
       </td>
       <td style="vertical-align: top;">
 	<select name="equipe"   >

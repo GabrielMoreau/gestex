@@ -50,7 +50,7 @@ if ( $pdo = connect_db() ){
 					<br />
 				</th>
 				<th style="vertical-align: top; text-align: center; " >
-					<a href="list_equip.php?tri=nom">Liste des<br />Equipes</a>
+					<a href="list_equip.php?tri=nom">Liste des<br />&Eacute;quipes</a>
 					<br />
 				</th>
 				<?php if ($user_level>=2){  ?>

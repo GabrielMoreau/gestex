@@ -68,7 +68,7 @@ else if ($mode=="modifier"){
       </td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Chef d'Equipe<br />
+      <td style="vertical-align: top;">Chef d'&Eacute;quipe<br />
       </td>
       <td style="vertical-align: top;">
 <?php echo $data['chef']; ?>

@@ -75,7 +75,7 @@ if ($mode=="ajouter" )
   
 
     <tr>
-      <td style="vertical-align: top;">Equipe *<br />
+      <td style="vertical-align: top;">&Eacute;quipe *<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="equipe">

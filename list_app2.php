@@ -57,7 +57,7 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
 	Gamme<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app2.php?tri=equipe">Equipe</a><br />
+	<a href ="list_app2.php?tri=equipe">&Eacute;quipe</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
 	<a href ="list_app2.php?tri=tech">Responsable</a><br />

@@ -59,7 +59,7 @@ Voici la liste des Projets de la manip :<br />
 
  echo "<tr bgcolor=\"#f7d709\">";
 
-  echo "<td style=\" text-align: center;\"><i>Equipe</i> :".$eq[nom]."<br />";
+  echo "<td style=\" text-align: center;\"><i>&Eacute;quipe</i> :".$eq[nom]."<br />";
     // recupere le nom du chercheur
   $querry = "SELECT nom FROM users WHERE id ='$data['chercheur']'";
   list($qheq,$numeq) = query_db($querry);
