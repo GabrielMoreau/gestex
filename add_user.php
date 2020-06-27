@@ -3,7 +3,7 @@
 // Authenticate
 	include("session_auth.php");
 
-///on peut se logger autrement qu'en admin!
+/// on peut se logger autrement qu'en admin!
 /// pour une demande d'inscription
 	auth(3);
 
@@ -117,7 +117,7 @@ echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
 		while(	$equipes = result_db($qheq)	){
 
 			echo "<option value=\"".$equipes['id']."\"";
-			///selectionne la bonne equipe
+			/// selectionne la bonne equipe
 			if ( $equipes['id'] == $data['equipe'])
 				echo " selected ";
 			echo ">".$equipes['nom']."</option>";
@@ -130,18 +130,18 @@ echo "id:".$user_id ." : ".$logged_in_user." lvl:".$user_level
       <td style="vertical-align: top;">Qualit&eacute;<br />
       </td>
       <td style="vertical-align: top;">
-	<?php  if ($user_level==3 || !isset($user_level) ){ //admin loggé ou premiere inscription: modif possible
+	<?php  if ($user_level==3 || !isset($user_level) ){ // admin loggue ou premiere inscription: modif possible
 	 ?>
-	<input type="radio" name="level" value="0" <?php if ($data['level']==0) echo "checked=\"checked\"" ?> >Etudiant<br />
+	<input type="radio" name="level" value="0" <?php if ($data['level']==0) echo "checked=\"checked\"" ?> >&Eacute;tudiant<br />
 	<input type="radio" name="level" value="1" <?php if ($data['level']==1) echo "checked=\"checked\"" ?> >Chercheur<br />
 	<input type="radio" name="level" value="2" <?php if ($data['level']==2) echo "checked=\"checked\"" ?> >ITA<br />
 	<?php }	
 	if (isset($user_level) && $user_level==3) { ?>
 		<input type="radio" name="level" value="3" <?php if ($data['level']==3) echo "checked=\"checked\"" ?> >Admin<br />
 	<?php }
-	if ( isset($user_level) && ($user_level < 3 )){ ///consultation seulement
+	if ( isset($user_level) && ($user_level < 3 )){ /// consultation seulement
 		switch($data['level']){
-			case 0: echo "Etudiant<br />";break;
+			case 0: echo "&Eacute;tudiant<br />";break;
 			case 1: echo "Chercheur<br />";break;
 			case 2: echo "ITA<br />";break;
 			case 3: echo "Admin<br />";

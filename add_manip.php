@@ -100,7 +100,7 @@ else if ($mode=="modifier"){
 		$querry = "SELECT id,nom FROM users WHERE level=1 AND valid=1 order by nom";
 		list($qheq,$numeq) = query_db($querry);
 		?>
-      <td style="vertical-align: top;">Chercheur <i>( qui commande la manip)</i><br />
+      <td style="vertical-align: top;">Chercheur <i>(qui commande la manip)</i><br />
       </td>
       <td style="vertical-align: top;">
 	<select name="cherch"   >
@@ -120,7 +120,7 @@ else if ($mode=="modifier"){
 		$querry = "SELECT id,nom FROM users WHERE level<=2 AND valid=1 order by nom ";
 		list($qheq,$numeq) = query_db($querry);
 		?>
-	<td style="vertical-align: top;">Chercheur/Etudiant <i>( qui utilisera la manip)</i><br />
+	<td style="vertical-align: top;">Chercheur/&Eacute;tudiant <i>(qui utilisera la manip)</i><br />
       </td>
       <td style="vertical-align: top;">
 	<select name="cherch_bis"   >
