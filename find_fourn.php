@@ -108,16 +108,16 @@ if (isset($find_nom) || isset($find_descr)){
 	Fax<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Email <br />
+	Courriel<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	WWW <br />
+	WWW<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Contacts <br />
+	Contacts<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Description <br />
+	Description<br />
       </th>
 <?php if ( $user_level >=2 ) {	?>
 	</th><th></th><th>

@@ -62,12 +62,11 @@ else	{ //edition/modif de ses propres coordonnees
       <th style="vertical-align: top; text-align: center;">
 	<a href ="list_users.php?tri=nom">Nom</a><br />
       </th>
-
       <th style="vertical-align: top; text-align: center;">
 	T&eacute;l&eacute;phone<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Email <br />
+	Courriel<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
 	<a href ="list_users.php?tri=equipe">Equipe</a><br />

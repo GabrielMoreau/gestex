@@ -62,16 +62,16 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 	Fax<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Email <br />
+	Courriel<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	WWW <br />
+	WWW<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Contacts <br />
+	Contacts<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Description <br />
+	Description<br />
       </th>
 <?php if ( $user_level >=2 )
 		echo"</th><th>";
