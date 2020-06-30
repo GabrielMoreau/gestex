@@ -10,26 +10,33 @@
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 //recuper la methode de tri
-$tri = $_GET[tri];
-if (empty($tri))
+if (empty($_GET['tri']))
 	$tri ="id";
+else 
+      $tri = $_GET['tri'];
 
-$app_id = $_GET[id];
-
-if (empty($app_id)){
+if (empty($_GET['id']))
+	$app_id = "";
+else
+      $app_id = $_GET['id'];
+      
 
 	// recupere la liste de appareils
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 
-$querry = "SELECT * FROM categorie where id='$cat'" ;
-	list($qh,$num) = query_db($querry);
-	$last_id=0;
-$datax = result_db($qh);}
+	// list($qh,$num) = query_db($querry);
+// 	$last_id=0;
+// $datax = result_db($qh);}
+      $sql = 'SELECT * FROM categorie where id = ?;' ;
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute(array($app_id));
+      $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      //->nouvel appareil
+      if (empty($app_id)){
 
-	//->nouvel appareil
 	$mode ="ajouter";
 	$action="valid_demandes.php";
-//transmet la valeur de la tache à la page valid appareil
+//transmet la valeur de la tache ï¿½ la page valid appareil
 }
 else{
 
@@ -38,9 +45,9 @@ else{
 	$action="modif_demandes.php";
 
 }
-
+}
 require("html_functions.php");
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete("Voila un formulaire pour ajouter une demande");
 
@@ -48,11 +55,13 @@ if ($mode=="ajouter"){
 else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les demandes");
 
-	// recupere le appareil selectionné
-	$querry = "SELECT * FROM demandes WHERE id='$app_id'";
-	list($qh,$num) = query_db($querry);
-	$data = result_db($qh);
-
+	// recupere le appareil selectionnï¿½
+	$sql = 'SELECT * FROM demandes WHERE id = ?';
+	// list($qh,$num) = query_db($querry);
+	// $data = result_db($qh);
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute(array($app_id));
+      $demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	
 }
 ?>
@@ -67,10 +76,10 @@ else if ($mode=="modifier"){
 
  <tr>
     
-      <td style="vertical-align: top;">Tâche *<br />
+      <td style="vertical-align: top;">Tï¿½che *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="tache" size="30"  value="<?php echo $data['tache'] ?>" ><br />
+	<input type="text" name="tache" size="30"  value="<?php if($mode=='modifier'){ echo $demandes[0]['tache']; }?>" ><br />
       </td>
     </tr>
 
@@ -79,7 +88,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Nom du demandeur *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nomdemandeur" size="30"  value="<?php echo $data['nomdemandeur'] ?>" ><br />
+	<input type="text" name="nomdemandeur" size="30"  value="<?php if($mode=='modifier'){ echo $demandes[0]['nomdemandeur']; } ?>" ><br />
       </td>
     </tr>
 
@@ -87,7 +96,7 @@ else if ($mode=="modifier"){
   <td style="vertical-align: top;">Details<br />
       </td>
       <td style="vertical-align: top;">
-	<textarea name="details" cols="100" rows="5"> <?php echo $data['details'] ?>
+	<textarea name="details" cols="100" rows="5"> <?php if($mode=='modifier'){ echo $demandes[0]['details']; } ?>
 	</textarea>
 </tr>
     
@@ -98,7 +107,7 @@ else if ($mode=="modifier"){
       <th style="vertical-align: top;">
 	<input type="text" name="achat" size="10" maxlength="10" value="<?php
  if ($mode =="modifier")
-			echo $data['achat'];
+			echo $demandes[0]['achat'];
 		else 
 			echo date('Y-m-d', time() );
 	?>" ><br />
@@ -110,14 +119,14 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Avancement*<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="avancement" size="70"  value="<?php echo $data['avancement'] ?>" ><br />
+	<input type="text" name="avancement" size="70"  value="<?php if($mode=='modifier'){ echo $demandes[0]['avancement']; } ?>" ><br />
       </td>
     </tr>
 
  <tr>
   
 
-      <td style="vertical-align: top;">Terminé?<br />
+      <td style="vertical-align: top;">Terminï¿½?<br />
       </td>
       <td style="vertical-align: top;">
 
@@ -131,10 +140,10 @@ else if ($mode=="modifier"){
 
   <tr>
     
-      <td style="vertical-align: top;">Pièces Jointes<br />
+      <td style="vertical-align: top;">Piï¿½ces Jointes<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="piecesjointes" size="30" maxlength="30" value="<?php echo $data['piecesjointes'] ?>" ><br />
+	<input type="text" name="piecesjointes" size="30" maxlength="30" value="<?php if($mode=='modifier'){ echo $demandes[0]['piecesjointes']; } ?>" ><br />
       </td>
     </tr>
 
