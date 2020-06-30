@@ -9,21 +9,21 @@
 	$user_id = $_SESSION['user_id'];
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-$equip_id = $_GET[id];
-if (empty($equip_id)){
+if (empty( $_GET['id'])){
 	//->nouvelle inscription
 	$mode ="ajouter";
 	$action="valid_equip.php";
 }
 else{
-	//->modif coordonnées
+	//->modif coordonnï¿½es
+	$equip_id = $_GET['id'];
 	$mode ="modifier";
 	$action="modif_equip.php";
 
 }
 
 require("html_functions.php");
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete("Voila un formulaire pour inscrire une equipe");
 
@@ -31,11 +31,13 @@ if ($mode=="ajouter"){
 else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les coordonn&eacute;es d'une equipe");
 
-	// recupere le fournisseur selectionné
-	$querry = "SELECT * FROM equipe WHERE id='$equip_id'";
-	list($qh,$num) = query_db($querry);
-	$data = result_db($qh);
-
+	// recupere le fournisseur selectionnï¿½
+	$sql = 'SELECT * FROM equipe WHERE id = ?;';
+	// list($qh,$num) = query_db($querry);
+	// $data = result_db($qh);
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($equip_id));
+	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	
 }
 ?>
@@ -45,43 +47,47 @@ else if ($mode=="modifier"){
 
   <tbody>
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
-		<input type="hidden" name="id_equip" value="<?php echo $equip_id ?>" >
+		<input type="hidden" name="id_equip" value="<?php if( $mode=='modifier'){ echo $equip_id; }?>" >
     <tr>
     
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="nom" size="10" maxlength="10" value="<?php echo $data['nom'] ?>" ><br />
+	<input type="text" name="nom" size="10" maxlength="10" value="<?php if( $mode=='modifier'){ echo $equipe[0]['nom']; } ?>" ><br />
       </td>
     </tr><tr>
       <td style="vertical-align: top;">Description<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="descr" size="25" maxlength="255" value="<?php echo $data['descr'] ?>" ><br />
+	<input type="text" name="descr" size="25" maxlength="255" value="<?php if( $mode=='modifier'){ echo $equipe[0]['descr']; } ?>" ><br />
       </td>
     </tr>  
     <tr>
       <td style="vertical-align: top;">Compte *<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="compte" size="5" maxlength="5" value="<?php echo $data['compte'] ?>" ><br />
+	<input type="text" name="compte" size="5" maxlength="5" value="<?php if( $mode=='modifier'){ echo $equipe[0]['compte']; } ?>" ><br />
       </td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Chef d'Equipe<br />
       </td>
       <td style="vertical-align: top;">
-<?php echo $data['chef']; ?>
+<?php // if( $mode=='modifier'){ echo $equipe[0]['chef']; } ?>
 	<select name="chef">
 	<?php 
 	// recupere laliste des chercheurs
-	$querry = "SELECT id, nom FROM users WHERE level =1";
-	list($qheq,$numeq) = query_db($querry);
-		while ($chef = result_db($qheq)){
-			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data['chef']) {
+	$sql = 'SELECT id, nom FROM users WHERE level =1';
+	$stmt = $pdo->prepare($sql);
+    $stmt->execute();
+	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	// list($qheq,$numeq) = query_db($querry);
+	// 	while ($chef = result_db($qheq)){
+		foreach ($user as $chef){
+			echo "<option value=\"".$chef['id']."\"";
+			if ($mode=="modifier" && $chef['id'] == $equipe[0]['chef']) {
 				echo " selected";	}
-			echo ">".$chef[nom]."</option>";
+			echo ">".$chef['nom']."</option>";
 		}//end while
 		 ?>
 	</select><br />
