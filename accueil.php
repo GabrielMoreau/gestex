@@ -14,6 +14,7 @@ $user_level = $_SESSION['level'];
 require("html_functions.php");
 
 en_tete("Liste des Manips");
+nav_bar();
 
 //recuper la methode de tri
 $tri = $_GET['tri'];
