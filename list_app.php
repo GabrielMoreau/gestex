@@ -16,13 +16,15 @@ require("html_functions.php");
 en_tete("Liste des appareils:");
 
 //recuper la methode de tri
-$tri = $_GET[tri];
-if (empty($tri))
+if (empty($_GET['tri']))
 	$tri ="nom";
+else
+	$tri = $_GET['tri'];
+
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
-Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :<br />
+Liste des appareils pour lesquels la maintenance est enregistrï¿½e rï¿½guliï¿½rement :<br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
@@ -73,41 +75,57 @@ Liste des appareils pour lesquels la maintenance est enregistrée régulièrement :
 		echo "</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de données
+<?php	//interrogation base de donnï¿½es
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 	// recupere la liste de appareils
-	$querry = "SELECT * FROM appareils order by $tri";
-	list($qh,$num) = query_db($querry);
+	$sql = 'SELECT * FROM appareils order by ?;';
+	// list($qh,$num) = query_db($querry);
 	
-	$last_id=0;
-
-while ($data = result_db($qh)) {
+	// $last_id=0;
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($tri));
+	$appareils = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// while ($data = result_db($qh)) {
+	foreach($appareils as $data){
 
 	// remplit le tableau
  echo"<tr><td style=\"vertical-align: top;\">";
 	echo "<a href =\"list_intapp.php?id=".$data['id']."\">". $data['nom']."</a>";
       echo"</td><td style=\"vertical-align: top;\">";
 	echo $data['descr'];
-       echo"</td><td style=\"vertical-align: top;\">";
+	   echo"</td><td style=\"vertical-align: top;\">";
+	   
 	// recupere la nom d'equipe
-	$querry = "SELECT id, nom FROM equipe WHERE id=".$data['equipe'];
-	list($qheq,$numeq) = query_db($querry);
-		$equip = result_db($qheq);
-      		echo $equip[nom];
-       echo"</td><td style=\"vertical-align: top;\">";
+	$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
+	// list($qheq,$numeq) = query_db($querry);
+	// 	$equip = result_db($qheq);
+	$stmt = $pdo->prepare($sql);
+    $stmt->execute(array($data['equipe']));
+	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	// var_dump($equipe);
+      		echo $equipe[0]['nom'];
+	   echo"</td><td style=\"vertical-align: top;\">";
+	   
 	// recupere la nom du tech
-	$querry = "SELECT id, nom FROM users WHERE id=".$data['tech'];
-	list($qheq,$numeq) = query_db($querry);
-		$equip = result_db($qheq);
-      		echo $equip[nom];
-       echo"</td><td style=\"vertical-align: top;\">";
+	$sql = 'SELECT id, nom FROM users WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+    $stmt->execute(array($data['tech']));
+    $equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	// list($qheq,$numeq) = query_db($querry);
+	// 	$equip = result_db($qheq);
+	echo $equipe[0]['nom'];
+	echo"</td><td style=\"vertical-align: top;\">";
+	   
 	// recupere la nom du fournisseur
-	$querry = "SELECT id, nom FROM fournisseurs WHERE id=".$data['fournisseur'];
-	list($qheq,$numeq) = query_db($querry);
-		$equip = result_db($qheq);
-      		echo $equip[nom];
-      echo"</td><td style=\"vertical-align: top;\">";
+	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?';;
+	$stmt = $pdo->prepare($sql);
+    $stmt->execute(array($data['fournisseur']));
+    $equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	// list($qheq,$numeq) = query_db($querry);
+	// 	$equip = result_db($qheq);
+	echo $equipe[0]['nom'];
+	echo"</td><td style=\"vertical-align: top;\">";
 	// date achat
 		echo $data['achat'];
       echo"</td><td style=\"vertical-align: top;\">";
