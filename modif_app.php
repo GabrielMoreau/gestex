@@ -16,34 +16,34 @@ require("html_functions.php");
 //modification d'un appareil
 unset($erreur);
 //variables ne pouvant etre nulles
-if (empty($_POST[id_app]))
+if (empty($_POST['id_app']))
 	$erreur="id non pr&eacute;cis&eacute;";	
 else{
-	$id_app =$_POST[id_app];
-if (empty($_POST[nom]))
+	$id_app =$_POST['id_app'];
+if (empty($_POST['nom']))
 	$erreur="nom non pr&eacute;cis&eacute;";	
 else{
-	$nom =$_POST[nom];
-	if (empty($_POST[descr]))
+	$nom =$_POST['nom'];
+	if (empty($_POST['descr']))
 		$erreur="Description non pr&eacute;cis&eacute;";	
 	else{
-		$descr=$_POST[descr];
-		if (empty($_POST[equipe]))
+		$descr=$_POST['descr'];
+		if (empty($_POST['equipe']))
 			$erreur="equipe non pr&eacute;cis&eacute;";	
 		else{
-			$equipe =$_POST[equipe];
-			if (empty($_POST[tech]))
+			$equipe =$_POST['equipe'];
+			if (empty($_POST['tech']))
 				$erreur="tech non pr&eacute;cis&eacute;";	
 			else{
-				$tech =$_POST[tech];
-				if (empty($_POST[fourn]))
+				$tech =$_POST['tech'];
+				if (empty($_POST['fourn']))
 					$erreur="fournisseur non pr&eacute;cis&eacute;";	
 				else{
-					$fourn =$_POST[fourn];
+					$fourn =$_POST['fourn'];
 
 							//variables pouvant etre nulles
-					$achat = $_POST[achat];
-					$facture=$_POST[facture];
+					$achat = $_POST['achat'];
+					$facture=$_POST['facture'];
 							
 }}}}}}
 
@@ -65,13 +65,16 @@ else{
 //pas d'erreur
 ///on inscrit
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 
 	//recupere les anciennes caracteristiques
 
-	$querry="SELECT * FROM appareils WHERE id='$id_app'";
-	list($qh,$num) = query_db($querry);
-	$data = result_db($qh);
+	$sql = 'SELECT * FROM appareils WHERE id = ?;';
+	// list($qh,$num) = query_db($querry);
+	// $data = result_db($qh);
+	$stmt = $pdo->prepare($sql);
+    $stmt->execute(array($id_app));
+    $appareil = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 /*
 echo $nom." ".$data['nom']."<br />";
@@ -82,8 +85,8 @@ echo $chef." ".$data['chef']."<br />";*/
 		//modification app
 $modif=0;
 //on construit la demande
-	$querry = "UPDATE LOW_PRIORITY appareils SET ";
-		if ($nom!=$data['nom']){
+	$sql = "UPDATE LOW_PRIORITY appareils SET ";
+		if ($nom!=$appareil[0]['nom']){
 			//modif du nom
 			$modif=1;
 			$querry.="nom='$nom',";
@@ -126,8 +129,10 @@ $modif=0;
 		$querry.=" WHERE id='$id_app'";
 	if ($modif!=0){
 			//echo $querry;
-		$result = mysql_query($querry);
-			//
+		// $result = mysql_query($querry);
+		$stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
  		if (!$result){
 			//inscription !ok
 			$erreur = mysql_error();
