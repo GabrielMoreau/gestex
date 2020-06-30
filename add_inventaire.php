@@ -9,9 +9,13 @@
 	$user_id = $_SESSION['user_id'];
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-$app_id = $_GET[id];
+if (empty($_GET['tri'])){
+	$app_id = '';
+}else{
+	$app_id = $_GET['id'];
 
-	en_tete("Voila un formulaire pour ajouter un numéro d'inventaire");
+}
+	en_tete("Voila un formulaire pour ajouter un numï¿½ro d'inventaire");
 
 	
 ?>
@@ -26,7 +30,7 @@ $app_id = $_GET[id];
  
 
   <tr>
-      <td style="vertical-align: top;">Numéro d'instrument<br />
+      <td style="vertical-align: top;">Numï¿½ro d'instrument<br />
       </td>
       <td style="vertical-align: top;">
 
