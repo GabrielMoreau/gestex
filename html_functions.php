@@ -31,7 +31,48 @@ function en_tete( $titre){
    echo "</div>";
   
 }
+function nav_bar(){
+ ?>
+ <div class ="navbar">
+       <link rel="stylesheet" type="text/css" href="nav_bar.css"> 
+<ul>
+  <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
+  <li><a href="list_users.php">Liste des utilisateurs</a></li>
+  <li><a href="list_equip.php">Liste des équipe</a></li>
+  <li><a href="instru.php">Liste des appareils</a></li>
+  <li><a href="accueil.php">Liste des manip</a></li>
+  <li class="dropdown">
+    <a class="dropbtn">Ajouter</a>
+    <div class="dropdown-content">
+      <a href="add_manip.php">Manip</a>
+      <a href="add_categorie.php">Catégorie</a>
+      <a href="add_app.php">Appareil</a>
+      <a href="add_equip.php">Equipe</a>
+      <a href="add_fourn.php">Fournisseur</a>
+      <a href="add_intapp.php?app=3">Intervention</a>
+      <a href="add_user.php">User</a>
+      <a href="add_pret.php">Prêt</a>
+      <a href="add_time.php">Temps</a>
+      <a href="add_task.php">Task</a>
+      <a href="add_demandes.php">Demande</a>
+      <a href="add_labviews.php">Labview</a>
 
+    </div>
+  </li>
+  <li class="dropdown">
+    <a class="dropbtn">Supprimer</a>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </li>
+  <li class="right"><a href="login.php">Se connecter</a></li>
+
+</ul>
+</div>
+ <?php  
+}
 
 function pied_page(){
    echo "<center>\n";
