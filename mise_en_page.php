@@ -19,7 +19,6 @@ function en_tete( $titre){
    echo "</div>";
    }
 
-
 function pied_page(){
    echo "<center>\n";
    echo "<img src=\"images/striped.gif\" nosave=\"\" border=\"0\" height=\"13\"  width=\"532\" align=\"bottom\" />\n";
@@ -33,7 +32,7 @@ function pied_page(){
    echo "<!-- <img src=\"images/php-small-purple.gif\" align=\"top\" nosave=\"\" /> --></td>\n";
    echo "<td><address><a href=\"mailto:webmaster@legi.grenoble-inp.fr?Subject=GestEx%20to%20WebMaster\">\n";
    echo "LEGI WebMaster</a></address><br /><i>Derni&egrave;re mise &agrave; jour :\n";
-   echo strftime('%d/%m/%Y',filemtime($file)); 
+   echo strftime('%d/%m/%Y',filemtime($file));
    echo "</i></td>";
    echo "<td><!-- <img src=\"images/mysql.png\"  align=\"top\" nosave=\"\" /> --></td>";
    echo "</tr></tbody></table></center>\n";

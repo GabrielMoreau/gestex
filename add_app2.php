@@ -20,7 +20,7 @@ if (empty($_GET['categorie']))
 else
 	$cat=$_GET['categorie'];
 //echo "$cat";
-//recup�re la cat�gorie de la page categorie
+//recupere la categorie de la page categorie
 if (empty($_GET['id']))
 	$app_id = "";
 else
@@ -36,11 +36,11 @@ $sql = 'SELECT * FROM categorie where id = ?;' ;
 $stmt = $pdo->prepare($sql);
 $stmt->execute(array($cat));
 $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
-if (empty($app_id)){ 
+if (empty($app_id)){
 	//->nouvel appareil
 	$mode ="ajouter";
 	$action="valid_app2.php?categorie=".$cat;
-//transmet la valeur de la categorie � la page valid appareil
+//transmet la valeur de la categorie a la page valid appareil
 }
 else{
 
@@ -60,7 +60,7 @@ if ($mode=="ajouter"){
 else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les caracteristiques d'un appareil");
 
-	// recupere le appareil selectionn�
+	// recupere le appareil selectionne
 	$sql = 'SELECT * FROM Listing WHERE id = ?';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
@@ -68,7 +68,6 @@ else if ($mode=="modifier"){
 	$stmt->execute(array($app_id));
 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	
 }
 ?>
 
@@ -82,12 +81,10 @@ else if ($mode=="modifier"){
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
 		<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
 
- 
-
   <tr>
       <td style="vertical-align: top;">Categorie<br />
       </td>
-      
+
   <td style="vertical-align: top;">
 
 <select name="categorie">
@@ -107,7 +104,7 @@ else if ($mode=="modifier"){
 if ($mode=="ajouter" && $chef['id'] == $cat) {
 				echo " selected";	}
 
-//si on choisit ajouter, le listing pr�s�lectionne la categorie
+//si on choisit ajouter, le listing preselectionne la categorie
 
 			echo ">".$chef['nom']."</option>";
 		}//end while
@@ -119,7 +116,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
     </tr>
 
     <tr>
-    
+
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
@@ -133,7 +130,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
       <td style="vertical-align: top;">
       <input type="text"name="modele" size="30" value="<?php if ($mode == "modifier"){ echo $listing[0]['modele'] ;}?>"<br />
 	</td>
-    </tr>  
+    </tr>
 <tr>
  <td style="vertical-align: top;">Gamme *<br />
       </td>
@@ -141,15 +138,14 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
      	<input type="text" name="gamme" size="10" maxlength="30" value="<?php if ($mode == "modifier"){echo $listing[0]['gamme'] ;}?>" ><br />
 
 	</td>
-    </tr>  
- 
+    </tr>
 
     <tr>
-      <td style="vertical-align: top;">Equipe *<br />
+      <td style="vertical-align: top;">&Eacute;quipe *<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="equipe">
-	<?php 
+	<?php
 	// recupere la liste des equipes
 	$sql = 'SELECT id, nom FROM equipe order by nom';
 	// list($qheq,$numeq) = query_db($querry);
@@ -173,7 +169,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
       </td>
       <td style="vertical-align: top;">
 	<select name="fourn">
-	<?php 
+	<?php
 	// recupere la liste des fournisseurs
 	$sql = 'SELECT id, nom FROM fournisseurs order by nom ';
 	// list($qheq,$numeq) = query_db($querry);
@@ -192,16 +188,15 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
       </td>
     </tr>
 
-    
   <tr>
-    
+
       <td style="vertical-align: top;">Date achat *<i>format YYYY-MM-DD</i><br />
       </td>
       <th style="vertical-align: top;">
 	<input type="text" name="achat" size="10" maxlength="10" value="<?php
  if ($mode =="modifier")
 			echo $listing[0]['achat'];
-		else 
+		else
 			echo date('Y-m-d', time() );
 	?>" ><br />
       </td>
@@ -212,7 +207,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
       <td style="vertical-align: top;">
 
      <select name="tech">
-	<?php 
+	<?php
 	// recupere la liste des tech
 	$sql = 'SELECT id, nom FROM users WHERE level >1';
 	// list($qheq,$numeq) = query_db($querry);
@@ -233,7 +228,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
     </tr>
 
   <tr>
-    
+
       <td style="vertical-align: top;">Reparation *<br />
       </td>
       <td style="vertical-align: top;">
@@ -278,14 +273,14 @@ remplir obligatoirement, les autres sont optionnels.<br />
 	<form action="instru.php"method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
-	 </td>    </tr> 
-	</form>  
+	 </td>    </tr>
+	</form>
 </tbody>
 </table>
 <br />
 
 <?php }
-	else 
+	else
 	{	Header("Location :instru.php");	}	?>
 <br />
 </div>

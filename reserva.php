@@ -55,25 +55,21 @@ Liste des prets : <br /><br /><br />
   <tbody>
     <tr bgcolor="#f7d709">
 
- 
-
       <th style="vertical-align: top; text-align: center;">
 	Nom<br />
       </th>
-    
- 
 
       <th style="vertical-align: top; text-align: center;">
-	Equipe<br />
+	&Eacute;quipe<br />
       </th>
-     
+
        <th style="vertical-align: top; text-align: center;">
 	Date<br />
       </th>
  <th style="vertical-align: top; text-align: center;">
 	Retour<br />
       </th>
-  
+
  <th style="vertical-align: top; text-align: center;">
 	Commentaire<br />
       </th>
@@ -81,10 +77,9 @@ Liste des prets : <br /><br /><br />
 	Numéro de l'appareil<br />
       </th>
 
-   
-<?php if ( $user_level >=2 ) 	
+<?php if ( $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 ) 	
+	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -95,14 +90,13 @@ if ( $connex = connect_db() ){
 
 $querry = "SELECT * FROM pret";
 	list($qh,$num) = query_db($querry);
-	
+
 	$last_id=0;
 
 $data = result_db($qh);
 
 echo "<tr>";
 
-      		
  echo"</td><td style=\"vertical-align: top;\">";
 
 	$querry = "SELECT id, nom FROM Listing WHERE id='$data['nom']'";
@@ -110,8 +104,7 @@ echo "<tr>";
 		$nom = result_db($qheeq);
 
       		echo $nom[nom];
-    
- 
+
   echo"</td><td style=\"vertical-align: top;\">";
 
 	// recupere la nom d'equipe
@@ -122,30 +115,25 @@ echo "<tr>";
 
       		echo $equip[nom];
        echo"</td><td style=\"vertical-align: top;\">";
-	
-	
+
 echo $data['emprunt'];
 
 	 echo"</td><td style=\"vertical-align: top;\">";
-	
+
 echo $data['retour'];
-	
+
  echo"</td><td style=\"vertical-align: top;\">";
-	
+
 echo $data['commentaire'];
  echo"</td><td style=\"vertical-align: top;\">";
 
       		echo $nom[id];
 
-	
-
-	
 	if ( $use >=3 ) 	{
- 
+
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del-pret.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";}
-	
 
 echo"</tr>";
 
@@ -154,14 +142,12 @@ while ($data = result_db($qh)){
 	// remplit le tableau
 
  echo"</td><td style=\"vertical-align: top;\">";
-	
+
    $querry = "SELECT id, nom FROM Listing WHERE id='$data['nom']'";
 	list($qheeq,$numeeq) = query_db($querry);
 		$nom = result_db($qheeq);
 
       		echo $nom[nom];
-
-  
 
        echo"</td><td style=\"vertical-align: top;\">";
 
@@ -173,23 +159,20 @@ while ($data = result_db($qh)){
 
       		echo $equip[nom];
        echo"</td><td style=\"vertical-align: top;\">";
-	
+
 echo $data['emprunt'];
 
 	 echo"</td><td style=\"vertical-align: top;\">";
-	
+
 echo $data['retour'];
-	
+
  echo"</td><td style=\"vertical-align: top;\">";
-	
+
 echo $data['commentaire'];
 echo"</td><td style=\"vertical-align: top;\">";
-	
+
       		echo $nom[id];
 
-   
-
- 
  if ( $use >=3 ) 	{
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del-pret.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
@@ -197,11 +180,6 @@ echo"</td><td style=\"vertical-align: top;\">";
 	}
 
 echo"</tr>";
-	
-
-	
-
-      
 
 	}//end while
 

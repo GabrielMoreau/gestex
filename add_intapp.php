@@ -56,7 +56,6 @@ else if ($mode=="modifier"){
 }
 en_tete($titre);
 ?>
- 
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
@@ -70,15 +69,15 @@ en_tete($titre);
       <td style="vertical-align: top;">
       <textarea name="descr" cols="50" rows="5"> <?php if($mode == 'modifier'){ echo $intervention[0]['descr']; } ?></textarea>
 	</td>
-    </tr>  
-   
+    </tr>
+
     <tr>
       <td style="vertical-align: top;">Responsable<br />
       </td>
       <td style="vertical-align: top;">
-		
+
 	<select name="tech">
-	<?php 
+	<?php
 	// recupere la liste des tech
 	$sql = 'SELECT id, nom FROM users WHERE level >1;';
 	// list($qheq,$numeq) = query_db($querry);
@@ -96,13 +95,13 @@ en_tete($titre);
 	</select><br />
       </td>
     </tr>
-   
+
    <tr>
       <td style="vertical-align: top;">Fournisseur<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="fourn">
-	<?php 
+	<?php
 	// recupere la liste des fournisseurs
 	$sql = 'SELECT id, nom FROM fournisseurs;';
 	// list($qheq,$numeq) = query_db($querry);
@@ -121,12 +120,12 @@ en_tete($titre);
       </td>
     </tr>
   <tr>
-    
+
       <td style="vertical-align: top;">Date <i>format YYYY-MM-DD</i><br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="date" size="10" maxlength="10" value="
-	<?php 
+	<?php
 	if ($mode == "modifier")
 		echo $intervention[0]['date'] ;
 	else
@@ -134,7 +133,7 @@ en_tete($titre);
        ?>"><br /></td>
     </tr><tr>
   <tr>
-    
+
       <td style="vertical-align: top;">Facture<br />
       </td>
       <td style="vertical-align: top;">
@@ -155,13 +154,13 @@ remplir obligatoirement, les autres sont optionnels.<br />
 	<form action="list_intapp.php" method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
-	 </td>    </tr> 
-	</form>  
+	 </td>    </tr>
+	</form>
 </tbody>
 </table>
 <br />
 <?php }
-	else 
+	else
 	{	Header("Location :accueil.php");	}	?>
 <br />
 </div>

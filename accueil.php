@@ -24,7 +24,7 @@ if (empty($tri))
 if ( $pdo = connect_db() ){
 	// recupere les refs du user
 	// $querry = "SELECT * FROM users where loggin='$logged_in_user' " ;
-	// list($qh,$num) = query_db($querry);	
+	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
 	$sql = "SELECT nom, prenom FROM users where loggin = ? ;";
 	$stmt = $pdo->prepare($sql);
@@ -51,7 +51,7 @@ if ( $pdo = connect_db() ){
 					<br />
 				</th>
 				<th style="vertical-align: top; text-align: center; " >
-					<a href="list_equip.php?tri=nom">Liste des<br />Equipes</a>
+					<a href="list_equip.php?tri=nom">Liste des<br />&Eacute;quipes</a>
 					<br />
 				</th>
 				<?php if ($user_level>=2){  ?>
@@ -90,26 +90,26 @@ if ( $pdo = connect_db() ){
 					<a href ="accueil.php?tri=local">Local</a> <br />
 				</th>
 				<th style="vertical-align: top; text-align: center;">
-					<a href ="accueil.php?tri=equipe">Equipe</a>
+					<a href ="accueil.php?tri=equipe">&Eacute;quipe</a>
 				</th>
 				<?php if ($user_level!=1){
-				//pas necessaire si chercheur logg�
+				//pas necessaire si chercheur logue
 				?>
 				<th style="vertical-align: top; text-align: center;">
 					<a href ="accueil.php?tri=chercheur">Chercheur</a>
 				</th>
 				<th style="vertical-align: top; text-align: center;">
 					<br />
-				</th> 
+				</th>
 				<?php } ?>
 				<th style="vertical-align: top; text-align: center;">
 					<br />
 				</th>
 			</tr>
-			<?php	//interrogation base de donn�es
+			<?php	//interrogation base de donnees
 
 			// recupere la liste de manips
-			// $querry = "SELECT * FROM manip ";	
+			// $querry = "SELECT * FROM manip ";
 
 			// $querry.="order by '$tri' ";
 			// list($qh,$num) = query_db($querry);
@@ -117,7 +117,7 @@ if ( $pdo = connect_db() ){
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(array($tri));
 			$manip = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			
+
 			// while ($data = result_db($qh)) {
 				foreach($manip as $manip){
 				$relief =0;
@@ -125,7 +125,7 @@ if ( $pdo = connect_db() ){
 					$relief =1;
 				// remplit le tableau
 				if ($user_level <=1){
-				//mise en evidence des manips concernant le chercheur connect�
+				//mise en evidence des manips concernant le chercheur connecte
 					if ($manip['chercheur']== $user_id || $manip['chercheur_bis']== $user_id){
 						echo '<tr bgcolor="#FFFAD0" style="vertical-align: top;">';
 						$relief = 1;
@@ -137,7 +137,7 @@ if ( $pdo = connect_db() ){
 				echo $manip['date'];
 				echo '</td><td style="vertical-align: top;">';
 				if ($relief ==1)
-					//possibilit� d'edition des manips concernant le chercheur connect�
+					//possibilite d'edition des manips concernant le chercheur connecte
 					echo '<a href="manip_maint.php?id="',$manip['id'],'"">';
 				echo $manip['nom'];
 				if ($relief ==1)
@@ -157,7 +157,7 @@ if ( $pdo = connect_db() ){
 				$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				echo $equipe[0]['nom'];
 				if ($user_level!=1){
-					//si chercheur logg� pas necessaire
+					//si chercheur logue pas necessaire
 					echo '</td><td style="vertical-align: top;">';
 						// recupere la liste des chercheurs
 					// $querry = "SELECT nom FROM users WHERE id ='$data['chercheur']'";
@@ -188,5 +188,5 @@ if ( $pdo = connect_db() ){
 
 <?php
 }//end if
- pied_page() 
+ pied_page()
  ?>

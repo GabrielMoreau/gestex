@@ -1,6 +1,5 @@
 <?php
 
-
 require("html_functions.php");
 
 /// valid_task.php
@@ -10,29 +9,27 @@ unset($erreur); unset($nom);
 //variables ne pouvant etre nulles
 
 if (empty($_POST[id_manip]))
- $erreur="manip non pr&eacute;cis&eacute;"; 
+ $erreur="manip non pr&eacute;cis&eacute;";
 else{
  $manip_id =$_POST[id_manip];
 if (empty($_POST[id_proj]))
- $erreur="projet non pr&eacute;cis&eacute;"; 
+ $erreur="projet non pr&eacute;cis&eacute;";
 else{
  $proj_id =$_POST[id_proj];
  if (empty($_POST[nom]))
-  $erreur="nom non pr&eacute;cis&eacute;"; 
+  $erreur="nom non pr&eacute;cis&eacute;";
  else{
   $nom =$_POST[nom];
      $descr=$_POST[descr];
        //variables pouvant etre nulles
-      
+
        $date =$_POST[date];
        //plusieurs fournisseurs possible
      $fourn = array_values($_POST['fourn'] );
-       
+
 }}}
 
 en_tete("resultat inscription ");
-
-
 
 if (!empty($erreur) ){
 
@@ -58,7 +55,7 @@ if ( $connex = connect_db() ){
    " VALUES ('$proj_id', '$nom',  '$descr', '$date', '$fournisseurs')";
   $result = mysql_query($querry);
    //
-  
+
    if (!$result){
    //inscription !ok
    $erreur = mysql_error();

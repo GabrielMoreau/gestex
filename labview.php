@@ -30,7 +30,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	<a href="add_labview.php">Ajouter<br />une manip Labview</a>
 	<br /></td>
 
-<?php if ( $user_level >=2 ) {	
+<?php if ( $user_level >=2 ) {
 ?>
 
  <td style="vertical-align: top; text-align: center;">
@@ -70,20 +70,18 @@ Liste des manip labview en cours : <br />
       <th style="vertical-align: top; text-align: center;">
 	Driver d'instrument<br />
       </th>
-     
-     
+
 <th style="vertical-align: top; text-align: center;">
 	Module spécifique Labview<br />
       </th>
 
-  
 <th style="vertical-align: top; text-align: center;">
 	Impression écran+doc pdf manip<br />
       </th>
 
-<?php if ( $user_level >=2 ) 	
+<?php if ( $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 ) 	
+	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -91,11 +89,10 @@ Liste des manip labview en cours : <br />
 <?php	//interrogation base de données
 
 if ( $connex = connect_db() ){
-	
 
 	$querry = "SELECT * FROM labview order by '$tri'";
 	list($qh,$num) = query_db($querry);
-	
+
 	$last_id=0;
 }
 
@@ -104,14 +101,14 @@ $data = result_db($qh);
 echo "<tr>";
  echo"</td><td style=\"vertical-align: top;\">";
 	echo $data['manipch'];
-    
+
        echo"</td><td style=\"vertical-align: top;\">";
 echo $data['technicien'];
 
   echo"</td><td style=\"vertical-align: top;\">";
 
 echo $data['localisation'];
-      
+
   echo"</td><td style=\"vertical-align: top;\">";
 echo $data['matos'];
  echo"</td><td style=\"vertical-align: top;\">";
@@ -123,7 +120,6 @@ echo $data['module'];
  echo"</td><td style=\"vertical-align: top;\">";
 
 $dossier_lab ="data/labview/".$data['manipch'];
-	
 
 	//remplace les espaces par des underscore
 	$dossier_lab = str_replace(" ", "_", $dossier_lab);
@@ -135,16 +131,13 @@ $dossier_lab ="data/labview/".$data['manipch'];
 		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir la face avant du programme\"></a><br />";
     }
 
-		
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
-	
 
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_labview.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
-	
 
 echo"</tr>";
 
@@ -173,7 +166,6 @@ echo $data['module'];
 
 ///bouton lien vers la doc
 	$dossier_lab ="data/labview/".$data['manipch'];
-	
 
 	//remplace les espaces par des underscore
 	$dossier_lab = str_replace(" ", "_", $dossier_lab);
@@ -186,32 +178,20 @@ echo $data['module'];
     }
 //echo $data['ecran'];
 
-       
-   
-
-	
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
-	
- 
+
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_labview.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
-	
 
 echo"</tr>";
-	
-
-	
-
-      
 
 	}//end while
 
 ?>
 
-   
   </tbody>
 </table>
 <br />

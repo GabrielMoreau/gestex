@@ -43,7 +43,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 	<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="list_fourn.php">Liste des fournisseurs</a>
-	<br /></td> 
+	<br /></td>
 <?php if ( $user_level >=2 ) {	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_fourn.php">Ajout d'un fournisseur</a>
@@ -70,23 +70,23 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 	<tr><td>
 	<input type="text" name="nom" size="50" maxlength="50" value="<?php echo $find_nom; ?>">
 	</td><td>
-	<input type="text" name="descr" size="50" maxlength="50" value="<?php echo $find_descr; ?>"> 
+	<input type="text" name="descr" size="50" maxlength="50" value="<?php echo $find_descr; ?>">
 	</td><td>
 	<input type="submit" name="find" value="Rechercher">
-	
-	</td></tr></form>  
+
+	</td></tr></form>
 </tbody>
 </table>
-<br />  
+<br />
 
 <?php
 if (isset($find_nom) || isset($find_descr)){
 	echo "Resultat de la recherche pour";
 	if ( !empty($find_nom))
-		echo " nom :".$find_nom; 
+		echo " nom :".$find_nom;
 	if ( !empty($find_descr) )
-		echo " description :".$find_descr; 
-	}	
+		echo " description :".$find_descr;
+	}
 ?>
 <br />
 <!--------  table resultats ----->
@@ -101,23 +101,23 @@ if (isset($find_nom) || isset($find_descr)){
 	Adresse<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Telephone<br />
+	T&eacute;l&eacute;phone<br />
       </th>
       </th>
       <th style="vertical-align: top; text-align: center;">
 	Fax<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Email <br />
+	Courriel<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	WWW <br />
+	WWW<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Contacts <br />
+	Contacts<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Description <br />
+	Description<br />
       </th>
 <?php if ( $user_level >=2 ) {	?>
 	</th><th></th><th>
@@ -138,7 +138,7 @@ if ( $connex = connect_db() ){
 		$querry .=" descr LIKE '%$find_descr%'";
 	$querry .=";";
 	list($qh,$num) = query_db($querry);
-	
+
 	$last_id=0;
 
 while ($data = result_db($qh)) {
@@ -162,14 +162,14 @@ while ($data = result_db($qh)) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo $data['descr'];
       echo"</td>";
- if ( $user_level >=2 && $data['nom']!="aucun" ) {	
+ if ( $user_level >=2 && $data['nom']!="aucun" ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_fourn.php?id=".$data['id']."\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_fourn.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
-	
+
 	}//end if
       echo"</tr>";
 	}//end while

@@ -35,7 +35,6 @@ else if ($mode=="modifier"){
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 
-	
 }
 ?>
 
@@ -45,12 +44,10 @@ else if ($mode=="modifier"){
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
 		<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
 
- 
-
   <tr>
       <td style="vertical-align: top;">Nom<br />
       </td>
-      
+
   <td style="vertical-align: top;">
 
 <select name="nom">
@@ -60,9 +57,9 @@ else if ($mode=="modifier"){
 	list($qheq,$numeq) = query_db($querry);
 		while ($chef = result_db($qheq)){
 			echo "<option value=\"".$chef[id]."\"";
-			
+
 if ($mode=="ajouter" )
-				
+
 			echo ">".$chef[nom]."</option>";
 		}//end while
 
@@ -72,14 +69,12 @@ if ($mode=="ajouter" )
       </td>
     </tr>
 
-  
-
     <tr>
-      <td style="vertical-align: top;">Equipe *<br />
+      <td style="vertical-align: top;">&Eacute;quipe *<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="equipe">
-	<?php 
+	<?php
 	// recupere la liste des equipes
 	$querry = "SELECT id, nom FROM equipe order by nom";
 	list($qheq,$numeq) = query_db($querry);
@@ -94,37 +89,34 @@ if ($mode=="ajouter" )
       </td>
     </tr>
 
- 
-
-    
   <tr>
-    
+
       <td style="vertical-align: top;">Date demande pret *<i>format YYYY-MM-DD</i><br />
       </td>
       <th style="vertical-align: top;">
 	<input type="text" name="emprunt" size="10" maxlength="10" value="<?php
  if ($mode =="modifier")
 			echo $data['emprunt'];
-		else 
+		else
 			echo date('Y-m-d', time() );
 	?>" ><br />
       </td>
     </tr>
 
   <tr>
-    
+
       <td style="vertical-align: top;">Date de retour estimée *<i>format YYYY-MM-DD</i><br />
  </td>
       <td style="vertical-align: top;">
 <input type="text" name="retour" size="10" maxlength="10" value="<?php
  if ($mode =="modifier")
 			echo $data['retour'];
-		else 
+		else
 			echo date('Y-m-d', time() );
 	?>" ><br />
 
       </td>
-     
+
     </tr>
 <tr>
  <td style="vertical-align: top;">Commentaire<br />
@@ -133,7 +125,7 @@ if ($mode=="ajouter" )
 <input type="text" name="commentaire" size="30" maxlength="30" value="<?php echo $data['commentaire'] ?>" ><br />
 
       </td>
-    
+
     </tr>
 
     <tr>
@@ -150,14 +142,14 @@ remplir obligatoirement, les autres sont optionnels.<br />
 	<form action="essai1.php"method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
-	 </td>    </tr> 
-	</form>  
+	 </td>    </tr>
+	</form>
 </tbody>
 </table>
 <br />
 
 <?php }
-	else 
+	else
 	{	Header("Location :instru.php");	}	?>
 <br />
 </div>

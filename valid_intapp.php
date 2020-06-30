@@ -8,32 +8,30 @@ unset($erreur);
 //variables ne pouvant etre nulles
 
 if (empty($_POST[id_app]))
-		$erreur="id appareil non pr&eacute;cis&eacute;";	
+		$erreur="id appareil non pr&eacute;cis&eacute;";
 else{
 		$id_app=$_POST[id_app];
 	if (empty($_POST[descr]))
-		$erreur="Description non pr&eacute;cis&eacute;";	
+		$erreur="Description non pr&eacute;cis&eacute;";
 	else{
 		$descr=$_POST[descr];
-		
+
 			if (empty($_POST[tech]))
-				$erreur="tech non pr&eacute;cis&eacute;";	
+				$erreur="tech non pr&eacute;cis&eacute;";
 			else{
 				$tech =$_POST[tech];
 				if (empty($_POST[fourn]))
-					$erreur="fournisseur non pr&eacute;cis&eacute;";	
+					$erreur="fournisseur non pr&eacute;cis&eacute;";
 				else{
 					$fourn =$_POST[fourn];
 
 							//variables pouvant etre nulles
 					$date = $_POST[date];
 					$facture=$_POST[facture];
-							
+
 }}}}
 
 en_tete("resultat ajout intervention");
-
-
 
 if (!empty($erreur) ){
 
@@ -63,7 +61,7 @@ if ( $connex = connect_db() ){
 			$erreur = mysql_error();
 		echo "<br />erreur :".$erreur;
 		}
-		
+
 	}//end if connect
 
 ////en_tete("inscription Valid&eacute;e");

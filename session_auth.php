@@ -6,14 +6,14 @@
 	   each page to ensure that there is an authenticated user
 	*/
 	function auth($reqlevel, $logged_in_user='', $password='') {
-		
-		//start/continue the session		
+
+		//start/continue the session
 		session_start();
 		if (!empty($_SESSION['logged_in_user']))
 			return true;
 
 		$check = !empty($logged_in_user);
-		
+
 		if ($check) {
 			// echo " not empty!";
 			$pdo = connect_db();
@@ -27,14 +27,14 @@
 			// var_dump ($user);
 
 			//echo "db->".$num." (".$data['password'].") ".$data['nom']."  pour ".$password."=".md5($password);
-			//is the password correct 
+			//is the password correct
 			if ($user[0]['password'] != md5($password)){
 				//pas le bon ppasswd
 				return 0;//false;
 			}else if ($reqlevel > $user['level']){
 				//pas le niveau d'autorisation requis
 				return 0;//false;
-			
+
 			}else {	///tout ok
 				//set session variables
 				$_SESSION['user_id'] = $user[0]['id'];
@@ -49,13 +49,13 @@
 
 			//destroy the session
 			session_destroy();
-						
+
 			return 0; ///false;
 		}
 	}
 ////////////////////////////////////////////////////////////////////////////
 
- function logout(){	
+ function logout(){
 	//continue the session
 	session_start();
 	//unset all the variables

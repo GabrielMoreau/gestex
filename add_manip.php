@@ -43,10 +43,9 @@ else if ($mode=="modifier"){
 
 	}
 }//end if connex
-	else 
+	else
 		Header("Location :accueil.php");
 ?>
- 
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
@@ -54,7 +53,7 @@ else if ($mode=="modifier"){
  <form action="<?php echo $action ?>" method="POST" name="inscrForm">
 		<input type="hidden" name="id_manip" value="<?php  if($mode=='modifier'){ echo $manip_id; } ?>" >
    <tr>
-    
+
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
@@ -67,7 +66,7 @@ else if ($mode=="modifier"){
 	<textarea name="descr" cols="50" rows="5"> <?php if($mode=='modifier'){ echo $manip[0]['descr']; } ?>
 	</textarea>
       </td>
-    </tr>  
+    </tr>
     <tr>
       <td style="vertical-align: top;">Local *<br />
       </td>
@@ -83,7 +82,7 @@ else if ($mode=="modifier"){
 		$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		// list($qheq,$numeq) = query_db($querry);
 		?>
-      <td style="vertical-align: top;">Equipe <i> qui utilisera la manip</i><br />
+      <td style="vertical-align: top;">&Eacute;quipe <i> qui utilisera la manip</i><br />
       </td>
       <td style="vertical-align: top;">
 	<select name="equipe"   >
@@ -109,7 +108,7 @@ else if ($mode=="modifier"){
 		$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		// list($qheq,$numeq) = query_db($querry);
 		?>
-      <td style="vertical-align: top;">Chercheur <i>( qui commande la manip)</i><br />
+      <td style="vertical-align: top;">Chercheur <i>(qui commande la manip)</i><br />
       </td>
       <td style="vertical-align: top;">
 	<select name="cherch"   >
@@ -134,7 +133,7 @@ else if ($mode=="modifier"){
 		$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		// list($qheq,$numeq) = query_db($querry);
 		?>
-	<td style="vertical-align: top;">Chercheur/Etudiant <i>( qui utilisera la manip)</i><br />
+	<td style="vertical-align: top;">Chercheur/&Eacute;tudiant <i>(qui utilisera la manip)</i><br />
       </td>
       <td style="vertical-align: top;">
 	<select name="cherch_bis"   >
@@ -158,15 +157,15 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">Date <i>format:YYYY-MM-JJ</i><br />
       </td>
       <th style="vertical-align: top;">
-	<input type="text" name="date" size="10" maxlength="10" value="<?php 
+	<input type="text" name="date" size="10" maxlength="10" value="<?php
 				if ($mode=="modifier")
 					echo $manip[0]['date'];
 				else  //ajout->aujourd'hui
-					echo date('Y-m-d', time() ); 
+					echo date('Y-m-d', time() );
 						?> " ><br />
       </td>
     </tr>
-   
+
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
@@ -180,8 +179,8 @@ remplir obligatoirement, les autres sont optionnels.<br />
 	<form action="accueil.php" method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
-	 </td>    </tr> 
-	</form>  
+	 </td>    </tr>
+	</form>
 </tbody>
 </table>
 <br />

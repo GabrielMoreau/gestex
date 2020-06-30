@@ -12,8 +12,6 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-
-
 //modification d'une manip
 
 unset($erreur);
@@ -33,11 +31,10 @@ else {
 			$nom=$_POST[nom];
 							$descr =$_POST[descr];
 							$date =$_POST[date];
-							
+
 }}}
 
 en_tete("resultat modification ");
-
 
 if (!empty($erreur) ){
 
@@ -61,7 +58,6 @@ if ( $connex = connect_db() ){
 	$querry="SELECT * FROM projet WHERE id='$id_proj'";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
-
 
 		//modification projet
 //on construit la demande
@@ -88,7 +84,7 @@ if ( $connex = connect_db() ){
 			$erreur = mysql_error();
 			echo "<br />erreur :".$erreur;
 		}
-		
+
 	}//end if connect
 
 ////en_tete("modification projet Valid&eacute;e");

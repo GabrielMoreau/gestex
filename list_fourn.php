@@ -38,7 +38,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 <?php }	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="find_fourn.php">Rechercher</a>
-	<br /></td> 
+	<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php">Quitter</a>
 	<br /></td> </tr></tbody>
@@ -56,22 +56,22 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 	Adresse<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Telephone<br />
+	T&eacute;l&eacute;phone<br />
       </th>
       <th style="vertical-align: top; text-align: center; " >
 	Fax<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Email <br />
+	Courriel<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	WWW <br />
+	WWW<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Contacts <br />
+	Contacts<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Description <br />
+	Description<br />
       </th>
 <?php if ( $user_level >=2 )
 		echo"</th><th>";
@@ -79,7 +79,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 		echo"</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de donn�es
+<?php	//interrogation base de donnees
 
 if ( $pdo = connect_db() ){
 	// recupere la liste de fournisseurs
@@ -116,16 +116,16 @@ if ( $pdo = connect_db() ){
       echo"</td><td style=\"vertical-align: top;\">";
       echo $data['descr'];
       echo"</td>";
- if ( $user_level >=2 && $data['nom']!="aucun" ) {	
+ if ( $user_level >=2 && $data['nom']!="aucun" ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_fourn.php?id=".$data['id']."\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
- if ( $user_level >=3 && $data['nom']!="aucun" ) {	
+ if ( $user_level >=3 && $data['nom']!="aucun" ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_fourn.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
-	
+
 	}//end if
       echo"</tr>";
 	}//end while

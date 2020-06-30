@@ -55,7 +55,7 @@ Liste des appareils pour lesquels la maintenance est enregistr�e r�guli�re
 	Description<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app.php?tri=equipe">Equipe</a><br />
+	<a href ="list_app.php?tri=equipe">&Eacute;quipe</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
 	<a href ="list_app.php?tri=tech">Responsable</a><br />
@@ -69,9 +69,9 @@ Liste des appareils pour lesquels la maintenance est enregistr�e r�guli�re
     <th style="vertical-align: top; text-align: center;">
 	facture<br />
       </th>
-<?php if ( $user_level >=2 ) 	
+<?php if ( $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 ) 	
+	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -133,7 +133,7 @@ if ( $pdo = connect_db() ){
 		echo $data['facture'];
       echo"</td>";
 
- if ( $user_level >=2 ) {	
+ if ( $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_app.php?id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
@@ -142,7 +142,7 @@ if ( $pdo = connect_db() ){
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_app.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
-	
+
 	}//end if
       echo"</tr>";
 	}//end while

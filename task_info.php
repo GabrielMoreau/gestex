@@ -48,7 +48,7 @@ if ( $connex = connect_db() ){
 // recupere la tache selectionnée
  $querry = "SELECT * FROM tache WHERE id='$task_id'";
  list($qh,$num) = query_db($querry);
- $tasks = result_db($qh); 
+ $tasks = result_db($qh);
 
 // recupere le temps passé pour cette tache
  $total_time=0;
@@ -62,7 +62,7 @@ if ( $connex = connect_db() ){
   //recherche de noms d'users
   $querry = "SELECT nom FROM users WHERE id =".$time[user];
    list($qhn,$numn)= query_db($querry);
-  $user = result_db($qhn); 
+  $user = result_db($qhn);
   array_push($users,$user[nom]);
   array_push($timings,$user[nom]);
   array_push($timings,$time[date], $time[duree]);
@@ -70,7 +70,6 @@ if ( $connex = connect_db() ){
    array_push($timings, $time[remarks]);
   else
       array_push($timings, "no rmk");
-   
 
  }
 
@@ -85,22 +84,22 @@ $fourn = explode (",",  $tasks[fourniss]);
  </th>
  <tr><td> <i>Description :</i> <?php echo $tasks[descr] ?></td></tr>
  <tr><td> <i>Date Debut :</i> <?php echo $tasks[date] ?></td></tr>
- <tr><td> <i>par :</i> 
-  <?php 
+ <tr><td> <i>par :</i>
+  <?php
  if (count($users) !=0){
-  
+
   //affiche les noms d'users
   //reset($users);
   while($temp = array_shift($users))
    echo $temp.", ";
   }
   ?> </td></tr>
- <tr><td> <i>Fournisseurs :</i> 
+ <tr><td> <i>Fournisseurs :</i>
  <?php
   //recherche de noms de fournisseurs
  $querry = "SELECT nom FROM fournisseurs WHERE";
  for( $i=0; $i!=count($fourn); $i++){
-  if ($i!=0) 
+  if ($i!=0)
    $querry .=" OR";
   $querry .=" id=$fourn[$i]";
   }//end for
@@ -109,15 +108,15 @@ $fourn = explode (",",  $tasks[fourniss]);
  while($data = result_db($qh))
   echo $data['nom'].", ";
  ?> </td></tr>
- <tr><td> 
+ <tr><td>
  <i>temps Pass&eacute; :</i> <?php echo $total_time."h (".$numtime." enregistrements)" ?> </td></tr>
  <tr><td>
- <?php 
+ <?php
   ///raz du pointeur sur $timings
   ///reset ($timings);
 
    while ( $temp = array_shift($timings)) {
-    /// nom date durée remarques 
+    /// nom date durée remarques
     echo $temp ."(".array_shift($timings).") ".array_shift($timings)." h : ".array_shift($timings)."<br />";
 
   } ?>
@@ -126,7 +125,7 @@ $fourn = explode (",",  $tasks[fourniss]);
 </table>
 <?php }//end if connect
 ?>
-  
+
 <br />
 <br />
 </div>

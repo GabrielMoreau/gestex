@@ -41,7 +41,6 @@ else if ($mode=="modifier"){
 	
 }
 ?>
- 
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
@@ -49,7 +48,7 @@ else if ($mode=="modifier"){
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
 		<input type="hidden" name="id_equip" value="<?php if( $mode=='modifier'){ echo $equip_id; }?>" >
     <tr>
-    
+
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td style="vertical-align: top;">
@@ -61,7 +60,7 @@ else if ($mode=="modifier"){
       <td style="vertical-align: top;">
 	<input type="text" name="descr" size="25" maxlength="255" value="<?php if( $mode=='modifier'){ echo $equipe[0]['descr']; } ?>" ><br />
       </td>
-    </tr>  
+    </tr>
     <tr>
       <td style="vertical-align: top;">Compte *<br />
       </td>
@@ -70,12 +69,12 @@ else if ($mode=="modifier"){
       </td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Chef d'Equipe<br />
+      <td style="vertical-align: top;">Chef d'&Eacute;quipe<br />
       </td>
       <td style="vertical-align: top;">
 <?php // if( $mode=='modifier'){ echo $equipe[0]['chef']; } ?>
 	<select name="chef">
-	<?php 
+	<?php
 	// recupere laliste des chercheurs
 	$sql = 'SELECT id, nom FROM users WHERE level =1';
 	$stmt = $pdo->prepare($sql);
@@ -93,8 +92,7 @@ else if ($mode=="modifier"){
 	</select><br />
       </td>
     </tr>
-   
-   
+
     <tr>
    <td style="vertical-align: top;">les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
@@ -108,13 +106,13 @@ remplir obligatoirement, les autres sont optionnels.<br />
 	<form action="list_equip.php" method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
-	 </td>    </tr> 
-	</form>  
+	 </td>    </tr>
+	</form>
 </tbody>
 </table>
 <br />
 <?php }
-	else 
+	else
 	{	Header("Location :accueil.php");	}	?>
 <br />
 </div>

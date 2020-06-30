@@ -16,18 +16,18 @@ else {
   else {
     $password=$_POST[password];
     if (empty($_POST[password2]))
-      $erreur="confirmation de password non pr&eacute;cis&eacute;";    
+      $erreur="confirmation de password non pr&eacute;cis&eacute;";
     else {
       $password2=$_POST[password2];
       if ($password!=$password2)
         $erreur="les passwords diff&egrave;rent";
       else {
         if (empty($_POST[nom]))
-          $erreur="nom non pr&eacute;cis&eacute;";  
+          $erreur="nom non pr&eacute;cis&eacute;";
         else {
           $nom =$_POST[nom];
           if (!isset($_POST[level]))
-            $erreur="Qualit&eacute; non pr&eacute;cis&eacute;";  
+            $erreur="Qualit&eacute; non pr&eacute;cis&eacute;";
           else
             $level = $_POST[level];
 
@@ -48,16 +48,16 @@ require("db_functions.php");
 
 if ( $connex = connect_db() ){
 
-  if (check_val('users', 'nom', $nom)!=0){
+  if (check_val('users', 'nom', $nom) != 0){
     //nom existant deja dans db
-    $erreur ="le nom <i>".$nom."</i> est déjà entré dans la base de données";
+    $erreur ="le nom <i>".$nom."</i> est d&eacute;j&agrave; entr&eacute; dans la base de donn&eacute;es";
     }
-  elseif ( check_val('users', 'loggin', $loggin)!=0){
+  elseif (check_val('users', 'loggin', $loggin) != 0){
     //nom existant deja dans db
-    $erreur ="l'identifiant <i>".$loggin."</i> est déjà utilisé dans la base de données";
+    $erreur ="l'identifiant <i>".$loggin."</i> est d&eacute;j&agrave; utilis&eacute; dans la base de donn&eacute;es";
     }
 
-  if (check_mail($mail) !=0){
+  if (check_mail($mail) != 0){
     //adresse mail incorrecte
     $erreur ="l'adresse de courriel <i>".$mail."</i> est incorrecte";
     }
@@ -70,7 +70,6 @@ echo "<br />nom :".$nom.".";
 echo "<br />mail :".$mail.".";
 echo "<br />tel :".$phone.".";
 echo "<br />Level :".$level.".";*/
-
 
 if (!empty($erreur) ){
 
@@ -99,22 +98,20 @@ if (!empty($erreur) ){
       echo "<br /><b>erreur mySQL:</b>".$erreur;
     }
     else{
-      //inscription enregistrée mais pas encore validée!
-      //envoi d'un mail a l'admin
+      //inscription enregistree mais pas encore validee!
+      //envoi d'un courriel a l'admin
       $texte = "Inscription de ".$prenom." ".$nom;
-      mail(ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
-
+      mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
 
       echo "inscription de ".$prenom." ".$nom."<br />";
       echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\" />";
       echo" est propos&eacute;e avec le loggin : ".$loggin;
-      echo"<br />Vous serez prevenu de sa validation par mail....";
+      echo"<br />Vous serez pr&eacute;venu de sa validation par courriel...";
       }//end else
     echo "<br /><center><a href=\"list_users.php\">Suite</a></center><br /><br />\n";
     pied_page();
     exit();
   }//else end
 }//end if connect
-
 
 ?>

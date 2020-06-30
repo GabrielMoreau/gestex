@@ -19,7 +19,7 @@ if (empty($proj_id))
 
 $task_id = $_GET[idt];
 if (empty($task_id)){
- 
+
  //->nouvelle tache
  $mode ="ajouter";
  $action="valid_task.php";
@@ -69,10 +69,9 @@ $texte.=$projet[nom]. "</b> de la manip <b>".$manip[nom]."</b>";
 echo $texte;
 
 }//end if connex
- else 
+ else
   Header("Location :accueil.php");
 ?>
- 
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
   <tbody>
@@ -84,7 +83,7 @@ echo $texte;
   <input type="hidden" name="id_user" value="<?php echo $user_id ?>" >
 
     <tr>
-    
+
       <td style="vertical-align: top;">Nom *<br />
       </td>
       <td colspan="2" style="vertical-align: top;">
@@ -96,9 +95,9 @@ echo $texte;
       <td colspan="2" style="vertical-align: top;">
  <textarea name="descr" cols="80" rows="10"><?php echo $data['descr'] ?></textarea>
       </td>
-    </tr>  
+    </tr>
     <tr>
- <?php 
+ <?php
  // chaine liste des fournisseurs -> tableau
  $liste_fourn = explode(",", $data['fourniss']);
  // recupere la liste des fournisseurs
@@ -111,7 +110,7 @@ echo $texte;
  </td>
       <td colspan="2" style="vertical-align: top;">
  <select name="fourn[]" multiple="yes" size="5" >
-  <?php  
+  <?php
 
   while( $fournis = result_db($qheq) ){
 
@@ -136,11 +135,11 @@ echo $texte;
       <td style="vertical-align: top;">Date * <i>format:YYYY-MM-JJ</i><br />
       </td>
       <td colspan="2" style="vertical-align: top;">
- <input type="text" name="date" size="10" maxlength="10" value="<?php 
+ <input type="text" name="date" size="10" maxlength="10" value="<?php
     if ($mode=="modifier")
      echo $data['date'];
     else  //ajout->aujourd'hui
-     echo date('Y-m-d', time() ); 
+     echo date('Y-m-d', time() );
       ?> " ><br />
       </td>
     </tr>
@@ -151,14 +150,14 @@ remplir obligatoirement, les autres sont optionnels.</i><br />
       <td >
  <input type="submit" name="Login" value="<?php echo strtoupper($mode) ?>">
       </td>
-  
+
 </form>
-  
+
  <form action="manip_maint.php?id=<?php echo $manip_id ?>" method="POST" name="annulForm">
     <td >
  <input type="submit" name="annul" value="Annuler">
-  </td>    </tr> 
- </form>  
+  </td>    </tr>
+ </form>
 </tbody>
 </table>
 <br />

@@ -46,7 +46,7 @@ if (isset($passwd1) && isset($passwd2)){
 			if(md5($old_pass) != $data['password'] )
 		 				 $errormsg = "Wrong password, sorry!";
 	}
-		
+
 	if (!isset($errormsg)){
 
 		$mot_crypte=md5($passwd1);
@@ -89,7 +89,7 @@ echo  $titre."pour <i>".$data['nom']."</i>";
 		<tr>
 			<td>
 				<table width="100%" border="0" cellpadding="1" cellspacing="2" class="table_body">
-				<?php if ($user_level<3)	{	?>	
+				<?php if ($user_level<3)	{	?>
 					<tr>
 						<td width="150" align="right" nowrap>ancien Password:</td>
 							<td><input type="password" name="old_pass" style="width: 100%;"></td>
@@ -106,7 +106,7 @@ echo  $titre."pour <i>".$data['nom']."</i>";
 				</table>
 			</td>
 		</tr>
-		<tr>						
+		<tr>
 			<td>
 				<table width="100%" border="0" class="table_bottom_panel">
 					<tr>
@@ -117,9 +117,8 @@ echo  $titre."pour <i>".$data['nom']."</i>";
 				</table>
 			</td>
 		</tr>
-	</table>	
+	</table>
 	</form>
-			
 
 </div>
 

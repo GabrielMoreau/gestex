@@ -32,7 +32,6 @@ en_tete($titre);
 
 echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour à la page des demandes...</a>";
 
-	
 $dossier_proj ="data/instru/demandes/".$tache_tache."/";
 
 	//remplace les espaces par des underscore
@@ -41,15 +40,13 @@ $dossier_proj ="data/instru/demandes/".$tache_tache."/";
 	//echo $dossier_proj;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if ( ($handle = @opendir($dossier_proj)) != FALSE){
-		
-		
-		
+
 	$images = array();	$fichiers= array();
    while (false !== ($file = readdir($handle))) {
    ////echo count($images);
        if ($file != "." && $file != "..") {
            if ( eregi("^[a-zA-Z0-9_\-]+(:?\.jpg|\.gif|\.png|\.pdf|\.doc|\.xls|\.mov|\.avi|\.mpg|\.html|\.htm)$", $file) == TRUE ){
-		///entasse les images	
+		///entasse les images
 		////echo $file;
 			array_push( $images,$file );
 		 }
@@ -70,14 +67,13 @@ $dossier_proj ="data/instru/demandes/".$tache_tache."/";
 
    closedir($handle);
 
-		
 		//si trouvé on créé un tableau 2 colonnes :
 		//	a gauche les images
 		//	a droite le texte
-		
+
 ?>		<table cellpadding="1" cellspacing="1" border="1" style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   		<tbody>
-    			
+
 <?php		while ( $file = array_pop($images) ){
 		echo "<tr style=\"width: 40%; text-align: center;\" ><td><a href=\"".$dossier_proj.$file."\" target=\"_newFrame\"><img src=\"";
 			//teste l'etension
@@ -117,7 +113,7 @@ $dossier_proj ="data/instru/demandes/".$tache_tache."/";
 					echo "<h3>".$autres."</h3>";
 					//inclue le fichier
 					if ( $text_handle = fopen( $dossier_proj.$autres, "r")){
-						while (!feof($text_handle)) 
+						while (!feof($text_handle))
     							echo  fgets($text_handle, 4096)."<br />";
     						fclose($text_handle);
 					}//end if fopen
@@ -125,7 +121,7 @@ $dossier_proj ="data/instru/demandes/".$tache_tache."/";
 		 echo "</td></tr>";
 		}//while end  file
 ?>
-			
+
 		<tbody></table>
 
 <?php
@@ -134,7 +130,7 @@ $dossier_proj ="data/instru/demandes/".$tache_tache."/";
 		echo "pas de documents disponibles pour ce projet!<br />";
 	}//end if connect
 ?>
-  
+
 <br />
 <br />
 </div>

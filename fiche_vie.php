@@ -15,7 +15,7 @@ require("html_functions.php");
 
 if (empty($_GET[id]))
 	Header("Location: instru.php");
-else 
+else
 	$id_app=$_GET[id];
 
 	//interrogation base de données
@@ -40,17 +40,15 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
-    <tr> 
+    <tr>
 	<td style="vertical-align: top; text-align: center;">
 <? php//permet de retourner à la page précedente?>
 	<a href="<?php echo $_SERVER['HTTP_REFERER']?>">Retour à la liste</a>
 
 	<br /></td>
 
-	
 <?php if ( $user_level >=2 ) {	?>
 
- 
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php?variable=instru">Quitter</a>
 
@@ -95,10 +93,9 @@ echo "L'appareil <b>".$data['nom']."</b> a les caractéristiques suivantes :<br /
 	Inventaire<br />
       </th>
 
-    
-<?php if ( $user_level >=2 ) 	
+<?php if ( $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 ) 	
+	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -132,15 +129,13 @@ echo"</td><td style=\"vertical-align: top;\">";
 		$resp = result_db($qheq);
       		echo $resp[nom];
 
- 
-
   echo"</td><td style=\"vertical-align: top;\">";
 echo $data['id'];
 
   echo"</td><td style=\"vertical-align: top;\">";
 echo $data['inventaire'];
 
- if ( $user_level >=2 ) {	
+ if ( $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_app2.php?app=".$id_app."&id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
@@ -149,7 +144,7 @@ echo $data['inventaire'];
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_intapp.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
-	
+
 	}//end if
       echo"</tr>";
 	}//end while

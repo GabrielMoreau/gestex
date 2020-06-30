@@ -27,25 +27,25 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
   <tbody>
     <tr class=menu>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="accueil.php">Retour a l'accueil</a>
+	<a href="accueil.php">Retour &agrave; l'accueil</a>
 	<br /></td>
 <?php if ( $user_level ==3) {	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_user.php">Ajout d'un utilisateur</a>
 	<br /></td>
-<?php }	
-else	{ //edition/modif de ses propres coordonn�es
+<?php }
+else	{ //edition/modif de ses propres coordonnees
 ?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_user.php?id=<?php echo $user_id ?>">
-		<img src="images/edit.png" nosave="" title="modifier son profil"></a>
+		<img src="images/edit.png" nosave="" title="Modifier son profil"></a>
 	<br /></td>
  <?php } ?>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="changepwd.php?id=<?php echo $user_id ?>">
-		<img src="images/unlock.png" nosave="" title="changer son mot de passe"></a>
+		<img src="images/unlock.png" nosave="" title="Changer son mot de passe"></a>
 	<br /></td>
-	
+
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php?variable=projet">Quitter</a>
 	<br /></td> </tr></tbody>
@@ -57,23 +57,22 @@ else	{ //edition/modif de ses propres coordonn�es
   <tbody>
     <tr bgcolor="#f7d709">
       <th style="vertical-align: top; text-align: center;">
-	Prenom<br />
+	Pr&eacute;nom<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_users.php?tri=nom">Nom</a><br />
-      </th>
-
-      <th style="vertical-align: top; text-align: center;">
-	Telephone<br />
+	<a href ="list_users.php?tri=nom">Nom de famille</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Email <br />
+	T&eacute;l&eacute;phone<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_users.php?tri=equipe">Equipe</a><br />
+	Courriel<br />
+      </th>
+      <th style="vertical-align: top; text-align: center;">
+	<a href ="list_users.php?tri=equipe">&Eacute;quipe</a><br />
       </th>
     </tr>
-<?php	//interrogation base de donn�es
+<?php	//interrogation base de donnees
 
 if ( $pdo = connect_db() ){
 	// recupere la liste des users
@@ -100,12 +99,12 @@ if ( $pdo = connect_db() ){
  echo "<td style=\"vertical-align: top;\">";
 	echo $data['prenom'];
        echo"</td><td style=\"vertical-align: top;\">";
-	//l'utilisateur a la possiblit� de modifier ses coordonn�es
+	//l'utilisateur a la possiblite de modifier ses coordonnees
 	if ($user_id == $data['id'] || $user_level==3)
 		echo "<a href=\"add_user.php?id=".$data['id']."\">".$data['nom']."</a>";
 	else
 		echo $data['nom'];
-	
+
       echo"</td><td style=\"vertical-align: top;\">";
       echo $data['tel'];
       echo"</td><td style=\"vertical-align: top;\">";
@@ -119,7 +118,7 @@ if ( $pdo = connect_db() ){
         $stmt->execute(array($data['equipe']));
         $equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo $equipe[0]['nom'];
-		
+
       echo " (".$data['equipe'].")";
      if ($user_level==3){
 		 echo"</td><td style=\"vertical-align: top;\">";
@@ -130,9 +129,9 @@ if ( $pdo = connect_db() ){
 		echo "<img src=\"images/kill.png\" nosave=\"\" title=\"supprimer l'utilisateur!\"></a>";
 		 echo"</td><td style=\"vertical-align: top;\">";
 		if ($data['valid']==0)
-			echo "Non Valid�";
+			echo "Non Valid&eacute;";
 		else
-			echo "Valid�";
+			echo "Valid&eacute;";
 		}
 
       echo"</td></tr>";$num_line++;

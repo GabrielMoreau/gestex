@@ -33,7 +33,7 @@ if ( $connex = connect_db() ){
 	// recupere les refs du user
 	$querry = "SELECT prenom,nom FROM users where loggin='$logged_in_user' " ;
 	list($qh,$num) = query_db($querry);
-	
+
 $data = result_db($qh);
 echo " Bienvenue $data['prenom'] $data['nom'] ($user_id)<br /><br />";
 /////echo "equipe:".$equip_id." manip :".$manip_id." projet :".$projet_id." tache :".$tache_id."<br />";
@@ -61,7 +61,7 @@ echo " Bienvenue $data['prenom'] $data['nom'] ($user_id)<br /><br />";
 	echo $depuis."</h1>";
 /****$querry = "SELECT id,nom FROM equipe " ;
 	list($qh,$num) = query_db($querry);
-	///recupere les infos des equipes   
+	///recupere les infos des equipes
 ****/
 $temps_proj=0;
 $temps_manip = 0;
@@ -69,7 +69,7 @@ $temps_equip = 0;
 	//pour toutes les equipes
 /***	while($equipes = result_db($qh)){
 
-	echo "<h2>Equipe :".$equipes[nom]." (".$equipes[id].")</h2><ul>";	****/
+	echo "<h2>&Eacute;quipe :".$equipes[nom]." (".$equipes[id].")</h2><ul>";	****/
 
 		$querry = "SELECT * FROM manip ";
 		if ($manip_id != 0)	// pour une manip, sinon pour toutes
@@ -125,7 +125,7 @@ $temps_equip = 0;
 					// recuper les temps passés pour cette tache
 						$querry = "select * FROM temps WHERE id_tache=". $taches[id];
 					if (!empty($depuis))
-						$querry.=" AND date >='$depuis';"; 
+						$querry.=" AND date >='$depuis';";
 					list($qh5,$num) = query_db($querry);
 					///recupere les infos des taches
 					while($timings = result_db($qh5)){
@@ -136,7 +136,6 @@ $temps_equip = 0;
 
 					}//end while timings
 					echo $temps_tache." heures";echo "</td></tr>";
-							
 
 				if (!empty($user_tache)){
 					echo " par:";
@@ -167,7 +166,7 @@ $temps_equip = 0;
 
 }//end if connect
 ?>
-  
+
 <br />
 <br />
 </div>

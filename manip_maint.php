@@ -31,7 +31,7 @@ if ( $connex = connect_db() ){
  // recupere les refs du user
  $querry = "SELECT prenom,nom FROM users where loggin='$logged_in_user' " ;
  list($qh,$num) = query_db($querry);
- 
+
 $data = result_db($qh);
 echo " Bienvenue $data['prenom'] $data['nom'] ($user_id)<br /><br />";
 ?>
@@ -59,7 +59,7 @@ Voici la liste des Projets de la manip :<br />
 
  echo "<tr bgcolor=\"#f7d709\">";
 
-  echo "<td style=\" text-align: center;\"><i>Equipe</i> :".$eq[nom]."<br />";
+  echo "<td style=\" text-align: center;\"><i>&Eacute;quipe</i> :".$eq[nom]."<br />";
     // recupere le nom du chercheur
   $querry = "SELECT nom FROM users WHERE id ='$data['chercheur']'";
   list($qheq,$numeq) = query_db($querry);
@@ -89,7 +89,7 @@ Voici la liste des Projets de la manip :<br />
    <td style="vertical-align: top; text-align: center;">
  <a href="accueil.php">Retour a l'accueil</a>
  <br /></td>
-  
+
   <td style="vertical-align: top; text-align: center;">
  <a href="logout.php?variable=projet">Quitter</a>
  <br /></td> </tr></tbody>
@@ -133,14 +133,14 @@ wnd.focus();
  if (@opendir($dossier_proj) != FALSE){
   //si trouvé ajoute un bouton
   echo "Voir : <a href =\"browse_proj.php?idm=". $manip_id ."&idp=".$proj_id."\"><img src=\"images/filefind.png\" nosave=\"\" width=\"15\" title =\"Voir les docs de ce projet\"></a><br />";
- 
+
  }
  ?>
   </th>
 <?php if ($user_level >=2){ ?>
   <!-- <th colspan="3"></th> //ajout de doc   -->
     <th style="vertical-align: top; text-align: left;">
-  
+
   <a href ="add_doc.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/stockattach.png" nosave=\"\" width=\"20\"  title ="ajouter un document à ce projet"></a><br />
   </th>
    <th style="vertical-align: top; text-align: right;">
@@ -149,8 +149,7 @@ wnd.focus();
     <th style="vertical-align: top; text-align: right;">
   <a href ="del_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/edittrash.png" nosave=\"\" width=\"20\" title="Supprimer ce projet"></a><br />
    </th>
-  
-  
+
     <?php } else {
   echo "<th colspan=\"2\"></th>";
   } ?>
@@ -160,7 +159,7 @@ wnd.focus();
   <th style="vertical-align: top; text-align: center;">Debut :<br />      </th>
   <th style="vertical-align: top; text-align: center;">Par :<br />      </th>
   <th style="vertical-align: top; text-align: center;">Temps pass&eacute;:<br />      </th>
- 
+
  <?php if ($user_level >=2){ ?>
   <th colspan="2" style="vertical-align: top; text-align: right;" >
   <a href ="add_task.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>">Ajouter une tache</a><br />
@@ -176,7 +175,7 @@ wnd.focus();
  $querry = "SELECT id,nom,date,user, temps FROM tache WHERE projet=$proj_id ORDER BY date";
  list($qh2,$num2) = query_db($querry);
  while ($taches = result_db($qh2)) {
- 
+
   // remplit le tableau de taches
        echo"<tr><td><img src =\"images/forward.png\" nosave=\"\" width=\"15\"></td>";
   echo"<td style=\"vertical-align: top;\">";
@@ -203,9 +202,7 @@ wnd.focus();
      $users.= $next_user[nom].", ";
   }
   echo $users;
-  
-  
-   
+
        echo"</td><td style=\"vertical-align: top;\">";
    echo "dur&eacute;e :";
   echo $temps_tache." heures";
@@ -226,7 +223,7 @@ wnd.focus();
 
  }//end while taches
 
-   echo"<tr><td style=\"vertical-align: top;text-align: left;\" >"; 
+   echo"<tr><td style=\"vertical-align: top;text-align: left;\" >";
  if ($user_level >=2){
  echo" <a href =\"add_task.php?idm=".$manip_id." ?>&idp=". $proj_id ."?>\"><img src=\"images/edit_add.png\" nosave=\"\" width=\"15\"  title=\"Ajouter une tache\"></a><br />";
  }
@@ -237,7 +234,7 @@ echo"</td><td style=\"vertical-align: top;text-align: right;\" colspan=3 >";
   echo $total_projet;
       echo" heures</td></tr>";
  echo"</tbody></table>";
- $total_manip+=$total_projet; 
+ $total_manip+=$total_projet;
 }//end while manip
 echo "<br />temps total manip : ".$total_manip." heures<br /><br />";
 
@@ -262,7 +259,7 @@ echo "</ul>";
 
 }//end if connect
 ?>
-  
+
 <br />
 <br />
 </div>

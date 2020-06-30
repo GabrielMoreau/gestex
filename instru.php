@@ -2,7 +2,7 @@
 
 // Authenticate
 
-include("session_auth.php");
+require("session_auth.php");
 
 if (!auth(1))
 	Header("Location: login.php");
@@ -21,7 +21,7 @@ if (empty($_GET['tri']))
 	$tri ="id";
 else
 	$tri = $_GET['tri'];
-//recup�re la categorie
+//recupere la categorie
 // $cat=$_GET['categorie'];
 //echo "$cat";
 if (empty($_GET['categorie']))
@@ -29,7 +29,7 @@ if (empty($_GET['categorie']))
 else
 	$cat = $_GET['categorie'];
 
-//recupere l'�quipe
+//recupere l'equipe
 
 if (empty($_GET['equipe']))
 	$eq = 0;
@@ -46,7 +46,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour �<br />la page du service</a>	
+<a href="<?php echo GESTEX_URL_SERVICE ?>">Retour &agrave;<br />la page du service</a>
 
 	<br /></td>
 <?php if (empty($eq)) {	?>
@@ -56,7 +56,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 <?php
 
 // if ( $pdo = connect_db() ){
-	//recup�re la categorie
+	//recupere la categorie
 
 // $sql = 'SELECT * FROM categorie where id = ?' ;
 // 	list($qh,$num) = query_db($querry);
@@ -65,12 +65,12 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 // $stmt = $pdo->prepare($sql);
 //         $stmt->execute(array($cat));
 //         $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
- 
+
 echo "<a href =\"add_app2.php?categorie=".$cat."\">Ajout<br />d'un appareil</a>";
 
 // }
 ?>
-	
+
 	<br /></td>
 
  <td style="vertical-align: top; text-align: center;">
@@ -84,14 +84,13 @@ echo "<a href =\"add_app2.php?categorie=".$cat."\">Ajout<br />d'un appareil</a>"
 <?php }	?>
 
 <td style="vertical-align: top; text-align: center;">
-	
 
-	<a href="essai.php">Retour aux categories</a>
+	<a href="essai.php">Retour aux cat&eacute;gories</a>
 <br /></td>
 
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_categorie.php">Ajout<br />d'une categorie</a>
+	<a href="add_categorie.php">Ajout<br />d'une cat&eacute;gorie</a>
 	<br /></td>
 
 <?php }	?>
@@ -101,49 +100,41 @@ echo "<a href =\"add_app2.php?categorie=".$cat."\">Ajout<br />d'un appareil</a>"
 
 <br />
 Liste des appareils : <br />
-<i>Cliquer sur le nom d'un appareil pour connaitre son mod�le, sa date d'achat, ses accessoires...</i><br />
+<i>Cliquer sur le nom d'un appareil pour connaitre son mod&egrave;le, sa date d'achat, ses accessoires...</i><br />
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
-
  <th style="vertical-align: top; text-align: center;">
-	<a href ="instru.php?tri=categorie">Cat�gorie<br />
+	<a href ="instru.php?tri=categorie">Cat&eacute;gorie<br />
       </th>
-
       <th style="vertical-align: top; text-align: center;">
 	Nom<br />
       </th>
      <th style="vertical-align: top; text-align: center;">
-	Modele<br />
+	Mod&egrave;le<br />
       </th>
-
  <th style="vertical-align: top; text-align: center;">
 	Gamme<br />
       </th>
-
       <th style="vertical-align: top; text-align: center;">
-	Equipe<br />
+	&Eacute;quipe<br />
       </th>
-     
       <th style="vertical-align: top; text-align: center;">
 	Fournisseur<br />
       </th>
-
-  
 <th style="vertical-align: top; text-align: center;">
 	Notice<br />
       </th>
 
-   
-<?php if ( $user_level >=2 ) 	
+<?php if ( $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 ) 	
+	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de donn�es
+<?php	//interrogation base de donnees
 
 if ( $pdo = connect_db() ){
 	// recupere la liste de appareils
@@ -154,7 +145,7 @@ if($cat == 0 && $eq != 0)
 {
 $sql = 'SELECT * FROM Listing where equipe= ? order by nom ASC;';
 	// list($qh,$num) = query_db($querry);
-	
+
 	// $last_id=0;
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($eq));
@@ -162,7 +153,7 @@ $sql = 'SELECT * FROM Listing where equipe= ? order by nom ASC;';
 }else if($eq == 0 && $cat != 0){
 	$sql = 'SELECT * FROM Listing where categorie= ? order by nom ASC;';
 	// list($qh,$num) = query_db($querry);
-	
+
 	// $last_id=0;
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($cat));
@@ -191,7 +182,7 @@ $listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 //       	echo $categorie[0]['nom'];
 //  echo"</td><td style=\"vertical-align: top;\">";
 // 	echo "<a href =\"fiche_vie.php?id=".$listing[0]['id']."\">". $listing[0]['nom']."</a>";
-    
+
 //        echo"</td><td style=\"vertical-align: top;\">";
 // echo $listing[0]['modele'];
 
@@ -211,7 +202,7 @@ $listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 // 	$equipe =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 // 	  echo $equipe[0]['nom'];
 //        echo"</td><td style=\"vertical-align: top;\">";
-	
+
 // 	// recupere la nom du fournisseur
 // 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?';
 // 	// list($qheq,$numeq) = query_db($querry);
@@ -221,14 +212,11 @@ $listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 // 	$fournisseur =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 //       		echo $fournisseur[0]['nom'];
-      
 
 //   echo"</td><td style=\"vertical-align: top;\">";
 
-	
 // 	///bouton lien vers la doc
 // 	$dossier_proj ="data/instru/".$listing[0]['nom'];
-	
 
 // 	//remplace les espaces par des underscore
 // 	$dossier_proj = str_replace(" ", "_", $dossier_proj);
@@ -236,15 +224,15 @@ $listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 // 	//echo $dossier_proj;
 // 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 // 	if (@opendir($dossier_proj) != FALSE){
-// 		//si trouv� ajoute un bouton
+// 		//si trouve ajoute un bouton
 // 		echo "Voir : <a href =\"notice.php?id=". $data['id']."\">".$data['nom']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
-    
+
 // 	}
 // 	if (( $user_level >=2)&&($eq=="15 pret=15")) {
 // echo"</td><td style=\"vertical-align: top;\">";
 //       echo '<a href="add-pret.php?id=',$listing[0]['id'],'><img src="images/edit.png" nosave="" title="Demande de pret" /></a>';
 //      echo"</td>"; }
-// 	 if (( $user_level >=2)&&($eq!="15 pret=15")) {	
+// 	 if (( $user_level >=2)&&($eq!="15 pret=15")) {
 //       echo"</td><td style=\"vertical-align: top;\">";
 //       echo '<a href="add_app2.php?id=',$listing[0]['id'],'"><img src="images/edit.png" nosave="" title="Modifier" /></a>';
 //       echo"</td>";
@@ -253,7 +241,7 @@ $listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 //       echo"</td><td style=\"vertical-align: top;\">";
 //       echo '<a href="del_app2.php?id=',$listing[0][id],'"><img src="images/edittrash.png" nosave="" title="Supprimer" /></a>';
 //       echo"</td>";
-	
+
 // }
 // echo"</tr>";
 
@@ -272,7 +260,7 @@ foreach($listing as $data){
 
  echo"</td><td style=\"vertical-align: top;\">";
 	echo "<a href =\"fiche_vie.php?id=".$data['id']."\">". $data['nom']."</a>";
-    
+
        echo"</td><td style=\"vertical-align: top;\">";
 
 echo $data['modele'];
@@ -294,7 +282,7 @@ echo $data['gamme'];
 				  echo $equipe[0]['nom'];
       		// echo $equip['nom'];
        echo"</td><td style=\"vertical-align: top;\">";
-	
+
 	// recupere la nom du fournisseur
 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
 	// list($qheq,$numeq) = query_db($querry);
@@ -314,10 +302,8 @@ $sql = 'SELECT id, nom FROM categorie WHERE id = ?';
 		$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
       		//echo $cat[nom];
 
-	
 	///bouton lien vers la doc
 	$dossier_proj ="data/instru/".$data['nom'];
-	
 
 	//remplace les espaces par des underscore
 	$dossier_proj = str_replace(" ", "_", $dossier_proj);
@@ -325,18 +311,16 @@ $sql = 'SELECT id, nom FROM categorie WHERE id = ?';
 	//echo $dossier_proj;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
-		//si trouv� ajoute un bouton
+		//si trouve ajoute un bouton
 		echo 'Voir : <a href ="notice.php?id=', $data['id'],'\">',$data['nom'],'<img src="images/filefind.png" nosave="" title ="Voir ce projet" /></a><br />';
-    
 	}
-	
 
   if (( $user_level >=2)&&($eq=="15 pret=15")) {
 echo '</td><td style="vertical-align: top;">';
       echo '<a href="add-pret.php?id=',$data['id'],'"><img src="images/edit.png" nosave="" title="Demande de pret" /></a>';
-     echo"</td>"; 
+     echo"</td>";
 }
- if (( $user_level >=2)&&($eq!="15 pret=15")) {	
+ if (( $user_level >=2)&&($eq!="15 pret=15")) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo '<a href="add_app2.php?id=',$data['id'],'"><img src="images/edit.png" nosave="" title="Modifier" /></a>';
       echo"</td>";
@@ -345,14 +329,9 @@ echo '</td><td style="vertical-align: top;">';
       echo '</td><td style=\"vertical-align: top;\">';
       echo '<a href="del_app2.php?id=',$data['id'],'"><img src="images/edittrash.png" nosave="" title="Supprimer" /></a>';
       echo"</td>";
-	
+
 }
 echo"</tr>";
-	
-
-	
-
-      
 
 	}//end while
 

@@ -1,4 +1,3 @@
-
 <?php
 //essai1.php
 // Authenticate
@@ -10,13 +9,9 @@ include("db_functions.php");
 
 require("html_functions.php");
 
-
 // $user_id = $_SESSION['user_id'];
 // $logged_in_user = strtolower($_SESSION['logged_in_user']);
 // $user_level= $_SESSION['level'];
-
-
-
 
 en_tete("Liste des appareils:");
 
@@ -28,31 +23,26 @@ en_tete("Liste des appareils:");
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	 <a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour �<br />la page du service</a>
+	 <a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour &agrave;<br /> la page du service</a>
 		<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="list_fourn1.php">Liste<br />des fournisseurs</a>
 	<br /></td>
  <td style="vertical-align: top; text-align: center;">
-	<a href="login.php?variable=instru">Acc�s<br />restreint</a>
+	<a href="login.php?variable=instru">Acc&egrave;s<br />restreint</a>
 	<br /></td>
-
 
 </tr></tbody>
 </table>
 
-
-
-
-
 <br />
 Liste des appareils : <br />
-<i>Cliquer sur une categorie pour voir la liste...</i><br />
+<i>Cliquer sur une cat&eacute;gorie pour voir la liste...</i><br />
 <br /><table cellpadding="20" cellspacing="4" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
-	
+
 	 <th style="vertical-align: top; text-align: center;">
 
 	<a href ="instru1.php?list=">Liste globale</a><br />
@@ -60,20 +50,20 @@ Liste des appareils : <br />
 
  <th style="vertical-align: top; text-align: center;">
 
-	<a href ="instru1.php?equipe= 15">Appareils en pr�t au service instru</a><br />
+	<a href ="instru1.php?equipe= 15">Appareils en pr&ecirc;t au service instru</a><br />
       </th>
 	  </tr></tbody>
 	  </table>
 	  <br />
-Liste des appareils par cat�gorie : <br />
+Liste des appareils par cat&eacute;gorie : <br />
 
-<i>Cliquer sur une categorie pour voir la liste...</i><br />
+<i>Cliquer sur une cat&eacute;gorie pour voir la liste...</i><br />
 <br /><table cellpadding="10" cellspacing="2" border="1"
  style="width: 70%; text-align: center; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
 <?php
- // récupération de la méthode de tri et valeur par defaut mise à 'nom'
+ // recuperation de la methode de tri et valeur par defaut mise a 'nom'
 if (empty($_GET['tri']))
 	$tri ="nom";
 else
@@ -82,8 +72,6 @@ else
 if ( $pdo = connect_db() ){
 
 	// recupere les refs du user
-
-
 
 	$sql = 'SELECT id, nom FROM categorie order by ?;';
 	$stmt =$pdo->prepare($sql);
@@ -95,17 +83,15 @@ if ( $pdo = connect_db() ){
  echo"<td style=\"vertical-align: top;\">";
 // echo "<a href =\"instru1.php?categorie=".$categorie[0]['id']."\">". $categorie[0]['nom']."</a>";
 // echo "<br />";
-	
 
 // while ($data = result_db($qh))
-foreach($categorie as $data){    
+foreach($categorie as $data){
 
 	echo "<a href =\"instru1.php?categorie=".$data['id']."\">". $data['nom']."</a>";
 	echo "<br />";
 }
 
       echo"</tr>";
-
 
 }
 ?>

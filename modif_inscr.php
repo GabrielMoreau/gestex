@@ -7,7 +7,6 @@ include("session_auth.php");
 if (!auth(1))
 	Header("Location: login.php");
 
-
 $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level     = $_SESSION['level'];
@@ -20,15 +19,15 @@ require("html_functions.php");
 unset($erreur); unset($nom);unset($user_id );
 //variables ne pouvant etre nulles
 	if (empty($_POST[user2ch_id]))
-		$erreur="identifiant utilisateur non pr&eacute;cis&eacute;";	
+		$erreur="identifiant utilisateur non pr&eacute;cis&eacute;";
 	else{
 		$user2ch_id =$_POST[user2ch_id];
-	
+
 				if (empty($_POST[nom]))
-					$erreur="nom non pr&eacute;cis&eacute;";	
+					$erreur="nom non pr&eacute;cis&eacute;";
 				else{
 					$nom =$_POST[nom];
-	
+
 						if (empty($_POST[addr_mail]))
 							$erreur="adresse de courriel non pr&eacute;cis&eacute;";
 						else{
@@ -62,7 +61,6 @@ if ( $connex = connect_db() ){
 	$querry="SELECT * FROM users WHERE id='$user2ch_id'";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
-
 
 	//modif inscription
 	//on construit la demande

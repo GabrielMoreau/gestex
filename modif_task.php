@@ -12,19 +12,17 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-
-
 //modification d'une tache de manip
 
 unset($erreur);
 //variables ne pouvant etre nulles
 if (empty($_POST[id_manip]))
-	$erreur="manip non pr&eacute;cis&eacute;";	
+	$erreur="manip non pr&eacute;cis&eacute;";
 else{
 	$manip_id =$_POST[id_manip];
 
 if (empty($_POST[id_proj]))
-	$erreur="projet non pr&eacute;cis&eacute;";	
+	$erreur="projet non pr&eacute;cis&eacute;";
 else{
 	$proj_id =$_POST[id_proj];
 
@@ -37,17 +35,15 @@ if (empty($_POST['nom']))
 	$erreur="nom non pr&eacute;cis&eacute;";
 else {
 	$nom=$_POST['nom'];
-		
-			
+
 				$descr =$_POST['descr'];
-						
+
 							$date =$_POST['date'];
-						
+
 							$fourn = array_values($_POST['fourn'] );
-							
+
 					}}}}///}
 en_tete("resultat modification ");
-
 
 if (!empty($erreur) ){
 
@@ -72,11 +68,10 @@ if ( $connex = connect_db() ){
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 
-
 		//modification tache
 //on construit la demande
 	$querry = "UPDATE LOW_PRIORITY tache SET ";
-		
+
 		if ($nom!=$data['nom'])
 			//modif du nom
 			$querry.="nom='$nom',";
@@ -89,7 +84,6 @@ if ( $connex = connect_db() ){
 		if ($liste_fourn!=$data['fourniss'])
 			//modif de fournisseur
 			$querry.="fourniss='$liste_fourn',";
-
 
 		if ($date!=$data['date'])
 			//modif de la date
@@ -107,7 +101,7 @@ if ( $connex = connect_db() ){
 			$erreur = mysql_error();
 			echo "<br />erreur :".$erreur;
 		}
-		
+
 	}//end if connect
 
 ////en_tete("modification manip Valid&eacute;e");
