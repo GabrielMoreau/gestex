@@ -52,7 +52,7 @@ else if ($mode=="modifier"){
 
   <tbody>
  <form action="<?php echo $action ?>" method="POST" name="inscrForm">
-		<input type="hidden" name="id_manip" value="<?php echo $manip_id ?>" >
+		<input type="hidden" name="id_manip" value="<?php  if($mode=='modifier'){ echo $manip_id; } ?>" >
    <tr>
     
       <td style="vertical-align: top;">Nom *<br />
