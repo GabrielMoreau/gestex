@@ -47,17 +47,44 @@ function nav_bar(){
 <div class ="navbar">
   <link rel="stylesheet" type="text/css" href="nav_bar.css"> 
 <ul>
-  <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
+<?php if(empty($_SESSION['level'])){ ?>
+   <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
   <li><a href="list_users.php">Liste des utilisateurs</a></li>
   <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
   <li><a href="instru.php">Liste des appareils</a></li>
   <li><a href="accueil.php">Liste des manips</a></li>
+  <li class="right"><a href="login.php">Se connecter</a></li>
+</ul>
+</div>
+
+
+<?php }else{ ?>
+   <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
+   <li><a href="list_users.php">Liste des utilisateurs</a></li>
+   <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
+   <li><a href="instru.php">Liste des appareils</a></li>
+   <li><a href="accueil.php">Liste des manips</a></li>
+   <?php if($_SESSION['level'] == 2){ ?>
+      <li class="dropdown">
+         <a class="dropbtn">Ajouter</a>
+         <div class="dropdown-content">
+            <a href="add_manip.php">Manip</a>
+            <a href="add_fourn.php">Fournisseur</a>
+            <a href="add_pret.php">Pr&ecirc;t</a>
+            <a href="add_time.php">Temps</a>
+            <a href="add_task.php">Task</a>
+            <a href="add_labviews.php">Labview</a>
+         </div>
+      </li>
+<?php }else if($_SESSION['level'] >= 3){ ?>
+  
   <li class="dropdown">
     <a class="dropbtn">Ajouter</a>
     <div class="dropdown-content">
       <a href="add_manip.php">Manip</a>
       <a href="add_categorie.php">Cat&eacute;gorie</a>
-      <a href="add_app.php">Appareil</a>
+      <a href="add_app.php">Maintenance</a>
+      <a href="add_app2.php">Appareils</a>
       <a href="add_equip.php">&Eacute;quipe</a>
       <a href="add_fourn.php">Fournisseur</a>
       <a href="add_intapp.php?app=3">Intervention</a>
@@ -77,7 +104,12 @@ function nav_bar(){
       <a href="#">Link 3</a>
     </div>
   </li>
-  <li class="right"><a href="login.php">Se connecter</a></li>
+  <?php  } ?>
+  
+  <li class="right"><a href="logout.php">Se déconnecter</a></li>
+
+  <?php } ?>
+
 </ul>
 </div>
  <?php
