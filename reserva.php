@@ -107,7 +107,7 @@ echo "<tr>";
 
   echo"</td><td style=\"vertical-align: top;\">";
 
-	// recupere la nom d'equipe
+	// recupere le nom d'equipe
 
 	$querry = "SELECT id, nom FROM equipe WHERE id='$data['equipe']'";
 	list($qheq,$numeq) = query_db($querry);
@@ -151,7 +151,7 @@ while ($data = result_db($qh)){
 
        echo"</td><td style=\"vertical-align: top;\">";
 
-	// recupere la nom d'equipe
+	// recupere le nom d'equipe
 
 	$querry = "SELECT id, nom FROM equipe WHERE id='$data['equipe']'";
 	list($qheq,$numeq) = query_db($querry);

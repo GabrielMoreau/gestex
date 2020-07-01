@@ -93,7 +93,7 @@ if ( $pdo = connect_db() ){
        echo"</td><td style=\"vertical-align: top;\">";
       echo $data['compte'];
       echo"</td><td style=\"vertical-align: top;\">";
-	// recupere la nom d chef d'equipe
+	// recupere le nom de chef d'equipe
 	$sql = 'SELECT id, nom FROM users WHERE id = ?';
 	// list($qheq,$numeq) = query_db($querry);
 		// $chef = result_db($qheq);

@@ -96,7 +96,7 @@ if ( $pdo = connect_db() ){
 	echo $data['descr'];
 	   echo"</td><td style=\"vertical-align: top;\">";
 	   
-	// recupere la nom d'equipe
+	// recupere le nom d'equipe
 	$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
 	// list($qheq,$numeq) = query_db($querry);
 	// 	$equip = result_db($qheq);
@@ -107,7 +107,7 @@ if ( $pdo = connect_db() ){
       		echo $equipe[0]['nom'];
 	   echo"</td><td style=\"vertical-align: top;\">";
 	   
-	// recupere la nom du tech
+	// recupere le nom du tech
 	$sql = 'SELECT id, nom FROM users WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
     $stmt->execute(array($data['tech']));
@@ -117,7 +117,7 @@ if ( $pdo = connect_db() ){
 	echo $equipe[0]['nom'];
 	echo"</td><td style=\"vertical-align: top;\">";
 	   
-	// recupere la nom du fournisseur
+	// recupere le nom du fournisseur
 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?';;
 	$stmt = $pdo->prepare($sql);
     $stmt->execute(array($data['fournisseur']));

@@ -93,19 +93,19 @@ while ($data = result_db($qh)) {
       echo"</td><td style=\"vertical-align: top;\">";
 	echo $data['descr'];
        echo"</td><td style=\"vertical-align: top;\">";
-	// recupere la nom d'equipe
+	// recupere le nom d'equipe
 	$querry = "SELECT id, nom FROM equipe WHERE id=".$data['equipe'];
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
       		echo $equip[nom];
        echo"</td><td style=\"vertical-align: top;\">";
-	// recupere la nom du tech
+	// recupere le nom du tech
 	$querry = "SELECT id, nom FROM users WHERE id=".$data['tech'];
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
       		echo $equip[nom];
        echo"</td><td style=\"vertical-align: top;\">";
-	// recupere la nom du fournisseur
+	// recupere le nom du fournisseur
 	$querry = "SELECT id, nom FROM fournisseurs WHERE id=".$data['fournisseur'];
 	list($qheq,$numeq) = query_db($querry);
 		$equip = result_db($qheq);
