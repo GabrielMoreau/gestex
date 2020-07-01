@@ -105,7 +105,7 @@ function nav_bar(){
     </div>
   </li>
   <?php  } ?>
-  <li class="right"><a href="logout.php">Se d&eacute;onnecter</a></li>
+  <li class="right"><a href="logout.php">Se d&eacute;connecter</a></li>
   <?php } ?>
 </ul>
 </div>
