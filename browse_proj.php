@@ -42,7 +42,7 @@ $titre ="Documents de la manip : ".$nom_manip . " projet : ".$nom_proj;
 
 en_tete($titre);
 
-echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour à la page manip...</a>";
+echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour &agrave; la page manip...</a>";
 
  $dossier_proj ="data/".$nom_manip."/". $nom_proj."/";
  //remplace les espaces par des underscore
@@ -93,7 +93,7 @@ echo "dossier : ".$dossier_proj;
 ///tri par ordre alphabetique
 sort($fichiers); sort($images);
 
-  //si trouvé on créé un tableau 5 colonnes :
+  //si trouve on cree un tableau 5 colonnes :
   // texte (1 colonne)
   // images... (5 colonnes)
 

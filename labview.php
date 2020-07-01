@@ -60,7 +60,7 @@ Liste des manip labview en cours : <br />
 	 Salle de la manip<br />
       </th>
      <th style="vertical-align: top; text-align: center;">
-	Matériel d'acquisition ou de commande<br />
+	Mat&eacute;riel d'acquisition ou de commande<br />
       </th>
 
  <th style="vertical-align: top; text-align: center;">
@@ -72,11 +72,11 @@ Liste des manip labview en cours : <br />
       </th>
 
 <th style="vertical-align: top; text-align: center;">
-	Module spécifique Labview<br />
+	Module sp&eacute;cifique Labview<br />
       </th>
 
 <th style="vertical-align: top; text-align: center;">
-	Impression écran+doc pdf manip<br />
+	Impression &eacute;cran+doc pdf manip<br />
       </th>
 
 <?php if ( $user_level >=2 )
@@ -86,7 +86,7 @@ Liste des manip labview en cours : <br />
 	  ?>
     </tr>
 
-<?php	//interrogation base de données
+<?php	//interrogation base de donnees
 
 if ( $connex = connect_db() ){
 
@@ -127,7 +127,7 @@ $dossier_lab ="data/labview/".$data['manipch'];
 	//echo $dossier_lab;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_lab) != FALSE){
-		//si trouvé ajoute un bouton
+		//si trouve ajoute un bouton
 		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir la face avant du programme\"></a><br />";
     }
 
@@ -173,7 +173,7 @@ echo $data['module'];
 	//echo $dossier_lab;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_lab) != FALSE){
-		//si trouvé ajoute un bouton
+		//si trouve ajoute un bouton
 		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\"></a><br />";
     }
 //echo $data['ecran'];

@@ -18,7 +18,7 @@ if (empty($_GET[id]))
 else
 	$id_app=$_GET[id];
 
-	//interrogation base de données
+	//interrogation base de donnees
 
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils

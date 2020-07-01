@@ -28,12 +28,12 @@ en_tete("Infos Projet");
 
 if ( $connex = connect_db() ){
 
- // recupere le manip selectionnée
+ // recupere le manip selectionnee
  $querry = "SELECT nom FROM manip WHERE id='$manip_id'";
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
   echo "<h1>Manip :".$data['nom']."</h1>";
-// recupere le projet selectionné
+// recupere le projet selectionne
  $querry = "SELECT * FROM projet WHERE id='$proj_id' ";
  list($qh,$num) = query_db($querry);
  $projs = result_db($qh);
@@ -48,7 +48,7 @@ if ( $connex = connect_db() ){
  <tr><td colspan="4"> <i>Description :</i>  <?php echo $projs[descr] ?></td></tr>
 
 <?php
-// recupere les taches selectionnées
+// recupere les taches selectionnees
  $querry = "SELECT * FROM tache WHERE projet='$proj_id' ORDER BY date";
  list($qh2,$num2) = query_db($querry);
  $temps_total = 0;
@@ -72,14 +72,14 @@ if ( $connex = connect_db() ){
     // si ce nom n'est pas deja dans la chaine
       $users.= $next_user[nom].", ";
 
-// cree une chaine de remarques liées a ces temps
+// cree une chaine de remarques liees a ces temps
  if (!empty( $temps[remarks]) )
  $allremarks .= $temps[date].":".$temps[remarks]."<br />";
 
   }
  $temps_total += $temps_tache;
   echo"<th>Par : ".$users."</th>";
-  echo"<th>Durée : ".$temps_tache." h (".$num4." enreg.)</th></tr>";
+  echo"<th>Dur&eacute;e : ".$temps_tache." h (".$num4." enreg.)</th></tr>";
   echo "<tr><td colspan=\"4\">".$taches[descr].$allremarks."</td></tr>";
 }
 ?>

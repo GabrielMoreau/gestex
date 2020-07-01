@@ -36,7 +36,7 @@ $result=1;
  list($qh,$num) = query_db($querry);
  while ($data = result_db($qh) && $result) {
  //pour chaque projet de la manip
-  // on supprime toutes les taches liées a ce projet
+  // on supprime toutes les taches liees a ce projet
   $querry = "DELETE LOW_PRIORITY FROM tache WHERE projet=$data['id']";
     $result = mysql_query($querry);
   //on supprime ce projet
@@ -56,7 +56,7 @@ $result=1;
 
  }
 else
- echo "Manip ".$manip_id." supprimée, ainsi que ses projets et taches!<br />";
+ echo "Manip ".$manip_id." supprim&eacute;e, ainsi que ses projets et taches!<br />";
 //on retourne a la page precedente
   echo "<a href=\"accueil.php\">Suite</a><br />";
 }}

@@ -20,16 +20,16 @@ require("html_functions.php");
 
 if ( $connex = connect_db() ){
 
- en_tete("Voila un formulaire pour associer un projet parallele à une manip");
+ en_tete("Voila un formulaire pour associer un projet parallele &agrave; une manip");
 
- // recupere la manip selectionnée
+ // recupere la manip selectionnee
  $querry = "SELECT * FROM manip WHERE id='$manip_id'";
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
 
 ///tableau des projets associes
 $assoc = explode(',' , $data['assoc_proj']);
-echo "Projets deja associés :".$data['assoc_proj'];
+echo "Projets deja associ&eacute;s :".$data['assoc_proj'];
 
 }//end if connex
  else
@@ -43,8 +43,8 @@ echo "Projets deja associés :".$data['assoc_proj'];
   <input type="hidden" name="id_manip" value="<?php echo $manip_id ?>" >
    <tr>
 
-      <td style="vertical-align: top;">Voici la liste des projets n'appartenant pas a cette manip :<br />
- <i>vous pouvez selectionner plusieurs projets associés</i>
+      <td style="vertical-align: top;">Voici la liste des projets n'appartenant pas &agrave; cette manip :<br />
+ <i>vous pouvez selectionner plusieurs projets associ&eacute;s</i>
       </td>
 
  <?php // recupere la liste des projets n'appartennant pas a cette manip

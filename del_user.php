@@ -42,7 +42,7 @@ $result = mysql_query($querry);
 
  }
 else
- echo "Utilisateur ".$user_id." supprimé!<br />";
+ echo "Utilisateur ".$user_id." supprim&eacute;!<br />";
 //on retourne a la page precedente
   echo "<a href=\"list_user.php\">Suite</a><br />";
 }

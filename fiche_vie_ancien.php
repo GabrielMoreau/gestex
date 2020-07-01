@@ -18,7 +18,7 @@ if (empty($_GET[id]))
 else
 	$id_app=$_GET[id];
 
-	//interrogation base de données
+	//interrogation base de donnees
 
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils
@@ -73,11 +73,11 @@ echo "L'appareil <b>".$data['nom']."</b> a deja subi les interventions suivantes
       </th>
 
   <th style="vertical-align: top; text-align: center;">
-	Réparation / Etalonnages<br /><br />
+	R&eacute;paration / &Eacute;talonnages<br /><br />
       </th>
 
 <th style="vertical-align: top; text-align: center;">
-	Numéro<br />
+	Num&eacute;ro<br />
       </th>
 
 <?php if ( $user_level >=2 )

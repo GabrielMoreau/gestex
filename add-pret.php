@@ -19,7 +19,7 @@ $pret=$_GET[id];
 	//->nouvel appareil
 	$mode ="ajouter";
 	$action="valid-pret.php";
-//transmet la valeur de la categorie à la page valid appareil
+//transmet la valeur de la categorie a la page valid appareil
 
 require("html_functions.php");
 if ( $connex = connect_db() ){
@@ -105,7 +105,7 @@ if ($mode=="ajouter" )
 
   <tr>
 
-      <td style="vertical-align: top;">Date de retour estimée *<i>format YYYY-MM-DD</i><br />
+      <td style="vertical-align: top;">Date de retour estim&eacute;e *<i>format YYYY-MM-DD</i><br />
  </td>
       <td style="vertical-align: top;">
 <input type="text" name="retour" size="10" maxlength="10" value="<?php

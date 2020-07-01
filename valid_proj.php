@@ -84,7 +84,7 @@ if ( $connex = connect_db() ){
  if (!is_dir ($dossier) )
  //data/nom_manip n'existe pas
  mkdir ($dossier);
-// creation du repertoire associé a ce projet
+// creation du repertoire associe a ce projet
 $dossier .= "/".$nom;
 //remplace les espaces par des underscore
  $dossier = str_replace(" ", "_", $dossier );

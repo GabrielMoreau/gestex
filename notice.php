@@ -30,7 +30,7 @@ $titre ="Documents de l'appareil : ".$data['nom'];
 
 en_tete($titre);
 
-echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour à la page catégories...</a>";
+echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour &agrave; la page cat&eacute;gories...</a>";
 
 $dossier_proj ="data/instru/".$nom_nom."/";
 
@@ -67,7 +67,7 @@ $dossier_proj ="data/instru/".$nom_nom."/";
 
    closedir($handle);
 
-		//si trouvé on créé un tableau 2 colonnes :
+		//si trouv&eacute; on cr&eacute;e un tableau 2 colonnes :
 		//	a gauche les images
 		//	a droite le texte
 

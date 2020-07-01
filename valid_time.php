@@ -3,7 +3,7 @@
 require("html_functions.php");
 
 /// valid_time.php
-//validation de temps passé pour une tache
+//validation de temps passe pour une tache
 unset($erreur); unset($nom);
 //variables ne pouvant etre nulles
 
@@ -75,7 +75,7 @@ if ( $connex = connect_db() ){
   echo"<br /><br /><a href=\"add_time.php\">Suite</a><br /><br />\n";
   }
   else{ //result=ok
-echo "ajout de ".$temps."heures à la tache ".$task_id."<br />";
+echo "ajout de ".$temps."heures &agrave; la tache ".$task_id."<br />";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 echo" est valid&eacute;e ";
 echo"<br /><br /><a href=\"manip_maint.php?id=".$manip_id."\">Suite</a><br /><br />\n";

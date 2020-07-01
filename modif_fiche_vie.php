@@ -35,13 +35,13 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 
 if ($mode=="ajouter"){
-	$titre= "Formulaire pour ajouter une intervention à ".$data['nom'];
+	$titre= "Formulaire pour ajouter une intervention &agrave; ".$data['nom'];
 
 }
 else if ($mode=="modifier"){
-	$titre="Formulaire pour modifier les caracteristiques d'une intervention à ".$data['nom'];
+	$titre="Formulaire pour modifier les caracteristiques d'une intervention &agrave; ".$data['nom'];
 
-	// recupere l'intervention selectionnée
+	// recupere l'intervention selectionnee
 	$querry = "SELECT * FROM intervention WHERE id='$int_id'";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);

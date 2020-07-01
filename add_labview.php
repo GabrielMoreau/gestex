@@ -20,7 +20,7 @@ if (empty($app_id)){
 	//->nouvel appareil
 	$mode ="ajouter";
 	$action="valid_labview.php";
-//transmet la valeur de la tache à la page valid appareil
+//transmet la valeur de la tache a la page valid appareil
 }
 else{
 
@@ -64,7 +64,7 @@ else if ($mode=="modifier"){
 
     <tr>
 
-      <td style="vertical-align: top;">Développeur *<br />
+      <td style="vertical-align: top;">D&eacute;veloppeur *<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="technicien" size="30"  value="<?php echo $data['technicien'] ?>" ><br />
@@ -108,7 +108,7 @@ else if ($mode=="modifier"){
 
 <tr>
 
-      <td style="vertical-align: top;">Module spécifique Labview<br />
+      <td style="vertical-align: top;">Module sp&eacute;cifique Labview<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="module" size="30"  value="<?php echo $data['module'] ?>" ><br />
@@ -117,7 +117,7 @@ else if ($mode=="modifier"){
 
   <tr>
 
-      <td style="vertical-align: top;">Impression écran<br />
+      <td style="vertical-align: top;">Impression &eacute;cran<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="ecran" size="30"  value="<?php echo $data['ecran'] ?>" ><br />

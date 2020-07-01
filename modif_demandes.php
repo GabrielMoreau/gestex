@@ -60,7 +60,7 @@ if (empty($tri))
 
 $cat=$_GET[categorie];
 echo "$cat";
-//récupère la catégorie de le page ajout appareil
+//recupere la categorie de la page ajout appareil
 
 if (!empty($erreur) ){
 
@@ -125,13 +125,13 @@ if ($achat!=$data['achat']){
 			$querry.="avancement='$avancement',";
 		}
 		if ($termine!=$data['termine']){
-			//modif des terminé
+			//modif des termine
 			$modif=1;
 			$querry.="termine='$termine',";
 		}
 
 		if ($piecesjointes!=$data['piecesjointes']){
-			//modif des pièces jointes
+			//modif des pieces jointes
 			$modif=1;
 			$querry.="piecesjointes='$piecesjointes',";
 		}

@@ -40,7 +40,7 @@ if ( $connex = connect_db() ){
 
   }
  else
-  echo "Fournisseur ".$id_fourn." supprimé!<br />";
+  echo "Fournisseur ".$id_fourn." supprim&eacute;!<br />";
 
  }//end if connect
 //on retourne a la page precedente

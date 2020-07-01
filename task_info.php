@@ -33,24 +33,24 @@ en_tete("Infos Tache ".$task_id);
 
 if ( $connex = connect_db() ){
 
- // recupere le manip selectionnée
+ // recupere le manip selectionnee
  $querry = "SELECT nom FROM manip WHERE id='$manip_id'";
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
   echo "<h1>Manip :".$data['nom']."</h1>";
 
-// recupere le projet selectionné
+// recupere le projet selectionne
  $querry = "SELECT nom FROM projet WHERE id='$proj_id'";
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
   echo "<h2>Projet :".$data['nom']."</h2>";
 
-// recupere la tache selectionnée
+// recupere la tache selectionnee
  $querry = "SELECT * FROM tache WHERE id='$task_id'";
  list($qh,$num) = query_db($querry);
  $tasks = result_db($qh);
 
-// recupere le temps passé pour cette tache
+// recupere le temps passe pour cette tache
  $total_time=0;
  $users=array();
  $timings=array();
@@ -116,7 +116,7 @@ $fourn = explode (",",  $tasks[fourniss]);
   ///reset ($timings);
 
    while ( $temp = array_shift($timings)) {
-    /// nom date durée remarques
+    /// nom date duree remarques
     echo $temp ."(".array_shift($timings).") ".array_shift($timings)." h : ".array_shift($timings)."<br />";
 
   } ?>

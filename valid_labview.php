@@ -20,7 +20,7 @@ else{
 	$localisation =$_POST[localisation];
 
 if (empty($_POST[matos]))
-		$erreur="matériel non pr&eacute;cis&eacute;";
+		$erreur="mat&eacute;riel non pr&eacute;cis&eacute;";
 	else{
 		$matos=$_POST[matos];
 
@@ -47,7 +47,7 @@ if (empty($tri))
 
 $cat=$_GET[categorie];
 //echo "$cat";
-//récupère la catégorie de le page ajout appareil
+//recupere la categorie de la page ajout appareil
 
 if (!empty($erreur) ){
 

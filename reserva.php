@@ -23,7 +23,7 @@ if (empty($tri))
 
 $use = $_GET[user];
 
-//recupere l'équipe
+//recupere l'equipe
 $eq=$_GET[equipe];
 
 ?>
@@ -38,11 +38,11 @@ $eq=$_GET[equipe];
 
 <td style="vertical-align: top; text-align: center;">
 <?php if ( $use >=3 ) 	{?>
-	<a href="pret1.php">Retour<br />à la liste des prets</a>
+	<a href="pret1.php">Retour<br />&agrave; la liste des prets</a>
 	<br /></td>
 <?php }
 else{	?>
-<a href="pret.php">Retour<br />à la liste des prets</a>
+<a href="pret.php">Retour<br />&agrave; la liste des prets</a>
 <?php }?>
 </tr></tbody>
 </table>
@@ -74,7 +74,7 @@ Liste des prets : <br /><br /><br />
 	Commentaire<br />
       </th>
 	  <th style="vertical-align: top; text-align: center;">
-	Numéro de l'appareil<br />
+	Num&eacute;ro de l'appareil<br />
       </th>
 
 <?php if ( $user_level >=2 )
@@ -83,7 +83,7 @@ Liste des prets : <br /><br /><br />
 		echo "</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de données
+<?php	//interrogation base de donnees
 
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils

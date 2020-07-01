@@ -48,7 +48,7 @@ else{
 require("db_functions.php");
 
 if ( $connex = connect_db() ){
- // chaine :liste des fournissuers separés par des ,
+ // chaine :liste des fournissuers separes par des ,
  $fournisseurs = implode("," , $fourn);
  //ajout de la tache
  $querry = "INSERT INTO tache (projet,nom,descr,date,fourniss)".
@@ -80,7 +80,7 @@ $dossier .="/". $nom_projet;
  if (!is_dir ($dossier) )
    //data/nom_manip/nom_projet n'existe pas
    mkdir ($dossier);
-// creation du repertoire associé a cette tache
+// creation du repertoire associe a cette tache
 $dossier .= "/".$nom;
 //remplace les espaces par des underscore
  $dossier = str_replace(" ", "_", $dossier );

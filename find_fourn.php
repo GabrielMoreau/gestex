@@ -123,7 +123,7 @@ if (isset($find_nom) || isset($find_descr)){
 	</th><th></th><th>
 <?php	 }  ?>
     </tr>
-<?php	//interrogation base de données
+<?php	//interrogation base de donnees
 
 if ( $connex = connect_db() ){
 	// recupere la liste de fournisseurs repondant aux criteres de recherche

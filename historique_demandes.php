@@ -13,14 +13,14 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste des demandes terminées:");
+en_tete("Liste des demandes termin&eacute;es:");
 
 //recuper la methode de tri
 $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
 
-//recupère la categorie
+//recupere la categorie
 $cat=$_GET[categorie];
 //echo "$cat";
 
@@ -51,7 +51,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 </table>
 
 <br />
-Liste des demandes terminées : <br />
+Liste des demandes termin&eacute;es : <br />
 
 <table cellpadding="2" cellspacing="2" border="1"
 style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -66,7 +66,7 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 			Nom du demandeur<br />
 		</th>
 		<th style="vertical-align: top; text-align: center;">
-			Détails<br />
+			D&eacute;tails<br />
 		</th>
 
 		<th style="vertical-align: top; text-align: center;">
@@ -78,11 +78,11 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 		</th>
 
 		<th style="vertical-align: top; text-align: center;">
-			Terminé?<br />
+			Termin&eacute;?<br />
 		</th>
 
 		<th style="vertical-align: top; text-align: center;">
-			Pièces jointes<br />
+			Pi&egrave;ces jointes<br />
 		</th>
 
 		<?php if ( $user_level >=2 )
@@ -92,7 +92,7 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 		?>
 	</tr>
 	<?php
-// interrogation base de données
+// interrogation base de donnees
 
 	if ( $connex = connect_db() ){
 
@@ -165,7 +165,7 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 		// echo $dossier_proj;
 		// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 		if (@opendir($dossier_proj) != FALSE){
-		// si trouvé ajoute un bouton
+		// si trouve ajoute un bouton
 			echo "Voir : <a href =\"jointdemandes.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
 		}
 

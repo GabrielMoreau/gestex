@@ -30,7 +30,7 @@ require("html_functions.php");
 
 if ( $connex = connect_db() ){
 
-	// recupere le manip selectionnée
+	// recupere le manip selectionnee
 	$querry = "SELECT nom FROM manip WHERE id='$manip_id'";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
@@ -42,7 +42,7 @@ if ($mode=="ajouter"){
 }
 else if ($mode=="modifier"){
 	$titre = "Voila un formulaire pour modifier les caracteristiques du projet".$data['nom'];
-	// recupere le projet selectionné
+	// recupere le projet selectionne
 	$querry = "SELECT * FROM projet WHERE id='$proj_id'";
 	list($qh,$num) = query_db($querry);
 	$projs = result_db($qh);

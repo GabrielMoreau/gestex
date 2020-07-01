@@ -30,7 +30,7 @@ $titre ="Documents de la manip : ".$data['manipch'];
 
 en_tete($titre);
 
-echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour à la page liste des programmes labview...</a>";
+echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour &agrave; la page liste des programmes labview...</a>";
 
 $dossier_lab ="data/labview/".$nom_nom."/";
 
@@ -70,7 +70,7 @@ $dossier_lab ="data/labview/".$nom_nom."/";
 
    closedir($handle);
 
-		//si trouvé on créé un tableau 2 colonnes :
+		//si trouve on cree un tableau 2 colonnes :
 		//	a gauche les images
 		//	a droite le texte
 

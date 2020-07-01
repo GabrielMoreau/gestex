@@ -18,7 +18,7 @@ if (empty($user2ch_id)){
 	$action="valid_inscr.php";
 }
 else{
-	//->modif coordonnées
+	//->modif coordonnees
 
 	$mode ="modif";
 	$action="modif_inscr.php";

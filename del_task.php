@@ -27,7 +27,7 @@ if (empty($id_task))
 echo "tache:".$task_id. " ok :".$valid."<br />";
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
- echo "Sur de supprimer la tache ".$id_task. " à la manip ".$id_manip." ?<br />";
+ echo "Sur de supprimer la tache ".$id_task. " &agrave; la manip ".$id_manip." ?<br />";
  echo "<a href=\"".$_SERVER[PHP_SELF]."?idm=".$id_manip."&idt=".$id_task."&ok=yes\">OUI</a><br />";
   echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
 
@@ -49,7 +49,7 @@ if ( $connex = connect_db() ){
 
  }
 else
- echo "Tache ".$task_id." supprimé!<br />";
+ echo "Tache ".$task_id." supprim&eacute;!<br />";
 //on retourne a la page precedente
   echo "<a href=\"manip_maint.php?id=".$id_manip."\">Suite</a><br />";
 }}

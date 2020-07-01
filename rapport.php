@@ -28,33 +28,33 @@ else
 require("html_functions.php");
 
 if ( $connex = connect_db() ){
-	// recupere l'equip selectionnée
+	// recupere l'equip selectionnee
 	$querry = "SELECT id,nom FROM equipe";
 	list($qhe,$num) = query_db($querry);
 
 	if ($equip_id!=0){
 
-	// recupere la manip selectionnée
+	// recupere la manip selectionnee
 	$querry = "SELECT id,nom FROM manip WHERE equipe='$equip_id'";
 	list($qhm,$num) = query_db($querry);
 
 	if ($manip_id!=0){
-		// recupere les projet selectionné
+		// recupere les projet selectionne
 		$querry = "SELECT id,nom FROM projet WHERE manip='$manip_id'";
 		list($qhp,$num) = query_db($querry);
 		//$projet_list = result_db($qh);
 
 		if ($projet_id!=0){
-			// recupere la tache selectionnée
+			// recupere la tache selectionnee
 			$querry = "SELECT id,nom FROM tache WHERE projet='$projet_id'";
 			list($qht,$num) = query_db($querry);
 			//$tache_list = result_db($qh);
 		}
 	}
 }
-en_tete("Création de rapport");
+en_tete("Cr&eacute;ation de rapport");
 
-$texte = $logged_in_user." (".$user_id.") Voila un formulaire pour créér un rapport<br />";
+$texte = $logged_in_user." (".$user_id.") Voila un formulaire pour cr&eacute;&eacute;r un rapport<br />";
 echo $texte;
 
 }//end if connex

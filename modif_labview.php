@@ -26,14 +26,14 @@ else{
 	$manipch =$_POST[manipch];
 
 if (empty($_POST[technicien]))
-	$erreur="développeur non pr&eacute;cis&eacute;";
+	$erreur="d&eacute;veloppeur non pr&eacute;cis&eacute;";
 else{
 	$technicien =$_POST[technicien];
 
 		$localisation=$_POST[localisation];
 
 		if (empty($_POST[matos]))
-			$erreur="matériel non pr&eacute;cis&eacute;";
+			$erreur="mat&eacute;riel non pr&eacute;cis&eacute;";
 		else{
 			$matos =$_POST[matos];
 
@@ -60,7 +60,7 @@ if (empty($tri))
 
 $cat=$_GET[categorie];
 echo "$cat";
-//récupère la catégorie de le page ajout appareil
+//recupere la categorie de la page ajout appareil
 
 if (!empty($erreur) ){
 
@@ -97,7 +97,7 @@ if ($manipch!=$data['manipch']){
 	}
 
 		if ($technicien!=$data['technicien']){
-			//modif du développeur
+			//modif du developpeur
 			$modif=1;
 			$querry.="technicien='$technicien',";
 		}
@@ -108,7 +108,7 @@ if ($manipch!=$data['manipch']){
 		}
 
 if ($matos!=$data['matos']){
-			//modif du matériel
+			//modif du materiel
 			$modif=1;
 			$querry.="matos='$matos',";
 		}
@@ -131,7 +131,7 @@ if ($matos!=$data['matos']){
 		}
 
 		if ($ecran!=$data['ecran']){
-			//modif des impressions écran
+			//modif des impressions ecran
 			$modif=1;
 			$querry.="ecran='$ecran',";
 		}

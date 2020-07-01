@@ -57,7 +57,7 @@ else{
 ///on modifie
 
 if ( $connex = connect_db() ){
-		//relit les anciennes coordonnées
+		//relit les anciennes coordonnees
 	$querry="SELECT * FROM users WHERE id='$user2ch_id'";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
@@ -104,10 +104,10 @@ if ( $connex = connect_db() ){
 		echo "<br />erreur :".$erreur;
 		}
 		if ($user_level == 3 && $valid==1 ){
-			//validation d'un user acceptée
+			//validation d'un user acceptee
 			//envoi d'un mail a cet user
-		$texte = $prenom." ".$nom." votre inscription au systeme GestEx a été acceptée !";
-			mail($mail, "[GestEx] inscription acceptée - ".$nom." ".$prenom, $texte);
+		$texte = $prenom." ".$nom." votre inscription au systeme GestEx a &eacute;t&eacute; accept&eacute;e !";
+			mail($mail, "[GestEx] inscription accept&eacute;e - ".$nom." ".$prenom, $texte);
 		}
 	}//end if connect
 

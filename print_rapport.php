@@ -47,7 +47,7 @@ echo " Bienvenue $data['prenom'] $data['nom'] ($user_id)<br /><br />";
 	<a href="accueil.php">Retour a l'accueil</a>
 	<br /></td>
  <td style="vertical-align: top; text-align: center;">
-	<a href="rapport.php">Retour à la création de rapport</a>
+	<a href="rapport.php">Retour &agrave; la cr&eacute;ation de rapport</a>
 	<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php?variable=projet">Quitter</a>
@@ -56,7 +56,7 @@ echo " Bienvenue $data['prenom'] $data['nom'] ($user_id)<br /><br />";
 <br />
 
 <br />
-<h1>Rapport de temps passé depuis :
+<h1>Rapport de temps pass&eacute; depuis :
 <?php
 	echo $depuis."</h1>";
 /****$querry = "SELECT id,nom FROM equipe " ;
@@ -85,7 +85,7 @@ $temps_equip = 0;
 
 		echo "<tr class=manip colspan=3><td>";
 		echo "<h3>Manip :".$manips[nom]." (".$manips[id].") debut:".$manips[date]."<br />".$manips[descr]."</h3>";
-		/// recherche les noms des chercheurs associés
+		/// recherche les noms des chercheurs associes
 			$querry =" select nom FROM users WHERE id=".$manips[chercheur];
 			list($qhc,$num) = query_db($querry);
 			$data =  result_db($qhc);
@@ -120,9 +120,9 @@ $temps_equip = 0;
 				while($taches = result_db($qh3)){
 					echo "<tr class=tache><td></td><td></td><td>";
 					echo "Tache :".$taches[nom]." (".$taches[id].") debut:".$taches[date]."<br />".$taches[descr]."<br />";
-					echo " Temps passé pour cette tache : ";
+					echo " Temps pass&eacute; pour cette tache : ";
 					$temps_tache=0; unset($user_tache);
-					// recuper les temps passés pour cette tache
+					// recuper les temps passes pour cette tache
 						$querry = "select * FROM temps WHERE id_tache=". $taches[id];
 					if (!empty($depuis))
 						$querry.=" AND date >='$depuis';";
@@ -150,15 +150,15 @@ $temps_equip = 0;
 						$temps_proj+= $temps_tache;
 
 					}//while end taches
-				echo "<tr><td>Temps passé pour ce projet : ".$temps_proj." heures</td></tr>>";
+				echo "<tr><td>Temps pass&eacute; pour ce projet : ".$temps_proj." heures</td></tr>>";
 				$temps_manip += $temps_proj;
 				$temps_proj =0;
 				}//while end projets
-			echo " <tr><td>Temps passé pour cette manip : ".$temps_manip." heures</td></tr>";
+			echo " <tr><td>Temps pass&eacute; pour cette manip : ".$temps_manip." heures</td></tr>";
 			$temps_equip += $temps_manip;
 			$temps_manip=0;
 			}//end while manips
-		echo " <tr><td>Temps passé pour cette equipe : ".$temps_equip." heures</td></tr>";
+		echo " <tr><td>Temps pass&eacute; pour cette &eacute;quipe : ".$temps_equip." heures</td></tr>";
 		$temps_equip =0;
 	////	}//end while equipes
 

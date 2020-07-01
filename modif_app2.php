@@ -65,7 +65,7 @@ if (empty($tri))
 
 $cat=$_GET[categorie];
 echo "$cat";
-//récupère la catégorie de le page ajout appareil
+//recupere la categorie de la page ajout appareil
 
 if (!empty($erreur) ){
 

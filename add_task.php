@@ -26,7 +26,7 @@ if (empty($task_id)){
 }
 else{
 
- //->modif coordonnées
+ //->modif coordonnees
  $mode ="modifier";
  $action="modif_task.php";
 
@@ -35,11 +35,11 @@ else{
 require("html_functions.php");
 
 if ( $connex = connect_db() ){
- // recupere la manip selectionnée
+ // recupere la manip selectionnee
  $querry = "SELECT id,nom FROM manip WHERE id='$manip_id'";
  list($qh,$num) = query_db($querry);
  $manip = result_db($qh);
- // recupere la projet selectionné
+ // recupere la projet selectionne
  $querry = "SELECT id,nom FROM projet WHERE id='$proj_id'";
  list($qh,$num) = query_db($querry);
  $projet = result_db($qh);
@@ -54,7 +54,7 @@ else if ($mode=="modifier"){
  $titre.="modifier les caracteristiques de la tache ";
  $texte.= " la tache <b>";
 
- // recupere la tache selectionnée
+ // recupere la tache selectionnee
  $querry = "SELECT * FROM tache WHERE id='$task_id'";
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
@@ -105,7 +105,7 @@ echo $texte;
   list($qheq,$numeq) = query_db($querry);
   ?>
       <td style="vertical-align: top;">Fournisseurs <br />
-      <i> plusieurs peuvent etre selectionnés parmi les <?php echo $numeq ?> enregistrés!</i>
+      <i> plusieurs peuvent &ecirc;tre selectionn&eacute;s parmi les <?php echo $numeq ?> enregistr&eacute;s!</i>
  <!---- <?php echo $data['fourniss'].":".count($liste_fourn) ?> ----->
  </td>
       <td colspan="2" style="vertical-align: top;">

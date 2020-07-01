@@ -27,7 +27,7 @@ if (empty($id_proj))
 echo "Projet:".$id_proj. " ok :".$valid."<br />";
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
- echo "Sur de supprimer le projet ".$id_proj. " à la manip ".$id_manip." et toutes ses taches?<br />";
+ echo "Sur de supprimer le projet ".$id_proj. " &agrave; la manip ".$id_manip." et toutes ses taches?<br />";
  echo "<a href=\"".$_SERVER[PHP_SELF]."?idm=".$id_manip."&idp=".$id_proj."&ok=yes\">OUI</a><br />";
   echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
 
@@ -35,7 +35,7 @@ if (!isset($valid) || empty($valid) || $valid=="no"){
 else{
 if ( $connex = connect_db() ){
 
- // on supprime toutes les taches liées a ce projet
+ // on supprime toutes les taches liees a ce projet
  $querry = "DELETE LOW_PRIORITY FROM tache WHERE projet=$id_proj";
     $result = mysql_query($querry);
  if ($result){
@@ -51,7 +51,7 @@ if ( $connex = connect_db() ){
 
  }
 else
- echo "Projet ".$id_proj." supprimé, ainsi que toutes ses taches!<br />";
+ echo "Projet ".$id_proj." supprim&eacute;, ainsi que toutes ses taches!<br />";
 //on retourne a la page precedente
   echo "<a href=\"manip_maint.php?id=".$id_manip."\">Suite</a><br />";
 }
