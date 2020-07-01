@@ -3,7 +3,7 @@
 
 // Authenticate
 include("session_auth.php");
-
+session_start();
 //if (!auth(1))
 	//Header("Location: login.php");
 
@@ -13,52 +13,58 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-if (empty($_GET[id]))
+if (empty($_GET['id']))
 	Header("Location: instru.php");
 else
-	$id_app=$_GET[id];
+	$id_app=$_GET['id'];
 
-	//interrogation base de données
+	//interrogation base de donnï¿½es
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 	// recupere la liste de appareils
-	$querry = "SELECT nom FROM Listing WHERE id=$id_app";
-	list($qh,$num) = query_db($querry);
-	$data = result_db($qh);
-	$last_id=0;
+	$sql = 'SELECT * FROM Listing WHERE id = ?;';
+	// list($qh,$num) = query_db($querry);
+	// $data = result_db($qh);
+	// $last_id=0;
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_app));
+	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-en_tete("Caractéristiques de l'appareil :<b>".$data['nom']."</b>");
-
+en_tete("CaractÃ©ristiques de l'appareil :<b>".$listing[0]['nom']."</b>");
+nav_bar();
 //recuper la methode de tri
-$tri = $_GET[tri];
-if (empty($tri))
+if (empty($_GET['tri']))
 	$tri ="id";
+else
+	$tri = $_GET['tri'];
 
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
+
+// echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 
-<table cellpadding="2" cellspacing="2" border="1"
- style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+<!-- <table cellpadding="2" cellspacing="2" border="1" -->
+ <!-- style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;"> -->
   <tbody>
-    <tr>
-	<td style="vertical-align: top; text-align: center;">
-<? php//permet de retourner à la page précedente?>
-	<a href="<?php echo $_SERVER['HTTP_REFERER']?>">Retour à la liste</a>
+    <!-- <tr> -->
+	<!-- <td style="vertical-align: top; text-align: center;"> -->
+<? php//permet de retourner ï¿½ la page prï¿½cedente?>
+	<!-- <a href="<?php //echo $_SERVER['HTTP_REFERER']?>">Retour Ã  la liste</a> -->
 
-	<br /></td>
+	<!-- <br /></td> -->
 
-<?php if ( $user_level >=2 ) {	?>
+<?php //if ( $user_level >=2 ) {	?>
 
-	 <td style="vertical-align: top; text-align: center;">
-	<a href="logout.php?variable=instru">Quitter</a>
+	 <!-- <td style="vertical-align: top; text-align: center;"> -->
+	<!-- <a href="logout.php?variable=instru">Quitter</a> -->
 
-<?php } ?>
-	<br /></td></tr></tbody>
-</table>
+<?php // } ?>
+	<!-- <br /></td></tr> -->
+</tbody>
+<!-- </table> -->
 <br />
 
 <?php
-echo "L'appareil <b>".$data['nom']."</b> a les caractéristiques suivantes :<br />";
+echo "L'appareil <b>".$listing[0]['nom']."</b> a les caractÃ©ristiques suivantes :<br />";
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1"
@@ -79,7 +85,7 @@ echo "L'appareil <b>".$data['nom']."</b> a les caractéristiques suivantes :<br /
       </th>
 
   <th style="vertical-align: top; text-align: center;">
-	Réparation / Etalonnages<br /><br />
+	Rï¿½paration / Etalonnages<br /><br />
       </th>
 
 <th style="vertical-align: top; text-align: center;">
@@ -87,7 +93,7 @@ echo "L'appareil <b>".$data['nom']."</b> a les caractéristiques suivantes :<br /
       </th>
 
 <th style="vertical-align: top; text-align: center;">
-	Numéro d'instrument<br />
+	Numï¿½ro d'instrument<br />
       </th>
 <th style="vertical-align: top; text-align: center;">
 	Inventaire<br />
@@ -102,12 +108,14 @@ echo "L'appareil <b>".$data['nom']."</b> a les caractéristiques suivantes :<br /
 <?php
 
 	// recupere la liste de appareils
-	$querry = "SELECT * FROM Listing where id=$id_app ";
-	list($qh,$num) = query_db($querry);
-	$last_id=0;
-
-while ($data = result_db($qh)) {
-
+	// $sql = 'SELECT * FROM Listing where id = ? ;';
+	// list($qh,$num) = query_db($querry);
+	// $last_id=0;
+	// $stmt = $pdo->prepare($sql);
+	// $stmt->execute(array($id_app));
+	// $listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// while ($data = result_db($qh)) {
+foreach($listing as $data){
 	// remplit le tableau
  echo"<tr><td style=\"vertical-align: top;\">";
 	echo $data['nom'];
@@ -123,11 +131,14 @@ echo"</td><td style=\"vertical-align: top;\">";
  echo"</td><td style=\"vertical-align: top;\">";
 
 // recupere le nom du tech
-	$querry = "SELECT id, nom FROM users WHERE id='$data['responsable']'";
-	list($qheq,$numeq) = query_db($querry);
+	$sql = 'SELECT id, nom FROM users WHERE id = ?;';
+	// list($qheq,$numeq) = query_db($querry);
 
-		$resp = result_db($qheq);
-      		echo $resp[nom];
+	// 	$resp = result_db($qheq);
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($data['responsable']));
+	$resp = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      		echo $resp[0]['nom'];
 
   echo"</td><td style=\"vertical-align: top;\">";
 echo $data['id'];
