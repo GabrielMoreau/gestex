@@ -15,7 +15,7 @@ if (empty($_GET['tri'])){
 	$app_id = $_GET['id'];
 
 }
-	en_tete("Voila un formulaire pour ajouter un num�ro d'inventaire");
+	en_tete("Voila un formulaire pour ajouter un num&eacute;ro d'inventaire");
 
 ?>
 
@@ -26,7 +26,7 @@ if (empty($_GET['tri'])){
 		<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
 
   <tr>
-      <td style="vertical-align: top;">Num�ro d'instrument<br />
+      <td style="vertical-align: top;">Num&eacute;ro d'instrument<br />
       </td>
       <td style="vertical-align: top;">
 
@@ -49,7 +49,7 @@ if (empty($_GET['tri'])){
     </tr>
 
 <tr>
-      <td style="vertical-align: top;">Modele<br />
+      <td style="vertical-align: top;">Mod&egrave;le<br />
       </td>
       <td style="vertical-align: top;">
       <input type="text"name="modele" size="30" value="<?php echo $data['modele'] ?>"<br />
@@ -106,7 +106,7 @@ if (empty($_GET['tri'])){
 
   <tr>
 
-      <td style="vertical-align: top;">Date achat <i>format YYYY-MM-DD</i><br />
+      <td style="vertical-align: top;">Date achat (<i>format YYYY-MM-DD</i>)<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="achat" size="10" maxlength="10" value="
@@ -140,7 +140,7 @@ if (empty($_GET['tri'])){
 
   <tr>
 
-      <td style="vertical-align: top;">Reparation<br />
+      <td style="vertical-align: top;">R&eacute;paration<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="reparation" size="30" maxlength="30" value="<?php echo $data['reparation'] ?>" ><br />
@@ -155,7 +155,7 @@ if (empty($_GET['tri'])){
     </tr>
 
     <tr>
-   <td style="vertical-align: top;">les champs avec * sont &agrave;
+   <td style="vertical-align: top;">Les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">

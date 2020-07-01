@@ -144,7 +144,7 @@ wnd.focus();
   <tbody>
     <tr bgcolor="#f7bb09">
   <th style="vertical-align: top; text-align: left;" colspan="4" >
-<?php  echo "Projet :<a href=\"#\" onclick=\"windowToTop('proj_info.php?idm=". $manip_id ."&idp=". $proj_id ."');\" title =\"D�tails de ce projet\">";
+<?php  echo "Projet :<a href=\"#\" onclick=\"windowToTop('proj_info.php?idm=". $manip_id ."&idp=". $proj_id ."');\" title =\"D&eacute;tails de ce projet\">";
   echo $manips['nom']." (".$manips['id'].")"; ?> </a><br />
       </th>
   <th style="vertical-align: top; text-align: left;">
@@ -157,7 +157,7 @@ wnd.focus();
  ///echo $dossier_proj;
  /// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
  if (@opendir($dossier_proj) != FALSE){
-  //si trouv� ajoute un bouton
+  //si trouve ajoute un bouton
   echo "Voir : <a href =\"browse_proj.php?idm=". $manip_id ."&idp=".$proj_id."\"><img src=\"images/filefind.png\" nosave=\"\" width=\"15\" title =\"Voir les docs de ce projet\"></a><br />";
 
  }
@@ -167,7 +167,7 @@ wnd.focus();
   <!-- <th colspan="3"></th> //ajout de doc   -->
     <th style="vertical-align: top; text-align: left;">
 
-  <a href ="add_doc.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/stockattach.png" nosave=\"\" width=\"20\"  title ="ajouter un document � ce projet"></a><br />
+  <a href ="add_doc.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/stockattach.png" nosave=\"\" width=\"20\"  title ="Ajouter un document &agrave; ce projet"></a><br />
   </th>
    <th style="vertical-align: top; text-align: right;">
   <a href ="add_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/editcopy.png" nosave=\"\" width=\"20\" title ="Modifier ce projet"></a><br />
@@ -195,7 +195,7 @@ wnd.focus();
   echo "<th colspan=\"2\"></th>";
   } ?>
  </tr> --->
-<?php //interrogation base de donn�es
+<?php //interrogation base de donnees
  $total_projet=0;
  // recupere la liste des taches de ce projet
  $sql = 'SELECT id,nom,date,user, temps FROM tache WHERE projet = ? ORDER BY date';
@@ -247,8 +247,8 @@ wnd.focus();
    if ($user_level>=2){
    echo "<a href=\"add_time.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/xclock.png\" nosave=\"\" width=\"20\" title=\"Ajouter du temps\"></a>";
      echo"</td><td style=\"vertical-align: top;\">";
-   // ajout d'un document � une tache -->
-    echo "<a href=\"add_doc.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/stockattach.png\" nosave=\"\" width=\"20\" title =\"Ajouter un document � cette tache\"></a>";
+   // ajout d'un document a une tache -->
+    echo "<a href=\"add_doc.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/stockattach.png\" nosave=\"\" width=\"20\" title =\"Ajouter un document &agrave; cette tache\"></a>";
      echo"</td><td style=\"vertical-align: top;\">";
        //modif d'une tache
     echo "<a href=\"add_task.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/editcopy.png\" nosave=\"\" width=\"20\" title =\"Modifier cette tache\"></a>";
@@ -275,13 +275,13 @@ echo"</td><td style=\"vertical-align: top;text-align: right;\" colspan=3 >";
 }//end while manip
 echo "<br />temps total manip : ".$total_manip." heures<br /><br />";
 
-////////projets associ�s
+////////projets associes
 
 if (!empty($manip[0]['assoc_proj'])){
- echo "<h3>Projet(s) associ�(s) :</h3><ul>";
+ echo "<h3>Projet(s) associ&eacute;(s) :</h3><ul>";
  $assoc = explode(',',$manip[0]['assoc_proj']);
 foreach($assoc as $a){
-  // recupere l'identit� du projet associ�
+  // recupere l'identite du projet associe
   $sql = 'SELECT id,nom FROM projet WHERE id = ?;';
   // list($qh3,$num3) = query_db($querry);
   // $projet_a = result_db($qh3);
@@ -290,7 +290,7 @@ foreach($assoc as $a){
   $projet_a = $stmt->fetchAll(PDO::FETCH_ASSOC);
  //liens vers ces projets
  echo "<li>(".$a.") ";
-echo "<a href=\"#\" onclick=\"windowToTop('proj_info.php?idp=". $projet_a[0]['id'] ."')\" title =\"D�tails de ce projet\">";
+echo "<a href=\"#\" onclick=\"windowToTop('proj_info.php?idp=". $projet_a[0]['id'] ."')\" title =\"D&eacute;tails de ce projet\">";
  echo $projet_a[0]['nom']."</a></li>";
  }
 echo "</ul>";

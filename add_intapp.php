@@ -31,7 +31,7 @@ else{
 require("html_functions.php");
 if ( $pdo = connect_db() ){
 
-// recupere le appareil selectionn�
+// recupere le appareil selectionne
 	$sql = 'SELECT nom FROM appareils WHERE id = ?;';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
@@ -40,13 +40,13 @@ if ( $pdo = connect_db() ){
 	$appareil = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($mode=="ajouter"){
-	$titre= "Formulaire pour ajouter une intervention � ".$appareil[0]['nom'];
+	$titre= "Formulaire pour ajouter une intervention &agrave; ".$appareil[0]['nom'];
 
 }
 else if ($mode=="modifier"){
-	$titre="Formulaire pour modifier les caracteristiques d'une intervention � ".$appareil[0]['nom'];
+	$titre="Formulaire pour modifier les caracteristiques d'une intervention &agrave; ".$appareil[0]['nom'];
 
-	// recupere l'intervention selectionn�e
+	// recupere l'intervention selectionnee
 	$sql = 'SELECT * FROM intervention WHERE id = ?;';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
@@ -142,7 +142,7 @@ en_tete($titre);
     </tr><tr>
 
     <tr>
-   <td style="vertical-align: top;">les champs avec * sont &agrave;
+   <td style="vertical-align: top;">Les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">

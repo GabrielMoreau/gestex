@@ -15,7 +15,7 @@ if (empty( $_GET['id'])){
 	$action="valid_equip.php";
 }
 else{
-	//->modif coordonn�es
+	//->modif coordonnees
 	$equip_id = $_GET['id'];
 	$mode ="modifier";
 	$action="modif_equip.php";
@@ -31,7 +31,7 @@ if ($mode=="ajouter"){
 else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les coordonn&eacute;es d'une equipe");
 
-	// recupere le fournisseur selectionn�
+	// recupere le fournisseur selectionne
 	$sql = 'SELECT * FROM equipe WHERE id = ?;';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
@@ -94,7 +94,7 @@ else if ($mode=="modifier"){
     </tr>
 
     <tr>
-   <td style="vertical-align: top;">les champs avec * sont &agrave;
+   <td style="vertical-align: top;">Les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">

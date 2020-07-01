@@ -33,7 +33,7 @@ if ($mode=="ajouter"){
 else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les caracteristiques d'une manip");
 
-	// recupere la manip selectionn�e
+	// recupere la manip selectionnee
 	$sql = 'SELECT * FROM manip WHERE id = ?;';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);

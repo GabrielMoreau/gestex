@@ -36,7 +36,7 @@ if ( $pdo = connect_db() ){
 
 	$mode ="ajouter";
 	$action="valid_demandes.php";
-//transmet la valeur de la tache � la page valid appareil
+//transmet la valeur de la tache a la page valid appareil
 }
 else{
 
@@ -55,7 +55,7 @@ if ($mode=="ajouter"){
 else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les demandes");
 
-	// recupere le appareil selectionn�
+	// recupere l'appareil selectionne
 	$sql = 'SELECT * FROM demandes WHERE id = ?';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
@@ -74,7 +74,7 @@ else if ($mode=="modifier"){
 
  <tr>
     
-      <td style="vertical-align: top;">T�che *<br />
+      <td style="vertical-align: top;">T&acirc;che *<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="tache" size="30"  value="<?php if($mode=='modifier'){ echo $demandes[0]['tache']; }?>" ><br />
@@ -100,7 +100,7 @@ else if ($mode=="modifier"){
 
   <tr>
 
-      <td style="vertical-align: top;">Date  *<i>format YYYY-MM-DD</i><br />
+      <td style="vertical-align: top;">Date  * (<i>format YYYY-MM-DD</i>)<br />
       </td>
       <th style="vertical-align: top;">
 	<input type="text" name="achat" size="10" maxlength="10" value="<?php
@@ -114,7 +114,7 @@ else if ($mode=="modifier"){
 
   <tr>
 
-      <td style="vertical-align: top;">Avancement*<br />
+      <td style="vertical-align: top;">Avancement *<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="avancement" size="70"  value="<?php if($mode=='modifier'){ echo $demandes[0]['avancement']; } ?>" ><br />
@@ -123,7 +123,7 @@ else if ($mode=="modifier"){
 
  <tr>
 
-      <td style="vertical-align: top;">Termin�?<br />
+      <td style="vertical-align: top;">Termin&eacute; ?<br />
       </td>
       <td style="vertical-align: top;">
 
@@ -137,7 +137,7 @@ else if ($mode=="modifier"){
 
   <tr>
     
-      <td style="vertical-align: top;">Pi�ces Jointes<br />
+      <td style="vertical-align: top;">Pi&egrave;es Jointes<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="piecesjointes" size="30" maxlength="30" value="<?php if($mode=='modifier'){ echo $demandes[0]['piecesjointes']; } ?>" ><br />
@@ -145,7 +145,7 @@ else if ($mode=="modifier"){
     </tr>
 
     <tr>
-   <td style="vertical-align: top;">les champs avec * sont &agrave;
+   <td style="vertical-align: top;">Les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">

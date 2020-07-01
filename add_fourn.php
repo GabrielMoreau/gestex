@@ -17,7 +17,7 @@ if (empty($_GET['id'])){
 }
 else{
 	//on vient depuis accueil.php
-	//->modif coordonn�es
+	//->modif coordonnees
       $fourn_id = $_GET['id'];
 	$mode ="modifier";
 	$action="modif_fourn.php";
@@ -33,7 +33,7 @@ if ($mode=="ajouter"){
 }
 else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les coordonn&eacute;es d'un fournisseur");
-	// recupere le fournisseur selectionn�
+	// recupere le fournisseur selectionne
 	$sql = 'SELECT * FROM fournisseurs WHERE id = ?;';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
@@ -102,7 +102,7 @@ else if ($mode=="modifier"){
     </tr>
      <tr>
       <td style="vertical-align: top;">Description<br />
-	pour faciliter la recherche de fournisseurs, il serait bon d'utiliser des mots stanadards (capteurs, moteur, profil�s...)
+	pour faciliter la recherche de fournisseurs, il serait bon d'utiliser des mots stanadards (capteur, moteur, profil&eacute;...)
       </td>
       <td style="vertical-align: top;">
 	<textarea name="descr" cols="50" rows="5"> <?php if ($mode =='modifier'){ echo $fournisseur[0]['descr']; } ?></textarea>
@@ -110,7 +110,7 @@ else if ($mode=="modifier"){
     </tr>
 
     <tr>
-   <td style="vertical-align: top;">les champs avec * sont &agrave;
+   <td style="vertical-align: top;">Les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">
