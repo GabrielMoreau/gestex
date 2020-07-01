@@ -229,7 +229,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
 
   <tr>
 
-      <td style="vertical-align: top;">Reparation *<br />
+      <td style="vertical-align: top;">R&eacute;paration *<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="reparation" size="30" maxlength="30" value="<?php if ($mode == "modifier"){ echo $listing[0]['reparation'];} ?>" ><br />

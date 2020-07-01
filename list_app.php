@@ -64,10 +64,10 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
 	<a href ="list_app.php?tri=fournisseur">Fournisseur</a><br />
       </th>
     <th style="vertical-align: top; text-align: center;">
-	date AChat<br />
+	Date Achat<br />
       </th>
     <th style="vertical-align: top; text-align: center;">
-	facture<br />
+	Facture<br />
       </th>
 <?php if ( $user_level >=2 )
 		echo "</th><th>";
