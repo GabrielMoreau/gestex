@@ -13,7 +13,7 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste de toutes les equipes:");
+en_tete("Liste de toutes les &eacute;quipes:");
 
 //recuper la methode de tri
 $tri = $_GET['tri'];
@@ -55,7 +55,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 	Compte<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Chef d'equipe <br />
+	Chef d'&eacute;quipe <br />
       </th>
 
 <?php if ( $user_level >=2 )

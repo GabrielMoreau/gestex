@@ -111,7 +111,7 @@ $modif=0;
 		}//else end
 	}//end if connect
 
-////en_tete("modification equipe Valid&eacute;e");
+////en_tete("modification &eacute;quipe Valid&eacute;e");
 
 echo "<br />".$nom."modifi&eacute; ";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";

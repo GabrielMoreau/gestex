@@ -14,7 +14,7 @@ else{
 	$nom =$_POST[nom];
 
 		if (empty($_POST[equipe]))
-			$erreur="equipe non pr&eacute;cis&eacute;";
+			$erreur="&Eacute;quipe non pr&eacute;cis&eacute;";
 		else{
 			$equipe =$_POST[equipe];
 
@@ -60,7 +60,7 @@ if ( $connex = connect_db() ){
 	$table = "pret";
 
 		$result = mysql_query("INSERT INTO $table ".
-			"(nom, equipe,emprunt,retour, commentaire)".
+			"(nom, equipe, emprunt, retour, commentaire)".
 			" VALUES ('$nom','$equipe','$emprunt','$retour','$commentaire')");
 			//
 if (!$result){
