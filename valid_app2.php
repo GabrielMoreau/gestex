@@ -9,45 +9,45 @@ unset($erreur);
 //variables ne pouvant etre nulles
 
 if (empty($_POST['categorie']))
-	$erreur="categorie non pr&eacute;cis&eacute;";
+	$erreur="Cat&eacute;gorie non pr&eacute;cis&eacute;";
 else{
 	$categorie =$_POST['categorie'];
 
 if (empty($_POST['nom']))
-	$erreur="nom non pr&eacute;cis&eacute;";
+	$erreur="Nom de famille non pr&eacute;cis&eacute;";
 else{
 	$nom =$_POST['nom'];
 
 	if (empty($_POST['modele']))
-		$erreur="Modele non pr&eacute;cis&eacute;";
+		$erreur="Mod&egrave;le non pr&eacute;cis&eacute;";
 	else{
 		$modele=$_POST['modele'];
 
 if (empty($_POST['gamme']))
-		$erreur="gamme non pr&eacute;cis&eacute;";
+		$erreur="Gamme non pr&eacute;cis&eacute;";
 	else{
 
 		$gamme=$_POST['gamme'];
 
 		if (empty($_POST['equipe']))
-			$erreur="equipe non pr&eacute;cis&eacute;";
+			$erreur="&Eacute;quipe non pr&eacute;cis&eacute;";
 		else{
 			$equipe =$_POST['equipe'];
 
 			if (empty($_POST['fourn']))
-				$erreur="fourn non pr&eacute;cis&eacute;";
+				$erreur="Fournisseur non pr&eacute;cis&eacute;";
 			else{
 				$fourn =$_POST['fourn'];
 
 							//variables pouvant etre nulles
 
 if (empty($_POST['achat']))
-		$erreur="achat non pr&eacute;cis&eacute;";
+		$erreur="Achat non pr&eacute;cis&eacute;";
 	else{
 		$achat=$_POST['achat'];
 
 if (empty($_POST['tech']))
-				$erreur="tech non pr&eacute;cis&eacute;";
+				$erreur="Tech non pr&eacute;cis&eacute;";
 			else{
 				$tech =$_POST['tech'];
 
@@ -61,7 +61,7 @@ $notice =$_POST['notice'];
 
 	}}}}}}}}
 
-en_tete("resultat ajout appareil ");
+en_tete("R&eacute;sultat ajout appareil");
 
 if (empty($_GET['tri']))
 	$tri ="id";
@@ -70,7 +70,7 @@ else
 
 $cat=$_GET['categorie'];
 //echo "$cat";
-//r�cup�re la cat�gorie de le page ajout appareil
+//recupere la categorie de la page ajout appareil
 
 if (!empty($erreur) ){
 
@@ -110,14 +110,14 @@ $sql = 'INSERT INTO Listing (categorie,nom,modele , gamme, equipe, fournisseur, 
 $stmt = $pdo->prepare($sql);
 $stmt->execute(array($categorie,$nom, $modele,$gamme, $equipe, $fourn,$achat,$tech, $reparation,$accessoires,$inventaire,$notice));
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-echo "<br /> Votre requête a bien été ajouté";
+echo "<br /> Votre requ&ecirc;te a bien &eacute;t&eacute; ajout&eacute;";
 }//end if connect
 
 
 
 
-echo "<br />ajout de ".$nom."valid&eacute;e ";
-echo"<br /><br /><a href=\"instru.php\">Suite</a><br /><br />\n";
+echo "<br />ajout de ".$nom." valid&eacute;e";
+echo "<br /><br /><a href=\"instru.php\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
 pied_page();
 exit();

@@ -76,7 +76,7 @@ if ( $pdo = connect_db() ){
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($nom, $descr, $equipe, $tech, $fourn, $achat, $facture));
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	echo "<br /> Votre requête a bien été ajouté";
+	echo "<br /> Votre requ&ecirc;te a bien &eacute;t&eacute; ajout&eacute;";
 	}//end if connect
 
 

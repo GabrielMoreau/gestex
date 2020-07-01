@@ -18,7 +18,7 @@ if (empty($_GET['id']))
 else
 	$id_app=$_GET['id'];
 
-	//interrogation base de donn�es
+	//interrogation base de donnees
 
 if ( $pdo = connect_db() ){
 	// recupere la liste de appareils
@@ -30,9 +30,9 @@ if ( $pdo = connect_db() ){
 	$stmt->execute(array($id_app));
 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-en_tete("Caractéristiques de l'appareil :<b>".$listing[0]['nom']."</b>");
+en_tete("Caract&eacute;ristiques de l'appareil :<b>".$listing[0]['nom']."</b>");
 nav_bar();
-//recuper la methode de tri
+//recupere la methode de tri
 if (empty($_GET['tri']))
 	$tri ="id";
 else
@@ -47,8 +47,8 @@ else
   <tbody>
     <!-- <tr> -->
 	<!-- <td style="vertical-align: top; text-align: center;"> -->
-<? php//permet de retourner � la page pr�cedente?>
-	<!-- <a href="<?php //echo $_SERVER['HTTP_REFERER']?>">Retour à la liste</a> -->
+<? php//permet de retourner a la page pr&eacute;cedente?>
+	<!-- <a href="<?php //echo $_SERVER['HTTP_REFERER']?>">Retour &agrave; la liste</a> -->
 
 	<!-- <br /></td> -->
 
@@ -64,7 +64,7 @@ else
 <br />
 
 <?php
-echo "L'appareil <b>".$listing[0]['nom']."</b> a les caractéristiques suivantes :<br />";
+echo "L'appareil <b>".$listing[0]['nom']."</b> a les caract&eacute;ristiques suivantes :<br />";
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1"
@@ -75,7 +75,7 @@ echo "L'appareil <b>".$listing[0]['nom']."</b> a les caractéristiques suivantes
 		Nom<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	Modele<br />
+	Mod&egrave;le<br />
       </th>
      <th style="vertical-align: top; text-align: center;">
 	Achat<br />
@@ -85,7 +85,7 @@ echo "L'appareil <b>".$listing[0]['nom']."</b> a les caractéristiques suivantes
       </th>
 
   <th style="vertical-align: top; text-align: center;">
-	R�paration / Etalonnages<br /><br />
+	R&eacute;paration / &Eacute;talonnages<br /><br />
       </th>
 
 <th style="vertical-align: top; text-align: center;">
@@ -93,7 +93,7 @@ echo "L'appareil <b>".$listing[0]['nom']."</b> a les caractéristiques suivantes
       </th>
 
 <th style="vertical-align: top; text-align: center;">
-	Num�ro d'instrument<br />
+	Num&eacute;ro d'instrument<br />
       </th>
 <th style="vertical-align: top; text-align: center;">
 	Inventaire<br />
