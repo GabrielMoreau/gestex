@@ -105,11 +105,8 @@ function nav_bar(){
     </div>
   </li>
   <?php  } ?>
-  
-  <li class="right"><a href="logout.php">Se déconnecter</a></li>
-
+  <li class="right"><a href="logout.php">Se d&eacute;onnecter</a></li>
   <?php } ?>
-
 </ul>
 </div>
  <?php
