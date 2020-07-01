@@ -15,7 +15,7 @@ require("html_functions.php");
 
 en_tete("Liste des demandes termin&eacute;es:");
 
-//recuper la methode de tri
+//recupere la methode de tri
 $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
@@ -31,7 +31,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	<tbody>
 		<tr>
 			<td style="vertical-align: top; text-align: center;">
-				<a href="http://intranet.legi.grenoble-inp.fr">Retour a<br />l'intranet</a>
+				<a href="http://intranet.legi.grenoble-inp.fr">Retour &agrave;<br />l'intranet</a>
 				<br />
 			</td>
 
@@ -59,7 +59,7 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	<tr bgcolor="#f7d709">
 
 		<th style="vertical-align: top; text-align: center;">
-			Tâche<br />
+			T&acirc;che<br />
 		</th>
 
 		<th style="vertical-align: top; text-align: center;">
