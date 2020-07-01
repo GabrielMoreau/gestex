@@ -141,7 +141,7 @@ echo $texte;
   </td>    </tr>
 
 	<tr>
-      <td style="vertical-align: top;">pour la <b>Tachet</b> de ce projet<br />
+      <td style="vertical-align: top;">pour la <b>T&acirc;chet</b> de ce projet<br />
       </td>
       <td style="vertical-align: top;">
 	<select name="tache"  size="5" >

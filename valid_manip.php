@@ -60,7 +60,7 @@ if ( $connex = connect_db() ){
    if ($result){
     $proj_id = last_id_db($result);
     //insere un tache par defaut
-    $nom = "Tache par defaut"; $descr="";
+    $nom = "T&acirc;che par defaut"; $descr="";
     $querry = "INSERT INTO tache (projet, nom, descr, date, fourniss)".
      " VALUES ('$proj_id', '$nom',  '$descr', '$date', 0)";
     $result = mysql_query($querry);

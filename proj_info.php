@@ -53,7 +53,7 @@ if ( $connex = connect_db() ){
  list($qh2,$num2) = query_db($querry);
  $temps_total = 0;
  while ($taches = result_db($qh2)){
- echo"<tr bgcolor=\"#f7d70\"><th>Tache : ".$taches[nom]."</th>";
+ echo"<tr bgcolor=\"#f7d70\"><th>T&acirc;che : ".$taches[nom]."</th>";
   echo"<th>Date : ".$taches[date]."</th>";
 
   ///interro db table temps

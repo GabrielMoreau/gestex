@@ -119,7 +119,7 @@ $temps_equip = 0;
 				///recupere les infos des taches
 				while($taches = result_db($qh3)){
 					echo "<tr class=tache><td></td><td></td><td>";
-					echo "Tache :".$taches[nom]." (".$taches[id].") debut:".$taches[date]."<br />".$taches[descr]."<br />";
+					echo "T&acirc;che :".$taches[nom]." (".$taches[id].") debut:".$taches[date]."<br />".$taches[descr]."<br />";
 					echo " Temps pass&eacute; pour cette tache : ";
 					$temps_tache=0; unset($user_tache);
 					// recuper les temps passes pour cette tache

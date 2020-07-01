@@ -29,7 +29,7 @@ if (empty($task_id))
 
 require("html_functions.php");
 
-en_tete("Infos Tache ".$task_id);
+en_tete("Infos T&acirc;che ".$task_id);
 
 if ( $connex = connect_db() ){
 
@@ -79,7 +79,7 @@ $fourn = explode (",",  $tasks[fourniss]);
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
   <tbody>
- <th> Tache :
+ <th> T&acirc;che :
  <?php echo $tasks[nom]; ?>
  </th>
  <tr><td> <i>Description :</i> <?php echo $tasks[descr] ?></td></tr>

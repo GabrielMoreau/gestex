@@ -181,7 +181,7 @@ wnd.focus();
   } ?>
  </tr>
  <!-- <tr bgcolor="#f7d709">
-  <th style="vertical-align: top; text-align: center;">Taches<br />      </th>
+  <th style="vertical-align: top; text-align: center;">T&acirc;ches<br />      </th>
   <th style="vertical-align: top; text-align: center;">Debut :<br />      </th>
   <th style="vertical-align: top; text-align: center;">Par :<br />      </th>
   <th style="vertical-align: top; text-align: center;">Temps pass&eacute;:<br />      </th>
