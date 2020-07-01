@@ -48,7 +48,7 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
 	<br /></td> </tr></tbody>
 </table>
 <br />
-<i>Cliquer sur le nom d'un appareil pour connaitre son mod&egrave;le, sa date d'achat, ses accessoires...</i><br />
+<i>Cliquer sur le nom d'un appareil pour connaître son mod&egrave;le, sa date d'achat, ses accessoires...</i><br />
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
