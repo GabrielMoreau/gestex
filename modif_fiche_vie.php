@@ -29,7 +29,7 @@ else{
 require("html_functions.php");
 if ( $connex = connect_db() ){
 
-// recupere le appareil selectionné
+// recupere l'appareil selectionne
 	$querry = "SELECT nom FROM appareils WHERE id='$app_id'";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);

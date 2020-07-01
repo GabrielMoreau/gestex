@@ -30,7 +30,7 @@ if ($mode=="ajouter"){
 else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les prets d'un appareil");
 
-	// recupere le appareil selectionné
+	// recupere l'appareil selectionne
 	$querry = "SELECT * FROM Listing WHERE id='$app_id'";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);

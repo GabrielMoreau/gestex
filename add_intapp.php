@@ -31,7 +31,7 @@ else{
 require("html_functions.php");
 if ( $pdo = connect_db() ){
 
-// recupere le appareil selectionne
+// recupere l'appareil selectionne
 	$sql = 'SELECT nom FROM appareils WHERE id = ?;';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);

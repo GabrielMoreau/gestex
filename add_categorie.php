@@ -25,7 +25,7 @@ if ($mode=="ajouter"){
 
 }
 
-	// recupere le appareil selectionne
+	// recupere l'appareil selectionne
 	$sql = 'SELECT * FROM categorie ';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
