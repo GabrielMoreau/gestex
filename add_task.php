@@ -144,7 +144,7 @@ echo $texte;
       </td>
     </tr>
  <tr style="vertical-align: middle; text-align: center">
-   <td ><i>les champs avec * sont &agrave;
+   <td ><i>Les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.</i><br />
       </td>
       <td >

@@ -127,7 +127,7 @@ en_tete($titre);
     </tr><tr>
 
     <tr>
-   <td style="vertical-align: top;">les champs avec * sont &agrave;
+   <td style="vertical-align: top;">Les champs avec * sont &agrave;
 remplir obligatoirement, les autres sont optionnels.<br />
       </td>
       <td style="vertical-align: top;" align="right">
