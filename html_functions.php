@@ -56,7 +56,7 @@ function nav_bar(){
   <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
-            <a href="essai.php">Catégories</a>
+            <a href="essai.php">Cat&eacute;gories</a>
             <a href="instru.php">Global</a>
             <a href="instru.php?equipe=15">au service <br />instrumentation</a>
          </div>
@@ -73,7 +73,7 @@ function nav_bar(){
    <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
-            <a href="essai.php">Catégories</a>
+            <a href="essai.php">Cat&eacute;gories</a>
             <a href="instru.php">Global</a>
             <a href="instru.php?equipe=15">au service <br />instrumentation</a>
          </div>
