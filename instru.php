@@ -3,14 +3,18 @@
 // Authenticate
 
 require("session_auth.php");
+session_start();
+// if (!auth(1))
+// 	Header("Location: login.php");
+if(empty($_SESSION['logged_in_user'])){
+	$log = false;
+}else{
+	$user_id = $_SESSION['user_id'];
+	$logged_in_user = strtolower($_SESSION['logged_in_user']);
+	$user_level= $_SESSION['level'];
+	$log=true;
 
-if (!auth(1))
-	Header("Location: login.php");
-
-$user_id = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level= $_SESSION['level'];
-
+}
 require("html_functions.php");
 
 en_tete("Liste des appareils:");
@@ -38,7 +42,7 @@ else
 
 // $eq=$_GET['equipe'];
 // echo "$eq";
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
+// echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 <br />
 <table cellpadding="2" cellspacing="2" border="1"
@@ -88,7 +92,7 @@ echo "<a href =\"add_app2.php?categorie=".$cat."\">Ajout<br />d'un appareil</a>"
 	<a href="essai.php">Retour aux cat&eacute;gories</a>
 <br /></td>
 
-<?php if ( $user_level >=3 ) {	?>
+<?php if ( $log == true && $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_categorie.php">Ajout<br />d'une cat&eacute;gorie</a>
 	<br /></td>
@@ -128,9 +132,9 @@ Liste des appareils : <br />
 	Notice<br />
       </th>
 
-<?php if ( $user_level >=2 )
+<?php if ( $log == true && $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 )
+	if ( $log == true && $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -315,17 +319,17 @@ $sql = 'SELECT id, nom FROM categorie WHERE id = ?';
 		echo 'Voir : <a href ="notice.php?id=', $data['id'],'\">',$data['nom'],'<img src="images/filefind.png" nosave="" title ="Voir ce projet" /></a><br />';
 	}
 
-  if (( $user_level >=2)&&($eq=="15 pret=15")) {
+  if ($log === true && ( $user_level >=2)&&($eq=="15 pret=15")) {
 echo '</td><td style="vertical-align: top;">';
       echo '<a href="add-pret.php?id=',$data['id'],'"><img src="images/edit.png" nosave="" title="Demande de pret" /></a>';
      echo"</td>";
 }
- if (( $user_level >=2)&&($eq!="15 pret=15")) {
+ if (($log === true && $user_level >=2)&&($eq!="15 pret=15")) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo '<a href="add_app2.php?id=',$data['id'],'"><img src="images/edit.png" nosave="" title="Modifier" /></a>';
       echo"</td>";
 	}//end if
- if (( $user_level >=3 )&&($eq!="15 pret=15")) {
+ if (($log === true && $user_level >=3 )&&($eq!="15 pret=15")) {
       echo '</td><td style=\"vertical-align: top;\">';
       echo '<a href="del_app2.php?id=',$data['id'],'"><img src="images/edittrash.png" nosave="" title="Supprimer" /></a>';
       echo"</td>";
