@@ -1,5 +1,7 @@
 <?php
 
+require("connect.php");
+
 function en_tete($titre){
    /////echo"<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n";
    echo '<html>';
