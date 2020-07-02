@@ -28,7 +28,7 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://intranet.legi.grenoble-inp.fr">Retour a<br />l'intranet</a>
+	<a href="<?php GESTEX_URL_ENTITY ?>">Retour &agrave;<br />l'intranet</a>
 	<br /></td>
 <?php if ( $user_level >=2 ) {	?>
  <td style="vertical-align: top; text-align: center;">

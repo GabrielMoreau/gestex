@@ -33,7 +33,7 @@ $eq=$_GET[equipe];
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article=16">Retour a<br />la page du service</a>
+	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article=16">Retour &agrave;<br />la page du service</a>
 	<br /></td>
 
 <td style="vertical-align: top; text-align: center;">
