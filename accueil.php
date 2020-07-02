@@ -14,12 +14,12 @@ $user_level = $_SESSION['level'];
 require("html_functions.php");
 
 en_tete("Liste des Manips");
-nav_bar();
 
 //recuper la methode de tri
-$tri = $_GET['tri'];
-if (empty($tri))
+if (empty($_GET['tri']))
 	$tri ="nom";
+else
+	$tri = $_GET['tri'];
 
 if ( $pdo = connect_db() ){
 	// recupere les refs du user
@@ -31,8 +31,8 @@ if ( $pdo = connect_db() ){
 	$stmt->execute(array($logged_in_user));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	echo 'Bienvenue ',$user[0]['prenom'],'', $user[0]['nom'] , '(',$user_id,')<br /><br />';
-	echo '<br>';
+	// echo 'Bienvenue ',$user[0]['prenom'],'', $user[0]['nom'] , '(',$user_id,')<br /><br />';
+	// echo '<br>';
 
 	?>
 	<br />
@@ -138,7 +138,7 @@ if ( $pdo = connect_db() ){
 				echo '</td><td style="vertical-align: top;">';
 				if ($relief ==1)
 					//possibilite d'edition des manips concernant le chercheur connecte
-					echo '<a href="manip_maint.php?id="',$manip['id'],'"">';
+					echo '<a href="manip_maint.php?id=',$manip['id'],'">';
 				echo $manip['nom'];
 				if ($relief ==1)
 						echo "</a>";
@@ -155,7 +155,7 @@ if ( $pdo = connect_db() ){
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute(array($manip['equipe']));
 				$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
-				echo $equipe[0]['nom'];
+				if(!empty($equipe)){echo $equipe[0]['nom'];}
 				if ($user_level!=1){
 					//si chercheur logue pas necessaire
 					echo '</td><td style="vertical-align: top;">';
@@ -169,7 +169,7 @@ if ( $pdo = connect_db() ){
 					$stmt->execute(array($manip['chercheur']));
 					$chercheur = $stmt->fetchAll(PDO::FETCH_ASSOC);
 					// var_dump($chercheur);
-					echo $chercheur[0]['nom'];
+					if(!empty($chercheur)){echo $chercheur[0]['nom'];}
 				}
 				if ($user_level>=2){
 					echo '</td><td style="vertical-align: top;">';
