@@ -27,15 +27,17 @@ function en_tete($titre){
          $stmt           = $pdo->prepare($sql);
          $stmt->execute(array($logged_in_user));
          $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-         echo '<p><strong>'.$user[0]['nom'].'</strong> '.$user[0]['prenom'].' (<a href="logout.php">logout</a>)</p>';
+         echo '<p><strong>'.$user[0]['nom'].'</strong> '.$user[0]['prenom'].' </p>';
       }else{
-         echo "<p>Vous n'&ecirc;tes pas connect&eacute; (<a href=\"login.php\">login</a>)</p>";
+         echo "<p>Vous n'&ecirc;tes pas connect&eacute; </p>";
       }
    echo $titre;
    echo '      </td>';
    echo '    </tr>';
    echo '  </tbody>';
    echo '</table>';
+   echo '<br />';
+   nav_bar();
    echo '<br />';
    echo '</div>';
 }
@@ -51,8 +53,14 @@ function nav_bar(){
    <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
   <li><a href="list_users.php">Liste des utilisateurs</a></li>
   <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
-  <li><a href="instru.php">Liste des appareils</a></li>
-  <li><a href="accueil.php">Liste des manips</a></li>
+  <li class="dropdown">
+         <a class="dropbtn">Liste des appareils</a>
+         <div class="dropdown-content">
+            <a href="essai.php">Catégories</a>
+            <a href="instru.php">Global</a>
+            <a href="instru.php?equipe=15">au service <br />instrumentation</a>
+         </div>
+   </li>  <li><a href="accueil.php">Liste des manips</a></li>
   <li class="right"><a href="login.php">Se connecter</a></li>
 </ul>
 </div>
@@ -62,7 +70,15 @@ function nav_bar(){
    <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
    <li><a href="list_users.php">Liste des utilisateurs</a></li>
    <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
-   <li><a href="instru.php">Liste des appareils</a></li>
+   <li class="dropdown">
+         <a class="dropbtn">Liste des appareils</a>
+         <div class="dropdown-content">
+            <a href="essai.php">Catégories</a>
+            <a href="instru.php">Global</a>
+            <a href="instru.php?equipe=15">au service <br />instrumentation</a>
+         </div>
+   </li>
+   <!-- <li><a href="essai.php">Liste des appareils</a></li> -->
    <li><a href="accueil.php">Liste des manips</a></li>
    <?php if($_SESSION['level'] == 2){ ?>
       <li class="dropdown">
