@@ -6,11 +6,17 @@ include("session_auth.php");
 session_start();
 //if (!auth(1))
 	//Header("Location: login.php");
-
-$user_id = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level= $_SESSION['level'];
-
+	if(empty($_SESSION['logged_in_user'])){
+		$log = false;
+		echo "log =false";
+	}else{
+		$user_id = $_SESSION['user_id'];
+		$logged_in_user = strtolower($_SESSION['logged_in_user']);
+		$user_level= $_SESSION['level'];
+		$log=true;
+		echo "log =true";
+	
+	}
 require("html_functions.php");
 
 if (empty($_GET['id']))
@@ -31,7 +37,6 @@ if ( $pdo = connect_db() ){
 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 en_tete("Caract&eacute;ristiques de l'appareil :<b>".$listing[0]['nom']."</b>");
-nav_bar();
 //recupere la methode de tri
 if (empty($_GET['tri']))
 	$tri ="id";
@@ -99,9 +104,9 @@ echo "L'appareil <b>".$listing[0]['nom']."</b> a les caract&eacute;ristiques sui
 	Inventaire<br />
       </th>
 
-<?php if ( $user_level >=2 )
+<?php if ($log == true && $user_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 )
+	if ( $log == true && $user_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -138,7 +143,9 @@ echo"</td><td style=\"vertical-align: top;\">";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($data['responsable']));
 	$resp = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      		echo $resp[0]['nom'];
+      		if(!empty($resp)){
+				  echo $resp[0]['nom'];
+			}
 
   echo"</td><td style=\"vertical-align: top;\">";
 echo $data['id'];
@@ -146,12 +153,12 @@ echo $data['id'];
   echo"</td><td style=\"vertical-align: top;\">";
 echo $data['inventaire'];
 
- if ( $user_level >=2 ) {
+ if ($log==true && $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_app2.php?app=".$id_app."&id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
- if ( $user_level >=3 ) {
+ if ($log==true && $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_intapp.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
