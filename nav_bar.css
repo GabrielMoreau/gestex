@@ -1,5 +1,5 @@
 /* recup w3school */
-ul {
+.navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -9,11 +9,11 @@ ul {
 
   }
   
-  li {
+  .navbar li {
     float: left;
   }
   
-  li a, .dropbtn {
+  .navbar li>a, .dropbtn {
     display: inline-block;
     color: black;
     text-align: center;
@@ -21,7 +21,7 @@ ul {
     text-decoration: none;
   }
   
-  li a:hover, .dropdown:hover .dropbtn{
+  .navbar li a:hover, .dropdown:hover .dropbtn{
     text-decoration:underline;
   }
   
