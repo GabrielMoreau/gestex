@@ -19,14 +19,14 @@ else
   $tri = $_GET['tri'];
 
 //et le numero de manip
-$manip_id=$_GET['id'];
-if (empty($manip_id))
+if (empty($_GET['id']))
  Header("Location : accueil.php");
+else
+  $manip_id=$_GET['id'];
 
 require("html_functions.php");
 
 en_tete("Historique Manip");
-nav_bar();
 if ( $pdo = connect_db() ){
 
  // recupere les refs du user
@@ -43,7 +43,6 @@ $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // echo $user[0]['nom'];
 // echo " ($user_id)<br /><br />";
 ?>
-
 <br />
 Voici la liste des Projets de la manip :<br />
 <?php
@@ -56,7 +55,6 @@ $stmt->execute(array($manip_id));
 $manip = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-var_dump($manip);
  $dossier_manip=$manip[0]['nom'];
  ?>
 
@@ -76,8 +74,8 @@ $eq = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
  echo "<tr bgcolor=\"#f7d709\">";
-
-  echo "<td style=\" text-align: center;\"><i>&Eacute;quipe</i> :".$eq[0]['nom']."<br />";
+ echo "<td style=\" text-align: center;\">";
+  if(!empty($eq)){ echo "<i>&Eacute;quipe</i> :".$eq[0]['nom']."<br />"; }
     // recupere le nom du chercheur
   $sql = 'SELECT nom FROM users WHERE id = ?;';
   // list($qheq,$numeq) = query_db($querry);
@@ -85,11 +83,12 @@ $eq = $stmt->fetchAll(PDO::FETCH_ASSOC);
   $stmt = $pdo->prepare($sql);
   $stmt->execute(array($manip[0]['chercheur']));
   $eq = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  if(!empty($eq)){ echo "<i>Chercheur</i> :".$eq[0]['nom']."<br />";}
 
-  echo "<i>Chercheur</i> :".$eq[0]['nom']."<br />";
-
-  echo "<i>Local</i> :".$manip[0]['local']."<br /></td>";
+  if(!empty($manip)){ echo "<i>Local</i> :".$manip[0]['local']."<br /></td>";}
+  
  echo "</tr>";
+
  ?>
 </tr></tbody></table>
 <br />
@@ -191,6 +190,7 @@ wnd.focus();
   <a href ="add_task.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>">Ajouter une tache</a><br />
     </th>
  <?php }
+
   else {
   echo "<th colspan=\"2\"></th>";
   } ?>
@@ -226,6 +226,7 @@ wnd.focus();
   $temps = $stmt->fetchAll(PDO::FETCH_ASSOC);
   foreach($temps as $temps){
    $temps_tache+= $temps['duree'];
+
    //recupre le nom du user associe a ce temps
    $sql = 'SELECT nom FROM users WHERE id = ?;';
   //  list($qh3,$num3) = query_db($querry);
@@ -233,12 +234,15 @@ wnd.focus();
   $stmt = $pdo->prepare($sql);
   $stmt->execute(array($temps['user']));
   $next_user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  var_dump($temps);
+  if(!empty($next_user)){
    if ( strstr($users, $next_user[0]['nom'])==FALSE)
    // si ce nom n'est pas deja dans la chaine
      $users.= $next_user[0]['nom'].", ";
   }
+  // $users=$users[,-1];
   echo $users;
+  $users='';
+}
 
        echo"</td><td style=\"vertical-align: top;\">";
    echo "dur&eacute;e :";
@@ -288,6 +292,7 @@ foreach($assoc as $a){
   $stmt = $pdo->prepare($sql);
   $stmt->execute(array($a));
   $projet_a = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
  //liens vers ces projets
  echo "<li>(".$a.") ";
 echo "<a href=\"#\" onclick=\"windowToTop('proj_info.php?idp=". $projet_a[0]['id'] ."')\" title =\"D&eacute;tails de ce projet\">";
@@ -302,4 +307,4 @@ echo "</ul>";
 <br />
 <br />
 </div>
-<?php pied_page() ?>
+<?php pied_page(); ?>
