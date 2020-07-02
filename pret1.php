@@ -15,11 +15,12 @@ $user_level= $_SESSION['level'];
 require("html_functions.php");
 
 en_tete("Liste des prets:");
-
 //recuper la methode de tri
-$tri = $_GET['tri'];
-if (empty($tri))
+if (empty($_GET['tri']))
 	$tri ="id";
+else
+	$tri = $_GET['tri'];
+
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 
 ?>
@@ -51,7 +52,8 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	foreach($equipe as $data){
 if ($data['id'] == 15)
 
-  {     echo"<td style=\"vertical-align: top;\">";
+  {     
+	  echo"<td style=\"vertical-align: top;\">";
 
 	echo "<a href =\"instru.php?equipe=".$data['id']." pret=".$data['id']."\">Liste des appareils en pr&ecirc;t</a>";
 echo "</td>";
