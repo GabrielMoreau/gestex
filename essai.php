@@ -3,14 +3,18 @@
 // Authenticate
 
 include("session_auth.php");
+session_start();
+// if (!auth(1))
+	// Header("Location: instru.php");
+if(empty($_SESSION['logged_in_user'])){
+	$log = false;
+}else{
+	$user_id = $_SESSION['user_id'];
+	$logged_in_user = strtolower($_SESSION['logged_in_user']);
+	$user_level= $_SESSION['level'];
+	$log=true;
 
-if (!auth(1))
-	Header("Location: instru.php");
-
-$user_id = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level= $_SESSION['level'];
-
+}
 require("html_functions.php");
 
 en_tete("Liste des appareils:");
@@ -22,7 +26,8 @@ if (empty($_GET['tri']))
 else
 	$tri = $_GET['tri'];
 
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
+if($log==true){echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";}
+
 ?>
 <br />
 <table cellpadding="2" cellspacing="2" border="1"
@@ -32,7 +37,9 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour &agrave;<br /> la page du service</a>
 	<br /></td>
-<?php if ( $user_level >=2 ) {	?>
+<?php 
+if($log ==true){
+	if ( $user_level >=2 ) {	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_app2.php">Ajout<br />d'un appareil</a>
 	<br /></td>
@@ -51,7 +58,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
 	<a href="add_categorie.php">Ajout<br />d'une cat&eacute;gorie</a>
 	<br /></td>
 
-<?php }	?>
+<?php }	}?>
 
 </tr></tbody>
 </table>
@@ -119,7 +126,7 @@ echo "<br />";
 </table>
 
 <?php
- if (( $user_id ==33)|| ( $user_id ==2) || $user_id == 105)
+ if ($log==true && (( $user_id ==33)|| ( $user_id ==2) || $user_id == 105))
 {?>
 <br /><br /><br />
  <td style="vertical-align: top; text-align: center;">
