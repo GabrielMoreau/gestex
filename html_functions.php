@@ -145,7 +145,7 @@ function pied_page(){
    echo '        <!-- <img src="images/php-small-purple.gif" align="top" nosave="" /> -->';
    echo '      </td>';
    echo '      <td>';
-   echo '        <address><a href="mailto:webmaster@legi.grenoble-inp.fr?Subject=GestEx%20to%20WebMaster">LEGI WebMaster</a></address>';
+   echo '        <address><a href="mailto:'.GESTEX_ADMIN_MAIL.'?Subject=GestEx%20to%20WebMaster">GestEx WebMaster</a></address>';
    echo '        <br />';
    echo '        <i>Derni&egrave;re mise &agrave; jour : ';
    echo            strftime('%Y-%m-%d', filemtime($file));
