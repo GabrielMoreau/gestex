@@ -6,7 +6,6 @@
   <link href="pool_project.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<br />
 <div width="100%" height="100%" align="center" valign="center">
 <?php require("html_functions.php"); en_tete("Gestion des plateformes exp&eacute;rimentales du LEGI");?>
 <br />
@@ -18,8 +17,8 @@ destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l
 
 <h2>Gestion instrumentation</h2>
 <ul>
-  <li><a href="essai1.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</li>
-  <li><a href="pret.php">Gestion des pr&ecirc;ts des appareils</a> du service instrumentation</li>
+  <li><a href="essai.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</li>
+  <li><a href="pret1.php">Gestion des pr&ecirc;ts des appareils</a> du service instrumentation</li>
   <li><a href="labview.php">Liste des programmes Labview d&eacute;velopp&eacute;s</a> au LEGI</li>
 </ul>
 
