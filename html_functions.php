@@ -22,39 +22,40 @@ function en_tete($titre){
    echo '      </td>';
    echo '      <td style="vertical-align: top;"><br />';
    echo '        <h1><a href="./">GestEx</a> - Gestion des plateformes Exp&eacute;rimentales</h1>';
-      if(!empty($_SESSION)){
-         $pdo            = connect_db();
-         $logged_in_user = $_SESSION['logged_in_user'];
-         $sql            = 'SELECT nom, prenom FROM users WHERE loggin = ?;';
-         $stmt           = $pdo->prepare($sql);
-         $stmt->execute(array($logged_in_user));
-         $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-         echo '<p><strong>'.$user[0]['nom'].'</strong> '.$user[0]['prenom'].' </p>';
-      }else{
-         echo "<p>Vous n'&ecirc;tes pas connect&eacute; </p>";
-      }
    echo $titre;
    echo '      </td>';
    echo '    </tr>';
    echo '  </tbody>';
    echo '</table>';
    echo '<br />';
-   nav_bar();
+   if(!empty($_SESSION)){
+      $pdo            = connect_db();
+      $logged_in_user = $_SESSION['logged_in_user'];
+      $sql            = 'SELECT nom, prenom FROM users WHERE loggin = ?;';
+      $stmt           = $pdo->prepare($sql);
+      $stmt->execute(array($logged_in_user));
+      $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['level']);
+   }else{
+      nav_bar('', '',0);
+   }
    echo '<br />';
    echo '</div>';
 }
 
 // -------------------------------------------------------------
 
-function nav_bar(){
+function nav_bar($prenom, $nom, $level){
  ?>
 <div class ="navbar">
   <link rel="stylesheet" type="text/css" href="nav_bar.css"> 
 <ul>
-<?php if(empty($_SESSION['level'])){ ?>
+<?php if(empty($level)){ ?>
+   
    <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
   <li><a href="list_users.php">Liste des utilisateurs</a></li>
   <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
+  <li><a href="instru.php?equipe=15 pret=15">Liste des appareils en prêt</a></li>
   <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
@@ -62,7 +63,8 @@ function nav_bar(){
             <a href="instru.php">Global</a>
             <a href="instru.php?equipe=15">au service <br />instrumentation</a>
          </div>
-   </li>  <li><a href="accueil.php">Liste des manips</a></li>
+   </li>  
+   <li><a href="accueil.php">Liste des manips</a></li>
   <li class="right"><a href="login.php">Se connecter</a></li>
 </ul>
 </div>
@@ -72,6 +74,7 @@ function nav_bar(){
    <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
    <li><a href="list_users.php">Liste des utilisateurs</a></li>
    <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
+   <li><a href="instru.php?equipe=15 pret=15">Liste des appareils en prêt</a></li>
    <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
@@ -82,7 +85,7 @@ function nav_bar(){
    </li>
    <!-- <li><a href="essai.php">Liste des appareils</a></li> -->
    <li><a href="accueil.php">Liste des manips</a></li>
-   <?php if($_SESSION['level'] == 2){ ?>
+   <?php if($level == 2){ ?>
       <li class="dropdown">
          <a class="dropbtn">Ajouter</a>
          <div class="dropdown-content">
@@ -94,7 +97,7 @@ function nav_bar(){
             <a href="add_labviews.php">Labview</a>
          </div>
       </li>
-<?php }else if($_SESSION['level'] >= 3){ ?>
+<?php }else if($level >= 3){ ?>
   
   <li class="dropdown">
     <a class="dropbtn">Ajouter</a>
@@ -123,7 +126,13 @@ function nav_bar(){
     </div>
   </li>
   <?php  } ?>
-  <li class="right"><a href="logout.php">Se d&eacute;connecter</a></li>
+  <li class="dropdown right">
+         <a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
+         <div class="dropdown-content">
+            <a href="logout.php">Se d&eacute;connecter</a>
+           
+         </div>
+   </li>
   <?php } ?>
 </ul>
 </div>
