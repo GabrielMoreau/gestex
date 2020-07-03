@@ -1,6 +1,5 @@
 <?php
 
-
 function en_tete($titre){
    /////echo"<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n";
    echo '<html>';
@@ -51,10 +50,10 @@ function nav_bar($prenom, $nom, $level, $user_id){
 <ul>
 <?php if(empty($level)){ ?>
    
-   <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
+  <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
   <li><a href="list_users.php">Liste des utilisateurs</a></li>
   <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
-  <li><a href="instru.php?equipe=15 pret=15">Liste des appareils en prêt</a></li>
+  <li><a href="instru.php?equipe=15 pret=15">Liste des appareils en pr&ecirc;t</a></li>
   <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
@@ -64,7 +63,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
          </div>
    </li>  
    <li><a href="accueil.php">Liste des manips</a></li>
-  <li class="right"><a href="login.php">Se connecter</a></li>
+   <li class="right"><a href="login.php">Se connecter</a></li>
 </ul>
 </div>
 
@@ -73,7 +72,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
    <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
    <li><a href="list_users.php">Liste des utilisateurs</a></li>
    <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
-   <li><a href="instru.php?equipe=15 pret=15">Liste des appareils en prêt</a></li>
+   <li><a href="instru.php?equipe=15 pret=15">Liste des appareils en pr&ecirc;t</a></li>
    <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
@@ -131,7 +130,6 @@ function nav_bar($prenom, $nom, $level, $user_id){
             <a href="logout.php">Se d&eacute;connecter</a>
             <a href="add_user.php?id=<?php echo $user_id ?>">Modifier mon profil</a>
             <a href="changepwd.php?id=<?php echo $user_id ?>">Modifier mon <br />mot de passe</a>
-
          </div>
    </li>
   <?php } ?>

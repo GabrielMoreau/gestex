@@ -21,7 +21,7 @@ if (empty($_GET['tri']))
 else
 	$tri = $_GET['tri'];
 
-// récupère le user
+// recupere le user
 if (empty($_GET['user']))
 	$use ="";
 else

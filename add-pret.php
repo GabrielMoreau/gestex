@@ -116,7 +116,7 @@ else if ($mode=="modifier"){
 
   <tr>
 
-      <td style="vertical-align: top;">Date demande pret *<i>format YYYY-MM-DD</i><br />
+      <td style="vertical-align: top;">Date demande pr&ecirc;t * (<i>format YYYY-MM-DD</i>)<br />
       </td>
       <th style="vertical-align: top;">
 	<input type="text" name="emprunt" size="10" maxlength="10" value="<?php
@@ -173,7 +173,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
 </table>
 <br />
 	<?php }else{
-		echo "problème de connexion a la badd";
+		echo "probl&egrave;me de connexion a la badd";
 	}
 		?>
 <br />
