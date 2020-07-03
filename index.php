@@ -6,6 +6,7 @@
   <link href="pool_project.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<br />
 <div width="100%" height="100%" align="center" valign="center">
 <?php require("html_functions.php"); en_tete("Gestion des plateformes exp&eacute;rimentales du LEGI");?>
 <br />
