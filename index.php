@@ -1,27 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
-  <title>Portail GestEx</title>
-  <link href="pool_project.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-<br />
-<div width="100%" height="100%" align="center" valign="center">
 <?php
 include("session_auth.php");
 session_start();
-	if(empty($_SESSION['logged_in_user'])){
-		$log = false;
-	}else{
-		$user_id        = $_SESSION['user_id'];
-		$logged_in_user = strtolower($_SESSION['logged_in_user']);
-		$user_level     = $_SESSION['level'];
-		$log            = true;
-	}
-	require("html_functions.php");
-	en_tete("Gestion des plateformes exp&eacute;rimentales");
-	?>
+if(empty($_SESSION['logged_in_user'])){
+	$log = false;
+}else{
+	$user_id        = $_SESSION['user_id'];
+	$logged_in_user = strtolower($_SESSION['logged_in_user']);
+	$user_level     = $_SESSION['level'];
+	$log            = true;
+}
+require("html_functions.php");
+en_tete("Gestion des plateformes exp&eacute;rimentales");
+?>
+
 <br />
 
 <p>GestEx est une application web developp&eacute;e au LEGI (collaboration entre les services technique / instrumentation / informatique)
