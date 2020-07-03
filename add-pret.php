@@ -10,19 +10,35 @@
 	//$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 //recuper la methode de tri
-$tri = $_GET[tri];
-if (empty($tri))
+if (empty($_GET['tri']))
 	$tri ="id";
+else
+	$tri = $_GET['tri'];
 
-$pret=$_GET[id];
 
+if (empty($_GET['id'])){
+	$pret ="";
 	//->nouvel appareil
+}
+else{
+	$pret=$_GET['id'];
+}
+
+if(empty($_GET['pret'])){
 	$mode ="ajouter";
 	$action="valid-pret.php";
+	$id_pret ="";
+}else{
+	$mode ="modifier";
+	$action="modiff_pret.php";
+	$id_pret = $_GET['pret'];
+}
+
+	
 //transmet la valeur de la categorie a la page valid appareil
 
 require("html_functions.php");
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete("Voila un formulaire pour ajouter un pret");
 
@@ -31,10 +47,12 @@ else if ($mode=="modifier"){
 	en_tete("Voila un formulaire pour modifier les prets d'un appareil");
 
 	// recupere l'appareil selectionne
-	$querry = "SELECT * FROM Listing WHERE id='$app_id'";
-	list($qh,$num) = query_db($querry);
-	$data = result_db($qh);
-
+	// $sql = 'SELECT * FROM pret WHERE id = ?;';
+	// // list($qh,$num) = query_db($querry);
+	// // $data = result_db($qh);
+	// $stmt = $pdo->prepare($sql);
+	// $stmt->execute(array($pret));
+	// $pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -51,18 +69,20 @@ else if ($mode=="modifier"){
   <td style="vertical-align: top;">
 
 <select name="nom">
-//listing des appareils
+<!-- listing des appareils -->
 <?php
-	$querry = "SELECT id, nom FROM Listing where (equipe=15 && id='$pret') ";
-	list($qheq,$numeq) = query_db($querry);
-		while ($chef = result_db($qheq)){
-			echo "<option value=\"".$chef[id]."\"";
+	$sql = 'SELECT id, nom FROM listing where equipe = 15 and id= ?; ';
+	// list($qheq,$numeq) = query_db($querry);
+	// 	while ($chef = result_db($qheq)){
+			if ($mode=="ajouter" ){
+		$stmt = $pdo->prepare($sql);
+        $stmt->execute(array($pret));
+        $chef = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			echo "<option value=\"".$chef[0]['id']."\"";
 
-if ($mode=="ajouter" )
 
-			echo ">".$chef[nom]."</option>";
-		}//end while
-
+			echo ">".$chef[0]['nom']."</option>";
+		}
 	?>
 </select>
 <br />
@@ -76,13 +96,18 @@ if ($mode=="ajouter" )
 	<select name="equipe">
 	<?php
 	// recupere la liste des equipes
-	$querry = "SELECT id, nom FROM equipe order by nom";
-	list($qheq,$numeq) = query_db($querry);
-		while ($chef = result_db($qheq)){
-			echo "<option value=\"".$chef[id]."\"";
-			if ($mode=="modifier" && $chef[id] == $data['equipe']) {
+	$sql = 'SELECT id, nom FROM equipe order by nom';
+	// list($qheq,$numeq) = query_db($querry);
+
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($courseId,$courseId));
+	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	// 	while ($chef = result_db($qheq)){
+		foreach($equipe as $chef){
+			echo "<option value=\"".$chef['id']."\"";
+			if ($mode=="modifier" && $chef['id'] == $pret[0]['equipe']) {
 				echo " selected";	}
-			echo ">".$chef[nom]."</option>";
+			echo ">".$chef['nom']."</option>";
 		}//end while
 		 ?>
 	</select><br />
@@ -96,7 +121,7 @@ if ($mode=="ajouter" )
       <th style="vertical-align: top;">
 	<input type="text" name="emprunt" size="10" maxlength="10" value="<?php
  if ($mode =="modifier")
-			echo $data['emprunt'];
+			echo $pret[0]['emprunt'];
 		else
 			echo date('Y-m-d', time() );
 	?>" ><br />
@@ -110,7 +135,7 @@ if ($mode=="ajouter" )
       <td style="vertical-align: top;">
 <input type="text" name="retour" size="10" maxlength="10" value="<?php
  if ($mode =="modifier")
-			echo $data['retour'];
+			echo $pret[0]['retour'];
 		else
 			echo date('Y-m-d', time() );
 	?>" ><br />
@@ -122,7 +147,7 @@ if ($mode=="ajouter" )
  <td style="vertical-align: top;">Commentaire<br />
       </td>
 <td style="vertical-align: top;">
-<input type="text" name="commentaire" size="30" maxlength="30" value="<?php echo $data['commentaire'] ?>" ><br />
+<input type="text" name="commentaire" size="30" maxlength="30" value="<?php if($mode=='modifier'){echo $pret[0]['commentaire'];} ?>" ><br />
 
       </td>
 
@@ -147,10 +172,10 @@ remplir obligatoirement, les autres sont optionnels.<br />
 </tbody>
 </table>
 <br />
-
-<?php }
-	else
-	{	Header("Location :instru.php");	}	?>
+	<?php }else{
+		echo "problème de connexion a la badd";
+	}
+		?>
 <br />
 </div>
 <?php pied_page() ?>
