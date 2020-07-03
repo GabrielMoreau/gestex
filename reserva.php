@@ -4,7 +4,7 @@
 
 //include("db_functions.php");
 include("session_auth.php");
-
+session_start();
 //if (!auth(1))
 	//Header("Location: login.php");
 
@@ -17,14 +17,23 @@ require("html_functions.php");
 en_tete("Liste des prets:");
 
 //recuper la methode de tri
-$tri = $_GET[tri];
-if (empty($tri))
+if (empty($_GET['tri']))
 	$tri ="id";
+else
+	$tri = $_GET['tri'];
 
-$use = $_GET[user];
+// récupère le user
+if (empty($_GET['user']))
+	$use ="";
+else
+	$use = $_GET['user'];
 
-//recupere l'equipe
-$eq=$_GET[equipe];
+	//recupere l'equipe
+
+if (empty($_GET['equipe']))
+	$eq ="";
+else
+	$eq = $_GET['equipe'];
 
 ?>
 <br />
@@ -71,7 +80,7 @@ Liste des pr&ecirc;ts : <br /><br /><br />
       </th>
 
  <th style="vertical-align: top; text-align: center;">
-	Commentaire<br />
+ Emprunteur<br />
       </th>
 	  <th style="vertical-align: top; text-align: center;">
 	Num&eacute;ro de l'appareil<br />
@@ -85,79 +94,93 @@ Liste des pr&ecirc;ts : <br /><br /><br />
     </tr>
 <?php	// interrogation base de donnees
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 	// recupere la liste de appareils
 
-$querry = "SELECT * FROM pret";
-	list($qh,$num) = query_db($querry);
+$sql = 'SELECT * FROM pret order by emprunt DESC;';
+// 	list($qh,$num) = query_db($querry);
 
-	$last_id=0;
+// 	$last_id=0;
 
-$data = result_db($qh);
+// $data = result_db($qh);
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// echo "<tr>";
 
-echo "<tr>";
+//  echo"</td><td style=\"vertical-align: top;\">";
 
- echo"</td><td style=\"vertical-align: top;\">";
+// 	$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
+// 	// list($qheeq,$numeeq) = query_db($querry);
+// 	// 	$nom = result_db($qheeq);
+// 	$stmt = $pdo->prepare($sql);
+// 	$stmt->execute(array($pret[0]['nom']));
+// 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// 	// if(!emty($listing))
+//     echo $listing[0]['nom'];
 
-	$querry = "SELECT id, nom FROM Listing WHERE id='$data['nom']'";
-	list($qheeq,$numeeq) = query_db($querry);
-		$nom = result_db($qheeq);
+//   echo"</td><td style=\"vertical-align: top;\">";
 
-      		echo $nom[nom];
+// 	// recupere le nom d'equipe
 
-  echo"</td><td style=\"vertical-align: top;\">";
+// 	$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
+// 	// list($qheq,$numeq) = query_db($querry);
+// 	// 	$equip = result_db($qheq);
 
-	// recupere le nom d'equipe
+// 	$stmt = $pdo->prepare($sql);
+// 	$stmt->execute(array($pret[0]['equipe']));
+// 	$equip = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$querry = "SELECT id, nom FROM equipe WHERE id='$data['equipe']'";
-	list($qheq,$numeq) = query_db($querry);
-		$equip = result_db($qheq);
+//       		echo $equip[0]['nom'];
+//        echo"</td><td style=\"vertical-align: top;\">";
 
-      		echo $equip[nom];
-       echo"</td><td style=\"vertical-align: top;\">";
+// echo $pret[0]['emprunt'];
 
-echo $data['emprunt'];
+// 	 echo"</td><td style=\"vertical-align: top;\">";
 
-	 echo"</td><td style=\"vertical-align: top;\">";
+// echo $pret[0]['retour'];
 
-echo $data['retour'];
+//  echo"</td><td style=\"vertical-align: top;\">";
 
- echo"</td><td style=\"vertical-align: top;\">";
+// echo $pret[0]['commentaire'];
+//  echo"</td><td style=\"vertical-align: top;\">";
 
-echo $data['commentaire'];
- echo"</td><td style=\"vertical-align: top;\">";
+//       		echo $listing[0]['id'];
 
-      		echo $nom[id];
+// 	if ( $use >=3 ) 	{
 
-	if ( $use >=3 ) 	{
+//       echo"</td><td style=\"vertical-align: top;\">";
+//       echo '<a href="del-pret.php?id=',$pret[0]['id'],'"><img src="images/edittrash.png" nosave="" title="Supprimer"></a>';
+//       echo"</td>";}
 
-      echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del-pret.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
-      echo"</td>";}
-
-echo"</tr>";
-
-while ($data = result_db($qh)){
+// echo"</tr>";
+foreach($pret as $data){
+// while ($data = result_db($qh)){
 
 	// remplit le tableau
 
- echo"</td><td style=\"vertical-align: top;\">";
-
-   $querry = "SELECT id, nom FROM Listing WHERE id='$data['nom']'";
-	list($qheeq,$numeeq) = query_db($querry);
-		$nom = result_db($qheeq);
-
-      		echo $nom[nom];
+	echo"</td><td style=\"vertical-align: top;\">";
+	$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
+	// list($qheeq,$numeeq) = query_db($querry);
+	// 	$nom = result_db($qheeq);
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($data['nom']));
+	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      		echo $listing[0]['nom'];
 
        echo"</td><td style=\"vertical-align: top;\">";
 
 	// recupere le nom d'equipe
 
-	$querry = "SELECT id, nom FROM equipe WHERE id='$data['equipe']'";
-	list($qheq,$numeq) = query_db($querry);
-		$equip = result_db($qheq);
+	$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
+	// list($qheq,$numeq) = query_db($querry);
+	// 	$equip = result_db($qheq);
 
-      		echo $equip[nom];
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($data['equipe']));
+	$equip = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      		echo $equip[0]['nom'];
        echo"</td><td style=\"vertical-align: top;\">";
 
 echo $data['emprunt'];
@@ -171,11 +194,11 @@ echo $data['retour'];
 echo $data['commentaire'];
 echo"</td><td style=\"vertical-align: top;\">";
 
-      		echo $nom[id];
+      		echo $listing[0]['id'];
 
  if ( $use >=3 ) 	{
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del-pret.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo '<a href="del-pret.php?id=',$data['id'],'"><img src="images/edittrash.png" nosave="" title="Supprimer"></a>';
       echo"</td>";
 	}
 
