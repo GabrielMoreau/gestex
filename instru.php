@@ -23,8 +23,9 @@ en_tete("Liste des appareils:");
 
 if (empty($_GET['tri']))
 	$tri ="id";
-else
+else{
 	$tri = $_GET['tri'];
+}
 //recupere la categorie
 // $cat=$_GET['categorie'];
 //echo "$cat";
@@ -43,6 +44,8 @@ else
 // $eq=$_GET['equipe'];
 // echo "$eq";
 // echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
+
+
 ?>
 <br />
 <table cellpadding="2" cellspacing="2" border="1"
@@ -118,7 +121,10 @@ Liste des appareils : <br />
 				<a href ="instru.php?tri=categorie">Cat&eacute;gorie<br />
 			</th>
 			<th style="vertical-align: top; text-align: center;">
-				Nom<br />
+			<a href ="instru.php?tri=id">Num&eacute;ro de l'appareil<br />
+			</th>
+			<th style="vertical-align: top; text-align: center;">
+			<a href ="instru.php?tri=nom">Nom</a><br />
 			</th>
 			<th style="vertical-align: top; text-align: center;">
 				Mod&egrave;le<br />
@@ -150,21 +156,26 @@ if ($pdo = connect_db()) {
 
 	// if ((!empty($cat))||(!empty($eq)))
 	if ($cat == 0 && $eq != 0) {
-		$sql = 'SELECT * FROM Listing where equipe = ? order by nom ASC;';
+		echo "SELECT * FROM Listing where equipe = ",$eq," order by ",$tri,"  ASC;"; 
+
+		// $sql = 'SELECT * FROM Listing where equipe = ? order by ? ASC;';
+
 		// list($qh,$num) = query_db($querry);
 		// $last_id=0;
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($eq));
+		$stmt->execute(array($eq,$tri));
 	} else if ($eq == 0 && $cat != 0) {
-		$sql = 'SELECT * FROM Listing where categorie = ? order by nom ASC;';
+		// echo "SELECT * FROM Listing where categorie = ",$cat," order by ",$tri,"  ASC;"; 
+		$sql = 'SELECT * FROM Listing where categorie = ? order by ? ASC;';
 		// list($qh,$num) = query_db($querry);
 		// $last_id=0;
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($cat));
+		$stmt->execute(array($cat,$tri));
 	}
 
 	if ($cat == 0 && $eq == 0) {
-		$sql = 'SELECT * FROM Listing order by ?;';
+		// echo "SELECT * FROM Listing order by ",$tri,"  ASC;"; 
+		$sql = 'SELECT * FROM Listing order by ? ASC;';
 		// list($qh,$num) = query_db($querry);
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($tri));
@@ -247,6 +258,8 @@ if ($pdo = connect_db()) {
 		$stmt->execute(array($data['categorie']));
 		$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo $categorie[0]['nom'];
+		echo "</td><td style=\"vertical-align: top;\">";
+		echo $data['id'];
 		echo "</td><td style=\"vertical-align: top;\">";
 		echo "<a href =\"fiche_vie.php?id=".$data['id']."\">". $data['nom']."</a>";
 		echo "</td><td style=\"vertical-align: top;\">";
