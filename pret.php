@@ -20,7 +20,6 @@ en_tete("Liste des prets:");
 $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
-//echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 
 <i>Consulter la liste des &eacute;quipements communs disponibles au service instrumentation et choisir :

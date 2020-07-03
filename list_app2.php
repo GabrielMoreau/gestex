@@ -19,9 +19,8 @@ en_tete("Liste des appareils:");
 $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="nom";
-
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
+
 Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute;guli&egrave;rement :<br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">

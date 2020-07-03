@@ -28,9 +28,8 @@ if (empty($_GET['categorie']))
 else
 	$cat = $_GET['categorie'];
 //echo "$cat";
-
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
+
 <br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">

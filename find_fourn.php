@@ -30,9 +30,8 @@ if (isset($_POST[descr]))
 //	$find_descr ="";
 //else
 	$find_descr = $_POST[descr];
-
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 ?>
+
 <br />
 <table cellpadding="2" cellspacing="2" border="0"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">

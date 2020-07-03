@@ -21,7 +21,6 @@ if (empty($_GET['tri']))
 else
 	$tri = $_GET['tri'];
 
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 
 <i> Consulter la liste des &eacute;quipement communs disponibles au service instrumentation et choisir : 'Demande de pr&ecirc;t' en face de l'appareil souhait&eacute;</i><br />

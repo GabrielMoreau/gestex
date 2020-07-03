@@ -43,8 +43,6 @@ else
 
 // $eq=$_GET['equipe'];
 // echo "$eq";
-// echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
-
 
 ?>
 <br />

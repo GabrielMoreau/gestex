@@ -42,9 +42,6 @@ if (empty($_GET['tri']))
 	$tri ="id";
 else
 	$tri = $_GET['tri'];
-
-
-// echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 
 <!-- <table cellpadding="2" cellspacing="2" border="1" -->
