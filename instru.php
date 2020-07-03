@@ -281,7 +281,7 @@ echo $data['gamme'];
 	// list($qheq,$numeq) = query_db($querry);
 	// 	$equip = result_db($qheq);
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($listing[0]['equipe']));
+		$stmt->execute(array($data['equipe']));
 		$equipe =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 				  echo $equipe[0]['nom'];
       		// echo $equip['nom'];
@@ -293,18 +293,18 @@ echo $data['gamme'];
 	// 	$equip = result_db($qheq);
     //   		echo $equip['nom'];
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($listing[0]['fournisseur']));
+	$stmt->execute(array($data['fournisseur']));
 	$fournisseur =  $stmt->fetchAll(PDO::FETCH_ASSOC);
       		echo $fournisseur[0]['nom'];
 
   echo"</td><td style=\"vertical-align: top;\">";
-$sql = 'SELECT id, nom FROM categorie WHERE id = ?';
+// $sql = 'SELECT id, nom FROM categorie WHERE id = ?';
 	// list($qheq,$numeq) = query_db($querry);
 		// $cat = result_db($qheq);
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($listing[0]['categorie']));
-		$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-      		//echo $cat[nom];
+		// $stmt = $pdo->prepare($sql);
+		// $stmt->execute(array($data['categorie']));
+		// $categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+      	// 	echo $categorie[0]['nom'];
 
 	///bouton lien vers la doc
 	$dossier_proj ="data/instru/".$data['nom'];
