@@ -8,34 +8,35 @@ require("html_functions.php");
 unset($erreur);
 //variables ne pouvant etre nulles
 
-if (empty($_POST[nom]))
+if (empty($_POST['nom']))
 	$erreur="nom non pr&eacute;cis&eacute;";
 else{
-	$nom =$_POST[nom];
+	$nom =$_POST['nom'];
 
-		if (empty($_POST[equipe]))
+		if (empty($_POST['equipe']))
 			$erreur="&Eacute;quipe non pr&eacute;cis&eacute;";
 		else{
-			$equipe =$_POST[equipe];
+			$equipe =$_POST['equipe'];
 
 							//variables pouvant etre nulles
 
-if (empty($_POST[emprunt]))
+if (empty($_POST['emprunt']))
 		$erreur="date non pr&eacute;cis&eacute;";
 	else{
-		$emprunt=$_POST[emprunt];
+		$emprunt=$_POST['emprunt'];
 
-	$retour =$_POST[retour];
+	$retour =$_POST['retour'];
 
-				$commentaire =$_POST[commentaire];
+				$commentaire =$_POST['commentaire'];
 
 	}}}
 
 en_tete("resultat ajout appareil ");
 
-$tri = $_GET[tri];
-if (empty($tri))
+if (empty($_GET['tri']))
 	$tri ="id";
+else
+	$tri = $_GET['tri'];
 
 if (!empty($erreur) ){
 
@@ -54,24 +55,35 @@ else{
 }
 require("db_functions.php");
 
-if ( $connex = connect_db() ){
-
+if ( $pdo = connect_db() ){
+	$sql = 'SELECT * FROM pret where nom = ? and equipe = ?';
+	$stmt = $pdo->prepare($sql);
+    $stmt->execute(array($nom,$equipe));
+	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if(!empty($pret)){
+		echo 'erreur, l\'appareil est déjà emprunté';
+		pied_page();
+		exit();
+	}
 		//inscription
 	$table = "pret";
 
-		$result = mysql_query("INSERT INTO $table ".
-			"(nom, equipe, emprunt, retour, commentaire)".
-			" VALUES ('$nom','$equipe','$emprunt','$retour','$commentaire')");
+		// $result = mysql_query("INSERT INTO $table ".
+		// 	"(nom, equipe, emprunt, retour, commentaire)".
+		// 	" VALUES ('$nom','$equipe','$emprunt','$retour','$commentaire')");
+		$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?,?,?,?,?);';
+		$stmt = $pdo->prepare($sql);
+        $stmt->execute(array($nom,$equipe,$emprunt,$retour,$commentaire));
 			//
-if (!$result){
+// if (!$result){
 			//inscription !ok
-			$erreur = mysql_error();
-		echo "<br />erreur :".$erreur;
-		}
-		$querry = "SELECT * FROM pret ";
-	list($qh,$num) = query_db($querry);
+			// $erreur = mysql_error();
+		// echo "<br />erreur :".$erreur;
+		// }
+	// 	$querry = "SELECT * FROM pret ";
+	// list($qh,$num) = query_db($querry);
 
-	$last_id=0;
+	// $last_id=0;
 
 $data = result_db($qh);
 		echo "de $nom[nom]$equipe $nom<br />";
