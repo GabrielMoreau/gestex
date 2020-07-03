@@ -15,9 +15,14 @@ require("html_functions.php");
 
 en_tete("Liste de tous les utilisateurs:");
 //recuper la methode de tri
-$tri = $_GET['tri'];
-// if (empty($tri))
-// 	$tri ="nom";
+if (empty($_GET['tri'])){
+	if($user_level>=3){
+		$tri ="level";
+	}else{
+		$tri ="nom";
+	}
+}else
+		$tri = $_GET['tri'];
 
 echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 ?>
@@ -29,26 +34,24 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="accueil.php">Retour &agrave; l'accueil</a>
 	<br /></td>
-<?php if ( $user_level ==3) {	?>
+<?php if ( $user_level >=3) {	?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_user.php">Ajout d'un utilisateur</a>
 	<br /></td>
 <?php }
-else	{ //edition/modif de ses propres coordonnees
+//edition/modif de ses propres coordonnees
 ?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_user.php?id=<?php echo $user_id ?>">
 		<img src="images/edit.png" nosave="" title="Modifier son profil"></a>
 	<br /></td>
- <?php } ?>
+ <?php ?>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="changepwd.php?id=<?php echo $user_id ?>">
 		<img src="images/unlock.png" nosave="" title="Changer son mot de passe"></a>
 	<br /></td>
 
- <td style="vertical-align: top; text-align: center;">
-	<a href="logout.php?variable=projet">Quitter</a>
-	<br /></td> </tr></tbody>
+ </tr></tbody>
 </table>
 <br />
 
@@ -56,6 +59,12 @@ else	{ //edition/modif de ses propres coordonnees
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
+		<?php
+		if($user_level >=3){ ?>
+		<th style="vertical-align: top; text-align: center;">
+		level<br />
+      </th>
+		<?php } ?>
       <th style="vertical-align: top; text-align: center;">
 	Pr&eacute;nom<br />
       </th>
@@ -76,7 +85,7 @@ else	{ //edition/modif de ses propres coordonnees
 
 if ( $pdo = connect_db() ){
 	// recupere la liste des users
-	if ($user_level==3){
+	if ($user_level >=3){
 		$sql = 'SELECT * FROM users ORDER by ?';
 	}
 	else{
@@ -95,8 +104,11 @@ if ( $pdo = connect_db() ){
  		echo"<tr class=pair>";
 	else
 		echo"<tr class=impair>";
-
- echo "<td style=\"vertical-align: top;\">";
+		if($user_level >=3 ){
+			echo "<td style=\"vertical-align: top;\">";
+			echo $data['level'];
+		}
+ 	echo "</td><td style=\"vertical-align: top;\">";
 	echo $data['prenom'];
        echo"</td><td style=\"vertical-align: top;\">";
 	//l'utilisateur a la possiblite de modifier ses coordonnees
