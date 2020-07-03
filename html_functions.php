@@ -34,9 +34,9 @@ function en_tete($titre){
       $stmt           = $pdo->prepare($sql);
       $stmt->execute(array($logged_in_user));
       $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['level']);
+      nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['level'],$_SESSION['user_id']);
    }else{
-      nav_bar('', '',0);
+      nav_bar('', '',0,0);
    }
    echo '<br />';
    echo '</div>';
@@ -44,7 +44,7 @@ function en_tete($titre){
 
 // -------------------------------------------------------------
 
-function nav_bar($prenom, $nom, $level){
+function nav_bar($prenom, $nom, $level, $user_id){
  ?>
 <div class ="navbar">
   <link rel="stylesheet" type="text/css" href="nav_bar.css"> 
@@ -90,7 +90,7 @@ function nav_bar($prenom, $nom, $level){
          <div class="dropdown-content">
             <a href="add_manip.php">Manip</a>
             <a href="add_fourn.php">Fournisseur</a>
-            <a href="add_pret.php">Pr&ecirc;t</a>
+            <a href="add-pret.php">Pr&ecirc;t</a>
             <a href="add_time.php">Temps</a>
             <a href="add_task.php">Task</a>
             <a href="add_labviews.php">Labview</a>
@@ -109,7 +109,7 @@ function nav_bar($prenom, $nom, $level){
       <a href="add_fourn.php">Fournisseur</a>
       <a href="add_intapp.php?app=3">Intervention</a>
       <a href="add_user.php">User</a>
-      <a href="add_pret.php">Pr&ecirc;t</a>
+      <a href="add-pret.php">Pr&ecirc;t</a>
       <a href="add_time.php">Temps</a>
       <a href="add_task.php">Task</a>
       <a href="add_demandes.php">Demande</a>
@@ -129,7 +129,9 @@ function nav_bar($prenom, $nom, $level){
          <a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
          <div class="dropdown-content">
             <a href="logout.php">Se d&eacute;connecter</a>
-           
+            <a href="add_user.php?id=<?php echo $user_id ?>">Modifier mon profil</a>
+            <a href="changepwd.php?id=<?php echo $user_id ?>">Modifier mon <br />mot de passe</a>
+
          </div>
    </li>
   <?php } ?>
