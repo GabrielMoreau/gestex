@@ -21,7 +21,7 @@
     text-decoration: none;
   }
   
-  .navbar li a:hover, .dropdown:hover .dropbtn{
+   li a:hover{
     text-decoration:underline;
   }
   
@@ -47,9 +47,9 @@
   }
   
   .dropdown-content a:hover {
+    text-decoration:none;
       background-color: gray;
       color: white;
-      text-decoration:none;
 
     }
   
@@ -64,6 +64,9 @@ li.right a:hover{
   background-color: rgb(216, 11, 11); 
   color: black;
 
+}
+a.dropbtn:hover{
+  text-decoration : none;
 }
 .navbar{
     position: -webkit-sticky; /*Safari*/

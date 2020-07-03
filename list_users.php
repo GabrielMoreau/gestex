@@ -117,9 +117,11 @@ if ( $pdo = connect_db() ){
 		$stmt = $pdo->prepare($sql);
         $stmt->execute(array($data['equipe']));
         $equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if(!empty($equipe)){
 		echo $equipe[0]['nom'];
 
-      echo " (".$data['equipe'].")";
+	  echo " (".$data['equipe'].")";
+		}
      if ($user_level==3){
 		 echo"</td><td style=\"vertical-align: top;\">";
 		echo "<a href=\"changepwd.php?id=".$data['id']."\">";
