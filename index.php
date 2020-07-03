@@ -22,16 +22,16 @@ destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l
 
 <h2>Gestion instrumentation</h2>
 <ul>
-  <li><a href="essai.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</li>
-  <li><a href="pret1.php">Gestion des pr&ecirc;ts des appareils</a> du service instrumentation</li>
-  <li><a href="labview.php">Liste des programmes Labview d&eacute;velopp&eacute;s</a></li>
+	<li><a href="essai.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</li>
+	<li><a href="pret1.php">Gestion des pr&ecirc;ts des appareils</a> du service instrumentation</li>
+	<li><a href="labview.php">Liste des programmes Labview d&eacute;velopp&eacute;s</a></li>
 </ul>
 
 <h2>Gestion des projets techniques</h2>
 <p>Il faut &ecirc;tre un utilisateur r&eacute;f&eacute;renc&eacute; pour pouvoir acc&eacute;der &agrave; cette partie.</p>
 <ul>
-  <li><a href="add_user.php">Demander son inscription</a></li>
-  <li><a href="login.php?variable=projet">Acc&eacute;der au gestionnaire de Projets</a></li>
+	<li><a href="add_user.php">Demander son inscription</a></li>
+	<li><a href="login.php?variable=projet">Acc&eacute;der au gestionnaire de Projets</a></li>
 </ul>
 
 <br />
