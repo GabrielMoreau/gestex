@@ -53,11 +53,11 @@
 		<head>
 			<?php
  				if ($truc == "projet")
-					echo "<title>Gestion de Projets LEGI</title>";
+					echo "<title>Gestion des Projets</title>";
 				if ($truc == "instru")
-					echo "<title>Gestion du parc d'instrumentation LEGI</title>";
+					echo "<title>Gestion du parc d'instrumentation</title>";
 				if ($truc == "pret")
-					echo "<title>Gestion des pr&ecirc;ts du mat&eacute;riel instrumentation du LEGI</title>";
+					echo "<title>Gestion des pr&ecirc;ts du mat&eacute;riel instrumentation</title>";
 			?>
 
 			<link href="pool_project.css" rel="stylesheet" type="text/css">
@@ -71,16 +71,16 @@
   					<tbody>
     					<tr bgcolor="#f7d709">
       						<td style="vertical-align: top;"><br />
-								<img src="images/logo_legi.jpg" width="150"  border="0" hspace="0" vspace="0">
+								<img src="images/<?php GESTEX_LOGO_ENTITY ?>" width="150"  border="0" hspace="0" vspace="0">
 							</td>
 							<?php
 								if ($truc == "instru")
-									echo  "<td style=\"vertical-align: top;\"><h1>Gestion du Parc Instrumentation LEGI</h1>";
+									echo  "<td style=\"vertical-align: top;\"><h1>Gestion du Parc Instrumentation</h1>";
 								if ($truc == "pret")
-									echo  "<td style=\"vertical-align: top;\"><h1>Gestion des pr&ecirc;ts du mat&eacute;riel instrumentation du LEGI</h1>";
+									echo  "<td style=\"vertical-align: top;\"><h1>Gestion des pr&ecirc;ts du mat&eacute;riel instrumentation</h1>";
 								if ($truc == "projet"){
-									echo  "<td style=\"vertical-align: top;\"><h1>Gestion de Projet LEGI</h1>";
-									echo	"<br />Pour acc&eacute;der &agrave; l'outil de gestion de projets du LEGI, il faut y etre r&eacute;f&eacute;renc&eacute;.<br />
+									echo  "<td style=\"vertical-align: top;\"><h1>Gestion des Projet</h1>";
+									echo	"<br />Pour acc&eacute;der &agrave; l'outil de gestion des projets, il faut y etre r&eacute;f&eacute;renc&eacute;.<br />
 											Si ce n'est pas deja fait, vous pouvez en faire la demande <a href=\"add_user.php\">ici </a>";
 								}
 							?>
@@ -101,7 +101,7 @@
 							<td>
 								<table width="300" cellspacing="0" cellpadding="5" bgcolor="#1F32F0" align="center" class="box">
 									<tr>
-										<td><img src="../images/logolegi.gif" width="69" height="69" border="0" hspace="0" vspace="0"></td>
+										<td><img src="images/<?php GESTEX_LOGO_ENTITY ?>" width="69" height="69" border="0" hspace="0" vspace="0"></td>
 										<td><span class="box_text">Identifiant</span><br /><input type="text" name="username" size="25" maxlength="25"></td>
 										<td><span class="box_text">Mot de passe</span><br /><input type="password" name="password" size="25" maxlength="25"></td>
 										<td><br /><input type="submit" name="Login" value="Entrer"> </td>

@@ -8,7 +8,7 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete(" Liste des programmes Labview du LEGI:");
+en_tete("Liste des programmes Labview");
 
 //recuper la methode de tri
 $tri = $_GET[tri];
@@ -23,7 +23,7 @@ echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br 
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour a<br />la page du service</a>
+	<a href="<?php GESTEX_URL_SERVICE ?></a>">Retour &agrave;<br />la page du service</a>
 	<br /></td>
 
  <td style="vertical-align: top; text-align: center;">

@@ -33,22 +33,22 @@ $eq=$_GET[equipe];
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article=16">Retour a<br />la page du service</a>
+	<a href="<?php GESTEX_URL_SERVICE ?></a>">Retour &agrave;<br />la page du service</a>
 	<br /></td>
 
 <td style="vertical-align: top; text-align: center;">
 <?php if ( $use >=3 ) 	{?>
-	<a href="pret1.php">Retour<br />&agrave; la liste des prets</a>
+	<a href="pret1.php">Retour<br />&agrave; la liste des pr&ecirc;ts</a>
 	<br /></td>
 <?php }
 else{	?>
-<a href="pret.php">Retour<br />&agrave; la liste des prets</a>
+<a href="pret.php">Retour<br />&agrave; la liste des pr&ecirc;ts</a>
 <?php }?>
 </tr></tbody>
 </table>
 
 <br />
-Liste des prets : <br /><br /><br />
+Liste des pr&ecirc;ts : <br /><br /><br />
 
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -83,7 +83,7 @@ Liste des prets : <br /><br /><br />
 		echo "</th><th>";
 	  ?>
     </tr>
-<?php	//interrogation base de donnees
+<?php	// interrogation base de donnees
 
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils

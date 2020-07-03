@@ -1,5 +1,7 @@
 <?php
 
+require("connect.php");
+
 function en_tete($titre){
    /////echo"<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n";
    echo '<html>';
@@ -57,7 +59,7 @@ function nav_bar($prenom, $nom, $level){
   <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
-            <a href="essai.php">Catégories</a>
+            <a href="essai.php">Cat&eacute;gories</a>
             <a href="instru.php">Global</a>
             <a href="instru.php?equipe=15">au service <br />instrumentation</a>
          </div>
@@ -76,7 +78,7 @@ function nav_bar($prenom, $nom, $level){
    <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
-            <a href="essai.php">Catégories</a>
+            <a href="essai.php">Cat&eacute;gories</a>
             <a href="instru.php">Global</a>
             <a href="instru.php?equipe=15">au service <br />instrumentation</a>
          </div>
@@ -154,7 +156,7 @@ function pied_page(){
    echo '        <!-- <img src="images/php-small-purple.gif" align="top" nosave="" /> -->';
    echo '      </td>';
    echo '      <td>';
-   echo '        <address><a href="mailto:webmaster@legi.grenoble-inp.fr?Subject=GestEx%20to%20WebMaster">LEGI WebMaster</a></address>';
+   echo '        <address><a href="mailto:'.GESTEX_ADMIN_MAIL.'?Subject=GestEx%20to%20WebMaster">GestEx WebMaster</a></address>';
    echo '        <br />';
    echo '        <i>Derni&egrave;re mise &agrave; jour : ';
    echo            strftime('%Y-%m-%d', filemtime($file));

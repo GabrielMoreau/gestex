@@ -35,7 +35,7 @@ if($log==true){echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="http://intranet.legi.grenoble-inp.fr/spip.php?article16">Retour &agrave;<br /> la page du service</a>
+	<a href="<?php GESTEX_URL_SERVICE ?>">Retour &agrave;<br /> la page du service</a>
 	<br /></td>
 <?php 
 if($log ==true){
