@@ -42,7 +42,7 @@ if (empty($_GET['tri'])){
 ?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_user.php?id=<?php echo $user_id ?>">
-		<img src="images/edit.png" nosave="" title="Modifier son profil"></a>
+		<img src="images/gear.svg" nosave="" title="Modifier son profil"></a>
 	<br /></td>
  <?php ?>
 	 <td style="vertical-align: top; text-align: center;">
