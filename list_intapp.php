@@ -122,7 +122,7 @@ while ($data = result_db($qh)) {
 
  if ( $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_intapp.php?app=".$id_app."&id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_intapp.php?app=".$id_app."&id=".$data['id']."\"<img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {

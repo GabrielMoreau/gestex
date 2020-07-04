@@ -191,12 +191,12 @@ echo $data['gamme'];
 if (!empty($eq))
 {
  echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Demande de pret\" /></a>";
+      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Demande de pret\" /></a>";
       echo"</td>";
 }
 	 if ( $user_level >=2) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app2.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+      echo "<a href=\"add_app2.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
@@ -271,13 +271,13 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data['categorie']'";
 
 {
 echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Demande de pret\" /></a>";
+      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Demande de pret\" /></a>";
      echo"</td>";
 }
 
  if ( $user_level >=2) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app2.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+      echo "<a href=\"add_app2.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {

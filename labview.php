@@ -131,7 +131,7 @@ $dossier_lab ="data/labview/".$data['manipch'];
     }
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 
       echo"</td><td style=\"vertical-align: top;\">";
@@ -178,7 +178,7 @@ echo $data['module'];
 //echo $data['ecran'];
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 
       echo"</td><td style=\"vertical-align: top;\">";

@@ -120,7 +120,7 @@ Liste des demandes en cours :<br />
 // echo $demandes[0]['piecesjointes'];
 // 	 if ( $user_level >=2) {
 //       echo"</td><td style=\"vertical-align: top;\">";
-//       echo "<a href=\"add_demandes.php?id=$demandes[0][id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+//       echo "<a href=\"add_demandes.php?id=$demandes[0][id]\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\" /></a>";
 //       echo"</td>";
 // 	}//end if
 //  if ( $user_level >=3 ) {
@@ -164,7 +164,7 @@ Liste des demandes en cours :<br />
 		}
 		if ( $user_level >=2) {
 			echo"</td><td style=\"vertical-align: top;\">";
-			echo "<a href=\"add_demandes.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\"Modifier\" /></a>";
+			echo "<a href=\"add_demandes.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\"Modifier\" /></a>";
 			echo"</td>";
 		}//end if
 		if ( $user_level >=3 ) {
