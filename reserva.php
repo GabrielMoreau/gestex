@@ -149,7 +149,7 @@ $pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // 	if ( $use >=3 ) 	{
 
 //       echo"</td><td style=\"vertical-align: top;\">";
-//       echo '<a href="del-pret.php?id=',$pret[0]['id'],'"><img src="images/edittrash.png" nosave="" title="Supprimer"></a>';
+//       echo '<a href="del-pret.php?id=',$pret[0]['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer"></a>';
 //       echo"</td>";}
 
 // echo"</tr>";
@@ -197,7 +197,7 @@ echo"</td><td style=\"vertical-align: top;\">";
 
  if ( $use >=3 ) 	{
       echo"</td><td style=\"vertical-align: top;\">";
-      echo '<a href="del-pret.php?id=',$data['id'],'"><img src="images/edittrash.png" nosave="" title="Supprimer"></a>';
+      echo '<a href="del-pret.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer"></a>';
       echo"</td>";
 	}
 

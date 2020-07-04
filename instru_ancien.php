@@ -145,7 +145,7 @@ echo $data['gamme'];
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_app2.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_app2.php?id=".$data['id']."\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 
 	}//end if

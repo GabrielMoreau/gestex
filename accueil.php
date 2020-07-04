@@ -177,7 +177,7 @@ if ( $pdo = connect_db() ){
 				}
 				if ($user_level==3){
 					echo '</td><td style="vertical-align: top;">';
-					echo '<a href="del_manip.php?id=',$manip['id'],'"><img src="images/edittrash.png" nosave="" title= "Supprimer" /></a>';
+					echo '<a href="del_manip.php?id=',$manip['id'],'"><img src="images/trash.svg" nosave="" title= "Supprimer" /></a>';
 				}
 			echo '</td></tr>';
 			}//end while

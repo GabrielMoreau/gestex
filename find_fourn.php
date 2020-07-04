@@ -166,7 +166,7 @@ while ($data = result_db($qh)) {
       echo "<a href=\"add_fourn.php?id=".$data['id']."\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_fourn.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_fourn.php?id=".$data['id']."\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 
 	}//end if

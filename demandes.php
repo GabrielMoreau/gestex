@@ -125,7 +125,7 @@ Liste des demandes en cours :<br />
 // 	}//end if
 //  if ( $user_level >=3 ) {
 //       echo"</td><td style=\"vertical-align: top;\">";
-//       echo "<a href=\"del_demandes.php?id=$demandes[0][id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+//       echo "<a href=\"del_demandes.php?id=$demandes[0][id]\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
 //       echo"</td>";
 // }
 // echo"</tr>";
@@ -169,7 +169,7 @@ Liste des demandes en cours :<br />
 		}//end if
 		if ( $user_level >=3 ) {
 			echo"</td><td style=\"vertical-align: top;\">";
-			echo "<a href=\"del_demandes.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+			echo "<a href=\"del_demandes.php?id=$data['id']\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
 			echo"</td>";
 
 		}
