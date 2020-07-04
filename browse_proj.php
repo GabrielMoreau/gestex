@@ -127,7 +127,7 @@ while ( $file = array_pop($images) ){
    switch ( strtolower(substr($file, $pos+1))){
     case "htm":
     case "html":
-     echo "images/html.png\" /><br />";
+     echo "images/link.svg\" /><br />";
      break;
     case "doc":
      echo "images/document.png\" /><br />";

@@ -81,7 +81,7 @@ $dossier_proj ="data/instru/".$nom_nom."/";
 			switch ( strtolower(substr($file, $pos+1))){
 				case "htm":
 				case "html":
-					echo "images/html.png\" ><br />";
+					echo "images/link.svg\" ><br />";
 					break;
 				case "doc":
 					echo "images/document.png\" ><br />";

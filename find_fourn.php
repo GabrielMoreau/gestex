@@ -155,7 +155,7 @@ while ($data = result_db($qh)) {
          echo "<a href=\"mailto:".$data['mail']."\"> <img src=\"images/envelope.svg\" nosave=\"\" /></a>";
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"http://".$data['www']."\" target=\"_fournView\"><img src=\"images/html.png\" nosave=\"\" width=\"22\" /> </a>";
+      echo "<a href=\"http://".$data['www']."\" target=\"_fournView\"><img src=\"images/link.svg\" nosave=\"\" width=\"22\" /> </a>";
       echo"</td><td style=\"vertical-align: top;\">";
       echo  $data['contact'];
       echo"</td><td style=\"vertical-align: top;\">";
