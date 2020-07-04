@@ -119,7 +119,7 @@ if ( $pdo = connect_db() ){
       echo"</td><td style=\"vertical-align: top;\">";
       echo $data['tel'];
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"mailto:".$data['email']."\"> <img src=\"images/mail_generic.png\" nosave=\"\"></a>";
+      echo "<a href=\"mailto:".$data['email']."\"> <img src=\"images/envelope.svg\" nosave=\"\"></a>";
       echo"</td><td style=\"vertical-align: top;\">";
  			// recupere la liste de equipes
 	$sql = 'SELECT nom FROM equipe WHERE id =?';

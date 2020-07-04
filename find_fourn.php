@@ -152,7 +152,7 @@ while ($data = result_db($qh)) {
        echo"</td><td style=\"vertical-align: top;\" nowrap>";
       echo $data['fax'];
      echo"</td><td style=\"vertical-align: top;\">";
-         echo "<a href=\"mailto:".$data['mail']."\"> <img src=\"images/mail_generic.png\" nosave=\"\" /></a>";
+         echo "<a href=\"mailto:".$data['mail']."\"> <img src=\"images/envelope.svg\" nosave=\"\" /></a>";
 
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"http://".$data['www']."\" target=\"_fournView\"><img src=\"images/html.png\" nosave=\"\" width=\"22\" /> </a>";
