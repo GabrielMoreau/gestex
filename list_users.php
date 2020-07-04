@@ -47,7 +47,7 @@ if (empty($_GET['tri'])){
  <?php ?>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="changepwd.php?id=<?php echo $user_id ?>">
-		<img src="images/unlock.png" nosave="" title="Changer son mot de passe"></a>
+		<img src="images/unlock.svg" nosave="" title="Changer son mot de passe"></a>
 	<br /></td>
 
  </tr></tbody>
