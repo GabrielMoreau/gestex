@@ -293,7 +293,7 @@ if ($pdo = connect_db()) {
 		/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 		if (@opendir($dossier_proj) != FALSE){
 			//si trouve ajoute un bouton
-			echo 'Voir : <a href ="notice.php?id=', $data['id'],'\">',$data['nom'],'<img src="images/eye.svg" nosave="" title ="Voir ce projet" /></a><br />';
+			echo 'Voir : <a href ="notice.php?id=', $data['id'],'">',$data['nom'],'<img src="images/eye.svg" nosave="" title ="Voir ce projet" /></a><br />';
 		}
 		echo '  </td>'.PHP_EOL;
 
@@ -308,7 +308,7 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 		}//end if
 		if (($log === true && $user_level >=3 ) && ($eq != "15 pret=15")) {
-			echo '  <td style=\"vertical-align: top;\">';
+			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="del_app2.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
 			echo '  </td>'.PHP_EOL;
 
