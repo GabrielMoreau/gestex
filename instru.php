@@ -229,7 +229,7 @@ if ($pdo = connect_db()) {
 	foreach ($listing as $data) {
 		// remplit le tableau
 
-		echo '<tr>';
+		echo '<tr>\n';
 		echo '  <td style="vertical-align: top;">';
 		$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
 		// list($qheq,$numeq) = query_db($querry);
