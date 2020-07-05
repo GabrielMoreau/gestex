@@ -206,7 +206,7 @@ wnd.focus();
   $tache = $stmt->fetchAll(PDO::FETCH_ASSOC);
   foreach($tache as $taches){
   // remplit le tableau de taches
-       echo"<tr><td><img src =\"images/forward.png\" nosave=\"\" width=\"15\"></td>";
+       echo"<tr><td><img src =\"images/arrow-right-square.svg\" nosave=\"\" width=\"15\"></td>";
   echo"<td style=\"vertical-align: top;\">";
   ///     echo "<a href=\"task_info.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches[id]."\" target=\"new\">".$taches[nom]."</a>";
      echo " <a href=\"#\" onclick=\"windowToTop('task_info.php?idm=".$manip_id."&idp=".$proj_id."&idt=". $taches['id']."');\">";
@@ -266,7 +266,7 @@ wnd.focus();
 
    echo"<tr><td style=\"vertical-align: top;text-align: left;\" >";
  if ($user_level >=2){
- echo" <a href =\"add_task.php?idm=".$manip_id." ?>&idp=". $proj_id ."?>\"><img src=\"images/edit_add.png\" nosave=\"\" width=\"15\"  title=\"Ajouter une tache\"></a><br />";
+ echo" <a href =\"add_task.php?idm=".$manip_id." ?>&idp=". $proj_id ."?>\"><img src=\"images/plus-square.svg\" nosave=\"\" width=\"15\"  title=\"Ajouter une tache\"></a><br />";
  }
 
 echo"</td><td style=\"vertical-align: top;text-align: right;\" colspan=3 >";
