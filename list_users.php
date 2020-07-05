@@ -101,17 +101,17 @@ if ($pdo = connect_db()) {
 	foreach ($user as $data) {
 		// remplit le tableau
 		if (($num_line % 2 ) == 0)
-			echo '<tr class="pair">';
+			echo '<tr class="pair">'.PHP_EOL;
 		else
-			echo '<tr class="impair">';
+			echo '<tr class="impair">'.PHP_EOL;
 		if ($user_level >=3 ) {
 			echo '  <td style="vertical-align: top;">';
 			echo      $data['level'];
-			echo '  </td>';
+			echo '  </td>'.PHP_EOL;
 		}
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['prenom'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		// l'utilisateur a la possiblite de modifier ses coordonnees
 		if ($user_id == $data['id'] || $user_level >= 3)
@@ -119,13 +119,13 @@ if ($pdo = connect_db()) {
 		else
 			echo      $data['nom'];
 
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['tel'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo '    <a href="mailto:'.$data['email'].'"> <img src="images/envelope.svg" nosave=""></a>';
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		// recupere la liste de equipes
 		$sql = 'SELECT nom FROM equipe WHERE id = ?;';
@@ -138,26 +138,26 @@ if ($pdo = connect_db()) {
 			echo $equipe[0]['nom'];
 			echo " (".$data['equipe'].")";
 		}
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		if ($user_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="changepwd.php?id='.$data['id'].'">';
 			echo '      <img src="images/key.svg" nosave="" title="Changer le mot de passe">';
 			echo '    </a>';
-			echo '  </td>';
+			echo '  </td>'.PHP_EOL;
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="del_user.php?id='.$data['id'].'">';
 			echo '       <img src="images/trash.svg" nosave="" title="Supprimer l\'utilisateur !">';
 			echo '    </a>';
-			echo '  </td>';
+			echo '  </td>'.PHP_EOL;
 			echo '  <td style="vertical-align: top;">';
 			if ($data['valid'] == 0)
 				echo 'Non Valid&eacute;';
 			else
 				echo 'Valid&eacute;';
-			echo '  </td>';
+			echo '  </td>'.PHP_EOL;
 		}
-		echo '</tr>';
+		echo '</tr>'.PHP_EOL;
 		$num_line++;
 	} //end foreach
 } //end if
