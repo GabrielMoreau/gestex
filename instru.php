@@ -6,26 +6,26 @@ require("session_auth.php");
 session_start();
 // if (!auth(1))
 // 	Header("Location: login.php");
-if(empty($_SESSION['logged_in_user'])){
+if (empty($_SESSION['logged_in_user'])) {
 	$log            = false;
 } else {
 	$user_id        = $_SESSION['user_id'];
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 	$user_level     = $_SESSION['level'];
 	$log            = true;
-
 }
+
 require("html_functions.php");
 
-en_tete("Liste des appareils:");
+en_tete("Liste des appareils");
 
 //recuper la methode de tri
 
 if (empty($_GET['tri']))
-	$tri ="id";
-else{
+	$tri = 'id';
+else
 	$tri = $_GET['tri'];
-}
+
 //recupere la categorie
 // $cat=$_GET['categorie'];
 //echo "$cat";
@@ -55,27 +55,9 @@ else
 				<br />
 			</td>
 
-			<?php if (empty($eq)) {	?>
+			<?php if (empty($eq)) { ?>
 			<td style="vertical-align: top; text-align: center;">
-
-			<?php
-
-// if ( $pdo = connect_db() ){
-	//recupere la categorie
-
-// $sql = 'SELECT * FROM categorie where id = ?' ;
-// 	list($qh,$num) = query_db($querry);
-// 	$last_id=0;
-// $data = result_db($qh);
-// $stmt = $pdo->prepare($sql);
-//         $stmt->execute(array($cat));
-//         $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-				echo "<a href =\"add_app2.php?categorie=".$cat."\">Ajout<br />d'un appareil</a>";
-
-// }
-			?>
-
+				<a href="add_app2.php?categorie=<?php echo $cat ?>">Ajout<br />d'un appareil</a>	
 				<br />
 			</td>
 			<td style="vertical-align: top; text-align: center;">
@@ -86,8 +68,7 @@ else
 				<a href="add_fourn.php">Ajout<br />d'un fournisseur</a>
 				<br />
 			</td>
-
-			<?php }	?>
+			<?php } ?>
 
 			<td style="vertical-align: top; text-align: center;">
 				<a href="essai.php">Retour aux cat&eacute;gories</a>
@@ -99,7 +80,7 @@ else
 				<a href="add_categorie.php">Ajout<br />d'une cat&eacute;gorie</a>
 				<br />
 			</td>
-			<?php }	?>
+			<?php } ?>
 
 			<br /> <!-- semble en trop -->
 		</td> <!-- semble en trop -->
@@ -140,11 +121,11 @@ Liste des appareils : <br />
 				Notice<br />
 			</th>
 
-			<?php // ne semble servir a rien ou il faut inverser les deux balises (ouvrantes / fermantes)
-			if ( $log == true && $user_level >=2 )
-				echo "</th><th>";
-			if ( $log == true && $user_level >=3 )
-				echo "</th><th>";
+			<?php
+			if ($log == true && $user_level >=2)
+				echo '<th></th>';
+			if ($log == true && $user_level >=3)
+				echo '<th></th>';
 			?>
 		</tr>
 
@@ -154,21 +135,21 @@ if ($pdo = connect_db()) {
 
 	// if ((!empty($cat))||(!empty($eq)))
 	if ($cat == 0 && $eq != 0) {
-		echo "SELECT * FROM Listing where equipe = ",$eq," order by ",$tri,"  ASC;"; 
+		// echo "SELECT * FROM Listing where equipe = ",$eq," order by ",$tri,"  ASC;"; 
 
-		// $sql = 'SELECT * FROM Listing where equipe = ? order by ? ASC;';
+		$sql = 'SELECT * FROM Listing where equipe = ? order by ? ASC;';
 
 		// list($qh,$num) = query_db($querry);
 		// $last_id=0;
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($eq,$tri));
+		$stmt->execute(array($eq, $tri));
 	} else if ($eq == 0 && $cat != 0) {
 		// echo "SELECT * FROM Listing where categorie = ",$cat," order by ",$tri,"  ASC;"; 
 		$sql = 'SELECT * FROM Listing where categorie = ? order by ? ASC;';
 		// list($qh,$num) = query_db($querry);
 		// $last_id=0;
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($cat,$tri));
+		$stmt->execute(array($cat, $tri));
 	}
 
 	if ($cat == 0 && $eq == 0) {
@@ -248,24 +229,30 @@ if ($pdo = connect_db()) {
 	foreach ($listing as $data) {
 		// remplit le tableau
 
-		echo"<tr><td style=\"vertical-align: top;\">";
+		echo '<tr>';
+		echo '  <td style="vertical-align: top;">';
 		$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
 		// list($qheq,$numeq) = query_db($querry);
 		// 	$equip = result_db($qheq);
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($data['categorie']));
 		$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-		echo $categorie[0]['nom'];
-		echo "</td><td style=\"vertical-align: top;\">";
-		echo $data['id'];
-		echo "</td><td style=\"vertical-align: top;\">";
-		echo "<a href =\"fiche_vie.php?id=".$data['id']."\">". $data['nom']."</a>";
-		echo "</td><td style=\"vertical-align: top;\">";
-		echo $data['modele'];
-		echo "</td><td style=\"vertical-align: top;\">";
-		echo $data['gamme'];
-		echo "</td><td style=\"vertical-align: top;\">";
+		echo      $categorie[0]['nom'];
+		echo '  </td>';
+		echo '  <td style="vertical-align: top;">';
+		echo      $data['id'];
+		echo '  </td>';
+		echo '  <td style="vertical-align: top;">';
+		echo '    <a href ="fiche_vie.php?id='.$data['id'].'">'. $data['nom'].'</a>';
+		echo '  </td>';
+		echo '  <td style="vertical-align: top;">';
+		echo      $data['modele'];
+		echo '  </td>';
+		echo '  <td style="vertical-align: top;">';
+		echo      $data['gamme'];
+		echo '  </td>';
 
+		echo '  <td style="vertical-align: top;">';
 		// recupere le nom d'equipe
 		$sql = 'SELECT id, nom FROM equipe WHERE id = ?';
 		// list($qheq,$numeq) = query_db($querry);
@@ -273,10 +260,10 @@ if ($pdo = connect_db()) {
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($data['equipe']));
 		$equipe =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-		echo $equipe[0]['nom'];
-      	// echo $equip['nom'];
-	   echo"</td><td style=\"vertical-align: top;\">";
-	   
+		echo      $equipe[0]['nom'];
+		echo '  </td>';
+
+		echo '  <td style="vertical-align: top;">';
 		// recupere le nom du fournisseur
 		$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
 		// list($qheq,$numeq) = query_db($querry);
@@ -285,9 +272,9 @@ if ($pdo = connect_db()) {
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($data['fournisseur']));
 		$fournisseur =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-      	echo $fournisseur[0]['nom'];
-
-		echo"</td><td style=\"vertical-align: top;\">";
+		echo      $fournisseur[0]['nom'];
+		echo '  </td>';
+		echo '  <td style="vertical-align: top;">';
 		// $sql = 'SELECT id, nom FROM categorie WHERE id = ?';
 		// list($qheq,$numeq) = query_db($querry);
 		// $cat = result_db($qheq);
@@ -297,7 +284,7 @@ if ($pdo = connect_db()) {
 		// 	echo $categorie[0]['nom'];
 
 		///bouton lien vers la doc
-		$dossier_proj ="data/instru/".$data['nom'];
+		$dossier_proj = "data/instru/".$data['nom'];
 
 		//remplace les espaces par des underscore
 		$dossier_proj = str_replace(" ", "_", $dossier_proj);
@@ -308,26 +295,27 @@ if ($pdo = connect_db()) {
 			//si trouve ajoute un bouton
 			echo 'Voir : <a href ="notice.php?id=', $data['id'],'\">',$data['nom'],'<img src="images/eye.svg" nosave="" title ="Voir ce projet" /></a><br />';
 		}
+		echo '  </td>';
 
-		if ($log === true && ( $user_level >=2)&&($eq=="15 pret=15")) {
-			echo '</td><td style="vertical-align: top;">';
-			echo '<a href="add-pret.php?id=',$data['id'],'"><img src="images/pen.svg" nosave="" title="Demande de pret" /></a>';
-			echo"</td>";
+		if ($log === true && ($user_level >=2 ) && ($eq == "15 pret=15")) {
+			echo '  <td style="vertical-align: top;">';
+			echo '    <a href="add-pret.php?id=',$data['id'],'"><img src="images/pen.svg" nosave="" title="Demande de pret" /></a>';
+			echo '  </td>';
 		}
-		if (($log === true && $user_level >=2)&&($eq!="15 pret=15")) {
-			echo"</td><td style=\"vertical-align: top;\">";
-			echo '<a href="add_app2.php?id=',$data['id'],'"><img src="images/pen.svg" nosave="" title="Modifier" /></a>';
-			echo"</td>";
+		if (($log === true && $user_level >=2) && ($eq != "15 pret=15")) {
+			echo '  <td style="vertical-align: top;">';
+			echo '    <a href="add_app2.php?id=',$data['id'],'"><img src="images/pen.svg" nosave="" title="Modifier" /></a>';
+			echo '  </td>';
 		}//end if
-		if (($log === true && $user_level >=3 )&&($eq!="15 pret=15")) {
-			echo '</td><td style=\"vertical-align: top;\">';
-			echo '<a href="del_app2.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
-			echo"</td>";
+		if (($log === true && $user_level >=3 ) && ($eq != "15 pret=15")) {
+			echo '  <td style=\"vertical-align: top;\">';
+			echo '    <a href="del_app2.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
+			echo '  </td>';
 
 		}
-		echo"</tr>";
-	}//end while
-}//end if
+		echo '</tr>';
+	} //end foreach
+} //end if
 ?>
 	</tbody>
 </table>
