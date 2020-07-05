@@ -161,8 +161,6 @@ function pied_page(){
    echo            strftime('%Y-%m-%d', filemtime($file));
    echo '        </i>';
    echo '      </td>';
-   echo '      <td><!-- <img src="images/mysql.png"  align="top" nosave="" /> -->';
-   echo '      </td>';
    echo '    </tr>';
    echo '  </tbody>';
    echo '</table>';
