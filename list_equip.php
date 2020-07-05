@@ -87,19 +87,19 @@ if ($pdo = connect_db()) {
 	foreach ($equipe as $data) {
 		// remplit le tableau
 		if (($num_line % 2 )==0)
-			echo '<tr class="pair">';
+			echo '<tr class="pair">'.PHP_EOL;
 		else
-			echo '<tr class="impair">';
+			echo '<tr class="impair">'.PHP_EOL;
 
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['nom'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['descr'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['compte'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 
 		// recupere le nom de chef d'equipe
 		$sql = 'SELECT id, nom FROM users WHERE id = ?';
@@ -110,19 +110,19 @@ if ($pdo = connect_db()) {
 		$chef = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo '  <td style="vertical-align: top;">';
 		echo      $chef[0]['nom'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 
 		if ($user_level >= 2) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="add_equip.php?id='.$data['id'].'"><img src="images/pen.svg" nosave="" title="Modifier"></a>';
-			echo '  </td>';
+			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($user_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="del_equip.php?id='.$data['id'].'"><img src="images/trash.svg" nosave="" title="Supprimer"></a>';
-			echo '  </td>';
+			echo '  </td>'.PHP_EOL;
 		} //end if
-		echo '</tr>';
+		echo '</tr>'.PHP_EOL;
 		$num_line++;
 	} //end foreach
 } //end if
