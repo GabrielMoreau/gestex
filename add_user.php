@@ -28,19 +28,19 @@ if ($pdo = connect_db()) {
 	if ($mode == 'ajouter'){
 		en_tete("Voila un formulaire pour inscrire un utilisateur");
 	} else if ($mode=="modif") {
-		en_tete("Voila un formulaire pour modifier vos coordonn&eacute;es ");
+		en_tete("Voila un formulaire pour modifier vos coordonn&eacute;es");
 		// recupere la liste des users
 		// $querry = "SELECT * FROM users WHERE id='$user2ch_id'";
 		// list($qh,$num) = query_db($querry);
 		// $data = result_db($qh);
-		$sql = 'SELECT * FROM users WHERE id = ?;'
+		$sql = 'SELECT * FROM users WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($user2ch_id));
 		$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$data = $user[0];
 	}
 
-	echo 'id:'.$user_id .' : '.$logged_in_user.' lvl:'.$user_level
+	echo 'id:'.$user_id .' : '.$logged_in_user.' lvl:'.$user_level;
 ?>
 
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
@@ -145,11 +145,11 @@ if ($pdo = connect_db()) {
 				<input type="radio" name="level" value="3" <?php if ($data['level']==3) echo 'checked="checked"' ?> >Admin<br />
 				<?php } ?>
 				
-				<?php if ( isset($user_level) && ($user_level < 3 )){ /// consultation seulement
-					switch($data['level']) {
-						case 0: echo "&Eacute;tudiant<br />";break;
-						case 1: echo "Chercheur<br />";break;
-						case 2: echo "ITA<br />";break;
+				<?php if (isset($user_level) && ($user_level < 3)){ /// consultation seulement
+					switch ($data['level']) {
+						case 0: echo "&Eacute;tudiant<br />"; break;
+						case 1: echo "Chercheur<br />"; break;
+						case 2: echo "ITA<br />"; break;
 						case 3: echo "Admin<br />";
 					}
 				}
