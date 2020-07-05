@@ -211,7 +211,7 @@ if ($pdo = connect_db()) {
 // 	}
 // 	if (( $user_level >=2)&&($eq=="15 pret=15")) {
 // echo"</td><td style=\"vertical-align: top;\">";
-//       echo '<a href="add-pret.php?id=',$listing[0]['id'],'><img src="images/pen.svg" nosave="" title="Demande de pret" /></a>';
+//       echo '<a href="add-pret.php?id=',$listing[0]['id'],'><img src="images/box-arrow-in-down.svg" nosave="" title="Demande de pr&ecirc;t" /></a>';
 //      echo"</td>"; }
 // 	 if (( $user_level >=2)&&($eq!="15 pret=15")) {
 //       echo"</td><td style=\"vertical-align: top;\">";
@@ -297,17 +297,17 @@ if ($pdo = connect_db()) {
 		}
 		echo '  </td>'.PHP_EOL;
 
-		if ($log === true && ($user_level >=2 ) && ($eq == "15 pret=15")) {
+		if ($log === true && ($user_level >= 2) && ($eq == "15 pret=15")) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="add-pret.php?id=',$data['id'],'"><img src="images/pen.svg" nosave="" title="Demande de pret" /></a>';
+			echo '    <a href="add-pret.php?id=',$data['id'],'"><img src="images/box-arrow-in-down.svg" nosave="" title="Demande de pr&ecirc;t" /></a>';
 			echo '  </td>'.PHP_EOL;
 		}
-		if (($log === true && $user_level >=2) && ($eq != "15 pret=15")) {
+		if (($log === true && $user_level >= 2) && ($eq != "15 pret=15")) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="add_app2.php?id=',$data['id'],'"><img src="images/pen.svg" nosave="" title="Modifier" /></a>';
 			echo '  </td>'.PHP_EOL;
 		}//end if
-		if (($log === true && $user_level >=3 ) && ($eq != "15 pret=15")) {
+		if (($log === true && $user_level >= 3) && ($eq != "15 pret=15")) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="del_app2.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
 			echo '  </td>'.PHP_EOL;

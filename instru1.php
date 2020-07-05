@@ -191,7 +191,7 @@ echo $data['gamme'];
 if (!empty($eq))
 {
  echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Demande de pret\" /></a>";
+      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/box-arrow-in-down.svg\" nosave=\"\" title=\">Demande de pr&ecirc;t\" /></a>";
       echo"</td>";
 }
 	 if ( $user_level >=2) {
@@ -271,7 +271,7 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data['categorie']'";
 
 {
 echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Demande de pret\" /></a>";
+      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/box-arrow-in-down.svg\" nosave=\"\" title=\">Demande de pr&ecirc;t\" /></a>";
      echo"</td>";
 }
 
