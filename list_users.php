@@ -7,22 +7,23 @@ include("session_auth.php");
 if (!auth(1))
 	Header("Location: login.php");
 
-$user_id = $_SESSION['user_id'];
+$user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level= $_SESSION['level'];
+$user_level     = $_SESSION['level'];
 
 require("html_functions.php");
 
 en_tete('Liste de tous les utilisateurs');
 //recuper la methode de tri
 if (empty($_GET['tri'])){
-	if($user_level>=3){
+	if ($user_level >= 3) {
 		$tri = 'level';
 	} else {
 		$tri = 'nom';
 	}
-} else
-		$tri = $_GET['tri'];
+} else {
+	$tri = $_GET['tri'];
+}
 ?>
 
 <br />
@@ -34,14 +35,12 @@ if (empty($_GET['tri'])){
 				<a href="accueil.php">Retour &agrave; l'accueil</a>
 				<br />
 			</td>
-			<?php if ($user_level >= 3) {	?>
+			<?php if ($user_level >= 3) { ?>
 			<td style="vertical-align: top; text-align: center;">
 				<a href="add_user.php">Ajout d'un utilisateur</a>
 				<br />
 			</td>
-<?php }
-//edition/modif de ses propres coordonnees
-?>
+			<?php } ?>
 			<td style="vertical-align: top; text-align: center;">
 				<a href="add_user.php?id=<?php echo $user_id ?>">
 				<img src="images/gear.svg" nosave="" title="Modifier son profil"></a>
@@ -61,7 +60,7 @@ if (empty($_GET['tri'])){
 	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	<tbody>
 		<tr bgcolor="#f7d709">
-			<?php if($user_level >=3){ ?>
+			<?php if ($user_level >= 3) { ?>
 			<th style="vertical-align: top; text-align: center;">
 				Level<br />
 			</th>
@@ -105,14 +104,14 @@ if ($pdo = connect_db()) {
 			echo '<tr class="pair">';
 		else
 			echo '<tr class="impair">';
-			if ($user_level >=3 ) {
-				echo '  <td style="vertical-align: top;">';
-				echo      $data['level'];
-				echo '  </td>';
-			}
+		if ($user_level >=3 ) {
+			echo '  <td style="vertical-align: top;">';
+			echo      $data['level'];
+			echo '  </td>';
+		}
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['prenom'];
-		echo '  </td>'
+		echo '  </td>';
 		echo '  <td style="vertical-align: top;">';
 		// l'utilisateur a la possiblite de modifier ses coordonnees
 		if ($user_id == $data['id'] || $user_level >= 3)
