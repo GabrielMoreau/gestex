@@ -169,7 +169,7 @@ wnd.focus();
   <a href ="add_doc.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/paperclip.svg" nosave=\"\" width=\"20\"  title ="Ajouter un document &agrave; ce projet"></a><br />
   </th>
    <th style="vertical-align: top; text-align: right;">
-  <a href ="add_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/editcopy.png" nosave=\"\" width=\"20\" title ="Modifier ce projet"></a><br />
+  <a href ="add_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/pen.svg" nosave=\"\" width=\"20\" title ="Modifier ce projet"></a><br />
    </th>
     <th style="vertical-align: top; text-align: right;">
   <a href ="del_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/trash.svg" nosave=\"\" width=\"20\" title="Supprimer ce projet"></a><br />
@@ -255,7 +255,7 @@ wnd.focus();
     echo "<a href=\"add_doc.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/paperclip.svg\" nosave=\"\" width=\"20\" title =\"Ajouter un document &agrave; cette tache\"></a>";
      echo"</td><td style=\"vertical-align: top;\">";
        //modif d'une tache
-    echo "<a href=\"add_task.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/editcopy.png\" nosave=\"\" width=\"20\" title =\"Modifier cette tache\"></a>";
+    echo "<a href=\"add_task.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/pen.svg\" nosave=\"\" width=\"20\" title =\"Modifier cette tache\"></a>";
    echo"</td><td style=\"vertical-align: top;\">";
   //supression dune tache
    echo "<a href=\"del_task.php?idm=".$manip_id."&idt=".$taches['id']."\"><img src=\"images/trash.svg\" nosave=\"\" width=\"20\" title=\"Supprimer cette tache\"></a>";
