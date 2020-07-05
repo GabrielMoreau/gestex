@@ -14,7 +14,7 @@ $user_level     = $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste des prets:");
+en_tete("Liste des pr&ecirc;ts");
 //recuper la methode de tri
 if (empty($_GET['tri']))
 	$tri ="id";

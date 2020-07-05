@@ -40,11 +40,11 @@ if(empty($_GET['pret'])){
 require("html_functions.php");
 if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
-	en_tete("Voila un formulaire pour ajouter un pret");
+	en_tete("Voila un formulaire pour ajouter un pr&ecirc;t");
 
 }
 else if ($mode=="modifier"){
-	en_tete("Voila un formulaire pour modifier les prets d'un appareil");
+	en_tete("Voila un formulaire pour modifier les pr&ecirc;ts d'un appareil");
 
 	// recupere l'appareil selectionne
 	// $sql = 'SELECT * FROM pret WHERE id = ?;';
