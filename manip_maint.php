@@ -249,7 +249,7 @@ wnd.focus();
   echo $temps_tache." heures";
   $total_projet += $temps_tache;
    if ($user_level>=2){
-   echo "<a href=\"add_time.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/xclock.png\" nosave=\"\" width=\"20\" title=\"Ajouter du temps\"></a>";
+   echo "<a href=\"add_time.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/clock.svg\" nosave=\"\" width=\"20\" title=\"Ajouter du temps\"></a>";
      echo"</td><td style=\"vertical-align: top;\">";
    // ajout d'un document a une tache -->
     echo "<a href=\"add_doc.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/paperclip.svg\" nosave=\"\" width=\"20\" title =\"Ajouter un document &agrave; cette tache\"></a>";
