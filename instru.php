@@ -123,9 +123,9 @@ Liste des appareils : <br />
 
 			<?php
 			if ($log == true && $user_level >=2)
-				echo '<th></th>';
+				echo '<th></th>'.PHP_EOL;
 			if ($log == true && $user_level >=3)
-				echo '<th></th>';
+				echo '<th></th>'.PHP_EOL;
 			?>
 		</tr>
 
@@ -229,7 +229,7 @@ if ($pdo = connect_db()) {
 	foreach ($listing as $data) {
 		// remplit le tableau
 
-		echo '<tr>'."\n";
+		echo '<tr>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
 		// list($qheq,$numeq) = query_db($querry);
@@ -238,19 +238,19 @@ if ($pdo = connect_db()) {
 		$stmt->execute(array($data['categorie']));
 		$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo      $categorie[0]['nom'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['id'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo '    <a href ="fiche_vie.php?id='.$data['id'].'">'. $data['nom'].'</a>';
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['modele'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['gamme'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 
 		echo '  <td style="vertical-align: top;">';
 		// recupere le nom d'equipe
@@ -261,7 +261,7 @@ if ($pdo = connect_db()) {
 		$stmt->execute(array($data['equipe']));
 		$equipe =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo      $equipe[0]['nom'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 
 		echo '  <td style="vertical-align: top;">';
 		// recupere le nom du fournisseur
@@ -273,7 +273,7 @@ if ($pdo = connect_db()) {
 		$stmt->execute(array($data['fournisseur']));
 		$fournisseur =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo      $fournisseur[0]['nom'];
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		// $sql = 'SELECT id, nom FROM categorie WHERE id = ?';
 		// list($qheq,$numeq) = query_db($querry);
@@ -295,25 +295,25 @@ if ($pdo = connect_db()) {
 			//si trouve ajoute un bouton
 			echo 'Voir : <a href ="notice.php?id=', $data['id'],'\">',$data['nom'],'<img src="images/eye.svg" nosave="" title ="Voir ce projet" /></a><br />';
 		}
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 
 		if ($log === true && ($user_level >=2 ) && ($eq == "15 pret=15")) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="add-pret.php?id=',$data['id'],'"><img src="images/pen.svg" nosave="" title="Demande de pret" /></a>';
-			echo '  </td>';
+			echo '  </td>'.PHP_EOL;
 		}
 		if (($log === true && $user_level >=2) && ($eq != "15 pret=15")) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="add_app2.php?id=',$data['id'],'"><img src="images/pen.svg" nosave="" title="Modifier" /></a>';
-			echo '  </td>';
+			echo '  </td>'.PHP_EOL;
 		}//end if
 		if (($log === true && $user_level >=3 ) && ($eq != "15 pret=15")) {
 			echo '  <td style=\"vertical-align: top;\">';
 			echo '    <a href="del_app2.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
-			echo '  </td>';
+			echo '  </td>'.PHP_EOL;
 
 		}
-		echo '</tr>';
+		echo '</tr>'.PHP_EOL;
 	} //end foreach
 } //end if
 ?>
