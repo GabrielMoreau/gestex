@@ -13,7 +13,7 @@ require("html_functions.php");
 // $logged_in_user = strtolower($_SESSION['logged_in_user']);
 // $user_level= $_SESSION['level'];
 
-en_tete("Liste des appareils:");
+en_tete('Liste des appareils');
 
 ?>
 <br />

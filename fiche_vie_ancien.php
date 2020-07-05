@@ -27,7 +27,7 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 	$last_id=0;
 
-en_tete("Liste des interventions sur l'appareil :<b>".$data['nom']."</b>");
+en_tete('Liste des interventions sur l\'appareil : <b>'.$data['nom'].'</b>');
 
 //recuper la methode de tri
 $tri = $_GET[tri];

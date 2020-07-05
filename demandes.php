@@ -13,7 +13,7 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste des demandes en cours:");
+en_tete('Liste des demandes en cours');
 
 //recupere la methode de tri
 if (empty($_GET['tri']))

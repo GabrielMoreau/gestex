@@ -13,7 +13,7 @@ $user_level     = $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste de tous les fournisseurs:");
+en_tete('Liste de tous les fournisseurs');
 
 //recuper la methode de tri
 $tri = $_GET['tri'];

@@ -13,7 +13,7 @@
 
 require("html_functions.php");
 
-en_tete("Liste des appareils:");
+en_tete('Liste des appareils');
 
 //recuper la methode de tri
 $tri = $_GET[tri];

@@ -17,7 +17,7 @@ if(empty($_SESSION['logged_in_user'])){
 }
 require("html_functions.php");
 
-en_tete("Liste des appareils:");
+en_tete('Liste des appareils');
 
 //recupere la methode de tri
 
