@@ -49,7 +49,7 @@ if (empty($_GET['tri'])){
 			</td>
 			<td style="vertical-align: top; text-align: center;">
 				<a href="changepwd.php?id=<?php echo $user_id ?>">
-				<img src="images/unlock.svg" nosave="" title="Changer son mot de passe"></a>
+				<img src="images/key.svg" nosave="" title="Changer son mot de passe"></a>
 				<br />
 			</td>
 		</tr>
@@ -101,30 +101,35 @@ if ($pdo = connect_db()) {
 	// while ($data = result_db($qh)) {
 	foreach ($user as $data) {
 		// remplit le tableau
-		if (($num_line % 2 )==0)
-			echo"<tr class=pair>";
+		if (($num_line % 2 ) == 0)
+			echo '<tr class="pair">';
 		else
-			echo"<tr class=impair>";
+			echo '<tr class="impair">';
 			if ($user_level >=3 ) {
-				echo "<td style=\"vertical-align: top;\">";
-				echo $data['level'];
+				echo '  <td style="vertical-align: top;">';
+				echo      $data['level'];
+				echo '  </td>';
 			}
-		echo "</td><td style=\"vertical-align: top;\">";
-		echo $data['prenom'];
-		echo"</td><td style=\"vertical-align: top;\">";
-		//l'utilisateur a la possiblite de modifier ses coordonnees
+		echo '  <td style="vertical-align: top;">';
+		echo      $data['prenom'];
+		echo '  </td>'
+		echo '  <td style="vertical-align: top;">';
+		// l'utilisateur a la possiblite de modifier ses coordonnees
 		if ($user_id == $data['id'] || $user_level >= 3)
-			echo "<a href=\"add_user.php?id=".$data['id']."\">".$data['nom']."</a>";
+			echo '    <a href="add_user.php?id='.$data['id'].'">'.$data['nom'].'</a>';
 		else
-			echo $data['nom'];
+			echo      $data['nom'];
 
-		echo"</td><td style=\"vertical-align: top;\">";
-		echo $data['tel'];
-		echo"</td><td style=\"vertical-align: top;\">";
-		echo "<a href=\"mailto:".$data['email']."\"> <img src=\"images/envelope.svg\" nosave=\"\"></a>";
-		echo"</td><td style=\"vertical-align: top;\">";
+		echo '  </td>';
+		echo '  <td style="vertical-align: top;">';
+		echo      $data['tel'];
+		echo '  </td>';
+		echo '  <td style="vertical-align: top;">';
+		echo '    <a href="mailto:'.$data['email'].'"> <img src="images/envelope.svg" nosave=""></a>';
+		echo '  </td>';
+		echo '  <td style="vertical-align: top;">';
 		// recupere la liste de equipes
-		$sql = 'SELECT nom FROM equipe WHERE id =?';
+		$sql = 'SELECT nom FROM equipe WHERE id = ?;';
 		// list($qheq,$numeq) = query_db($querry);
 		// 	$eq = result_db($qheq)	 ;
 		$stmt = $pdo->prepare($sql);
@@ -134,21 +139,27 @@ if ($pdo = connect_db()) {
 			echo $equipe[0]['nom'];
 			echo " (".$data['equipe'].")";
 		}
-		 if ($user_level >= 3) {
-			echo"</td><td style=\"vertical-align: top;\">";
-			echo "<a href=\"changepwd.php?id=".$data['id']."\">";
-			echo "<img src=\"images/unlock.png\" nosave=\"\" title=\"Changer le mot de passe\"></a>";
-			echo"</td><td style=\"vertical-align: top;\">";
-			echo "<a href=\"del_user.php?id=".$data['id']."\">";
-			echo "<img src=\"images/kill.png\" nosave=\"\" title=\"Supprimer l'utilisateur!\"></a>";
-			echo"</td><td style=\"vertical-align: top;\">";
-			if ($data['valid']==0)
-				echo "Non Valid&eacute;";
+		echo '  </td>';
+		if ($user_level >= 3) {
+			echo '  <td style="vertical-align: top;">';
+			echo '    <a href="changepwd.php?id='.$data['id'].'">';
+			echo '      <img src="images/key.svg" nosave="" title="Changer le mot de passe">';
+			echo '    </a>';
+			echo '  </td>';
+			echo '  <td style="vertical-align: top;">';
+			echo '    <a href="del_user.php?id='.$data['id'].'">';
+			echo '       <img src="images/trash.svg" nosave="" title="Supprimer l\'utilisateur !">';
+			echo '    </a>';
+			echo '  </td>';
+			echo '  <td style="vertical-align: top;">';
+			if ($data['valid'] == 0)
+				echo 'Non Valid&eacute;';
 			else
-				echo "Valid&eacute;";
+				echo 'Valid&eacute;';
+			echo '  </td>';
 		}
-
-		echo"</td></tr>";$num_line++;
+		echo '</tr>';
+		$num_line++;
 	} //end foreach
 } //end if
 ?>
