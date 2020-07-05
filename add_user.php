@@ -26,9 +26,9 @@ require("html_functions.php");
 
 if ($pdo = connect_db()) {
 	if ($mode == 'ajouter'){
-		en_tete("Voila un formulaire pour inscrire un utilisateur");
+		en_tete('Inscrire un utilisateur');
 	} else if ($mode=="modif") {
-		en_tete("Voila un formulaire pour modifier vos coordonn&eacute;es");
+		en_tete('Modifier vos coordonn&eacute;es');
 		// recupere la liste des users
 		// $querry = "SELECT * FROM users WHERE id='$user2ch_id'";
 		// list($qh,$num) = query_db($querry);

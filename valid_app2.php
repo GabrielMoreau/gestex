@@ -61,7 +61,7 @@ $notice =$_POST['notice'];
 
 	}}}}}}}}
 
-en_tete("R&eacute;sultat ajout appareil");
+en_tete('R&eacute;sultat ajout appareil');
 
 if (empty($_GET['tri']))
 	$tri ="id";

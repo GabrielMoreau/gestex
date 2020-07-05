@@ -52,7 +52,7 @@ if ( $connex = connect_db() ){
 		}
 	}
 }
-en_tete("Cr&eacute;ation de rapport");
+en_tete('Cr&eacute;ation de rapport');
 
 $texte = $logged_in_user." (".$user_id.") Voila un formulaire pour cr&eacute;&eacute;r un rapport<br />";
 echo $texte;

@@ -10,7 +10,7 @@ if(empty($_SESSION['logged_in_user'])){
 	$log            = true;
 }
 require("html_functions.php");
-en_tete("Gestion des plateformes exp&eacute;rimentales");
+en_tete('Gestion des plateformes exp&eacute;rimentales');
 ?>
 
 <br />

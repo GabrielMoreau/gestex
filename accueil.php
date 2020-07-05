@@ -13,7 +13,7 @@ $user_id = $_SESSION['user_id'];
 $user_level = $_SESSION['level'];
 require("html_functions.php");
 
-en_tete("Liste des Manips");
+en_tete('Liste des Manips');
 
 //recuper la methode de tri
 if (empty($_GET['tri']))

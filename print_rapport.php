@@ -26,7 +26,7 @@ if (!empty($_POST[date]))
 
 require("html_functions.php");
 
-en_tete("rapport");
+en_tete('Rapport');
 
 if ( $connex = connect_db() ){
 

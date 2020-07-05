@@ -25,11 +25,11 @@ else{
 require("html_functions.php");
 if ( $connex = connect_db() ){
 if ($mode=="ajouter"){
-	en_tete("Voila un formulaire pour ajouter un appareil");
+	en_tete('Ajouter un appareil');
 
 }
 else if ($mode=="modifier"){
-	en_tete("Voila un formulaire pour modifier les caracteristiques d'un appareil");
+	en_tete('Modifier les caracteristiques d\'un appareil');
 
 	// recupere l'appareil selectionne
 	$querry = "SELECT * FROM Listing WHERE id='$app_id'";

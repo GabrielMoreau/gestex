@@ -45,7 +45,7 @@ $titre= $logged_in_user." (".$user_id.")<br />Voila un formulaire pour ajouter d
  $titre.="<b>".$data['nom']. "</b><ul> du projet <b>";
 
 $titre.=$projet[nom]. "</b><ul> de la manip <b>".$manip[nom]."</b></ul></ul></ul>";
-en_tete("Ajout de temps");
+en_tete('Ajout de temps');
 
 echo $titre;
 }//end if connex

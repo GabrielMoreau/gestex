@@ -29,7 +29,7 @@ if (empty($task_id))
 
 require("html_functions.php");
 
-en_tete("Infos T&acirc;che ".$task_id);
+en_tete('Infos T&acirc;che '.$task_id);
 
 if ( $connex = connect_db() ){
 

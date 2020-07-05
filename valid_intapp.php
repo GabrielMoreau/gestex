@@ -31,7 +31,7 @@ else{
 
 }}}}
 
-en_tete("resultat ajout intervention");
+en_tete('R&eacute;sultat ajout intervention');
 
 if (!empty($erreur) ){
 
@@ -64,7 +64,7 @@ if ( $connex = connect_db() ){
 
 	}//end if connect
 
-////en_tete("inscription Valid&eacute;e");
+////en_tete('inscription Valid&eacute;e');
 
 echo "ajout d'une intervention pour l'appareil ".$id_app."<br />";
 echo" <img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\" align=\"middle\" alt=\"\">";

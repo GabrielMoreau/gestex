@@ -43,7 +43,7 @@ else{
 
 }}}}}
 
-en_tete("resultat modification intervention ".$id_int." sur l'appareil".$id_app);
+en_tete('R&eacute;sultat modification intervention '.$id_int.' sur l\'appareil '.$id_app);
 
 if (!empty($erreur) ){
 

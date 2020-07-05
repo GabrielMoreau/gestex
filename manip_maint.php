@@ -26,7 +26,7 @@ else
 
 require("html_functions.php");
 
-en_tete("Historique Manip");
+en_tete('Historique Manip');
 if ( $pdo = connect_db() ){
 
  // recupere les refs du user

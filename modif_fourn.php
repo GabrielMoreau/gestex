@@ -39,7 +39,7 @@ else {
 
 }}}
 
-en_tete("resultat modification ");
+en_tete('R&eacute;sultat modification');
 
 if (!empty($erreur) ){
 
@@ -109,7 +109,7 @@ if ($user_level>= 3)
 
 	}//end if connect
 
-////en_tete("modification fournisseur Valid&eacute;e");
+////en_tete('modification fournisseur Valid&eacute;e');
 
 echo "<br />".$nom." modifi&eacute; ";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";

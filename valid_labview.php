@@ -39,7 +39,7 @@ if (empty($_POST[code]))
 
 	}}}}
 
-en_tete("resultat ajout appareil ");
+en_tete('R&eacute;esultat ajout appareil');
 
 $tri = $_GET[tri];
 if (empty($tri))
@@ -81,7 +81,7 @@ if (!$result){
 
 	}//end if connect
 
-////en_tete("inscription Valid&eacute;e");
+////en_tete('inscription Valid&eacute;e');
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils
 

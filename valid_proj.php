@@ -32,7 +32,7 @@ else {
 
 }}}
 
-en_tete("resultat ajout projet ");
+en_tete('R&eacute;sultat ajout projet');
 
 if (!empty($erreur) ){
 

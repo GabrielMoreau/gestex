@@ -8,7 +8,7 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste des programmes Labview");
+en_tete('Liste des programmes Labview');
 
 //recuper la methode de tri
 $tri = $_GET[tri];

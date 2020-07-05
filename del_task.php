@@ -10,7 +10,7 @@ if (!auth(3))
 
 require("html_functions.php");
 
-en_tete("Suppression T&acirc;che");
+en_tete('Suppression T&acirc;che');
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);

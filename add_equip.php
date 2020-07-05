@@ -25,11 +25,11 @@ else{
 require("html_functions.php");
 if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
-	en_tete("Voila un formulaire pour inscrire une &eacute;quipe");
+	en_tete('Ajouter une &eacute;quipe');
 
 }
 else if ($mode=="modifier"){
-	en_tete("Voila un formulaire pour modifier les coordonn&eacute;es d'une &eacute;quipe");
+	en_tete('Modifier les coordonn&eacute;es d\'une &eacute;quipe');
 
 	// recupere le fournisseur selectionne
 	$sql = 'SELECT * FROM equipe WHERE id = ?;';

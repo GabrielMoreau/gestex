@@ -21,7 +21,7 @@ else
 require("html_functions.php");
 if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
-	en_tete("Voila un formulaire pour ajouter une cat&eacute;gorie");
+	en_tete('Ajouter une cat&eacute;gorie');
 
 }
 

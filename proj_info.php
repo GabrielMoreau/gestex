@@ -24,7 +24,7 @@ if (empty($proj_id))
 
 require("html_functions.php");
 
-en_tete("Infos Projet");
+en_tete('Infos Projet');
 
 if ( $connex = connect_db() ){
 

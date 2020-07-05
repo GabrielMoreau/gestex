@@ -43,7 +43,7 @@ else {
 							$fourn = array_values($_POST['fourn'] );
 
 					}}}}///}
-en_tete("resultat modification ");
+en_tete('R&eacute;sultat modification');
 
 if (!empty($erreur) ){
 
@@ -104,7 +104,7 @@ if ( $connex = connect_db() ){
 
 	}//end if connect
 
-////en_tete("modification manip Valid&eacute;e");
+////en_tete('modification manip Valid&eacute;e');
 
 echo "<br /><b>".$nom."</b>: modification ";
 echo" <img src=\"images/pool_project.jpg\" width=\"50\" nosave=\"\" align=\"middle\" alt=\"\">";

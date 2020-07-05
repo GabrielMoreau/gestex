@@ -20,7 +20,7 @@ require("html_functions.php");
 
 if ( $connex = connect_db() ){
 
- en_tete("Voila un formulaire pour associer un projet parallele &agrave; une manip");
+ en_tete('Associer un projet parallele &agrave; une manip');
 
  // recupere la manip selectionnee
  $querry = "SELECT * FROM manip WHERE id='$manip_id'";

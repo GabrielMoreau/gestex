@@ -29,7 +29,7 @@ else{
 
 }}}
 
-en_tete("resultat inscription ");
+en_tete('R&eacute;sultat inscription');
 
 if (!empty($erreur) ){
 

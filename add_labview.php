@@ -33,11 +33,11 @@ else{
 require("html_functions.php");
 if ( $connex = connect_db() ){
 if ($mode=="ajouter"){
-	en_tete("Voila un formulaire pour ajouter une manip labview");
+	en_tete('Ajouter une manip labview');
 
 }
 else if ($mode=="modifier"){
-	en_tete("Voila un formulaire pour modifier les manip labview");
+	en_tete('Modifier les manip labview');
 
 	// recupere l'appareil selectionne
 	$querry = "SELECT * FROM labview WHERE id='$app_id'";

@@ -27,11 +27,11 @@ require("html_functions.php");
 if ( $pdo = connect_db() ){
 
 if ($mode=="ajouter"){
-	en_tete("Voila un formulaire pour inscrire une nouvelle manip");
+	en_tete('Ajouter une nouvelle manip');
 
 }
 else if ($mode=="modifier"){
-	en_tete("Voila un formulaire pour modifier les caracteristiques d'une manip");
+	en_tete('Modifier les caracteristiques d\'une manip');
 
 	// recupere la manip selectionnee
 	$sql = 'SELECT * FROM manip WHERE id = ?;';

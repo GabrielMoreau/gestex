@@ -76,7 +76,7 @@ else{
 >>>>>>> 40d5e4c9e265437a0f64cf0ed768d86dfcfc1e63
 }}}}}}
 
-en_tete("resultat modification appareil");
+en_tete('R&eacute;sultat modification appareil');
 
 if (!empty($erreur) ){
 
@@ -174,7 +174,7 @@ $modif=0;
 		}//else end
 	}//end if connect
 
-////en_tete("modification appareil Valid&eacute;e");
+////en_tete('modification appareil Valid&eacute;e');
 
 echo "<br />".$nom."modifi&eacute; ";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";

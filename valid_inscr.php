@@ -42,7 +42,7 @@ else {
     }
   }
 
-en_tete("resultat inscription ");
+en_tete('R&eacute;sultat inscription');
 
 require("db_functions.php");
 

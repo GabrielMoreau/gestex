@@ -49,11 +49,11 @@ else{
 require("html_functions.php");
 if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
-	en_tete("Voila un formulaire pour ajouter une demande");
+	en_tete('Ajouter une demande');
 
 }
 else if ($mode=="modifier"){
-	en_tete("Voila un formulaire pour modifier les demandes");
+	en_tete('Modifier les demandes');
 
 	// recupere l'appareil selectionne
 	$sql = 'SELECT * FROM demandes WHERE id = ?';

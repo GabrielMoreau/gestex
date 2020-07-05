@@ -15,7 +15,7 @@ if (empty($_GET['tri'])){
 	$app_id = $_GET['id'];
 
 }
-	en_tete("Voila un formulaire pour ajouter un num&eacute;ro d'inventaire");
+	en_tete('Ajouter un num&eacute;ro d\'inventaire');
 
 ?>
 
