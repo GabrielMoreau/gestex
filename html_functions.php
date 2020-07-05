@@ -152,9 +152,6 @@ function pied_page(){
    echo '  <tbody>';
    echo '    <tr>';
    echo '      <td>';
-   echo '        <!-- <img src="images/php-small-purple.gif" align="top" nosave="" /> -->';
-   echo '      </td>';
-   echo '      <td>';
    echo '        <address><a href="mailto:'.GESTEX_ADMIN_MAIL.'?Subject=GestEx%20to%20WebMaster">GestEx WebMaster</a></address>';
    echo '        <br />';
    echo '        <i>Derni&egrave;re mise &agrave; jour : ';
