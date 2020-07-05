@@ -2,30 +2,30 @@
 
 function en_tete($titre){
    /////echo"<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n";
-   echo '<html>';
-   echo '<head>';
-   echo '  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />';
-   echo '  <title>GestEx - '.$titre.'</title>';
-   echo '  <link href="pool_project.css" rel="stylesheet" type="text/css" />';
-   echo '</head>';
-   echo '<body>';
-   echo '<div width="100%" height="100%" align="center" valign="center">';
-   echo '<br />';
-   echo '<br />';
-   echo '<table cellpadding="2" cellspacing="0" border="0" style="text-align: left; width: 75%;" align="center">';
-   echo '  <tbody>';
-   echo '    <tr bgcolor="#f7d709">';
-   echo '      <td style="vertical-align: center;">';
-   echo '        <a href="/"><img src="images/pool_project.jpg" nosave="" height="100" /></a>';
-   echo '      </td>';
-   echo '      <td style="vertical-align: top;"><br />';
-   echo '        <h1><a href="./">GestEx</a> - Gestion des plateformes Exp&eacute;rimentales</h1>';
-   echo $titre;
-   echo '      </td>';
-   echo '    </tr>';
-   echo '  </tbody>';
-   echo '</table>';
-   echo '<br />';
+   echo '<html>'.PHP_EOL;
+   echo '<head>'.PHP_EOL;
+   echo '  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />'.PHP_EOL;
+   echo '  <title>GestEx - '.$titre.'</title>'.PHP_EOL;
+   echo '  <link href="pool_project.css" rel="stylesheet" type="text/css" />'.PHP_EOL;
+   echo '</head>'.PHP_EOL;
+   echo '<body>'.PHP_EOL;
+   echo '<div width="100%" height="100%" align="center" valign="center">'.PHP_EOL;
+   echo '<br />'.PHP_EOL;
+   echo '<br />'.PHP_EOL;
+   echo '<table cellpadding="2" cellspacing="0" border="0" style="text-align: left; width: 75%;" align="center">'.PHP_EOL;
+   echo '  <tbody>'.PHP_EOL;
+   echo '    <tr bgcolor="#f7d709">'.PHP_EOL;
+   echo '      <td style="vertical-align: center;">'.PHP_EOL;
+   echo '        <a href="/"><img src="images/pool_project.jpg" nosave="" height="100" /></a>'.PHP_EOL;
+   echo '      </td>'.PHP_EOL;
+   echo '      <td style="vertical-align: top;"><br />'.PHP_EOL;
+   echo '        <h1><a href="./">GestEx</a> - Gestion des plateformes Exp&eacute;rimentales</h1>'.PHP_EOL;
+   echo '        <h2>'.$titre.'</h2>'.PHP_EOL;
+   echo '      </td>'.PHP_EOL;
+   echo '    </tr>'.PHP_EOL;
+   echo '  </tbody>'.PHP_EOL;
+   echo '</table>'.PHP_EOL;
+   echo '<br />'.PHP_EOL;
    if(!empty($_SESSION)){
       $pdo            = connect_db();
       $logged_in_user = $_SESSION['logged_in_user'];
@@ -37,8 +37,8 @@ function en_tete($titre){
    }else{
       nav_bar('', '',0,0);
    }
-   echo '<br />';
-   echo '</div>';
+   echo '<br />'.PHP_EOL;
+   echo '</div>'.PHP_EOL;
 }
 
 // -------------------------------------------------------------
@@ -141,29 +141,29 @@ function nav_bar($prenom, $nom, $level, $user_id){
 // -------------------------------------------------------------
 
 function pied_page(){
-   echo '<center>';
-   echo '<img src="images/striped.gif" nosave="" border="0" height="13"  width="532" align="bottom" />';
+   echo '<center>'.PHP_EOL;
+   echo '<img src="images/striped.gif" nosave="" border="0" height="13"  width="532" align="bottom" />'.PHP_EOL;
 
    //ne garde que le nom de fichier
    $filetmp = explode('/',$_SERVER['PHP_SELF']);
    $file = $filetmp[count($filetmp)-1];
    ///mise a jour de ce fichier
-   echo '<table cellpadding="2" cellspacing="2" border="0" style="text-align: center; width: 95%;">';
-   echo '  <tbody>';
-   echo '    <tr>';
-   echo '      <td>';
-   echo '        <address><a href="mailto:'.GESTEX_ADMIN_MAIL.'?Subject=GestEx%20to%20WebMaster">GestEx WebMaster</a></address>';
-   echo '        <br />';
+   echo '<table cellpadding="2" cellspacing="2" border="0" style="text-align: center; width: 95%;">'.PHP_EOL;
+   echo '  <tbody>'.PHP_EOL;
+   echo '    <tr>'.PHP_EOL;
+   echo '      <td>'.PHP_EOL;
+   echo '        <address><a href="mailto:'.GESTEX_ADMIN_MAIL.'?Subject=GestEx%20to%20WebMaster">GestEx WebMaster</a></address>'.PHP_EOL;
+   echo '        <br />'.PHP_EOL;
    echo '        <i>Derni&egrave;re mise &agrave; jour : ';
    echo            strftime('%Y-%m-%d', filemtime($file));
-   echo '        </i>';
-   echo '      </td>';
-   echo '    </tr>';
-   echo '  </tbody>';
-   echo '</table>';
-   echo '</center>';
-   echo '</body>';
-   echo '</html>';
+   echo '        </i>'.PHP_EOL;
+   echo '      </td>'.PHP_EOL;
+   echo '    </tr>'.PHP_EOL;
+   echo '  </tbody>'.PHP_EOL;
+   echo '</table>'.PHP_EOL;
+   echo '</center>'.PHP_EOL;
+   echo '</body>'.PHP_EOL;
+   echo '</html>'.PHP_EOL;
    }
 
 // -------------------------------------------------------------
