@@ -157,7 +157,7 @@ wnd.focus();
  /// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
  if (@opendir($dossier_proj) != FALSE){
   //si trouve ajoute un bouton
-  echo "Voir : <a href =\"browse_proj.php?idm=". $manip_id ."&idp=".$proj_id."\"><img src=\"images/filefind.png\" nosave=\"\" width=\"15\" title =\"Voir les docs de ce projet\"></a><br />";
+  echo "Voir : <a href =\"browse_proj.php?idm=". $manip_id ."&idp=".$proj_id."\"><img src=\"images/eye.svg\" nosave=\"\" width=\"15\" title =\"Voir les docs de ce projet\"></a><br />";
 
  }
  ?>

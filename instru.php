@@ -226,7 +226,7 @@ if ($pdo = connect_db()) {
 // 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 // 	if (@opendir($dossier_proj) != FALSE){
 // 		//si trouve ajoute un bouton
-// 		echo "Voir : <a href =\"notice.php?id=". $data['id']."\">".$data['nom']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
+// 		echo "Voir : <a href =\"notice.php?id=". $data['id']."\">".$data['nom']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
 // 	}
 // 	if (( $user_level >=2)&&($eq=="15 pret=15")) {
 // echo"</td><td style=\"vertical-align: top;\">";
@@ -306,7 +306,7 @@ if ($pdo = connect_db()) {
 		/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 		if (@opendir($dossier_proj) != FALSE){
 			//si trouve ajoute un bouton
-			echo 'Voir : <a href ="notice.php?id=', $data['id'],'\">',$data['nom'],'<img src="images/filefind.png" nosave="" title ="Voir ce projet" /></a><br />';
+			echo 'Voir : <a href ="notice.php?id=', $data['id'],'\">',$data['nom'],'<img src="images/eye.svg" nosave="" title ="Voir ce projet" /></a><br />';
 		}
 
 		if ($log === true && ( $user_level >=2)&&($eq=="15 pret=15")) {

@@ -127,7 +127,7 @@ $dossier_lab ="data/labview/".$data['manipch'];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_lab) != FALSE){
 		//si trouve ajoute un bouton
-		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir la face avant du programme\"></a><br />";
+		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir la face avant du programme\"></a><br />";
     }
 
       echo"</td><td style=\"vertical-align: top;\">";
@@ -173,7 +173,7 @@ echo $data['module'];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_lab) != FALSE){
 		//si trouve ajoute un bouton
-		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\"></a><br />";
+		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\"></a><br />";
     }
 //echo $data['ecran'];
 
