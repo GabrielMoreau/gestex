@@ -59,7 +59,7 @@ echo $texte;
 
 }//end if connex
 	else
-		Header("Location :accueil.php");
+		Header("Location: accueil.php");
 ?>
 
 <br />

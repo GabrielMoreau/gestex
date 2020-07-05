@@ -44,7 +44,7 @@ else if ($mode=="modifier"){
 	}
 }//end if connex
 	else
-		Header("Location :accueil.php");
+		Header("Location: accueil.php");
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">

@@ -281,7 +281,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
 
 <?php }
 	else
-	{	Header("Location :instru.php");	}	?>
+	{	Header("Location: instru.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>

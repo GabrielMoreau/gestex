@@ -19,7 +19,7 @@ $valid= $_GET[ok];
 
 $id_manip = $_GET[id];
 if (empty($id_manip))
- Header( "Location : accueil.php");
+ Header("Location: accueil.php");
 
 echo "Manip:".$id_manip. " ok :".$valid."<br />";
 

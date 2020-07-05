@@ -19,10 +19,10 @@ $valid= $_GET[ok];
 
 $id_manip = $_GET[idm];
 if (empty($id_manip))
- Header( "Location : manip_maint.php");
+ Header("Location: manip_maint.php");
 $id_task = $_GET[idt];
 if (empty($id_task))
- Header( "Location : manip_maint.php");
+ Header("Location: manip_maint.php");
 
 echo "tache:".$task_id. " ok :".$valid."<br />";
 

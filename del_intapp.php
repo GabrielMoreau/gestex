@@ -13,7 +13,7 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 $id_int = $_GET[id];
 if (empty($id_int))
-	Header( "Location : list_intapp.php");
+	Header("Location: list_intapp.php");
 
 if ( $connex = connect_db() ){
 
@@ -24,5 +24,5 @@ if ( $connex = connect_db() ){
 }
 
 //on retourne a la page d'accueil
-Header( "Location : list_intapp.php");
+Header("Location: list_intapp.php");
 ?>

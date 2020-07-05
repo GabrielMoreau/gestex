@@ -22,11 +22,11 @@
 			$login_failure = true;
 		}else{
 			if ($truc == "instru")
-				Header("Location:essai.php");
+				Header("Location: essai.php");
 			if ($truc == "projet")
-				Header("Location:accueil.php?tri=date");
+				Header("Location: accueil.php?tri=date");
 			if ($truc == "pret")
-				Header("Location:pret1.php");
+				Header("Location: pret1.php");
 		}
 	}else {
 		//load the session so we can destroy it

@@ -19,10 +19,10 @@ $valid= $_GET[ok];
 
 $id_manip = $_GET[idm];
 if (empty($id_manip))
- Header( "Location : manip_maint.php");
+ Header("Location: manip_maint.php");
 $id_proj = $_GET[idp];
 if (empty($id_proj))
- Header( "Location : manip_maint.php");
+ Header("Location: manip_maint.php");
 
 echo "Projet:".$id_proj. " ok :".$valid."<br />";
 

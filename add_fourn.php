@@ -42,7 +42,7 @@ else if ($mode=="modifier"){
       $fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 	else
-		Header("Location :accueil.php");
+		Header("Location: accueil.php");
 }
 ?>
 

@@ -166,7 +166,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
 
 <?php }
 	else
-	{	Header("Location :demandes.php");	}	?>
+	{	Header("Location: demandes.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>

@@ -160,7 +160,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
   </tbody>
 </table></form>	<?php	}
 			else //if connect_db
-		{	Header("Location :list_users.php");exit(0);	}	?>
+		{	Header("Location: list_users.php");exit(0);	}	?>
 <br />
 <br />
 </div>

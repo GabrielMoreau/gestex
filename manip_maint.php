@@ -20,7 +20,7 @@ else
 
 //et le numero de manip
 if (empty($_GET['id']))
- Header("Location : accueil.php");
+ Header("Location: accueil.php");
 else
   $manip_id=$_GET['id'];
 

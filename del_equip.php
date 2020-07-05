@@ -19,7 +19,7 @@ $valid= $_GET[ok];
 
 $id_equip = $_GET[id];
 if (empty($id_equip))
- Header( "Location : list_equip.php");
+ Header("Location: list_equip.php");
 
 echo "&Eacute;quipe:".$id_equip. " ok :".$valid."<br />";
 

@@ -17,7 +17,7 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $valid= $_GET[ok];
 $id_user = $_GET[id];
 if (empty($id_user))
- Header( "Location : list_user.php");
+ Header("Location: list_user.php");
 
 echo "user:".$id_equip. " ok :".$valid."<br />";
 

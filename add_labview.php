@@ -155,7 +155,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
 
 <?php }
 	else
-	{	Header("Location :labview.php");	}	?>
+	{	Header("Location: labview.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>
