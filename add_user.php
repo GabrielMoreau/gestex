@@ -11,7 +11,7 @@ $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level     = $_SESSION['level'];
 
-$user2ch_id = $_GET[id];
+$user2ch_id = $_GET['id'];
 if (empty($user2ch_id)) {
 	//->nouvelle inscription
 	$mode   = 'ajouter';
