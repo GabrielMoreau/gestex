@@ -141,7 +141,7 @@ else if ($mode=="modifier"){
 
   <tr>
 
-      <td style="vertical-align: top;">Date achat <i>format YYYY-MM-DD</i><br />
+      <td style="vertical-align: top;">Date achat (<i>format YYYY-MM-DD</i>)<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="achat" size="10" maxlength="10" value="
