@@ -86,10 +86,10 @@ if (empty($_GET['tri'])){
 if ($pdo = connect_db()) {
 	// recupere la liste des users
 	if ($user_level >=3) {
-		$sql = 'SELECT * FROM users ORDER by ?';
+		$sql = 'SELECT * FROM users ORDER BY ?;';
 	}
 	else {
-		$sql = 'SELECT * FROM users WHERE valid = 1 ORDER by ?';
+		$sql = 'SELECT * FROM users WHERE valid = 1 ORDER BY ?;';
 	}
 	// list($qh,$num) = query_db($querry);
 	$stmt = $pdo->prepare($sql);

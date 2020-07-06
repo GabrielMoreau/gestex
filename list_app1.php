@@ -79,7 +79,7 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
 
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils
-	$querry = "SELECT * FROM Listing order by $tri";
+	$querry = "SELECT * FROM Listing ORDER BY $tri";
 	list($qh,$num) = query_db($querry);
 
 	$last_id=0;

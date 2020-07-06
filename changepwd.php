@@ -52,8 +52,8 @@ if (isset($passwd1) && isset($passwd2)){
 		$mot_crypte=md5($passwd1);
 		//ok on change
 
-		$querry ="UPDATE users SET password='$mot_crypte' where id='$user2chg'";
-	query_db($querry);
+		$querry ="UPDATE users SET password='$mot_crypte' WHERE id = '$user2chg';";
+		query_db($querry);
 		Header("Location: list_users.php");
 		exit;
 	}

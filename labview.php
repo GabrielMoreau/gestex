@@ -89,7 +89,7 @@ Liste des manip labview en cours : <br />
 
 if ( $connex = connect_db() ){
 
-	$querry = "SELECT * FROM labview order by '$tri'";
+	$querry = "SELECT * FROM labview ORDER BY '$tri'";
 	list($qh,$num) = query_db($querry);
 
 	$last_id=0;

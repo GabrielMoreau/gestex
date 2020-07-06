@@ -199,7 +199,7 @@ if ($notice!=$listing[0]['notice']){
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils
 
-$sql = 'SELECT * FROM categorie where id = ?;' ;
+$sql = 'SELECT * FROM categorie WHERE id = ?;' ;
 // 	list($qh,$num) = query_db($querry);
 // 	$last_id=0;
 // $datax = result_db($qh);

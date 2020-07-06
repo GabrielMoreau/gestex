@@ -96,7 +96,7 @@ if ( $pdo = connect_db() ){
 
 	// recupere les refs du user
 
-	$sql = 'SELECT * FROM categorie order by ? ASC';
+	$sql = 'SELECT * FROM categorie ORDER BY ? ASC';
 	// list($qh,$num) = query_db($querry);
 	// $last_id=0;
 // $data = result_db($qh);

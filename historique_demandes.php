@@ -95,7 +95,7 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 
 	if ( $connex = connect_db() ){
 
-		$querry = "SELECT * FROM demandes where termine='oui'";
+		$querry = "SELECT * FROM demandes WHERE termine = 'oui';";
 		list($qh,$num) = query_db($querry);
 
 		$last_id=0;

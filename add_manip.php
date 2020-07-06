@@ -102,7 +102,7 @@ else if ($mode=="modifier"){
     </tr>
     <tr>
 	<?php // recupere la liste des chercheurs
-		$sql = 'SELECT id,nom FROM users WHERE level=1 AND valid=1 order by nom;';
+		$sql = 'SELECT id, nom FROM users WHERE level = 1 AND valid = 1 ORDER BY nom;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute();
 		$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -127,7 +127,7 @@ else if ($mode=="modifier"){
       </td>
     </tr><tr>
 	<?php // recupere la liste des chercheurs
-		$sql = 'SELECT id,nom FROM users WHERE level<=2 AND valid=1 order by nom;';
+		$sql = 'SELECT id, nom FROM users WHERE level <= 2 AND valid = 1 ORDER BY nom;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute();
 		$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);

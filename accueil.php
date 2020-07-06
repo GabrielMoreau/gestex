@@ -23,7 +23,7 @@ else
 
 if ( $pdo = connect_db() ){
 	// recupere les refs du user
-	// $querry = "SELECT * FROM users where loggin='$logged_in_user' " ;
+	// $querry = "SELECT * FROM users WHERE loggin='$logged_in_user' " ;
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
 	$sql = 'SELECT nom, prenom FROM users WHERE loggin = ?;';
@@ -111,7 +111,7 @@ if ( $pdo = connect_db() ){
 			// recupere la liste de manips
 			// $querry = "SELECT * FROM manip ";
 
-			// $querry.="order by '$tri' ";
+			// $querry.="ORDER BY '$tri' ";
 			// list($qh,$num) = query_db($querry);
 			$sql = 'SELECT * FROM manip ORDER BY ?;';
 			$stmt = $pdo->prepare($sql);

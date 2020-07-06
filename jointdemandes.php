@@ -21,7 +21,7 @@ require("html_functions.php");
 
 if ( $connex = connect_db() ){
 
-	$querry = "SELECT tache FROM demandes where id='$tache_id' " ;
+	$querry = "SELECT tache FROM demandes WHERE id='$tache_id';" ;
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 	$tache_tache= $data['tache'];

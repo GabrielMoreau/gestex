@@ -135,7 +135,7 @@ if ($pdo = connect_db()) {
 
 	// if ((!empty($cat))||(!empty($eq)))
 	if ($cat == 0 && $eq != 0) {
-		// echo "SELECT * FROM Listing where equipe = ",$eq," order by ",$tri,"  ASC;"; 
+		// echo "SELECT * FROM Listing WHERE equipe = ",$eq," ORDER BY ",$tri,"  ASC;"; 
 
 		$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY ? ASC;';
 
@@ -144,7 +144,7 @@ if ($pdo = connect_db()) {
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($eq, $tri));
 	} else if ($eq == 0 && $cat != 0) {
-		// echo "SELECT * FROM Listing where categorie = ",$cat," order by ",$tri,"  ASC;"; 
+		// echo "SELECT * FROM Listing WHERE categorie = ",$cat," ORDER BY ",$tri,"  ASC;"; 
 		$sql = 'SELECT * FROM Listing WHERE categorie = ? ORDER BY ? ASC;';
 		// list($qh,$num) = query_db($querry);
 		// $last_id=0;
@@ -153,7 +153,7 @@ if ($pdo = connect_db()) {
 	}
 
 	if ($cat == 0 && $eq == 0) {
-		// echo "SELECT * FROM Listing order by ",$tri,"  ASC;"; 
+		// echo "SELECT * FROM Listing ORDER BY ",$tri,"  ASC;"; 
 		$sql = 'SELECT * FROM Listing ORDER BY ? ASC;';
 		// list($qh,$num) = query_db($querry);
 		$stmt = $pdo->prepare($sql);

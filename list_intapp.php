@@ -91,7 +91,7 @@ echo "L'appareil <b>".$data['nom']."</b> a deja subi les interventions suivantes
 <?php
 
 	// recupere la liste de appareils
-	$querry = "SELECT * FROM intervention WHERE appareil=$id_app ORDER by $tri";
+	$querry = "SELECT * FROM intervention WHERE appareil=$id_app ORDER BY $tri;";
 	list($qh,$num) = query_db($querry);
 	$last_id=0;
 

@@ -85,7 +85,7 @@ if (!$result){
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils
 
-$querry = "SELECT * FROM categorie where id='$cat'" ;
+$querry = "SELECT * FROM categorie WHERE id='$cat';" ;
 	list($qh,$num) = query_db($querry);
 	$last_id=0;
 $datax = result_db($qh);}

@@ -76,7 +76,7 @@ else if ($mode=="modifier"){
 	<select name="chef">
 	<?php
 	// recupere laliste des chercheurs
-	$sql = 'SELECT id, nom FROM users WHERE level =1';
+	$sql = 'SELECT id, nom FROM users WHERE level = 1;';
 	$stmt = $pdo->prepare($sql);
     $stmt->execute();
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);

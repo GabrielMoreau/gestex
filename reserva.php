@@ -97,7 +97,7 @@ Liste des pr&ecirc;ts : <br /><br /><br />
 if ( $pdo = connect_db() ){
 	// recupere la liste de appareils
 
-$sql = 'SELECT * FROM pret order by ? DESC;';
+$sql = 'SELECT * FROM pret ORDER BY ? DESC;';
 // 	list($qh,$num) = query_db($querry);
 
 // 	$last_id=0;

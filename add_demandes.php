@@ -27,7 +27,7 @@ if ( $pdo = connect_db() ){
 	// list($qh,$num) = query_db($querry);
 // 	$last_id=0;
 // $datax = result_db($qh);}
-      $sql = 'SELECT * FROM categorie where id = ?;' ;
+      $sql = 'SELECT * FROM categorie WHERE id = ?;';
       $stmt = $pdo->prepare($sql);
       $stmt->execute(array($app_id));
       $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);

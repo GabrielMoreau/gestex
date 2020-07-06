@@ -21,7 +21,7 @@ require("html_functions.php");
 
 if ( $connex = connect_db() ){
 
-	$querry = "SELECT manipch FROM labview where id='$nom_id' " ;
+	$querry = "SELECT manipch FROM labview WHERE id='$nom_id';";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 	$nom_nom= $data['manipch'];

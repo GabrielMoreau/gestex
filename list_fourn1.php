@@ -81,9 +81,9 @@ if (empty($tri))
 
 if ( $pdo = connect_db() ){
 	// recupere la liste de fournisseurs
-	// $querry = "SELECT * FROM fournisseurs order by $tri";
+	// $querry = "SELECT * FROM fournisseurs ORDER BY $tri";
 	// list($qh,$num) = query_db($querry);
-      $sql = 'SELECT * from fournisseur ORDER by ?';
+      $sql = 'SELECT * FROM fournisseur ORDER BY ?;';
       $stmt = $pdo->prepare($sql);
       $stmt->execute(array($try));
       $fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);

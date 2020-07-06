@@ -76,7 +76,7 @@ if ( $pdo = connect_db() ){
 
 	// recupere les refs du user
 
-	$sql = 'SELECT id, nom FROM categorie order by ?;';
+	$sql = 'SELECT id, nom FROM categorie ORDER BY ?;';
 	$stmt =$pdo->prepare($sql);
 	$stmt->execute(array($tri));
 	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);

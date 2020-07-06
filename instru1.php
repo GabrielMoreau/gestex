@@ -122,7 +122,7 @@ if ((!empty($cat))||(!empty($eq)))
 
 {
 
-$querry = "SELECT * FROM Listing where (equipe='$eq'||categorie='$cat') order by categorie";
+$querry = "SELECT * FROM Listing WHERE (equipe='$eq'||categorie='$cat') ORDER BY categorie;";
 	list($qh,$num) = query_db($querry);
 
 	$last_id=0;
@@ -131,7 +131,7 @@ $querry = "SELECT * FROM Listing where (equipe='$eq'||categorie='$cat') order by
 
 if ((empty($cat))&&(empty($eq)))
 {
-	$querry = "SELECT * FROM Listing order by categorie ";
+	$querry = "SELECT * FROM Listing ORDER BY categorie ";
 	list($qh,$num) = query_db($querry);
 
 	$last_id=0;

@@ -30,7 +30,7 @@ en_tete('Historique Manip');
 if ($pdo = connect_db()){
 
 	// recupere les refs du user
-	$sql = 'SELECT prenom,nom FROM users where loggin = ?;' ;
+	$sql = 'SELECT prenom, nom FROM users WHERE loggin = ?;';
 	// list($qh,$num) = query_db($querry);
 
 	// $data = result_db($qh);

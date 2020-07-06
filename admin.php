@@ -94,9 +94,9 @@
 
   while ($name_data = dbResult($qh))
 	{
-    $query = "select sec_to_time(sum(unix_timestamp(end_time) - unix_timestamp(start_time))) as diff from $TIMES_TABLE where ".
-      "start_time >= '$year-$month-1' and end_time < '$next_year-$next_month-1' and end_time > 0 ".
-      "and uid='$name_data[username]' and task_id=$name_data[task_id] and proj_id=$name_data[proj_id]";
+    $query = "SELECT sec_to_time(sum(unix_timestamp(end_time) - unix_timestamp(start_time))) AS diff FROM $TIMES_TABLE WHERE ".
+      "start_time >= '$year-$month-1' AND end_time < '$next_year-$next_month-1' AND end_time > 0 ".
+      "END uid='$name_data[username]' AND task_id=$name_data[task_id] AND proj_id=$name_data[proj_id]";
 
     list($qh2, $num2) = dbQuery($query);
     if ($num2 > 0)

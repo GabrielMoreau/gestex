@@ -31,7 +31,7 @@ en_tete('Rapport');
 if ( $connex = connect_db() ){
 
 	// recupere les refs du user
-	$querry = "SELECT prenom,nom FROM users where loggin='$logged_in_user' " ;
+	$querry = "SELECT prenom,nom FROM users WHERE loggin = '$logged_in_user';" ;
 	list($qh,$num) = query_db($querry);
 
 $data = result_db($qh);

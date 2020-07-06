@@ -21,7 +21,7 @@ require("html_functions.php");
 
 if ( $connex = connect_db() ){
 
-	$querry = "SELECT nom FROM Listing where id='$nom_id' " ;
+	$querry = "SELECT nom FROM Listing WHERE id='$nom_id';" ;
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
 	$nom_nom= $data['nom'];

@@ -87,7 +87,7 @@ echo "L'appareil <b>".$data['nom']."</b> a deja subi les interventions suivantes
 <?php
 
 	// recupere la liste de appareils
-	$querry = "SELECT * FROM Listing where id=$id_app ";
+	$querry = "SELECT * FROM Listing WHERE id=$id_app;";
 	list($qh,$num) = query_db($querry);
 	$last_id=0;
 

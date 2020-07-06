@@ -27,13 +27,13 @@ require("html_functions.php");
 if ( $connex = connect_db() ){
 
  // recupere le nom de la manip
- $querry = "SELECT nom FROM manip WHERE id='$manip_id' " ;
+ $querry = "SELECT nom FROM manip WHERE id='$manip_id';" ;
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
  $nom_manip= $data['nom'];
 
  // recupere le nom du projet
- $querry = "SELECT nom FROM projet where id='$proj_id' " ;
+ $querry = "SELECT nom FROM projet WHERE id='$proj_id';" ;
  list($qh,$num) = query_db($querry);
  $data = result_db($qh);
  $nom_proj= $data['nom'];

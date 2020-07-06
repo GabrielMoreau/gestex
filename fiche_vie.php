@@ -110,7 +110,7 @@ echo "L'appareil <b>".$listing[0]['nom']."</b> a les caract&eacute;ristiques sui
 <?php
 
 	// recupere la liste de appareils
-	// $sql = 'SELECT * FROM Listing where id = ? ;';
+	// $sql = 'SELECT * FROM Listing WHERE id = ?;';
 	// list($qh,$num) = query_db($querry);
 	// $last_id=0;
 	// $stmt = $pdo->prepare($sql);

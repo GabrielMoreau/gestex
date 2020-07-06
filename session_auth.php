@@ -18,9 +18,9 @@
 			// echo " not empty!";
 			$pdo = connect_db();
 			// list($qh,$num) = query_db("select password , nom , id , level ".
-			// 						 "from users where loggin='$logged_in_user'");
+			// 						 "FROM users WHERE loggin = '$logged_in_user';");
 			// $data = result_db($qh);
-			$sql = 'SELECT password, id, level FROM users WHERE loggin = ?';
+			$sql = 'SELECT password, id, level FROM users WHERE loggin = ?;';
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(array($logged_in_user));
 			$user = $stmt->fetchAll(PDO::FETCH_ASSOC);

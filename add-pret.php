@@ -63,7 +63,7 @@ if ($pdo = connect_db()) {
 				<select name="nom">
 				<!-- listing des appareils -->
 				<?php
-				$sql = 'SELECT id, nom FROM listing where equipe = 15 and id= ?; ';
+				$sql = 'SELECT id, nom FROM listing WHERE equipe = 15 AND id= ?;';
 				// list($qheq,$numeq) = query_db($querry);
 				// 	while ($chef = result_db($qheq)){
 				if ($mode == 'ajouter') {

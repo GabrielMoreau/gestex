@@ -94,7 +94,7 @@ Liste des demandes en cours :<br />
 		<?php	//interrogation base de donnees
 
 		if ( $pdo = connect_db() ){
-			$sql = 'SELECT * FROM demandes where termine="non";';
+			$sql = 'SELECT * FROM demandes WHERE termine = "non";';
 			// list($qh,$num) = query_db($querry);
 			// $last_id=0;
 			$stmt = $pdo->prepare($sql);

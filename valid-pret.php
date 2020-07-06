@@ -56,7 +56,7 @@ else{
 require("db_functions.php");
 
 if ( $pdo = connect_db() ){
-	$sql = 'SELECT * FROM pret where nom = ? and equipe = ?';
+	$sql = 'SELECT * FROM pret WHERE nom = ? AND equipe = ?;';
 	$stmt = $pdo->prepare($sql);
     $stmt->execute(array($nom,$equipe));
 	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);

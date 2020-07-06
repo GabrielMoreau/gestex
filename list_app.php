@@ -77,7 +77,7 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
 
 if ( $pdo = connect_db() ){
 	// recupere la liste de appareils
-	$sql = 'SELECT * FROM appareils order by ?;';
+	$sql = 'SELECT * FROM appareils ORDER BY ?;';
 	// list($qh,$num) = query_db($querry);
 	
 	// $last_id=0;
