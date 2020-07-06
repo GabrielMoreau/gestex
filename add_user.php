@@ -50,7 +50,7 @@ if ($pdo = connect_db()) {
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 	<tbody>
 		<tr>
-			<td style="vertical-align: top;">Nom de loggin *<br />
+			<td style="vertical-align: top;">Identifiant (login) *<br />
 			</td>
 			<td style="vertical-align: top;">
 				<?php if ($mode == 'ajouter') { ?>
