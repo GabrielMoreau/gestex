@@ -96,3 +96,16 @@ sudo chown -R www-data:www-data /var/www/web-legi/pool/public_html/PoolProject/d
 
 Une procédure plus performante sera mise en place dès que l'application sera de nouveau pleinement opérationnelle.
 Chaque chose en son temps !
+
+### Mot de passe
+
+Les commandes suivantes sont une aide pour générer le premier mot de passe,
+ainsi que pour mettre manuellement un nouveau mot de passe à une personne au cas ou la système serait bloqué !
+
+```bash
+echo -n XXXXXXXXX | md5sum
+
+INSERT INTO `users`(`id`, `loggin`, `password`, `level`, `nom`, `prenom`, `tel`, `email`, `equipe`, `valid`) VALUES (1,'sys-admin','YYYYYYYYYYYYYYYYY',5,'Sys','Admin',0,0,0,1);
+
+UPDATE users SET password='YYYYYYYYYYYYYYYYY'  WHERE id='1';
+```
