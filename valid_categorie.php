@@ -58,7 +58,7 @@ if(	$pdo = connect_db()){
 
 ////en_tete('inscription Valid&eacute;e');
 
-echo "<br />ajout de ".$nom."<br />";
+echo "<br />ajout de ".$categorie."<br />";
 echo" est valid&eacute;e ";
 echo"<br /><br /><a href=\"instru.php\">Suite</a><br /><br />\n";
 pied_page();
