@@ -5,8 +5,9 @@ include("session_auth.php");
 
 //if (!auth(3))
 	//Header("Location: login.php");
-//$user_id = $_SESSION['user_id'];
-//$logged_in_user = strtolower($_SESSION['logged_in_user']);
+session_start();
+$user_id = $_SESSION['user_id'];
+$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 //recuper la methode de tri
 if (empty($_GET['tri']))
