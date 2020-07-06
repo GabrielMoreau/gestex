@@ -82,12 +82,12 @@
 
   if ($orderby == '') $orderby="username";
 
-  $query = "select distinct first_name, last_name, $USER_TABLE.username, $PROJECT_TABLE.title, $PROJECT_TABLE.proj_id, ".
+  $query = "SELECT distinct first_name, last_name, $USER_TABLE.username, $PROJECT_TABLE.title, $PROJECT_TABLE.proj_id, ".
 					 "$TASK_TABLE.name, $TASK_TABLE.task_id ".
 		"FROM $USER_TABLE, $PROJECT_TABLE, $TASK_TABLE, $ASSIGNMENTS_TABLE, $TASK_ASSIGNMENTS_TABLE WHERE ".
-    "$ASSIGNMENTS_TABLE.proj_id = $PROJECT_TABLE.proj_id and $TASK_ASSIGNMENTS_TABLE.task_id = $TASK_TABLE.task_id ".
+    "$ASSIGNMENTS_TABLE.proj_id = $PROJECT_TABLE.proj_id AND $TASK_ASSIGNMENTS_TABLE.task_id = $TASK_TABLE.task_id ".
 		"AND $PROJECT_TABLE.proj_id = $TASK_TABLE.proj_id AND ".
-    "$ASSIGNMENTS_TABLE.username = $USER_TABLE.username and $USER_TABLE.username NOT IN ('admin','guest') ORDER BY $orderby";
+    "$ASSIGNMENTS_TABLE.username = $USER_TABLE.username AND $USER_TABLE.username NOT IN ('admin','guest') ORDER BY $orderby;";
 
   list ($qh,$num) = dbQuery($query);
   $last_username = "";

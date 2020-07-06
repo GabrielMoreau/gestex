@@ -31,7 +31,7 @@ en_tete('Rapport');
 if ( $connex = connect_db() ){
 
 	// recupere les refs du user
-	$querry = "SELECT prenom,nom FROM users WHERE loggin = '$logged_in_user';" ;
+	$querry = "SELECT prenom, nom FROM users WHERE loggin = '$logged_in_user';" ;
 	list($qh,$num) = query_db($querry);
 
 $data = result_db($qh);
@@ -59,7 +59,7 @@ echo " Bienvenue $data['prenom'] $data['nom'] ($user_id)<br /><br />";
 <h1>Rapport de temps pass&eacute; depuis :
 <?php
 	echo $depuis."</h1>";
-/****$querry = "SELECT id,nom FROM equipe " ;
+/****$querry = "SELECT id, nom FROM equipe;" ;
 	list($qh,$num) = query_db($querry);
 	///recupere les infos des equipes
 ****/
@@ -71,7 +71,7 @@ $temps_equip = 0;
 
 	echo "<h2>&Eacute;quipe :".$equipes[nom]." (".$equipes[id].")</h2><ul>";	****/
 
-		$querry = "SELECT * FROM manip ";
+		$querry = "SELECT * FROM manip;";
 		if ($manip_id != 0)	// pour une manip, sinon pour toutes
 			$querry.=" WHERE id='$manip_id'";
 	//////	if (!empty($depuis))
@@ -86,12 +86,12 @@ $temps_equip = 0;
 		echo "<tr class=manip colspan=3><td>";
 		echo "<h3>Manip :".$manips[nom]." (".$manips[id].") debut:".$manips[date]."<br />".$manips[descr]."</h3>";
 		/// recherche les noms des chercheurs associes
-			$querry =" select nom FROM users WHERE id=".$manips[chercheur];
+			$querry = "SELECT nom FROM users WHERE id = ".$manips[chercheur];
 			list($qhc,$num) = query_db($querry);
 			$data =  result_db($qhc);
 		echo "Pour :".$data['nom'];
 		if (!empty($manips[chercheur_bis])){
-			$querry =" select nom FROM users WHERE id=".$manips[chercheur_bis];
+			$querry = "SELECT nom FROM users WHERE id=".$manips[chercheur_bis];
 			list($qhc,$num) = query_db($querry);
 			$data =  result_db($qhc);
 			echo " et ".$data['nom'];
@@ -99,7 +99,7 @@ $temps_equip = 0;
 		}//end if empty
 		echo "</td></tr>";
 
-			$querry = "SELECT * FROM projet WHERE manip='$manips[id]' " ;
+			$querry = "SELECT * FROM projet WHERE manip='$manips[id]'" ;
 			if ( $projet_id !=0)	// pour un projet, sinon pour tous
 				$querry.=" AND id='$projet_id'";
 		//////	if (!empty($depuis))
@@ -123,7 +123,7 @@ $temps_equip = 0;
 					echo " Temps pass&eacute; pour cette tache : ";
 					$temps_tache=0; unset($user_tache);
 					// recuper les temps passes pour cette tache
-						$querry = "select * FROM temps WHERE id_tache=". $taches[id];
+						$querry = "SELECT * FROM temps WHERE id_tache = ". $taches[id];
 					if (!empty($depuis))
 						$querry.=" AND date >='$depuis';";
 					list($qh5,$num) = query_db($querry);
@@ -141,7 +141,7 @@ $temps_equip = 0;
 					echo " par:";
 					//recherche les noms des users
 					$users = str_replace(","," OR id=", rtrim($user_tache," ,"));
-					$querry = "select nom FROM users WHERE id=".$users;
+					$querry = "SELECT nom FROM users WHERE id=".$users;
 					list($qh6,$num) = query_db($querry);
 					while($users= result_db($qh6))
 						echo $users[nom].",";
