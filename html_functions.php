@@ -16,7 +16,7 @@ function en_tete($titre){
    echo '  <tbody>'.PHP_EOL;
    echo '    <tr bgcolor="#f7d709">'.PHP_EOL;
    echo '      <td style="vertical-align: center;">'.PHP_EOL;
-   echo '        <a href="/"><img src="images/logo-gestex.svg" nosave="" height="100" /></a>'.PHP_EOL;
+   echo '        <a href="./"><img src="images/logo-gestex.svg" nosave="" height="100" /></a>'.PHP_EOL;
    echo '      </td>'.PHP_EOL;
    echo '      <td style="vertical-align: top;"><br />'.PHP_EOL;
    echo '        <h1><a href="./">GestEx</a> - Gestion des plateformes Exp&eacute;rimentales</h1>'.PHP_EOL;
