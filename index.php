@@ -30,13 +30,8 @@ destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l
 <h2>Gestion des projets techniques</h2>
 <p>Il faut &ecirc;tre un utilisateur r&eacute;f&eacute;renc&eacute; pour pouvoir acc&eacute;der &agrave; cette partie.</p>
 <ul>
-<<<<<<< HEAD
   <li><a href="add_user.php">Demander son inscription</a></li>
   <li><a href="accueil.php">Acc&eacute;der au gestionnaire de Projets</a></li>
-=======
-	<li><a href="add_user.php">Demander son inscription</a></li>
-	<li><a href="login.php?variable=projet">Acc&eacute;der au gestionnaire de Projets</a></li>
->>>>>>> 13630f41a705f74d977a2ca55c3e72ded97cb07f
 </ul>
 
 <br />
