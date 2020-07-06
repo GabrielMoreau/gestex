@@ -47,13 +47,16 @@ function last_id_db() {
 function check_val($table, $col, $value) {
 	//teste l'existence de $value dans le champ $col de la table $table
 	//echo "check in:".$table.":".$col." for ".$value."<br />";
-
-	$reponse = mysql_query("select * from $table where $col='$value' ");
+	$pdo=connect_db();
+	$sql = 'select * from ? where ? = ? ;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($table, $col, $value));
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	///echo "check_val:".numrows_db($reponse)."<br />";
 
 	//renvoie 0 si non trouve
 	//renvoie le nbre d'occurences autrement
-	return @mysql_num_rows($reponse);
+	return $result;
 }
 ?>
