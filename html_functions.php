@@ -100,29 +100,38 @@ function nav_bar($prenom, $nom, $level, $user_id){
   <li class="dropdown">
     <a class="dropbtn">Ajouter</a>
     <div class="dropdown-content">
-      <a href="add_manip.php">Manip</a>
       <a href="add_categorie.php">Cat&eacute;gorie</a>
-      <a href="add_app.php">Maintenance</a>
+  
       <a href="add_app2.php">Appareils</a>
       <a href="add_equip.php">&Eacute;quipe</a>
       <a href="add_fourn.php">Fournisseur</a>
-      <a href="add_intapp.php?app=3">Intervention</a>
-      <a href="add_user.php">User</a>
+ 
       <a href="add-pret.php">Pr&ecirc;t</a>
-      <a href="add_time.php">Temps</a>
-      <a href="add_task.php">Task</a>
-      <a href="add_demandes.php">Demande</a>
-      <a href="add_labviews.php">Labview</a>
+
     </div>
   </li>
-  <li class="dropdown">
+  <!-- <li class="dropdown">
     <a class="dropbtn">Supprimer</a>
     <div class="dropdown-content">
       <a href="#">Link 1</a>
       <a href="#">Link 2</a>
       <a href="#">Link 3</a>
     </div>
+  </li> -->
+  <li class="dropdown">
+    <a class="dropbtn">Plus</a>
+    <div class="dropdown-content">
+    <a href="add_time.php">Temps</a>
+      <a href="add_task.php">Task</a>
+      <a href="add_demandes.php">Demande</a>
+      <a href="add_labviews.php">Labview</a>
+      <a href="add_intapp.php?app=3">Intervention</a>
+      <a href="add_user.php">User</a>
+      <a href="add_app.php">Maintenance</a>
+      <a href="add_manip.php">Manip</a>
+    </div>
   </li>
+
   <?php  } ?>
   <li class="dropdown right">
          <a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>

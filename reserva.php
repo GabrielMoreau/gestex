@@ -17,10 +17,10 @@ en_tete('Liste des pr&ecirc;ts');
 
 //recuper la methode de tri
 if (empty($_GET['tri']))
-	$tri ="id";
+	$tri ="emprunt";
 else
 	$tri = $_GET['tri'];
-
+echo $tri;
 // recupere le user
 if (empty($_GET['user']))
 	$use ="";
@@ -82,7 +82,8 @@ Liste des pr&ecirc;ts : <br /><br /><br />
  Emprunteur<br />
       </th>
 	  <th style="vertical-align: top; text-align: center;">
-	Num&eacute;ro de l'appareil<br />
+	  <a href="reserva.php?tri=nom">
+	Num&eacute;ro de l'appareil<br /></a>
       </th>
 
 <?php if ( $user_level >=2 )
@@ -96,14 +97,14 @@ Liste des pr&ecirc;ts : <br /><br /><br />
 if ( $pdo = connect_db() ){
 	// recupere la liste de appareils
 
-$sql = 'SELECT * FROM pret order by emprunt DESC;';
+$sql = 'SELECT * FROM pret order by ? DESC;';
 // 	list($qh,$num) = query_db($querry);
 
 // 	$last_id=0;
 
 // $data = result_db($qh);
 $stmt = $pdo->prepare($sql);
-$stmt->execute();
+$stmt->execute(array($tri));
 $pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // echo "<tr>";
 
@@ -193,7 +194,7 @@ echo $data['retour'];
 echo $data['commentaire'];
 echo"</td><td style=\"vertical-align: top;\">";
 
-      		echo $listing[0]['id'];
+      		echo $data['nom'];
 
  if ( $use >=3 ) 	{
       echo"</td><td style=\"vertical-align: top;\">";

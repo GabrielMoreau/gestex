@@ -8,22 +8,22 @@ require("html_functions.php");
 unset($erreur);unset($loggin);unset($password);unset($password2); unset($nom);
 //variables ne pouvant etre nulles
 
-				if (empty($_POST[nom]))
+				if (empty($_POST['nom']))
 					$erreur="nom non pr&eacute;cis&eacute;";
 				else{
-					$nom =$_POST[nom];
-					if (empty($_POST[adresse]))
+					$nom =$_POST['nom'];
+					if (empty($_POST['adresse']))
 						$erreur="Adresse non pr&eacute;cis&eacute;";
 					else{
-						$adresse = $_POST[adresse];
+						$adresse = $_POST['adresse'];
 
-							$mail=$_POST[addr_mail];
+							$mail=$_POST['addr_mail'];
 							//variables pouvant etre nulles
-							$www =$_POST[www];
-							$phone =$_POST[phone];
-							$fax =$_POST[fax];
-							$contact =$_POST[contact];
-							$descr =$_POST[descr];
+							$www =$_POST['www'];
+							$phone =$_POST['phone'];
+							$fax =$_POST['fax'];
+							$contact =$_POST['contact'];
+							$descr =$_POST['descr'];
 }}
 
 en_tete('R&eacute;sultat inscription');
@@ -44,17 +44,19 @@ else{
 ///on inscrit
 require("db_functions.php");
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 		//inscription
-	$table = "fournisseurs";
-		$result = mysql_query("INSERT INTO $table ".
-			"(nom,adresse, mail, www, tel, fax, contact,descr)".
-			" VALUES ('$nom', '$adresse', '$mail', '$www', '$phone', '$fax', '$contact', '$descr')");
+	// $table = "fournisseurs";
+		$sql = "INSERT INTO fournisseurs (nom,adresse, mail, www, tel, fax, contact,descr)".
+			" VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			//
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($nom, $adresse, $mail, $www, $phone, $fax, $contact, $descr));
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
  		if (!$result){
 			//inscription !ok
-			$erreur = mysql_error();
-		echo "<br />erreur :".$erreur;
+			// $erreur = mysql_error();
+		echo "<br />erreur ";
 		}
 
 	}//end if connect

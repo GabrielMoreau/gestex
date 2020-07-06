@@ -14,7 +14,6 @@ require("html_functions.php");
 //modification d'un appareil
 unset($erreur);
 //variables ne pouvant etre nulles
-<<<<<<< HEAD
 if (empty($_POST['id_app']))
 	$erreur="id non pr&eacute;cis&eacute;";	
 else{
@@ -37,43 +36,13 @@ else{
 				$tech =$_POST['tech'];
 				if (empty($_POST['fourn']))
 					$erreur="fournisseur non pr&eacute;cis&eacute;";	
-=======
-if (empty($_POST[id_app]))
-	$erreur="id non pr&eacute;cis&eacute;";
-else{
-	$id_app =$_POST[id_app];
-if (empty($_POST[nom]))
-	$erreur="nom non pr&eacute;cis&eacute;";
-else{
-	$nom =$_POST[nom];
-	if (empty($_POST[descr]))
-		$erreur="Description non pr&eacute;cis&eacute;";
-	else{
-		$descr=$_POST[descr];
-		if (empty($_POST[equipe]))
-			$erreur="equipe non pr&eacute;cis&eacute;";
-		else{
-			$equipe =$_POST[equipe];
-			if (empty($_POST[tech]))
-				$erreur="tech non pr&eacute;cis&eacute;";
-			else{
-				$tech =$_POST[tech];
-				if (empty($_POST[fourn]))
-					$erreur="fournisseur non pr&eacute;cis&eacute;";
->>>>>>> 40d5e4c9e265437a0f64cf0ed768d86dfcfc1e63
 				else{
 					$fourn =$_POST['fourn'];
 
 							//variables pouvant etre nulles
-<<<<<<< HEAD
 					$achat = $_POST['achat'];
 					$facture=$_POST['facture'];
 							
-=======
-					$achat = $_POST[achat];
-					$facture=$_POST[facture];
-
->>>>>>> 40d5e4c9e265437a0f64cf0ed768d86dfcfc1e63
 }}}}}}
 
 en_tete('R&eacute;sultat modification appareil');
@@ -113,7 +82,7 @@ echo $chef." ".$data['chef']."<br />";*/
 		//modification app
 $modif=0;
 //on construit la demande
-	$sql = "UPDATE LOW_PRIORITY appareils SET ";
+	$querry = "UPDATE LOW_PRIORITY appareils SET ";
 		if ($nom!=$appareil[0]['nom']){
 			//modif du nom
 			$modif=1;
@@ -157,7 +126,7 @@ $modif=0;
 	if ($modif!=0){
 			//echo $querry;
 		// $result = mysql_query($querry);
-		$stmt = $pdo->prepare($sql);
+		$stmt = $pdo->prepare($querry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
  		if (!$result){
