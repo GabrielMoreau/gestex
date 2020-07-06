@@ -15,50 +15,50 @@ require ("db_functions.php");
 //modification d'une demande
 unset($erreur);
 //variables ne pouvant etre nulles
-if (empty($_POST[id_app]))
+if (empty($_POST['id_app']))
 	$erreur="id non pr&eacute;cis&eacute;";
 else{
-	$id_app =$_POST[id_app];
+	$id_app =$_POST['id_app'];
 
-if (empty($_POST[tache]))
+if (empty($_POST['tache']))
 	$erreur="tache non pr&eacute;cis&eacute;";
 else{
-	$tache =$_POST[tache];
+	$tache =$_POST['tache'];
 
-if (empty($_POST[nomdemandeur]))
+if (empty($_POST['nomdemandeur']))
 	$erreur="nomdemandeur non pr&eacute;cis&eacute;";
 else{
-	$nomdemandeur =$_POST[nomdemandeur];
+	$nomdemandeur =$_POST['nomdemandeur'];
 
-	if (empty($_POST[details]))
+	if (empty($_POST['details']))
 		$erreur="details non pr&eacute;cis&eacute;";
 	else{
-		$details=$_POST[details];
+		$details=$_POST['details'];
 
-		if (empty($_POST[achat]))
+		if (empty($_POST['achat']))
 			$erreur="achat non pr&eacute;cis&eacute;";
 		else{
-			$achat =$_POST[achat];
+			$achat =$_POST['achat'];
 
-			if (empty($_POST[avancement]))
+			if (empty($_POST['avancement']))
 				$erreur="avancement non pr&eacute;cis&eacute;";
 			else{
-				$avancement =$_POST[avancement];
+				$avancement =$_POST['avancement'];
 
 							//variables pouvant etre nulles
-					$termine = $_POST[termine];
+					$termine = $_POST['termine'];
 
-					$piecesjointes = $_POST[piecesjointes];
+					$piecesjointes = $_POST['piecesjointes'];
 
 }}}}}}
 
 en_tete('R&eacute;sultat modification demandes');
 
-$tri = $_GET[tri];
+$tri = $_GET['tri'];
 if (empty($tri))
 	$tri ="id";
 
-$cat=$_GET[categorie];
+$cat=$_GET['categorie'];
 echo "$cat";
 //recupere la categorie de la page ajout appareil
 
