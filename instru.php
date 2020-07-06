@@ -137,7 +137,7 @@ if ($pdo = connect_db()) {
 	if ($cat == 0 && $eq != 0) {
 		// echo "SELECT * FROM Listing where equipe = ",$eq," order by ",$tri,"  ASC;"; 
 
-		$sql = 'SELECT * FROM Listing where equipe = ? order by ? ASC;';
+		$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY ? ASC;';
 
 		// list($qh,$num) = query_db($querry);
 		// $last_id=0;
@@ -145,7 +145,7 @@ if ($pdo = connect_db()) {
 		$stmt->execute(array($eq, $tri));
 	} else if ($eq == 0 && $cat != 0) {
 		// echo "SELECT * FROM Listing where categorie = ",$cat," order by ",$tri,"  ASC;"; 
-		$sql = 'SELECT * FROM Listing where categorie = ? order by ? ASC;';
+		$sql = 'SELECT * FROM Listing WHERE categorie = ? ORDER BY ? ASC;';
 		// list($qh,$num) = query_db($querry);
 		// $last_id=0;
 		$stmt = $pdo->prepare($sql);
@@ -154,7 +154,7 @@ if ($pdo = connect_db()) {
 
 	if ($cat == 0 && $eq == 0) {
 		// echo "SELECT * FROM Listing order by ",$tri,"  ASC;"; 
-		$sql = 'SELECT * FROM Listing order by ? ASC;';
+		$sql = 'SELECT * FROM Listing ORDER BY ? ASC;';
 		// list($qh,$num) = query_db($querry);
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($tri));
@@ -190,7 +190,7 @@ if ($pdo = connect_db()) {
 // 	  echo $equipe[0]['nom'];
 //        echo"</td><td style=\"vertical-align: top;\">";
 // 	// recupere le nom du fournisseur
-// 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?';
+// 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
 // 	// list($qheq,$numeq) = query_db($querry);
 // 	// 	$equip = result_db($qheq);
 // 	$stmt = $pdo->prepare($sql);
@@ -254,7 +254,7 @@ if ($pdo = connect_db()) {
 
 		echo '  <td style="vertical-align: top;">';
 		// recupere le nom d'equipe
-		$sql = 'SELECT id, nom FROM equipe WHERE id = ?';
+		$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
 		// list($qheq,$numeq) = query_db($querry);
 		// 	$equip = result_db($qheq);
 		$stmt = $pdo->prepare($sql);
@@ -275,7 +275,7 @@ if ($pdo = connect_db()) {
 		echo      $fournisseur[0]['nom'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		// $sql = 'SELECT id, nom FROM categorie WHERE id = ?';
+		// $sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
 		// list($qheq,$numeq) = query_db($querry);
 		// $cat = result_db($qheq);
 		// $stmt = $pdo->prepare($sql);

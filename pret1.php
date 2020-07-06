@@ -37,11 +37,11 @@ else
 <?php
 	// recupere les refs du user
 	$pdo = connect_db();
-	$sql = 'SELECT id from equipe ORDER by ?';
+	$sql = 'SELECT id FROM equipe ORDER BY ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($tri));
 	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// 	$querry = "SELECT * FROM equipe order by '$tri'" ;
+// 	$querry = "SELECT * FROM equipe ORDER BY '$tri'" ;
 // 	list($qh,$num) = query_db($querry);
 // 	$last_id=0;
 // $data = result_db($qh);

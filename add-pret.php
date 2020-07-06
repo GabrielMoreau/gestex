@@ -85,7 +85,7 @@ if ($pdo = connect_db()) {
 				<select name="equipe">
 				<?php
 				// recupere la liste des equipes
-				$sql = 'SELECT id, nom FROM equipe order by nom';
+				$sql = 'SELECT id, nom FROM equipe ORDER BY nom;';
 				// list($qheq,$numeq) = query_db($querry);
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute(array($courseId,$courseId));

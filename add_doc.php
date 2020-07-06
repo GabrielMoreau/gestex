@@ -23,14 +23,14 @@ require("html_functions.php");
 
 if ( $connex = connect_db() ){
  // recupere les nom de manip, projet et tache selectionnes
- $result  =  mysql_query("SELECT nom FROM manip WHERE id='$manip_id'");
+ $result = mysql_query("SELECT nom FROM manip WHERE id='$manip_id'");
  $nom_manip = mysql_result($result,0);
  // recupere la projet selectionne
- $result  =  mysql_query("SELECT nom FROM projet WHERE id='$proj_id'");
+ $result = mysql_query("SELECT nom FROM projet WHERE id='$proj_id'");
  $nom_projet = mysql_result($result,0);
 if (!empty($task_id)){
   // recupere la tache selectionne
- $result  =  mysql_query("SELECT nom FROM tache WHERE id='$task_id'");
+ $result = mysql_query("SELECT nom FROM tache WHERE id='$task_id'");
  $nom_tache = mysql_result($result,0);
  }
 

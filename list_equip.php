@@ -75,7 +75,7 @@ if (empty($tri))
 <?php	//interrogation base de donnees
 if ($pdo = connect_db()) {
 	// recupere la liste de fournisseurs
-	$sql = 'SELECT * FROM equipe order by ?';
+	$sql = 'SELECT * FROM equipe ORDER BY ?;';
 	// list($qh,$num) = query_db($querry);
 	// $last_id=0;
 	$stmt = $pdo->prepare($sql);

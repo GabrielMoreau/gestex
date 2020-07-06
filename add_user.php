@@ -113,7 +113,7 @@ if ($pdo = connect_db()) {
 			<?php // recupere la liste des equipes
 			// $querry = "SELECT id, nom FROM equipe";
 			// list($qheq,$numeq) = query_db($querry);
-			$sql = 'SELECT id, nom FROM equipe order by nom';
+			$sql = 'SELECT id, nom FROM equipe ORDER BY nom;';
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
 			$equipe_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);

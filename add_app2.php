@@ -29,7 +29,7 @@ else
 	// recupere la liste de appareils
 if ( $pdo = connect_db() ){
 
-$sql = 'SELECT * FROM categorie where id = ?;' ;
+$sql = 'SELECT * FROM categorie WHERE id = ?;' ;
 // 	list($qh,$num) = query_db($querry);
 // 	$last_id=0;
 // $datax = result_db($qh);}
@@ -61,7 +61,7 @@ else if ($mode=="modifier"){
 	en_tete('Modifier les caracteristiques d\'un appareil');
 
 	// recupere l'appareil selectionne
-	$sql = 'SELECT * FROM Listing WHERE id = ?';
+	$sql = 'SELECT * FROM Listing WHERE id = ?;';
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
 	$stmt = $pdo->prepare($sql);
@@ -90,7 +90,7 @@ else if ($mode=="modifier"){
 <select name="categorie">
 //listing des categories
 <?php
-	$sql = 'SELECT id, nom FROM categorie order by nom ';
+	$sql = 'SELECT id, nom FROM categorie ORDER BY nom;';
 	// list($qheq,$numeq) = query_db($querry);
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
@@ -147,7 +147,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
 	<select name="equipe">
 	<?php
 	// recupere la liste des equipes
-	$sql = 'SELECT id, nom FROM equipe order by nom';
+	$sql = 'SELECT id, nom FROM equipe ORDER BY nom;';
 	// list($qheq,$numeq) = query_db($querry);
 	// 	while ($chef = result_db($qheq)){
 		$stmt = $pdo->prepare($sql);
@@ -171,7 +171,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
 	<select name="fourn">
 	<?php
 	// recupere la liste des fournisseurs
-	$sql = 'SELECT id, nom FROM fournisseurs order by nom ';
+	$sql = 'SELECT id, nom FROM fournisseurs ORDER BY nom;';
 	// list($qheq,$numeq) = query_db($querry);
 	// 	while ($chef = result_db($qheq)){
 		$stmt = $pdo->prepare($sql);
@@ -209,7 +209,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
      <select name="tech">
 	<?php
 	// recupere la liste des tech
-	$sql = 'SELECT id, nom FROM users WHERE level >1';
+	$sql = 'SELECT id, nom FROM users WHERE level > 1;';
 	// list($qheq,$numeq) = query_db($querry);
 	// 	while ($chef = result_db($qheq)){
 		$stmt = $pdo->prepare($sql);

@@ -26,7 +26,7 @@ if ( $pdo = connect_db() ){
 	// $querry = "SELECT * FROM users where loggin='$logged_in_user' " ;
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
-	$sql = "SELECT nom, prenom FROM users where loggin = ? ;";
+	$sql = 'SELECT nom, prenom FROM users WHERE loggin = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($logged_in_user));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -113,13 +113,13 @@ if ( $pdo = connect_db() ){
 
 			// $querry.="order by '$tri' ";
 			// list($qh,$num) = query_db($querry);
-			$sql = "SELECT * FROM manip ORDER by ?;";
+			$sql = 'SELECT * FROM manip ORDER BY ?;';
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(array($tri));
 			$manip = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			// while ($data = result_db($qh)) {
-				foreach($manip as $manip){
+			foreach ($manip as $manip) {
 				$relief =0;
 				if ($user_level >1)
 					$relief =1;
@@ -151,7 +151,7 @@ if ( $pdo = connect_db() ){
 				// $querry = "SELECT nom FROM equipe WHERE id ='$data['equipe']'";
 				// list($qheq,$numeq) = query_db($querry);
 				// 	$eq = result_db($qheq)	 ;
-				$sql = "SELECT nom FROM equipe where id = ?;";
+				$sql = 'SELECT nom FROM equipe WHERE id = ?;';
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute(array($manip['equipe']));
 				$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -164,7 +164,7 @@ if ( $pdo = connect_db() ){
 					// list($qheq,$numeq) = query_db($querry);
 					// 	$equipe = result_db($qheq)	 ;
 					// 	echo $eq['nom'];
-					$sql = "SELECT nom FROM users where id = ?;";
+					$sql = 'SELECT nom FROM users WHERE id = ?;';
 					$stmt = $pdo->prepare($sql);
 					$stmt->execute(array($manip['chercheur']));
 					$chercheur = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -180,13 +180,13 @@ if ( $pdo = connect_db() ){
 					echo '<a href="del_manip.php?id=',$manip['id'],'"><img src="images/trash.svg" nosave="" title= "Supprimer" /></a>';
 				}
 			echo '</td></tr>';
-			}//end while
+			} // end foreach
 			?>
  		</tbody>
 	</table>
 	<br />
 
 <?php
-}//end if
- pied_page()
- ?>
+} //end if
+pied_page()
+?>

@@ -47,7 +47,7 @@ if ($pdo = connect_db()){
 <br />
 Voici la liste des Projets de la manip :<br />
 <?php
-$sql = 'SELECT * FROM manip where id = ?;';
+$sql = 'SELECT * FROM manip WHERE id = ?;';
 //  list($qh,$num) = query_db($querry);
 ///recupere les infos de la manip
 //  $data = result_db($qh);
@@ -71,7 +71,7 @@ $dossier_manip=$manip[0]['nom'];
 			<td style="text-align: center;">
 			<?php
 			// recupere le nom de de equipes
-			$sql ='SELECT nom FROM equipe WHERE id = ?;';
+			$sql = 'SELECT nom FROM equipe WHERE id = ?;';
 			// list($qheq,$numeq) = query_db($querry);
 			// $eq = result_db($qheq)  ;
 			$stmt = $pdo->prepare($sql);
@@ -126,7 +126,7 @@ $dossier_manip=$manip[0]['nom'];
 <?php
  // un tableau par projet, contenant les taches...
  $total_manip= 0;$total_projet=0;
- $sql = 'SELECT id, nom FROM projet where manip = ?ORDER BY date' ;
+ $sql = 'SELECT id, nom FROM projet WHERE manip = ? ORDER BY date' ;
 //  list($qh,$num) = query_db($querry);
  ///recupere les infos de la manip
 //  while ($manips = result_db($qh)){
@@ -204,7 +204,7 @@ function windowToTop(lien){
 <?php //interrogation base de donnees
  $total_projet=0;
  // recupere la liste des taches de ce projet
- $sql = 'SELECT id,nom,date,user, temps FROM tache WHERE projet = ? ORDER BY date';
+ $sql = 'SELECT id, nom, date, user, temps FROM tache WHERE projet = ? ORDER BY date;';
 //  list($qh2,$num2) = query_db($querry);
 //  while ($taches = result_db($qh2)) {
   $stmt = $pdo->prepare($sql);
@@ -222,7 +222,7 @@ function windowToTop(lien){
      echo"</td><td style=\"vertical-align: top;\">";
 
   ///interro db table temps
-  $sql = 'SELECT duree,user FROM temps WHERE id_tache = ?;';
+  $sql = 'SELECT duree, user FROM temps WHERE id_tache = ?;';
   // list($qh4,$num4) = query_db($querry);
   $temps_tache=0;
   $users = "par: ";

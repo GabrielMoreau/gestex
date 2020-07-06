@@ -76,7 +76,7 @@ else if ($mode=="modifier"){
     </tr>
     <tr>
 	<?php // recupere la liste des equipes
-		$sql = 'SELECT id,nom FROM equipe order by nom;';
+		$sql = 'SELECT id, nom FROM equipe ORDER BY nom;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute();
 		$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);

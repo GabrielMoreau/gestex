@@ -41,7 +41,7 @@ if (empty($tri))
 	$tri ="id";
 if ($connex = connect_db()) {
 	// recupere les refs du user
-	$querry = "SELECT * FROM equipe order by '$tri'" ;
+	$querry = "SELECT * FROM equipe ORDER BY '$tri'" ;
 	list($qh,$num) = query_db($querry);
 	$last_id=0;
 	$data = result_db($qh);
