@@ -13,9 +13,8 @@ require("html_functions.php");
 // $logged_in_user = strtolower($_SESSION['logged_in_user']);
 // $user_level= $_SESSION['level'];
 
-en_tete("Liste des appareils:");
+en_tete('Liste des appareils');
 
-// echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 <br />
 <table cellpadding="2" cellspacing="2" border="1"

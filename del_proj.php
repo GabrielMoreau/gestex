@@ -10,7 +10,7 @@ if (!auth(3))
 
 require("html_functions.php");
 
-en_tete("Suppression Projet");
+en_tete('Suppression Projet');
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -19,10 +19,10 @@ $valid= $_GET[ok];
 
 $id_manip = $_GET[idm];
 if (empty($id_manip))
- Header( "Location : manip_maint.php");
+ Header("Location: manip_maint.php");
 $id_proj = $_GET[idp];
 if (empty($id_proj))
- Header( "Location : manip_maint.php");
+ Header("Location: manip_maint.php");
 
 echo "Projet:".$id_proj. " ok :".$valid."<br />";
 

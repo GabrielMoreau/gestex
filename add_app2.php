@@ -54,11 +54,11 @@ else{
 require("html_functions.php");
 if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
-	en_tete("Voila un formulaire pour ajouter un appareil");
+	en_tete('Ajouter un appareil');
 
 }
 else if ($mode=="modifier"){
-	en_tete("Voila un formulaire pour modifier les caracteristiques d'un appareil");
+	en_tete('Modifier les caracteristiques d\'un appareil');
 
 	// recupere l'appareil selectionne
 	$sql = 'SELECT * FROM Listing WHERE id = ?';
@@ -281,7 +281,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
 
 <?php }
 	else
-	{	Header("Location :instru.php");	}	?>
+	{	Header("Location: instru.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>

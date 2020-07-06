@@ -26,7 +26,7 @@ unset($erreur);unset($loggin);unset($password);unset($password2); unset($nom);
 							$descr =$_POST[descr];
 }}
 
-en_tete("resultat inscription ");
+en_tete('R&eacute;sultat inscription');
 
 if (!empty($erreur) ){
 
@@ -59,7 +59,7 @@ if ( $connex = connect_db() ){
 
 	}//end if connect
 
-////en_tete("inscription Valid&eacute;e");
+////en_tete('inscription Valid&eacute;e');
 
 echo "inscription de ".$nom."<br />";
 echo" <img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\" align=\"middle\" alt=\"\">";

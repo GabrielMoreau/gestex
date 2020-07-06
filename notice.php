@@ -15,7 +15,7 @@ $user_level= $_SESSION['level'];
 //recupere  le numero du nom
 $nom_id=$_GET['id'];
 if (empty($nom_id))
-	Header("Location : instru.php");
+	Header("Location: instru.php");
 
 require("html_functions.php");
 
@@ -81,7 +81,7 @@ $dossier_proj ="data/instru/".$nom_nom."/";
 			switch ( strtolower(substr($file, $pos+1))){
 				case "htm":
 				case "html":
-					echo "images/html.png\" ><br />";
+					echo "images/link.svg\" ><br />";
 					break;
 				case "doc":
 					echo "images/document.png\" ><br />";

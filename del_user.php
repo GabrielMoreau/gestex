@@ -9,7 +9,7 @@ if (!auth(3))
  Header("Location: login.php");
 require("html_functions.php");
 
-en_tete("Suppression Utilisateur");
+en_tete('Suppression Utilisateur');
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -17,7 +17,7 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $valid= $_GET[ok];
 $id_user = $_GET[id];
 if (empty($id_user))
- Header( "Location : list_user.php");
+ Header("Location: list_user.php");
 
 echo "user:".$id_equip. " ok :".$valid."<br />";
 

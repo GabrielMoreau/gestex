@@ -14,13 +14,12 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste des prets:");
+en_tete('Liste des pr&ecirc;ts');
 
 //recuper la methode de tri
 $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
-//echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 
 <i>Consulter la liste des &eacute;quipements communs disponibles au service instrumentation et choisir :

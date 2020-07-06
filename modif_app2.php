@@ -57,7 +57,7 @@ $notice=$_POST[notice];
 
 }}}}}}}
 
-en_tete("resultat modification appareil");
+en_tete('R&eacute;sultat modification appareil');
 
 $tri = $_GET[tri];
 if (empty($tri))
@@ -188,7 +188,7 @@ if ($notice!=$data['notice']){
 		}//else end
 	}//end if connect
 
-////en_tete("modification appareil Valid&eacute;e");
+////en_tete('modification appareil Valid&eacute;e');
 
 if ( $connex = connect_db() ){
 	// recupere la liste de appareils

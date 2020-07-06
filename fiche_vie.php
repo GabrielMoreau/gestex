@@ -36,15 +36,12 @@ if ( $pdo = connect_db() ){
 	$stmt->execute(array($id_app));
 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-en_tete("Caract&eacute;ristiques de l'appareil :<b>".$listing[0]['nom']."</b>");
+en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$listing[0]['nom'].'</b>');
 //recupere la methode de tri
 if (empty($_GET['tri']))
 	$tri ="id";
 else
 	$tri = $_GET['tri'];
-
-
-// echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 
 <!-- <table cellpadding="2" cellspacing="2" border="1" -->
@@ -155,12 +152,12 @@ echo $data['inventaire'];
 
  if ($log==true && $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app2.php?app=".$id_app."&id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+      echo "<a href=\"add_app2.php?app=".$id_app."&id=".$data['id']."\"<img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ($log==true && $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_intapp.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_intapp.php?id=".$data['id']."\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 
 	}//end if

@@ -47,7 +47,7 @@ else{
 }
 
 
-en_tete("resultat ajout appareil ");
+en_tete('R&eacute;sultat ajout appareil');
 nav_bar();
 if (!empty($erreur) ){
 
@@ -81,7 +81,7 @@ if ( $pdo = connect_db() ){
 
 
 
-////en_tete("inscription Valid&eacute;e");
+////en_tete('inscription Valid&eacute;e');
 
 echo "ajout de ".$nom."valid&eacute;e ";
 echo"<br /><br /><a href=\"list_app.php\">Suite</a><br /><br />\n";

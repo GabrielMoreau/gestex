@@ -13,14 +13,14 @@
 $manip_id = $_GET[id];
 if (empty($manip_id)){
 
-  Header("Location :accueil.php");
+  Header("Location: accueil.php");
 }
 
 require("html_functions.php");
 
 if ( $connex = connect_db() ){
 
- en_tete("Voila un formulaire pour associer un projet parallele &agrave; une manip");
+ en_tete('Associer un projet parallele &agrave; une manip');
 
  // recupere la manip selectionnee
  $querry = "SELECT * FROM manip WHERE id='$manip_id'";
@@ -33,7 +33,7 @@ echo "Projets deja associ&eacute;s :".$data['assoc_proj'];
 
 }//end if connex
  else
-  Header("Location :accueil.php");
+  Header("Location: accueil.php");
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">

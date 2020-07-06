@@ -25,7 +25,7 @@ else {
  $assoc_p= $_POST[assoc_p];
 }
 
-en_tete("resultat association projet annexe");
+en_tete('R&eacute;sultat association projet annexe');
 
 if (!empty($erreur) ){
 

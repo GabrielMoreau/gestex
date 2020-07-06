@@ -27,11 +27,11 @@ require("html_functions.php");
 if ( $pdo = connect_db() ){
 
 if ($mode=="ajouter"){
-	en_tete("Voila un formulaire pour inscrire une nouvelle manip");
+	en_tete('Ajouter une nouvelle manip');
 
 }
 else if ($mode=="modifier"){
-	en_tete("Voila un formulaire pour modifier les caracteristiques d'une manip");
+	en_tete('Modifier les caracteristiques d\'une manip');
 
 	// recupere la manip selectionnee
 	$sql = 'SELECT * FROM manip WHERE id = ?;';
@@ -44,7 +44,7 @@ else if ($mode=="modifier"){
 	}
 }//end if connex
 	else
-		Header("Location :accueil.php");
+		Header("Location: accueil.php");
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">

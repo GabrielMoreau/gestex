@@ -27,14 +27,12 @@ if ( $connex = connect_db() ){
 	$data = result_db($qh);
 	$last_id=0;
 
-en_tete("Liste des interventions sur l'appareil :<b>".$data['nom']."</b>");
+en_tete('Liste des interventions sur l\'appareil : <b>'.$data['nom'].'</b>');
 
 //recuper la methode de tri
 $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
-
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1"
@@ -112,12 +110,12 @@ echo $data['id'];
 
  if ( $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app2.php?app=".$id_app."&id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+      echo "<a href=\"add_app2.php?app=".$id_app."&id=".$data['id']."\"<img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_intapp.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_intapp.php?id=".$data['id']."\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 
 	}//end if

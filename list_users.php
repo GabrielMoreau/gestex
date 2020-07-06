@@ -7,152 +7,162 @@ include("session_auth.php");
 if (!auth(1))
 	Header("Location: login.php");
 
-$user_id = $_SESSION['user_id'];
+$user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level= $_SESSION['level'];
+$user_level     = $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste de tous les utilisateurs:");
+en_tete('Liste de tous les utilisateurs');
 //recuper la methode de tri
 if (empty($_GET['tri'])){
-	if($user_level>=3){
-		$tri ="level";
-	}else{
-		$tri ="nom";
+	if ($user_level >= 3) {
+		$tri = 'level';
+	} else {
+		$tri = 'nom';
 	}
-}else
-		$tri = $_GET['tri'];
-
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")";
+} else {
+	$tri = $_GET['tri'];
+}
 ?>
+
 <br />
 <table cellpadding="2" cellspacing="2" border="0"
- style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-  <tbody>
-    <tr class=menu>
-	 <td style="vertical-align: top; text-align: center;">
-	<a href="accueil.php">Retour &agrave; l'accueil</a>
-	<br /></td>
-<?php if ( $user_level >=3) {	?>
- <td style="vertical-align: top; text-align: center;">
-	<a href="add_user.php">Ajout d'un utilisateur</a>
-	<br /></td>
-<?php }
-//edition/modif de ses propres coordonnees
-?>
- <td style="vertical-align: top; text-align: center;">
-	<a href="add_user.php?id=<?php echo $user_id ?>">
-		<img src="images/edit.png" nosave="" title="Modifier son profil"></a>
-	<br /></td>
- <?php ?>
-	 <td style="vertical-align: top; text-align: center;">
-	<a href="changepwd.php?id=<?php echo $user_id ?>">
-		<img src="images/unlock.png" nosave="" title="Changer son mot de passe"></a>
-	<br /></td>
-
- </tr></tbody>
+	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+	<tbody>
+		<tr class=menu>
+			<td style="vertical-align: top; text-align: center;">
+				<a href="accueil.php">Retour &agrave; l'accueil</a>
+				<br />
+			</td>
+			<?php if ($user_level >= 3) { ?>
+			<td style="vertical-align: top; text-align: center;">
+				<a href="add_user.php">Ajout d'un utilisateur</a>
+				<br />
+			</td>
+			<?php } ?>
+			<td style="vertical-align: top; text-align: center;">
+				<a href="add_user.php?id=<?php echo $user_id ?>">
+				<img src="images/gear.svg" nosave="" title="Modifier son profil"></a>
+				<br />
+			</td>
+			<td style="vertical-align: top; text-align: center;">
+				<a href="changepwd.php?id=<?php echo $user_id ?>">
+				<img src="images/key.svg" nosave="" title="Changer son mot de passe"></a>
+				<br />
+			</td>
+		</tr>
+	</tbody>
 </table>
 <br />
 
 <table cellpadding="2" cellspacing="2" border="1"
- style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-  <tbody>
-    <tr bgcolor="#f7d709">
-		<?php
-		if($user_level >=3){ ?>
-		<th style="vertical-align: top; text-align: center;">
-		level<br />
-      </th>
-		<?php } ?>
-      <th style="vertical-align: top; text-align: center;">
-	Pr&eacute;nom<br />
-      </th>
-      <th style="vertical-align: top; text-align: center;">
-	<a href ="list_users.php?tri=nom">Nom de famille</a><br />
-      </th>
-      <th style="vertical-align: top; text-align: center;">
-	T&eacute;l&eacute;phone<br />
-      </th>
-      <th style="vertical-align: top; text-align: center;">
-	Courriel<br />
-      </th>
-      <th style="vertical-align: top; text-align: center;">
-	<a href ="list_users.php?tri=equipe">&Eacute;quipe</a><br />
-      </th>
-    </tr>
-<?php	//interrogation base de donnees
+	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+	<tbody>
+		<tr bgcolor="#f7d709">
+			<?php if ($user_level >= 3) { ?>
+			<th style="vertical-align: top; text-align: center;">
+				Level<br />
+			</th>
+			<?php } ?>
+			<th style="vertical-align: top; text-align: center;">
+				Pr&eacute;nom<br />
+			</th>
+			<th style="vertical-align: top; text-align: center;">
+				<a href ="list_users.php?tri=nom">Nom de famille</a><br />
+			</th>
+			<th style="vertical-align: top; text-align: center;">
+				T&eacute;l&eacute;phone<br />
+			</th>
+			<th style="vertical-align: top; text-align: center;">
+				Courriel<br />
+			</th>
+			<th style="vertical-align: top; text-align: center;">
+				<a href ="list_users.php?tri=equipe">&Eacute;quipe</a><br />
+			</th>
+		</tr>
 
-if ( $pdo = connect_db() ){
+<?php	//interrogation base de donnees
+if ($pdo = connect_db()) {
 	// recupere la liste des users
-	if ($user_level >=3){
+	if ($user_level >=3) {
 		$sql = 'SELECT * FROM users ORDER by ?';
 	}
-	else{
+	else {
 		$sql = 'SELECT * FROM users WHERE valid = 1 ORDER by ?';
 	}
 	// list($qh,$num) = query_db($querry);
 	$stmt = $pdo->prepare($sql);
     $stmt->execute(array($tri));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	$num_line=0;
+	$num_line = 0;
 
-// while ($data = result_db($qh)) {
-	foreach($user as $data){
-	// remplit le tableau
-	if (($num_line % 2 )==0)
- 		echo"<tr class=pair>";
-	else
-		echo"<tr class=impair>";
-		if($user_level >=3 ){
-			echo "<td style=\"vertical-align: top;\">";
-			echo $data['level'];
-		}
- 	echo "</td><td style=\"vertical-align: top;\">";
-	echo $data['prenom'];
-       echo"</td><td style=\"vertical-align: top;\">";
-	//l'utilisateur a la possiblite de modifier ses coordonnees
-	if ($user_id == $data['id'] || $user_level==3)
-		echo "<a href=\"add_user.php?id=".$data['id']."\">".$data['nom']."</a>";
-	else
-		echo $data['nom'];
-
-      echo"</td><td style=\"vertical-align: top;\">";
-      echo $data['tel'];
-      echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"mailto:".$data['email']."\"> <img src=\"images/mail_generic.png\" nosave=\"\"></a>";
-      echo"</td><td style=\"vertical-align: top;\">";
- 			// recupere la liste de equipes
-	$sql = 'SELECT nom FROM equipe WHERE id =?';
-	// list($qheq,$numeq) = query_db($querry);
-	// 	$eq = result_db($qheq)	 ;
-		$stmt = $pdo->prepare($sql);
-        $stmt->execute(array($data['equipe']));
-        $equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		if(!empty($equipe)){
-		echo $equipe[0]['nom'];
-
-	  echo " (".$data['equipe'].")";
-		}
-     if ($user_level==3){
-		 echo"</td><td style=\"vertical-align: top;\">";
-		echo "<a href=\"changepwd.php?id=".$data['id']."\">";
-		echo "<img src=\"images/unlock.png\" nosave=\"\" title=\"changer le mot de passe\"></a>";
-		 echo"</td><td style=\"vertical-align: top;\">";
-		echo "<a href=\"del_user.php?id=".$data['id']."\">";
-		echo "<img src=\"images/kill.png\" nosave=\"\" title=\"supprimer l'utilisateur!\"></a>";
-		 echo"</td><td style=\"vertical-align: top;\">";
-		if ($data['valid']==0)
-			echo "Non Valid&eacute;";
+	// while ($data = result_db($qh)) {
+	foreach ($user as $data) {
+		// remplit le tableau
+		if (($num_line % 2 ) == 0)
+			echo '<tr class="pair">'.PHP_EOL;
 		else
-			echo "Valid&eacute;";
+			echo '<tr class="impair">'.PHP_EOL;
+		if ($user_level >=3 ) {
+			echo '  <td style="vertical-align: top;">';
+			echo      $data['level'];
+			echo '  </td>'.PHP_EOL;
 		}
+		echo '  <td style="vertical-align: top;">';
+		echo      $data['prenom'];
+		echo '  </td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">';
+		// l'utilisateur a la possiblite de modifier ses coordonnees
+		if ($user_id == $data['id'] || $user_level >= 3)
+			echo '    <a href="add_user.php?id='.$data['id'].'">'.$data['nom'].'</a>';
+		else
+			echo      $data['nom'];
 
-      echo"</td></tr>";$num_line++;
-	}//end while
-}//end if
+		echo '  </td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">';
+		echo      $data['tel'];
+		echo '  </td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">';
+		echo '    <a href="mailto:'.$data['email'].'"> <img src="images/envelope.svg" nosave=""></a>';
+		echo '  </td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">';
+		// recupere la liste de equipes
+		$sql = 'SELECT nom FROM equipe WHERE id = ?;';
+		// list($qheq,$numeq) = query_db($querry);
+		// 	$eq = result_db($qheq)	 ;
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($data['equipe']));
+		$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if (!empty($equipe)) {
+			echo $equipe[0]['nom'];
+			echo " (".$data['equipe'].")";
+		}
+		echo '  </td>'.PHP_EOL;
+		if ($user_level >= 3) {
+			echo '  <td style="vertical-align: top;">';
+			echo '    <a href="changepwd.php?id='.$data['id'].'">';
+			echo '      <img src="images/key.svg" nosave="" title="Changer le mot de passe">';
+			echo '    </a>';
+			echo '  </td>'.PHP_EOL;
+			echo '  <td style="vertical-align: top;">';
+			echo '    <a href="del_user.php?id='.$data['id'].'">';
+			echo '       <img src="images/trash.svg" nosave="" title="Supprimer l\'utilisateur !">';
+			echo '    </a>';
+			echo '  </td>'.PHP_EOL;
+			echo '  <td style="vertical-align: top;">';
+			if ($data['valid'] == 0)
+				echo 'Non Valid&eacute;';
+			else
+				echo 'Valid&eacute;';
+			echo '  </td>'.PHP_EOL;
+		}
+		echo '</tr>'.PHP_EOL;
+		$num_line++;
+	} //end foreach
+} //end if
 ?>
-  </tbody>
+	</tbody>
 </table>
 <br />
 </div>

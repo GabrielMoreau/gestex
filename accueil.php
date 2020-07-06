@@ -13,7 +13,7 @@ $user_id = $_SESSION['user_id'];
 $user_level = $_SESSION['level'];
 require("html_functions.php");
 
-en_tete("Liste des Manips");
+en_tete('Liste des Manips');
 
 //recuper la methode de tri
 if (empty($_GET['tri']))
@@ -173,11 +173,11 @@ if ( $pdo = connect_db() ){
 				}
 				if ($user_level>=2){
 					echo '</td><td style="vertical-align: top;">';
-					echo '<a href="add_manip.php?id=',$manip['id'],'"><img src="images/edit.png" nosave="" title="Modifier" /></a>';
+					echo '<a href="add_manip.php?id=',$manip['id'],'"><img src="images/pen.svg" nosave="" title="Modifier" /></a>';
 				}
 				if ($user_level==3){
 					echo '</td><td style="vertical-align: top;">';
-					echo '<a href="del_manip.php?id=',$manip['id'],'"><img src="images/edittrash.png" nosave="" title= "Supprimer" /></a>';
+					echo '<a href="del_manip.php?id=',$manip['id'],'"><img src="images/trash.svg" nosave="" title= "Supprimer" /></a>';
 				}
 			echo '</td></tr>';
 			}//end while

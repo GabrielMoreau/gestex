@@ -11,11 +11,11 @@ include("session_auth.php");
 
 $manip_id = $_GET[idm];
 if (empty($manip_id))
- Header("Location :accueil.php");
+ Header("Location: accueil.php");
 
 $proj_id = $_GET[idp];
 if (empty($proj_id))
- Header("Location :accueil.php");
+ Header("Location: accueil.php");
 
 $task_id = $_GET[idt];
 
@@ -78,7 +78,7 @@ echo "test de ".$dossier."...";
 
 }//end if connex
  else
-  Header("Location :accueil.php");
+  Header("Location: accueil.php");
 ?>
 
 <br />

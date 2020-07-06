@@ -10,7 +10,7 @@ if (!auth(3))
 
 require("html_functions.php");
 
-en_tete("Suppression Manip");
+en_tete('Suppression Manip');
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -19,7 +19,7 @@ $valid= $_GET[ok];
 
 $id_manip = $_GET[id];
 if (empty($id_manip))
- Header( "Location : accueil.php");
+ Header("Location: accueil.php");
 
 echo "Manip:".$id_manip. " ok :".$valid."<br />";
 

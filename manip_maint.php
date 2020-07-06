@@ -20,13 +20,13 @@ else
 
 //et le numero de manip
 if (empty($_GET['id']))
- Header("Location : accueil.php");
+ Header("Location: accueil.php");
 else
   $manip_id=$_GET['id'];
 
 require("html_functions.php");
 
-en_tete("Historique Manip");
+en_tete('Historique Manip');
 if ( $pdo = connect_db() ){
 
  // recupere les refs du user
@@ -157,7 +157,7 @@ wnd.focus();
  /// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
  if (@opendir($dossier_proj) != FALSE){
   //si trouve ajoute un bouton
-  echo "Voir : <a href =\"browse_proj.php?idm=". $manip_id ."&idp=".$proj_id."\"><img src=\"images/filefind.png\" nosave=\"\" width=\"15\" title =\"Voir les docs de ce projet\"></a><br />";
+  echo "Voir : <a href =\"browse_proj.php?idm=". $manip_id ."&idp=".$proj_id."\"><img src=\"images/eye.svg\" nosave=\"\" width=\"15\" title =\"Voir les docs de ce projet\"></a><br />";
 
  }
  ?>
@@ -166,13 +166,13 @@ wnd.focus();
   <!-- <th colspan="3"></th> //ajout de doc   -->
     <th style="vertical-align: top; text-align: left;">
 
-  <a href ="add_doc.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/stockattach.png" nosave=\"\" width=\"20\"  title ="Ajouter un document &agrave; ce projet"></a><br />
+  <a href ="add_doc.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/paperclip.svg" nosave=\"\" width=\"20\"  title ="Ajouter un document &agrave; ce projet"></a><br />
   </th>
    <th style="vertical-align: top; text-align: right;">
-  <a href ="add_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/editcopy.png" nosave=\"\" width=\"20\" title ="Modifier ce projet"></a><br />
+  <a href ="add_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/pen.svg" nosave=\"\" width=\"20\" title ="Modifier ce projet"></a><br />
    </th>
     <th style="vertical-align: top; text-align: right;">
-  <a href ="del_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/edittrash.png" nosave=\"\" width=\"20\" title="Supprimer ce projet"></a><br />
+  <a href ="del_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/trash.svg" nosave=\"\" width=\"20\" title="Supprimer ce projet"></a><br />
    </th>
 
     <?php } else {
@@ -206,7 +206,7 @@ wnd.focus();
   $tache = $stmt->fetchAll(PDO::FETCH_ASSOC);
   foreach($tache as $taches){
   // remplit le tableau de taches
-       echo"<tr><td><img src =\"images/forward.png\" nosave=\"\" width=\"15\"></td>";
+       echo"<tr><td><img src =\"images/arrow-right-square.svg\" nosave=\"\" width=\"15\"></td>";
   echo"<td style=\"vertical-align: top;\">";
   ///     echo "<a href=\"task_info.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches[id]."\" target=\"new\">".$taches[nom]."</a>";
      echo " <a href=\"#\" onclick=\"windowToTop('task_info.php?idm=".$manip_id."&idp=".$proj_id."&idt=". $taches['id']."');\">";
@@ -249,16 +249,16 @@ wnd.focus();
   echo $temps_tache." heures";
   $total_projet += $temps_tache;
    if ($user_level>=2){
-   echo "<a href=\"add_time.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/xclock.png\" nosave=\"\" width=\"20\" title=\"Ajouter du temps\"></a>";
+   echo "<a href=\"add_time.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/clock.svg\" nosave=\"\" width=\"20\" title=\"Ajouter du temps\"></a>";
      echo"</td><td style=\"vertical-align: top;\">";
    // ajout d'un document a une tache -->
-    echo "<a href=\"add_doc.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/stockattach.png\" nosave=\"\" width=\"20\" title =\"Ajouter un document &agrave; cette tache\"></a>";
+    echo "<a href=\"add_doc.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/paperclip.svg\" nosave=\"\" width=\"20\" title =\"Ajouter un document &agrave; cette tache\"></a>";
      echo"</td><td style=\"vertical-align: top;\">";
        //modif d'une tache
-    echo "<a href=\"add_task.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/editcopy.png\" nosave=\"\" width=\"20\" title =\"Modifier cette tache\"></a>";
+    echo "<a href=\"add_task.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/pen.svg\" nosave=\"\" width=\"20\" title =\"Modifier cette tache\"></a>";
    echo"</td><td style=\"vertical-align: top;\">";
   //supression dune tache
-   echo "<a href=\"del_task.php?idm=".$manip_id."&idt=".$taches['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" width=\"20\" title=\"Supprimer cette tache\"></a>";
+   echo "<a href=\"del_task.php?idm=".$manip_id."&idt=".$taches['id']."\"><img src=\"images/trash.svg\" nosave=\"\" width=\"20\" title=\"Supprimer cette tache\"></a>";
   }
    echo"</td></tr>";
 
@@ -266,7 +266,7 @@ wnd.focus();
 
    echo"<tr><td style=\"vertical-align: top;text-align: left;\" >";
  if ($user_level >=2){
- echo" <a href =\"add_task.php?idm=".$manip_id." ?>&idp=". $proj_id ."?>\"><img src=\"images/edit_add.png\" nosave=\"\" width=\"15\"  title=\"Ajouter une tache\"></a><br />";
+ echo" <a href =\"add_task.php?idm=".$manip_id." ?>&idp=". $proj_id ."?>\"><img src=\"images/plus-square.svg\" nosave=\"\" width=\"15\"  title=\"Ajouter une tache\"></a><br />";
  }
 
 echo"</td><td style=\"vertical-align: top;text-align: right;\" colspan=3 >";

@@ -8,15 +8,14 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste des programmes Labview");
+en_tete('Liste des programmes Labview');
 
 //recuper la methode de tri
 $tri = $_GET[tri];
 if (empty($tri))
 	$tri ="id";
-
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
+
 <br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -128,15 +127,15 @@ $dossier_lab ="data/labview/".$data['manipch'];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_lab) != FALSE){
 		//si trouve ajoute un bouton
-		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir la face avant du programme\"></a><br />";
+		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir la face avant du programme\"></a><br />";
     }
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_labview.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_labview.php?id=$data['id']\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 
 echo"</tr>";
@@ -174,16 +173,16 @@ echo $data['module'];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_lab) != FALSE){
 		//si trouve ajoute un bouton
-		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\"></a><br />";
+		echo "Voir : <a href =\"doclabview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\"></a><br />";
     }
 //echo $data['ecran'];
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_labview.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_labview.php?id=$data['id']\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 
 echo"</tr>";

@@ -24,7 +24,7 @@ else{
 
 	}
 
-en_tete("resultat ajout appareil ");
+en_tete('R&eacute;sultat ajout appareil');
 
 if (!empty($erreur) ){
 
@@ -56,7 +56,7 @@ if(	$pdo = connect_db()){
 
 //end if connect
 
-////en_tete("inscription Valid&eacute;e");
+////en_tete('inscription Valid&eacute;e');
 
 echo "<br />ajout de ".$nom."<br />";
 echo" est valid&eacute;e ";

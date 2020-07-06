@@ -28,11 +28,11 @@ require("html_functions.php");
 if ( $pdo = connect_db() ){
 
 if ($mode=="ajouter"){
-	en_tete("Voila un formulaire pour inscrire un fournisseur");
+	en_tete('Ajouter un fournisseur');
 
 }
 else if ($mode=="modifier"){
-	en_tete("Voila un formulaire pour modifier les coordonn&eacute;es d'un fournisseur");
+	en_tete('Mdifier les coordonn&eacute;es d\'un fournisseur');
 	// recupere le fournisseur selectionne
 	$sql = 'SELECT * FROM fournisseurs WHERE id = ?;';
 	// list($qh,$num) = query_db($querry);
@@ -42,7 +42,7 @@ else if ($mode=="modifier"){
       $fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 	else
-		Header("Location :accueil.php");
+		Header("Location: accueil.php");
 }
 ?>
 

@@ -11,10 +11,9 @@ session_start();
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 require("html_functions.php");
 
-en_tete("Liste des prets:");
+en_tete('Liste des pr&ecirc;ts');
 
 //recuper la methode de tri
 if (empty($_GET['tri']))
@@ -22,7 +21,7 @@ if (empty($_GET['tri']))
 else
 	$tri = $_GET['tri'];
 
-// récupère le user
+// recupere le user
 if (empty($_GET['user']))
 	$use ="";
 else
@@ -150,7 +149,7 @@ $pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // 	if ( $use >=3 ) 	{
 
 //       echo"</td><td style=\"vertical-align: top;\">";
-//       echo '<a href="del-pret.php?id=',$pret[0]['id'],'"><img src="images/edittrash.png" nosave="" title="Supprimer"></a>';
+//       echo '<a href="del-pret.php?id=',$pret[0]['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer"></a>';
 //       echo"</td>";}
 
 // echo"</tr>";
@@ -198,7 +197,7 @@ echo"</td><td style=\"vertical-align: top;\">";
 
  if ( $use >=3 ) 	{
       echo"</td><td style=\"vertical-align: top;\">";
-      echo '<a href="del-pret.php?id=',$data['id'],'"><img src="images/edittrash.png" nosave="" title="Supprimer"></a>';
+      echo '<a href="del-pret.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer"></a>';
       echo"</td>";
 	}
 

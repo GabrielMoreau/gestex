@@ -34,7 +34,7 @@ else {
 
 }}}
 
-en_tete("resultat modification ");
+en_tete('R&eacute;sultat modification');
 
 if (!empty($erreur) ){
 
@@ -87,7 +87,7 @@ if ( $connex = connect_db() ){
 
 	}//end if connect
 
-////en_tete("modification projet Valid&eacute;e");
+////en_tete('modification projet Valid&eacute;e');
 
 echo "<br />".$nom." modification ";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\"  nosave=\"\" align=\"middle\" alt=\"\">";

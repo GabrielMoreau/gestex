@@ -13,17 +13,15 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste des appareils:");
+en_tete('Liste des appareils');
 
 //recuper la methode de tri
 if (empty($_GET['tri']))
 	$tri ="nom";
 else
 	$tri = $_GET['tri'];
-
-
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
+
 Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute;guli&egrave;rement :<br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -135,12 +133,12 @@ if ( $pdo = connect_db() ){
 
  if ( $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app.php?id=".$data['id']."\"<img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_app.php?id=".$data['id']."\"<img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_app.php?id=".$data['id']."\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_app.php?id=".$data['id']."\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 
 	}//end if

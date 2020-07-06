@@ -41,7 +41,7 @@ else{
 
 }}}}}}
 
-en_tete("resultat ajout de temps");
+en_tete('R&eacute;sultat ajout de temps');
 echo"<center>";
 
 if (!empty($erreur) ){

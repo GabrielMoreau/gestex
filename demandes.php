@@ -13,7 +13,7 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste des demandes en cours:");
+en_tete('Liste des demandes en cours');
 
 //recupere la methode de tri
 if (empty($_GET['tri']))
@@ -28,9 +28,8 @@ if (empty($_GET['categorie']))
 else
 	$cat = $_GET['categorie'];
 //echo "$cat";
-
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
+
 <br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -121,12 +120,12 @@ Liste des demandes en cours :<br />
 // echo $demandes[0]['piecesjointes'];
 // 	 if ( $user_level >=2) {
 //       echo"</td><td style=\"vertical-align: top;\">";
-//       echo "<a href=\"add_demandes.php?id=$demandes[0][id]\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+//       echo "<a href=\"add_demandes.php?id=$demandes[0][id]\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\" /></a>";
 //       echo"</td>";
 // 	}//end if
 //  if ( $user_level >=3 ) {
 //       echo"</td><td style=\"vertical-align: top;\">";
-//       echo "<a href=\"del_demandes.php?id=$demandes[0][id]\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+//       echo "<a href=\"del_demandes.php?id=$demandes[0][id]\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
 //       echo"</td>";
 // }
 // echo"</tr>";
@@ -161,16 +160,16 @@ Liste des demandes en cours :<br />
 			/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 		if (@opendir($dossier_proj) != FALSE){
 			// si trouve ajoute un bouton
-			echo "Voir : <a href =\"jointdemandes.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
+			echo "Voir : <a href =\"jointdemandes.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
 		}
 		if ( $user_level >=2) {
 			echo"</td><td style=\"vertical-align: top;\">";
-			echo "<a href=\"add_demandes.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\"Modifier\" /></a>";
+			echo "<a href=\"add_demandes.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\"Modifier\" /></a>";
 			echo"</td>";
 		}//end if
 		if ( $user_level >=3 ) {
 			echo"</td><td style=\"vertical-align: top;\">";
-			echo "<a href=\"del_demandes.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+			echo "<a href=\"del_demandes.php?id=$data['id']\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
 			echo"</td>";
 
 		}

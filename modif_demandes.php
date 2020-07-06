@@ -52,7 +52,7 @@ else{
 
 }}}}}}
 
-en_tete("resultat modification demandes");
+en_tete('R&eacute;sultat modification demandes');
 
 $tri = $_GET[tri];
 if (empty($tri))

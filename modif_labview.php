@@ -52,7 +52,7 @@ else{
 
 }}}}}
 
-en_tete("resultat modification labview");
+en_tete('R&eacute;sultat modification labview');
 
 $tri = $_GET[tri];
 if (empty($tri))

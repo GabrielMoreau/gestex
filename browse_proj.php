@@ -15,12 +15,12 @@ $user_level= $_SESSION['level'];
 //recupere  le numero de manip
 $manip_id=$_GET['idm'];
 if (empty($manip_id))
- Header("Location : accueil.php");
+ Header("Location: accueil.php");
 
 //recupere  le numero de proj
 $proj_id =$_GET['idp'];
 if (empty($proj_id))
- Header("Location : accueil.php");
+ Header("Location: accueil.php");
 
 require("html_functions.php");
 
@@ -127,7 +127,7 @@ while ( $file = array_pop($images) ){
    switch ( strtolower(substr($file, $pos+1))){
     case "htm":
     case "html":
-     echo "images/html.png\" /><br />";
+     echo "images/link.svg\" /><br />";
      break;
     case "doc":
      echo "images/document.png\" /><br />";

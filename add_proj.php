@@ -11,7 +11,7 @@
 
 $manip_id = $_GET[idm];
 if (empty($manip_id))
-	Header("Location : accueil.ph");
+	Header("Location: accueil.ph");
 
 $proj_id = $_GET[idp];
 if (empty($proj_id)){
@@ -53,7 +53,7 @@ else if ($mode=="modifier"){
 	}
 	}//end if connex
 	else
-		Header("Location :accueil.php");
+		Header("Location: accueil.php");
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">

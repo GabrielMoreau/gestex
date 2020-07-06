@@ -31,7 +31,7 @@ if (empty($_POST['emprunt']))
 
 	}}}
 
-en_tete("resultat ajout appareil ");
+en_tete('R&eacute;sultat ajout appareil');
 
 if (empty($_GET['tri']))
 	$tri ="id";
@@ -61,7 +61,7 @@ if ( $pdo = connect_db() ){
     $stmt->execute(array($nom,$equipe));
 	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if(!empty($pret)){
-		echo 'erreur, l\'appareil est déjà emprunté';
+		echo 'erreur, l\'appareil est d&eacute;j&agrave; emprunt&eacute;';
 		pied_page();
 		exit();
 	}

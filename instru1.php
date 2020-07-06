@@ -13,7 +13,7 @@ $user_level= $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete("Liste des appareils:");
+en_tete('Liste des appareils');
 
 //recuper la methode de tri
 $tri = $_GET[tri];
@@ -27,8 +27,8 @@ $cat=$_GET[categorie];
 //recupere l'equipe
 $eq=$_GET[equipe];
 echo "$eq";
-echo "Tu es connect&eacute; en tant que : ".$logged_in_user." (".$user_id.")<br />";
 ?>
+
 <br />
 <table cellpadding="2" cellspacing="2" border="1"
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -185,23 +185,23 @@ echo $data['gamme'];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
 		//si trouve ajoute un bouton
-		echo "Voir : <a href =\"notice.php?id=". $data['id']."\">".$data['nom']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
+		echo "Voir : <a href =\"notice.php?id=". $data['id']."\">".$data['nom']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
 
 	}
 if (!empty($eq))
 {
  echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Demande de pret\" /></a>";
+      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/box-arrow-in-down.svg\" nosave=\"\" title=\">Demande de pr&ecirc;t\" /></a>";
       echo"</td>";
 }
 	 if ( $user_level >=2) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app2.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+      echo "<a href=\"add_app2.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_app2.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_app2.php?id=$data['id']\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 
 }
@@ -263,7 +263,7 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data['categorie']'";
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_proj) != FALSE){
 		//si trouve ajoute un bouton
-		echo "Voir : <a href =\"notice.php?id=". $data['id']."\">".$data['nom']."<img src=\"images/filefind.png\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
+		echo "Voir : <a href =\"notice.php?id=". $data['id']."\">".$data['nom']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
 
 	}
 
@@ -271,18 +271,18 @@ $querry = "SELECT id, nom FROM categorie WHERE id='$data['categorie']'";
 
 {
 echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Demande de pret\" /></a>";
+      echo "<a href=\"add-pret.php?id=$data['id']\"><img src=\"images/box-arrow-in-down.svg\" nosave=\"\" title=\">Demande de pr&ecirc;t\" /></a>";
      echo"</td>";
 }
 
  if ( $user_level >=2) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app2.php?id=$data['id']\"><img src=\"images/edit.png\" nosave=\"\" title=\">Modifier\" /></a>";
+      echo "<a href=\"add_app2.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\" /></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_app2.php?id=$data['id']\"><img src=\"images/edittrash.png\" nosave=\"\" title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_app2.php?id=$data['id']\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
       echo"</td>";
 
 }

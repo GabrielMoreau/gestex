@@ -10,7 +10,7 @@ if (!auth(2))
 
 require("html_functions.php");
 
-en_tete("Suppression Fournisseur");
+en_tete('Suppression Fournisseur');
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -18,7 +18,7 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $valid= $_GET[ok];
 $id_fourn = $_GET[id];
 if (empty($id_fourn))
- Header( "Location : list_fourn.php");
+ Header("Location: list_fourn.php");
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
  echo "Sur de supprimer le Fournisseur ".$id_fourn." ?<br />";

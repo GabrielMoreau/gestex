@@ -11,11 +11,11 @@ include("session_auth.php");
 
 $manip_id = $_GET[idm];
 if (empty($manip_id))
- Header("Location :accueil.php");
+ Header("Location: accueil.php");
 
 $proj_id = $_GET[idp];
 if (empty($proj_id))
- Header("Location :accueil.php");
+ Header("Location: accueil.php");
 
 $task_id = $_GET[idt];
 if (empty($task_id)){
@@ -70,7 +70,7 @@ echo $texte;
 
 }//end if connex
  else
-  Header("Location :accueil.php");
+  Header("Location: accueil.php");
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
