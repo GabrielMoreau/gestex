@@ -109,3 +109,11 @@ INSERT INTO `users`(`id`, `loggin`, `password`, `level`, `nom`, `prenom`, `tel`,
 
 UPDATE users SET password='YYYYYYYYYYYYYYYYY'  WHERE id='1';
 ```
+
+### Icônes
+
+Les icônes proviennent du projet [bootstrap](https://getbootstrap.com/),
+plus particulièrement de la partie [icons](https://icons.getbootstrap.com/#icons).
+Ces images sont libres de droits.
+Elles sont au format SVG.
+Actuellement, nous avons recopié dans le projet GestEx uniquement les quelques icônes dont nous avons besoin.
