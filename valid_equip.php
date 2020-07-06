@@ -8,18 +8,18 @@ require("html_functions.php");
 unset($erreur);unset($loggin);unset($password);unset($password2); unset($nom);
 //variables ne pouvant etre nulles
 
-				if (empty($_POST[nom]))
+				if (empty($_POST['nom']))
 					$erreur="nom non pr&eacute;cis&eacute;";
 				else{
-					$nom =$_POST[nom];
-					if (empty($_POST[compte]))
+					$nom =$_POST['nom'];
+					if (empty($_POST['compte']))
 						$erreur="Compte non pr&eacute;cis&eacute;";
 					else{
-						$compte = $_POST[compte];
+						$compte = $_POST['compte'];
 
-							$descr=$_POST[descr];
+							$descr=$_POST['descr'];
 							//variables pouvant etre nulles
-							$chef =$_POST[chef];
+							$chef =$_POST['chef'];
 
 }}
 
@@ -41,18 +41,19 @@ else{
 ///on inscrit
 require("db_functions.php");
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 		//inscription
-	$table = "equipe";
-		$result = mysql_query("INSERT INTO $table ".
-			"(nom,descr,compte,chef)".
-			" VALUES ('$nom',  '$descr', '$compte', '$chef')");
+	// $table = "equipe";
+	$sql = "INSERT INTO equipe (nom,descr,compte,chef) VALUES (?,  ?, ?, ?)";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($nom, $descr, $compte, $chef));
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			//
- 		if (!$result){
+ 		// if (!$result){
 			//inscription !ok
-			$erreur = mysql_error();
-		echo "<br />erreur :".$erreur;
-		}
+			// $erreur = mysql_error();
+		// echo "<br />erreur :".$erreur;
+		// }
 
 	}//end if connect
 
