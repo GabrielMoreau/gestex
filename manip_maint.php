@@ -6,113 +6,119 @@
 include("session_auth.php");
 
 if (!auth(1))
- Header("Location: login.php");
+	Header("Location: login.php");
 
-$user_id = $_SESSION['user_id'];
+$user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level= $_SESSION['level'];
+$user_level     = $_SESSION['level'];
 
 //recuper la methode de tri
 if (empty($_GET['tri']))
-  $tri ="nom";
+	$tri = 'nom';
 else
-  $tri = $_GET['tri'];
+	$tri = $_GET['tri'];
 
 //et le numero de manip
 if (empty($_GET['id']))
- Header("Location: accueil.php");
+	Header("Location: accueil.php");
 else
-  $manip_id=$_GET['id'];
+	$manip_id=$_GET['id'];
 
 require("html_functions.php");
 
 en_tete('Historique Manip');
-if ( $pdo = connect_db() ){
+if ($pdo = connect_db()){
 
- // recupere les refs du user
- $sql = 'SELECT prenom,nom FROM users where loggin = ?;' ;
-//  list($qh,$num) = query_db($querry);
+	// recupere les refs du user
+	$sql = 'SELECT prenom,nom FROM users where loggin = ?;' ;
+	// list($qh,$num) = query_db($querry);
 
-// $data = result_db($qh);
-$stmt = $pdo->prepare($sql);
-$stmt->execute(array($logged_in_user));
-$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// echo " Bienvenue ";
-// var_dump($user);
-// echo $[0]]['prenom'];
-// echo $user[0]['nom'];
-// echo " ($user_id)<br /><br />";
+	// $data = result_db($qh);
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($logged_in_user));
+	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	// echo " Bienvenue ";
+	// var_dump($user);
+	// echo $[0]]['prenom'];
+	// echo $user[0]['nom'];
+	// echo " ($user_id)<br /><br />";
 ?>
+
 <br />
 Voici la liste des Projets de la manip :<br />
 <?php
- $sql = 'SELECT * FROM manip where id = ?;';
+$sql = 'SELECT * FROM manip where id = ?;';
 //  list($qh,$num) = query_db($querry);
- ///recupere les infos de la manip
+///recupere les infos de la manip
 //  $data = result_db($qh);
 $stmt = $pdo->prepare($sql);
 $stmt->execute(array($manip_id));
 $manip = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
- $dossier_manip=$manip[0]['nom'];
- ?>
+$dossier_manip=$manip[0]['nom'];
+?>
 
 <!-- titre -->
 <table cellpadding="1" cellspacing="1" border=1 style="width: 90%; text-align: center; margin-left: auto; margin-right: auto;">
-  <tbody><tr bgcolor="#f7d709">
- <?php
- echo "<td rowspan=2><h2>".$manip[0]['nom']." (".$manip[0]['id'].")</h2> <i>Date</i> :".$manip[0]['date']."<br /></td>";
-  echo "<td style=\" text-align: left;\">".$manip[0]['descr']."<br /></td>";
-    // recupere le nom de de equipes
-  $sql ='SELECT nom FROM equipe WHERE id = ?;';
-  // list($qheq,$numeq) = query_db($querry);
-  // $eq = result_db($qheq)  ;
-$stmt = $pdo->prepare($sql);
-$stmt->execute(array($manip[0]['equipe']));
-$eq = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	<tbody>
+		<tr bgcolor="#f7d709">
+			<?php
+			echo "<td rowspan=2><h2>".$manip[0]['nom']." (".$manip[0]['id'].")</h2> <i>Date</i> : ".$manip[0]['date']."<br /></td>".PHP_EOL;
+			echo "<td style=\" text-align: left;\">".$manip[0]['descr']."<br /></td>".PHP_EOL;
+			?>
+		</tr>
 
-
- echo "<tr bgcolor=\"#f7d709\">";
- echo "<td style=\" text-align: center;\">";
-  if(!empty($eq)){ echo "<i>&Eacute;quipe</i> :".$eq[0]['nom']."<br />"; }
-    // recupere le nom du chercheur
-  $sql = 'SELECT nom FROM users WHERE id = ?;';
-  // list($qheq,$numeq) = query_db($querry);
-  // $eq = result_db($qheq)  ;
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute(array($manip[0]['chercheur']));
-  $eq = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  if(!empty($eq)){ echo "<i>Chercheur</i> :".$eq[0]['nom']."<br />";}
-
-  if(!empty($manip)){ echo "<i>Local</i> :".$manip[0]['local']."<br /></td>";}
-  
- echo "</tr>";
-
- ?>
-</tr></tbody></table>
+		<tr bgcolor="#f7d709">
+			<td style="text-align: center;">
+			<?php
+			// recupere le nom de de equipes
+			$sql ='SELECT nom FROM equipe WHERE id = ?;';
+			// list($qheq,$numeq) = query_db($querry);
+			// $eq = result_db($qheq)  ;
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array($manip[0]['equipe']));
+			$eq = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			if (!empty($eq)) {echo '<i>&Eacute;quipe</i> : '.$eq[0]['nom'].'<br />';}
+			// recupere le nom du chercheur
+			$sql = 'SELECT nom FROM users WHERE id = ?;';
+			// list($qheq,$numeq) = query_db($querry);
+			// $eq = result_db($qheq)  ;
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array($manip[0]['chercheur']));
+			$eq = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			if (!empty($eq)) {echo '<i>Chercheur</i> : '.$eq[0]['nom'].'<br />';}
+			if (!empty($manip)) {echo '<i>Local</i> : '.$manip[0]['local'].'<br />';}
+			?>
+			</td>
+		</tr>
+	</tbody>
+</table>
 <br />
 
 <!-- menu commandes -->
 <table cellpadding="1" cellspacing="1" border="0"
- style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-  <tbody>
-    <tr class=menu>
- <?php if ($user_level >=2){ ?>
-   <td style="vertical-align: top; text-align: center;">
-  <a href="add_proj.php?idm=<?php echo $manip_id ?>">Ajout d'un Projet</a>
-  <br /></td>
-   <td style="vertical-align: top; text-align: center;">
-  <a href="assoc_proj.php?id=<?php echo $manip_id ?>">Association d'un Projet</a>
-  <br /></td>
- <?php } ?>
-   <td style="vertical-align: top; text-align: center;">
- <a href="accueil.php">Retour a l'accueil</a>
- <br /></td>
-
-  <td style="vertical-align: top; text-align: center;">
- <a href="logout.php?variable=projet">Quitter</a>
- <br /></td> </tr></tbody>
+	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+	<tbody>
+		<tr class="menu">
+			<?php if ($user_level >=2){ ?>
+			<td style="vertical-align: top; text-align: center;">
+				<a href="add_proj.php?idm=<?php echo $manip_id ?>">Ajout d'un Projet</a>
+				<br />
+			</td>
+			<td style="vertical-align: top; text-align: center;">
+				<a href="assoc_proj.php?id=<?php echo $manip_id ?>">Association d'un Projet</a>
+				<br />
+			</td>
+			<?php } ?>
+			<td style="vertical-align: top; text-align: center;">
+				<a href="accueil.php">Retour &agrave; l'accueil</a>
+				<br />
+			</td>
+			<td style="vertical-align: top; text-align: center;">
+				<a href="logout.php?variable=projet">Quitter</a>
+				<br />
+			</td>
+		</tr>
+	</tbody>
 </table>
 <br />
 
@@ -134,19 +140,19 @@ $projet = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <script language="javascript">
 function windowToTop(lien){
-wnd = window.open(lien,  'Project Info','location=0,directories=no,status=no,menubar=yes,resizable=1,width=550,height=550');
-wnd.focus();
+	wnd = window.open(lien, 'Project Info', 'location=0,directories=no,status=no,menubar=yes,resizable=1,width=550,height=550');
+	wnd.focus();
 }
 </script>
 
 <table cellpadding="1" cellspacing="1" border="1" style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-  <tbody>
-    <tr bgcolor="#f7bb09">
-  <th style="vertical-align: top; text-align: left;" colspan="4" >
-<?php  echo "Projet :<a href=\"#\" onclick=\"windowToTop('proj_info.php?idm=". $manip_id ."&idp=". $proj_id ."');\" title =\"D&eacute;tails de ce projet\">";
-  echo $manips['nom']." (".$manips['id'].")"; ?> </a><br />
-      </th>
-  <th style="vertical-align: top; text-align: left;">
+	<tbody>
+		<tr bgcolor="#f7bb09">
+			<th style="vertical-align: top; text-align: left;" colspan="4" >
+				<?php  echo "Projet : <a href=\"#\" onclick=\"windowToTop('proj_info.php?idm=". $manip_id ."&idp=". $proj_id ."');\" title =\"D&eacute;tails de ce projet\">";
+				echo $manips['nom']." (".$manips['id'].")"; ?> </a><br />
+			</th>
+			<th style="vertical-align: top; text-align: left;">
  <?php
  ///bouton lien vers la doc
  $dossier_proj ="data/".$dossier_manip."/". $manips['nom'];
@@ -162,7 +168,7 @@ wnd.focus();
  }
  ?>
   </th>
-<?php if ($user_level >=2){ ?>
+<?php if ($user_level >= 2) { ?>
   <!-- <th colspan="3"></th> //ajout de doc   -->
     <th style="vertical-align: top; text-align: left;">
 
@@ -185,7 +191,7 @@ wnd.focus();
   <th style="vertical-align: top; text-align: center;">Par :<br />      </th>
   <th style="vertical-align: top; text-align: center;">Temps pass&eacute;:<br />      </th>
 
- <?php if ($user_level >=2){ ?>
+ <?php if ($user_level >= 2) { ?>
   <th colspan="2" style="vertical-align: top; text-align: right;" >
   <a href ="add_task.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>">Ajouter une tache</a><br />
     </th>
@@ -248,7 +254,7 @@ wnd.focus();
    echo "dur&eacute;e :";
   echo $temps_tache." heures";
   $total_projet += $temps_tache;
-   if ($user_level>=2){
+   if ($user_level >= 2) {
    echo "<a href=\"add_time.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/clock.svg\" nosave=\"\" width=\"20\" title=\"Ajouter du temps\"></a>";
      echo"</td><td style=\"vertical-align: top;\">";
    // ajout d'un document a une tache -->
@@ -265,7 +271,7 @@ wnd.focus();
  }//end while taches
 
    echo"<tr><td style=\"vertical-align: top;text-align: left;\" >";
- if ($user_level >=2){
+ if ($user_level >= 2) {
  echo" <a href =\"add_task.php?idm=".$manip_id." ?>&idp=". $proj_id ."?>\"><img src=\"images/plus-square.svg\" nosave=\"\" width=\"15\"  title=\"Ajouter une tache\"></a><br />";
  }
 
@@ -281,30 +287,32 @@ echo "<br />temps total manip : ".$total_manip." heures<br /><br />";
 
 ////////projets associes
 
-if (!empty($manip[0]['assoc_proj'])){
- echo "<h3>Projet(s) associ&eacute;(s) :</h3><ul>";
- $assoc = explode(',',$manip[0]['assoc_proj']);
-foreach($assoc as $a){
-  // recupere l'identite du projet associe
-  $sql = 'SELECT id,nom FROM projet WHERE id = ?;';
-  // list($qh3,$num3) = query_db($querry);
-  // $projet_a = result_db($qh3);
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute(array($a));
-  $projet_a = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if (!empty($manip[0]['assoc_proj'])) {
+	echo '<h3>Projet(s) associ&eacute;(s) :</h3>';
+	echo '<ul>';
+	$assoc = explode(',', $manip[0]['assoc_proj']);
+	foreach($assoc as $a){
+		// recupere l'identite du projet associe
+		$sql = 'SELECT id, nom FROM projet WHERE id = ?;';
+		// list($qh3,$num3) = query_db($querry);
+		// $projet_a = result_db($qh3);
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($a));
+		$projet_a = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
- //liens vers ces projets
- echo "<li>(".$a.") ";
-echo "<a href=\"#\" onclick=\"windowToTop('proj_info.php?idp=". $projet_a[0]['id'] ."')\" title =\"D&eacute;tails de ce projet\">";
- echo $projet_a[0]['nom']."</a></li>";
- }
-echo "</ul>";
+		//liens vers ces projets
+		echo '  <li>(".$a.") ';
+		echo '    <a href="#" onclick="windowToTop(\'proj_info.php?idp='. $projet_a[0]['id'] .'\')" title ="D&eacute;tails de ce projet">';
+		echo      $projet_a[0]['nom'];
+		echo '    </a>';
+		echo '  </li>';
+	}
+	echo '</ul>';
 }
 
-}//end if connect
+} // end if connect
 ?>
 
-<br />
 <br />
 </div>
 <?php pied_page(); ?>
