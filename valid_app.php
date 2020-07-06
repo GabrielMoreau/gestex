@@ -1,7 +1,6 @@
 <?php
 
 require("html_functions.php");
-
 /// valid_app.php
 //validation d'un nouvel appareil
 unset($erreur);
@@ -48,7 +47,6 @@ else{
 
 
 en_tete('R&eacute;sultat ajout appareil');
-nav_bar();
 if (!empty($erreur) ){
 
 	//erreur
@@ -86,7 +84,6 @@ if ( $pdo = connect_db() ){
 echo "ajout de ".$nom."valid&eacute;e ";
 echo"<br /><br /><a href=\"list_app.php\">Suite</a><br /><br />\n";
 pied_page();
-exit();
 }
 
 ?>
