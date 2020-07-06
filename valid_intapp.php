@@ -7,27 +7,27 @@ require("html_functions.php");
 unset($erreur);
 //variables ne pouvant etre nulles
 
-if (empty($_POST[id_app]))
+if (empty($_POST['id_app']))
 		$erreur="id appareil non pr&eacute;cis&eacute;";
 else{
-		$id_app=$_POST[id_app];
-	if (empty($_POST[descr]))
+		$id_app=$_POST['id_app'];
+	if (empty($_POST['descr']))
 		$erreur="Description non pr&eacute;cis&eacute;";
 	else{
-		$descr=$_POST[descr];
+		$descr=$_POST['descr'];
 
-			if (empty($_POST[tech]))
+			if (empty($_POST['tech']))
 				$erreur="tech non pr&eacute;cis&eacute;";
 			else{
-				$tech =$_POST[tech];
-				if (empty($_POST[fourn]))
+				$tech =$_POST['tech'];
+				if (empty($_POST['fourn']))
 					$erreur="fournisseur non pr&eacute;cis&eacute;";
 				else{
-					$fourn =$_POST[fourn];
+					$fourn =$_POST['fourn'];
 
 							//variables pouvant etre nulles
-					$date = $_POST[date];
-					$facture=$_POST[facture];
+					$date = $_POST['date'];
+					$facture=$_POST['facture'];
 
 }}}}
 
@@ -49,17 +49,20 @@ else{
 ///on inscrit
 require("db_functions.php");
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 		//inscription
-	$table = "intervention";
-		$result = mysql_query("INSERT INTO $table ".
+	// $table = "intervention";
+		$sql = "INSERT INTO intervention ".
 			"(descr, appareil, tech, fournisseur, date, facture)".
-			" VALUES ( '$descr', '$id_app', '$tech', '$fourn', '$date', '$facture')");
+			" VALUES ( ?, ?, ?, ?, ?, ?);";
 			//
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($descr, $id_app, $tech, $fourn, $date, $facture));
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
  		if (!$result){
 			//inscription !ok
-			$erreur = mysql_error();
-		echo "<br />erreur :".$erreur;
+			// $erreur = mysql_error();
+		echo "<br />erreur :";
 		}
 
 	}//end if connect
