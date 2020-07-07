@@ -20,7 +20,7 @@ session_start();
 require("html_functions.php");
 
 if (empty($_GET['id']))
-	Header("Location: instru.php");
+	Header("Location: list_appareil.php");
 else
 	$id_app=$_GET['id'];
 

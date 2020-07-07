@@ -13,7 +13,7 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 $id_app = $_GET[id];
 if (empty($id_app))
-	Header("Location: instru.php");
+	Header("Location: list_appareil.php");
 
 if ( $connex = connect_db() ){
 

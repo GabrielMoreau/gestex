@@ -97,13 +97,13 @@ Liste des appareils : <br />
 	<tbody>
 		<tr bgcolor="#f7d709">
 			<th style="vertical-align: top; text-align: center;">
-				<a href ="instru.php?tri=categorie">Cat&eacute;gorie<br />
+				<a href ="list_appareil.php?tri=categorie">Cat&eacute;gorie<br />
 			</th>
 			<th style="vertical-align: top; text-align: center;">
-			<a href ="instru.php?tri=id">Num&eacute;ro de l'appareil<br />
+			<a href ="list_appareil.php?tri=id">Num&eacute;ro de l'appareil<br />
 			</th>
 			<th style="vertical-align: top; text-align: center;">
-			<a href ="instru.php?tri=nom">Nom</a><br />
+			<a href ="list_appareil.php?tri=nom">Nom</a><br />
 			</th>
 			<th style="vertical-align: top; text-align: center;">
 				Mod&egrave;le<br />

@@ -6,7 +6,7 @@
 
 include("db_functions.php");
 //if (!auth(1))
-	//Header("Location: instru.php");
+	//Header("Location: list_appareil.php");
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -49,7 +49,7 @@ if ($connex = connect_db()) {
 	while ($data = result_db($qh)){
 		if ($data['id'] == 15) {
 			echo "<td style=\"vertical-align: top;\">";
-			echo "	<a href =\"instru.php?equipe=".$data['id']."\">Liste des appareils en pr&ecirc;t</a>";
+			echo "	<a href =\"list_appareil.php?equipe=".$data['id']."\">Liste des appareils en pr&ecirc;t</a>";
 			echo "</td>";
 		}
 	}

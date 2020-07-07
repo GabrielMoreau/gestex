@@ -207,7 +207,7 @@ if ($notice!=$listing[0]['notice']){
 	}//end if modif
 	else{
 		echo "aucune modif a faire";
-		echo"<br /><br /><a href=\"instru.php\">Suite</a><br /><br />\n";
+		echo"<br /><br /><a href=\"list_appareil.php\">Suite</a><br /><br />\n";
 		pied_page();
 		exit();
 		}//else end
@@ -233,7 +233,7 @@ $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
 echo "$cat";
 echo "<br />modification de ".$nom."<br />";
 echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"instru.php?categorie=".$categorie[0]['id']."\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_appareil.php?categorie=".$categorie[0]['id']."\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
 
 pied_page();

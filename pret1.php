@@ -50,7 +50,7 @@ else
 foreach($equipe as $data){
 	if ($data['id'] == 15) {     
 		echo"<td style=\"vertical-align: top;\">";
-		echo "	<a href =\"instru.php?equipe=".$data['id']." pret=".$data['id']."\">Liste des appareils en pr&ecirc;t</a>";
+		echo "	<a href =\"list_appareil.php?equipe=".$data['id']." pret=".$data['id']."\">Liste des appareils en pr&ecirc;t</a>";
 		echo "</td>";
 		echo"<td style=\"vertical-align: top;\">";
 		echo "	<a href =\"reserva.php?user=".$user_level." \">Liste des r&eacute;servations</a>";

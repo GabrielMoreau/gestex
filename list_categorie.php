@@ -5,7 +5,7 @@
 include("session_auth.php");
 session_start();
 // if (!auth(1))
-	// Header("Location: instru.php");
+	// Header("Location: list_appareil.php");
 if (empty($_SESSION['logged_in_user'])) {
 	$user_level = 0; // no auth
 } else {
@@ -68,10 +68,10 @@ Liste des appareils : <br />
 	<tbody>
 		<tr bgcolor="#f7d709">
 			<th style="vertical-align: top; text-align: center;">
-				<a href ="instru.php?categorie=0 ">Liste globale</a><br />
+				<a href ="list_appareil.php?categorie=0 ">Liste globale</a><br />
 			</th>
 			<th style="vertical-align: top; text-align: center;">
-				<a href ="instru.php?equipe=15">Appareils au service instrumentation</a><br />
+				<a href ="list_appareil.php?equipe=15">Appareils au service instrumentation</a><br />
 			</th>
 		</tr>
 	</tbody>
@@ -95,7 +95,7 @@ if ($pdo = connect_db()) {
 	$stmt->execute(array($tri));
 	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	foreach ($categorie as $data) {
-		echo '<a href="instru.php?categorie='.$data['id'].'">'.$data['nom'].'</a>';
+		echo '<a href="list_appareil.php?categorie='.$data['id'].'">'.$data['nom'].'</a>';
 		echo '<br />'.PHP_EOL;
 	}
 }

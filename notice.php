@@ -15,7 +15,7 @@ $user_level= $_SESSION['level'];
 //recupere  le numero du nom
 $nom_id=$_GET['id'];
 if (empty($nom_id))
-	Header("Location: instru.php");
+	Header("Location: list_appareil.php");
 
 require("html_functions.php");
 

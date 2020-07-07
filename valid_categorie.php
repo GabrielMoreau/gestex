@@ -60,7 +60,7 @@ if(	$pdo = connect_db()){
 
 echo "<br />ajout de ".$categorie."<br />";
 echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"instru.php\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_appareil.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
 }

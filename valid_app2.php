@@ -135,7 +135,7 @@ echo "<br /> Votre requ&ecirc;te a bien &eacute;t&eacute; ajout&eacute;";
 
 
 echo "<br />ajout de ".$nom." valid&eacute;e";
-echo "<br /><br /><a href=\"instru.php\">Suite</a><br /><br />\n";
+echo "<br /><br /><a href=\"list_appareil.php\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
 pied_page();
 exit();
