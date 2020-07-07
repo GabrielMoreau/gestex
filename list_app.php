@@ -28,7 +28,7 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="accueil.php">Retour a<br />l'accueil</a>
+	<a href="list_manip.php">Retour a<br />l'accueil</a>
 	<br /></td>
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">

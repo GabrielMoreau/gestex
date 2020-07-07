@@ -40,7 +40,7 @@ if (empty($tri))
   <tbody>
     <tr>
 	<td style="vertical-align: top; text-align: center;">
-	<a href="accueil.php">Retour a<br />l'accueil</a>
+	<a href="list_manip.php">Retour a<br />l'accueil</a>
 	<br /></td>
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="list_app.php">Retour a<br />liste des Appareils</a>

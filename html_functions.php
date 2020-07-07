@@ -63,7 +63,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
             <a href="instru.php?equipe=15">au service <br />instrumentation</a>
          </div>
    </li>  
-   <li><a href="accueil.php">Liste des manips</a></li>
+   <li><a href="list_manip.php">Liste des manips</a></li>
    <li class="right"><a href="login.php">Se connecter</a></li>
 </ul>
 </div>
@@ -83,7 +83,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
          </div>
    </li>
    <!-- <li><a href="essai.php">Liste des appareils</a></li> -->
-   <li><a href="accueil.php">Liste des manips</a></li>
+   <li><a href="list_manip.php">Liste des manips</a></li>
    <?php if($level == 2){ ?>
       <li class="dropdown">
          <a class="dropbtn">Ajouter</a>

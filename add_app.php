@@ -186,7 +186,7 @@ else if ($mode == 'modifier'){
 </table>
 <br />
 
-<?php } else { Header("Location: accueil.php"); } ?>
+<?php } else { Header("Location: list_manip.php"); } ?>
 <br />
 </div>
 <?php pied_page() ?>

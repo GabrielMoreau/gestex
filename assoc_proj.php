@@ -13,7 +13,7 @@
 $manip_id = $_GET[id];
 if (empty($manip_id)){
 
-  Header("Location: accueil.php");
+  Header("Location: list_manip.php");
 }
 
 require("html_functions.php");
@@ -33,7 +33,7 @@ echo "Projets deja associ&eacute;s :".$data['assoc_proj'];
 
 }//end if connex
  else
-  Header("Location: accueil.php");
+  Header("Location: list_manip.php");
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
@@ -85,7 +85,7 @@ echo "Projets deja associ&eacute;s :".$data['assoc_proj'];
     </tr></form>
   </tbody>
  <tbody>
- <form action="accueil.php" method="POST" name="annulForm">
+ <form action="list_manip.php" method="POST" name="annulForm">
   <tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
  <input type="submit" name="annul" value="Annuler">
   </td>    </tr>

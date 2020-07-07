@@ -19,7 +19,7 @@ $valid= $_GET[ok];
 
 $id_manip = $_GET[id];
 if (empty($id_manip))
- Header("Location: accueil.php");
+ Header("Location: list_manip.php");
 
 echo "Manip:".$id_manip. " ok :".$valid."<br />";
 
@@ -58,7 +58,7 @@ $result=1;
 else
  echo "Manip ".$manip_id." supprim&eacute;e, ainsi que ses projets et taches!<br />";
 //on retourne a la page precedente
-  echo "<a href=\"accueil.php\">Suite</a><br />";
+  echo "<a href=\"list_manip.php\">Suite</a><br />";
 }}
 
 ?>

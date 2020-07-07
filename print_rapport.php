@@ -44,7 +44,7 @@ echo " Bienvenue $data['prenom'] $data['nom'] ($user_id)<br /><br />";
   <tbody>
     <tr class=menu>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="accueil.php">Retour a l'accueil</a>
+	<a href="list_manip.php">Retour a l'accueil</a>
 	<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="rapport.php">Retour &agrave; la cr&eacute;ation de rapport</a>

@@ -31,7 +31,7 @@ destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l
 <p>Il faut &ecirc;tre un utilisateur r&eacute;f&eacute;renc&eacute; pour pouvoir acc&eacute;der &agrave; cette partie.</p>
 <ul>
   <li><a href="add_user.php">Demander son inscription</a></li>
-  <li><a href="accueil.php">Acc&eacute;der au gestionnaire de Projets</a></li>
+  <li><a href="list_manip.php">Acc&eacute;der au gestionnaire de Projets</a></li>
 </ul>
 
 <br />

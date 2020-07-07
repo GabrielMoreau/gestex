@@ -20,7 +20,7 @@ else
 
 //et le numero de manip
 if (empty($_GET['id']))
-	Header("Location: accueil.php");
+	Header("Location: list_manip.php");
 else
 	$manip_id=$_GET['id'];
 
@@ -110,7 +110,7 @@ $dossier_manip=$manip[0]['nom'];
 			</td>
 			<?php } ?>
 			<td style="vertical-align: top; text-align: center;">
-				<a href="accueil.php">Retour &agrave; l'accueil</a>
+				<a href="list_manip.php">Retour &agrave; l'accueil</a>
 				<br />
 			</td>
 			<td style="vertical-align: top; text-align: center;">

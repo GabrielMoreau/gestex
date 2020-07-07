@@ -1,6 +1,6 @@
 <?php
 
-//accueil.php
+//list_manip.php
 
 // Authenticate
 include("session_auth.php");
@@ -78,25 +78,25 @@ if ( $pdo = connect_db() ){
 		<tbody>
 			<tr bgcolor="#f7d709">
 				<th style="vertical-align: top; text-align: center;">
-					<a href ="accueil.php?tri=date">Date</a><br />
+					<a href ="list_manip.php?tri=date">Date</a><br />
 				</th>
 				<th style="vertical-align: top; text-align: center;">
-					<a href ="accueil.php?tri=nom">Nom</a><br />
+					<a href ="list_manip.php?tri=nom">Nom</a><br />
 				</th>
 				<th style="vertical-align: top; text-align: center;">
-					<a href ="accueil.php?tri=descr">Description</a><br />
+					<a href ="list_manip.php?tri=descr">Description</a><br />
 				</th>
 				<th style="vertical-align: top; text-align: center;">
-					<a href ="accueil.php?tri=local">Local</a> <br />
+					<a href ="list_manip.php?tri=local">Local</a> <br />
 				</th>
 				<th style="vertical-align: top; text-align: center;">
-					<a href ="accueil.php?tri=equipe">&Eacute;quipe</a>
+					<a href ="list_manip.php?tri=equipe">&Eacute;quipe</a>
 				</th>
 				<?php if ($user_level!=1){
 				//pas necessaire si chercheur logue
 				?>
 				<th style="vertical-align: top; text-align: center;">
-					<a href ="accueil.php?tri=chercheur">Chercheur</a>
+					<a href ="list_manip.php?tri=chercheur">Chercheur</a>
 				</th>
 				<th style="vertical-align: top; text-align: center;">
 					<br />

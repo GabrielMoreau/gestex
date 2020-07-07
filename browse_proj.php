@@ -15,12 +15,12 @@ $user_level= $_SESSION['level'];
 //recupere  le numero de manip
 $manip_id=$_GET['idm'];
 if (empty($manip_id))
- Header("Location: accueil.php");
+ Header("Location: list_manip.php");
 
 //recupere  le numero de proj
 $proj_id =$_GET['idp'];
 if (empty($proj_id))
- Header("Location: accueil.php");
+ Header("Location: list_manip.php");
 
 require("html_functions.php");
 

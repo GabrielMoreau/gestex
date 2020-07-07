@@ -16,7 +16,7 @@ if (empty($_GET['id'])){
 	$action = 'valid_fourn.php';
 }
 else{
-	//on vient depuis accueil.php
+	//on vient depuis list_manip.php
 	//->modif coordonnees
 	$fourn_id = $_GET['id'];
 	$mode = 'modifier';

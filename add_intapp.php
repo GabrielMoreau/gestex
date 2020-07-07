@@ -161,7 +161,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
 <br />
 <?php }
 	else
-	{	Header("Location: accueil.php");	}	?>
+	{	Header("Location: list_manip.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>

@@ -59,7 +59,7 @@ echo $texte;
 
 }//end if connex
 	else
-		Header("Location: accueil.php");
+		Header("Location: list_manip.php");
 ?>
 
 <br />
@@ -68,7 +68,7 @@ echo $texte;
   <tbody>
     <tr class=menu>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="accueil.php">Retour a l'accueil</a>
+	<a href="list_manip.php">Retour a l'accueil</a>
 	<br /></td>
 
  <td style="vertical-align: top; text-align: center;">
@@ -176,7 +176,7 @@ echo $texte;
     </tr></form>
   </tbody>
 <tbody>
-	<form action="accueil.php" method="POST" name="annulForm">
+	<form action="list_manip.php" method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
 	 </td>    </tr>

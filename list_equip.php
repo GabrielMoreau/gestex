@@ -27,7 +27,7 @@ if (empty($tri))
 	<tbody>
 		<tr class="menu">
 			<td style="vertical-align: top; text-align: center;">
-				<a href="accueil.php?tri=date">Retour &agrave; l'accueil</a>
+				<a href="list_manip.php?tri=date">Retour &agrave; l'accueil</a>
 				<br />
 			</td>
 

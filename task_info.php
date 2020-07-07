@@ -15,17 +15,17 @@ $user_level= $_SESSION['level'];
 //et le numero de manip
 $manip_id=$_GET['idm'];
 if (empty($manip_id))
- Header("Location: accueil.php");
+ Header("Location: list_manip.php");
 
 //et le numero du projet
 $proj_id=$_GET['idp'];
 if (empty($proj_id))
- Header("Location: accueil.php");
+ Header("Location: list_manip.php");
 
 //et le numero de la tache
 $task_id=$_GET['idt'];
 if (empty($task_id))
- Header("Location: accueil.php");
+ Header("Location: list_manip.php");
 
 require("html_functions.php");
 

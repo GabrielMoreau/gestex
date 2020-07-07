@@ -27,7 +27,7 @@ if (empty($tri))
 	<tbody>
 		<tr>
 			<td style="vertical-align: top; text-align: center;">
-				<a href="accueil.php?tri=nom">Retour a l'accueil</a>
+				<a href="list_manip.php?tri=nom">Retour a l'accueil</a>
 				<br />
 			</td>
 			<?php if ($user_level >=2) { ?>

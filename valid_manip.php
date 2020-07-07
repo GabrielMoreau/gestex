@@ -90,7 +90,7 @@ mkdir("data/".$dossier_proj);
 echo "inscription de la manip ".$nom."<br />";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"accueil.php\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_manip.php\">Suite</a><br /><br />\n";
   // }
  }//end if connect
 

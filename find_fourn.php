@@ -38,7 +38,7 @@ if (isset($_POST[descr]))
   <tbody>
     <tr>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="accueil.php">Retour a l'accueil</a>
+	<a href="list_manip.php">Retour a l'accueil</a>
 	<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="list_fourn.php">Liste des fournisseurs</a>

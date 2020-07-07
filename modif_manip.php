@@ -107,7 +107,7 @@ if ( $connex = connect_db() ){
 echo "<br />".$nom." modification ";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 echo"  valid&eacute;e !!";
-echo"<br /><br /><a href=\"accueil.php\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_manip.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
 }

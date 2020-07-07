@@ -44,7 +44,7 @@ else if ($mode=="modifier"){
 	}
 }//end if connex
 	else
-		Header("Location: accueil.php");
+		Header("Location: list_manip.php");
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
@@ -176,7 +176,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
     </tr></form>
   </tbody>
  <tbody>
-	<form action="accueil.php" method="POST" name="annulForm">
+	<form action="list_manip.php" method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
 	 </td>    </tr>

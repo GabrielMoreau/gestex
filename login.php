@@ -24,7 +24,7 @@
 			if ($truc == "instru")
 				Header("Location: essai.php");
 			if ($truc == "projet")
-				Header("Location: accueil.php?tri=date");
+				Header("Location: list_manip.php?tri=date");
 			if ($truc == "pret")
 				Header("Location: pret1.php");
 		}

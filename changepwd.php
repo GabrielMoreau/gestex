@@ -11,7 +11,7 @@ $user_level= $_SESSION['level'];
 	$user2chg = $_GET[id];
 
 if (empty($user2chg ))
-	Header("Location: accueil.php");
+	Header("Location: list_manip.php");
 
 if ( $connex = connect_db() ){
 

@@ -32,7 +32,7 @@ if (empty($_GET['tri'])){
 	<tbody>
 		<tr class=menu>
 			<td style="vertical-align: top; text-align: center;">
-				<a href="accueil.php">Retour &agrave; l'accueil</a>
+				<a href="list_manip.php">Retour &agrave; l'accueil</a>
 				<br />
 			</td>
 			<?php if ($user_level >= 3) { ?>
