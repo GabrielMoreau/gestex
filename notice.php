@@ -4,7 +4,7 @@
 
 // Authenticate
 include("session_auth.php");
-
+session_start();
 //if (!auth(1))
 	//Header("Location: login.php");
 
@@ -19,14 +19,18 @@ if (empty($nom_id))
 
 require("html_functions.php");
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 
-	$querry = "SELECT nom FROM Listing WHERE id='$nom_id';" ;
-	list($qh,$num) = query_db($querry);
-	$data = result_db($qh);
-	$nom_nom= $data['nom'];
+	$sql = 'SELECT nom FROM Listing WHERE id = ?;' ;
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($nom_id));
+	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$titre ="Documents de l'appareil : ".$data['nom'];
+	// list($qh,$num) = query_db($querry);
+	// $data = result_db($qh);
+	$nom_nom= $listing[0]['nom'];
+
+$titre ="Documents de l'appareil : ".$listing[0]['nom'];
 
 en_tete($titre);
 
@@ -41,20 +45,22 @@ $dossier_proj ="data/instru/".$nom_nom."/";
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if ( ($handle = @opendir($dossier_proj)) != FALSE){
 
-	$images = array();	$fichiers= array();
-   while (false !== ($file = readdir($handle))) {
+	$images = array();
+	$fichiers= array();
+   while (false !== $file = readdir($handle)) {
+	   echo $file;
    ////echo count($images);
        if ($file != "." && $file != "..") {
-           if ( eregi("^[a-zA-Z0-9_\-]+(:?\.jpg|\.gif|\.png|\.pdf|\.doc|\.xls|\.mov|\.avi|\.mpg|\.html|\.htm)$", $file) == TRUE ){
+           if ( preg_match('/^[a-zA-Z0-9_\-]+(:?\.jpg|\.gif|\.png|\.pdf|\.doc|\.xls|\.mov|\.avi|\.mpg|\.html|\.htm)$/', $file) == TRUE ){
 		///entasse les images
 		////echo $file;
 			array_push( $images,$file );
-		 }
-	elseif ( eregi("^[a-zA-Z0-9_\-]+(:?\.txt)$", $file ) == TRUE ){
-	 	//et les fichiers textes
-		array_push ( $fichiers, $file );
-       }
-   }//end while
+		}
+		else if ( preg_match('/^[a-zA-Z0-9_\-]+(:?\.txt)$/', $file ) == TRUE ){
+			//et les fichiers textes
+			array_push ( $fichiers, $file );
+		}
+   	}//end while
 	//repere le max
 	 $max = count($images);
 	if ( count( $fichiers) > $max){
