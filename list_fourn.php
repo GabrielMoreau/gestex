@@ -15,7 +15,7 @@ require("html_functions.php");
 
 en_tete('Liste de tous les fournisseurs');
 
-//recuper la methode de tri
+// recupere la methode de tri
 $tri = $_GET['tri'];
 if (empty($tri))
 	$tri ="nom";
@@ -84,26 +84,21 @@ if (empty($tri))
 				echo"<th></th>";
 			?>
 		</tr>
-<?php	//interrogation base de donnees
 
-if ( $pdo = connect_db() ){
+<?php	// interrogation base de donnees
+if ($pdo = connect_db()) {
 	// recupere la liste de fournisseurs
-	// $querry = "SELECT * FROM fournisseurs ORDER BY $tri";
-	// list($qh,$num) = query_db($querry);
-	// $last_id=0;
 	$sql = 'SELECT * FROM fournisseurs ORDER BY ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($tri));
 	$fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	// var_dump($fournisseur);
-	// while ($data = result_db($qh)) {
 	$num_line = 0;
-	foreach( $fournisseur as $data){
+	foreach ($fournisseur as $data) {
 		// remplit le tableau
 		if ($num_line % 2)
-			echo '<tr class="pair">'.PHP_EOL;
-		else
 			echo '<tr class="impair">'.PHP_EOL;
+		else
+			echo '<tr class="pair">'.PHP_EOL;
 		$num_line++;
 		echo '  <td style="vertical-align: top;">'.$data['nom'].'</td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">'.$data['adresse'].'</td>'.PHP_EOL;
