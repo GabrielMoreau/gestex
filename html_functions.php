@@ -5,7 +5,7 @@ function en_tete($titre){
    echo '<html>'.PHP_EOL;
    echo '<head>'.PHP_EOL;
    echo '  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />'.PHP_EOL;
-   echo '  <link rel="icon" sizes="192x108" href="images/logo-gestex-192.png" />'.PHP_EOL;
+   echo '  <link rel="icon" sizes="192x111" href="images/logo-gestex-192.png" />'.PHP_EOL;
    echo '  <title>GestEx - '.$titre.'</title>'.PHP_EOL;
    echo '  <link href="pool_project.css" rel="stylesheet" type="text/css" />'.PHP_EOL;
    echo '</head>'.PHP_EOL;
@@ -17,7 +17,7 @@ function en_tete($titre){
    echo '  <tbody>'.PHP_EOL;
    echo '    <tr bgcolor="#f7d709">'.PHP_EOL;
    echo '      <td style="vertical-align: center;">'.PHP_EOL;
-   echo '        <a href="./"><img src="images/logo-gestex.svg" nosave="" height="100" /></a>'.PHP_EOL;
+   echo '        <a href="./"><img src="images/logo-gestex.png" nosave="" height="100" /></a>'.PHP_EOL;
    echo '      </td>'.PHP_EOL;
    echo '      <td style="vertical-align: top;"><br />'.PHP_EOL;
    echo '        <h1><a href="./">GestEx</a> - Gestion des plateformes Exp&eacute;rimentales</h1>'.PHP_EOL;
