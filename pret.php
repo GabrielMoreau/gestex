@@ -49,7 +49,7 @@ if ($connex = connect_db()) {
 	while ($data = result_db($qh)){
 		if ($data['id'] == 15) {
 			echo "<td style=\"vertical-align: top;\">";
-			echo "	<a href =\"instru1.php?equipe=".$data['id']."\">Liste des appareils en pr&ecirc;t</a>";
+			echo "	<a href =\"instru.php?equipe=".$data['id']."\">Liste des appareils en pr&ecirc;t</a>";
 			echo "</td>";
 		}
 	}
