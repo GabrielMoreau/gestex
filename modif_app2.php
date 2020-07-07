@@ -52,16 +52,34 @@ $gamme=$_POST['gamme'];
 					$achat = $_POST['achat'];
 					$reparation=$_POST['reparation'];
 	$accessoires=$_POST['accessoires'];
-$inventaire=$_POST['inventaire'];
-$notice=$_POST['notice'];
+	$inventaire=$_POST['inventaire'];
+
+	var_dump($_FILES);
+	$notice=$_FILES["notice"]["name"];
+	$notice = str_replace(' ', '_', $notice);
+	$nom_dossier = str_replace(' ', '_', $nom);
+	$path = "./data/instru/".$nom_dossier;
+
+	if(!is_dir($path)){	
+		echo "\n". $path."\n";
+		mkdir($path,0777);
+	}
+			echo "je créé un nouveau dossier\n";
+			if(move_uploaded_file($_FILES["notice"]["tmp_name"], $path."/".$notice )){
+				echo "ça a march\n";
+			}else{
+				echo "ça n'a pas marché\n ";
+			}
+	
 
 }}}}}}}
 
 en_tete('R&eacute;sultat modification appareil');
 
-$tri = $_GET['tri'];
-if (empty($tri))
+if (empty($_GET['tri']))
 	$tri ="id";
+else
+	$tri = $_GET['tri'];
 
 $cat=$_GET['categorie'];
 echo "$cat";
@@ -126,7 +144,7 @@ if ($gamme!=$listing[0]['gamme']){
 			$querry.="gamme='$gamme',";
 		}
 
-		if ($tech!=$listing[0]['tech']){
+		if ($tech!=$listing[0]['responsable']){
 			//modif du tech
 			$modif=1;
 			$querry.="responsable='$tech',";
@@ -136,7 +154,7 @@ if ($gamme!=$listing[0]['gamme']){
 			$modif=1;
 			$querry.="equipe='$equipe',";
 		}
-		if ($fourn!=$listing[0]['fourn']){
+		if ($fourn!=$listing[0]['fournisseur']){
 			//modif du fourn
 			$modif=1;
 			$querry.="fournisseur='$fourn',";
@@ -185,6 +203,7 @@ if ($notice!=$listing[0]['notice']){
 			// $erreur = mysql_error();
 			echo "<br />erreur ";
 		}
+	
 	}//end if modif
 	else{
 		echo "aucune modif a faire";
@@ -207,6 +226,9 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute(array($cat));
 $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+
 
 echo "$cat";
 echo "<br />modification de ".$nom."<br />";
