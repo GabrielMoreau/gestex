@@ -89,10 +89,7 @@ else {
 	// inscription
 	$mot_crypte = md5($password);
 	// $table = "users";
-	$sql = 'INSERT INTO users'
-		.' (nom, prenom, loggin, password, email, level, tel, equipe, valid)'
-		.' VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0);';
-	//
+	$sql = 'INSERT INTO users (nom, prenom, loggin, password, email, level, tel, equipe, valid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0);';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($nom, $prenom, $loggin, $mot_crypte, $mail, $level, $phone, $equipe));
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -106,7 +103,7 @@ else {
 		// inscription enregistree mais pas encore validee!
 		// envoi d'un courriel a l'admin
 		$texte = 'Inscription de '.$prenom.' '.$nom;
-		// mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
+		mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
 
 		echo 'Inscription de '.$prenom.' '.$nom.'<br />';
 		echo ' <img src="images/pool_project.jpg" height="100" nosave="" align="middle" alt="" />"';
