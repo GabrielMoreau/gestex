@@ -2,8 +2,8 @@
 
 require("html_functions.php");
 
-/// valid_inscr.php
-//validation d'une nouvelle inscription
+/// valid_user.php
+// validation d'un nouveau utilisateur
 
 unset($erreur);
 unset($loggin);

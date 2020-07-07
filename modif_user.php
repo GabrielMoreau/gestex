@@ -1,5 +1,5 @@
 <?php
-//modif_inscr.php
+//modif_user.php
 
 // Authenticate
 include("session_auth.php");
@@ -13,8 +13,8 @@ $user_level     = $_SESSION['level'];
 
 require("html_functions.php");
 
-/// modif_inscr.php
-//modification d'une inscription
+/// modif_user.php
+//modification d'un utilisateur
 
 unset($erreur); unset($nom);unset($user_id );
 //variables ne pouvant etre nulles

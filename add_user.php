@@ -14,12 +14,12 @@ $user_level     = $_SESSION['level'];
 if (empty($_GET['id'])) {
 	//->nouvelle inscription
 	$mode   = 'ajouter';
-	$action = 'valid_inscr.php';
+	$action = 'valid_user.php';
 	$user2ch_id = '';
 } else {
 	//->modif coordonnees
 	$mode   = 'modifier';
-	$action = 'modif_inscr.php';
+	$action = 'modif_user.php';
 	$user2ch_id = $_GET['id'];
 }
 
