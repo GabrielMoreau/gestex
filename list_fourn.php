@@ -97,34 +97,39 @@ if ( $pdo = connect_db() ){
 	$fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	// var_dump($fournisseur);
 	// while ($data = result_db($qh)) {
+	$num_line = 0;
 	foreach( $fournisseur as $data){
 		// remplit le tableau
-		echo '<tr>';
-		echo '  <td style="vertical-align: top;">'.$data['nom'].'</td>';
-		echo '  <td style="vertical-align: top;">'.$data['adresse'].'</td>';
-		echo '  <td style="vertical-align: top;" nowrap>'.$data['tel'].'</td>';
-		echo '  <td style="vertical-align: top;" nowrap>'.$data['fax'].'</td>';
+		if ($num_line % 2)
+			echo '<tr class="pair">'.PHP_EOL;
+		else
+			echo '<tr class="impair">'.PHP_EOL;
+		$num_line++;
+		echo '  <td style="vertical-align: top;">'.$data['nom'].'</td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">'.$data['adresse'].'</td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;" nowrap>'.$data['tel'].'</td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;" nowrap>'.$data['fax'].'</td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		if (!empty($data['mail']))
 			echo '    <a href="mailto:'.$data['mail'].'"><img src="images/envelope.svg" nosave=""></a>';
-		echo '  </td>';
+		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		if (!empty($data['www']))
 			echo '    <a href="http://'.$data['www'].'" target="_fournView"><img src="images/link.svg" nosave="" width="22"></a>';
-		echo '  </td>';
-		echo '  <td style="vertical-align: top;">'.$data['contact'].'</td>';
-		echo '  <td style="vertical-align: top;">'.$data['descr'].'</td>';
+		echo '  </td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">'.$data['contact'].'</td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">'.$data['descr'].'</td>'.PHP_EOL;
 		if ($user_level >=2 && $data['nom'] != 'aucun') {
 			echo '  </td><td style="vertical-align: top;">';
 			echo '    <a href="add_fourn.php?id='.$data['id'].'"><img src="images/pen.svg" nosave="" title="Modifier"></a>';
-			echo '  </td>';
+			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($user_level >=3 && $data['nom'] != 'aucun') {
 			echo '  </td><td style="vertical-align: top;">';
 			echo '    <a href="del_fourn.php?id='.$data['id'].'"><img src="images/trash.svg" nosave="" title="Supprimer"></a>';
-			echo '  </td>';
+			echo '  </td>'.PHP_EOL;
 		} //end if
-		echo '</tr>';
+		echo '</tr>'.PHP_EOL;
 	} //end foreach
 } //end if
 ?>
