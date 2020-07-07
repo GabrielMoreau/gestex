@@ -78,7 +78,7 @@ else if ($mode=="modifier"){
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 
   <tbody>
-<form action="<?php echo $action ?>" method="POST" name="inscrForm">
+<form action="<?php echo $action ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
 		<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
 
   <tr>
@@ -255,7 +255,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
  <td style="vertical-align: top;">Notice (facultatif)<br />
       </td>
       <td style="vertical-align: top;">
-	<input type="text" name="notice" size="30" maxlength="30" value="<?php if ($mode == "modifier"){echo $listing[0]['notice'];} ?>" ><br />
+	<input type="file" name="notice" value="<?php if ($mode == "modifier"){echo $listing[0]['notice'];} ?>" ><br />
       </td>
     </tr>
 
