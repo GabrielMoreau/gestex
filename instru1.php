@@ -50,7 +50,7 @@ if (empty($eq))
 ?>
 
 <td style="vertical-align: top; text-align: center;">
-	<a href="essai.php">Retour<br />aux cat&eacute;gories</a>
+	<a href="list_categorie.php">Retour<br />aux cat&eacute;gories</a>
 	<br /></td>
 <?php
 if (empty($eq))

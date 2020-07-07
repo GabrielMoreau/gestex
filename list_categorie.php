@@ -1,5 +1,5 @@
 <?php
-//essai.php
+//list_categorie.php
 // Authenticate
 
 include("session_auth.php");

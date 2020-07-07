@@ -71,7 +71,7 @@ else
 			<?php } ?>
 
 			<td style="vertical-align: top; text-align: center;">
-				<a href="essai.php">Retour aux cat&eacute;gories</a>
+				<a href="list_categorie.php">Retour aux cat&eacute;gories</a>
 				<br />
 			</td>
 

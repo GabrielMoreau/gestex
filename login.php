@@ -22,7 +22,7 @@
 			$login_failure = true;
 		}else{
 			if ($truc == "instru")
-				Header("Location: essai.php");
+				Header("Location: list_categorie.php");
 			if ($truc == "projet")
 				Header("Location: list_manip.php?tri=date");
 			if ($truc == "pret")
