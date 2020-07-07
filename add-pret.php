@@ -148,7 +148,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
 		</tr>
 		</form>
 
-		<form action="essai1.php"method="POST" name="annulForm">
+		<form action="essai.php"method="POST" name="annulForm">
 		<tr>
 			<td colspan="2" style="vertical-align: top; text-align: right;">
 				<input type="submit" name="annul" value="Annuler">
