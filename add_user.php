@@ -145,8 +145,8 @@ if ($pdo = connect_db()) {
 				<input type="radio" name="level" value="2" <?php if ($mode ==='modifier' && $data['level']==2) echo 'checked="checked"' ?> >ITA<br />
 				<?php } ?>
 				
-				<?php if (isset($user_level) && $user_level==3) { ?>
-				<input type="radio" name="level" value="3" <?php if ($data['level']==3) echo 'checked="checked"' ?> >Admin<br />
+				<?php if (isset($user_level) && $user_level>=3) { ?>
+				<input type="radio" name="level" value="3" <?php if ($mode ==='modifier' && $data['level']==3) echo 'checked="checked"' ?> >Admin<br />
 				<?php } ?>
 				
 				<?php if (isset($user_level) && ($user_level < 3)){ /// consultation seulement
