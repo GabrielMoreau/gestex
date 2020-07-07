@@ -113,7 +113,25 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 echo "<br /> Votre requ&ecirc;te a bien &eacute;t&eacute; ajout&eacute;";
 }//end if connect
 
+//On enregistre la notice dans le dossier instru/ dans un sous-dossier portant le nom de l'appareil auquel la notice est utile
+// if($pdo = connect_db()){
+	// $sql = 'SELECT nom FROM appareil WHERE id = ?;';
+	// $stmt = $pdo->prepare($sql);
+    // $stmt->execute(array($id_appareil));
+	// $nom = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$path = "./instru/".$nom;
+	$nom_notice=$_FILES["notice"]["name"];
+	mkdir($path,0777);
+	if(move_uploaded_file($nom_notice, $path )){
+		echo "ça a marché";
+	}else{
+		echo "ça n'a pas marché";
+	}
+	
 
+
+
+// }
 
 
 echo "<br />ajout de ".$nom." valid&eacute;e";
