@@ -7,12 +7,11 @@ session_start();
 // if (!auth(1))
 	// Header("Location: instru.php");
 if (empty($_SESSION['logged_in_user'])) {
-	$log = false;
+	$user_level = 0; // no auth
 } else {
 	$user_id        = $_SESSION['user_id'];
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 	$user_level     = $_SESSION['level'];
-	$log = true;
 }
 require("html_functions.php");
 
@@ -32,11 +31,10 @@ else
 	<tbody>
 		<tr>
 			<td style="vertical-align: top; text-align: center;">
-			<a href="<?php GESTEX_URL_SERVICE ?>">Retour &agrave;<br /> la page du service</a>
-			<br />
-		</td>
-		<?php 
-		if($log == true) {
+				<a href="<?php GESTEX_URL_SERVICE ?>">Retour &agrave;<br /> la page du service</a>
+				<br />
+			</td>
+			<?php 
 			if ($user_level >= 2) { ?>
 				<td style="vertical-align: top; text-align: center;">
 					<a href="add_app2.php">Ajout<br />d'un appareil</a>
@@ -57,7 +55,6 @@ else
 					<br />
 				</td>
 			<?php } ?>
-		<?php } ?>
 		</tr>
 	</tbody>
 </table>
@@ -109,7 +106,7 @@ if ($pdo = connect_db()) {
 	</tbody>
 </table>
 
-<?php if ($log == true && (($user_id == 33)|| ( $user_id == 2) || $user_id == 105)) { ?>
+<?php if (($user_level >= 3) || ($user_id == 33) || ($user_id == 2) || ($user_id == 105)) { ?>
 <br /><br /><br />
 <td style="vertical-align: top; text-align: center;">
 	<a href="demandes.php">Demandes en cours</a>
