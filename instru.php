@@ -226,10 +226,15 @@ if ($pdo = connect_db()) {
 // echo"</tr>";
 
 // while ($data = result_db($qh)) {
+	$num_line = 0;
 	foreach ($listing as $data) {
 		// remplit le tableau
+		if ($num_line % 2)
+			echo '<tr class="impair">'.PHP_EOL;
+		else
+			echo '<tr class="pair">'.PHP_EOL;
+		$num_line++;
 
-		echo '<tr>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
 		// list($qheq,$numeq) = query_db($querry);
