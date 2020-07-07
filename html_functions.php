@@ -5,7 +5,7 @@ function en_tete($titre){
    echo '<html>'.PHP_EOL;
    echo '<head>'.PHP_EOL;
    echo '  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />'.PHP_EOL;
-   echo '  <link rel="icon" sizes="192x111" href="images/logo-gestex-192.png" />'.PHP_EOL;
+   echo '  <link rel="icon" sizes="192x126" href="images/logo-gestex-192.png" />'.PHP_EOL;
    echo '  <title>GestEx - '.$titre.'</title>'.PHP_EOL;
    echo '  <link href="pool_project.css" rel="stylesheet" type="text/css" />'.PHP_EOL;
    echo '</head>'.PHP_EOL;
