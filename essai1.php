@@ -9,13 +9,16 @@ include("db_functions.php");
 
 require("html_functions.php");
 
-// $user_id = $_SESSION['user_id'];
-// $logged_in_user = strtolower($_SESSION['logged_in_user']);
-// $user_level= $_SESSION['level'];
-
 en_tete('Liste des appareils');
 
+//recupere la methode de tri
+
+if (empty($_GET['tri']))
+	$tri = 'nom';
+else
+	$tri = $_GET['tri'];
 ?>
+
 <br />
 <table cellpadding="2" cellspacing="2" border="1"
 	style="width: 70%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -50,55 +53,39 @@ Liste des appareils : <br />
 				<a href ="instru1.php?list=">Liste globale</a><br />
 			</th>
 			<th style="vertical-align: top; text-align: center;">
-				<a href ="instru1.php?equipe= 15">Appareils en pr&ecirc;t au service instru</a><br />
+				<a href ="instru1.php?equipe=15">Appareils en pr&ecirc;t au service instru</a><br />
 			</th>
 		</tr>
 	</tbody>
 </table>
+
 <br />
-
 Liste des appareils par cat&eacute;gorie : <br />
-
 <i>Cliquer sur une cat&eacute;gorie pour voir la liste...</i><br />
 <br />
 <table cellpadding="10" cellspacing="2" border="1"
 	style="width: 70%; text-align: center; margin-left: auto; margin-right: auto;">
 	<tbody>
 		<tr bgcolor="#f7d709">
-<?php	
- // recuperation de la methode de tri et valeur par defaut mise a 'nom'
-if (empty($_GET['tri']))
-	$tri ="nom";
-else
-	$tri = $_GET['tri'];
+			<td style="vertical-align: top;">
 
-if ( $pdo = connect_db() ){
-
+<?php
+if ($pdo = connect_db()) {
 	// recupere les refs du user
-
 	$sql = 'SELECT id, nom FROM categorie ORDER BY ?;';
-	$stmt =$pdo->prepare($sql);
+	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($tri));
 	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	// list($qh,$num) = query_db($querry);
-	// $last_id=0;
-// // $data = result_db($qh);
- echo"<td style=\"vertical-align: top;\">";
-// echo "<a href =\"instru1.php?categorie=".$categorie[0]['id']."\">". $categorie[0]['nom']."</a>";
-// echo "<br />";
-
-// while ($data = result_db($qh))
-foreach($categorie as $data){
-
-	echo "<a href =\"instru1.php?categorie=".$data['id']."\">". $data['nom']."</a>";
-	echo "<br />";
-}
-
-      echo"</tr>";
-
+	foreach ($categorie as $data) {
+		echo '<a href="instru1.php?categorie='.$data['id'].'">'.$data['nom'].'</a>';
+		echo '<br />'.PHP_EOL;
+	}
 }
 ?>
-</tbody>
+
+			</td>
+		</tr>
+	</tbody>
 </table>
 
 <br />

@@ -21,7 +21,7 @@ en_tete('Liste des appareils');
 //recupere la methode de tri
 
 if (empty($_GET['tri']))
-	$tri = 'id';
+	$tri = 'nom';
 else
 	$tri = $_GET['tri'];
 ?>
@@ -88,13 +88,13 @@ Liste des appareils par cat&eacute;gorie : <br />
 	style="width: 70%; text-align: center; margin-left: auto; margin-right: auto;">
 	<tbody>
 		<tr bgcolor="#f7d709">
-			<td style=\"vertical-align: top;\">
+			<td style="vertical-align: top;">
 
 <?php
 if ($pdo = connect_db()) {
 	// recupere les refs du user
 	$sql = 'SELECT id, nom FROM categorie ORDER BY ? ASC;';
-	$stmt =$pdo->prepare($sql);
+	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($tri));
 	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	foreach ($categorie as $data) {
@@ -104,8 +104,8 @@ if ($pdo = connect_db()) {
 }
 ?>
 
-			</td>'
-		</tr>'
+			</td>
+		</tr>
 	</tbody>
 </table>
 
