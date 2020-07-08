@@ -54,7 +54,6 @@ $gamme=$_POST['gamme'];
 	$accessoires=$_POST['accessoires'];
 	$inventaire=$_POST['inventaire'];
 
-	var_dump($_FILES);
 	$notice=$_FILES["notice"]["name"];
 	$notice = str_replace(' ', '_', $notice);
 	$nom_dossier = str_replace(' ', '_', $nom);
@@ -62,9 +61,9 @@ $gamme=$_POST['gamme'];
 
 	if(!is_dir($path)){	
 		echo "\n". $path."\n";
-		mkdir($path,0777);
+		echo "je créé un nouveau dossier\n";
+		mkdir($path,0750);
 	}
-			echo "je créé un nouveau dossier\n";
 			if(move_uploaded_file($_FILES["notice"]["tmp_name"], $path."/".$notice )){
 				echo "ça a march\n";
 			}else{
@@ -203,6 +202,10 @@ if ($notice!=$listing[0]['notice']){
 			// $erreur = mysql_error();
 			echo "<br />erreur ";
 		}
+		$sql = 'INSERT INTO notice (nom_notice,id_appareil) VALUES (?, ?);';
+		$stmt = $pdo->prepare($sql);
+		$path_complet =$path."/".$notice;
+		$stmt->execute(array($path_complet,$listing[0]['id']));
 	
 	}//end if modif
 	else{
@@ -233,7 +236,7 @@ $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
 echo "$cat";
 echo "<br />modification de ".$nom."<br />";
 echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"list_appareil.php?categorie=".$categorie[0]['id']."\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_appareil.php\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
 
 pied_page();
