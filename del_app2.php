@@ -19,7 +19,7 @@ if ( $pdo = connect_db() ){
 
 // on supprime le fournisseur
 	$sql = 'DELETE LOW_PRIORITY FROM Listing WHERE id = ? LIMIT 1';
-	list($qh,$num) = query_db($querry);
+	// list($qh,$num) = query_db($querry);
 	$stmt = $pdo->prepare($sql);
     $stmt->execute(array($id_app));
 
