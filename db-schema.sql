@@ -259,7 +259,7 @@ CREATE TABLE `users` (
 DROP TABLE IF EXISTS `notice`;
 CREATE TABLE `notice` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_notice` varchar(10) NOT NULL DEFAULT '',
+  `nom_notice` varchar(150) NOT NULL DEFAULT '',
   `id_appareil` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
