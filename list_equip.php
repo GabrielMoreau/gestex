@@ -16,9 +16,11 @@ require("html_functions.php");
 en_tete('Liste de toutes les &eacute;quipes');
 
 //recuper la methode de tri
-$tri = $_GET['tri'];
-if (empty($tri))
+if (empty($_GET['tri']))
 	$tri = 'nom';
+else
+	$tri = $_GET['tri'];
+
 ?>
 
 <br />
@@ -90,7 +92,6 @@ if ($pdo = connect_db()) {
 			echo '<tr class="pair">'.PHP_EOL;
 		else
 			echo '<tr class="impair">'.PHP_EOL;
-
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['nom'];
 		echo '  </td>'.PHP_EOL;
@@ -109,7 +110,9 @@ if ($pdo = connect_db()) {
 		$stmt->execute(array($data['chef']));
 		$chef = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		echo '  <td style="vertical-align: top;">';
-		echo      $chef[0]['nom'];
+		if(!empty($chef)){
+			 echo      $chef[0]['nom'];
+		}
 		echo '  </td>'.PHP_EOL;
 
 		if ($user_level >= 2) {
