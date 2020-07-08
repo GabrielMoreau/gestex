@@ -1,6 +1,6 @@
 <?php
 
-//jointdemandes.php
+//joint_demandes.php
 
 // Authenticate
 include("session_auth.php");
