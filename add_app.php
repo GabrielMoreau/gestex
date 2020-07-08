@@ -175,7 +175,7 @@ else if ($mode == 'modifier'){
 	</tbody>
 
 	<tbody>
-		<form action="list_app.php" method="POST" name="annulForm">
+		<form action="list_machine.php" method="POST" name="annulForm">
 		<tr>
 			<td colspan="2" style="vertical-align: top; text-align: right;">
 				<input type="submit" name="annul" value="Annuler">

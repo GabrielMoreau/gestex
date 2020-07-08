@@ -137,7 +137,7 @@ $modif=0;
 	}//end if modif
 	else{
 		echo "aucune modif a faire";
-		echo"<br /><br /><a href=\"list_app.php\">Suite</a><br /><br />\n";
+		echo"<br /><br /><a href=\"list_machine.php\">Suite</a><br /><br />\n";
 		pied_page();
 		exit();
 		}//else end
@@ -148,7 +148,7 @@ $modif=0;
 echo "<br />".$nom."modifi&eacute; ";
 echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 echo"  valid&eacute;e !!";
-echo"<br /><br /><a href=\"list_app.php\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_machine.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
 }

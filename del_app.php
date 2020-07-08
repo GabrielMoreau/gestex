@@ -12,7 +12,7 @@ $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 if (empty($_GET['id']))
-	Header("Location: list_app.php");
+	Header("Location: list_machine.php");
 else
 	$id_app = $_GET['id'];
 
@@ -42,6 +42,6 @@ else{
 		}
 	}
 	//on retourne a la page d'accueil
-	Header("Location: list_app.php");
+	Header("Location: list_machine.php");
 }
 ?>

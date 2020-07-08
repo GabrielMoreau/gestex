@@ -14,7 +14,7 @@ $user_level= $_SESSION['level'];
 require("html_functions.php");
 
 if (empty($_GET[id]))
-	Header("Location: list_app.php");
+	Header("Location: list_machine.php");
 else
 	$id_app=$_GET[id];
 
@@ -43,7 +43,7 @@ if (empty($tri))
 	<a href="list_manip.php">Retour a<br />l'accueil</a>
 	<br /></td>
 	 <td style="vertical-align: top; text-align: center;">
-	<a href="list_app.php">Retour a<br />liste des Appareils</a>
+	<a href="list_machine.php">Retour a<br />liste des Appareils</a>
 	<br /></td>
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
