@@ -13,13 +13,13 @@ if (empty($_GET['id'])){
 	//->nouvel appareil
 	$app_id = '';
 	$mode = 'ajouter';
-	$action= 'valid_app.php';
+	$action = 'valid_machine.php';
 }
 else{
 	//->modif appareil
 	$app_id = $_GET['id'];
 	$mode = 'modifier';
-	$action= 'modif_machine.php';
+	$action = 'modif_machine.php';
 }
 
 require("html_functions.php");

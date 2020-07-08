@@ -1,7 +1,7 @@
 <?php
 
 require("html_functions.php");
-/// valid_app.php
+/// valid_machine.php
 //validation d'un nouvel appareil
 unset($erreur);
 //variables ne pouvant etre nulles
