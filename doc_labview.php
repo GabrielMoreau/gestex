@@ -1,6 +1,6 @@
 <?php
 
-//doclabview.php
+//doc_labview.php
 
 // Authenticate
 include("session_auth.php");
