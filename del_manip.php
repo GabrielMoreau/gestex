@@ -4,27 +4,30 @@
 
 // Authenticate
 include("session_auth.php");
-
-if (!auth(3))
- Header("Location: login.php");
-
 require("html_functions.php");
 
+if (!auth(3))
+  Header("Location: login.php");
 en_tete('Suppression Manip');
 
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-$valid= $_GET['ok'];
 
-$id_manip = $_GET['id'];
-if (empty($id_manip))
- Header("Location: list_manip.php");
+if (empty($_GET['id']))
+  Header("Location: list_manip.php");
+else
+  $id_manip = $_GET['id'];
 
-echo "Manip:".$id_manip. " ok :".$valid."<br />";
+if(empty($_GET['ok'])) // On récupère une variable ok qui sert a vérifier que la personne est bien sûr de supprimer la catégorie choisi
+	$valide ='no'	// s'il n'y a pas d'id, on met 'no' dans $valid
+else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
+	$valide = 'yes';
+else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
+	$valid = 'no'; 
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
- echo "Sur de supprimer la Manip ".$manip_id. " ainsi que tous ses projets et taches ?<br />";
+ echo "Sur de supprimer la Manip ".$id_manip. " ainsi que tous ses projets et taches ?<br />";
  echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_manip."&ok=yes\">OUI</a><br />";
   echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
 
@@ -36,42 +39,33 @@ else{
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array($id_manip));
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // list($qh,$num) = query_db($querry);
-    // while ($data = result_db($qh) && $result) {
-      foreach($result as $data){
-    //pour chaque projet de la manip
+    foreach($result as $data){
+      //pour chaque projet de la manip
       // on supprime toutes les taches liees a ce projet
       $sql = 'DELETE LOW_PRIORITY FROM tache WHERE projet = ?';
       $stmt = $pdo->prepare($sql);
-        $stmt->execute(array($data['id']));
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $stmt->execute(array($data['id']));
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // $result = mysql_query($querry);
       //on supprime ce projet
       $sql = "DELETE LOW_PRIORITY FROM projet WHERE manip = ?";
       $stmt = $pdo->prepare($sql);
-        $stmt->execute(array($id_manip));
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // $result = mysql_query($querry);
+      $stmt->execute(array($id_manip));
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }//end while projet
     if ($result){
       //on supprime la manip
       $sql = 'DELETE LOW_PRIORITY FROM manip WHERE id = ?';
-
-        // $result = mysql_query($querry);
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(array($id_manip));
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        }
-      if (!$result){
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute(array($id_manip));
+      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    if (!$result){
       //inscription !ok
-      $erreur = mysql_error();
-      echo "<br />erreur :".$erreur;
-
+      echo "<br />erreur dasn la suppression de la manip : ".$id_manip;
     }
     else
-    echo "Manip ".$manip_id." supprim&eacute;e, ainsi que ses projets et taches!<br />";
+      echo "Manip ".$manip_id." supprim&eacute;e, ainsi que ses projets et taches!<br />";
     //on retourne a la page precedente
     echo "<a href=\"list_manip.php\">Suite</a><br />";
   }
