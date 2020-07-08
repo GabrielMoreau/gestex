@@ -11,15 +11,19 @@ if (!auth(3))
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-$id_cat = $_GET[id];
-if (empty($id_app))
+if (empty($_GET['id']))
 	Header("Location: list_appareil.php");
+else
+	$id_cat = $_GET['id'];
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 
 // on supprime le fournisseur
-	$querry = "DELETE LOW_PRIORITY FROM categorie WHERE id=$id_cat LIMIT 1";
-	list($qh,$num) = query_db($querry);
+	$sql = 'DELETE LOW_PRIORITY FROM categorie WHERE id = ? LIMIT 1';
+	// list($qh,$num) = query_db($querry);
+	$stmt = $pdo->prepare($sql);
+    $stmt->execute(array($id_cat));
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 }
 
