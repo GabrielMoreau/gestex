@@ -50,7 +50,7 @@ else
 	<br /></td>
 <?php }
 else{	?>
-<a href="pret.php">Retour<br />&agrave; la liste des pr&ecirc;ts</a>
+<a href="pret1.php">Retour<br />&agrave; la liste des pr&ecirc;ts</a>
 <?php }?>
 </tr></tbody>
 </table>
