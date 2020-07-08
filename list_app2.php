@@ -1,5 +1,5 @@
 <?php
-//list_app.php
+//list_machine.php
 
 // Authenticate
 include("session_auth.php");
@@ -62,7 +62,7 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
 	<a href ="list_app2.php?tri=tech">Responsable</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app.php?tri=fournisseur">Fournisseur</a><br />
+	<a href ="list_app2.php?tri=fournisseur">Fournisseur</a><br />
       </th>
     <th style="vertical-align: top; text-align: center;">
 	Date Achat<br />
