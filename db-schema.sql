@@ -250,3 +250,16 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `loggin` (`loggin`)
 ) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
+
+
+--
+-- Table structure for table `notice`
+--
+
+DROP TABLE IF EXISTS `notice`;
+CREATE TABLE `notice` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_notice` varchar(10) NOT NULL DEFAULT '',
+  `id_appareil` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
