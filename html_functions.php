@@ -54,7 +54,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
   <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
   <li><a href="list_users.php">Liste des utilisateurs</a></li>
   <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
-  <li><a href="list_appareil.php?equipe=15 pret=15">Liste des appareils en pr&ecirc;t</a></li>
+  <li><a href="reserva.php">Liste des appareils en pr&ecirc;t</a></li>
   <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
@@ -73,7 +73,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
    <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
    <li><a href="list_users.php">Liste des utilisateurs</a></li>
    <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
-   <li><a href="list_appareil.php?equipe=15 pret=15">Liste des appareils en pr&ecirc;t</a></li>
+   <li><a href="reserva.php">Liste des appareils en pr&ecirc;t</a></li>
    <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
@@ -90,7 +90,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
          <div class="dropdown-content">
             <a href="add_manip.php">Manip</a>
             <a href="add_fourn.php">Fournisseur</a>
-            <a href="add-pret.php">Pr&ecirc;t</a>
+            <a href="list_appareil.php?equipe=15 pret=15">Pr&ecirc;t</a>
             <a href="add_time.php">Temps</a>
             <a href="add_task.php">Task</a>
             <a href="add_labviews.php">Labview</a>
@@ -107,7 +107,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
       <a href="add_equip.php">&Eacute;quipe</a>
       <a href="add_fourn.php">Fournisseur</a>
  
-      <a href="add-pret.php">Pr&ecirc;t</a>
+      <a href="list_appareil.php?equipe=15 pret=15">Pr&ecirc;t</a>
 
     </div>
   </li>
