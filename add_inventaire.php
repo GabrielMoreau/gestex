@@ -1,5 +1,5 @@
 <?php
-/// add_app.php
+/// add_inventaire.php
 	// Authenticate
 	include("session_auth.php");
 
