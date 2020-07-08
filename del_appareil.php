@@ -1,6 +1,6 @@
 <?php
 
-//del_app2.php
+//del_appareil.php
 
 // Authenticate
 include("session_auth.php");

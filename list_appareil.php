@@ -220,7 +220,7 @@ if ($pdo = connect_db()) {
 // 	}//end if
 //  if (( $user_level >=3 )&&($eq!="15 pret=15")) {
 //       echo"</td><td style=\"vertical-align: top;\">";
-//       echo '<a href="del_app2.php?id=',$listing[0][id],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
+//       echo '<a href="del_appareil.php?id=',$listing[0][id],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
 //       echo"</td>";
 // }
 // echo"</tr>";
@@ -314,7 +314,7 @@ if ($pdo = connect_db()) {
 		}//end if
 		if (($log === true && $user_level >= 3) && ($eq != "15 pret=15")) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="del_app2.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
+			echo '    <a href="del_appareil.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
 			echo '  </td>'.PHP_EOL;
 
 		}
