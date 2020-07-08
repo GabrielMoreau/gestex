@@ -32,26 +32,33 @@ else{
 	if ( $pdo = connect_db() ){
 
 		// on supprime la notice
-		$sql = 'SELECT nom_notice FROM notice WHERE id = ?';
+		$sql = 'SELECT nom_notice FROM notice WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($id_notice));
-		$notice = $stmt->fetchAll(PDO::FETCH_ASSOC);  // on récupère le chemin de la notice a supprimer
-    }
-    if( file_exists ( $notice[0]['nom_notice']))
-        $result = unlink( $notice[0]['nom_notice'] );
+        $notice = $stmt->fetchAll(PDO::FETCH_ASSOC);  // on récupère le chemin de la notice a supprimer
         if (!$result){ // si ça n'a pas marché
-			echo "<br />erreur dans la suppression du fichier avec la notice : ".$id_notice;
-		}else{
-            $sql = 'DELETE LOW_PRIORITY FROM notice WHERE id = ? LIMIT 1';
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute(array($id_notice));
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if (!$result){ // si ça n'a pas marché
-                echo "<br />erreur dans la suppression de la notice : ".$id_notice." dans la bas de donnée";
+            echo "<br />erreur dans la récupération du chemin de la notice : ".$id_notice;
+        }else{
+            if( file_exists ( $notice[0]['nom_notice'])){
+                $result = unlink( $notice[0]['nom_notice'] );
+                if (!$result){ // si ça n'a pas marché
+                    echo "<br />erreur dans la suppression du fichier avec la notice : ".$id_notice;
+                }else{
+                    $sql = 'DELETE LOW_PRIORITY FROM notice WHERE id = ? LIMIT 1;';
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(array($id_notice));
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    if (!$result){ // si ça n'a pas marché
+                        echo "<br />erreur dans la suppression de la notice : ".$id_notice." dans la bas de donnée";
+                    }else{
+                        echo "Notice ".$id_notice." supprim&eacute;!<br />";
+                    }
+                }
             }else{
-                echo "Notice ".$id_notice." supprim&eacute;!<br />";
+                echo "la notice a supprimer n'existe pas";
             }
-		}
+        }
+    }
     //on retourne a la page d'accueil
 	Header("Location: labview.php");
 }
