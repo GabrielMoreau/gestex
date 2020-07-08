@@ -35,7 +35,7 @@ $cat=$_GET[categorie];
 			</td>
 
 			<td style="vertical-align: top; text-align: center;">
-				<a href="demandes.php">Retour aux<br />demandes en cours</a>
+				<a href="list_demandes.php">Retour aux<br />demandes en cours</a>
 				<br />
 			</td>
 

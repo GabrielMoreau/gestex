@@ -44,6 +44,6 @@ else{ // s'il y a ok=yes dans l'url
 		}
 	}
 	//on retourne a la page d'accueil
-	Header("Location: demandes.php");
+	Header("Location: list_demandes.php");
 }
 ?>

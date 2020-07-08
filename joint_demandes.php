@@ -15,7 +15,7 @@ $user_level= $_SESSION['level'];
 //recupere  le numero du nom
 $tache_id=$_GET['id'];
 if (empty($tache_id))
-	Header("Location: demandes.php");
+	Header("Location: list_demandes.php");
 
 require("html_functions.php");
 
