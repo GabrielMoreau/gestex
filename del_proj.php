@@ -4,11 +4,10 @@
 
 // Authenticate
 include("session_auth.php");
+require("html_functions.php");
 
 if (!auth(3))
  Header("Location: login.php");
-
-require("html_functions.php");
 
 en_tete('Suppression Projet');
 
