@@ -128,7 +128,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
       <a href="add_labviews.php">Labview</a>
       <a href="add_intapp.php?app=3">Intervention</a>
       <a href="add_user.php">User</a>
-      <a href="add_app.php">Maintenance</a>
+      <a href="add_machine.php">Machine</a>
       <a href="add_manip.php">Manip</a>
     </div>
   </li>
