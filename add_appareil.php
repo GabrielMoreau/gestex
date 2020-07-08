@@ -27,7 +27,7 @@ else
 	$app_id = $_GET['id'];
 
 	// recupere la liste de appareils
-if ( $pdo = connect_db() ){
+if ($pdo = connect_db()){
 
 $sql = 'SELECT * FROM categorie WHERE id = ?;' ;
 // 	list($qh,$num) = query_db($querry);
@@ -36,18 +36,16 @@ $sql = 'SELECT * FROM categorie WHERE id = ?;' ;
 $stmt = $pdo->prepare($sql);
 $stmt->execute(array($cat));
 $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
-if (empty($app_id)){
+if (empty($app_id)) {
 	//->nouvel appareil
 	$mode = 'ajouter';
 	$action = 'valid_appareil.php?categorie='.$cat;
 //transmet la valeur de la categorie a la page valid appareil
 }
-else{
-
+else {
 	//->modif appareil
-	$mode ="modifier";
-	$action="modif_app2.php?categorie=".$cat;
-
+	$mode = 'modifier';
+	$action = 'modif_appareil.php?categorie='.$cat;
 }
 }
 

@@ -1,5 +1,5 @@
  <?php
-/// modif_app2.php
+/// modif_appareil.php
 
 // Authenticate
 //include("session_auth.php");
