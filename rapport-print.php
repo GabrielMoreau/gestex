@@ -1,6 +1,5 @@
 <?php
-
-//rapport.php
+// rapport-print.php
 
 // Authenticate
 include("session_auth.php");
@@ -47,7 +46,7 @@ echo " Bienvenue $data['prenom'] $data['nom'] ($user_id)<br /><br />";
 	<a href="list_manip.php">Retour a l'accueil</a>
 	<br /></td>
  <td style="vertical-align: top; text-align: center;">
-	<a href="rapport.php">Retour &agrave; la cr&eacute;ation de rapport</a>
+	<a href="rapport-create.php">Retour &agrave; la cr&eacute;ation de rapport</a>
 	<br /></td>
  <td style="vertical-align: top; text-align: center;">
 	<a href="logout.php?variable=projet">Quitter</a>

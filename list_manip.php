@@ -1,6 +1,5 @@
 <?php
-
-//list_manip.php
+// list_manip.php
 
 // Authenticate
 include("session_auth.php");
@@ -60,7 +59,7 @@ if ( $pdo = connect_db() ){
 					<br />
 				</th>
 				<th style="vertical-align: top; text-align: center; class:menu;" >
-					<a href="rapport.php">Editer<br />les rapports</a>
+					<a href="rapport-create.php">Editer<br />les rapports</a>
 					<br />
 				</th>
 				<?php } ?>
