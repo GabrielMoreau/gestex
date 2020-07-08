@@ -80,7 +80,7 @@ echo $texte;
 <table cellpadding="2" cellspacing="2" border="0" style="text-align: left; width: 75%;" align="center">
   <tbody>
 
-<form action="print_rapport.php" method="POST" name="rappForm">
+<form action="rapport-print.php" method="POST" name="rappForm">
     <tr>
 
       <td style="vertical-align: top;">pour l'<b>&Eacute;quipe</b><br /><i>choisissez dans la liste</i><br />
