@@ -92,7 +92,7 @@ $datax = result_db($qh);}
 
 echo "<br />ajout de ".$nom."<br />";
 echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"labview.php\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_labview.php\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
 pied_page();
 exit();

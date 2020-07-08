@@ -43,6 +43,6 @@ else{
 		}
 	}
 	//on retourne a la page d'accueil
-	Header("Location: labview.php");
+	Header("Location: list_labview.php");
 }
 ?>

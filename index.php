@@ -24,7 +24,7 @@ destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l
 <ul>
 	<li><a href="list_categorie.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</li>
 	<li><a href="list-pret.php">Gestion des pr&ecirc;ts des appareils</a> du service instrumentation</li>
-	<li><a href="labview.php">Liste des programmes Labview d&eacute;velopp&eacute;s</a></li>
+	<li><a href="list_labview.php">Liste des programmes Labview d&eacute;velopp&eacute;s</a></li>
 </ul>
 
 <h2>Gestion des projets techniques</h2>
