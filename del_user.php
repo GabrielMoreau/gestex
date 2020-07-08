@@ -20,16 +20,15 @@ else
   $id_user = $_GET['id'];
 
 if(empty($_GET['ok'])) // On récupère une variable ok qui sert a vérifier que la personne est bien sûr de supprimer la catégorie choisi
-	$valide ='no'	// s'il n'y a pas d'id, on met 'no' dans $valid
+	$valid ='no';	// s'il n'y a pas d'id, on met 'no' dans $valid
 else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
-	$valide = 'yes';
+	$valid = 'yes';
 else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
   $valid = 'no'; 
-  
 if (!isset($valid) || empty($valid) || $valid=="no"){
  echo "Sur de supprimer l'utilisateur ".$id_user. " ?<br />";
- echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_user."&ok=yes\">OUI</a><br />";
-  echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
+ echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_user."&ok=yes\">OUI</a><br />";
+  echo "<a href=\"".$_SERVER['HTTP_REFERER']."\">NON</a><br />";
 
 }
 else{
@@ -38,14 +37,9 @@ else{
     $sql = 'DELETE LOW_PRIORITY FROM users WHERE id = ? LIMIT 1';
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array($id_user));
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    if (!$result){
-      echo "<br />erreur dans la suppression de l'utilisateur : ".$id_user;
-    }
-    else
-      echo "Utilisateur ".$id_user." supprim&eacute;!<br />";
+    echo "Utilisateur ".$id_user." supprim&eacute;!<br />";
     //on retourne a la page precedente
-    echo "<a href=\"list_user.php\">Suite</a><br />";
+    echo "<a href=\"list_users.php\">Suite</a><br />";
   }
 
 }
