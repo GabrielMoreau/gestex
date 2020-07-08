@@ -57,7 +57,22 @@ if (empty($_POST['tech']))
 
 $inventaire =$_POST['inventaire'];
 
-$notice =$_POST['notice'];
+$notice=$_FILES["notice"]["name"];
+	$notice = str_replace(' ', '_', $notice);
+	$nom_dossier = str_replace(' ', '_', $nom);
+	$path = "./data/instru/".$nom_dossier;
+
+	if(!is_dir($path)){	
+		echo "\n". $path."\n";
+		mkdir($path,0777);
+	}
+			echo "je créé un nouveau dossier\n";
+			if(move_uploaded_file($_FILES["notice"]["tmp_name"], $path."/".$notice )){
+				echo "ça a march\n";
+			}else{
+				echo "ça n'a pas marché\n ";
+			}
+
 
 	}}}}}}}}
 
@@ -110,6 +125,16 @@ $sql = 'INSERT INTO Listing (categorie,nom,modele , gamme, equipe, fournisseur, 
 $stmt = $pdo->prepare($sql);
 $stmt->execute(array($categorie,$nom, $modele,$gamme, $equipe, $fourn,$achat,$tech, $reparation,$accessoires,$inventaire,$notice));
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if(!$result){
+	echo "ça n'a pas marché";
+}else{
+	// $sql = 'SELECT id FROM Listing where '
+	$id_app = $result[0]['id'];
+	$sql = 'INSERT INTO notice (nom_notice,id_appareil) VALUES (?, ?);';
+	$stmt = $pdo->prepare($sql);
+	$path_complet =$path."/".$notice;
+	$stmt->execute(array($path_complet,$id_app));
+}
 echo "<br /> Votre requ&ecirc;te a bien &eacute;t&eacute; ajout&eacute;";
 }//end if connect
 
@@ -119,15 +144,6 @@ echo "<br /> Votre requ&ecirc;te a bien &eacute;t&eacute; ajout&eacute;";
 	// $stmt = $pdo->prepare($sql);
     // $stmt->execute(array($id_appareil));
 	// $nom = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	$path = "./instru/".$nom;
-	$nom_notice=$_FILES["notice"]["name"];
-	mkdir($path,0777);
-	if(move_uploaded_file($nom_notice, $path )){
-		echo "ça a marché";
-	}else{
-		echo "ça n'a pas marché";
-	}
-	
 
 
 
