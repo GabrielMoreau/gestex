@@ -32,7 +32,7 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
 	<br /></td>
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_app.php">Ajout<br />d'un appareil</a>
+	<a href="add_machine.php">Ajout<br />d'un appareil</a>
 	<br /></td>
 <?php }	?>
  <td style="vertical-align: top; text-align: center;">
@@ -133,7 +133,7 @@ if ( $pdo = connect_db() ){
 
  if ( $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app.php?id=".$data['id']."\"<img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_machine.php?id=".$data['id']."\"<img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
