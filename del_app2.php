@@ -1,6 +1,6 @@
 <?php
 
-//del_app.php
+//del_app2.php
 
 // Authenticate
 include("session_auth.php");
