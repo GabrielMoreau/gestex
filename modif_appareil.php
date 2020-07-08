@@ -62,13 +62,13 @@ $gamme=$_POST['gamme'];
 
 	if(!is_dir($path)){	
 		echo "\n". $path."\n";
-		mkdir($path,0777);
+		mkdir($path,0750);
 	}
-			echo "je créé un nouveau dossier\n";
+			echo "Cr&eacute;ation d'un nouveau dossier\n";
 			if(move_uploaded_file($_FILES["notice"]["tmp_name"], $path."/".$notice )){
-				echo "ça a march\n";
+				echo "Ca a march&eacute;\n";
 			}else{
-				echo "ça n'a pas marché\n ";
+				echo "Ca n'a pas march&eacute;\n ";
 			}
 	
 

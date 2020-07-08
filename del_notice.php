@@ -16,7 +16,7 @@ if (empty($_GET['id']))
 else
 	$id_notice = $_GET['id'];
 	
-if(empty($_GET['ok'])) // On récupère une variable ok qui sert a vérifier que la personne est bien sûr de supprimer la catégorie choisi
+if(empty($_GET['ok'])) // On recupere une variable ok qui sert a verifier que la personne est bien sur de supprimer la categorie choisi
 	$valide ='no'	// s'il n'y a pas d'id, on met 'no' dans $valid
 else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
 	$valide = 'yes';
@@ -35,19 +35,19 @@ else{
 		$sql = 'SELECT nom_notice FROM notice WHERE id = ?';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($id_notice));
-		$notice = $stmt->fetchAll(PDO::FETCH_ASSOC);  // on récupère le chemin de la notice a supprimer
+		$notice = $stmt->fetchAll(PDO::FETCH_ASSOC);  // on recupere le chemin de la notice a supprimer
     }
     if( file_exists ( $notice[0]['nom_notice']))
         $result = unlink( $notice[0]['nom_notice'] );
-        if (!$result){ // si ça n'a pas marché
+        if (!$result){ // si ca n'a pas marche
 			echo "<br />erreur dans la suppression du fichier avec la notice : ".$id_notice;
 		}else{
             $sql = 'DELETE LOW_PRIORITY FROM notice WHERE id = ? LIMIT 1';
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array($id_notice));
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if (!$result){ // si ça n'a pas marché
-                echo "<br />erreur dans la suppression de la notice : ".$id_notice." dans la bas de donnée";
+            if (!$result){ // si ca n'a pas marche
+                echo "<br />Erreur dans la suppression de la notice : ".$id_notice." dans la bas de donn&eacute;e";
             }else{
                 echo "Notice ".$id_notice." supprim&eacute;!<br />";
             }

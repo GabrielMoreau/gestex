@@ -17,7 +17,7 @@ else
 	$id_app = $_GET['id'];
 
 
-if(empty($_GET['ok'])) // On récupère une variable ok qui sert a vérifier que la personne est bien sûr de supprimer la catégorie choisi
+if(empty($_GET['ok'])) // On recupere une variable ok qui sert a verifier que la personne est bien sur de supprimer la categorie choisi
 	$valide ='no'	// s'il n'y a pas d'id, on met 'no' dans $valid
 else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
 	$valide = 'yes';
@@ -37,7 +37,7 @@ else{
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($id_app));
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		if (!$result){ // si ça n'a pas marché
+		if (!$result){ // si ca n'a pas marche
 			echo "<br />erreur dans la suppression de l'appareil : ".$id_app;
 		}else{
 		  	echo "Appareil ".$id_app." supprim&eacute;!<br />";

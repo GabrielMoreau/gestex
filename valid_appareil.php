@@ -123,9 +123,9 @@ echo "<br /> Votre requ&ecirc;te a bien &eacute;t&eacute; ajout&eacute;";
 	$nom_notice=$_FILES["notice"]["name"];
 	mkdir($path,0777);
 	if(move_uploaded_file($nom_notice, $path )){
-		echo "ça a marché";
+		echo "Ca a march&eacute;";
 	}else{
-		echo "ça n'a pas marché";
+		echo "Ca n'a pas march&eacute;";
 	}
 	
 
