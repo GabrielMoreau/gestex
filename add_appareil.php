@@ -38,8 +38,8 @@ $stmt->execute(array($cat));
 $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (empty($app_id)){
 	//->nouvel appareil
-	$mode ="ajouter";
-	$action="valid_app2.php?categorie=".$cat;
+	$mode = 'ajouter';
+	$action = 'valid_appareil.php?categorie='.$cat;
 //transmet la valeur de la categorie a la page valid appareil
 }
 else{
@@ -279,9 +279,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
 </table>
 <br />
 
-<?php }
-	else
-	{	Header("Location: list_appareil.php");	}	?>
+<?php } else { Header("Location: list_appareil.php"); } ?>
 <br />
 </div>
 <?php pied_page() ?>

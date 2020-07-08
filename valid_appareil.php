@@ -3,7 +3,7 @@
 require("html_functions.php");
 //recuper la methode de tri
 
-/// valid_app2.php
+/// valid_appareil.php
 //validation d'un nouvel appareil
 unset($erreur);
 //variables ne pouvant etre nulles
