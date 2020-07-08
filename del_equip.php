@@ -30,11 +30,14 @@ if (!isset($valid) || empty($valid) || $valid=="no"){
 
 }
 else{
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 
 // on supprime le fournisseur
- $querry = "DELETE LOW_PRIORITY FROM equipe WHERE id=$id_equip LIMIT 1";
- $result = mysql_query($querry);
+ $sql = 'DELETE LOW_PRIORITY FROM equipe WHERE id = ? LIMIT 1';
+//  $result = mysql_query($querry);
+ $stmt = $pdo->prepare($sql);
+    $stmt->execute(array($id_equip));
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
    //
    if (!$result){
    //inscription !ok
