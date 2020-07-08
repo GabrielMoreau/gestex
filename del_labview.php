@@ -24,7 +24,7 @@ else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
 	$valid = 'no'; 
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
-echo "Sur de supprimer le Fournisseur ".$id_app." ?<br />";
+echo "Sur de supprimer le labview ".$id_app." ?<br />";
 echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_app."&ok=yes\">OUI</a><br />";
 echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
 }
@@ -37,9 +37,9 @@ else{
 		$stmt->execute(array($id_app));
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		if (!$result){ // si ça n'a pas marché
-			echo "<br />erreur dans la suppression de l'intervention : ".$id_int;
+			echo "<br />erreur dans la suppression du labview : ".$id_app;
 		}else{
-			echo "Intervention ".$id_int." supprim&eacute;!<br />";
+			echo "Labview ".$id_app." supprim&eacute;!<br />";
 		}
 	}
 	//on retourne a la page d'accueil
