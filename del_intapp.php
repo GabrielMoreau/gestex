@@ -15,11 +15,14 @@ $id_int = $_GET[id];
 if (empty($id_int))
 	Header("Location: list_intapp.php");
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 
 // on supprime le fournisseur
-	$querry = "DELETE LOW_PRIORITY FROM intervention WHERE id=$id_int LIMIT 1";
-	list($qh,$num) = query_db($querry);
+	$sql = "DELETE LOW_PRIORITY FROM intervention WHERE id = ? LIMIT 1";
+	// list($qh,$num) = query_db($querry);
+	$stmt = $pdo->prepare($sql);
+    $stmt->execute(array($id_int));
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 }
 
