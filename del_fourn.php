@@ -4,50 +4,47 @@
 
 // Authenticate
 include("session_auth.php");
-
-if (!auth(2))
- Header("Location: login.php");
-
 require("html_functions.php");
 
-en_tete('Suppression Fournisseur');
+if (!auth(2))
+  Header("Location: login.php");
 
+en_tete('Suppression Fournisseur');
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-$valid= $_GET[ok];
-$id_fourn = $_GET[id];
-if (empty($id_fourn))
- Header("Location: list_fourn.php");
+if (empty($_GET['id']))
+  Header("Location: list_fourn.php");
+else
+  $id_fourn = $_GET['id'];
+  
+if(empty($_GET['ok'])) // On récupère une variable ok qui sert a vérifier que la personne est bien sûr de supprimer la catégorie choisi
+  $valide ='no'	// s'il n'y a pas d'id, on met 'no' dans $valid
+else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
+  $valide = 'yes';
+else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
+  $valid = 'no'; 
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
- echo "Sur de supprimer le Fournisseur ".$id_fourn." ?<br />";
- echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_fourn."&ok=yes\">OUI</a><br />";
+  echo "Sur de supprimer le Fournisseur ".$id_fourn." ?<br />";
+  echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_fourn."&ok=yes\">OUI</a><br />";
   echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
-
 }
 else{
 if ( $pdo = connect_db() ){
-
-// on supprime le fournisseur
- $sql = 'DELETE LOW_PRIORITY FROM fournisseurs WHERE id = ? LIMIT 1';
-//  $result = mysql_query($querry);
- $stmt = $pdo->prepare($sql);
-    $stmt->execute(array($id_fourn));
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-   //
-   if (!$result){
-   //inscription !ok
-   $erreur = mysql_error();
-   echo "<br />erreur :".$erreur;
-
+  // on supprime le fournisseur
+  $sql = 'DELETE LOW_PRIORITY FROM fournisseurs WHERE id = ? LIMIT 1';
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute(array($id_fourn));
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  if (!$result){ // si ça n'a pas marché
+   echo "<br />erreur dans la suppression du fournisseur : ".$id_fourn;
+  }else{
+    echo "Fournisseur ".$id_fourn." supprim&eacute;!<br />";
   }
- else
-  echo "Fournisseur ".$id_fourn." supprim&eacute;!<br />";
-
- }//end if connect
-//on retourne a la page precedente
-  echo "<a href=\"list_fourn.php"\">Suite</a><br />";
+}//end if connect
+//on retourne a la page de la liste des fournisseur
+  echo "<a href=\"list_fourn.php\">Suite</a><br />";
 } //else end
 
 ?>
