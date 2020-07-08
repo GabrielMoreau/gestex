@@ -1,5 +1,5 @@
 <?php
-/// modif_app.php
+/// modif_machine.php
 
 // Authenticate
 include("session_auth.php");

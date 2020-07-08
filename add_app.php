@@ -11,15 +11,15 @@
 
 if (empty($_GET['id'])){
 	//->nouvel appareil
-	$app_id = "";
-	$mode ="ajouter";
-	$action="valid_app.php";
+	$app_id = '';
+	$mode = 'ajouter';
+	$action= 'valid_app.php';
 }
 else{
 	//->modif appareil
 	$app_id = $_GET['id'];
-	$mode ="modifier";
-	$action="modif_app.php";
+	$mode = 'modifier';
+	$action= 'modif_machine.php';
 }
 
 require("html_functions.php");
