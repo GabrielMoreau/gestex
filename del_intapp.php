@@ -11,21 +11,39 @@ if (!auth(3))
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-$id_int = $_GET[id];
-if (empty($id_int))
+if (empty($_GET['id']))
 	Header("Location: list_intapp.php");
+else
+	$id_int = $_GET['id'];
 
-if ( $pdo = connect_db() ){
+	
+if(empty($_GET['ok'])) // On récupère une variable ok qui sert a vérifier que la personne est bien sûr de supprimer la catégorie choisi
+	$valide ='no'	// s'il n'y a pas d'id, on met 'no' dans $valid
+else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
+	$valide = 'yes';
+else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
+	$valid = 'no'; 
 
-// on supprime le fournisseur
-	$sql = "DELETE LOW_PRIORITY FROM intervention WHERE id = ? LIMIT 1";
-	// list($qh,$num) = query_db($querry);
-	$stmt = $pdo->prepare($sql);
-    $stmt->execute(array($id_int));
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+if (!isset($valid) || empty($valid) || $valid=="no"){
+	echo "Sur de supprimer le Fournisseur ".$id_int." ?<br />";
+	echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_int."&ok=yes\">OUI</a><br />";
+	echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
 }
+else{
+	if ( $pdo = connect_db() ){
+		// on supprime l'intervention
+		$sql = "DELETE LOW_PRIORITY FROM intervention WHERE id = ? LIMIT 1";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($id_int));
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if (!$result){ // si ça n'a pas marché
+			echo "<br />erreur dans la suppression de l'intervention : ".$id_int;
+		}else{
+			echo "Intervention ".$id_int." supprim&eacute;!<br />";
+		}
+	}
 
-//on retourne a la page d'accueil
-Header("Location: list_intapp.php");
+	//on retourne a la page d'accueil
+	Header("Location: list_intapp.php");
+}
 ?>
