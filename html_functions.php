@@ -103,7 +103,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
     <div class="dropdown-content">
       <a href="add_categorie.php">Cat&eacute;gorie</a>
   
-      <a href="add_app2.php">Appareils</a>
+      <a href="add_appareil.php">Appareils</a>
       <a href="add_equip.php">&Eacute;quipe</a>
       <a href="add_fourn.php">Fournisseur</a>
  

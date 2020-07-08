@@ -1,5 +1,5 @@
 <?php
-/// add_app2.php
+/// add_appareil.php
 	// Authenticate
 	include("session_auth.php");
 

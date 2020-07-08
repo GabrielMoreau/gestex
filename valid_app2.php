@@ -77,7 +77,7 @@ if (!empty($erreur) ){
 	//erreur
 
 	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"add_app2.php\">Suite</a><br />\n";
+	echo"<br /><a href=\"add_appareil.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
