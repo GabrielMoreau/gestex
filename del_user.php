@@ -14,8 +14,8 @@ en_tete('Suppression Utilisateur');
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-$valid= $_GET[ok];
-$id_user = $_GET[id];
+$valid= $_GET['ok'];
+$id_user = $_GET['id'];
 if (empty($id_user))
  Header("Location: list_user.php");
 
@@ -28,17 +28,20 @@ if (!isset($valid) || empty($valid) || $valid=="no"){
 
 }
 else{
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 
   //on supprime cet user
 
-  $querry = "DELETE LOW_PRIORITY FROM users WHERE id=$user_id LIMIT 1";
-$result = mysql_query($querry);
+  $sql = 'DELETE LOW_PRIORITY FROM users WHERE id = ? LIMIT 1';
+// $result = mysql_query($querry);
+$stmt = $pdo->prepare($sql);
+    $stmt->execute(array($user_id));
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
    //
    if (!$result){
    //inscription !ok
-   $erreur = mysql_error();
-   echo "<br />erreur :".$erreur;
+  //  $erreur = mysql_error();
+   echo "<br />erreur ";
 
  }
 else
