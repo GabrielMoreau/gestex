@@ -18,15 +18,16 @@ else
 	$id_cat = $_GET['id']; // s'il y en a un, on le stock dans id_cat
 
 if (empty($_GET['ok'])) // On recupere une variable ok qui sert a verifier que la personne est bien sur de supprimer la categorie choisi
-	$valide ='no'	// s'il n'y a pas d'id, on met 'no' dans $valid
+	$valid ='no';	// s'il n'y a pas d'id, on met 'no' dans $valid
 else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
-	$valide = 'yes';
+	$valid = 'yes';
 else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
 	$valid = 'no'; 
+
 if (!isset($valid) || empty($valid) || $valid=="no"){ // on regarde ce qu'il y a dans $valid et si c'est NULL ou 'no', on pose la question
 	echo "Sur de supprimer la cat&eacute;gorie ".$id_cat. " ?<br />";
-	echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_cat."&ok=yes\">OUI</a><br />"; // si la personne repond 'oui', on recharge la page en mettant ok=yes dans l'url 
-	echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />"; // sinon, on retourne a la page precedente
+	echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_cat."&ok=yes\">OUI</a><br />"; // si la personne repond 'oui', on recharge la page en mettant ok=yes dans l'url 
+	echo "<a href=\"list_categorie.php\">NON</a><br />";	// sinon, on retourne a la page precedente
 }
 else{ // s'il y a ok=yes dans l'url
 	if ( $pdo = connect_db() ){ // et que l'on arrive a se connecter a la base de donnee
@@ -42,6 +43,8 @@ else{ // s'il y a ok=yes dans l'url
 		}
 	}
 	//on retourne a la page d'accueil
-	Header("Location: list_appareil.php");
+Header("Location: list_categorie.php");
+
 }
+
 ?>
