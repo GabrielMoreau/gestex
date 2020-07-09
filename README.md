@@ -105,6 +105,10 @@ Chaque chose en son temps !
 ```bash
 mysql -u root -p
 CREATE DATABASE pool;
+
+CREATE USER 'pool'@'localhost' IDENTIFIED BY 'ZZZZZZZZZ';
+GRANT ALL PRIVILEGES ON pool . * TO 'pool'@'localhost';
+FLUSH PRIVILEGES;
 QUIT;
 
 mysql -u root -p pool < db-schema.sql
@@ -118,9 +122,13 @@ ainsi que pour mettre manuellement un nouveau mot de passe à une personne au ca
 ```bash
 echo -n XXXXXXXXX | md5sum
 
+mysql -u root -p
 INSERT INTO `users`(`id`, `loggin`, `password`, `level`, `nom`, `prenom`, `tel`, `email`, `equipe`, `valid`) VALUES (1,'sys-admin','YYYYYYYYYYYYYYYYY',5,'Sys','Admin',0,0,0,1);
+QUIT;
 
+mysql -u root -p
 UPDATE users SET password='YYYYYYYYYYYYYYYYY'  WHERE id='1';
+QUIT;
 ```
 
 #### Sauvegarde de la base de donnée
