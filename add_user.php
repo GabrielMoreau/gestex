@@ -28,21 +28,15 @@ require("html_functions.php");
 if ($pdo = connect_db()) {
 	if ($mode == 'ajouter'){
 		en_tete('Inscrire un utilisateur');
-	} else if ($mode=="modifier") {
+	} else if ($mode == 'modifier') {
 		en_tete('Modifier vos coordonn&eacute;es');
 		// recupere la liste des users
-		// $querry = "SELECT * FROM users WHERE id='$user2ch_id'";
-		// list($qh,$num) = query_db($querry);
-		// $data = result_db($qh);
 		$sql = 'SELECT * FROM users WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($user2ch_id));
 		$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$data = $user[0];
 	}
-	
-
-	echo 'id:'.$user_id .' : '.$logged_in_user.' lvl:'.$user_level;
 ?>
 
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
@@ -57,7 +51,7 @@ if ($pdo = connect_db()) {
 					<input type="text" name="loggin" size="25" maxlength="25" value="" ><br />
 				<?php } else { ?>
 					// on ne change pas le loggin
-					<?php echo $logged_in_user ?><br />
+					<?php echo $data['loggin'] ?><br />
 				<?php } ?>
 			</td>
 		</tr>
@@ -83,36 +77,34 @@ if ($pdo = connect_db()) {
 			<td style="vertical-align: top;">Nom de famille *<br />
 			</td>
 			<td style="vertical-align: top;">
-				<input type="text" name="nom" size="25" maxlength="25" value="<?php if($mode=='modifier'){ echo $data['nom']; } ?>" ><br />
+				<input type="text" name="nom" size="25" maxlength="25" value="<?php if ($mode=='modifier') echo $data['nom'] ?>" ><br />
 			</td>
 		</tr>
 		<tr>
 			<td style="vertical-align: top;">Pr&eacute;nom<br />
 			</td>
 			<td style="vertical-align: top;">
-				<input type="text" name="prenom" size="25" maxlength="25" value="<?php if($mode=='modifier'){ echo $data['prenom']; } ?>" ><br />
+				<input type="text" name="prenom" size="25" maxlength="25" value="<?php if ($mode=='modifier') echo $data['prenom'] ?>" ><br />
 			</td>
 		</tr>
 		<tr>
 			<td style="vertical-align: top;">Adresse courriel *<br />
 			</td>
 			<td style="vertical-align: top;">
-				<input type="text" name="addr_mail" size="25" maxlength="50" value="<?php if($mode=='modifier'){ echo $data['email']; } ?>" ><br />
+				<input type="text" name="addr_mail" size="25" maxlength="50" value="<?php if ($mode=='modifier') echo $data['email'] ?>" ><br />
 			</td>
 		</tr>
 		<tr>
 			<td style="vertical-align: top;">T&eacute;l&eacute;phone<br />
 			</td>
 			<td style="vertical-align: top;">
-				<input type="text" name="phone" size="10" maxlength="10" value="<?php if($mode=='modifier'){ echo $data['tel']; } ?>" ><br />
+				<input type="text" name="phone" size="10" maxlength="10" value="<?php if ($mode=='modifier') echo $data['tel'] ?>" ><br />
 			</td>
 		</tr>
 		<tr>
 			<td style="vertical-align: top;">&Eacute;quipe<br />
 			</td>
 			<?php // recupere la liste des equipes
-			// $querry = "SELECT id, nom FROM equipe";
-			// list($qheq,$numeq) = query_db($querry);
 			$sql = 'SELECT id, nom FROM equipe ORDER BY nom;';
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute();
@@ -121,7 +113,6 @@ if ($pdo = connect_db()) {
 			<td style="vertical-align: top;">
 				<select  name="equipe">
 					<?php
-					// while($equipes = result_db($qheq)){
 					foreach ($equipe_fetch as $equipe) {
 						echo '<option value="'.$equipe['id'].'"';
 						/// selectionne la bonne equipe
@@ -149,7 +140,7 @@ if ($pdo = connect_db()) {
 				<input type="radio" name="level" value="3" <?php if ($mode ==='modifier' && $data['level']==3) echo 'checked="checked"' ?> >Admin<br />
 				<?php } ?>
 				
-				<?php if (isset($user_level) && ($user_level < 3)){ /// consultation seulement
+				<?php if (isset($user_level) && ($user_level < 3)) { /// consultation seulement
 					switch ($data['level']) {
 						case 0: echo "&Eacute;tudiant<br />"; break;
 						case 1: echo "Chercheur<br />"; break;
