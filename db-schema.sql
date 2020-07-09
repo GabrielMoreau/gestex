@@ -259,6 +259,7 @@ CREATE TABLE `users` (
 DROP TABLE IF EXISTS `notice`;
 CREATE TABLE `notice` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `chemin_notice` varchar(500) NOT NULL DEFAULT '',
   `nom_notice` varchar(150) NOT NULL DEFAULT '',
   `id_appareil` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
