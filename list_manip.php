@@ -115,70 +115,77 @@ if ( $pdo = connect_db() ){
 			$sql = 'SELECT * FROM manip ORDER BY ?;';
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(array($tri));
-			$manip = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$manip_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			// while ($data = result_db($qh)) {
-			foreach ($manip as $manip) {
+			foreach ($manip_fetch as $manip) {
 				$relief =0;
 				if ($user_level >1)
-					$relief =1;
+					$relief = 1;
 				// remplit le tableau
-				if ($user_level <=1){
+				if ($user_level <= 1) {
 				//mise en evidence des manips concernant le chercheur connecte
-					if ($manip['chercheur']== $user_id || $manip['chercheur_bis']== $user_id){
+					if ($manip['chercheur'] == $user_id || $manip['chercheur_bis'] == $user_id){
 						echo '<tr bgcolor="#FFFAD0" style="vertical-align: top;">';
 						$relief = 1;
+					} else {
+						echo '<tr style="vertical-align: top;">';
 					}
-				}else{
+				} else {
 					echo '<tr style="vertical-align: top;">';
 				}
-				echo '<td style="vertical-align: top;">';
+				echo '  <td style="vertical-align: top;">';
 				echo $manip['date'];
-				echo '</td><td style="vertical-align: top;">';
+				echo '  </td>';
+				echo '  <td style="vertical-align: top;">';
 				if ($relief ==1)
 					//possibilite d'edition des manips concernant le chercheur connecte
-					echo '<a href="manip_maint.php?id=',$manip['id'],'">';
+					echo '    <a href="manip_maint.php?id=',$manip['id'],'">';
 				echo $manip['nom'];
-				if ($relief ==1)
-						echo "</a>";
-				echo '</td><td style="vertical-align: top;">';
+				if ($relief == 1)
+					echo '    </a>';
+				echo '  </td>';
+				echo '  <td style="vertical-align: top;">';
 				echo $manip['descr'];
-				echo '</td><td style="vertical-align: top;">';
+				echo '  </td>';
+				echo '  <td style="vertical-align: top;">';
 				echo $manip['local'];
-				echo '</td><td style="vertical-align: top;">';
+				echo '  </td>';
 				// recupere la liste de equipes
-				// $querry = "SELECT nom FROM equipe WHERE id ='$data['equipe']'";
-				// list($qheq,$numeq) = query_db($querry);
-				// 	$eq = result_db($qheq)	 ;
 				$sql = 'SELECT nom FROM equipe WHERE id = ?;';
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute(array($manip['equipe']));
 				$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
-				if(!empty($equipe)){echo $equipe[0]['nom'];}
-				if ($user_level!=1){
+				echo '  <td style="vertical-align: top;">';
+				if (!empty($equipe)) {
+					echo $equipe[0]['nom'];
+				}
+				echo '  </td>';
+				if ($user_level != 1) {
 					//si chercheur logue pas necessaire
-					echo '</td><td style="vertical-align: top;">';
-						// recupere la liste des chercheurs
-					// $querry = "SELECT nom FROM users WHERE id ='$data['chercheur']'";
-					// list($qheq,$numeq) = query_db($querry);
-					// 	$equipe = result_db($qheq)	 ;
-					// 	echo $eq['nom'];
+					// recupere la liste des chercheurs
 					$sql = 'SELECT nom FROM users WHERE id = ?;';
 					$stmt = $pdo->prepare($sql);
 					$stmt->execute(array($manip['chercheur']));
 					$chercheur = $stmt->fetchAll(PDO::FETCH_ASSOC);
 					// var_dump($chercheur);
-					if(!empty($chercheur)){echo $chercheur[0]['nom'];}
+					echo '  <td style="vertical-align: top;">';
+					if (!empty($chercheur)) {
+						echo $chercheur[0]['nom'];
+					}
+					echo '  </td>';
 				}
-				if ($user_level>=2){
-					echo '</td><td style="vertical-align: top;">';
-					echo '<a href="add_manip.php?id=',$manip['id'],'"><img src="images/pen.svg" nosave="" title="Modifier" /></a>';
+				if ($user_level >= 2) {
+					echo '  <td style="vertical-align: top;">';
+					echo '    <a href="add_manip.php?id=',$manip['id'],'"><img src="images/pen.svg" nosave="" title="Modifier" /></a>';
+					echo '  </td>';
 				}
-				if ($user_level==3){
-					echo '</td><td style="vertical-align: top;">';
-					echo '<a href="del_manip.php?id=',$manip['id'],'"><img src="images/trash.svg" nosave="" title= "Supprimer" /></a>';
+				if ($user_level >= 3) {
+					echo '  <td style="vertical-align: top;">';
+					echo '    <a href="del_manip.php?id=',$manip['id'],'"><img src="images/trash.svg" nosave="" title= "Supprimer" /></a>';
+					echo '  </td>';
 				}
-			echo '</td></tr>';
+			echo '</tr>';
 			} // end foreach
 			?>
  		</tbody>
