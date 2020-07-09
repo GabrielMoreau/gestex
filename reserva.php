@@ -21,11 +21,7 @@ if (empty($_GET['tri']))
 else
 	$tri = $_GET['tri'];
 echo $tri;
-// recupere le user
-if (empty($_GET['user']))
-	$use ="";
-else
-	$use = $_GET['user'];
+
 
 	//recupere l'equipe
 
@@ -45,7 +41,7 @@ else
 	<br /></td>
 
 <td style="vertical-align: top; text-align: center;">
-<?php if ( $use >=3 ) 	{?>
+<?php if ( $user_level >=3 ) 	{?>
 	<a href="list-pret.php">Retour<br />&agrave; la liste des pr&ecirc;ts</a>
 	<br /></td>
 <?php }
@@ -86,8 +82,7 @@ Liste des pr&ecirc;ts : <br /><br /><br />
 	Num&eacute;ro de l'appareil<br /></a>
       </th>
 
-<?php if ( $user_level >=2 )
-		echo "</th><th>";
+<?php 
 	if ( $user_level >=3 )
 		echo "</th><th>";
 	  ?>
@@ -196,10 +191,10 @@ echo"</td><td style=\"vertical-align: top;\">";
 
       		echo $data['nom'];
 
- if ( $use >=3 ) 	{
-      echo"</td><td style=\"vertical-align: top;\">";
-      echo '<a href="del-pret.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer"></a>';
-      echo"</td>";
+ if ( $user_level >=3 ) 	{
+	echo '  <td style="vertical-align: top;">';
+	echo '    <a href="del-pret.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
+	echo '  </td>'.PHP_EOL;
 	}
 
 echo"</tr>";
