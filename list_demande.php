@@ -40,11 +40,11 @@ else
 				<br />
 			</td>
 			<td style="vertical-align: top; text-align: center;">
-				<a href="add_demandes.php">Ajouter<br />une demande</a>
+				<a href="add_demande.php">Ajouter<br />une demande</a>
 				<br />
 			</td>
 			<td style="vertical-align: top; text-align: center;">
-				<a href="historique_demandes.php">Historique<br />des demandes</a>
+				<a href="historique_demande.php">Historique<br />des demandes</a>
 				<br />
 			</td>
 			<?php if ( $user_level >=2 ) { ?>
@@ -120,12 +120,12 @@ Liste des demandes en cours :<br />
 // echo $demandes[0]['piecesjointes'];
 // 	 if ( $user_level >=2) {
 //       echo"</td><td style=\"vertical-align: top;\">";
-//       echo "<a href=\"add_demandes.php?id=$demandes[0][id]\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\" /></a>";
+//       echo "<a href=\"add_demande.php?id=$demandes[0][id]\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\" /></a>";
 //       echo"</td>";
 // 	}//end if
 //  if ( $user_level >=3 ) {
 //       echo"</td><td style=\"vertical-align: top;\">";
-//       echo "<a href=\"del_demandes.php?id=$demandes[0][id]\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
+//       echo "<a href=\"del_demande.php?id=$demandes[0][id]\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
 //       echo"</td>";
 // }
 // echo"</tr>";
@@ -160,16 +160,16 @@ Liste des demandes en cours :<br />
 			/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 		if (@opendir($dossier_proj) != FALSE){
 			// si trouve ajoute un bouton
-			echo "Voir : <a href =\"joint_demandes.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
+			echo "Voir : <a href =\"joint_demande.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
 		}
 		if ( $user_level >=2) {
 			echo"</td><td style=\"vertical-align: top;\">";
-			echo '<a href=\"add_demandes.php?id='.$data['id'].'\"><img src=\"images/pen.svg\" nosave=\"\" title=\"Modifier\" /></a>';
+			echo '<a href=\"add_demande.php?id='.$data['id'].'\"><img src=\"images/pen.svg\" nosave=\"\" title=\"Modifier\" /></a>';
 			echo"</td>";
 		}//end if
 		if ( $user_level >=3 ) {
 			echo"</td><td style=\"vertical-align: top;\">";
-			echo '<a href=\"del_demandes.php?id='.$data['id'].'\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>';
+			echo '<a href=\"del_demande.php?id='.$data['id'].'\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>';
 			echo"</td>";
 
 		}

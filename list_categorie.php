@@ -112,7 +112,7 @@ if ($pdo = connect_db()) {
 <?php if (($user_level >= 3) || ($user_id == 33) || ($user_id == 2) || ($user_id == 105)) { ?>
 <br /><br /><br />
 <td style="vertical-align: top; text-align: center;">
-	<a href="list_demandes.php">Demandes en cours</a>
+	<a href="list_demande.php">Demandes en cours</a>
 <td style="vertical-align: top; text-align: center;">
 	<a href="prets.html">Pr&ecirc;ts en cours</a>
 <?php } ?>

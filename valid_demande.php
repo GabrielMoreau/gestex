@@ -3,7 +3,7 @@
 require("html_functions.php");
 //recuper la methode de tri
 
-/// valid_demandes.php
+/// valid_demande.php
 //validation des demandes
 unset($erreur);
 //variables ne pouvant etre nulles
@@ -57,7 +57,7 @@ if (!empty($erreur) ){
 	//erreur
 
 	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"add_demandes.php\">Suite</a><br />\n";
+	echo"<br /><a href=\"add_demande.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -95,7 +95,7 @@ $datax = result_db($qh);}
 
 echo "<br />ajout de ".$nom."<br />";
 echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"list_demandes.php\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_demande.php\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
 pied_page();
 exit();

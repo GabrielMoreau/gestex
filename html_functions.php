@@ -116,7 +116,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
     <div class="dropdown-content">
     <a href="add_time.php">Temps</a>
       <a href="add_task.php">Task</a>
-      <a href="add_demandes.php">Demande</a>
+      <a href="add_demande.php">Demande</a>
       <a href="add_labviews.php">Labview</a>
       <a href="add_intapp.php?app=3">Intervention</a>
       <a href="add_user.php">User</a>

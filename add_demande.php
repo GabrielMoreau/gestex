@@ -1,5 +1,5 @@
 <?php
-// add_demandes.php
+// add_demande.php
 	// Authenticate
 	include("session_auth.php");
 
@@ -35,14 +35,14 @@ if ( $pdo = connect_db() ){
       if (empty($app_id)){
 
 	$mode ="ajouter";
-	$action="valid_demandes.php";
+	$action="valid_demande.php";
 //transmet la valeur de la tache a la page valid appareil
 }
 else{
 
 	//->modif appareil
 	$mode ="modifier";
-	$action="modif_demandes.php";
+	$action="modif_demande.php";
 
 }
 }
@@ -155,7 +155,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
   </tbody>
  <tbody>
 
-	<form action="list_demandes.php"method="POST" name="annulForm">
+	<form action="list_demande.php"method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
 	 </td>    </tr>
@@ -166,7 +166,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
 
 <?php }
 	else
-	{	Header("Location: list_demandes.php");	}	?>
+	{	Header("Location: list_demande.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>

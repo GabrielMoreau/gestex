@@ -1,6 +1,6 @@
 <?php
 
-//joint_demandes.php
+//joint_demande.php
 
 // Authenticate
 include("session_auth.php");
@@ -15,7 +15,7 @@ $user_level= $_SESSION['level'];
 //recupere  le numero du nom
 $tache_id=$_GET['id'];
 if (empty($tache_id))
-	Header("Location: list_demandes.php");
+	Header("Location: list_demande.php");
 
 require("html_functions.php");
 

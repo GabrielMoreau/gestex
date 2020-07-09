@@ -1,5 +1,5 @@
  <?php
-/// modif_demandes.php
+/// modif_demande.php
 
 // Authenticate
 //include("session_auth.php");
@@ -67,7 +67,7 @@ if (!empty($erreur) ){
 	//erreur
 
 	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"add_demandes.php?id=".$id_app ."\" >Suite</a><br />\n";
+	echo"<br /><a href=\"add_demande.php?id=".$id_app ."\" >Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -152,7 +152,7 @@ if ($achat!=$data['achat']){
 	}//end if modif
 	else{
 		echo "aucune modif a faire";
-		echo"<br /><br /><a href=\"list_demandes.php\">Suite</a><br /><br />\n";
+		echo"<br /><br /><a href=\"list_demande.php\">Suite</a><br /><br />\n";
 		pied_page();
 		exit();
 		}//else end
@@ -168,7 +168,7 @@ if ( $connex = connect_db() ){
 
 //echo "<br />modification de ".$nom."<br />";
 echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"list_demandes.php\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_demande.php\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
 
 pied_page();
