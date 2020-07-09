@@ -6,7 +6,7 @@
 include("session_auth.php");
 require("html_functions.php");
 
-if (!auth(2))
+if (!auth(3))
   Header("Location: login.php");
 
 en_tete('Suppression Fournisseur');
@@ -19,16 +19,16 @@ else
   $id_fourn = $_GET['id'];
   
 if(empty($_GET['ok'])) // On recupere une variable ok qui sert a verifier que la personne est bien sur de supprimer la categorie choisi
-  $valide ='no'	// s'il n'y a pas d'id, on met 'no' dans $valid
+  $valid ='no';	// s'il n'y a pas d'id, on met 'no' dans $valid
 else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
-  $valide = 'yes';
+  $valid = 'yes';
 else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
   $valid = 'no'; 
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
   echo "Sur de supprimer le Fournisseur ".$id_fourn." ?<br />";
-  echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_fourn."&ok=yes\">OUI</a><br />";
-  echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
+  echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_fourn."&ok=yes\">OUI</a><br />";
+  echo "<a href=\"".$_SERVER['HTTP_REFERER']."\">NON</a><br />";
 }
 else{
 if ( $pdo = connect_db() ){
@@ -37,14 +37,9 @@ if ( $pdo = connect_db() ){
   $stmt = $pdo->prepare($sql);
   $stmt->execute(array($id_fourn));
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  if (!$result){ // si ca n'a pas marche
-   echo "<br />erreur dans la suppression du fournisseur : ".$id_fourn;
-  }else{
-    echo "Fournisseur ".$id_fourn." supprim&eacute;!<br />";
-  }
 }//end if connect
 //on retourne a la page de la liste des fournisseur
-  echo "<a href=\"list_fourn.php\">Suite</a><br />";
+Header("Location: list_fourn.php");
 } //else end
 
 ?>
