@@ -1,10 +1,17 @@
 <?php
+
+// -------------------------------------------------------------
+
 define('ICON_PERSON_OK',     '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-check"/></svg></span>');
 define('ICON_PERSON_BAD',    '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Non Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-dash"/></svg></span>');
 define('ICON_PERSON_PROFIL', '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Modifier le profil</title><use xlink:href="images/bootstrap-icons.svg#gear"/></svg></span>');
 define('ICON_PERSON_PASWD',  '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Changer le mot de passe</title><use xlink:href="images/bootstrap-icons.svg#key"/></svg></span>');
 define('ICON_TRASH',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Supprimer</title><use xlink:href="images/bootstrap-icons.svg#trash"/></svg></span>');
 define('ICON_MAIL',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Courriel</title><use xlink:href="images/bootstrap-icons.svg#envelope"/></svg></span>');
+define('ICON_LOGIN',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Se d&eacute;connecter</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-right"/></svg></span>');
+define('ICON_BOOKING',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunts</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
+
+// -------------------------------------------------------------
 
 function en_tete($titre){
    /////echo"<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n";
@@ -129,10 +136,10 @@ function nav_bar($prenom, $nom, $level, $user_id){
   <li class="dropdown right">
          <a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
          <div class="dropdown-content">
-            <a href="logout.php"><img src="images/box-arrow-in-right.svg" nosave=""> Se d&eacute;connecter</a>
-            <a href="add_user.php?id=<?php echo $user_id ?>"><img src="images/gear.svg" nosave=""> Modifier mon profil</a>
-            <a href="user_changepwd.php?id=<?php echo $user_id ?>"><img src="images/key.svg"> Modifier mon <br />&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a>
-            <a href="user_pret.php?id=<?php echo $user_id ?>"><img src="images/box-arrow-in-down.svg" nosave=""> Mes emprunts</a>
+            <a href="logout.php"><?php echo ICON_LOGIN;?> Se d&eacute;connecter</a>
+            <a href="add_user.php?id=<?php echo $user_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>
+            <a href="user_changepwd.php?id=<?php echo $user_id ?>"><?php echo ICON_PERSON_PASWD;?> Changer le<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a>
+            <a href="user_pret.php?id=<?php echo $user_id ?>"><?php echo ICON_BOOKING;?> Mes emprunts</a>
         </div>
   </li>
   <?php } ?>
