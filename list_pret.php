@@ -78,7 +78,7 @@ Liste des pr&ecirc;ts : <br /><br /><br />
  Emprunteur<br />
       </th>
 	  <th style="vertical-align: top; text-align: center;">
-	  <a href="reserva.php?tri=nom">
+	  <a href="list_pret.php?tri=nom">
 	Num&eacute;ro de l'appareil<br /></a>
       </th>
 

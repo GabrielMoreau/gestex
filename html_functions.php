@@ -54,7 +54,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
   <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
   <li><a href="list_users.php">Liste des utilisateurs</a></li>
   <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
-  <li><a href="reserva.php">Liste des appareils en pr&ecirc;t</a></li>
+  <li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
   <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
@@ -73,7 +73,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
    <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
    <li><a href="list_users.php">Liste des utilisateurs</a></li>
    <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
-   <li><a href="reserva.php">Liste des appareils en pr&ecirc;t</a></li>
+   <li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
    <li class="dropdown">
          <a class="dropbtn">Liste des appareils</a>
          <div class="dropdown-content">
