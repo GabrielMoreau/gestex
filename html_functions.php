@@ -84,7 +84,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
    </li>
    <!-- <li><a href="list_categorie.php">Liste des appareils</a></li> -->
    <li><a href="list_manip.php">Liste des manips</a></li>
-   <?php if($level == 2){ ?>
+   <?php if ($level == 2) { ?>
       <li class="dropdown">
          <a class="dropbtn">Ajouter</a>
          <div class="dropdown-content">
@@ -96,8 +96,8 @@ function nav_bar($prenom, $nom, $level, $user_id){
             <a href="add_labviews.php">Labview</a>
          </div>
       </li>
-<?php }else if($level >= 3){ ?>
-  
+
+  <?php } else if ($level >= 3) { ?>
   <li class="dropdown">
     <a class="dropbtn">Ajouter</a>
     <div class="dropdown-content">
@@ -111,16 +111,8 @@ function nav_bar($prenom, $nom, $level, $user_id){
 
     </div>
   </li>
-  <!-- <li class="dropdown">
-    <a class="dropbtn">Supprimer</a>
-    <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </li> -->
   <li class="dropdown">
-    <a class="dropbtn">Plus</a>
+    <a class="dropbtn">Bonus</a>
     <div class="dropdown-content">
     <a href="add_time.php">Temps</a>
       <a href="add_task.php">Task</a>
@@ -132,15 +124,16 @@ function nav_bar($prenom, $nom, $level, $user_id){
       <a href="add_manip.php">Manip</a>
     </div>
   </li>
-
   <?php  } ?>
+
   <li class="dropdown right">
          <a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
          <div class="dropdown-content">
             <a href="logout.php">Se d&eacute;connecter</a>
             <a href="add_user.php?id=<?php echo $user_id ?>">Modifier mon profil</a>
             <a href="user_changepwd.php?id=<?php echo $user_id ?>">Modifier mon <br />mot de passe</a>
-         </div>
+            <a href="user_pret.php?id=<?php echo $user_id ?>">Mes emprunts</a>
+        </div>
    </li>
   <?php } ?>
 </ul>
