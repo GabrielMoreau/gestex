@@ -58,21 +58,7 @@ if (empty($_POST['tech']))
 $inventaire =$_POST['inventaire'];
 
 $notice=$_FILES["notice"]["name"];
-	$notice = str_replace(' ', '_', $notice);
-	$nom_dossier = str_replace(' ', '_', $nom);
-	$path = "./data/instru/".$nom_dossier;
-
-	if(!is_dir($path)){	
-		echo "\n". $path."\n";
-		mkdir($path,0777);
-	}
-			echo "je créé un nouveau dossier\n";
-			if(move_uploaded_file($_FILES["notice"]["tmp_name"], $path."/".$notice )){
-				echo "ça a march\n";
-			}else{
-				echo "ça n'a pas marché\n ";
-			}
-
+$notice = str_replace(' ', '_', $notice);
 
 	}}}}}}}}
 
@@ -125,11 +111,37 @@ $sql = 'INSERT INTO Listing (categorie,nom,modele , gamme, equipe, fournisseur, 
 $stmt = $pdo->prepare($sql);
 $stmt->execute(array($categorie,$nom, $modele,$gamme, $equipe, $fourn,$achat,$tech, $reparation,$accessoires,$inventaire,$notice));
 $id_app = $pdo->lastInsertId();
+
+
+
+$path = "./data";
+	if(!is_dir($path)){	
+		mkdir($path,0750);
+	}
+	$path = "./data/notice";
+	if(!is_dir($path)){	
+		mkdir($path,0750);
+	}
+	$path = "./data/notice/".$id_app;
+	if(!is_dir($path)){	
+		mkdir($path,0750);
+	}
+	if(move_uploaded_file($_FILES["notice"]["tmp_name"], $path."/".$notice )){
+		echo "ça a march\n";
+	}else{
+		echo "ça n'a pas marché\n ";
+	}
+
+
 	$sql = 'INSERT INTO notice (nom_notice,chemin_notice,id_appareil) VALUES (?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
 	$path_complet =$path."/".$notice;
 	$stmt->execute(array($notice,$path_complet,$id_app));
 echo "<br /> Votre requ&ecirc;te a bien &eacute;t&eacute; ajout&eacute;";
+
+
+
+
 }//end if connect
 
 //On enregistre la notice dans le dossier instru/ dans un sous-dossier portant le nom de l'appareil auquel la notice est utile
