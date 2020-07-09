@@ -20,35 +20,9 @@ if (empty($_GET['tri']))
 	$tri = 'nom';
 else
 	$tri = $_GET['tri'];
-
 ?>
 
 <br />
-<table cellpadding="2" cellspacing="2" border="0"
-	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-	<tbody>
-		<tr class="menu">
-			<td style="vertical-align: top; text-align: center;">
-				<a href="list_manip.php?tri=date">Retour &agrave; l'accueil</a>
-				<br />
-			</td>
-
-			<?php if ($user_level >=3) { ?>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="add_equip.php">Ajout d'une &eacute;quipe</a>
-				<br />
-			</td>
-			<?php } ?>
-
-			<td style="vertical-align: top; text-align: center;">
-				<a href="logout.php?variable=projet">Quitter</a>
-				<br />
-			</td>
-		</tr>
-	</tbody>
-</table>
-<br />
-
 <table cellpadding="2" cellspacing="2" border="1"
 	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	<tbody>
@@ -78,8 +52,6 @@ else
 if ($pdo = connect_db()) {
 	// recupere la liste de fournisseurs
 	$sql = 'SELECT * FROM equipe ORDER BY ?;';
-	// list($qh,$num) = query_db($querry);
-	// $last_id=0;
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($tri));
 	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -104,8 +76,6 @@ if ($pdo = connect_db()) {
 
 		// recupere le nom de chef d'equipe
 		$sql = 'SELECT id, nom FROM users WHERE id = ?';
-		// list($qheq,$numeq) = query_db($querry);
-		// $chef = result_db($qheq);
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($data['chef']));
 		$chef = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -122,7 +92,7 @@ if ($pdo = connect_db()) {
 		} //end if
 		if ($user_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="del_equip.php?id='.$data['id'].'"><'.ICON_TRASH.'</a>';
+			echo '    <a href="del_equip.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		echo '</tr>'.PHP_EOL;
