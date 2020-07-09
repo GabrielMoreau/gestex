@@ -27,35 +27,6 @@ if (empty($_GET['tri'])){
 ?>
 
 <br />
-<table cellpadding="2" cellspacing="2" border="0"
-	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-	<tbody>
-		<tr class=menu>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="list_manip.php">Retour &agrave; l'accueil</a>
-				<br />
-			</td>
-			<?php if ($user_level >= 3) { ?>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="add_user.php">Ajout d'un utilisateur</a>
-				<br />
-			</td>
-			<?php } ?>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="add_user.php?id=<?php echo $user_id ?>">
-				<img src="images/gear.svg" nosave="" title="Modifier son profil"></a>
-				<br />
-			</td>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="user_changepwd.php?id=<?php echo $user_id ?>">
-				<img src="images/key.svg" nosave="" title="Changer son mot de passe"></a>
-				<br />
-			</td>
-		</tr>
-	</tbody>
-</table>
-<br />
-
 <table cellpadding="2" cellspacing="2" border="1"
 	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	<tbody>
