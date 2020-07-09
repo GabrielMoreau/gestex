@@ -1,4 +1,6 @@
 <?php
+define('ICON_PERSON_OK', '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor" title="Valid&eacute;"><title>Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-check"/></svg></span>');
+define('ICON_PERSON_BAD', '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor" title="Non Valid&eacute;"><title>Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-dash"/></svg></span>');
 
 function en_tete($titre){
    /////echo"<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n";
@@ -125,7 +127,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
          <div class="dropdown-content">
             <a href="logout.php"><img src="images/box-arrow-in-right.svg" nosave=""> Se d&eacute;connecter</a>
             <a href="add_user.php?id=<?php echo $user_id ?>"><img src="images/gear.svg" nosave=""> Modifier mon profil</a>
-            <a href="user_changepwd.php?id=<?php echo $user_id ?>"><img src="images/key.svg"> Modifier mon <br />mot de passe</a>
+            <a href="user_changepwd.php?id=<?php echo $user_id ?>"><img src="images/key.svg"> Modifier mon <br />&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a>
             <a href="user_pret.php?id=<?php echo $user_id ?>"><img src="images/box-arrow-in-down.svg" nosave=""> Mes emprunts</a>
         </div>
   </li>

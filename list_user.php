@@ -126,11 +126,11 @@ if ($pdo = connect_db()) {
 			echo '       <img src="images/trash.svg" nosave="" title="Supprimer l\'utilisateur !">';
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
-			echo '  <td style="vertical-align: top;">';
+			echo '  <td style="vertical-align: top; background-color:grss	ay;">';
 			if ($data['valid'] == 0)
-				echo '<img src="images/person-dash.svg" nosave="" title="Non Valid&eacute;">';
+				echo ICON_PERSON_BAD;
 			else
-				echo '<img src="images/person-check.svg" nosave="" title="Valid&eacute;">';
+				echo ICON_PERSON_OK;
 			echo '  </td>'.PHP_EOL;
 		}
 		echo '</tr>'.PHP_EOL;
