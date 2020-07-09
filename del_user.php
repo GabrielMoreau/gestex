@@ -38,10 +38,10 @@ else{
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array($id_user));
     echo "Utilisateur ".$id_user." supprim&eacute;!<br />";
-    //on retourne a la page precedente
-    echo "<a href=\"list_users.php\">Suite</a><br />";
+   
   }
-
+ //on retourne a la page precedente
+ Header("Location: list_users.php");
 }
 
 ?>
