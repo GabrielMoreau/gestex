@@ -18,16 +18,16 @@ else
 
 
 if(empty($_GET['ok'])) // On recupere une variable ok qui sert a verifier que la personne est bien sur de supprimer la categorie choisi
-	$valide ='no'	// s'il n'y a pas d'id, on met 'no' dans $valid
+	$valid ='no';	// s'il n'y a pas d'id, on met 'no' dans $valid
 else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
-	$valide = 'yes';
+	$valid = 'yes';
 else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
 	$valid = 'no'; 
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
-	echo "Sur de supprimer l'utilisateur ".$id_app. " ?<br />";
-	echo "<a href=\"".$_SERVER[PHP_SELF]."?id=".$id_app."&ok=yes\">OUI</a><br />";
-	echo "<a href=\"".$_SERVER[HTTP_REFERER]."\">NON</a><br />";
+	echo "Sur de supprimer l'appareil ".$id_app. " ?<br />";
+	echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_app."&ok=yes\">OUI</a><br />";
+	echo "<a href=\"".$_SERVER['HTTP_REFERER']."\">NON</a><br />";
 }
 else{
 	if ( $pdo = connect_db() ){
