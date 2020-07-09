@@ -29,7 +29,7 @@ if ($pdo = connect_db()) {
 	if ($mode == 'ajouter'){
 		en_tete('Inscrire un utilisateur');
 	} else if ($mode == 'modifier') {
-		en_tete('Modifier vos coordonn&eacute;es');
+		en_tete('Modifier mon profil');
 		// recupere la liste des users
 		$sql = 'SELECT * FROM users WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
@@ -44,16 +44,19 @@ if ($pdo = connect_db()) {
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 	<tbody>
 		<tr>
+			<?php if ($mode == 'ajouter') { ?>
 			<td style="vertical-align: top;">Identifiant (login) *<br />
 			</td>
 			<td style="vertical-align: top;">
-				<?php if ($mode == 'ajouter') { ?>
-					<input type="text" name="loggin" size="25" maxlength="25" value="" ><br />
-				<?php } else { ?>
-					// on ne change pas le loggin
-					<?php echo $data['loggin'] ?><br />
-				<?php } ?>
+				<input type="text" name="loggin" size="25" maxlength="25" value="" ><br />
 			</td>
+			<?php } else { ?>
+			<td style="vertical-align: top;">Identifiant (login)<br />
+			</td>
+			<td style="vertical-align: top;">
+				<b><?php echo $data['loggin'] ?></b><br />
+			</td>
+			<?php } ?>
 		</tr>
 
 		<?php if ($mode == 'ajouter') { ?>
