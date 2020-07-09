@@ -46,11 +46,10 @@ function en_tete($titre){
 
 function nav_bar($prenom, $nom, $level, $user_id){
  ?>
-<div class ="navbar">
+<div class="navbar">
   <link rel="stylesheet" type="text/css" href="nav_bar.css"> 
 <ul>
-<?php if(empty($level)){ ?>
-   
+<?php if (empty($level)) { ?>
   <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
   <li><a href="list_user.php">Liste des utilisateurs</a></li>
   <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
@@ -65,11 +64,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
    </li>  
    <li><a href="list_manip.php">Liste des manips</a></li>
    <li class="right"><a href="login.php">Se connecter</a></li>
-</ul>
-</div>
-
-
-<?php }else{ ?>
+<?php } else { ?>
    <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
    <li><a href="list_user.php">Liste des utilisateurs</a></li>
    <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
@@ -82,8 +77,8 @@ function nav_bar($prenom, $nom, $level, $user_id){
             <a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
          </div>
    </li>
-   <!-- <li><a href="list_categorie.php">Liste des appareils</a></li> -->
    <li><a href="list_manip.php">Liste des manips</a></li>
+
    <?php if ($level == 2) { ?>
       <li class="dropdown">
          <a class="dropbtn">Ajouter</a>
@@ -96,48 +91,48 @@ function nav_bar($prenom, $nom, $level, $user_id){
             <a href="add_labviews.php">Labview</a>
          </div>
       </li>
-
   <?php } else if ($level >= 3) { ?>
-  <li class="dropdown">
-    <a class="dropbtn">Ajouter</a>
-    <div class="dropdown-content">
-      <a href="add_appareil.php">Appareil</a>
-      <a href="add_categorie.php">Cat&eacute;gorie</a>
-      <a href="add_equip.php">&Eacute;quipe</a>
-      <a href="add_fourn.php">Fournisseur</a>
-      <a href="list_appareil.php?equipe=15 pret=15">Pr&ecirc;t</a>
-      <a href="add_user.php">Utilisateur</a>
-    </div>
-  </li>
-  <?php  } ?>
-  <?php } else if ($level >= 4) { ?>
-  <li class="dropdown">
-    <a class="dropbtn">Bonus</a>
-    <div class="dropdown-content">
-    <a href="add_time.php">Temps</a>
-      <a href="add_task.php">Task</a>
-      <a href="add_demande.php">Demande</a>
-      <a href="add_labviews.php">Labview</a>
-      <a href="add_intapp.php?app=3">Intervention</a>
-      <a href="add_machine.php">Machine</a>
-      <a href="add_manip.php">Manip</a>
-    </div>
-  </li>
-  <?php  } ?>
+    <li class="dropdown">
+      <a class="dropbtn">Ajouter</a>
+      <div class="dropdown-content">
+        <a href="add_appareil.php">Appareil</a>
+        <a href="add_categorie.php">Cat&eacute;gorie</a>
+        <a href="add_equip.php">&Eacute;quipe</a>
+        <a href="add_fourn.php">Fournisseur</a>
+        <a href="list_appareil.php?equipe=15 pret=15">Pr&ecirc;t</a>
+        <a href="add_user.php">Utilisateur</a>
+      </div>
+    </li>
+  <?php } ?>
+
+  <?php if ($level >= 4) { ?>
+    <li class="dropdown">
+      <a class="dropbtn">Bonus</a>
+      <div class="dropdown-content">
+        <a href="add_time.php">Temps</a>
+        <a href="add_task.php">Task</a>
+        <a href="add_demande.php">Demande</a>
+        <a href="add_labviews.php">Labview</a>
+        <a href="add_intapp.php?app=3">Intervention</a>
+        <a href="add_machine.php">Machine</a>
+        <a href="add_manip.php">Manip</a>
+      </div>
+    </li>
+  <?php } ?>
 
   <li class="dropdown right">
          <a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
          <div class="dropdown-content">
             <a href="logout.php">Se d&eacute;connecter</a>
             <a href="add_user.php?id=<?php echo $user_id ?>"><img src="images/gear.svg" nosave=""> Modifier mon profil</a>
-            <a href="user_changepwd.php?id=<?php echo $user_id ?>"><img src="images/key.svg"> Modifier mon<br />mot de passe</a>
+            <a href="user_changepwd.php?id=<?php echo $user_id ?>"><img src="images/key.svg"> Modifier mon <br />mot de passe</a>
             <a href="user_pret.php?id=<?php echo $user_id ?>">Mes emprunts</a>
         </div>
-   </li>
+  </li>
   <?php } ?>
 </ul>
 </div>
- <?php
+<?php
 }
 
 // -------------------------------------------------------------
