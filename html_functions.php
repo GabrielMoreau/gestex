@@ -10,6 +10,12 @@ define('ICON_TRASH',         '<span><svg width="1.2em" height="1.2em" fill="curr
 define('ICON_MAIL',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Courriel</title><use xlink:href="images/bootstrap-icons.svg#envelope"/></svg></span>');
 define('ICON_LOGIN',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Se d&eacute;connecter</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-right"/></svg></span>');
 define('ICON_BOOKING',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunts</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
+define('ICON_EDIT',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Modifier</title><use xlink:href="images/bootstrap-icons.svg#pen"/></svg></span>');
+define('ICON_SEE_DOC',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Voir le document</title><use xlink:href="images/bootstrap-icons.svg#eye"/></svg></span>');
+define('ICON_URL',           '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Lien web</title><use xlink:href="images/bootstrap-icons.svg#link"/></svg></span>');
+define('ICON_ADD_DOC',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un document</title><use xlink:href="images/bootstrap-icons.svg#paperclip"/></svg></span>');
+define('ICON_ADD_TASK',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter une tache</title><use xlink:href="images/bootstrap-icons.svg#plus-square"/></svg></span>');
+define('ICON_ADD_TIME',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter du temps</title><use xlink:href="images/bootstrap-icons.svg#clock"/></svg></span>');
 
 // -------------------------------------------------------------
 
