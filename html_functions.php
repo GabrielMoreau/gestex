@@ -109,6 +109,8 @@ function nav_bar($prenom, $nom, $level, $user_id){
       <a href="add_user.php">Utilisateur</a>
     </div>
   </li>
+  <?php  } ?>
+  <?php } else if ($level >= 4) { ?>
   <li class="dropdown">
     <a class="dropbtn">Bonus</a>
     <div class="dropdown-content">
@@ -127,8 +129,8 @@ function nav_bar($prenom, $nom, $level, $user_id){
          <a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
          <div class="dropdown-content">
             <a href="logout.php">Se d&eacute;connecter</a>
-            <a href="add_user.php?id=<?php echo $user_id ?>">Modifier mon profil</a>
-            <a href="user_changepwd.php?id=<?php echo $user_id ?>">Modifier mon <br />mot de passe</a>
+            <a href="add_user.php?id=<?php echo $user_id ?>"><img src="images/gear.svg" nosave=""> Modifier mon profil</a>
+            <a href="user_changepwd.php?id=<?php echo $user_id ?>"><img src="images/key.svg"> Modifier mon<br />mot de passe</a>
             <a href="user_pret.php?id=<?php echo $user_id ?>">Mes emprunts</a>
         </div>
    </li>
