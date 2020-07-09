@@ -84,8 +84,6 @@ Liste des appareils par cat&eacute;gorie : <br />
 <table cellpadding="10" cellspacing="2" border="1"
 	style="width: 70%; text-align: center; margin-left: auto; margin-right: auto;">
 	<tbody>
-		<tr bgcolor="#f7d709">
-			<td style="vertical-align: top;">
 
 <?php
 if ($pdo = connect_db()) {
@@ -95,14 +93,19 @@ if ($pdo = connect_db()) {
 	$stmt->execute(array($tri));
 	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	foreach ($categorie as $data) {
+		echo '<tr bgcolor="#f7d709">'.PHP_EOL;
+		echo '<td style="vertical-align: top;">';
 		echo '<a href="list_appareil.php?categorie='.$data['id'].'">'.$data['nom'].'</a>';
-		echo '<br />'.PHP_EOL;
+		echo '</td>'.PHP_EOL;
+		if ($user_level >= 3) {
+			echo '  <td style="vertical-align: top;">';
+			echo '    <a href="del_categorie.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
+			echo '  </td>'.PHP_EOL;
+			echo '</tr>'.PHP_EOL;
+		}
 	}
 }
 ?>
-
-			</td>
-		</tr>
 	</tbody>
 </table>
 
