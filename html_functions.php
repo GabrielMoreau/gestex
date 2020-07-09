@@ -1,6 +1,6 @@
 <?php
-define('ICON_PERSON_OK', '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor" title="Valid&eacute;"><title>Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-check"/></svg></span>');
-define('ICON_PERSON_BAD', '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor" title="Non Valid&eacute;"><title>Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-dash"/></svg></span>');
+define('ICON_PERSON_OK', '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-check"/></svg></span>');
+define('ICON_PERSON_BAD', '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Non Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-dash"/></svg></span>');
 
 function en_tete($titre){
    /////echo"<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n";
