@@ -101,8 +101,8 @@ if ($pdo = connect_db()) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="del_categorie.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
 			echo '  </td>'.PHP_EOL;
-			echo '</tr>'.PHP_EOL;
 		}
+		echo '</tr>'.PHP_EOL;
 	}
 }
 ?>
