@@ -55,15 +55,14 @@ if ($pdo = connect_db()) {
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($tri));
 	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	$num_line=0;
-
-	// while ($data = result_db($qh)) {
+	$num_line = 0;
 	foreach ($equipe as $data) {
 		// remplit le tableau
 		if (($num_line % 2 )==0)
 			echo '<tr class="pair">'.PHP_EOL;
 		else
 			echo '<tr class="impair">'.PHP_EOL;
+		$num_line++;
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['nom'];
 		echo '  </td>'.PHP_EOL;
@@ -96,7 +95,6 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		echo '</tr>'.PHP_EOL;
-		$num_line++;
 	} //end foreach
 } //end if
 ?>

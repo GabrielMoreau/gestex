@@ -26,40 +26,6 @@ else
 ?>
 
 <br />
-<table cellpadding="2" cellspacing="2" border="1"
-	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-	<tbody>
-		<tr>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="<?php GESTEX_URL_SERVICE ?>">Retour &agrave;<br /> la page du service</a>
-				<br />
-			</td>
-			<?php 
-			if ($user_level >= 2) { ?>
-				<td style="vertical-align: top; text-align: center;">
-					<a href="add_appareil.php">Ajout<br />d'un appareil</a>
-					<br />
-				</td>
-				<td style="vertical-align: top; text-align: center;">
-					<a href="list_fourn.php">Liste<br />des fournisseurs</a>
-					<br />
-				</td>
-				<td style="vertical-align: top; text-align: center;">
-					<a href="add_fourn.php">Ajout<br />d'un fournisseur</a>
-					<br />
-				</td>
-			<?php }	?>
-			<?php if ($user_level >= 3) { ?>
-				<td style="vertical-align: top; text-align: center;">
-					<a href="add_categorie.php">Ajout<br />d'une cat&eacute;gorie</a>
-					<br />
-				</td>
-			<?php } ?>
-		</tr>
-	</tbody>
-</table>
-
-<br />
 Liste des appareils : <br />
 <i>Affichage de la liste globale ou bien des appareils en pr&ecirc;t au service instrumentation...</i><br />
 <br />
@@ -92,11 +58,16 @@ if ($pdo = connect_db()) {
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($tri));
 	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$num_line = 0;
 	foreach ($categorie as $data) {
-		echo '<tr bgcolor="#f7d709">'.PHP_EOL;
-		echo '<td style="vertical-align: top;">';
-		echo '<a href="list_appareil.php?categorie='.$data['id'].'">'.$data['nom'].'</a>';
-		echo '</td>'.PHP_EOL;
+		if (($num_line % 2 )==0)
+			echo '<tr class="pair">'.PHP_EOL;
+		else
+			echo '<tr class="impair">'.PHP_EOL;
+		$num_line++;
+		echo '  <td style="vertical-align: top;">';
+		echo '    <a href="list_appareil.php?categorie='.$data['id'].'">'.$data['nom'].'</a>';
+		echo '  </td>'.PHP_EOL;
 		if ($user_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="del_categorie.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
@@ -108,14 +79,6 @@ if ($pdo = connect_db()) {
 ?>
 	</tbody>
 </table>
-
-<?php if (($user_level >= 3) || ($user_id == 33) || ($user_id == 2) || ($user_id == 105)) { ?>
-<br /><br /><br />
-<td style="vertical-align: top; text-align: center;">
-	<a href="list_demande.php">Demandes en cours</a>
-<td style="vertical-align: top; text-align: center;">
-	<a href="prets.html">Pr&ecirc;ts en cours</a>
-<?php } ?>
 
 <br />
 </div>
