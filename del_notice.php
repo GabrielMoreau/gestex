@@ -56,6 +56,6 @@ else{
         }
     }
     //on retourne a la page d'accueil
-	// Header("Location: list_appareil.php");
+	Header("Location: list_appareil.php");
 }
 ?>
