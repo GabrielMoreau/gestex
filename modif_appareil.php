@@ -60,19 +60,23 @@ $gamme=$_POST['gamme'];
 	$notice = str_replace('è', 'e', $notice);
 	$notice = str_replace('à', 'a', $notice);
 
-	$nom_dossier = str_replace(' ', '_', $nom);
-	$path = "./data/instru/".$nom_dossier;
-
+	$path = "./data";
 	if(!is_dir($path)){	
-		echo "\n". $path."\n";
-		echo "je créé un nouveau dossier\n";
 		mkdir($path,0750);
 	}
-			if(move_uploaded_file($_FILES["notice"]["tmp_name"], $path."/".$notice )){
-				echo "Ca a march&eacute;\n";
-			}else{
-				echo "Ca n'a pas march&eacute;\n ";
-			}
+	$path = "./data/notice";
+	if(!is_dir($path)){	
+		mkdir($path,0750);
+	}
+	$path = "./data/notice/".$id_app;
+	if(!is_dir($path)){	
+		mkdir($path,0750);
+	}
+	if(move_uploaded_file($_FILES["notice"]["tmp_name"], $path."/".$notice )){
+		echo "Ca a march&eacute;\n";
+	}else{
+		echo "Ca n'a pas march&eacute;\n ";
+	}
 	
 
 }}}}}}}
