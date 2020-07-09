@@ -51,6 +51,11 @@ if (empty($_GET['tri'])){
 			<th style="vertical-align: top; text-align: center;">
 				<a href ="list_user.php?tri=equipe">&Eacute;quipe</a><br />
 			</th>
+			<?php if ($user_level >= 3) { ?>
+			<th style="vertical-align: top; text-align: center;" colspan="4">
+				Admin<br />
+			</th>
+			<?php } ?>
 		</tr>
 
 <?php	//interrogation base de donnees
