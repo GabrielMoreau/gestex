@@ -113,7 +113,7 @@ if ($pdo = connect_db()) {
 		if ($user_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="add_user.php.php?id='.$data['id'].'">';
-			echo '      <img src="images/key.svg" nosave="" title="Modifier le profil">';
+			echo '      <img src="images/gear.svg" nosave="" title="Modifier le profil">';
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
 			echo '  <td style="vertical-align: top;">';
