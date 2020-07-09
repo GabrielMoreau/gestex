@@ -101,14 +101,12 @@ function nav_bar($prenom, $nom, $level, $user_id){
   <li class="dropdown">
     <a class="dropbtn">Ajouter</a>
     <div class="dropdown-content">
+      <a href="add_appareil.php">Appareil</a>
       <a href="add_categorie.php">Cat&eacute;gorie</a>
-  
-      <a href="add_appareil.php">Appareils</a>
       <a href="add_equip.php">&Eacute;quipe</a>
       <a href="add_fourn.php">Fournisseur</a>
- 
       <a href="list_appareil.php?equipe=15 pret=15">Pr&ecirc;t</a>
-
+      <a href="add_user.php">Utilisateur</a>
     </div>
   </li>
   <li class="dropdown">
@@ -119,7 +117,6 @@ function nav_bar($prenom, $nom, $level, $user_id){
       <a href="add_demande.php">Demande</a>
       <a href="add_labviews.php">Labview</a>
       <a href="add_intapp.php?app=3">Intervention</a>
-      <a href="add_user.php">User</a>
       <a href="add_machine.php">Machine</a>
       <a href="add_manip.php">Manip</a>
     </div>
