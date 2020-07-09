@@ -18,10 +18,9 @@ en_tete('Liste des pr&ecirc;ts');
 
 //recuper la methode de tri
 if (empty($_GET['tri']))
-	$tri ="emprunt";
+	$tri = 'emprunt';
 else
 	$tri = $_GET['tri'];
-echo $tri;
 
 //recupere l'equipe
 if (empty($_GET['equipe']))
@@ -32,7 +31,6 @@ else
 
 <i>Consulter la liste des &eacute;quipement communs disponibles au service instrumentation et choisir : 'Demande de pr&ecirc;t' en face de l'appareil souhait&eacute;</i><br />
 <br />
-Liste des pr&ecirc;ts : <br /><br /><br />
 
 <table cellpadding="2" cellspacing="2" border="1"
 	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
@@ -60,7 +58,7 @@ Liste des pr&ecirc;ts : <br /><br /><br />
 			</th>
 
 			<?php 
-			if ( $user_level >=3 )
+			if ($user_level >= 3)
 				echo "<th></th>";
 			?>
 		</tr>
@@ -74,9 +72,13 @@ if ($pdo = connect_db()) {
 	$stmt->execute(array($tri));
 	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+	$num_line = 0;
 	foreach ($pret as $data) {
-		// remplit le tableau
-		echo '<tr">'.PHP_EOL;
+		if (($num_line % 2 )==0)
+			echo '<tr class="pair">'.PHP_EOL;
+		else
+			echo '<tr class="impair">'.PHP_EOL;
+		$num_line++;
 
 		$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
