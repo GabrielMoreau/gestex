@@ -12,9 +12,10 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level     = $_SESSION['level'];
 
 //recupere le numero du nom
-$nom_id=$_GET['id'];
-if (empty($nom_id))
+if (empty($_GET['id']))
 	Header('Location: list_appareil.php');
+else
+	$id_app=$_GET['id'];
 
 require("html_functions.php");
 
@@ -22,42 +23,45 @@ if ($pdo = connect_db()) {
 
 	$sql = 'SELECT nom FROM Listing WHERE id = ?;' ;
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($nom_id));
+	$stmt->execute(array($id_app));
 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$nom_app = $listing[0]['nom'];
 
-	// list($qh,$num) = query_db($querry);
-	// $data = result_db($qh);
-	$nom_nom = $listing[0]['nom'];
-
-	$titre = 'Documents de l\'appareil : '.$listing[0]['nom'];
-
+	$titre = 'Documents de l\'appareil : '.$listing[0]['nom'].' ('.$id_app.')';
 	en_tete($titre);
 
-	echo '<a href="'.$_SERVER['HTTP_REFERER'].'">Retour &agrave; la page cat&eacute;gories...</a>';
+	echo '<a href="'.$_SERVER['HTTP_REFERER'].'">Retour &agrave; la page cat&eacute;gories</a>';
 
-	$dossier_proj = 'data/instru/'.$nom_nom.'/';
+	$sql = 'SELECT id,nom_notice,chemin_notice FROM notice WHERE id_appareil = ?;' ;
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_app));
+	$notice = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
+	$dossier_proj = './data/instru/'.$nom_app.'/';
 	//remplace les espaces par des underscore
 	$dossier_proj = str_replace(" ", "_", $dossier_proj);
 	// cherche l'existence de ce dossier
 	//echo $dossier_proj;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
-	if (($handle = @opendir($dossier_proj)) != FALSE) {
-
+	foreach($notice as $notice){
+		if(is_file($notice['chemin_notice'])){
+			echo "le fichier existe :".$notice['nom_notice']."<br />";
+		// if (($handle = opendir($dossier_proj))) {
 		$images = array();
 		$fichiers = array();
-		while (false !== $file = readdir($handle)) {
-			echo $file;
-			////echo count($images);
-			if ($file != "." && $file != "..") {
-				if (preg_match('/^[a-zA-Z0-9_\-]+(:?\.jpg|\.gif|\.png|\.pdf|\.doc|\.xls|\.mov|\.avi|\.mpg|\.html|\.htm)$/', $file) == TRUE) {
-					///entasse les images
-					////echo $file;
-					array_push($images, $file);
+		// if ($file = readfile($notice['nom_notice'])) {
+			// echo $file.'<br>';
+// 			////echo count($images);
+			if ($notice['chemin_notice'] != "." && $notice['chemin_notice'] != "..") {
+				if (preg_match('/^[a-zA-Z0-9_\-]+(:?\.jpg|\.gif|\.png|\.pdf|\.doc|\.xls|\.mov|\.avi|\.mpg|\.html|\.htm)$/', $notice['nom_notice'])) {
+					//entasse les images
+					//echo $file;
+					array_push($images, $notice['nom_notice']);
 				}
-				else if (preg_match('/^[a-zA-Z0-9_\-]+(:?\.txt)$/', $file ) == TRUE) {
+				else if (preg_match('/^[a-zA-Z0-9_\-]+(:?\.txt)$/', $notice['nom_notice'] ) == TRUE) {
 					//et les fichiers textes
-					array_push ($fichiers, $file);
+					array_push ($fichiers, $notice['nom_notice']);
 				}
 			} // end if file!=".."
 			// repere le max
@@ -68,19 +72,19 @@ if ($pdo = connect_db()) {
 			}
 			else
 				$min = count($fichiers);
-		} // end if file!=".."
+// 		} // end if file!=".."
 
-		closedir($handle);
+// 		// closedir($handle);
 
 		//si trouv&eacute; on cr&eacute;e un tableau 2 colonnes :
 		//	a gauche les images
 		//	a droite le texte
-		?>
+ 		?>
 
-<table cellpadding="1" cellspacing="1" border="1" style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-	<tbody>
+ 		<table cellpadding="1" cellspacing="1" border="1" style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+ 	<tbody>
 
-		<?php
+ 		<?php
 		while ($file = array_pop($images)) {
 			echo '<tr style="width: 40%; text-align: center;">';
 			echo '  <td>';
@@ -130,17 +134,36 @@ if ($pdo = connect_db()) {
 				} // end if fopen
 			} // while end autres
 			echo '  </td>';
+			echo '  <td style="vertical-align: top;">';
+			echo '    <a>'.$notice['id'].'</a>';
+			echo '  </td>'.PHP_EOL;
+			if ($user_level >=2){
+				echo '  <td style="vertical-align: top;">';
+				echo '    <a href="add_appareil.php?id=',$id_app,'"><img src="images/pen.svg" nosave="" title="Modifier" /></a>';
+				echo '  </td>'.PHP_EOL;
+			}
+			if ($user_level >=3){
+				echo '  <td style="vertical-align: top;">';
+				echo '    <a href="del_notice.php?id=',$notice['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
+				echo '  </td>'.PHP_EOL;
+			}
 			echo '</tr>';
 		} // while end  file
 		?>
 
-	<tbody>
+ 	<tbody>
 </table>
 
-<?php
-	}
-	else
-		echo 'Pas de documents disponibles pour ce projet !<br />';
+ <?php
+		}else {
+			echo 'Pas de documents disponibles pour ce projet !<br />';
+			echo $notice;
+		}
+		}
+	
+
+
+
 }//end if connect
 ?>
 

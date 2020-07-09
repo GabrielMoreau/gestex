@@ -124,17 +124,11 @@ if ( $pdo = connect_db() ){
 $sql = 'INSERT INTO Listing (categorie,nom,modele , gamme, equipe, fournisseur, achat, responsable, reparation,accessoires,inventaire,notice) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
 $stmt = $pdo->prepare($sql);
 $stmt->execute(array($categorie,$nom, $modele,$gamme, $equipe, $fourn,$achat,$tech, $reparation,$accessoires,$inventaire,$notice));
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-if(!$result){
-	echo "ça n'a pas marché";
-}else{
-	// $sql = 'SELECT id FROM Listing where '
-	$id_app = $result[0]['id'];
-	$sql = 'INSERT INTO notice (nom_notice,id_appareil) VALUES (?, ?);';
+$id_app = $pdo->lastInsertId();
+	$sql = 'INSERT INTO notice (nom_notice,chemin_notice,id_appareil) VALUES (?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
 	$path_complet =$path."/".$notice;
-	$stmt->execute(array($path_complet,$id_app));
-}
+	$stmt->execute(array($notice,$path_complet,$id_app));
 echo "<br /> Votre requ&ecirc;te a bien &eacute;t&eacute; ajout&eacute;";
 }//end if connect
 

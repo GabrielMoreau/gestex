@@ -56,20 +56,18 @@ $gamme=$_POST['gamme'];
 
 	$notice=$_FILES["notice"]["name"];
 	$notice = str_replace(' ', '_', $notice);
+	$notice = str_replace('é', 'e', $notice);
+	$notice = str_replace('è', 'e', $notice);
+	$notice = str_replace('à', 'a', $notice);
+
 	$nom_dossier = str_replace(' ', '_', $nom);
 	$path = "./data/instru/".$nom_dossier;
 
 	if(!is_dir($path)){	
 		echo "\n". $path."\n";
-<<<<<<< HEAD:modif_app2.php
 		echo "je créé un nouveau dossier\n";
 		mkdir($path,0750);
 	}
-=======
-		mkdir($path,0750);
-	}
-			echo "Cr&eacute;ation d'un nouveau dossier\n";
->>>>>>> c4c2eb55a141cbc75ac8b83b5db2622c7ad0b122:modif_appareil.php
 			if(move_uploaded_file($_FILES["notice"]["tmp_name"], $path."/".$notice )){
 				echo "Ca a march&eacute;\n";
 			}else{
@@ -208,10 +206,10 @@ if ($notice!=$listing[0]['notice']){
 			// $erreur = mysql_error();
 			echo "<br />erreur ";
 		}
-		$sql = 'INSERT INTO notice (nom_notice,id_appareil) VALUES (?, ?);';
+		$sql = 'INSERT INTO notice (nom_notice,chemin_notice,id_appareil) VALUES (?, ?, ?);';
 		$stmt = $pdo->prepare($sql);
 		$path_complet =$path."/".$notice;
-		$stmt->execute(array($path_complet,$listing[0]['id']));
+		$stmt->execute(array($notice,$path_complet,$listing[0]['id']));
 	
 	}//end if modif
 	else{
