@@ -182,7 +182,7 @@ if ( $pdo = connect_db() ){
 				}
 				if ($user_level >= 3) {
 					echo '  <td style="vertical-align: top;">';
-					echo '    <a href="del_manip.php?id=',$manip['id'],'"><img src="images/trash.svg" nosave="" title= "Supprimer" /></a>';
+					echo '    <a href="del_manip.php?id=',$manip['id'],'">'.ICON_TRASH.'</a>';
 					echo '  </td>';
 				}
 			echo '</tr>';

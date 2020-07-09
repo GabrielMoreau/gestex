@@ -131,7 +131,7 @@ Liste des demandes en cours :<br />
 			/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 		if (@opendir($dossier_proj) != FALSE){
 			// si trouve ajoute un bouton
-			echo "Voir : <a href =\"joint_demande.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
+			echo "Voir : <a href =\"joint_demande.php?id=". $data['id']."\">".$data['tache'].' '.ICON_SEE_DOC.'></a><br />';
 		}
 		if ($user_level >= 2) {
 			echo"</td><td style=\"vertical-align: top;\">";

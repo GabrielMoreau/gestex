@@ -110,7 +110,7 @@ if ($pdo = connect_db()) {
 
 		if ($user_level >= 3) 	{
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="del-pret.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
+			echo '    <a href="del-pret.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 

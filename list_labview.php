@@ -173,7 +173,7 @@ echo $data['module'];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_lab) != FALSE){
 		//si trouve ajoute un bouton
-		echo "Voir : <a href =\"doc_labview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\"></a><br />";
+		echo 'Voir : <a href ="doc_labview.php?id='. $data['id'].'">'.$data['manipch'].' '.ICON_SEE_DOC.'</a><br />';
     }
 //echo $data['ecran'];
 

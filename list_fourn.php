@@ -108,11 +108,11 @@ if ($pdo = connect_db()) {
 		echo '  <td style="vertical-align: top;" nowrap>'.$data['fax'].'</td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		if (!empty($data['mail']))
-			echo '    <a href="mailto:'.$data['mail'].'"><img src="images/envelope.svg" nosave=""></a>';
+			echo '    <a href="mailto:'.$data['mail'].'">'.ICON_MAIL.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		if (!empty($data['www']))
-			echo '    <a href="http://'.$data['www'].'" target="_fournView"><img src="images/link.svg" nosave="" width="22"></a>';
+			echo '    <a href="http://'.$data['www'].'" target="_fournView">'.ICON_URL.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">'.$data['contact'].'</td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">'.$data['descr'].'</td>'.PHP_EOL;

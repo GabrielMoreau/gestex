@@ -212,7 +212,7 @@ function windowToTop(lien){
   $tache = $stmt->fetchAll(PDO::FETCH_ASSOC);
   foreach($tache as $taches){
   // remplit le tableau de taches
-       echo"<tr><td><img src =\"images/arrow-right-square.svg\" nosave=\"\" width=\"15\"></td>";
+       echo"<tr><td>".ICON_MARK_RIGHT."</td>";
   echo"<td style=\"vertical-align: top;\">";
   ///     echo "<a href=\"task_info.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches[id]."\" target=\"new\">".$taches[nom]."</a>";
      echo " <a href=\"#\" onclick=\"windowToTop('task_info.php?idm=".$manip_id."&idp=".$proj_id."&idt=". $taches['id']."');\">";

@@ -164,68 +164,6 @@ if ($pdo = connect_db()) {
 	// $data = result_db($qh);
 	$listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// echo "<tr>";
-//      echo"<td style=\"vertical-align: top;\">";
-// $sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
-// 	// list($qheq,$numeq) = query_db($querry);
-// 		// $equip = result_db($qheq);
-// 		$stmt = $pdo->prepare($sql);
-// 		$stmt->execute(array($listing[0]['categorie']));
-// 		$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-//       	echo $categorie[0]['nom'];
-//  echo"</td><td style=\"vertical-align: top;\">";
-// 	echo "<a href =\"fiche_vie.php?id=".$listing[0]['id']."\">". $listing[0]['nom']."</a>";
-//        echo"</td><td style=\"vertical-align: top;\">";
-// echo $listing[0]['modele'];
-//   echo"</td><td style=\"vertical-align: top;\">";
-// echo $listing[0]['gamme'];
-//        echo"</td><td style=\"vertical-align: top;\">";
-// 	// recupere le nom d'equipe
-// 	$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
-// 	// list($qheq,$numeq) = query_db($querry);
-// 	// 	$equip = result_db($qheq);
-// 	$stmt = $pdo->prepare($sql);
-// 	$stmt->execute(array($listing[0]['equipe']));
-// 	$equipe =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-// 	  echo $equipe[0]['nom'];
-//        echo"</td><td style=\"vertical-align: top;\">";
-// 	// recupere le nom du fournisseur
-// 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
-// 	// list($qheq,$numeq) = query_db($querry);
-// 	// 	$equip = result_db($qheq);
-// 	$stmt = $pdo->prepare($sql);
-// 	$stmt->execute(array($listing[0]['fournisseur']));
-// 	$fournisseur =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-//       		echo $fournisseur[0]['nom'];
-//   echo"</td><td style=\"vertical-align: top;\">";
-// 	///bouton lien vers la doc
-// 	$dossier_proj ="data/instru/".$listing[0]['nom'];
-// 	//remplace les espaces par des underscore
-// 	$dossier_proj = str_replace(" ", "_", $dossier_proj);
-// 	// cherche l'existence de ce dossier
-// 	//echo $dossier_proj;
-// 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
-// 	if (@opendir($dossier_proj) != FALSE){
-// 		//si trouve ajoute un bouton
-// 		echo "Voir : <a href =\"notice.php?id=". $data['id']."\">".$data['nom']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
-// 	}
-// 	if (( $user_level >=2)&&($eq=="15 pret=15")) {
-// echo"</td><td style=\"vertical-align: top;\">";
-//       echo '<a href="add-pret.php?id=',$listing[0]['id'],'><img src="images/box-arrow-in-down.svg" nosave="" title="Demande de pr&ecirc;t" /></a>';
-//      echo"</td>"; }
-// 	 if (( $user_level >=2)&&($eq!="15 pret=15")) {
-//       echo"</td><td style=\"vertical-align: top;\">";
-//       echo '<a href="add_appareil.php?id=',$listing[0]['id'],'">'.ICON_EDIT.'</a>';
-//       echo"</td>";
-// 	}//end if
-//  if (( $user_level >=3 )&&($eq!="15 pret=15")) {
-//       echo"</td><td style=\"vertical-align: top;\">";
-//       echo '<a href="del_appareil.php?id=',$listing[0][id],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
-//       echo"</td>";
-// }
-// echo"</tr>";
-
-// while ($data = result_db($qh)) {
 	$num_line = 0;
 	foreach ($listing as $data) {
 		// remplit le tableau
@@ -298,13 +236,13 @@ if ($pdo = connect_db()) {
 		/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 		if (@opendir($dossier_proj) != FALSE){
 			//si trouve ajoute un bouton
-			echo 'Voir : <a href ="notice.php?id=', $data['id'],'">',$data['nom'],'<img src="images/eye.svg" nosave="" title ="Voir ce projet" /></a><br />';
+			echo 'Voir : <a href ="notice.php?id=', $data['id'],'">',$data['nom'],' '.ICON_SEE_DOC.'</a><br />';
 		}
 		echo '  </td>'.PHP_EOL;
 
 		if ($log === true && ($user_level >= 2) && ($eq == "15 pret=15")) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="add-pret.php?id=',$data['id'],'"><img src="images/box-arrow-in-down.svg" nosave="" title="Demande de pr&ecirc;t" /></a>';
+			echo '    <a href="add-pret.php?id=',$data['id'],'">'.ICON_BOOKING.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 		if (($log === true && $user_level >= 2) && ($eq != "15 pret=15")) {
@@ -314,7 +252,7 @@ if ($pdo = connect_db()) {
 		}//end if
 		if (($log === true && $user_level >= 3) && ($eq != "15 pret=15")) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="del_appareil.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
+			echo '    <a href="del_appareil.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 
 		}

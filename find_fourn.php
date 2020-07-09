@@ -152,10 +152,10 @@ while ($data = result_db($qh)) {
        echo"</td><td style=\"vertical-align: top;\" nowrap>";
       echo $data['fax'];
      echo"</td><td style=\"vertical-align: top;\">";
-         echo "<a href=\"mailto:".$data['mail']."\"> <img src=\"images/envelope.svg\" nosave=\"\" /></a>";
+         echo "<a href=\"mailto:".$data['mail']."\">".ICON_MAIL."</a>";
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"http://".$data['www']."\" target=\"_fournView\"><img src=\"images/link.svg\" nosave=\"\" width=\"22\" /> </a>";
+      echo "<a href=\"http://".$data['www']."\" target=\"_fournView\">".ICON_URL."</a>";
       echo"</td><td style=\"vertical-align: top;\">";
       echo  $data['contact'];
       echo"</td><td style=\"vertical-align: top;\">";
@@ -166,7 +166,7 @@ while ($data = result_db($qh)) {
       echo "<a href=\"add_fourn.php?id=".$data['id']."\">".ICON_EDIT."</a>";
       echo"</td>";
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_fourn.php?id=".$data['id']."\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
+      echo "<a href=\"del_fourn.php?id=".$data['id']."\">".ICON_TRASH."</a>";
       echo"</td>";
 
 	}//end if

@@ -99,7 +99,7 @@ if ($pdo = connect_db()) {
 		echo '</td>'.PHP_EOL;
 		if ($user_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="del_categorie.php?id=',$data['id'],'"><img src="images/trash.svg" nosave="" title="Supprimer" /></a>';
+			echo '    <a href="del_categorie.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 		echo '</tr>'.PHP_EOL;
