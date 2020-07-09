@@ -97,7 +97,24 @@ sudo chown -R www-data:www-data /var/www/web-legi/pool/public_html/PoolProject/d
 Une procédure plus performante sera mise en place dès que l'application sera de nouveau pleinement opérationnelle.
 Chaque chose en son temps !
 
-### Mot de passe
+
+### Base de donnée
+
+#### Installation
+
+```bash
+mysql -u root -p
+CREATE DATABASE pool;
+
+CREATE USER 'pool'@'localhost' IDENTIFIED BY 'ZZZZZZZZZ';
+GRANT ALL PRIVILEGES ON pool . * TO 'pool'@'localhost';
+FLUSH PRIVILEGES;
+QUIT;
+
+mysql -u root -p pool < db-schema.sql
+```
+
+#### Mot de passe
 
 Les commandes suivantes sont une aide pour générer le premier mot de passe,
 ainsi que pour mettre manuellement un nouveau mot de passe à une personne au cas ou la système serait bloqué !
@@ -105,10 +122,21 @@ ainsi que pour mettre manuellement un nouveau mot de passe à une personne au ca
 ```bash
 echo -n XXXXXXXXX | md5sum
 
+mysql -u root -p
 INSERT INTO `users`(`id`, `loggin`, `password`, `level`, `nom`, `prenom`, `tel`, `email`, `equipe`, `valid`) VALUES (1,'sys-admin','YYYYYYYYYYYYYYYYY',5,'Sys','Admin',0,0,0,1);
+QUIT;
 
+mysql -u root -p
 UPDATE users SET password='YYYYYYYYYYYYYYYYY'  WHERE id='1';
+QUIT;
 ```
+
+#### Sauvegarde de la base de donnée
+
+```bash
+mysqldump -u root -p pool > db-gestex-dump.sql
+```
+
 
 ### Icônes
 
