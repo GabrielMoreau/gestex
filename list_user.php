@@ -128,9 +128,9 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 			echo '  <td style="vertical-align: top;">';
 			if ($data['valid'] == 0)
-				echo 'Non Valid&eacute;';
+				echo '<img src="images/person-dash.svg" nosave="" title="Non Valid&eacute;">';
 			else
-				echo 'Valid&eacute;';
+				echo '<img src="images/person-check.svg" nosave="" title="Valid&eacute;">';
 			echo '  </td>'.PHP_EOL;
 		}
 		echo '</tr>'.PHP_EOL;

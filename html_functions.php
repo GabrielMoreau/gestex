@@ -123,10 +123,10 @@ function nav_bar($prenom, $nom, $level, $user_id){
   <li class="dropdown right">
          <a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
          <div class="dropdown-content">
-            <a href="logout.php">Se d&eacute;connecter</a>
+            <a href="logout.php"><img src="images/box-arrow-in-right.svg" nosave=""> Se d&eacute;connecter</a>
             <a href="add_user.php?id=<?php echo $user_id ?>"><img src="images/gear.svg" nosave=""> Modifier mon profil</a>
             <a href="user_changepwd.php?id=<?php echo $user_id ?>"><img src="images/key.svg"> Modifier mon <br />mot de passe</a>
-            <a href="user_pret.php?id=<?php echo $user_id ?>">Mes emprunts</a>
+            <a href="user_pret.php?id=<?php echo $user_id ?>"><img src="images/box-arrow-in-down.svg" nosave=""> Mes emprunts</a>
         </div>
   </li>
   <?php } ?>
