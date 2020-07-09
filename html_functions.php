@@ -52,7 +52,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
 <?php if(empty($level)){ ?>
    
   <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
-  <li><a href="list_users.php">Liste des utilisateurs</a></li>
+  <li><a href="list_user.php">Liste des utilisateurs</a></li>
   <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
   <li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
   <li class="dropdown">
@@ -71,7 +71,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
 
 <?php }else{ ?>
    <li><a href="list_fourn.php">Liste des fournisseurs</a></li>
-   <li><a href="list_users.php">Liste des utilisateurs</a></li>
+   <li><a href="list_user.php">Liste des utilisateurs</a></li>
    <li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
    <li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
    <li class="dropdown">

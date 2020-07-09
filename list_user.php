@@ -1,5 +1,5 @@
 <?php
-//liste_owners.php
+// list_user.php
 
 // Authenticate
 include("session_auth.php");
@@ -69,7 +69,7 @@ if (empty($_GET['tri'])){
 				Pr&eacute;nom<br />
 			</th>
 			<th style="vertical-align: top; text-align: center;">
-				<a href ="list_users.php?tri=nom">Nom de famille</a><br />
+				<a href ="list_user.php?tri=nom">Nom de famille</a><br />
 			</th>
 			<th style="vertical-align: top; text-align: center;">
 				T&eacute;l&eacute;phone<br />
@@ -78,7 +78,7 @@ if (empty($_GET['tri'])){
 				Courriel<br />
 			</th>
 			<th style="vertical-align: top; text-align: center;">
-				<a href ="list_users.php?tri=equipe">&Eacute;quipe</a><br />
+				<a href ="list_user.php?tri=equipe">&Eacute;quipe</a><br />
 			</th>
 		</tr>
 

@@ -41,7 +41,7 @@ else{
    
   }
  //on retourne a la page precedente
- Header("Location: list_users.php");
+ Header("Location: list_user.php");
 }
 
 ?>

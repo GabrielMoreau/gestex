@@ -110,7 +110,7 @@ else {
 		echo ' est propos&eacute;e avec l\'identifiant (login) : '.$loggin;
 		echo '<br />Vous serez pr&eacute;venu de sa validation par courriel...';
 	} // end else
-	echo '<br /><center><a href="list_users.php">Suite</a></center><br /><br />';
+	echo '<br /><center><a href="list_user.php">Suite</a></center><br /><br />';
 } // else end
 } //end if connect
 

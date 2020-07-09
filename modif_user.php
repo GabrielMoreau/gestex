@@ -114,7 +114,7 @@ if ( $connex = connect_db() ){
 echo "inscription de ".$prenom." ".$nom." ".$mail."<br />";
 echo" <img src=\"images/pool_project.jpg\"  height=\"100\" nosave=\"\" align=\"middle\" alt=\"\" />";
 echo" est modifi&eacute;e  !";
-echo"<br /><br /><a href=\"list_users.php\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_user.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
 }

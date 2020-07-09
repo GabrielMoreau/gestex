@@ -46,7 +46,7 @@ if ( $pdo = connect_db() ){
 				<a href="list_machine.php">Liste des<br />Appareils</a>
 				<br /></td> -->
 				<th style="vertical-align: top; text-align: center; " >
-					<a href="list_users.php?tri=nom">Liste des<br />Utilisateurs</a>
+					<a href="list_user.php?tri=nom">Liste des<br />Utilisateurs</a>
 					<br />
 				</th>
 				<th style="vertical-align: top; text-align: center; " >

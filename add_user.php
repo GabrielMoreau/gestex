@@ -163,7 +163,7 @@ if ($pdo = connect_db()) {
 </table>
 </form>	
 
-<?php } else { Header("Location: list_users.php"); exit(0); } ?>
+<?php } else { Header("Location: list_user.php"); exit(0); } ?>
 <br />
 </div>
 <?php pied_page() ?>
