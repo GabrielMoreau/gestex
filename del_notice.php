@@ -16,7 +16,7 @@ if (empty($_GET['id']))
 else
 	$id_notice = $_GET['id'];
 	
-if(empty($_GET['ok'])) // On récupère une variable ok qui sert a vérifier que la personne est bien sûr de supprimer la catégorie choisi
+if(empty($_GET['ok'])) // On recupere une variable ok qui sert a verifier que la personne est bien sur de supprimer la categorie choisi
 	$valide ='no'	// s'il n'y a pas d'id, on met 'no' dans $valid
 else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
 	$valide = 'yes';
@@ -60,6 +60,6 @@ else{
         }
     }
     //on retourne a la page d'accueil
-	Header("Location: labview.php");
+	Header("Location: list_labview.php");
 }
 ?>

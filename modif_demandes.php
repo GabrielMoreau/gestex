@@ -152,7 +152,7 @@ if ($achat!=$data['achat']){
 	}//end if modif
 	else{
 		echo "aucune modif a faire";
-		echo"<br /><br /><a href=\"demandes.php\">Suite</a><br /><br />\n";
+		echo"<br /><br /><a href=\"list_demandes.php\">Suite</a><br /><br />\n";
 		pied_page();
 		exit();
 		}//else end
@@ -168,7 +168,7 @@ if ( $connex = connect_db() ){
 
 //echo "<br />modification de ".$nom."<br />";
 echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"demandes.php\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_demandes.php\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
 
 pied_page();

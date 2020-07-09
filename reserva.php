@@ -46,11 +46,11 @@ else
 
 <td style="vertical-align: top; text-align: center;">
 <?php if ( $use >=3 ) 	{?>
-	<a href="pret1.php">Retour<br />&agrave; la liste des pr&ecirc;ts</a>
+	<a href="list-pret.php">Retour<br />&agrave; la liste des pr&ecirc;ts</a>
 	<br /></td>
 <?php }
 else{	?>
-<a href="pret.php">Retour<br />&agrave; la liste des pr&ecirc;ts</a>
+<a href="list-pret.php">Retour<br />&agrave; la liste des pr&ecirc;ts</a>
 <?php }?>
 </tr></tbody>
 </table>

@@ -3,7 +3,7 @@
 require("html_functions.php");
 //recuper la methode de tri
 
-/// valid_app2.php
+/// valid_appareil.php
 //validation d'un nouvel appareil
 unset($erreur);
 //variables ne pouvant etre nulles
@@ -92,7 +92,7 @@ if (!empty($erreur) ){
 	//erreur
 
 	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"add_app2.php\">Suite</a><br />\n";
+	echo"<br /><a href=\"add_appareil.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();

@@ -1,5 +1,5 @@
 <?php
-/// add_app.php
+/// add_machine.php
 	// Authenticate
 	include("session_auth.php");
 
@@ -11,15 +11,15 @@
 
 if (empty($_GET['id'])){
 	//->nouvel appareil
-	$app_id = "";
-	$mode ="ajouter";
-	$action="valid_app.php";
+	$app_id = '';
+	$mode = 'ajouter';
+	$action = 'valid_machine.php';
 }
 else{
 	//->modif appareil
 	$app_id = $_GET['id'];
-	$mode ="modifier";
-	$action="modif_app.php";
+	$mode = 'modifier';
+	$action = 'modif_machine.php';
 }
 
 require("html_functions.php");
@@ -175,7 +175,7 @@ else if ($mode == 'modifier'){
 	</tbody>
 
 	<tbody>
-		<form action="list_app.php" method="POST" name="annulForm">
+		<form action="list_machine.php" method="POST" name="annulForm">
 		<tr>
 			<td colspan="2" style="vertical-align: top; text-align: right;">
 				<input type="submit" name="annul" value="Annuler">

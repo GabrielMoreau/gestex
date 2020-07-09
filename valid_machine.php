@@ -1,7 +1,7 @@
 <?php
 
 require("html_functions.php");
-/// valid_app.php
+/// valid_machine.php
 //validation d'un nouvel appareil
 unset($erreur);
 //variables ne pouvant etre nulles
@@ -52,7 +52,7 @@ if (!empty($erreur) ){
 	//erreur
 
 	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"add_app.php\">Suite</a><br />\n";
+	echo"<br /><a href=\"add_machine.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -82,7 +82,7 @@ if ( $pdo = connect_db() ){
 ////en_tete('inscription Valid&eacute;e');
 
 echo "ajout de ".$nom."valid&eacute;e ";
-echo"<br /><br /><a href=\"list_app.php\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"list_machine.php\">Suite</a><br /><br />\n";
 pied_page();
 }
 

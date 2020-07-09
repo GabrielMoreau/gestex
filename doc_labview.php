@@ -1,6 +1,6 @@
 <?php
 
-//jointdemandes.php
+//doc_labview.php
 
 // Authenticate
 include("session_auth.php");
@@ -13,33 +13,36 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
 
 //recupere  le numero du nom
-$tache_id=$_GET['id'];
-if (empty($tache_id))
-	Header("Location: demandes.php");
+$nom_id=$_GET['id'];
+if (empty($nom_id))
+	Header("Location: list_labview.php");
 
 require("html_functions.php");
 
 if ( $connex = connect_db() ){
 
-	$querry = "SELECT tache FROM demandes WHERE id='$tache_id';" ;
+	$querry = "SELECT manipch FROM labview WHERE id='$nom_id';";
 	list($qh,$num) = query_db($querry);
 	$data = result_db($qh);
-	$tache_tache= $data['tache'];
+	$nom_nom= $data['manipch'];
 
-$titre ="Documents de l'appareil : ".$data['tache'];
+$titre ="Documents de la manip : ".$data['manipch'];
 
 en_tete($titre);
 
-echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour &agrave; la page des demandes...</a>";
+echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour &agrave; la page liste des programmes labview...</a>";
 
-$dossier_proj ="data/instru/demandes/".$tache_tache."/";
+$dossier_lab ="data/labview/".$nom_nom."/";
 
 	//remplace les espaces par des underscore
-	$dossier_proj = str_replace(" ", "_", $dossier_proj);
+	$dossier_lab = str_replace(" ", "_", $dossier_lab);
+
 	// cherche l'existence de ce dossier
-	//echo $dossier_proj;
+	//echo $dossier_lab;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
-	if ( ($handle = @opendir($dossier_proj)) != FALSE){
+	if ( ($handle = @opendir($dossier_lab)) != FALSE)
+
+	{
 
 	$images = array();	$fichiers= array();
    while (false !== ($file = readdir($handle))) {
@@ -67,7 +70,7 @@ $dossier_proj ="data/instru/demandes/".$tache_tache."/";
 
    closedir($handle);
 
-		//si trouv&eacute; on cr&eacute;e un tableau 2 colonnes :
+		//si trouve on cree un tableau 2 colonnes :
 		//	a gauche les images
 		//	a droite le texte
 
@@ -75,7 +78,8 @@ $dossier_proj ="data/instru/demandes/".$tache_tache."/";
   		<tbody>
 
 <?php		while ( $file = array_pop($images) ){
-		echo "<tr style=\"width: 40%; text-align: center;\" ><td><a href=\"".$dossier_proj.$file."\" target=\"_newFrame\"><img src=\"";
+		echo "<tr style=\"width: 40%; text-align: center;\" ><td><a href=\"".$dossier_lab.$file."\" target=\"_newFrame\"><img src=\"";
+
 			//teste l'etension
 			$pos = strrpos($file, ".");
 			switch ( strtolower(substr($file, $pos+1))){
@@ -95,7 +99,8 @@ $dossier_proj ="data/instru/demandes/".$tache_tache."/";
 				case "gif":
 				case "jpg":
 				case "png":///image
-					echo $dossier_proj.$file."\" width=\"150\" /><br />";
+					echo $dossier_lab.$file."\" width=\"150\" /><br />";
+
 					break;
 				case "avi":
 				case "mov":
@@ -112,7 +117,7 @@ $dossier_proj ="data/instru/demandes/".$tache_tache."/";
 				while ( $autres = array_pop($fichiers) ){
 					echo "<h3>".$autres."</h3>";
 					//inclue le fichier
-					if ( $text_handle = fopen( $dossier_proj.$autres, "r")){
+					if ( $text_handle = fopen( $dossier_lab.$autres, "r")){
 						while (!feof($text_handle))
     							echo  fgets($text_handle, 4096)."<br />";
     						fclose($text_handle);

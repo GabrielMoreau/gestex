@@ -1,6 +1,5 @@
 <?php
-
-//notice.php
+// notice.php
 
 // Authenticate
 include("session_auth.php");
@@ -8,18 +7,18 @@ session_start();
 //if (!auth(1))
 	//Header("Location: login.php");
 
-$user_id = $_SESSION['user_id'];
+$user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level= $_SESSION['level'];
+$user_level     = $_SESSION['level'];
 
-//recupere  le numero du nom
+//recupere le numero du nom
 $nom_id=$_GET['id'];
 if (empty($nom_id))
-	Header("Location: list_appareil.php");
+	Header('Location: list_appareil.php');
 
 require("html_functions.php");
 
-if ( $pdo = connect_db() ){
+if ($pdo = connect_db()) {
 
 	$sql = 'SELECT nom FROM Listing WHERE id = ?;' ;
 	$stmt = $pdo->prepare($sql);
@@ -28,116 +27,123 @@ if ( $pdo = connect_db() ){
 
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
-	$nom_nom= $listing[0]['nom'];
+	$nom_nom = $listing[0]['nom'];
 
-$titre ="Documents de l'appareil : ".$listing[0]['nom'];
+	$titre = 'Documents de l\'appareil : '.$listing[0]['nom'];
 
-en_tete($titre);
+	en_tete($titre);
 
-echo "<a href=\"". $_SERVER['HTTP_REFERER']."\">Retour &agrave; la page cat&eacute;gories...</a>";
+	echo '<a href="'.$_SERVER['HTTP_REFERER'].'">Retour &agrave; la page cat&eacute;gories...</a>';
 
-$dossier_proj ="data/instru/".$nom_nom."/";
+	$dossier_proj = 'data/instru/'.$nom_nom.'/';
 
 	//remplace les espaces par des underscore
 	$dossier_proj = str_replace(" ", "_", $dossier_proj);
 	// cherche l'existence de ce dossier
 	//echo $dossier_proj;
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
-	if ( ($handle = @opendir($dossier_proj)) != FALSE){
+	if (($handle = @opendir($dossier_proj)) != FALSE) {
 
-	$images = array();
-	$fichiers= array();
-   while (false !== $file = readdir($handle)) {
-	   echo $file;
-   ////echo count($images);
-       if ($file != "." && $file != "..") {
-           if ( preg_match('/^[a-zA-Z0-9_\-]+(:?\.jpg|\.gif|\.png|\.pdf|\.doc|\.xls|\.mov|\.avi|\.mpg|\.html|\.htm)$/', $file) == TRUE ){
-		///entasse les images
-		////echo $file;
-			array_push( $images,$file );
-		}
-		else if ( preg_match('/^[a-zA-Z0-9_\-]+(:?\.txt)$/', $file ) == TRUE ){
-			//et les fichiers textes
-			array_push ( $fichiers, $file );
-		}
-   	}//end while
-	//repere le max
-	 $max = count($images);
-	if ( count( $fichiers) > $max){
-		$max = count( $fichiers);
-		$min = count($images);
-		}
-	else
-		$min = count( $fichiers);
-	}//end if file!=".."
+		$images = array();
+		$fichiers = array();
+		while (false !== $file = readdir($handle)) {
+			echo $file;
+			////echo count($images);
+			if ($file != "." && $file != "..") {
+				if (preg_match('/^[a-zA-Z0-9_\-]+(:?\.jpg|\.gif|\.png|\.pdf|\.doc|\.xls|\.mov|\.avi|\.mpg|\.html|\.htm)$/', $file) == TRUE) {
+					///entasse les images
+					////echo $file;
+					array_push($images, $file);
+				}
+				else if (preg_match('/^[a-zA-Z0-9_\-]+(:?\.txt)$/', $file ) == TRUE) {
+					//et les fichiers textes
+					array_push ($fichiers, $file);
+				}
+			} // end if file!=".."
+			// repere le max
+			$max = count($images);
+			if (count($fichiers) > $max) {
+				$max = count($fichiers);
+				$min = count($images);
+			}
+			else
+				$min = count($fichiers);
+		} // end if file!=".."
 
-   closedir($handle);
+		closedir($handle);
 
 		//si trouv&eacute; on cr&eacute;e un tableau 2 colonnes :
 		//	a gauche les images
 		//	a droite le texte
+		?>
 
-?>		<table cellpadding="1" cellspacing="1" border="1" style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-  		<tbody>
+<table cellpadding="1" cellspacing="1" border="1" style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+	<tbody>
 
-<?php		while ( $file = array_pop($images) ){
-		echo "<tr style=\"width: 40%; text-align: center;\" ><td><a href=\"".$dossier_proj.$file."\" target=\"_newFrame\"><img src=\"";
+		<?php
+		while ($file = array_pop($images)) {
+			echo '<tr style="width: 40%; text-align: center;">';
+			echo '  <td>';
+			echo '    <a href="'.$dossier_proj.$file.'" target="_newFrame">';
+			echo '      <img src="';
 			//teste l'etension
 			$pos = strrpos($file, ".");
-			switch ( strtolower(substr($file, $pos+1))){
+			switch (strtolower(substr($file, $pos+1))){
 				case "htm":
 				case "html":
-					echo "images/link.svg\" ><br />";
+					echo 'images/link.svg"><br />';
 					break;
 				case "doc":
-					echo "images/document.png\" ><br />";
+					echo 'images/document.png"><br />';
 					break;
 				case "xls":
-					echo "images/spreadsheet.png\" ><br />";
+					echo 'images/spreadsheet.png"><br />';
 					break;
 				case "pdf":
-					echo "images/pdf.png\" ><br />";
+					echo 'images/pdf.png"><br />';
 					break;
 				case "gif":
 				case "jpg":
 				case "png":///image
-					echo $dossier_proj.$file."\" width=\"150\"><br />";
+					echo $dossier_proj.$file.'" width="150"><br />';
 					break;
 				case "avi":
 				case "mov":
 				case "mpg":///videos
-					echo "images/video.png\" ><br />";
+					echo 'images/video.png"><br />';
 					break;
 				default :
-					echo "images/unknown.png\" ><br />";
+					echo 'images/unknown.png"><br />';
 					break;
-			}//end switch
+			} // end switch
 			//ajoute le nom du fichier sous l'image
-			echo "</a>".$file."</td>";
-			echo "<td rowspan=\"" .$max."\" style=\" text-align: left;\" >";
-				while ( $autres = array_pop($fichiers) ){
-					echo "<h3>".$autres."</h3>";
-					//inclue le fichier
-					if ( $text_handle = fopen( $dossier_proj.$autres, "r")){
-						while (!feof($text_handle))
-    							echo  fgets($text_handle, 4096)."<br />";
-    						fclose($text_handle);
-					}//end if fopen
-				}//while end autres
-		 echo "</td></tr>";
-		}//while end  file
-?>
+			echo '    </a>'.$file;
+			echo '  </td>';
+			echo '  <td rowspan="'.$max.'" style="text-align: left;">';
+			while ($autres = array_pop($fichiers)) {
+				echo '    <h3>'.$autres.'</h3>';
+				//inclue le fichier
+				if ($text_handle = fopen($dossier_proj.$autres, "r")) {
+					while (!feof($text_handle))
+						echo  fgets($text_handle, 4096).'<br />';
+					fclose($text_handle);
+				} // end if fopen
+			} // while end autres
+			echo '  </td>';
+			echo '</tr>';
+		} // while end  file
+		?>
 
-		<tbody></table>
+	<tbody>
+</table>
 
 <?php
 	}
 	else
-		echo "pas de documents disponibles pour ce projet!<br />";
-	}//end if connect
+		echo 'Pas de documents disponibles pour ce projet !<br />';
+}//end if connect
 ?>
 
-<br />
 <br />
 </div>
 <?php pied_page() ?>

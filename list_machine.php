@@ -1,5 +1,5 @@
 <?php
-//list_app.php
+//list_machine.php
 
 // Authenticate
 include("session_auth.php");
@@ -32,7 +32,7 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
 	<br /></td>
 <?php if ( $user_level >=3 ) {	?>
  <td style="vertical-align: top; text-align: center;">
-	<a href="add_app.php">Ajout<br />d'un appareil</a>
+	<a href="add_machine.php">Ajout<br />d'un appareil</a>
 	<br /></td>
 <?php }	?>
  <td style="vertical-align: top; text-align: center;">
@@ -47,19 +47,19 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
   <tbody>
     <tr bgcolor="#f7d709">
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app.php?tri=nom">Nom</a><br />
+	<a href ="list_machine.php?tri=nom">Nom</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
 	Description<br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app.php?tri=equipe">&Eacute;quipe</a><br />
+	<a href ="list_machine.php?tri=equipe">&Eacute;quipe</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app.php?tri=tech">Responsable</a><br />
+	<a href ="list_machine.php?tri=tech">Responsable</a><br />
       </th>
       <th style="vertical-align: top; text-align: center;">
-	<a href ="list_app.php?tri=fournisseur">Fournisseur</a><br />
+	<a href ="list_machine.php?tri=fournisseur">Fournisseur</a><br />
       </th>
     <th style="vertical-align: top; text-align: center;">
 	Date Achat<br />
@@ -133,12 +133,12 @@ if ( $pdo = connect_db() ){
 
  if ( $user_level >=2 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_app.php?id=".$data['id']."\"<img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_machine.php?id=".$data['id']."\"<img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
       echo"</td>";
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_app.php?id=".$data['id']."\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_machine.php?id=".$data['id']."\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\"></a>";
       echo"</td>";
 
 	}//end if

@@ -1,5 +1,5 @@
 <?php
-/// rapport.php
+// rapport-create.php
 
 // Authenticate
 include("session_auth.php");
@@ -80,13 +80,13 @@ echo $texte;
 <table cellpadding="2" cellspacing="2" border="0" style="text-align: left; width: 75%;" align="center">
   <tbody>
 
-<form action="print_rapport.php" method="POST" name="rappForm">
+<form action="rapport-print.php" method="POST" name="rappForm">
     <tr>
 
       <td style="vertical-align: top;">pour l'<b>&Eacute;quipe</b><br /><i>choisissez dans la liste</i><br />
    </td>
       <td style="vertical-align: top;">
-	<select name="equipe"  size="5" onchange="location.href='rapport.php?ide=' + this.options[this.selectedIndex].value;" >
+	<select name="equipe"  size="5" onchange="location.href='rapport-create.php?ide=' + this.options[this.selectedIndex].value;" >
   <?php 	///
 		echo "<option value=\"0\"";
 			if ($equip_id == 0)	echo " selected ";
@@ -105,7 +105,7 @@ echo $texte;
       <td style="vertical-align: top;">pour la <b>manip</b> de cette equipe<br />
    </td>
       <td style="vertical-align: top;">
-	<select name="manip"  size="5" onchange="location.href='rapport.php?ide=' + equipe.options[equipe.selectedIndex].value + '&idm=' + this.options[this.selectedIndex].value;" >
+	<select name="manip"  size="5" onchange="location.href='rapport-create.php?ide=' + equipe.options[equipe.selectedIndex].value + '&idm=' + this.options[this.selectedIndex].value;" >
   <?php 	///
 		echo "<option value=\"0\"";
 			if ($manip_id == 0)	echo " selected ";
@@ -125,7 +125,7 @@ echo $texte;
       <td style="vertical-align: top;">pour le <b>Projet</b> de cette manip<br />
       </td>
       <td style="vertical-align: top;">
-	<select name="projet"  size="5" onchange="location.href='rapport.php?ide=' + equipe.options[equipe.selectedIndex].value + '&idm=' + manip.options[manip.selectedIndex].value + '&idp=' + this.options[this.selectedIndex].value;" >
+	<select name="projet"  size="5" onchange="location.href='rapport-create.php?ide=' + equipe.options[equipe.selectedIndex].value + '&idm=' + manip.options[manip.selectedIndex].value + '&idp=' + this.options[this.selectedIndex].value;" >
   <?php
 		echo "<option value=\"0\"";
 			if ($projet_id == 0)	echo " selected ";

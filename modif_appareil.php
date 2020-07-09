@@ -1,5 +1,5 @@
  <?php
-/// modif_app2.php
+/// modif_appareil.php
 
 // Authenticate
 //include("session_auth.php");
@@ -61,13 +61,19 @@ $gamme=$_POST['gamme'];
 
 	if(!is_dir($path)){	
 		echo "\n". $path."\n";
+<<<<<<< HEAD:modif_app2.php
 		echo "je créé un nouveau dossier\n";
 		mkdir($path,0750);
 	}
+=======
+		mkdir($path,0750);
+	}
+			echo "Cr&eacute;ation d'un nouveau dossier\n";
+>>>>>>> c4c2eb55a141cbc75ac8b83b5db2622c7ad0b122:modif_appareil.php
 			if(move_uploaded_file($_FILES["notice"]["tmp_name"], $path."/".$notice )){
-				echo "ça a march\n";
+				echo "Ca a march&eacute;\n";
 			}else{
-				echo "ça n'a pas marché\n ";
+				echo "Ca n'a pas march&eacute;\n ";
 			}
 	
 
@@ -89,7 +95,7 @@ if (!empty($erreur) ){
 	//erreur
 
 	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"add_app2.php?id=".$id_app ."\" >Suite</a><br />\n";
+	echo"<br /><a href=\"add_appareil.php?id=".$id_app ."\" >Suite</a><br />\n";
 
 	pied_page();
 	exit();
