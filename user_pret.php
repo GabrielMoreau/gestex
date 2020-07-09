@@ -1,5 +1,5 @@
 <?php
-//prets.php
+//user_pret.php
 // Authenticate
 
 include("session_auth.php");
@@ -14,7 +14,7 @@ $user_level     = $_SESSION['level'];
 
 require("html_functions.php");
 
-en_tete('Liste des pr&ecirc;ts');
+en_tete('Liste de vos emprunts');
 //recuper la methode de tri
 if (empty($_GET['tri']))
 	$tri ="id";

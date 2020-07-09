@@ -26,7 +26,7 @@
 			if ($truc == "projet")
 				Header("Location: list_manip.php?tri=date");
 			if ($truc == "pret")
-				Header("Location: list-pret.php");
+				Header("Location: user_pret.php");
 		}
 	}else {
 		//load the session so we can destroy it
