@@ -132,13 +132,13 @@ if ( $pdo = connect_db() ){
       echo"</td>";
 
  if ( $user_level >=2 ) {
-      echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_machine.php?id=".$data['id']."\"<img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
-      echo"</td>";
+      echo '</td><td style="vertical-align: top;">';
+      echo '<a href="add_machine.php?id="'.$data['id'].'">'.ICON_EDIT.'</a>';
+      echo '</td>';
 	}//end if
  if ( $user_level >=3 ) {
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_machine.php?id=".$data['id']."\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_machine.php?id=".$data['id']."\">".ICON_TRASH.'</a>';
       echo"</td>";
 
 	}//end if

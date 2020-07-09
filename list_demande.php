@@ -102,35 +102,6 @@ Liste des demandes en cours :<br />
 			$demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-// $data = result_db($qh);
-// echo "<tr>";
-//  echo"</td><td style=\"vertical-align: top;\">";
-// 	echo $demandes[0]['tache'];
-//        echo"</td><td style=\"vertical-align: top;\">";
-// echo $demandes[0]['nomdemandeur'];
-//   echo"</td><td style=\"vertical-align: top;\">";
-// echo $demandes[0]['details'];
-//   echo"</td><td style=\"vertical-align: top;\">";
-// echo $demandes[0]['achat'];
-//  echo"</td><td style=\"vertical-align: top;\">";
-// echo $demandes[0]['avancement'];
-//  echo"</td><td style=\"vertical-align: top;\">";
-// echo $demandes[0]['termine'];
-//  echo"</td><td style=\"vertical-align: top;\">";
-// echo $demandes[0]['piecesjointes'];
-// 	 if ( $user_level >=2) {
-//       echo"</td><td style=\"vertical-align: top;\">";
-//       echo "<a href=\"add_demande.php?id=$demandes[0][id]\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\" /></a>";
-//       echo"</td>";
-// 	}//end if
-//  if ( $user_level >=3 ) {
-//       echo"</td><td style=\"vertical-align: top;\">";
-//       echo "<a href=\"del_demande.php?id=$demandes[0][id]\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>";
-//       echo"</td>";
-// }
-// echo"</tr>";
-// while ($data = result_db($qh)) {
-
 		foreach($demandes as $data){
 			// remplit le tableau
 			echo"<tr><td style=\"vertical-align: top;\">";
@@ -162,14 +133,14 @@ Liste des demandes en cours :<br />
 			// si trouve ajoute un bouton
 			echo "Voir : <a href =\"joint_demande.php?id=". $data['id']."\">".$data['tache']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir ce projet\" /></a><br />";
 		}
-		if ( $user_level >=2) {
+		if ($user_level >= 2) {
 			echo"</td><td style=\"vertical-align: top;\">";
-			echo '<a href=\"add_demande.php?id='.$data['id'].'\"><img src=\"images/pen.svg\" nosave=\"\" title=\"Modifier\" /></a>';
+			echo '<a href="add_demande.php?id='.$data['id'].'">'.ICON_EDIT.'</a>';
 			echo"</td>";
 		}//end if
-		if ( $user_level >=3 ) {
+		if ($user_level >= 3) {
 			echo"</td><td style=\"vertical-align: top;\">";
-			echo '<a href=\"del_demande.php?id='.$data['id'].'\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\" /></a>';
+			echo '<a href="del_demande.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
 			echo"</td>";
 
 		}

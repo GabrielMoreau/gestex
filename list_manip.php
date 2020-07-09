@@ -177,7 +177,7 @@ if ( $pdo = connect_db() ){
 				}
 				if ($user_level >= 2) {
 					echo '  <td style="vertical-align: top;">';
-					echo '    <a href="add_manip.php?id=',$manip['id'],'"><img src="images/pen.svg" nosave="" title="Modifier" /></a>';
+					echo '    <a href="add_manip.php?id=',$manip['id'],'">'.ICON_EDIT.'</a>';
 					echo '  </td>';
 				}
 				if ($user_level >= 3) {

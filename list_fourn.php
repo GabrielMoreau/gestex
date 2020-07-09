@@ -118,12 +118,12 @@ if ($pdo = connect_db()) {
 		echo '  <td style="vertical-align: top;">'.$data['descr'].'</td>'.PHP_EOL;
 		if ($user_level >=2 && $data['nom'] != 'aucun') {
 			echo '  </td><td style="vertical-align: top;">';
-			echo '    <a href="add_fourn.php?id='.$data['id'].'"><img src="images/pen.svg" nosave="" title="Modifier"></a>';
+			echo '    <a href="add_fourn.php?id='.$data['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($user_level >=3 && $data['nom'] != 'aucun') {
 			echo '  </td><td style="vertical-align: top;">';
-			echo '    <a href="del_fourn.php?id='.$data['id'].'"><img src="images/trash.svg" nosave="" title="Supprimer"></a>';
+			echo '    <a href="del_fourn.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		echo '</tr>'.PHP_EOL;

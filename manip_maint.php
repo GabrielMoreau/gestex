@@ -163,7 +163,7 @@ function windowToTop(lien){
  /// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
  if (@opendir($dossier_proj) != FALSE){
   //si trouve ajoute un bouton
-  echo "Voir : <a href =\"browse_proj.php?idm=". $manip_id ."&idp=".$proj_id."\"><img src=\"images/eye.svg\" nosave=\"\" width=\"15\" title =\"Voir les docs de ce projet\"></a><br />";
+  echo "Voir : <a href =\"browse_proj.php?idm=". $manip_id ."&idp=".$proj_id."\">".ICON_SEE_DOC."</a><br />";
 
  }
  ?>
@@ -172,13 +172,13 @@ function windowToTop(lien){
   <!-- <th colspan="3"></th> //ajout de doc   -->
     <th style="vertical-align: top; text-align: left;">
 
-  <a href ="add_doc.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/paperclip.svg" nosave=\"\" width=\"20\"  title ="Ajouter un document &agrave; ce projet"></a><br />
+  <a href ="add_doc.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><?php echo ICON_ADD_DOC ?></a><br />
   </th>
    <th style="vertical-align: top; text-align: right;">
-  <a href ="add_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/pen.svg" nosave=\"\" width=\"20\" title ="Modifier ce projet"></a><br />
+  <a href ="add_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><?php echo ICON_EDIT ?></a><br />
    </th>
     <th style="vertical-align: top; text-align: right;">
-  <a href ="del_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><img src="images/trash.svg" nosave=\"\" width=\"20\" title="Supprimer ce projet"></a><br />
+  <a href ="del_proj.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>"><?php echo ICON_TRASH ?></a><br />
    </th>
 
     <?php } else {
@@ -255,16 +255,16 @@ function windowToTop(lien){
   echo $temps_tache." heures";
   $total_projet += $temps_tache;
    if ($user_level >= 2) {
-   echo "<a href=\"add_time.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/clock.svg\" nosave=\"\" width=\"20\" title=\"Ajouter du temps\"></a>";
+   echo "<a href=\"add_time.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\">".ICON_ADD_TIME.'</a>';
      echo"</td><td style=\"vertical-align: top;\">";
    // ajout d'un document a une tache -->
-    echo "<a href=\"add_doc.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/paperclip.svg\" nosave=\"\" width=\"20\" title =\"Ajouter un document &agrave; cette tache\"></a>";
+    echo "<a href=\"add_doc.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\">".ICON_ADD_DOC.'</a>';
      echo"</td><td style=\"vertical-align: top;\">";
        //modif d'une tache
-    echo "<a href=\"add_task.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\"><img src=\"images/pen.svg\" nosave=\"\" width=\"20\" title =\"Modifier cette tache\"></a>";
+    echo "<a href=\"add_task.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\">".ICON_EDIT."</a>";
    echo"</td><td style=\"vertical-align: top;\">";
   //supression dune tache
-   echo "<a href=\"del_task.php?idm=".$manip_id."&idt=".$taches['id']."\"><img src=\"images/trash.svg\" nosave=\"\" width=\"20\" title=\"Supprimer cette tache\"></a>";
+   echo "<a href=\"del_task.php?idm=".$manip_id."&idt=".$taches['id']."\">".ICON_TRASH."</a>";
   }
    echo"</td></tr>";
 
@@ -272,7 +272,7 @@ function windowToTop(lien){
 
    echo"<tr><td style=\"vertical-align: top;text-align: left;\" >";
  if ($user_level >= 2) {
- echo" <a href =\"add_task.php?idm=".$manip_id." ?>&idp=". $proj_id ."?>\"><img src=\"images/plus-square.svg\" nosave=\"\" width=\"15\"  title=\"Ajouter une tache\"></a><br />";
+ echo" <a href =\"add_task.php?idm=".$manip_id." ?>&idp=". $proj_id ."?>\">".ICON_ADD_TASK.'</a><br />';
  }
 
 echo"</td><td style=\"vertical-align: top;text-align: right;\" colspan=3 >";

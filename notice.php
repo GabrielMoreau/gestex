@@ -139,7 +139,7 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 			if ($user_level >=2){
 				echo '  <td style="vertical-align: top;">';
-				echo '    <a href="add_appareil.php?id=',$id_app,'"><img src="images/pen.svg" nosave="" title="Modifier" /></a>';
+				echo '    <a href="add_appareil.php?id=',$id_app,'">'.ICON_EDIT.'</a>';
 				echo '  </td>'.PHP_EOL;
 			}
 			if ($user_level >=3){

@@ -127,15 +127,15 @@ $dossier_lab ="data/labview/".$data['manipch'];
 	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 	if (@opendir($dossier_lab) != FALSE){
 		//si trouve ajoute un bouton
-		echo "Voir : <a href =\"doc_labview.php?id=". $data['id']."\">".$data['manipch']."<img src=\"images/eye.svg\" nosave=\"\" title =\"Voir la face avant du programme\"></a><br />";
+		echo 'Voir : <a href ="doc_labview.php?id='.$data['id'].'">'.$data['manipch'].' '.ICON_SEE_DOC.'</a><br />';
     }
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_labview.php?id=$data['id']\">".ICON_EDIT."</a>";
       echo"</td>";
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_labview.php?id=$data['id']\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_labview.php?id=$data['id']\">".ICON_TRASH."</a>";
       echo"</td>";
 
 echo"</tr>";
@@ -178,11 +178,11 @@ echo $data['module'];
 //echo $data['ecran'];
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_labview.php?id=$data['id']\"><img src=\"images/pen.svg\" nosave=\"\" title=\">Modifier\"></a>";
+      echo "<a href=\"add_labview.php?id=$data['id']\">".ICON_EDIT.'</a>';
       echo"</td>";
 
       echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_labview.php?id=$data['id']\"><img src=\"images/trash.svg\" nosave=\"\" title=\"Supprimer\"></a>";
+      echo "<a href=\"del_labview.php?id=$data['id']\">".ICON_TRASH.'</a>';
       echo"</td>";
 
 echo"</tr>";
