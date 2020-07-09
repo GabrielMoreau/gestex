@@ -1,4 +1,5 @@
 <?php
+// user_changepwd.php
 // Authenticate
 include("session_auth.php");
 if (!auth(1))
@@ -72,7 +73,7 @@ en_tete($titre);
 echo  $titre."pour <i>".$data['nom']."</i>";
 ?>
 	<p>
-	<form action="changepwd.php" method="post">
+	<form action="user_changepwd.php" method="post">
 		<input type="hidden" name="user" value="<?php echo $user2chg; ?>">
 	<table width="350" align="center" border="0" cellpadding="0" cellspacing="0" class="outer_table">
 		<tr>

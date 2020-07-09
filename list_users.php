@@ -47,7 +47,7 @@ if (empty($_GET['tri'])){
 				<br />
 			</td>
 			<td style="vertical-align: top; text-align: center;">
-				<a href="changepwd.php?id=<?php echo $user_id ?>">
+				<a href="user_changepwd.php?id=<?php echo $user_id ?>">
 				<img src="images/key.svg" nosave="" title="Changer son mot de passe"></a>
 				<br />
 			</td>
@@ -141,7 +141,7 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 		if ($user_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="changepwd.php?id='.$data['id'].'">';
+			echo '    <a href="user_changepwd.php?id='.$data['id'].'">';
 			echo '      <img src="images/key.svg" nosave="" title="Changer le mot de passe">';
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;

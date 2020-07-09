@@ -139,7 +139,7 @@ function nav_bar($prenom, $nom, $level, $user_id){
          <div class="dropdown-content">
             <a href="logout.php">Se d&eacute;connecter</a>
             <a href="add_user.php?id=<?php echo $user_id ?>">Modifier mon profil</a>
-            <a href="changepwd.php?id=<?php echo $user_id ?>">Modifier mon <br />mot de passe</a>
+            <a href="user_changepwd.php?id=<?php echo $user_id ?>">Modifier mon <br />mot de passe</a>
          </div>
    </li>
   <?php } ?>
