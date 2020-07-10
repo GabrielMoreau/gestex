@@ -6,6 +6,8 @@ include("session_auth.php");
 if (!auth(3))
 	Header("Location: list_pret.php");
 
+require("html_functions.php");
+
 $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
