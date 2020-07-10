@@ -7,9 +7,10 @@ body { background-color:#FFFADF; margin-left:0; margin-right:0; margin-top:0; ma
 	
 	scrollbar-shadow-color: #1B2487; scrollbar-darkshadow-color: #000000;
 
+	font-family: Arial, sans-serif;
 }
 
-td, p { font-size: 12; font-family: Arial, sans-serif; font-weight: normal; color:#001061; }
+td, p { font-size: 14; font-family: Arial, sans-serif; font-weight: normal; color:#001061; }
 
 input, select, textarea { font-size: 10; font-family: Arial, sans-serif; font-weight: normal; color:#000000; }
 
@@ -89,12 +90,44 @@ iframe { border:2px inset #98C2F7; }
 
 .white_heading { font-size: 20; font-family: Arial, sans-serif; font-weight: bold; font-style: italic; color: #FFFFFF; }
 
+/* ================= index */
+
+.index {
+	max-width: 60em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 
 /* ================= icon */
 
-span.check-ok { color: #00CC00; }
-span.check-bad { color: #CC0000; }
+span.check-ok {
+	color: #00CC00;
+}
 
+span.check-bad {
+	color: #CC0000;
+}
+
+/* ================= header */
+
+.header {
+	max-width: 60em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+.header table {
+	width: 100%;
+	border: 0px;
+	border-collapse: collapse;
+}
+
+.header img {
+	padding: 1em;
+}
 
 /* ================= footer */
 
@@ -108,5 +141,5 @@ span.check-bad { color: #CC0000; }
 }
 
 .footer i {
-	font-size: small;
+	font-size: smaller;
 }

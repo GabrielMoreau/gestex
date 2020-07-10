@@ -13,13 +13,11 @@ require("html_functions.php");
 en_tete('Gestion des plateformes exp&eacute;rimentales');
 ?>
 
-<br />
-
+<div class="index">
 <p>GestEx est une application web developp&eacute;e au LEGI (collaboration entre les services technique / instrumentation / informatique)
 destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l'instrumentation des plateformes exp&eacute;rimentales du laboratoire.</p>
 
-<br />
-
+<center>
 <h2>Gestion instrumentation</h2>
 <ul>
 	<li><a href="list_categorie.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</li>
@@ -33,8 +31,7 @@ destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l
   <li><a href="add_user.php">Demander son inscription</a></li>
   <li><a href="list_manip.php">Acc&eacute;der au gestionnaire de Projets</a></li>
 </ul>
-
-<br />
-<br />
+</center>
 </div>
+
 <?php pied_page() ?>
