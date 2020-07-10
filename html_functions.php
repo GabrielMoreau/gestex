@@ -31,23 +31,21 @@ function en_tete($titre) {
 	<link href="pool_project.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div width="100%" height="100%" align="center" valign="center">
-<br />
-<br />
-<table cellpadding="2" cellspacing="0" border="0" style="text-align: left; width: 75%;" align="center">
+<div class="header">
+<table>
 	<tbody>
-		<tr bgcolor="#f7d709">
+		<tr>
 			<td style="vertical-align: center;">
 				<a href="./"><img src="images/logo-gestex.png" nosave="" height="100" /></a>
 			</td>
 			<td style="vertical-align: top;"><br />
 				<h1><a href="./">GestEx</a> - Gestion des plateformes Exp&eacute;rimentales</h1>
-			<h2>'.$titre.'</h2>
+			<h2><?php echo $titre ?></h2>
 		</td>
 		</tr>
 	</tbody>
 </table>
-<br />
+</div>
 <?php
 if(!empty($_SESSION)){
 	$pdo            = connect_db();
@@ -60,10 +58,6 @@ if(!empty($_SESSION)){
 } else {
 	nav_bar('', '',0,0);
 }
-?>
-<br />
-</div>
-<?php
 }
 
 // -------------------------------------------------------------
