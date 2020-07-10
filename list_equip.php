@@ -22,7 +22,6 @@ else
 	$tri = $_GET['tri'];
 ?>
 
-<br />
 <table cellpadding="2" cellspacing="2" border="1"
 	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	<tbody>
@@ -100,6 +99,5 @@ if ($pdo = connect_db()) {
 ?>
 	</tbody>
 </table>
-<br />
-</div>
+
 <?php pied_page() ?>
