@@ -3,10 +3,10 @@
 
 // Authenticate
 include("session_auth.php");
+require("html_functions.php");
+
 if (!auth(3))
 	Header("Location: list_pret.php");
-
-require("html_functions.php");
 
 $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -31,8 +31,8 @@ if ($valid == 'yes') {
 	//on retourne a la page d'accueil
 	Header("Location: list_pret.php");
 }
-else {
-	en_tete('Ramener un pr&ecirc;t');
+
+en_tete('Ramener un pr&ecirc;t');
 ?>
 
 <center class="alert">
@@ -45,7 +45,4 @@ else {
 </form>
 </center>
 
-<?php
-	pied_page();
-}
-?>
+<?php pied_page() ?>
