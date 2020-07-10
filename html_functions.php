@@ -157,31 +157,36 @@ function nav_bar($prenom, $nom, $level, $user_id){
 
 // -------------------------------------------------------------
 
-function pied_page(){
-   echo '<center>'.PHP_EOL;
-   echo '<img src="images/striped.gif" nosave="" border="0" height="13"  width="532" align="bottom" />'.PHP_EOL;
-
+function pied_page() {
    //ne garde que le nom de fichier
    $filetmp = explode('/',$_SERVER['PHP_SELF']);
-   $file = $filetmp[count($filetmp)-1];
+   $file = $filetmp[count($filetmp) - 1];
    ///mise a jour de ce fichier
-   echo '<table cellpadding="2" cellspacing="2" border="0" style="text-align: center; width: 95%;">'.PHP_EOL;
-   echo '  <tbody>'.PHP_EOL;
-   echo '    <tr>'.PHP_EOL;
-   echo '      <td>'.PHP_EOL;
-   echo '        <address><a href="mailto:'.GESTEX_ADMIN_MAIL.'?Subject=GestEx%20to%20WebMaster">GestEx WebMaster</a></address>'.PHP_EOL;
-   echo '        <br />'.PHP_EOL;
-   echo '        <i>Derni&egrave;re mise &agrave; jour : ';
-   echo            strftime('%Y-%m-%d', filemtime($file));
-   echo '        </i>'.PHP_EOL;
-   echo '      </td>'.PHP_EOL;
-   echo '    </tr>'.PHP_EOL;
-   echo '  </tbody>'.PHP_EOL;
-   echo '</table>'.PHP_EOL;
-   echo '</center>'.PHP_EOL;
-   echo '</body>'.PHP_EOL;
-   echo '</html>'.PHP_EOL;
-   }
+   $last_update = strftime('%Y-%m-%d', filemtime($file));
+?>
+
+<div class="footer">
+<center>
+	<img src="images/striped.gif" nosave="" border="0" height="13"  width="532" align="bottom" />
+	<table cellpadding="2" cellspacing="2" border="0" style="text-align: center; width: 95%;">
+		<tbody>
+			<tr>
+				<td>
+					<address><a href="mailto:<?php echo GESTEX_ADMIN_MAIL ?>?Subject=GestEx%20to%20WebMaster">GestEx WebMaster</a></address>
+					<br />
+					<i>Derni&egrave;re mise &agrave; jour :
+						<?php echo $last_update ?>
+					</i>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</center>
+</div>
+</body>
+</html>
+<?php
+}
 
 // -------------------------------------------------------------
 
