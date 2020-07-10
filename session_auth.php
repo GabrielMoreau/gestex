@@ -31,7 +31,7 @@ function auth($reqlevel, $logged_in_user='', $password='') {
 		} else { // tout ok
 			// down the level for disable user
 			$level = $user[0]['level'];
-			if ($user[0]['status'] == 0 && $level > 1)
+			if ($user[0]['valid'] == 0 && $level > 1)
 				$level = 1;
 			// set session variables
 			$_SESSION['user_id'] = $user[0]['id'];
