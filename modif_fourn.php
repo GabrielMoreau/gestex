@@ -53,39 +53,40 @@ else {
 //pas d'erreur
 ///on inscrit
 
-if ($connex = connect_db()) {
+if ($pdo = connect_db()) {
 
 	//recupere les anciennes caracteristiques
 
-	$querry = "SELECT * FROM fournisseurs WHERE id = '$id_fourn'";
-	list($qh,$num) = query_db($querry);
-	$data = result_db($qh);
+	$sql = 'SELECT * FROM fournisseurs WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_fourn));
+	$fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	//modification fournisseur
 	//on construit la demande
 	$querry = "UPDATE LOW_PRIORITY fournisseurs SET ";
-	if ($nom!=$data['nom'])
+	if ($nom!=$fournisseur[0]['nom'])
 		//modif du nom
 		$querry.="nom='$nom',";
-	if ($adresse!=$data['adresse'])
+	if ($adresse!=$fournisseur[0]['adresse'])
 		//modif de l' adresse
 		$querry.="adresse='$adresse',";
-	if ($tel!=$data['tel'])
+	if ($tel!=$fournisseur[0]['tel'])
 		//modif du tel
 		$querry.="tel='$tel',";
-	if ($fax!=$data['fax'])
+	if ($fax!=$fournisseur[0]['fax'])
 		//modif du fax
 		$querry.="fax='$fax',";
-	if ($mail!=$data['mail'])
+	if ($mail!=$fournisseur[0]['mail'])
 		//modif du mail
 		$querry.="mail='$mail',";
-	if ($www!=$data['www'])
+	if ($www!=$fournisseur[0]['www'])
 		//modif de l'url
 		$querry.="www='$www',";
-	if ($contact!=$data['contact'])
+	if ($contact!=$fournisseur[0]['contact'])
 		//modif des contacts
 		$querry.="contact='$contact',";
-	if ($descr!=$data['descr'])
+	if ($descr!=$fournisseur[0]['descr'])
 		//modif de la descr
 		$querry.="descr='$descr',";
 		// supprime la derniere virgule
@@ -93,24 +94,20 @@ if ($connex = connect_db()) {
 		//ajoute la clause
 		$querry.=" WHERE id = '$id_fourn'";
 
-if ($user_level >= 3)
-	echo "MySQL Querry : ".$querry."<br />";
+	if ($user_level >= 3)
+		$stmt = $pdo->prepare($querry);
+		$stmt->execute();
 
-	$result = mysql_query($querry);
-	//
-	if (!$result){
-		//inscription !ok
-		$erreur = mysql_error();
-		echo "<br />erreur :".$erreur;
-	}
 } //end if connect
 
 ////en_tete('modification fournisseur Valid&eacute;e');
 
-echo "<br />".$nom." modifi&eacute; ";
-echo " <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
-echo "  valid&eacute;e !!";
-echo "<br /><br /><a href=\"list_fourn.php\">Suite</a><br /><br />\n";
+// echo "<br />".$nom." modifi&eacute; ";
+// echo " <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
+// echo "  valid&eacute;e !!";
+// echo "<br /><br /><a href=\"list_fourn.php\">Suite</a><br /><br />\n";
+
+Header("Location: list_fourn.php");
 pied_page();
 exit();
 }
