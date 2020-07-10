@@ -102,7 +102,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
 		}//end while
 
 	?>
-</select><a href="add_categorie.php?"><?php echo ICON_ADD_CAT ?></a>
+</select><span class="option-right"><a href="add_categorie.php?"><?php echo ICON_ADD_CAT ?></a></span>
 <br />
       </td>
     </tr>
@@ -152,7 +152,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
 			echo ">".$chef['nom']."</option>";
 		}//end while
 		 ?>
-	</select><br />
+	</select><span class="option-right"><a href="add_equip.php?"><?php echo ICON_ADD_EQUIP ?></a></span>
       </td>
     </tr>
 
@@ -176,7 +176,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
 			echo ">".$chef['nom']."</option>";
 		}//end while
 		 ?>
-	</select><br />
+	</select><span class="option-right"><a href="add_fourn.php?"><?php echo ICON_ADD_FOURN ?></a></span>
       </td>
     </tr>
 
@@ -215,7 +215,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
 			echo ">".$chef['nom']."</option>";
 		}//end while
 		 ?>
-	</select><br />
+	</select><span class="option-right"><a href="add_user.php?"><?php echo ICON_ADD_USER ?></a></span>
       </td>
     </tr>
 
