@@ -59,6 +59,9 @@ $inventaire =$_POST['inventaire'];
 
 $notice=$_FILES["notice"]["name"];
 $notice = str_replace(' ', '_', $notice);
+$notice = str_replace('é', 'e', $notice);
+$notice = str_replace('è', 'e', $notice);
+$notice = str_replace('à', 'a', $notice);
 
 	}}}}}}}}
 

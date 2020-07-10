@@ -207,7 +207,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
      <select name="tech">
 	<?php
 	// recupere la liste des tech
-	$sql = 'SELECT id, nom FROM users WHERE level > 1;';
+	$sql = 'SELECT id, nom FROM users WHERE level > 1 and valid = 1;';
 	// list($qheq,$numeq) = query_db($querry);
 	// 	while ($chef = result_db($qheq)){
 		$stmt = $pdo->prepare($sql);

@@ -122,6 +122,8 @@ Liste des appareils : <br />
 			</th>
 
 			<?php
+			if ($log == true && $eq == 15)
+				echo '<th></th>'.PHP_EOL;
 			if ($log == true && $user_level >=2)
 				echo '<th></th>'.PHP_EOL;
 			if ($log == true && $user_level >=3)
@@ -215,7 +217,7 @@ if ($pdo = connect_db()) {
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($data['fournisseur']));
 		$fournisseur =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-		echo      $fournisseur[0]['nom'];
+		if(!empty($fournisseur)) { echo $fournisseur[0]['nom'];}
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		// $sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
@@ -227,10 +229,18 @@ if ($pdo = connect_db()) {
 		// 	echo $categorie[0]['nom'];
 
 		///bouton lien vers la doc
-		$dossier_proj = "data/instru/".$data['nom'];
+		$dossier_proj = "data/notice/".$data['id'];
+		$sql = 'SELECT id FROM pret WHERE nom = ?;';
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($data['id']));
+		$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+		if(!empty($pret)){
+			$emprunt = 1;
+		}else{
+			$emprunt = 0;
+		}
 		//remplace les espaces par des underscore
-		$dossier_proj = str_replace(" ", "_", $dossier_proj);
 		// cherche l'existence de ce dossier
 		//echo $dossier_proj;
 		/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
@@ -240,11 +250,16 @@ if ($pdo = connect_db()) {
 		}
 		echo '  </td>'.PHP_EOL;
 
-		if ($log === true && ($user_level >= 2) && ($eq == "15 pret=15")) {
+		if ($log === true && $eq==15 && $emprunt == 0) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="add-pret.php?id=',$data['id'],'">'.ICON_BOOKING.'</a>';
 			echo '  </td>'.PHP_EOL;
+		}else if ($log === true && $eq==15 && $emprunt == 1) {
+			echo '  <td style="vertical-align: top;">';
+			echo '    <a href="del_pret.php?id=',$data['id'],'"></a>';
+			echo '  </td>'.PHP_EOL;
 		}
+
 		if (($log === true && $user_level >= 2) && ($eq != "15 pret=15")) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="add_appareil.php?id=',$data['id'],'">'.ICON_EDIT.'</a>';
