@@ -21,47 +21,90 @@ if (empty($_GET['tri']))
 else
 	$tri = $_GET['tri'];
 
-?>
-
-<i> Consulter la liste des &eacute;quipement communs disponibles au service instrumentation et choisir : 'Demande de pr&ecirc;t' en face de l'appareil souhait&eacute;</i><br />
-<br />
-<table cellpadding="2" cellspacing="2" border="1"
-	style="width: 70%; text-align: left; margin-left: auto; margin-right: auto;">
-	<tbody>
-		<tr>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="<?php GESTEX_URL_ENTITY ?>">Retour &agrave;<br />l'intranet</a>
-				<br />
-			</td>
-
-<?php
-	// recupere les refs du user
-	$pdo = connect_db();
-	$sql = 'SELECT id FROM equipe ORDER BY ?;';
+if( $pdo =connect_db()){
+	$sql = 'SELECT * from pret where nom_utilisateur = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($tri));
-	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// 	$querry = "SELECT * FROM equipe ORDER BY '$tri'" ;
-// 	list($qh,$num) = query_db($querry);
-// 	$last_id=0;
-// $data = result_db($qh);
-
-// while ($data = result_db($qh)){
-foreach($equipe as $data){
-	if ($data['id'] == 15) {     
-		echo"<td style=\"vertical-align: top;\">";
-		echo "	<a href =\"list_appareil.php?equipe=".$data['id']." pret=".$data['id']."\">Liste des appareils en pr&ecirc;t</a>";
-		echo "</td>";
-		echo"<td style=\"vertical-align: top;\">";
-		echo "	<a href =\"list_pret.php?user=".$user_level." \">Liste des r&eacute;servations</a>";
-		echo "	<br />";
-		echo "</td>";
-	}
+	$stmt->execute(array($user_id));
+	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
-		</tr>
-	</tbody>
-</table>
+
+<table cellpadding="2" cellspacing="2" border="1"
+	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+	<tbody>
+		<tr bgcolor="#f7d709">
+			<th style="vertical-align: top; text-align: center;">
+				Nom<br />
+			</th>
+			<th style="vertical-align: top; text-align: center;">
+				&Eacute;quipe<br />
+			</th>
+			<th style="vertical-align: top; text-align: center;">
+				Date<br />
+			</th>
+			<th style="vertical-align: top; text-align: center;">
+				Retour<br />
+			</th>
+			<th style="vertical-align: top; text-align: center;">
+				Emprunteur<br />
+			</th>
+			<th style="vertical-align: top; text-align: center;">
+				<a href="list_pret.php?tri=nom">
+					Num&eacute;ro de l'appareil<br />
+				</a>
+			</th>
+			<?php
+			foreach ($pret as $data) {
+				if (($num_line % 2 )==0)
+				echo '<tr class="pair">'.PHP_EOL;
+			else
+				echo '<tr class="impair">'.PHP_EOL;
+			$num_line++;
+	
+			$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array($data['nom']));
+			$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			echo '  <td style="vertical-align: top;">';
+			echo      $listing[0]['nom'];
+			echo '  </td>'.PHP_EOL;
+	
+			// recupere le nom d'equipe
+			$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array($data['equipe']));
+			$equip = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			echo '  <td style="vertical-align: top;">';
+			echo      $equip[0]['nom'];
+			echo '  </td>'.PHP_EOL;
+	
+			echo '  <td style="vertical-align: top;">';
+			echo      $data['emprunt'];
+			echo '  </td>'.PHP_EOL;
+			echo '  <td style="vertical-align: top;">';
+			echo    $data['retour'];
+			echo '  </td>'.PHP_EOL;
+			echo '  <td style="vertical-align: top;">';
+			echo      $data['commentaire'];
+			echo '  </td>'.PHP_EOL;
+			echo '  <td style="vertical-align: top;">';
+			echo      $data['nom'];
+			echo '  </td>'.PHP_EOL;
+	
+			if ($user_level >= 3) 	{
+				echo '  <td style="vertical-align: top;">';
+				echo '    <a href="del-pret.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
+				echo '  </td>'.PHP_EOL;
+			}
+	
+			echo '</tr>'.PHP_EOL;
+		}
+			
+			
+			
+			
+			?>
+
 
 <?php pied_page() ?>
 
