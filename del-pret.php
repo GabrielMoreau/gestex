@@ -33,16 +33,17 @@ if ($valid == 'yes') {
 }
 else {
 	en_tete('');
+?>
 
-	echo 'Voulez-vous supprimer le pr&ecirc;t '.$id_pret.' ?<br />'.PHP_EOL;
-	echo '<form action="del-pret.php?id='.$id_pret.'" method="POST">'.PHP_EOL;
-	//echo '<a href="'.$self.'?id='.$id_pret.'&ok=yes">OUI</a><br />';
-	//echo '<a href="'.$_SERVER['HTTP_REFERER'].'">NON</a><br />';
-	echo ' <button type="submit" name="ok" value="yes">Oui</button>'.PHP_EOL;
-	echo ' <button type="submit" formaction="list_pret.php" value="no">Non</button>'.PHP_EOL;
-	echo '</form>'.PHP_EOL;
+<center class="alert">
+<form action="del-pret.php?id=<?php echo $id_pret ?>" method="POST">
+	Voulez-vous supprimer le pr&ecirc;t <?php echo $id_pret ?> ?
+	<button class="red" type="submit" name="ok" value="yes">Oui</button>
+	<button class="green" type="submit" formaction="list_pret.php" value="no">Non</button>
+</form>
+</center>
 
-	pied_page()
+<?php
+	pied_page();
 }
-
 ?>
