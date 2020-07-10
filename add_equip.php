@@ -89,7 +89,7 @@ else if ($mode=="modifier"){
 			echo ">".$chef['nom']."</option>";
 		}//end while
 		 ?>
-	</select><br />
+	</select><span class="option-right"><a href="add_user.php?"><?php echo ICON_ADD_USER ?></a></span>
       </td>
     </tr>
 
