@@ -101,11 +101,7 @@ echo "L'appareil <b>".$listing[0]['nom']."</b> a les caract&eacute;ristiques sui
 	Inventaire<br />
       </th>
 
-<?php if ($log == true && $user_level >=2 )
-		echo "</th><th>";
-	if ( $log == true && $user_level >=3 )
-		echo "</th><th>";
-	  ?>
+
     </tr>
 <?php
 
@@ -150,17 +146,7 @@ echo $data['id'];
   echo"</td><td style=\"vertical-align: top;\">";
 echo $data['inventaire'];
 
- if ($log==true && $user_level >=2 ) {
-      echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"add_appareil.php?app=".$id_app."&id=".$data['id']."\"></a>".ICON_EDIT.'</a>';
-      echo"</td>";
-	}//end if
- if ($log==true && $user_level >=3 ) {
-      echo"</td><td style=\"vertical-align: top;\">";
-      echo "<a href=\"del_appareil.php?id=".$data['id']."\">".ICON_TRASH.'</a>';
-      echo"</td>";
 
-	}//end if
       echo"</tr>";
 	}//end while
 
