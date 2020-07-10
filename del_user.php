@@ -34,7 +34,8 @@ if (!isset($valid) || empty($valid) || $valid=="no"){
 else{
   if ( $pdo = connect_db() ){
     //on supprime cet user
-    $sql = 'DELETE LOW_PRIORITY FROM users WHERE id = ? LIMIT 1';
+    // $sql = 'DELETE LOW_PRIORITY FROM users WHERE id = ? LIMIT 1';
+    $sql = 'UPDATE users SET valid = 0 WHERE id = ?;';
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array($id_user));
     echo "Utilisateur ".$id_user." supprim&eacute;!<br />";
