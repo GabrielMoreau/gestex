@@ -14,6 +14,10 @@ en_tete('Suppression Utilisateur');
 $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
+$supp = $_GET['suppr'];
+
+echo $supp;
+
 if (empty($_GET['id']))
  Header("Location: list_user.php");
 else
@@ -25,9 +29,9 @@ else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppress
 	$valid = 'yes';
 else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
   $valid = 'no'; 
-if (!isset($valid) || empty($valid) || $valid=="no"){
+if (!isset($valid) || empty($valid) || $valid =="no"){
  echo "Sur de supprimer l'utilisateur ".$id_user. " ?<br />";
- echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_user."&ok=yes\">OUI</a><br />";
+ echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_user."&ok=yes&suppr=".$supp."\">OUI</a><br />";
   echo "<a href=\"".$_SERVER['HTTP_REFERER']."\">NON</a><br />";
 
 }
@@ -35,10 +39,14 @@ else{
   if ( $pdo = connect_db() ){
     //on supprime cet user
     // $sql = 'DELETE LOW_PRIORITY FROM users WHERE id = ? LIMIT 1';
-    $sql = 'UPDATE users SET valid = 0 WHERE id = ?;';
+    if($supp == 0){
+      $sql = 'UPDATE users SET valid = 1 WHERE id = ?;';
+    }
+    else if ($supp == 1){
+      $sql = 'UPDATE users SET valid = 0 WHERE id = ?;';
+    }
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array($id_user));
-    echo "Utilisateur ".$id_user." supprim&eacute;!<br />";
    
   }
  //on retourne a la page precedente

@@ -61,11 +61,14 @@ if (empty($_GET['tri'])){
 <?php	//interrogation base de donnees
 if ($pdo = connect_db()) {
 	// recupere la liste des users
-	if ($user_level >=3) {
+	if ($user_level >3){ // lorsqu'on est haut placé, on voit tout le monde
 		$sql = 'SELECT * FROM users ORDER BY ?;';
 	}
-	else {
-		$sql = 'SELECT * FROM users WHERE valid = 1 ORDER BY ?;';
+	else if ($user_level ==3) { //losrqu'on est de niveau 3, on voit tout le monde sauf les users de plus haut level
+		$sql = 'SELECT * FROM users WHERE level < 3 ORDER BY ?;';
+	}
+	else { // lorsqu'on est <3 , on voit tout le monde sauf le suser de level  >3 et les users non valide
+		$sql = 'SELECT * FROM users WHERE valid = 1 and level < 3 ORDER BY ?;';
 	}
 	// list($qh,$num) = query_db($querry);
 	$stmt = $pdo->prepare($sql);
@@ -126,18 +129,19 @@ if ($pdo = connect_db()) {
 			echo        ICON_PERSON_PASWD;
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
-			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="del_user.php?id='.$data['id'].'">';
-			echo        ICON_TRASH;
-			echo '    </a>';
-			echo '  </td>'.PHP_EOL;
 			echo '  <td style="vertical-align: top; background-color:grss	ay;">';
-			if ($data['valid'] == 0)
+			if ($data['valid'] == 0){
+				echo '<a href="del_user.php?id='.$data['id'].'&suppr=0">';
 				echo ICON_PERSON_BAD;
-			else
+				echo '</a>';
+			}else{
+				echo '<a href="del_user.php?id='.$data['id'].'&suppr=1">';
 				echo ICON_PERSON_OK;
-			echo '  </td>'.PHP_EOL;
+				echo '</a>';
+			}
+				
 		}
+		echo '  </td>'.PHP_EOL;
 		echo '</tr>'.PHP_EOL;
 		$num_line++;
 	} //end foreach
