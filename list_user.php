@@ -131,11 +131,11 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 			echo '  <td style="vertical-align: top; background-color:grss	ay;">';
 			if ($data['valid'] == 0){
-				echo '<a href="del_user.php?id='.$data['id'].'&suppr=0">';
+				echo '<a href="del_user.php?id='.$data['id'].'&status=0">';
 				echo ICON_PERSON_BAD;
 				echo '</a>';
 			}else{
-				echo '<a href="del_user.php?id='.$data['id'].'&suppr=1">';
+				echo '<a href="del_user.php?id='.$data['id'].'&status=1">';
 				echo ICON_PERSON_OK;
 				echo '</a>';
 			}

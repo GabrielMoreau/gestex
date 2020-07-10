@@ -1,5 +1,4 @@
 <?php
-
 //del_user.php
 
 // Authenticate
@@ -7,50 +6,53 @@ include("session_auth.php");
 require("html_functions.php");
 
 if (!auth(3))
-  Header("Location: login.php");
+	Header("Location: list_user.php");
 
-en_tete('Suppression Utilisateur');
-
-$user_id = $_SESSION['user_id'];
+$user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-$supp = $_GET['suppr'];
+$id_user = $_POST['id'];
+if (empty($id_user))
+	$id_user = $_GET['id'];
+if (empty($id_user) || $_POST['ok'] == 'cancel')
+	Header("Location: list_user.php");
 
-echo $supp;
+$status_user = $_POST['status'];
+if (empty($status_user))
+	$status_user = $_GET['status'];
 
-if (empty($_GET['id']))
- Header("Location: list_user.php");
-else
-  $id_user = $_GET['id'];
-
-if(empty($_GET['ok'])) // On récupère une variable ok qui sert a vérifier que la personne est bien sûr de supprimer la catégorie choisi
-	$valid = 'no';	// s'il n'y a pas d'id, on met 'no' dans $valid
-else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
+$valid = 'no';
+if ($_POST['ok'] == 'yes') // si ok dans l'url est 'yes', on valide la suppression
 	$valid = 'yes';
-else // si c'est n'importe quoi d'autre, on ne valide pas la suppression
-  $valid = 'no'; 
 
-if (!isset($valid) || empty($valid) || $valid == 'no') {
-	echo 'Sur de supprimer l\'utilisateur '.$id_user.' ?<br />';
-	echo '<a href="del_user.php?id='.$id_user.'&ok=yes&suppr='.$supp.'">OUI</a><br />';
-	echo '<a href="list_user.php">NON</a><br />';
-}
-else {
+if ($valid == 'yes') {
 	if ($pdo = connect_db()) {
 		//on supprime cet user
 		// $sql = 'DELETE LOW_PRIORITY FROM users WHERE id = ? LIMIT 1';
-		if ($supp == 0) {
-			$sql = 'UPDATE users SET valid = 1 WHERE id = ?;';
+		if ($status_user == 0 || $status_user == 1) {
+			$sql = 'UPDATE users SET valid = ? WHERE id = ?;';
+			// 1 -> 0 and 0 -> 1 (modulo)
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array((($status_user + 1) % 2), $id_user));
 		}
-		else if ($supp == 1) {
-			$sql = 'UPDATE users SET valid = 0 WHERE id = ?;';
-		}
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($id_user));
 	}
 	//on retourne a la page precedente
 	Header("Location: list_user.php");
 }
+
+en_tete('Changer l\'&eacute;tat d\'un utilisateur');
 ?>
 
-<?php pied_page() ?>
+<center class="alert">
+<form action="del_user.php" method="POST">
+	<input type="hidden" name="id" value="<?php echo $id_user ?>">
+	<input type="hidden" name="status" value="<?php echo $status_user ?>">
+	Voulez-vous changer l'&eacute;tat de l'utilisateur <?php echo $id_user ?> ?
+	<button class="red" type="submit" name="ok" value="yes">Oui</button>
+	<button class="green" type="submit" formaction="list_user.php" value="no">Non</button>
+	<hr>
+	<button type="submit" name="ok" value="cancel">Annuler</button>
+</form>
+</center>
+
+<?php pied_page(); ?>
