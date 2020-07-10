@@ -24,7 +24,7 @@ else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
 	echo "Sur de supprimer le pret ".$id_pret. " ?<br />";
-	echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_pret."&ok=yes\">OUI</a><br />";
+	echo "<a href=\"".$_SERVER['SCRIPT_NAME']."?id=".$id_pret."&ok=yes\">OUI</a><br />";
 	echo "<a href=\"".$_SERVER['HTTP_REFERER']."\">NON</a><br />";
 }
 else{
