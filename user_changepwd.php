@@ -9,33 +9,34 @@ $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
 
-	$user2chg = $_GET[id];
+	$user2chg = $_GET['id'];
 
-if (empty($user2chg ))
+if (empty($_GET['id'] ))
 	Header("Location: list_manip.php");
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 
 unset($passwd1);unset($passwd2);
 
-if (!empty($_POST[user]))
-	$user2chg = $_POST[user];
+if (!empty($_POST['user']))
+	$user2chg = $_POST['user'];
 
-if (!empty($_POST[passwd1]))
-	$passwd1 = $_POST[passwd1];
+if (!empty($_POST['passwd1']))
+	$passwd1 = $_POST['passwd1'];
 
-if (!empty($_POST[passwd2]))
-	$passwd2 = $_POST[passwd2];
+if (!empty($_POST['passwd2']))
+	$passwd2 = $_POST['passwd2'];
 
-if (!empty($_POST[old_pass]))
-	$old_pass = $_POST[old_pass];
+if (!empty($_POST['old_pass']))
+	$old_pass = $_POST['old_pass'];
 
 unset($errormsg );
-
+$errormsg = '';
 	//recupere l'ancien pasword et  le nom
-		$querry = "SELECT nom,password FROM users WHERE id='$user2chg'";
-		list($qh,$num) = query_db($querry);
-		$data = result_db($qh);
+		$sql = 'SELECT nom,password FROM users WHERE id = ?';
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($user2chg));
+		$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($passwd1) && isset($passwd2)){
 	//check that passwords match
@@ -44,7 +45,7 @@ if (isset($passwd1) && isset($passwd2)){
 
 	if (!isset($errormsg) && isset($old_pass) && $user_level<3 )
 	{
-			if(md5($old_pass) != $data['password'] )
+			if(md5($old_pass) != $user[0]['password'] )
 		 				 $errormsg = "Wrong password, sorry!";
 	}
 
@@ -53,8 +54,9 @@ if (isset($passwd1) && isset($passwd2)){
 		$mot_crypte=md5($passwd1);
 		//ok on change
 
-		$querry ="UPDATE users SET password='$mot_crypte' WHERE id = '$user2chg';";
-		query_db($querry);
+		$sql = 'UPDATE users SET password = ? WHERE id = ?;';
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($mot_crypte,$user2chg));
 		Header("Location: list_user.php");
 		exit;
 	}
@@ -68,9 +70,9 @@ if ($errormsg)
 }
 
 require("html_functions.php");
-$titre = "Changement de mot de Passe";
+$titre = "Changement de mot de Passe ";
 en_tete($titre);
-echo  $titre."pour <i>".$data['nom']."</i>";
+echo  $titre."pour <i>".$user[0]['nom']."</i>";
 ?>
 	<p>
 	<form action="user_changepwd.php" method="post">
