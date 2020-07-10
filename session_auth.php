@@ -7,7 +7,7 @@ require("db_functions.php");
 */
 function auth($reqlevel, $logged_in_user='', $password='') {
 
-	//start/continue the session
+	// start/continue the session
 	session_start();
 	if (!empty($_SESSION['logged_in_user']))
 		return true;
@@ -16,34 +16,34 @@ function auth($reqlevel, $logged_in_user='', $password='') {
 
 	if ($check) {
 		$pdo = connect_db();
-		$sql = 'SELECT password, id, level, status FROM users WHERE loggin = ?;';
+		$sql = 'SELECT password, id, level, valid FROM users WHERE loggin = ?;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($logged_in_user));
 		$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		// is the password correct
 		if ($user[0]['password'] != md5($password)) {
-			//pas le bon ppasswd
+			// pas le bon ppasswd
 			return 0; // false;
 		} else if ($reqlevel > $user[0]['level']){
-			//pas le niveau d'autorisation requis
+			// pas le niveau d'autorisation requis
 			return 0;//false;
 		} else { // tout ok
 			// down the level for disable user
 			$level = $user[0]['level'];
 			if ($user[0]['status'] == 0 && $level > 1)
 				$level = 1;
-			//set session variables
+			// set session variables
 			$_SESSION['user_id'] = $user[0]['id'];
 			$_SESSION['logged_in_user'] = $logged_in_user;
 			$_SESSION['level'] = $level;
 			return 1;
 		}
 	} else {
-		//unset all the variables
+		// unset all the variables
 		session_unset();
 
-		//destroy the session
+		// destroy the session
 		session_destroy();
 
 		return 0; ///false;
@@ -53,12 +53,11 @@ function auth($reqlevel, $logged_in_user='', $password='') {
 ////////////////////////////////////////////////////////////////////////////
 
 function logout() {
-	//continue the session
+	// continue the session
 	session_start();
-	//unset all the variables
+	// unset all the variables
 	session_unset();
-
-	//destroy the session
+	// destroy the session
 	session_destroy();
 }
 
