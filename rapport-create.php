@@ -9,17 +9,17 @@ include("session_auth.php");
 	$user_id = $_SESSION['user_id'];
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
- if (!empty($_GET[ide]))
-	$equip_id = $_GET[ide];
+ if (!empty($_GET['ide']))
+	$equip_id = $_GET['ide'];
 else
 	$equip_id =0;
- if (!empty($_GET[idm]))
-	$manip_id = $_GET[idm];
+ if (!empty($_GET['idm']))
+	$manip_id = $_GET['idm'];
 else
 	$manip_id =0;
 
- if (!empty($_GET[idp]))
-	$projet_id = $_GET[idp];
+ if (!empty($_GET['idp']))
+	$projet_id = $_GET['idp'];
 else
 	$projet_id =0;
 
@@ -27,27 +27,33 @@ else
 
 require("html_functions.php");
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 	// recupere l'equip selectionnee
-	$querry = "SELECT id,nom FROM equipe";
-	list($qhe,$num) = query_db($querry);
-
+	$sql = "SELECT id,nom FROM equipe";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
+	$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if ($equip_id!=0){
 
 	// recupere la manip selectionnee
-	$querry = "SELECT id,nom FROM manip WHERE equipe='$equip_id'";
-	list($qhm,$num) = query_db($querry);
-
+	$sql = 'SELECT id,nom FROM manip WHERE equipe = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($equip_id));
+	$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if ($manip_id!=0){
 		// recupere les projet selectionne
-		$querry = "SELECT id,nom FROM projet WHERE manip='$manip_id'";
-		list($qhp,$num) = query_db($querry);
+		$sql = 'SELECT id,nom FROM projet WHERE manip = ?;';
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($manip_id));
+		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);		
 		//$projet_list = result_db($qh);
 
 		if ($projet_id!=0){
 			// recupere la tache selectionnee
-			$querry = "SELECT id,nom FROM tache WHERE projet='$projet_id'";
-			list($qht,$num) = query_db($querry);
+			$sql = 'SELECT id,nom FROM tache WHERE projet = ?;';
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array($projet_id));
+			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);			
 			//$tache_list = result_db($qh);
 		}
 	}
@@ -91,8 +97,8 @@ echo $texte;
 		echo "<option value=\"0\"";
 			if ($equip_id == 0)	echo " selected ";
 		echo ">Toutes</option>";
-
-		while(	$equip_list= result_db($qhe)	){
+		foreach($data as $equip_list){
+		// while(	$equip_list= result_db($qhe)	){
 			///remplissage avec liste des equips
 			echo "<option value=\"".$equip_list['id']."\" ";
 				if ($equip_list['id'] == $equip_id )
@@ -111,8 +117,8 @@ echo $texte;
 			if ($manip_id == 0)	echo " selected ";
 		echo ">Toutes</option>";
 	if ($equip_id != 0)
-
-		while(	$manip_list= result_db($qhm)	){
+		foreach($data as $manip_list){
+		// while(	$manip_list= result_db($qhm)	){
 			///remplissage avec liste des manips
 			echo "<option value=\"".$manip_list['id']."\" ";
 				if ($manip_list['id'] == $manip_id )
@@ -131,7 +137,8 @@ echo $texte;
 			if ($projet_id == 0)	echo " selected ";
 		echo">Tous</option>";
 	if ($manip_id != 0)
-		while(	$projet_list= result_db($qhp)	){
+		foreach($data as $projet_list){
+		// while(	$projet_list= result_db($qhp)	){
 			///remplissage avec liste des projets
 			echo "<option value=\"".$projet_list['id']."\" ";
 				if ($projet_list['id'] == $projet_id )
@@ -150,7 +157,8 @@ echo $texte;
 			if ($tache_id == 0)	echo " selected ";
 		echo ">Toutes</option>";
 	if ($projet_id != 0)
-		while(	$tache_list= result_db($qht)	){
+		foreach($data as $tache_list){
+		// while(	$tache_list= result_db($qht)	){
 			///remplissage avec liste des taches
 			echo "<option value=\"".$tache_list['id']."\" ";
 				if ($tache_list['id'] == $tache_id )
