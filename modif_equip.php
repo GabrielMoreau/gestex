@@ -16,21 +16,21 @@ require("html_functions.php");
 
 unset($erreur);
 //variables ne pouvant etre nulles
-if (empty($_POST[id_equip]))
+if (empty($_POST['id_equip']))
 	$erreur="id non pr&eacute;cis&eacute;";
 else {
-	$id_equip=$_POST[id_equip];
+	$id_equip=$_POST['id_equip'];
 
-	if (empty($_POST[nom]))
+	if (empty($_POST['nom']))
 		$erreur="nom non pr&eacute;cis&eacute;";
 	else {
-		$nom=$_POST[nom];
-		if (empty($_POST[compte]))
+		$nom=$_POST['nom'];
+		if (empty($_POST['compte']))
 			$erreur="compte non pr&eacute;cis&eacute;";
 		else {
-			$compte=$_POST[compte];
-			$chef=$_POST[chef];
-			$descr =$_POST[descr];
+			$compte=$_POST['compte'];
+			$chef=$_POST['chef'];
+			$descr =$_POST['descr'];
 
 }}}
 
@@ -51,39 +51,40 @@ else{
 //pas d'erreur
 ///on inscrit
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 
 	//recupere les anciennes caracteristiques
 
-	$querry="SELECT * FROM equipe WHERE id='$id_equip'";
-	list($qh,$num) = query_db($querry);
-	$data = result_db($qh);
+	$sql = 'SELECT * FROM equipe WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equip));
+	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-echo $nom." ".$data['nom']."<br />";
-echo $descr." ".$data['descr']."<br />";
-echo $compte." ".$data['compte']."<br />";
-echo $chef." ".$data['chef']."<br />";
+echo $nom." ".$equipe[0]['nom']."<br />";
+echo $descr." ".$equipe[0]['descr']."<br />";
+echo $compte." ".$equipe[0]['compte']."<br />";
+echo $chef." ".$equipe[0]['chef']."<br />";
 
 		//modification equip
 $modif=0;
 //on construit la demande
-	$querry = "UPDATE LOW_PRIORITY equipe SET ";
-		if ($nom!=$data['nom']){
+	$querry = 'UPDATE LOW_PRIORITY equipe SET ';
+		if ($nom!=$equipe[0]['nom']){
 			//modif du nom
 			$modif=1;
 			$querry.="nom='$nom',";
 		}
-		if ($descr!=$data['descr']){
+		if ($descr!=$equipe[0]['descr']){
 			//modif de la descr
 			$modif=1;
 			$querry.="descr='$descr',";
 		}
-		if ($compte!=$data['compte']){
+		if ($compte!=$equipe[0]['compte']){
 			//modif du compte
 			$modif=1;
 			$querry.="compte='$compte',";
 		}
-		if ($chef!=$data['chef']){
+		if ($chef!=$equipe[0]['chef']){
 			//modif du chef
 			$modif=1;
 			$querry.="chef='$chef',";
@@ -94,14 +95,9 @@ $modif=0;
 		$querry.=" WHERE id='$id_equip'";
 	if ($modif!=0){
 		if ($user_level>= 3)
-			echo "MySQL Querry : ". $querry."<br />";
-		$result = mysql_query($querry);
-			//
- 		if (!$result){
-			//inscription !ok
-			$erreur = mysql_error();
-			echo "<br />erreur :".$erreur;
-		}
+			$stmt = $pdo->prepare($querry);
+			$stmt->execute();
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}//end if modif
 	else{
 		echo "aucune modif a faire";
@@ -112,11 +108,8 @@ $modif=0;
 	}//end if connect
 
 ////en_tete('modification &eacute;quipe Valid&eacute;e');
-
-echo "<br />".$nom."modifi&eacute; ";
-echo" <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
-echo"  valid&eacute;e !!";
-echo"<br /><br /><a href=\"list_equip.php\">Suite</a><br /><br />\n";
+Header("Location: list_equip.php");
+// echo"<br /><br /><a href=\"list_equip.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
 }

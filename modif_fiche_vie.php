@@ -9,18 +9,18 @@
 	$user_id = $_SESSION['user_id'];
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-$app_id = $_GET[app];
+$app_id = $_GET['app'];
 if (empty($app_id))
 	Header("Location: list_intapp.php");
 
-$int_id = $_GET[id];
-if (empty($int_id)){
+if (empty($_GET['id'])){
 	//->nouvel intervention
 	$mode ="ajouter";
 	$action="valid_intapp.php";
 }
 else{
 	//->modif intervention
+	$int_id = $_GET['id'];
 	$mode ="modifier";
 	$action="modif_intapp.php";
 

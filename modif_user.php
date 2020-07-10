@@ -18,25 +18,25 @@ require("html_functions.php");
 
 unset($erreur); unset($nom);unset($user_id );
 //variables ne pouvant etre nulles
-	if (empty($_POST[user2ch_id]))
+	if (empty($_POST['user2ch_id']))
 		$erreur="identifiant utilisateur non pr&eacute;cis&eacute;";
 	else{
-		$user2ch_id =$_POST[user2ch_id];
+		$user2ch_id =$_POST['user2ch_id'];
 
-				if (empty($_POST[nom]))
+				if (empty($_POST['nom']))
 					$erreur="nom non pr&eacute;cis&eacute;";
 				else{
-					$nom =$_POST[nom];
+					$nom =$_POST['nom'];
 
-						if (empty($_POST[addr_mail]))
+						if (empty($_POST['addr_mail']))
 							$erreur="adresse de courriel non pr&eacute;cis&eacute;";
 						else{
-							$mail=$_POST[addr_mail];
+							$mail=$_POST['addr_mail'];
 							//variables pouvant etre nulles
-							$prenom =$_POST[prenom];
-							$phone =$_POST[phone];
-							$equipe =$_POST[equipe];
-							$level =$_POST[level];
+							$prenom =$_POST['prenom'];
+							$phone =$_POST['phone'];
+							$equipe =$_POST['equipe'];
+							$level =$_POST['level'];
 }}}
 
 en_tete('R&eacute;sultat inscription');
@@ -56,53 +56,49 @@ else{
 //pas d'erreur
 ///on modifie
 
-if ( $connex = connect_db() ){
+if ( $pdo = connect_db() ){
 		//relit les anciennes coordonnees
-	$querry="SELECT * FROM users WHERE id='$user2ch_id'";
-	list($qh,$num) = query_db($querry);
-	$data = result_db($qh);
+	$sql = 'SELECT * FROM users WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($user2ch_id));
+	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	//modif inscription
 	//on construit la demande
 	$querry = "UPDATE LOW_PRIORITY users SET ";
-		if ($nom!=$data['nom'])
+		if ($nom!=$user[0]['nom'])
 			//modif du nom
 			$querry.="nom='$nom',";
-		if ($prenom!=$data['prenom'])
+		if ($prenom!=$user[0]['prenom'])
 			//modif du prenom
 			$querry.=" prenom='$prenom',";
 	if ($user_level==3){
-		if ($level!=$data['level'])
+		if ($level!=$user[0]['level'])
 			//modif du level
 			$querry.=" level='$level',";
-		if ($data['valid'] ==0){
+		if ($user[0]['valid'] ==0){
 			//validation du user
 			$querry.=" valid=1,";
 			$valid=1;
 			}
 		}
-		if ($phone!=$data['tel'])
+		if ($phone!=$user[0]['tel'])
 			//modif du telephone
 			$querry.=" tel='$phone',";
-		if ($mail!=$data['mail'])
+		if ($mail!=$user[0]['mail'])
 			//modif du mail
 			$querry.=" email='$mail',";
-		if ($equipe!=$data['equipe'])
+		if ($equipe!=$user[0]['equipe'])
 			//modif du club
 			$querry.=" equipe='$equipe',";
 		// supprime la derniere virgule
 		$querry[strlen($querry)-1]=' ';
 		//ajoute la clause
 		$querry.=" WHERE id='$user2ch_id'";
-
-		$result = mysql_query($querry);
 		if ($user_level>= 3)
-			echo "MySQL Querry : ". $querry."<br />";
- 		if (!$result){
-			//inscription !ok
-			$erreur = mysql_error();
-		echo "<br />erreur :".$erreur;
-		}
+			$stmt = $pdo->prepare($querry);
+			$stmt->execute();
+			
 		if ($user_level == 3 && $valid==1 ){
 			//validation d'un user acceptee
 			//envoi d'un mail a cet user
@@ -111,10 +107,8 @@ if ( $connex = connect_db() ){
 		}
 	}//end if connect
 
-echo "inscription de ".$prenom." ".$nom." ".$mail."<br />";
-echo" <img src=\"images/pool_project.jpg\"  height=\"100\" nosave=\"\" align=\"middle\" alt=\"\" />";
-echo" est modifi&eacute;e  !";
-echo"<br /><br /><a href=\"list_user.php\">Suite</a><br /><br />\n";
+	Header("Location: list_user.php");
+
 pied_page();
 exit();
 }

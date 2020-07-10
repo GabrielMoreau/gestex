@@ -204,12 +204,6 @@ if ($notice!=$listing[0]['notice']){
 			$stmt = $pdo->prepare($querry);
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
- 		if (!$result){
-			//inscription !ok
-			// $erreur = mysql_error();
-			echo "<br />erreur ";
-		}
 		$sql = 'INSERT INTO notice (nom_notice,chemin_notice,id_appareil) VALUES (?, ?, ?);';
 		$stmt = $pdo->prepare($sql);
 		$path_complet =$path."/".$notice;
@@ -241,11 +235,8 @@ $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-echo "$cat";
-echo "<br />modification de ".$nom."<br />";
-echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"list_appareil.php\">Suite</a><br /><br />\n";
 //quand on va sur suite, on retourne sur la page de la categorie choisie
+Header("Location: list_appareil.php");
 
 pied_page();
 exit();
