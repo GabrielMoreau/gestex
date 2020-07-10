@@ -89,5 +89,24 @@ iframe { border:2px inset #98C2F7; }
 
 .white_heading { font-size: 20; font-family: Arial, sans-serif; font-weight: bold; font-style: italic; color: #FFFFFF; }
 
+
+/* ================= icon */
+
 span.check-ok { color: #00CC00; }
 span.check-bad { color: #CC0000; }
+
+
+/* ================= footer */
+
+.footer img {
+	padding-top: 1.5em;
+	padding-bottom: 1em;
+}
+
+.footer br {
+	line-height: 0.2em;
+}
+
+.footer i {
+	font-size: small;
+}

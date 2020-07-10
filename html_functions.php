@@ -167,20 +167,13 @@ function pied_page() {
 
 <div class="footer">
 <center>
-	<img src="images/striped.gif" nosave="" border="0" height="13"  width="532" align="bottom" />
-	<table cellpadding="2" cellspacing="2" border="0" style="text-align: center; width: 95%;">
-		<tbody>
-			<tr>
-				<td>
-					<address><a href="mailto:<?php echo GESTEX_ADMIN_MAIL ?>?Subject=GestEx%20to%20WebMaster">GestEx WebMaster</a></address>
-					<br />
-					<i>Derni&egrave;re mise &agrave; jour :
-						<?php echo $last_update ?>
-					</i>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<img src="images/striped.gif" nosave="" border="0" height="13" width="532" align="bottom">
+	<address><a href="mailto:<?php echo GESTEX_ADMIN_MAIL ?>?Subject=GestEx%20to%20WebMaster">GestEx WebMaster</a></address>
+	<br>
+	<i>
+		Derni&egrave;re mise &agrave; jour :
+		<?php echo $last_update ?>
+	</i>
 </center>
 </div>
 </body>
