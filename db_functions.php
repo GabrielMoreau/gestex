@@ -44,10 +44,9 @@ function last_id_db() {
 	return mysql_insert_id();
 }
 
-function check_val($table, $col, $value) {
+function check_val_in_db($pdo, $table, $col, $value) {
 	//teste l'existence de $value dans le champ $col de la table $table
 	//echo "check in:".$table.":".$col." for ".$value."<br />";
-	$pdo = connect_db();
 	$sql = 'SELECT * FROM ? WHERE ? = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($table, $col, $value));
