@@ -1,5 +1,4 @@
 <?php
-
 //del-pret.php
 
 // Authenticate
@@ -16,25 +15,25 @@ else
 	$id_pret = $_GET['id'];
 
 if(empty($_GET['ok'])) // On recupere une variable ok qui sert a verifier que la personne est bien sur de supprimer la categorie choisi
-	$valid ='no';	// s'il n'y a pas d'id, on met 'no' dans $valid
-else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
+	$valid = 'no'; // s'il n'y a pas d'id, on met 'no' dans $valid
+else if($_GET['ok'] == 'yes') // si ok dans l'url est 'yes', on valide la suppression
 	$valid = 'yes';
-else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
+else // si c'est n'importe quoi d'autre, on ne valide pas la suppression
 	$valid = 'no'; 
 
-if (!isset($valid) || empty($valid) || $valid=="no"){
-	echo "Sur de supprimer le pret ".$id_pret. " ?<br />";
-	echo "<a href=\"".$_SERVER['SCRIPT_NAME']."?id=".$id_pret."&ok=yes\">OUI</a><br />";
-	echo "<a href=\"".$_SERVER['HTTP_REFERER']."\">NON</a><br />";
+if (!isset($valid) || empty($valid) || $valid == 'no'){
+	$self = preg_replace('/\?.*$/', '', $_SERVER['REQUEST_URI']);
+	echo 'Sur de supprimer le pret '.$id_pret.' ?<br />';
+	echo '<a href="'.$self.'?id='.$id_pret.'&ok=yes">OUI</a><br />';
+	echo '<a href="'.$_SERVER['HTTP_REFERER'].'">NON</a><br />';
 }
-else{
-	if ( $pdo = connect_db() ){
+else {
+	if ($pdo = connect_db()) {
 		// on supprime le pret
-		$sql = 'DELETE LOW_PRIORITY FROM pret WHERE id = ? LIMIT 1';
+		$sql = 'DELETE LOW_PRIORITY FROM pret WHERE id = ? LIMIT 1;';
 		// list($qh,$num) = query_db($querry);
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($id_pret));
-		
 	}
 	//on retourne a la page d'accueil
 	Header("Location: list_pret.php");
