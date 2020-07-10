@@ -36,7 +36,7 @@ function en_tete($titre) {
 		<a href="./"><img src="images/logo-gestex.png" alt="" height="100px"></a>
 	</div>
 	<div class="header-title">
-		<h1><a href="./">GestEx</a> - Gestion des plateformes Expérimentales</h1>
+		<h1><a href="./">GestEx</a> - Gestion des plateformes Exp&eacute;rimentales</h1>
 		<h2>Liste des Manips</h2>
 	</div>
 	<br>
