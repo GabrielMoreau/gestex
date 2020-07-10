@@ -32,7 +32,7 @@ if ($valid == 'yes') {
 	Header("Location: list_pret.php");
 }
 else {
-	en_tete('');
+	en_tete('Ramener un pr&ecirc;t');
 ?>
 
 <center class="alert">
