@@ -42,7 +42,7 @@ function en_tete($titre) {
 	</div>
 	<div class="header-title">
 		<h1><a href="./">GestEx</a> - Gestion des plateformes Exp&eacute;rimentales</h1>
-		<h2>Liste des Manips</h2>
+		<h2><?php echo $titre ?></h2>
 	</div>
 	<br>
 </div>
