@@ -126,18 +126,19 @@ if ($pdo = connect_db()) {
 			echo        ICON_PERSON_PASWD;
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
-			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="del_user.php?id='.$data['id'].'">';
-			echo        ICON_TRASH;
-			echo '    </a>';
-			echo '  </td>'.PHP_EOL;
 			echo '  <td style="vertical-align: top; background-color:grss	ay;">';
-			if ($data['valid'] == 0)
+			if ($data['valid'] == 0){
+				echo '<a href="del_user.php?id='.$data['id'].'&suppr=0">';
 				echo ICON_PERSON_BAD;
-			else
+				echo '</a>';
+			}else{
+				echo '<a href="del_user.php?id='.$data['id'].'&suppr=1">';
 				echo ICON_PERSON_OK;
-			echo '  </td>'.PHP_EOL;
+				echo '</a>';
+			}
+				
 		}
+		echo '  </td>'.PHP_EOL;
 		echo '</tr>'.PHP_EOL;
 		$num_line++;
 	} //end foreach
