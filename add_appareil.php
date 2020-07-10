@@ -69,19 +69,13 @@ else if ($mode=="modifier"){
 }
 ?>
 
- <td style="vertical-align: top; text-align: center;">
-	<a href="add_categorie.php?">Ajout<br />d'une categorie</a>
-	<br /></td>
-
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
-
-  <tbody>
-<form action="<?php echo $action ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
-		<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
-
-  <tr>
-      <td style="vertical-align: top;">Categorie<br />
-      </td>
+	<tbody>
+		<form action="<?php echo $action ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
+			<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
+		<tr>
+			<td style="vertical-align: top;">Cat&eacute;gorie<br />
+		</td>
 
   <td style="vertical-align: top;">
 
@@ -108,7 +102,7 @@ if ($mode=="ajouter" && $chef['id'] == $cat) {
 		}//end while
 
 	?>
-</select>
+</select><a href="add_categorie.php?"><?php echo ICON_ADD_CAT ?></a>
 <br />
       </td>
     </tr>
