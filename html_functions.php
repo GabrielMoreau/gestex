@@ -25,27 +25,23 @@ function en_tete($titre) {
 ?>
 <html>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
-	<link rel="icon" sizes="192x126" href="images/logo-gestex-192.png" />
+	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+	<link rel="icon" sizes="192x126" href="images/logo-gestex-192.png">
 	<title>GestEx - <?php echo $titre ?></title>
-	<link href="pool_project.css" rel="stylesheet" type="text/css" />
+	<link href="pool_project.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="header">
-<table>
-	<tbody>
-		<tr>
-			<td style="vertical-align: center;">
-				<a href="./"><img src="images/logo-gestex.png" nosave="" height="100" /></a>
-			</td>
-			<td style="vertical-align: top;"><br />
-				<h1><a href="./">GestEx</a> - Gestion des plateformes Exp&eacute;rimentales</h1>
-			<h2><?php echo $titre ?></h2>
-		</td>
-		</tr>
-	</tbody>
-</table>
+	<div class="header-logo">
+		<a href="./"><img src="images/logo-gestex.png" alt="" height="100px"></a>
+	</div>
+	<div class="header-title">
+		<h1><a href="./">GestEx</a> - Gestion des plateformes Expérimentales</h1>
+		<h2>Liste des Manips</h2>
+	</div>
+	<br>
 </div>
+
 <?php
 if(!empty($_SESSION)){
 	$pdo            = connect_db();

@@ -1,13 +1,16 @@
 /* recup w3school */
 .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: rgb(245, 207, 41);
-    font-family: Arial, Helvetica, sans-serif;
-
-  }
+	list-style-type: none;
+	padding: 0px;
+	overflow: hidden;
+	background-color: rgb(245, 207, 41);
+	font-family: Arial, Helvetica, sans-serif;
+	clear: both;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: 0px;
+	margin-left: 0px
+ }
   
   .navbar li {
     float: left;

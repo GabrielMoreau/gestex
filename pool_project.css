@@ -112,21 +112,33 @@ span.check-bad {
 /* ================= header */
 
 .header {
+	display: block;
+	clear: both;
 	max-width: 60em;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 30px;
-	margin-bottom: 20px;
 }
 
-.header table {
-	width: 100%;
-	border: 0px;
-	border-collapse: collapse;
+.header-logo {
+	float: left;
+	overflow: hidden;
+	padding: 0px;
 }
 
-.header img {
-	padding: 1em;
+.header-title {
+	float: left;
+	overflow: hidden;
+	padding: 0px 0px 0px 30px;
+	font-size: 14;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color:#001061
+}
+
+.header br {
+	clear: both;
+	line-height: 0px;
 }
 
 /* ================= footer */
