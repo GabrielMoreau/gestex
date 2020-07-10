@@ -26,7 +26,6 @@ if (empty($_GET['tri'])){
 }
 ?>
 
-<br />
 <table cellpadding="2" cellspacing="2" border="1"
 	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	<tbody>
@@ -61,22 +60,20 @@ if (empty($_GET['tri'])){
 <?php	//interrogation base de donnees
 if ($pdo = connect_db()) {
 	// recupere la liste des users
-	if ($user_level >3){ // lorsqu'on est haut placé, on voit tout le monde
+	if ($user_level > 3){ // lorsqu'on est haut place, on voit tout le monde
 		$sql = 'SELECT * FROM users ORDER BY ?;';
 	}
-	else if ($user_level ==3) { //losrqu'on est de niveau 3, on voit tout le monde sauf les users de plus haut level
+	else if ($user_level == 3) { // losrqu'on est de niveau 3, on voit tout le monde sauf les users de plus haut level
 		$sql = 'SELECT * FROM users WHERE level < 3 ORDER BY ?;';
 	}
-	else { // lorsqu'on est <3 , on voit tout le monde sauf le suser de level  >3 et les users non valide
+	else { // lorsqu'on est < 3, on voit tout le monde sauf le suser de level > 3 et les users non valide
 		$sql = 'SELECT * FROM users WHERE valid = 1 and level < 3 ORDER BY ?;';
 	}
-	// list($qh,$num) = query_db($querry);
 	$stmt = $pdo->prepare($sql);
     $stmt->execute(array($tri));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$num_line = 0;
 
-	// while ($data = result_db($qh)) {
 	foreach ($user as $data) {
 		// remplit le tableau
 		if (($num_line % 2 ) == 0)
@@ -108,8 +105,6 @@ if ($pdo = connect_db()) {
 		echo '  <td style="vertical-align: top;">';
 		// recupere la liste de equipes
 		$sql = 'SELECT nom FROM equipe WHERE id = ?;';
-		// list($qheq,$numeq) = query_db($querry);
-		// 	$eq = result_db($qheq)	 ;
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($data['equipe']));
 		$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -139,7 +134,6 @@ if ($pdo = connect_db()) {
 				echo ICON_PERSON_OK;
 				echo '</a>';
 			}
-				
 		}
 		echo '  </td>'.PHP_EOL;
 		echo '</tr>'.PHP_EOL;
@@ -147,8 +141,8 @@ if ($pdo = connect_db()) {
 	} //end foreach
 } //end if
 ?>
+
 	</tbody>
 </table>
-<br />
-</div>
+
 <?php pied_page() ?>
