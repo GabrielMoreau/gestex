@@ -6,7 +6,7 @@ include("session_auth.php");
 if (!auth(3))
 	Header("Location: list_pret.php");
 
-$user_id = $_SESSION['user_id'];
+$user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 if (empty($_GET['id']))
@@ -14,20 +14,11 @@ if (empty($_GET['id']))
 else
 	$id_pret = $_GET['id'];
 
-if(empty($_GET['ok'])) // On recupere une variable ok qui sert a verifier que la personne est bien sur de supprimer la categorie choisi
-	$valid = 'no'; // s'il n'y a pas d'id, on met 'no' dans $valid
-else if($_GET['ok'] == 'yes') // si ok dans l'url est 'yes', on valide la suppression
+$valid = 'no';
+if ($_POST['ok'] == 'yes') // si ok dans l'url est 'yes', on valide la suppression
 	$valid = 'yes';
-else // si c'est n'importe quoi d'autre, on ne valide pas la suppression
-	$valid = 'no'; 
 
-if (!isset($valid) || empty($valid) || $valid == 'no'){
-	$self = preg_replace('/\?.*$/', '', $_SERVER['REQUEST_URI']);
-	echo 'Sur de supprimer le pret '.$id_pret.' ?<br />';
-	echo '<a href="'.$self.'?id='.$id_pret.'&ok=yes">OUI</a><br />';
-	echo '<a href="'.$_SERVER['HTTP_REFERER'].'">NON</a><br />';
-}
-else {
+if ($valid == 'yes') {
 	if ($pdo = connect_db()) {
 		// on supprime le pret
 		$sql = 'DELETE LOW_PRIORITY FROM pret WHERE id = ? LIMIT 1;';
@@ -38,4 +29,18 @@ else {
 	//on retourne a la page d'accueil
 	Header("Location: list_pret.php");
 }
+else {
+	en_tete('');
+
+	echo 'Voulez-vous supprimer le pr&ecirc;t '.$id_pret.' ?<br />'.PHP_EOL;
+	echo '<form action="del-pret.php?id='.$id_pret.'" method="POST">'.PHP_EOL;
+	//echo '<a href="'.$self.'?id='.$id_pret.'&ok=yes">OUI</a><br />';
+	//echo '<a href="'.$_SERVER['HTTP_REFERER'].'">NON</a><br />';
+	echo ' <button type="submit" name="ok" value="yes">Oui</button>'.PHP_EOL;
+	echo ' <button type="submit" formaction="list_pret.php" value="no">Non</button>'.PHP_EOL;
+	echo '</form>'.PHP_EOL;
+
+	pied_page()
+}
+
 ?>
