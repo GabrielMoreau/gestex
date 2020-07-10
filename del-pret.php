@@ -11,7 +11,7 @@ require("html_functions.php");
 $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-if (empty($_GET['id']))
+if (empty($_GET['id']) || $_POST['ok'] == 'cancel')
 	Header("Location: list_pret.php");
 else
 	$id_pret = $_GET['id'];
@@ -40,6 +40,8 @@ else {
 	Voulez-vous supprimer le pr&ecirc;t <?php echo $id_pret ?> ?
 	<button class="red" type="submit" name="ok" value="yes">Oui</button>
 	<button class="green" type="submit" formaction="list_pret.php" value="no">Non</button>
+	<hr>
+	<button type="submit" name="ok" value="cancel">Annuler</button>
 </form>
 </center>
 

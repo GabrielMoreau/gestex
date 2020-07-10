@@ -99,27 +99,26 @@ iframe { border:2px inset #98C2F7; }
 /* ================= alert */
 
 @keyframes blink { 
-   50% { border-color: orange; } 
+	50% {
+		border-color: #001061;
+	} 
 }
-#@-webkit-keyframes blink2 { 50% { border-color: #ff0000; }  }
 
 center.alert {
 	border-width: 5px;
 	border-style: dotted;
-	#animation: blink .5s step-end infinite alternate;
+	border-color: orange;
 	animation-name: blink ;
-    animation-duration: .5s ;
-    animation-timing-function: step-end ;
-    animation-iteration-count: infinite ;
-    animation-direction: alternate ;
-	border-color: #001061;
+	animation-duration: 0.5s ;
+	animation-timing-function: step-end ;
+	animation-iteration-count: infinite ;
+	animation-direction: alternate ;
 	border-radius: 25px;
 	width: 40%;
 	margin-left: auto;
 	margin-right: auto;
 	padding-top: 30px;
 	padding-bottom: 20px;
-#	-webkit-animation: blink2 .5s step-end infinite alternate; 
 }
 
 .alert button.green {
@@ -129,6 +128,12 @@ center.alert {
 	color: #CC0000;
 }
 
+.alert hr {
+	border-width: 2px;
+	border-style: solid;
+	color: orange;
+	width: 30%;
+}
 
 /* ================= index */
 
