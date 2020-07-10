@@ -41,7 +41,7 @@ if ($mode=="ajouter"){
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
 		<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
   <tr>
-      <td style="vertical-align: top;">categorie *<br />
+      <td style="vertical-align: top;">Cat&eacute;gorie * (en minuscule uniquement)<br />
       </td>
       <td style="vertical-align: top;">
 	<input type="text" name="categorie" size="30"  value="" ><br />
