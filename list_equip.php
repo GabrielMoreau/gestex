@@ -5,7 +5,7 @@
 include("session_auth.php");
 
 if (!auth(1)) {
-	Header('Location: login.php?referer='.urlencode($_SERVER['REQUEST_URI']));
+	Header('Location: login.php?referer='.urlencode('list_equip.php?'.$_SERVER['QUERY_STRING']));
 	exit();
 }
 
