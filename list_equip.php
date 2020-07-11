@@ -1,11 +1,13 @@
 <?php
-//list_equip.php
+// list_equip.php
 
 // Authenticate
 include("session_auth.php");
 
-if (!auth(1))
-	Header("Location: login.php");
+if (!auth(1)) {
+	Header('Location: login.php?referer='.urlencode($_SERVER['REQUEST_URI']));
+	exit();
+}
 
 $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
