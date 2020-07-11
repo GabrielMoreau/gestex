@@ -7,28 +7,29 @@
 	$password = $_POST['password'];
 	//valeur par defaut
 	$login_failure = false;
-	if (isset( $_GET['variable']) && !empty( $_GET['variable']))
-		$truc = $_GET['variable'];
-	else {
-		if (isset( $_POST['variable']) && !empty( $_POST['variable']))
-			$truc = $_POST['variable'];
-		else
-			$truc = 'index';
-		}
 
-	//check that this form has been submitted
+	// return URL after auth (or no auth)
+	$referer = urlencode($_SERVER['HTTP_REFERER']);
+	if (!empty($_GET['referer']))
+		$referer = $_GET['referer'];
+	if (!empty($_POST['referer']))
+		$referer = $_POST['referer'];
+	if (empty($referer))
+		$referer = urlencode('index.php');
+
+	$first = true;
+	if (!empty($_POST['first']))
+		$first = false;
+
+	// check that this form has been submitted
 	if (isset($username) && isset($password)) {
-		//log the user in normally
-		if (!($result = auth(0, $username, $password))){
-			$login_failure = true;
-		}else{
-			if ($truc == 'instru')
-				Header("Location: list_categorie.php");
-			if ($truc == 'projet')
-				Header("Location: list_manip.php?tri=date");
-			if ($truc == 'index')
-				Header("Location: index.php");
+		// log the user in normally
+		if (auth(0, $username, $password)) {
+			Header('Location: '.urldecode($referer));
+			exit();
 		}
+		else
+			$login_failure = true;
 	} else {
 		//load the session so we can destroy it
 		session_start();
@@ -38,14 +39,18 @@
 
 		//destroy the session
 		session_destroy();
-		$login_failure = true;
+
+		if (!$first)
+			$login_failure = true;
 	}
 
 en_tete('Authentification');
 ?>
 
 <div width="100%" height="100%" align="center" valign="center">
-	<form action="login.php?variable=<?php echo $truc ?>" method="POST" name="loginForm">
+	<form action="login.php" method="POST" name="loginForm">
+		<input type="hidden" name="referer" value="<?php echo $referer ?>">
+		<input type="hidden" name="first" value="false">
 		<table width="100%" height="200" cellspacing="0" cellpadding="1" valign="center">
 			<tr>
 				<td>
@@ -53,9 +58,9 @@ en_tete('Authentification');
 						<tr>
 							<td><span class="box_text">Identifiant</span><br /><input type="text" name="username" size="25" maxlength="25"></td>
 							<td><span class="box_text">Mot de passe</span><br /><input type="password" name="password" size="25" maxlength="25"></td>
-							<td><br /><input type="submit" name="Login" value="Entrer"> </td>
+							<td><br /><input type="submit" name="Login" value="Entrer"></td>
 						</tr>
-						<?php if (isset($login_failure)) { ?>
+						<?php if ($login_failure) { ?>
 						<tr>
 							<td colspan="2">
 								<table width="100%" border="0" bgcolor="black" cellspacing="0" cellpadding="1">
@@ -64,7 +69,7 @@ en_tete('Authentification');
 											<table width="100%" border="0" bgcolor="yellow">
 												<tr>
 													<td class="login_error">
-														login ou mot de passe invalide !
+														Identifiant ou mot de passe invalide !
 													</td>
 												</tr>
 											</table>
