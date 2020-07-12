@@ -26,9 +26,20 @@ else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
 	$valid = 'no'; 
 
 if (!isset($valid) || empty($valid) || $valid== 'no'){ // on regarde ce qu'il y a dans $valid et si c'est NULL ou 'no', on pose la question
-	echo "Sur de supprimer l'&eacute;quipe ".$id_equip. " ?<br />";
-	echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_equip."&ok=yes\">OUI</a><br />"; // si la personne repond 'oui', on recharge la page en mettant ok=yes dans l'url 
-	echo "<a href=\"".$_SERVER['HTTP_REFERER']."\">NON</a><br />"; // sinon, on retourne a la page precedente
+?>
+
+<center class="alert">
+<form action="del_equip.php" method="POST">
+	<input type="hidden" name="id" value="<?php echo $id_equip ?>">
+	Voulez-vous supprimer l'&eacute;quipe <?php echo $id_equip ?> ?
+	<button class="red" type="submit" name="ok" value="yes">Oui</button>
+	<button class="green" type="submit" formaction="list_equip.php" value="no">Non</button>
+	<hr>
+	<button type="submit" name="ok" value="cancel">Annuler</button>
+</form>
+</center>
+
+<?php
 }
 else{
 	if ( $pdo = connect_db() ){
