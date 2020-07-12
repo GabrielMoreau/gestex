@@ -9,6 +9,7 @@ if (!auth(1)) {
 	Header('Location: login.php?referer='.urlencode('list_equip.php?'.$_SERVER['QUERY_STRING']));
 	exit();
 }
+level_or_alert(1, 'Liste de toutes les &eacute;quipes');
 
 $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
