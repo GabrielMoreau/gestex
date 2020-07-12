@@ -210,4 +210,11 @@ function check_mail($mail) {
    return $erreur;
    }
 
+// -------------------------------------------------------------
+
+function redirect($link='index.php') {
+	Header('Location: '.$link);
+	exit();
+}
+
 ?>
