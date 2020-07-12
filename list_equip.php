@@ -2,7 +2,8 @@
 // list_equip.php
 
 // Authenticate
-include("session_auth.php");
+require_once('session_auth.php');
+require_once('html_functions.php');
 
 if (!auth(1)) {
 	Header('Location: login.php?referer='.urlencode('list_equip.php?'.$_SERVER['QUERY_STRING']));
@@ -12,8 +13,6 @@ if (!auth(1)) {
 $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level     = $_SESSION['level'];
-
-require("html_functions.php");
 
 en_tete('Liste de toutes les &eacute;quipes');
 
