@@ -1,12 +1,13 @@
 <?php
 //del_user.php
+$web_page = true;
 
 // Authenticate
-include("session_auth.php");
-require("html_functions.php");
+require_once('del_user.php');
+require_once('html_functions.php');
 
-if (!auth(3))
-	Header("Location: list_user.php");
+auth_or_login('del_equip.php');
+level_or_alert(3, 'Changer l\'&eacute;tat d\'un utilisateur');
 
 $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -15,7 +16,7 @@ $id_user = $_POST['id'];
 if (empty($id_user))
 	$id_user = $_GET['id'];
 if (empty($id_user) || $_POST['ok'] == 'cancel')
-	Header("Location: list_user.php");
+	redirect('list_user.php');
 
 $status_user = $_POST['status'];
 if (empty($status_user))
@@ -37,7 +38,7 @@ if ($valid == 'yes') {
 		}
 	}
 	//on retourne a la page precedente
-	Header("Location: list_user.php");
+	redirect('list_user.php');
 }
 
 en_tete('Changer l\'&eacute;tat d\'un utilisateur');
