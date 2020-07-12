@@ -1,6 +1,9 @@
 <?php
+// valid_equip.php
+$web_page = true;
 
-require("html_functions.php");
+require_once('html_functions.php');
+require('db_functions.php');
 
 /// valid_equip.php
 //validation d'une nouvelle equipe
@@ -32,13 +35,11 @@ en_tete('R&eacute;sultat inscription');
 if (!empty($erreur)) {
 	//erreur
 	echo '<br />Erreur : '.$erreur;
-	echo '<br /><a href="add_aquip.php">Suite</a><br />'.PHP_EOL;
+	echo '<br /><a href="add_equip.php">Suite</a><br />'.PHP_EOL;
 	pied_page();
 	exit();
 }
 
-///tout est ok
-require("db_functions.php");
 
 if ($pdo = connect_db()) {
 	//inscription
@@ -49,9 +50,9 @@ if ($pdo = connect_db()) {
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	} //end if connect
 
-echo "Inscription de ".$nom."<br />";
-echo  <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
-echo " est valid&eacute;e ";
-echo "<br /><br /><a href=\"list_equip.php\">Suite</a><br /><br />\n";
+echo 'Inscription de '.$nom.'<br />';
+echo  '<img src="images/pool_project.jpg" height="100" nosave="" align="middle" alt="">';
+echo ' est valid&eacute;e ';
+echo '<br /><br /><a href="list_equip.php">Suite</a><br /><br />';
 pied_page();
 ?>
