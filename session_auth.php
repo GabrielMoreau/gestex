@@ -81,4 +81,21 @@ function level_or_alert($reqlevel, $msg_alert='') {
 	exit();
 }
 
+////////////////////////////////////////////////////////////////////////////
+
+function auth_or_login($referer='index.php') {
+	// start or continue the session
+	session_start();
+
+	if (!empty($_SESSION['logged_in_user']))
+		return true;
+
+	$url = $referer;
+	if (!empty($_SERVER['QUERY_STRING']))
+		$url .= '?' . $_SERVER['QUERY_STRING'];
+
+	Header('Location: login.php?referer='.urlencode($url));
+	exit();
+}
+
 ?>
