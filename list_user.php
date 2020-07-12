@@ -1,5 +1,6 @@
 <?php
 // list_user.php
+$web_page = true;
 
 // Authenticate
 require_once('session_auth.php');

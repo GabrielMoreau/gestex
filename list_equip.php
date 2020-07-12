@@ -1,5 +1,6 @@
 <?php
 // list_equip.php
+$web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
