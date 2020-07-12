@@ -2,18 +2,16 @@
 // list_user.php
 
 // Authenticate
-include("session_auth.php");
+require_once('session_auth.php');
+require_once('html_functions.php');
 
-if (!auth(1))
-	Header("Location: login.php");
+auth_or_login('list_user.php');
+level_or_alert(1, 'Liste de tous les utilisateurs');
 
 $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level     = $_SESSION['level'];
 
-require("html_functions.php");
-
-en_tete('Liste de tous les utilisateurs');
 //recuper la methode de tri
 if (empty($_GET['tri'])){
 	if ($user_level >= 3) {
@@ -24,6 +22,8 @@ if (empty($_GET['tri'])){
 } else {
 	$tri = $_GET['tri'];
 }
+
+en_tete('Liste de tous les utilisateurs');
 ?>
 
 <table cellpadding="2" cellspacing="2" border="1"
