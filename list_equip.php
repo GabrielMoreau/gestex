@@ -5,10 +5,7 @@
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-if (!auth(1)) {
-	Header('Location: login.php?referer='.urlencode('list_equip.php?'.$_SERVER['QUERY_STRING']));
-	exit();
-}
+auth_or_login('list_equip.php');
 level_or_alert(1, 'Liste de toutes les &eacute;quipes');
 
 $user_id        = $_SESSION['user_id'];
