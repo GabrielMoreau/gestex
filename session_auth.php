@@ -61,4 +61,24 @@ function logout() {
 	session_destroy();
 }
 
+////////////////////////////////////////////////////////////////////////////
+
+function level($reqlevel) {
+	$level = $_SESSION['level'];
+	if ($reqlevel > $level)
+		return false;
+	return true;
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+function level_or_alert($reqlevel, $msg_alert='') {
+	if (level($reqlevel))
+		return true;
+
+	$web_page = true;
+	include_once('include/alert.php');
+	exit();
+}
+
 ?>
