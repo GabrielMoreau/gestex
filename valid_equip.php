@@ -2,10 +2,13 @@
 // valid_equip.php
 $web_page = true;
 
+// Authenticate
+require_once('session_auth.php');
 require_once('html_functions.php');
-require('db_functions.php');
 
-/// valid_equip.php
+auth_or_login('del_equip.php');
+level_or_alert(3, 'Suppression d\'une &eacute;quipe');
+
 //validation d'une nouvelle equipe
 
 unset($erreur);
