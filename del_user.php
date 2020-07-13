@@ -3,7 +3,7 @@
 $web_page = true;
 
 // Authenticate
-require_once('del_user.php');
+require_once('session_auth.php');
 require_once('html_functions.php');
 
 auth_or_login('del_equip.php');
