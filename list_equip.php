@@ -58,12 +58,16 @@ if ($pdo = connect_db()) {
 	foreach ($equipe as $data) {
 		// remplit le tableau
 		if (($num_line % 2 )==0)
-			echo '<tr class="pair">'.PHP_EOL;
+			echo '<tr class="pair" id="'.$data['id'].'">'.PHP_EOL;
 		else
-			echo '<tr class="impair">'.PHP_EOL;
+			echo '<tr class="impair" id="'.$data['id'].'">'.PHP_EOL;
 		$num_line++;
 		echo '  <td style="vertical-align: top;">';
+		if ($data['id'] == $_GET['id'])
+			echo '<b>';
 		echo      $data['nom'];
+		if ($data['id'] == $_GET['id'])
+			echo '</b>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['descr'];
