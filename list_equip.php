@@ -43,7 +43,7 @@ else
 			if ($user_level == 2)
 				echo '<th></th>';
 			if ($user_level >= 3)
-				echo '<th colspan=2">Admin <span class="option-right"><a href="add_equip.php">'.ICON_ADD_EQUIP.'</a></span></th>';
+				echo '<th colspan=2"><span class="option-right"><a href="add_equip.php">'.ICON_ADD_EQUIP.'</a></span></th>';
 			?>
 		</tr>
 
