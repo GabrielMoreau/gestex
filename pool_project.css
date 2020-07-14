@@ -19,10 +19,6 @@ input, select, textarea { font-size: 10; font-family: Arial, sans-serif; font-we
 	FILTER: DropShadow(Color=#000000, OffX=2, OffY=2, Positive=1);
 	font-size: 14; font-family: Arial, sans-serif; font-weight: bold; color:#E2ECFF; text-transform: uppercase; }
 
-tr.pair 	{	background-color:FFFADF;	}
-tr.impair	{	background-color:Ffff90;	}
-tr.menu		{	background-color:Ffff90;	}
-
 .box { border:1px solid #629DE7; background-color:#164093; }
 
 .box_text { background-color:#164093; padding-left:3; padding-right:3;
@@ -93,6 +89,25 @@ iframe { border:2px inset #98C2F7; }
 .option-right {
 	float: right;
 	margin-right: 2px;
+}
+
+
+/* ================= list table */
+
+.highlight td {
+	font-weight: bold;
+}
+
+tr.pair {
+	background-color: FFFADF;
+}
+
+tr.impair {
+	background-color: FFFF90;
+}
+
+tr.menu {
+	background-color: FFFF90;
 }
 
 
