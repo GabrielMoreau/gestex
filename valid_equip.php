@@ -55,7 +55,7 @@ if ($pdo = connect_db()) {
 	echo 'Inscription de '.$nom.'<br />';
 	echo  '<img src="images/pool_project.jpg" height="100" nosave="" align="middle" alt="">';
 	echo ' est valid&eacute;e ';
-	echo '<br /><br /><a href="list_equip.php?id='.$id_equip.'#'.$id_equip.'">Suite</a><br /><br />';
+	echo '<br /><br /><a href="list_equip.php?highlight='.$id_equip.'#'.$id_equip.'">Suite</a><br /><br />';
 	} //end if connect
 
 pied_page();
