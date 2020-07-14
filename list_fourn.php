@@ -18,7 +18,6 @@ if (empty($_GET['tri']))
 	$tri = 'nom';
 ?>
 
-<br />
 <table cellpadding="2" cellspacing="2" border="0"
 	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	<tbody>
@@ -61,10 +60,10 @@ if (empty($_GET['tri']))
 				Description<br />
 			</th>
 			<?php
-			if ($user_level >=2)
+			if ($user_level == 2)
 				echo"<th></th>";
-			if ($user_level >=3)
-				echo"<th></th>";
+			if ($user_level >= 3)
+				echo '<th colspan=2"><span class="option-right"><a href="add_fourn.php">'.ICON_ADD_FOURN.'</a></span></th>';
 			?>
 		</tr>
 
