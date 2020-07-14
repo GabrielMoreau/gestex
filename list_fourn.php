@@ -2,25 +2,20 @@
 //list_fourn.php
 
 // Authenticate
-include("session_auth.php");
+require_once('session_auth.php');
+require_once('html_functions.php');
 
-// if (!auth(1))
-// 	Header("Location: login.php");
 session_start();
 $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level     = $_SESSION['level'];
 
-require("html_functions.php");
-
 en_tete('Liste de tous les fournisseurs');
 
 // recupere la methode de tri
+$tri = $_GET['tri'];
 if (empty($_GET['tri']))
-	$tri ="nom";
-else
-	$tri = $_GET['tri'];
-
+	$tri = 'nom';
 ?>
 
 <br />
@@ -29,21 +24,7 @@ else
 	<tbody>
 		<tr>
 			<td style="vertical-align: top; text-align: center;">
-				<a href="list_manip.php?tri=nom">Retour a l'accueil</a>
-				<br />
-			</td>
-			<?php if ($user_level >=2) { ?>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="add_fourn.php">Ajout d'un fournisseur</a>
-				<br />
-			</td>
-			<?php }	?>
-			<td style="vertical-align: top; text-align: center;">
 				<a href="find_fourn.php">Rechercher</a>
-				<br />
-			</td>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="logout.php">Quitter</a>
 				<br />
 			</td>
 		</tr>
