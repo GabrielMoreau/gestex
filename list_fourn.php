@@ -76,12 +76,13 @@ if ($pdo = connect_db()) {
 	$fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$num_line = 0;
 	foreach ($fournisseur as $data) {
-		// remplit le tableau
-		if ($num_line % 2)
-			echo '<tr class="impair">'.PHP_EOL;
-		else
-			echo '<tr class="pair">'.PHP_EOL;
+		$class = 'impair';
+		if (($num_line % 2 ) == 0)
+			$class = 'pair';
 		$num_line++;
+		if ($data['id'] == $_GET['highlight'])
+			$class .= ' highlight';
+		echo '<tr class="'.$class.'" id="'.$data['id'].'">'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">'.$data['nom'].'</td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">'.$data['adresse'].'</td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;" nowrap>'.$data['tel'].'</td>'.PHP_EOL;
@@ -105,10 +106,10 @@ if ($pdo = connect_db()) {
 			echo '  </td><td style="vertical-align: top;">';
 			echo '    <a href="del_fourn.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
-		} //end if
+		} // end if
 		echo '</tr>'.PHP_EOL;
-	} //end foreach
-} //end if
+	} // end foreach
+} // end if
 ?>
 	</tbody>
 </table>
