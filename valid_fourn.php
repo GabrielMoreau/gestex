@@ -1,8 +1,14 @@
 <?php
+// valid_fourn.php
+$web_page = true;
 
-require("html_functions.php");
+// Authenticate
+require_once('session_auth.php');
+require_once('html_functions.php');
 
-/// valid_fourn.php
+auth_or_login('valid_fourn.php');
+level_or_alert(3, 'Ajout d\'un fournisseur');
+
 //validation d'un nouveau fournisseur
 
 unset($erreur);
@@ -14,11 +20,11 @@ unset($nom);
 //variables ne pouvant etre nulles
 
 if (empty($_POST['nom']))
-	$erreur = "nom non pr&eacute;cis&eacute;";
+	$erreur = 'Nom du fournisseur non pr&eacute;cis&eacute;';
 else {
 	$nom = $_POST['nom'];
 	if (empty($_POST['adresse']))
-		$erreur = "Adresse non pr&eacute;cis&eacute;";
+		$erreur = 'Adresse non pr&eacute;cis&eacute;';
 	else {
 		$adresse = $_POST['adresse'];
 		$mail = $_POST['addr_mail'];
@@ -35,40 +41,32 @@ en_tete('R&eacute;sultat inscription');
 
 if (!empty($erreur)) {
 	//erreur
-	echo "<br />erreur :".$erreur;
-	echo "<br /><a href=\"add_fourn.php\">Suite</a><br />\n";
+	echo '<br />Erreur :'.$erreur;
+	echo '<br /><a href="add_fourn.php">Suite</a><br />';
 	pied_page();
 	exit();
 }
-else {
-///tout est ok
-//pas d'erreur
-///on inscrit
-require("db_functions.php");
 
 if ($pdo = connect_db()) {
 	//inscription
-	// $table = "fournisseurs";
-	$sql = "INSERT INTO fournisseurs (nom,adresse, mail, www, tel, fax, contact,descr)".
-		" VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	$sql = 'INSERT INTO fournisseurs (nom, adresse, mail, www, tel, fax, contact, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($nom, $adresse, $mail, $www, $phone, $fax, $contact, $descr));
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$id_fourn = $pdo->lastInsertId();
 	if (!$result) {
 		//inscription !ok
 		// $erreur = mysql_error();
-		echo "<br />erreur ";
+		echo '<br />Erreur ';
 	}
-} // end if connect
 
 ////en_tete('inscription Valid&eacute;e');
 
-echo "inscription de ".$nom."<br />";
-echo " <img src=\"images/pool_project.jpg\" nosave=\"\" height=\"100\" align=\"middle\" alt=\"\">";
-echo " est valid&eacute;e ";
-echo "<br /><br /><a href=\"list_fourn.php\">Suite</a><br /><br />\n";
+	echo 'Inscription de '.$nom.'<br />';
+	echo  '<img src="images/pool_project.jpg" height="100" nosave="" align="middle" alt="">';
+	echo ' est valid&eacute;e ';
+	echo '<br /><br /><a href="list_fourn.php?highlight='.$id_fourn.'#'.$id_fourn.'">Suite</a><br /><br />';
+	} //end if connect
 
 pied_page();
-exit();
-}
 ?>

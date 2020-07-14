@@ -1,16 +1,16 @@
 <?php
 /// modif_fourn.php
+$web_page = true;
 
 // Authenticate
-include("session_auth.php");
+require_once('session_auth.php');
+require_once('html_functions.php');
 
-if (!auth(2))
-	Header("Location: login.php");
+auth_or_login('modif_fourn.php');
+level_or_alert(3, 'Modification d\'un fournisseur');
 
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level = $_SESSION['level'];
-
-require("html_functions.php");
+$user_level     = $_SESSION['level'];
 
 //modification d'un fournisseur
 
@@ -43,15 +43,11 @@ en_tete('R&eacute;sultat modification');
 
 if (!empty($erreur)) {
 	//erreur
-	echo "<br />erreur :".$erreur;
-	echo "<br /><a href=\"add_fourn.php?id=".$id_fourn ."\" >Suite</a><br />\n";
+	echo '<br />Erreur : '.$erreur;
+	echo '<br /><a href="list_fourn.php?highlight='.$id_fourn.'#'.$id_fourn.'">Suite</a><br />';
 	pied_page();
 	exit();
 }
-else {
-///tout est ok
-//pas d'erreur
-///on inscrit
 
 if ($pdo = connect_db()) {
 
@@ -107,8 +103,6 @@ if ($pdo = connect_db()) {
 // echo "  valid&eacute;e !!";
 // echo "<br /><br /><a href=\"list_fourn.php\">Suite</a><br /><br />\n";
 
-Header("Location: list_fourn.php");
-pied_page();
+Header('Location: list_equip.php?highlight='.$id_fourn.'#'.$id_fourn);
 exit();
-}
 ?>
