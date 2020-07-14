@@ -52,7 +52,7 @@ en_tete('Liste de tous les utilisateurs');
 				<a href ="list_user.php?tri=equipe">&Eacute;quipe</a><br />
 			</th>
 			<?php if ($user_level >= 3) { ?>
-			<th style="vertical-align: top; text-align: center;" colspan="4">
+			<th colspan="3">
 				Admin <span class="option-right"><a href="add_user.php?"><?php echo ICON_ADD_USER ?></a></span><br />
 			</th>
 			<?php } ?>
