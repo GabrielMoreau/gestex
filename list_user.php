@@ -53,7 +53,7 @@ en_tete('Liste de tous les utilisateurs');
 			</th>
 			<?php if ($user_level >= 3) { ?>
 			<th style="vertical-align: top; text-align: center;" colspan="4">
-				Admin<br />
+				Admin <span class="option-right"><a href="add_user.php?"><?php echo ICON_ADD_USER ?></a></span><br />
 			</th>
 			<?php } ?>
 		</tr>
@@ -74,13 +74,14 @@ if ($pdo = connect_db()) {
     $stmt->execute(array($tri));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$num_line = 0;
-
 	foreach ($user as $data) {
-		// remplit le tableau
+		$class = 'impair';
 		if (($num_line % 2 ) == 0)
-			echo '<tr class="pair">'.PHP_EOL;
-		else
-			echo '<tr class="impair">'.PHP_EOL;
+			$class = 'pair';
+		$num_line++;
+		if ($data['id'] == $_GET['highlight'])
+			$class .= ' highlight';
+		echo '<tr class="'.$class.'" id="'.$data['id'].'">'.PHP_EOL;
 		if ($user_level >=3 ) {
 			echo '  <td style="vertical-align: top;">';
 			echo      $data['level'];
