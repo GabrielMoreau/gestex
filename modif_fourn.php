@@ -103,6 +103,6 @@ if ($pdo = connect_db()) {
 // echo "  valid&eacute;e !!";
 // echo "<br /><br /><a href=\"list_fourn.php\">Suite</a><br /><br />\n";
 
-Header('Location: list_equip.php?highlight='.$id_fourn.'#'.$id_fourn);
+Header('Location: list_fourn.php?highlight='.$id_fourn.'#'.$id_fourn);
 exit();
 ?>
