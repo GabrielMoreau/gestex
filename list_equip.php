@@ -40,10 +40,10 @@ else
 			</th>
 
 			<?php
-			if ($user_level >= 2)
+			if ($user_level == 2)
 				echo '<th></th>';
 			if ($user_level >= 3)
-				echo '<th></th>';
+				echo '<th colspan=2"><span class="option-right"><a href="add_equip.php">'.ICON_ADD_EQUIP.'</a></span></th>';
 			?>
 		</tr>
 
@@ -57,16 +57,16 @@ if ($pdo = connect_db()) {
 	$num_line = 0;
 	foreach ($equipe as $data) {
 		// remplit le tableau
-		if (($num_line % 2 )==0)
-			echo '<tr class="pair" id="'.$data['id'].'">'.PHP_EOL;
-		else
-			echo '<tr class="impair" id="'.$data['id'].'">'.PHP_EOL;
+		$class = 'impair';
+		if (($num_line % 2 ) == 0)
+			$class = 'pair';
 		$num_line++;
+		if ($data['id'] == $_GET['highlight'])
+			$class .= ' highlight';
+		echo '<tr class="'.$class.'" id="'.$data['id'].'">'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		if ($data['id'] == $_GET['id'])
-			echo '<b>';
 		echo      $data['nom'];
-		if ($data['id'] == $_GET['id'])
+		if ($data['id'] == $_GET['highlight'])
 			echo '</b>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
