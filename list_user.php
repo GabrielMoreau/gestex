@@ -139,7 +139,6 @@ if ($pdo = connect_db()) {
 		}
 		echo '  </td>'.PHP_EOL;
 		echo '</tr>'.PHP_EOL;
-		$num_line++;
 	} //end foreach
 } //end if
 ?>
