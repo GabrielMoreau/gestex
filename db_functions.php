@@ -81,7 +81,7 @@ function get_appareil_by_id($pdo, $id) {
 // -------------------------------------------------------------
 
 function get_categorie_by_id($pdo, $id) {
-	$sql = 'SELECT id, nom FROM categorie ORDER BY ? ASC;';
+	$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$categorie_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
