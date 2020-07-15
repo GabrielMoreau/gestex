@@ -81,7 +81,6 @@ function nav_bar($prenom, $nom, $level, $user_id) {
 				<a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
 			</div>
 		</li>  
-		<li><a href="list_manip.php">Liste des manips</a></li>
 		<li class="right"><a href="login.php">Se connecter</a></li>
 	<?php } else { ?>
 		<li><a href="list_fourn.php">Liste des fournisseurs</a></li>
@@ -96,7 +95,6 @@ function nav_bar($prenom, $nom, $level, $user_id) {
 				<a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
 			</div>
 		</li>
-		<li><a href="list_manip.php">Liste des manips</a></li>
 
 	<?php if ($level == 2) { ?>
 		<li class="dropdown">
@@ -118,7 +116,7 @@ function nav_bar($prenom, $nom, $level, $user_id) {
 				<a href="add_categorie.php">Cat&eacute;gorie</a>
 				<a href="add_equip.php">&Eacute;quipe</a>
 				<a href="add_fourn.php">Fournisseur</a>
-				<a href="list_appareil.php?equipe=15 pret=15">Pr&ecirc;t</a>
+				
 				<a href="add_user.php">Utilisateur</a>
 			</div>
 		</li>
@@ -135,6 +133,8 @@ function nav_bar($prenom, $nom, $level, $user_id) {
 				<a href="add_intapp.php?app=3">Intervention</a>
 				<a href="add_machine.php">Machine</a>
 				<a href="add_manip.php">Manip</a>
+				<a href="list_manip.php">Liste des manips</a>
+
 			</div>
 		</li>
 	<?php } ?>
