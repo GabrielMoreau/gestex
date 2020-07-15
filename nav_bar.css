@@ -10,11 +10,11 @@
 	margin-bottom: 20px;
 	margin-right: 0px;
 	margin-left: 0px
- }
-  
-  .navbar li {
-    float: left;
-  }
+}
+
+.navbar li {
+	float: left;
+}
   
   .navbar li>a, .dropbtn {
     display: inline-block;
@@ -22,12 +22,14 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  }
-  
-   li a:hover{
-    text-decoration:underline;
-  }
-  
+ }
+
+.navbar li>a:not(.dropbtn):hover {
+	text-decoration: none;
+	background-color: gray;
+	color: white;
+}
+
   li.dropdown {
     display: inline-block;
   }

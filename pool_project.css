@@ -113,6 +113,12 @@ input, select, textarea {
 	background-color: #f7d709;
 }
 
+.catalog th:not(.sorttable_nosort):hover {
+	text-decoration: none;
+	background-color: gray;
+	color: white;
+}
+
 .catalog td, th {
 	border-collapse: collapse;
 	padding-left: 0.8ex;
