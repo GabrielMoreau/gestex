@@ -23,15 +23,21 @@ function connect_db() {
 	return $db;
 }
 
+// -------------------------------------------------------------
+
 function query_db($statement) {
 	$result   = mysql_query($statement) or die("<pre>\n\nCan't perform query: " . mysql_error() . " \n\n$statement\n\n</pre>");
 	$num_rows = numrows_db($result);
 	return array($result, $num_rows);
 }
 
+// -------------------------------------------------------------
+
 function numrows_db($result) {
 	return @mysql_num_rows($result);
 }
+
+// -------------------------------------------------------------
 
 function result_db($result,$i=-1) {
 	if ($i >= 0) {
@@ -40,9 +46,13 @@ function result_db($result,$i=-1) {
 	return mysql_fetch_array($result);
 }
 
+// -------------------------------------------------------------
+
 function last_id_db() {
 	return mysql_insert_id();
 }
+
+// -------------------------------------------------------------
 
 function check_val_in_db($pdo, $table, $col, $value) {
 	//teste l'existence de $value dans le champ $col de la table $table
@@ -57,4 +67,25 @@ function check_val_in_db($pdo, $table, $col, $value) {
 	//renvoie le nbre d'occurences autrement
 	return $result;
 }
+
+// -------------------------------------------------------------
+
+function get_categorie_by_id($pdo, $id) {
+	$sql = 'SELECT id, nom FROM categorie ORDER BY ? ASC;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$categorie_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $categorie_fetch[0];
+}
+
+// -------------------------------------------------------------
+
+function get_equip_by_id($pdo, $id) {
+	$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $equip_fetch[0];
+}
+
 ?>

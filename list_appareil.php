@@ -16,39 +16,45 @@ if (empty($_SESSION['logged_in_user'])) {
 	$log            = true;
 }
 
-en_tete('Liste des appareils');
+$title = 'Liste des appareils';
 
 //recuper la methode de tri
 $tri = 'id';
 if (!empty($_GET['tri']))
 	$tri = $_GET['tri'];
 
-//recupere la categorie
-// $cat=$_GET['categorie'];
-//echo "$cat";
-if (empty($_GET['categorie']))
-	$cat = 0;
-else
+if (!$pdo = connect_db()) {
+	echo 'Erreur sur la DBD';
+}
+
+// recupere la categorie
+$cat = 0;
+if (!empty($_GET['categorie'])) {
 	$cat = $_GET['categorie'];
+	$categorie_selected = get_categorie_by_id($pdo, $cat);
+	$title .= ' de la cat&eacute;gorie <i>'.$categorie_selected['nom'].'</i>';
+}
 
-//recupere l'equipe
-
-if (empty($_GET['equipe']))
-	$eq = 0;
-else
+// recupere l'equipe
+$eq = 0;
+if (!empty($_GET['equipe'])) {
 	$eq = $_GET['equipe'];
+	$equip_selected = get_equip_by_id($pdo, $eq);
+	$title .= ' de l\'&eacute;quipe <i>'.$equip_selected['nom'].'</i>';
+}
 
-// $eq=$_GET['equipe'];
-// echo "$eq";
+en_tete($title);
 ?>
 
 <div class="catalog">
 <table class="sortable">
 	<tbody>
 		<tr>
+			<?php if ($cat == 0) { ?>
 			<th>
 				Cat&eacute;gorie
 			</th>
+			<?php } ?>
 			<th>
 				Num&eacute;ro de l'appareil
 			</th>
@@ -58,30 +64,31 @@ else
 			<th>
 				Mod&egrave;le
 			</th>
-			<th>
+			<th class="sorttable_nosort">
 				Gamme
 			</th>
+			<?php if ($eq == 0) { ?>
 			<th>
 				&Eacute;quipe
 			</th>
+			<?php } ?>
 			<th>
 				Fournisseur
 			</th>
-			<th>
+			<th class="sorttable_nosort">
 				Notice
 			</th>
 			<?php
 			if ($log == true && $eq == 15)
-				echo '<th></th>'.PHP_EOL;
+				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($log == true && $user_level ==2)
-				echo '<th></th>'.PHP_EOL;
+				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($log == true && $user_level >=3)
-				echo '<th class="sorttable_nosort" colspan="2"></th>'.PHP_EOL;
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="list_appareil.php">'.ICON_ADD_APPAREIL.'</a></span></th>'.PHP_EOL;
 			?>
 		</tr>
 
-<?php // interrogation base de donnees
-if ($pdo = connect_db()) {
+<?php
 	// recupere la liste de appareils
 
 	// if ((!empty($cat))||(!empty($eq)))
@@ -124,59 +131,49 @@ if ($pdo = connect_db()) {
 			echo '<tr class="pair">'.PHP_EOL;
 		$num_line++;
 
-		echo '  <td style="vertical-align: top;">';
-		$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
-		// list($qheq,$numeq) = query_db($querry);
-		// 	$equip = result_db($qheq);
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($data['categorie']));
-		$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-		echo      $categorie[0]['nom'];
-		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		if ($cat == 0) {
+			echo '  <td>';
+			$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array($data['categorie']));
+			$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+			echo      $categorie[0]['nom'];
+			echo '  </td>'.PHP_EOL;
+		}
+
+		echo '  <td>';
 		echo      $data['id'];
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		echo '    <a href ="fiche_vie.php?id='.$data['id'].'">'. $data['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		echo      $data['modele'];
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		echo      $data['gamme'];
 		echo '  </td>'.PHP_EOL;
 
-		echo '  <td style="vertical-align: top;">';
-		// recupere le nom d'equipe
-		$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
-		// list($qheq,$numeq) = query_db($querry);
-		// 	$equip = result_db($qheq);
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($data['equipe']));
-		$equipe =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-		echo      $equipe[0]['nom'];
-		echo '  </td>'.PHP_EOL;
+		if ($eq == 0) {
+			echo '  <td>';
+			// recupere le nom d'equipe
+			$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array($data['equipe']));
+			$equipe =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+			echo      $equipe[0]['nom'];
+			echo '  </td>'.PHP_EOL;
+		}
 
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		// recupere le nom du fournisseur
 		$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
-		// list($qheq,$numeq) = query_db($querry);
-		// 	$equip = result_db($qheq);
-		//   		echo $equip['nom'];
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($data['fournisseur']));
 		$fournisseur =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 		if(!empty($fournisseur)) { echo $fournisseur[0]['nom'];}
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
-		// $sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
-		// list($qheq,$numeq) = query_db($querry);
-		// $cat = result_db($qheq);
-		// $stmt = $pdo->prepare($sql);
-		// $stmt->execute(array($data['categorie']));
-		// $categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-		// 	echo $categorie[0]['nom'];
-
+		echo '  <td>';
 		///bouton lien vers la doc
 		$dossier_proj = "data/notice/".$data['id'];
 		$sql = 'SELECT id FROM pret WHERE nom = ?;';
@@ -191,7 +188,6 @@ if ($pdo = connect_db()) {
 		}
 		//remplace les espaces par des underscore
 		// cherche l'existence de ce dossier
-		//echo $dossier_proj;
 		/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
 		if (@opendir($dossier_proj) != FALSE){
 			//si trouve ajoute un bouton
@@ -200,29 +196,28 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 
 		if ($log === true && $eq==15 && $emprunt == 0) {
-			echo '  <td style="vertical-align: top;">';
+			echo '  <td>';
 			echo '    <a href="add-pret.php?id=',$data['id'],'">'.ICON_BOOKING.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}else if ($log === true && $eq==15 && $emprunt == 1) {
-			echo '  <td style="vertical-align: top;">';
+			echo '  <td>';
 			echo '    <a href="del-pret.php?id=',$pret[0]['id'],'">'.ICON_RETURN.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 
 		if (($log === true && $user_level >= 2) && ($eq != "15 pret=15")) {
-			echo '  <td style="vertical-align: top;">';
+			echo '  <td>';
 			echo '    <a href="add_appareil.php?id=',$data['id'],'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}//end if
 		if (($log === true && $user_level >= 3) && ($eq != "15 pret=15")) {
-			echo '  <td style="vertical-align: top;">';
+			echo '  <td>';
 			echo '    <a href="del_appareil.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 
 		}
 		echo '</tr>'.PHP_EOL;
-	} //end foreach
-} //end if
+	} // end foreach
 ?>
 
 	</tbody>
