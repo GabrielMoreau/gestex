@@ -34,26 +34,26 @@ en_tete('Liste des pr&ecirc;ts');
 	<tbody>
 		<tr>
 			<th>
-				Nom<br />
+				Nom
 			</th>
 			<th>
-				&Eacute;quipe<br />
+				&Eacute;quipe
 			</th>
 			<th>
-				Date<br />
+				Date
 			</th>
 			<th>
-				Retour<br />
+				Retour
 			</th>
 			<th>
-				Emprunteur<br />
+				Emprunteur
 			</th>
 			<th>
-				Num&eacute;ro de l'appareil<br />
+				Num&eacute;ro de l'appareil
 			</th>
 			<?php 
 			if ($user_level >= 3)
-				echo "<th class="sorttable_nosort"></th>".PHP_EOL;
+				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			?>
 		</tr>
 
