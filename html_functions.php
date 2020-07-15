@@ -11,8 +11,8 @@ define('ICON_PERSON_PASWD',  '<span><svg width="1.2em" height="1.2em" fill="curr
 define('ICON_TRASH',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Supprimer</title><use xlink:href="images/bootstrap-icons.svg#trash"/></svg></span>');
 define('ICON_MAIL',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Courriel</title><use xlink:href="images/bootstrap-icons.svg#envelope"/></svg></span>');
 define('ICON_LOGIN',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Se d&eacute;connecter</title><use xlink:href="images/bootstrap-icons.svg#power"/></svg></span>');
-define('ICON_RETURN',        '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Retour</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
-define('ICON_BOOKING',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunts</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
+define('ICON_RETURN',        '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Retourner un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
+define('ICON_BOOKING',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunter un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
 define('ICON_EDIT',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Modifier</title><use xlink:href="images/bootstrap-icons.svg#pen"/></svg></span>');
 define('ICON_SEE_DOC',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Voir le document</title><use xlink:href="images/bootstrap-icons.svg#eye"/></svg></span>');
 define('ICON_URL',           '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Lien web</title><use xlink:href="images/bootstrap-icons.svg#link"/></svg></span>');
@@ -97,10 +97,10 @@ function nav_bar($prenom, $nom, $level, $user_id) {
 				<a href="list_categorie.php">Cat&eacute;gories</a>
 				<a href="list_appareil.php">Global</a>
 				<?php
-				$pdo = connect_db();
-				foreach (get_equip_with_appareil($pdo) as $data) {
-					echo '<a href="list_appareil.php?equipe='.$data['id'].'">au service <br />'.$data['nom'].'</a>'.PHP_EOL;
-				}
+				// $pdo = connect_db();
+				// foreach (get_equip_with_appareil($pdo) as $data) {
+				// 	echo '<a href="list_appareil.php?equipe='.$data['id'].'">au service <br />'.$data['nom'].'</a>'.PHP_EOL;
+				// }
 				?>
 				<a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
 			</div>
