@@ -64,9 +64,9 @@ if (!empty($_GET['highlight']))
 			</th>
 			<?php
 			if ($user_level == 2)
-				echo '<th class="sorttable_nosort"></th>';
+				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($user_level >= 3)
-				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="add_fourn.php">'.ICON_ADD_FOURN.'</a></span></th>';
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="add_fourn.php">'.ICON_ADD_FOURN.'</a></span></th>'.PHP_EOL;
 			?>
 		</tr>
 
