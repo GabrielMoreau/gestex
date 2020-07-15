@@ -1,20 +1,19 @@
 <?php
-// list_prets.php
+// list_pret.php
+$web_page = true;
+
 // Authenticate
+require_once('session_auth.php');
+require_once('html_functions.php');
 
-//include("db_functions.php");
-include("session_auth.php");
 session_start();
-//if (!auth(1))
-	//Header("Location: login.php");
-
-$user_id        = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level     = $_SESSION['level'];
-
-require("html_functions.php");
-
-en_tete('Liste des pr&ecirc;ts');
+if (empty($_SESSION['logged_in_user'])) {
+	$user_level = 0;
+} else {
+	$user_id        = $_SESSION['user_id'];
+	$logged_in_user = strtolower($_SESSION['logged_in_user']);
+	$user_level     = $_SESSION['level'];
+}
 
 //recuper la methode de tri
 if (empty($_GET['tri']))
@@ -23,43 +22,38 @@ else
 	$tri = $_GET['tri'];
 
 //recupere l'equipe
-if (empty($_GET['equipe']))
-	$eq = '';
-else
+$eq = '';
+if (!empty($_GET['equipe']))
 	$eq = $_GET['equipe'];
+
+en_tete('Liste des pr&ecirc;ts');
 ?>
 
-<i>Consulter la liste des &eacute;quipement communs disponibles au service instrumentation et choisir : 'Demande de pr&ecirc;t' en face de l'appareil souhait&eacute;</i><br />
-<br />
-
-<table cellpadding="2" cellspacing="2" border="1"
-	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+<div class="catalog">
+<table class="sortable">
 	<tbody>
-		<tr bgcolor="#f7d709">
-			<th style="vertical-align: top; text-align: center;">
+		<tr>
+			<th>
 				Nom<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				&Eacute;quipe<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				Date<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				Retour<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				Emprunteur<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-				<a href="list_pret.php?tri=nom">
-					Num&eacute;ro de l'appareil<br />
-				</a>
+			<th>
+				Num&eacute;ro de l'appareil<br />
 			</th>
-
 			<?php 
 			if ($user_level >= 3)
-				echo "<th></th>";
+				echo "<th class="sorttable_nosort"></th>".PHP_EOL;
 			?>
 		</tr>
 
@@ -67,62 +61,57 @@ else
 if ($pdo = connect_db()) {
 	// recupere la liste de appareils
 
-	$sql = 'SELECT * FROM pret ORDER BY ? DESC;';
+	$sql = 'SELECT * FROM pret ORDER BY nom DESC;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($tri));
+	$stmt->execute();
 	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	$num_line = 0;
 	foreach ($pret as $data) {
-		if (($num_line % 2 )==0)
-			echo '<tr class="pair">'.PHP_EOL;
-		else
+		if ($num_line % 2)
 			echo '<tr class="impair">'.PHP_EOL;
+		else
+			echo '<tr class="pair">'.PHP_EOL;
 		$num_line++;
 
-		$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($data['nom']));
-		$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		echo '  <td style="vertical-align: top;">';
-		echo      $listing[0]['nom'];
+		// recupere le nom de l'appareil via l'ID qui est mis dans un champs texte !
+		$appareil_selected = get_appareil_by_id($pdo, $data['nom']);
+		echo '  <td>';
+		echo      $appareil_selected['nom'];
 		echo '  </td>'.PHP_EOL;
 
 		// recupere le nom d'equipe
-		$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($data['equipe']));
-		$equip = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		echo '  <td style="vertical-align: top;">';
-		echo      $equip[0]['nom'];
+		$equip_selected = get_equip_by_id($pdo, $data['equipe']);
+		echo '  <td>';
+		echo      $equip_selected['nom'];
 		echo '  </td>'.PHP_EOL;
 
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		echo      $data['emprunt'];
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
-		echo    $data['retour'];
+		echo '  <td>';
+		echo      $data['retour'];
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		echo      $data['commentaire'];
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		echo      $data['nom'];
 		echo '  </td>'.PHP_EOL;
 
-		if ($user_level >= 3) 	{
-			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="del-pret.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
+		if ($user_level >= 3) {
+			echo '  <td>';
+			echo '    <a href="del-pret.php?id=',$data['id'],'">'.ICON_RETURN.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 
 		echo '</tr>'.PHP_EOL;
-	} //end foreach
-} //end if
+	} // end foreach
+} // end if
 
 ?>
 	</tbody>
 </table>
-<br />
 </div>
+
 <?php pied_page() ?>
