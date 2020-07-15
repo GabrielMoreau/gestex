@@ -35,7 +35,10 @@ else {
 						$erreur = 'Qualit&eacute; non pr&eacute;cis&eacute;';
 					else
 						$level = $_POST['level'];
-
+					if (!isset($_POST['theme']))
+						$erreur = 'thème non pr&eacute;cis&eacute;';
+					else
+						$theme = $_POST['theme'];
 					$mail = $_POST['addr_mail'];
 					//variables pouvant etre nulles
 					$prenom = $_POST['prenom'];
@@ -66,9 +69,9 @@ if ($pdo = connect_db()) {
 	else {
 		/// tout est ok
 		$mot_crypte = md5($password);
-		$sql = 'INSERT INTO users (nom, prenom, loggin, password, email, level, tel, equipe, valid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0);';
+		$sql = 'INSERT INTO users (nom, prenom, loggin, password, email, level, tel, equipe, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($nom, $prenom, $loggin, $mot_crypte, $mail, $level, $phone, $equipe));
+		$stmt->execute(array($nom, $prenom, $loggin, $mot_crypte, $mail, $level, $phone, $equipe, $theme));
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	  
 		//if (!$result) {
