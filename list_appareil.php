@@ -16,37 +16,45 @@ if (empty($_SESSION['logged_in_user'])) {
 	$log            = true;
 }
 
-en_tete('Liste des appareils');
+$title = 'Liste des appareils';
 
 //recuper la methode de tri
 $tri = 'id';
 if (!empty($_GET['tri']))
 	$tri = $_GET['tri'];
 
-//recupere la categorie
-// $cat=$_GET['categorie'];
-//echo "$cat";
-if (empty($_GET['categorie']))
-	$cat = 0;
-else
+if (!$pdo = connect_db()) {
+	echo 'Erreur sur la DBD';
+}
+
+// recupere la categorie
+$cat = 0;
+if (!empty($_GET['categorie'])) {
 	$cat = $_GET['categorie'];
+	$categorie_selected = get_categorie_by_id($pdo, $cat);
+	$title .= ' de la cat&eacute;gorie <i>'.$categorie_selected['nom'].'</i>';
+}
 
-//recupere l'equipe
+// recupere l'equipe
 $eq = 0;
-if (!empty($_GET['equipe']))
+if (!empty($_GET['equipe'])) {
 	$eq = $_GET['equipe'];
+	$equip_selected = get_equip_by_id($pdo, $eq);
+	$title .= ' de l\'&eacute;quipe <i>'.$equip_selected['nom'].'</i>';
+}
 
-// $eq=$_GET['equipe'];
-// echo "$eq";
+en_tete($title);
 ?>
 
 <div class="catalog">
 <table class="sortable">
 	<tbody>
 		<tr>
+			<?php if ($cat == 0) { ?>
 			<th>
 				Cat&eacute;gorie
 			</th>
+			<?php } ?>
 			<th>
 				Num&eacute;ro de l'appareil
 			</th>
@@ -80,8 +88,7 @@ if (!empty($_GET['equipe']))
 			?>
 		</tr>
 
-<?php // interrogation base de donnees
-if ($pdo = connect_db()) {
+<?php
 	// recupere la liste de appareils
 
 	// if ((!empty($cat))||(!empty($eq)))
@@ -124,15 +131,16 @@ if ($pdo = connect_db()) {
 			echo '<tr class="pair">'.PHP_EOL;
 		$num_line++;
 
-		echo '  <td>';
-		$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
-		// list($qheq,$numeq) = query_db($querry);
-		// 	$equip = result_db($qheq);
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($data['categorie']));
-		$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-		echo      $categorie[0]['nom'];
-		echo '  </td>'.PHP_EOL;
+		if ($cat == 0) {
+			echo '  <td>';
+			$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array($data['categorie']));
+			$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+			echo      $categorie[0]['nom'];
+			echo '  </td>'.PHP_EOL;
+		}
+
 		echo '  <td>';
 		echo      $data['id'];
 		echo '  </td>'.PHP_EOL;
@@ -210,7 +218,6 @@ if ($pdo = connect_db()) {
 		}
 		echo '</tr>'.PHP_EOL;
 	} // end foreach
-} // end if
 ?>
 
 	</tbody>
