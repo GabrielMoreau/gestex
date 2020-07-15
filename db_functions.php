@@ -70,6 +70,14 @@ function check_val_in_db($pdo, $table, $col, $value) {
 
 // -------------------------------------------------------------
 
+function get_appareil_by_id($pdo, $id) {
+	$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($data['nom']));
+	$appareil_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $appareil_fetch[0];
+}
+
 function get_categorie_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM categorie ORDER BY ? ASC;';
 	$stmt = $pdo->prepare($sql);
