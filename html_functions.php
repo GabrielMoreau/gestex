@@ -34,6 +34,7 @@ function en_tete($titre) {
 	<link rel="icon" sizes="192x126" href="images/logo-gestex-192.png">
 	<title>GestEx - <?php echo $titre ?></title>
 	<link href="pool_project.css" rel="stylesheet" type="text/css">
+	<script src="sorttable-gestex.js"></script>
 </head>
 <body>
 <div class="header">

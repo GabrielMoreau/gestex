@@ -27,27 +27,27 @@ if (!empty($_GET['highlight']))
 ?>
 
 <div class="catalog">
-<table>
+<table class="sortable">
 	<tbody>
 		<tr>
-			<th>
-				<a href ="list_fourn.php?tri=nom">Nom</a><br />
+			<th scope="col">
+				Nom
 			</th>
-			<th>
-				Description<br />
+			<th scope="col">
+				Description
 			</th>
-			<th>
-				Compte<br />
+			<th scope="col">
+				Compte
 			</th>
-			<th>
-				Chef d'&eacute;quipe <br />
+			<th scope="col">
+				Chef d'&eacute;quipe
 			</th>
 
 			<?php
 			if ($user_level == 2)
-				echo '<th></th>';
+				echo '<th scope="col" class="sorttable_nosort"></th>';
 			if ($user_level >= 3)
-				echo '<th colspan=2"><span class="option-right"><a href="add_equip.php">'.ICON_ADD_EQUIP.'</a></span></th>';
+				echo '<th scope="col" class="sorttable_nosort" colspan=2"><span class="option-right"><a href="add_equip.php">'.ICON_ADD_EQUIP.'</a></span></th>';
 			?>
 		</tr>
 
