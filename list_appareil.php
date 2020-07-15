@@ -1,11 +1,12 @@
 <?php
+// list_appareil.php
+$web_page = true;
 
 // Authenticate
+require_once('session_auth.php');
+require_once('html_functions.php');
 
-require("session_auth.php");
 session_start();
-// if (!auth(1))
-// 	Header("Location: login.php");
 if (empty($_SESSION['logged_in_user'])) {
 	$log            = false;
 } else {
@@ -15,15 +16,11 @@ if (empty($_SESSION['logged_in_user'])) {
 	$log            = true;
 }
 
-require("html_functions.php");
-
 en_tete('Liste des appareils');
 
 //recuper la methode de tri
-
-if (empty($_GET['tri']))
-	$tri = 'id';
-else
+$tri = 'id';
+if (!empty($_GET['tri']))
 	$tri = $_GET['tri'];
 
 //recupere la categorie
@@ -43,91 +40,43 @@ else
 
 // $eq=$_GET['equipe'];
 // echo "$eq";
-
 ?>
-<br />
-<table cellpadding="2" cellspacing="2" border="1"
-	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+
+<div class="catalog">
+<table class="sortable">
 	<tbody>
 		<tr>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="<?php echo GESTEX_URL_SERVICE ?>">Retour &agrave;<br />la page du service</a>
-				<br />
-			</td>
-
-			<?php if (empty($eq)) { ?>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="add_appareil.php?categorie=<?php echo $cat ?>">Ajout<br />d'un appareil</a>	
-				<br />
-			</td>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="list_fourn.php">Liste<br />des fournisseurs</a>
-				<br />
-			</td>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="add_fourn.php">Ajout<br />d'un fournisseur</a>
-				<br />
-			</td>
-			<?php } ?>
-
-			<td style="vertical-align: top; text-align: center;">
-				<a href="list_categorie.php">Retour aux cat&eacute;gories</a>
-				<br />
-			</td>
-
-			<?php if ( $log == true && $user_level >=3 ) {	?>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="add_categorie.php">Ajout<br />d'une cat&eacute;gorie</a>
-				<br />
-			</td>
-			<?php } ?>
-
-			<br /> <!-- semble en trop -->
-		</td> <!-- semble en trop -->
-		</tr>
-	</tbody>
-</table>
-
-<br />
-Liste des appareils : <br />
-<i>Cliquer sur le nom d'un appareil pour conna&icirc;tre son mod&egrave;le, sa date d'achat, ses accessoires...</i><br />
-
-<table cellpadding="2" cellspacing="2" border="1"
-	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-	<tbody>
-		<tr bgcolor="#f7d709">
-			<th style="vertical-align: top; text-align: center;">
-				<a href ="list_appareil.php?tri=categorie">Cat&eacute;gorie<br />
+			<th>
+				Cat&eacute;gorie
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-			<a href ="list_appareil.php?tri=id">Num&eacute;ro de l'appareil<br />
+			<th>
+				Num&eacute;ro de l'appareil
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-			<a href ="list_appareil.php?tri=nom">Nom</a><br />
+			<th>
+				Nom
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-				Mod&egrave;le<br />
+			<th>
+				Mod&egrave;le
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-				Gamme<br />
+			<th>
+				Gamme
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-				&Eacute;quipe<br />
+			<th>
+				&Eacute;quipe
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-				Fournisseur<br />
+			<th>
+				Fournisseur
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-				Notice<br />
+			<th>
+				Notice
 			</th>
-
 			<?php
 			if ($log == true && $eq == 15)
 				echo '<th></th>'.PHP_EOL;
-			if ($log == true && $user_level >=2)
+			if ($log == true && $user_level ==2)
 				echo '<th></th>'.PHP_EOL;
 			if ($log == true && $user_level >=3)
-				echo '<th></th>'.PHP_EOL;
+				echo '<th class="sorttable_nosort" colspan="2"></th>'.PHP_EOL;
 			?>
 		</tr>
 
@@ -275,8 +224,9 @@ if ($pdo = connect_db()) {
 	} //end foreach
 } //end if
 ?>
+
 	</tbody>
 </table>
-<br />
 </div>
+
 <?php pied_page() ?>
