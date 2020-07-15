@@ -22,20 +22,20 @@ else
 	$tri = $_GET['tri'];
 ?>
 
-<table cellpadding="2" cellspacing="2" border="1"
-	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+<div class="catalog">
+<table>
 	<tbody>
-		<tr bgcolor="#f7d709">
-			<th style="vertical-align: top; text-align: center;">
+		<tr>
+			<th>
 				<a href ="list_fourn.php?tri=nom">Nom</a><br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				Description<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				Compte<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				Chef d'&eacute;quipe <br />
 			</th>
 
@@ -103,5 +103,6 @@ if ($pdo = connect_db()) {
 ?>
 	</tbody>
 </table>
+</div>
 
 <?php pied_page() ?>

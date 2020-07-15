@@ -30,33 +30,32 @@ if (empty($_GET['tri']))
 	</tbody>
 </table>
 <br />
-
-<table cellpadding="2" cellspacing="2" border="1"
-	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+<div class="catalog">
+<table>
 	<tbody>
-		<tr bgcolor="#f7d709">
-			<th style="vertical-align: top; text-align: center;">
+		<tr>
+			<th>
 				<a href ="list_fourn.php?tri=nom">Nom</a><br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				Adresse<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				T&eacute;l&eacute;phone<br />
 			</th>
 			<th style="vertical-align: top; text-align: center; " >
 				Fax<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				Courriel<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				WWW<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				Contacts<br />
 			</th>
-			<th style="vertical-align: top; text-align: center;">
+			<th>
 				Description<br />
 			</th>
 			<?php
@@ -113,6 +112,6 @@ if ($pdo = connect_db()) {
 ?>
 	</tbody>
 </table>
-<br />
 </div>
+
 <?php pied_page() ?>
