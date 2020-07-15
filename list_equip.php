@@ -70,8 +70,6 @@ if ($pdo = connect_db()) {
 		echo '<tr class="'.$class.'" id="'.$data['id'].'">'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['nom'];
-		if ($data['id'] == $_GET['highlight'])
-			echo '</b>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['descr'];

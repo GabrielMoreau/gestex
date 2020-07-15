@@ -24,6 +24,10 @@ if (empty($_GET['tri'])){
 	$tri = $_GET['tri'];
 }
 
+$id_highlight = 0;
+if (!empty($_GET['highlight']))
+	$id_highlight = $_GET['highlight'];
+
 en_tete('Liste de tous les utilisateurs');
 ?>
 
@@ -79,7 +83,7 @@ if ($pdo = connect_db()) {
 		if (($num_line % 2 ) == 0)
 			$class = 'pair';
 		$num_line++;
-		if ($data['id'] == $_GET['highlight'])
+		if ($data['id'] == $id_highlight)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'" id="'.$data['id'].'">'.PHP_EOL;
 		if ($user_level >=3 ) {
