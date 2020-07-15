@@ -37,6 +37,7 @@ unset($erreur); unset($nom);unset($user_id );
 							$phone =$_POST['phone'];
 							$equipe =$_POST['equipe'];
 							$level =$_POST['level'];
+							$theme = $_POST['theme'];
 }}}
 
 en_tete('R&eacute;sultat inscription');
@@ -91,6 +92,7 @@ if ( $pdo = connect_db() ){
 		if ($equipe!=$user[0]['equipe'])
 			//modif du club
 			$querry.=" equipe='$equipe',";
+		$querry.=" theme='$theme',";
 		// supprime la derniere virgule
 		$querry[strlen($querry)-1]=' ';
 		//ajoute la clause
