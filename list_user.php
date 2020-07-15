@@ -31,33 +31,33 @@ if (!empty($_GET['highlight']))
 en_tete('Liste de tous les utilisateurs');
 ?>
 
-<table cellpadding="2" cellspacing="2" border="1"
-	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+<div class="catalog">
+<table class="sortable">
 	<tbody>
-		<tr bgcolor="#f7d709">
+		<tr>
 			<?php if ($user_level >= 3) { ?>
-			<th style="vertical-align: top; text-align: center;">
-				Level<br />
+			<th>
+				Level
 			</th>
 			<?php } ?>
-			<th style="vertical-align: top; text-align: center;">
-				Pr&eacute;nom<br />
+			<th>
+				Pr&eacute;nom
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-				<a href ="list_user.php?tri=nom">Nom de famille</a><br />
+			<th>
+				Nom de famille
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-				T&eacute;l&eacute;phone<br />
+			<th>
+				T&eacute;l&eacute;phone
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-				Courriel<br />
+			<th>
+				Courriel
 			</th>
-			<th style="vertical-align: top; text-align: center;">
-				<a href ="list_user.php?tri=equipe">&Eacute;quipe</a><br />
+			<th>
+				&Eacute;quipe
 			</th>
 			<?php if ($user_level >= 3) { ?>
-			<th colspan="3">
-				<span class="option-right"><a href="add_user.php?"><?php echo ICON_ADD_USER ?></a></span><br />
+			<th class="sorttable_nosort" colspan="3">
+				<span class="option-right"><a href="add_user.php?"><?php echo ICON_ADD_USER ?></a></span>
 			</th>
 			<?php } ?>
 		</tr>
@@ -149,5 +149,6 @@ if ($pdo = connect_db()) {
 
 	</tbody>
 </table>
+</div>
 
 <?php pied_page() ?>

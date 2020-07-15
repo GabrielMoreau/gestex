@@ -30,24 +30,24 @@ if (!empty($_GET['highlight']))
 <table class="sortable">
 	<tbody>
 		<tr>
-			<th scope="col">
+			<th>
 				Nom
 			</th>
-			<th scope="col">
+			<th>
 				Description
 			</th>
-			<th scope="col">
+			<th>
 				Compte
 			</th>
-			<th scope="col">
+			<th>
 				Chef d'&eacute;quipe
 			</th>
 
 			<?php
 			if ($user_level == 2)
-				echo '<th scope="col" class="sorttable_nosort"></th>';
+				echo '<th class="sorttable_nosort"></th>';
 			if ($user_level >= 3)
-				echo '<th scope="col" class="sorttable_nosort" colspan=2"><span class="option-right"><a href="add_equip.php">'.ICON_ADD_EQUIP.'</a></span></th>';
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="add_equip.php">'.ICON_ADD_EQUIP.'</a></span></th>';
 			?>
 		</tr>
 

@@ -35,38 +35,38 @@ if (!empty($_GET['highlight']))
 </table>
 <br />
 <div class="catalog">
-<table>
+<table class="sortable">
 	<tbody>
 		<tr>
 			<th>
-				<a href ="list_fourn.php?tri=nom">Nom</a><br />
+				Nom
 			</th>
 			<th>
-				Adresse<br />
+				Adresse
 			</th>
 			<th>
-				T&eacute;l&eacute;phone<br />
-			</th>
-			<th style="vertical-align: top; text-align: center; " >
-				Fax<br />
+				T&eacute;l&eacute;phone
 			</th>
 			<th>
-				Courriel<br />
+				Fax
 			</th>
 			<th>
-				WWW<br />
+				Courriel
 			</th>
 			<th>
-				Contacts<br />
+				WWW
 			</th>
 			<th>
-				Description<br />
+				Contacts
+			</th>
+			<th>
+				Description
 			</th>
 			<?php
 			if ($user_level == 2)
-				echo"<th></th>";
+				echo '<th class="sorttable_nosort"></th>';
 			if ($user_level >= 3)
-				echo '<th colspan=2"><span class="option-right"><a href="add_fourn.php">'.ICON_ADD_FOURN.'</a></span></th>';
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="add_fourn.php">'.ICON_ADD_FOURN.'</a></span></th>';
 			?>
 		</tr>
 
