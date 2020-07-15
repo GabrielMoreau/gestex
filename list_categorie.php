@@ -1,11 +1,12 @@
 <?php
 //list_categorie.php
-// Authenticate
+$web_page = true;
 
-include("session_auth.php");
+// Authenticate
+require_once('session_auth.php');
+require_once('html_functions.php');
+
 session_start();
-// if (!auth(1))
-	// Header("Location: list_appareil.php");
 if (empty($_SESSION['logged_in_user'])) {
 	$user_level = 0; // no auth
 } else {
@@ -13,7 +14,6 @@ if (empty($_SESSION['logged_in_user'])) {
 	$logged_in_user = strtolower($_SESSION['logged_in_user']);
 	$user_level     = $_SESSION['level'];
 }
-require("html_functions.php");
 
 en_tete('Liste des appareils');
 
@@ -25,10 +25,7 @@ else
 	$tri = $_GET['tri'];
 ?>
 
-<br />
-Liste des appareils : <br />
-<i>Affichage de la liste globale ou bien des appareils en pr&ecirc;t au service instrumentation...</i><br />
-<br />
+Liste des appareils :<br />
 <table cellpadding="20" cellspacing="4" border="1"
 	style="width: 70%; text-align: left; margin-left: auto; margin-right: auto;">
 	<tbody>
@@ -45,11 +42,19 @@ Liste des appareils : <br />
 
 <br />
 Liste des appareils par cat&eacute;gorie : <br />
-<i>Cliquer sur une cat&eacute;gorie pour voir la liste...</i><br />
-<br />
-<table cellpadding="10" cellspacing="2" border="1"
-	style="width: 70%; text-align: center; margin-left: auto; margin-right: auto;">
+<div class="catalog">
+<table class="sortable">
 	<tbody>
+		<tr>
+			<th>
+				Cat&eacute;gorie
+			</th>
+			<?php if ($user_level >= 3) { ?>
+			<th class="sorttable_nosort" colspan="3">
+				<span class="option-right"><a href="list_categorie.php?"><?php echo ICON_ADD_CAT ?></a></span>
+			</th>
+			<?php } ?>
+		</tr>
 
 <?php
 if ($pdo = connect_db()) {
@@ -79,8 +84,7 @@ if ($pdo = connect_db()) {
 ?>
 	</tbody>
 </table>
-
-<br />
 </div>
+
 <?php pied_page() ?>
 
