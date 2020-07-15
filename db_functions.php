@@ -88,4 +88,34 @@ function get_equip_by_id($pdo, $id) {
 	return $equip_fetch[0];
 }
 
+// -------------------------------------------------------------
+
+function get_equip_listshort($pdo) {
+	$sql = 'SELECT id, nom FROM equipe;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $equip_fetch;
+}
+
+// -------------------------------------------------------------
+
+function get_equip_listall($pdo) {
+	$sql = 'SELECT * FROM equipe;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $equip_fetch;
+}
+
+// -------------------------------------------------------------
+
+function get_equip_with_appareil($pdo) {
+	$sql = 'SELECT id, nom FROM equipe INNER JOIN Listing ON equipe.id = Listing.equipe;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $equip_fetch;
+}
+
 ?>
