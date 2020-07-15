@@ -84,7 +84,7 @@ en_tete($title);
 			if ($log == true && $user_level ==2)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($log == true && $user_level >=3)
-				echo '<th class="sorttable_nosort" colspan="2"></th>'.PHP_EOL;
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="list_appareil.php">'.ICON_ADD_APPAREIL.'</a></span></th>'.PHP_EOL;
 			?>
 		</tr>
 
