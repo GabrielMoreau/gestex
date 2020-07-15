@@ -1,5 +1,7 @@
 <?php
 
+require_once('db_functions.php');
+
 // -------------------------------------------------------------
 
 define('ICON_PERSON_OK',     '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-check"/></svg></span>');
@@ -94,6 +96,12 @@ function nav_bar($prenom, $nom, $level, $user_id) {
 			<div class="dropdown-content">
 				<a href="list_categorie.php">Cat&eacute;gories</a>
 				<a href="list_appareil.php">Global</a>
+				<?php
+				$pdo = connect_db();
+				foreach (get_equip_with_appareil($pdo) as $data) {
+					echo '<a href="list_appareil.php?equipe='.$data['id'].'">au service <br />'.$data['nom'].'</a>'.PHP_EOL;
+				}
+				?>
 				<a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
 			</div>
 		</li>
