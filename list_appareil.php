@@ -256,7 +256,7 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 		}else if ($log === true && $eq==15 && $emprunt == 1) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a>'.ICON_RETURN.'</a>';
+			echo '    <a href="del-pret.php?id=',$pret[0]['id'],'">'.ICON_RETURN.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 
