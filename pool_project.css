@@ -103,6 +103,10 @@ input, select, textarea {
 	margin-right: auto;
 }
 
+.catalog table.narrow {
+	width: 50%;
+}
+
 .catalog tr {
 	border-collapse: collapse;
 }
