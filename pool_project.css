@@ -2,7 +2,7 @@
 /* ================= general */
 
 body {
-	background-color:#FFFADF;
+	background-color: #FFFADF;
 	margin-left: 0px;
 	margin-right: 0px;
 	margin-top: 0px;
@@ -20,35 +20,65 @@ body {
 /* ================= form */
 
 input, select, textarea {
-	#font-size: 10;
-	#font-family: Arial, Helvetica, sans-serif;
 	font-weight: normal;
-	color:#000000;
+	color: #000000;
 }
 
 
 /* ================= admin.php and user_changepwd.php */
 
-.outer_table { background-color: #B5D3FF; }
+.outer_table {
+	background-color: #B5D3FF;
+}
 
-.table_head { border-left: 1px dotted #000000; border-right: 1px dotted #000000; border-top: 1px dotted #000000; background-color: #C0C0C0; }
+.table_head {
+	border-left: 1px dotted #000000;
+	border-right: 1px dotted #000000;
+	border-top: 1px dotted #000000;
+	background-color: #C0C0C0;
+}
 
-.table_body { border: 1px dotted #001061; }
+.table_body {
+	border: 1px dotted #001061;
+}
 
-.outer_table_heading { font-size: 14; font-family: Arial, Helvetica, sans-serif; cursor:default; font-weight: bold; color: #000000; }
+.outer_table_heading {
+	font-size: 14;
+	cursor:default;
+	font-weight: bold;
+	color: #000000;
+}
 
-.outer_table_action { font-size: 12; font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: #001061; }
+.outer_table_action {
+	font-size: 12;
+	font-weight: bold;
+	color: #001061;
+}
 
-.inner_table_head { border-bottom: 1px dashed #001061; background-color: #164093; }
+.inner_table_head {
+	border-bottom: 1px dashed #001061;
+	background-color: #164093;
+}
 
-.inner_table_column_heading { font-weight: bold; color: #FFFFFF; }
+.inner_table_column_heading {
+	font-weight: bold;
+	color: #FFFFFF;
+}
 
-.table_bottom_panel { border-left: 1px dotted #000000; border-right: 1px dotted #000000; border-bottom: 1px dotted #000000; background-color: #C0C0C0; }
+.table_bottom_panel {
+	border-left: 1px dotted #000000;
+	border-right: 1px dotted #000000;
+	border-bottom: 1px dotted #000000;
+	background-color: #C0C0C0;
+}
 
 
 /* ================= login.php */
 
-.box { border:1px solid #629DE7; background-color:#164093; }
+.box {
+	border: 1px solid #629DE7;
+	background-color:#164093;
+}
 
 .box_text {
 	background-color: #164093;
@@ -75,7 +105,6 @@ input, select, textarea {
 
 .catalog tr {
 	border-collapse: collapse;
-	#background-color: #f7d709;
 }
 
 .catalog th {
@@ -88,10 +117,6 @@ input, select, textarea {
 	border-collapse: collapse;
 	padding-left: 0.8ex;
 	padding-right: 0.8ex;
-	#border-top      : 1px solid #AAA;
-	#border-bottom   : 1px solid #AAA;
-	#border-left     : 1px solid #AAA;
-	#border-right    : 1px solid #AAA;
 }
 
 tr.pair {
@@ -193,7 +218,6 @@ span.option-right {
 	overflow: hidden;
 	padding: 0px 0px 0px 30px;
 	font-size: 14;
-	#font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: #001061;
 }
