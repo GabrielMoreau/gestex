@@ -3,8 +3,14 @@
 	require("session_auth.php");
 	require("html_functions.php");
 
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$username='';
+	if(!empty($_POST['username'])){
+		$username = $_POST['username'];
+	}
+	$password='';
+	if(!empty($_POST['password'])){
+		$password = $_POST['password'];
+	}
 	//valeur par defaut
 	$login_failure = false;
 
@@ -22,7 +28,7 @@
 		$first = false;
 
 	// check that this form has been submitted
-	if (isset($username) && isset($password)) {
+	if ($username!='' && $password!='') {
 		// log the user in normally
 		if (auth(0, $username, $password)) {
 			Header('Location: '.urldecode($referer));
