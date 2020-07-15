@@ -15,7 +15,7 @@ if (empty($_SESSION['logged_in_user'])) {
 	$user_level     = $_SESSION['level'];
 }
 
-en_tete('Liste des appareils');
+en_tete('Liste des appareils par cat&eacute;gorie');
 
 //recupere la methode de tri
 
@@ -25,23 +25,6 @@ else
 	$tri = $_GET['tri'];
 ?>
 
-Liste des appareils :<br />
-<table cellpadding="20" cellspacing="4" border="1"
-	style="width: 70%; text-align: left; margin-left: auto; margin-right: auto;">
-	<tbody>
-		<tr bgcolor="#f7d709">
-			<th style="vertical-align: top; text-align: center;">
-				<a href ="list_appareil.php?categorie=0 ">Liste globale</a><br />
-			</th>
-			<th style="vertical-align: top; text-align: center;">
-				<a href ="list_appareil.php?equipe=15">Appareils au service instrumentation</a><br />
-			</th>
-		</tr>
-	</tbody>
-</table>
-
-<br />
-Liste des appareils par cat&eacute;gorie : <br />
 <div class="catalog">
 <table class="sortable">
 	<tbody>
@@ -51,7 +34,7 @@ Liste des appareils par cat&eacute;gorie : <br />
 			</th>
 			<?php if ($user_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan="3">
-				<span class="option-right"><a href="list_categorie.php?"><?php echo ICON_ADD_CAT ?></a></span>
+				<span class="option-right"><a href="add_categorie.php"><?php echo ICON_ADD_CAT ?></a></span>
 			</th>
 			<?php } ?>
 		</tr>
@@ -70,11 +53,11 @@ if ($pdo = connect_db()) {
 		else
 			echo '<tr class="impair">'.PHP_EOL;
 		$num_line++;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		echo '    <a href="list_appareil.php?categorie='.$data['id'].'">'.$data['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		if ($user_level >= 3) {
-			echo '  <td style="vertical-align: top;">';
+			echo '  <td>';
 			echo '    <a href="del_categorie.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
