@@ -67,11 +67,6 @@ $notice = str_replace('à', 'a', $notice);
 
 en_tete('R&eacute;sultat ajout appareil');
 
-if (empty($_GET['tri']))
-	$tri ="id";
-else
-	$tri = $_GET['tri'];
-
 $cat = $_GET['categorie'];
 //recupere la categorie de la page ajout appareil
 
@@ -85,9 +80,9 @@ if (!empty($erreur) ){
 
 // tout est ok
 if ($pdo = connect_db()) {
-	$sql = 'INSERT INTO Listing (categorie,nom,modele , gamme, equipe, fournisseur, achat, responsable, reparation,accessoires,inventaire,notice) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+	$sql = 'INSERT INTO Listing (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($categorie,$nom, $modele,$gamme, $equipe, $fourn,$achat,$tech, $reparation,$accessoires,$inventaire,$notice));
+	$stmt->execute(array($categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice));
 	$id_app = $pdo->lastInsertId();
 
 	$path = './data';
