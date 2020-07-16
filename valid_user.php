@@ -20,48 +20,44 @@ unset($nom);
 //variables ne pouvant etre nulles
 if (empty($_POST['loggin']))
 	$erreur = 'Identifiant (login) non pr&eacute;cis&eacute;';
-else {
-	$loggin = $_POST['loggin'];
-	if (empty($_POST['password']))
-		$erreur = 'Password non pr&eacute;cis&eacute;';
-	else {
-		$password = $_POST['password'];
-		if (empty($_POST['password2']))
-			$erreur = 'Confirmation de password non pr&eacute;cis&eacute;';
-		else {
-			$password2 = $_POST['password2'];
-			if ($password != $password2)
-				$erreur = 'Les passwords diff&egrave;rent';
-			else {
-				if (empty($_POST['nom']))
-				$erreur = 'Nom de famille non pr&eacute;cis&eacute;';
-				else {
-					$nom = $_POST['nom'];
-					if (!isset($_POST['level']))
-						$erreur = 'Qualit&eacute; non pr&eacute;cis&eacute;';
-					else
-						$level = $_POST['level'];
-					if (!isset($_POST['theme']))
-						$erreur = 'thème non pr&eacute;cis&eacute;';
-					else
-						$theme = $_POST['theme'];
-					$mail = $_POST['addr_mail'];
-					//variables pouvant etre nulles
-					$prenom = $_POST['prenom'];
-					$phone = $_POST['phone'];
-					$equipe = $_POST['equipe'];
-				}
-			}
-		}
-	}
-}
+
+$loggin = $_POST['loggin'];
+if (empty($_POST['password']))
+	$erreur = 'Password non pr&eacute;cis&eacute;';
+
+$password = $_POST['password'];
+if (empty($_POST['password2']))
+	$erreur = 'Confirmation de password non pr&eacute;cis&eacute;';
+
+$password2 = $_POST['password2'];
+if ($password != $password2)
+	$erreur = 'Les passwords diff&egrave;rent';
+
+$nom = $_POST['nom'];
+if (empty($_POST['nom']))
+	$erreur = 'Nom de famille non pr&eacute;cis&eacute;';
+
+$level = $_POST['level']
+if (empty($_POST['level']))
+	$erreur = 'Qualit&eacute; non pr&eacute;cis&eacute;';
+
+if (empty($_POST['theme']))
+	$erreur = 'Th&egrave;me non pr&eacute;cis&eacute;';
+else
+	$theme = $_POST['theme'];
+
+$mail = $_POST['addr_mail'];
+
+//variables pouvant etre nulles
+$prenom = $_POST['prenom'];
+$phone  = $_POST['phone'];
+$equipe = $_POST['equipe'];
 
 en_tete('R&eacute;sultat inscription');
 
 if ($pdo = connect_db()) {
-
-	if (!empty(check_val_in_db($pdo, 'users', 'loggin', $loggin))) {
-		//nom existant deja dans db
+	if (check_val_in_db($pdo, 'users', 'loggin', $loggin)) {
+		// nom existant deja dans db
 		$erreur = 'L\'identifiant <i>'.$loggin.'</i> est d&eacute;j&agrave; utilis&eacute; dans la base de donn&eacute;es';
 	}
 
@@ -78,12 +74,12 @@ if ($pdo = connect_db()) {
 		$stmt->execute(array($nom, $prenom, $loggin, $mot_crypte, $mail, $level, $phone, $equipe, $theme));
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-		// inscription enregistree mais pas encore validee!
+		// inscription enregistree mais pas encore validee !
 		// envoi d'un courriel a l'admin
 		$texte = 'Inscription de '.$prenom.' '.$nom;
 		mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
 
-		echo 'Ajout de '.$prenom.' '.$nom.' validé<br />';
+		echo 'Ajout de '.$prenom.' '.$nom.' valid&eacute;<br />';
 		echo '<br /><center><a href="list_user.php">Suite</a></center><br /><br />';
 	} // else end
 } // end if connect
