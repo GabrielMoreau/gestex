@@ -69,7 +69,7 @@ else if ($mode=="modifier"){
 }
 ?>
 
-<table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
+<table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;"  class="form" align="center">
 	<tbody>
 		<form action="<?php echo $action ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
 			<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >

@@ -39,7 +39,7 @@ if ($pdo = connect_db()) {
 	}
 ?>
 
-<form action="<?php echo $action ?>" method="POST" name="inscrForm">
+<form action="<?php echo $action ?>" method="POST"  class="form" name="inscrForm">
 	<input type="hidden" name="user2ch_id"  value="<?php echo $user2ch_id ?>" >
 <table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;" align="center">
 	<tbody>
