@@ -1,8 +1,10 @@
 <?php
 
-require("html_functions.php");
-require("db_functions.php");
+require_once('session_auth.php');
+require_once('html_functions.php');
 
+auth_or_login('valid_categorie.php');
+level_or_alert(3, 'Ajout d\'une catégorie');
 /// valid_categorie.php
 //validation d'un nouvel appareil
 unset($erreur);
