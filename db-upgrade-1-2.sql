@@ -34,6 +34,14 @@ CREATE TABLE `version` (
   UNIQUE KEY `soft` (`soft`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
+
+--
+-- Add some columns
+--
+
+ALTER TABLE `users` ADD `theme` VARCHAR (50) DEFAULT 'clair';
+
+
 --
 -- Add some foreign key
 --
