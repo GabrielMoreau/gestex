@@ -59,10 +59,10 @@ ALTER TABLE `Listing` ADD FOREIGN KEY (`fournisseur`) REFERENCES `fournisseurs` 
 ALTER TABLE `Listing` ADD FOREIGN KEY (`responsable`) REFERENCES `users` (`id`);
 ALTER TABLE `Listing` ADD INDEX `nom` (`nom`);
 SHOW CREATE TABLE `Listing`;
- 
+
 ALTER TABLE `pret` ADD FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`);
 SHOW CREATE TABLE `pret`;
-  
+
 --
 -- Fix global DB version
 --
