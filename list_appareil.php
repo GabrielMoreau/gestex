@@ -186,12 +186,16 @@ en_tete($title);
 		}else{
 			$emprunt = 0;
 		}
-		//remplace les espaces par des underscore
 		// cherche l'existence de ce dossier
 		/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
-		if (@opendir($dossier_proj) != FALSE){
+
+		$sql = 'SELECT nom_notice FROM notice WHERE id_appareil = ?;';
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($data['id']));
+		$notice = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if (!empty($notice[0]['nom_notice'])){
 			//si trouve ajoute un bouton
-			echo 'Voir : <a href ="notice.php?id=', $data['id'],'">',$data['nom'],' '.ICON_SEE_DOC.'</a><br />';
+			echo 'Voir : <a href ="notice.php?id=', $data['id'],'">',$notice[0]['nom_notice'],' '.ICON_SEE_DOC.'</a><br />';
 		}
 		echo '  </td>'.PHP_EOL;
 
