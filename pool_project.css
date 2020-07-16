@@ -103,6 +103,10 @@ input, select, textarea {
 	margin-right: auto;
 }
 
+.catalog table.narrow {
+	width: 50%;
+}
+
 .catalog tr {
 	border-collapse: collapse;
 }
@@ -111,6 +115,12 @@ input, select, textarea {
 	vertical-align: top;
 	text-align: center;
 	background-color: #f7d709;
+}
+
+.catalog th:not(.sorttable_nosort):hover {
+	text-decoration: none;
+	background-color: gray;
+	color: white;
 }
 
 .catalog td, th {

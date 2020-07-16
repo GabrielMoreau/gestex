@@ -26,7 +26,7 @@ else
 ?>
 
 <div class="catalog">
-<table class="sortable">
+<table class="sortable narrow">
 	<tbody>
 		<tr>
 			<th>

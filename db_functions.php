@@ -70,8 +70,18 @@ function check_val_in_db($pdo, $table, $col, $value) {
 
 // -------------------------------------------------------------
 
+function get_appareil_by_id($pdo, $id) {
+	$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$appareil_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $appareil_fetch[0];
+}
+
+// -------------------------------------------------------------
+
 function get_categorie_by_id($pdo, $id) {
-	$sql = 'SELECT id, nom FROM categorie ORDER BY ? ASC;';
+	$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$categorie_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -86,6 +96,36 @@ function get_equip_by_id($pdo, $id) {
 	$stmt->execute(array($id));
 	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $equip_fetch[0];
+}
+
+// -------------------------------------------------------------
+
+function get_equip_listshort($pdo) {
+	$sql = 'SELECT id, nom FROM equipe;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $equip_fetch;
+}
+
+// -------------------------------------------------------------
+
+function get_equip_listall($pdo) {
+	$sql = 'SELECT * FROM equipe;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $equip_fetch;
+}
+
+// -------------------------------------------------------------
+
+function get_equip_with_appareil($pdo) {
+	$sql = 'SELECT id, nom FROM equipe INNER JOIN Listing ON equipe.id = Listing.equipe;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $equip_fetch;
 }
 
 ?>

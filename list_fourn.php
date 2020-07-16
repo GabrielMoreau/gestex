@@ -41,19 +41,19 @@ if (!empty($_GET['highlight']))
 			<th>
 				Nom
 			</th>
-			<th>
+			<th class="sorttable_nosort">
 				Adresse
 			</th>
 			<th>
 				T&eacute;l&eacute;phone
 			</th>
-			<th>
+			<th class="sorttable_nosort">
 				Fax
 			</th>
-			<th>
+			<th class="sorttable_nosort">
 				Courriel
 			</th>
-			<th>
+			<th class="sorttable_nosort">
 				WWW
 			</th>
 			<th>

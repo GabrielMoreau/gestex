@@ -24,7 +24,8 @@ CREATE TABLE `Listing` (
   `accessoires` varchar(255) DEFAULT NULL,
   `notice` varchar(255) DEFAULT NULL,
   `inventaire` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  INDEX `nom` (`nom`)
 ) ENGINE=MyISAM AUTO_INCREMENT=342 DEFAULT CHARSET=latin1;
 
 --
@@ -79,6 +80,8 @@ CREATE TABLE `demandes` (
 -- Table structure for table `equipe`
 --
 
+-- liste des equipes
+
 DROP TABLE IF EXISTS `equipe`;
 CREATE TABLE `equipe` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -87,7 +90,7 @@ CREATE TABLE `equipe` (
   `compte` int(11) NOT NULL DEFAULT '0',
   `chef` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1 COMMENT='liste des equipes';
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 
 --
@@ -150,6 +153,8 @@ CREATE TABLE `labview` (
 -- Table structure for table `manip`
 --
 
+-- liste des manips
+
 DROP TABLE IF EXISTS `manip`;
 CREATE TABLE `manip` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -163,7 +168,7 @@ CREATE TABLE `manip` (
   `date` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `nom` (`nom`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1 COMMENT='liste des manips';
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 
 --
@@ -178,13 +183,16 @@ CREATE TABLE `pret` (
   `emprunt` date DEFAULT NULL,
   `retour` date DEFAULT NULL,
   `commentaire` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=627 DEFAULT CHARSET=latin1;
 
 
 --
 -- Table structure for table `projet`
 --
+
+-- liste des projets d''une manip
 
 DROP TABLE IF EXISTS `projet`;
 CREATE TABLE `projet` (
@@ -194,12 +202,14 @@ CREATE TABLE `projet` (
   `descr` varchar(255) NOT NULL DEFAULT '',
   `date` date NOT NULL DEFAULT '2000-00-00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1 COMMENT='liste des projets d''une manip';
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 
 
 --
 -- Table structure for table `tache`
 --
+
+-- liste des taches d''un projet
 
 DROP TABLE IF EXISTS `tache`;
 CREATE TABLE `tache` (
@@ -212,7 +222,7 @@ CREATE TABLE `tache` (
   `fourniss` varchar(30) DEFAULT NULL,
   `temps` int(4) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=134 DEFAULT CHARSET=latin1 COMMENT='liste des taches d''un projet';
+) ENGINE=MyISAM AUTO_INCREMENT=134 DEFAULT CHARSET=latin1;
 
 
 --
@@ -238,19 +248,19 @@ CREATE TABLE `temps` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `loggin` varchar(10) NOT NULL DEFAULT '',
+  `loggin` varchar(20) NOT NULL DEFAULT '',
   `password` varchar(40) NOT NULL DEFAULT '',
   `level` int(11) NOT NULL DEFAULT '1',
   `nom` varchar(20) NOT NULL DEFAULT '',
   `prenom` varchar(20) NOT NULL DEFAULT '',
   `tel` int(11) NOT NULL DEFAULT '0',
   `email` varchar(30) NOT NULL DEFAULT '',
-  `equipe` int(10) NOT NULL DEFAULT '1',
+  `equipe` int(11) NOT NULL DEFAULT '1',
   `valid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `loggin` (`loggin`)
+  UNIQUE KEY `loggin` (`loggin`),
+  FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
-
 
 --
 -- Table structure for table `notice`
@@ -275,3 +285,38 @@ ALTER TABLE `users`
 ADD `theme` VARCHAR (50) DEFAULT 'clair';
 
 
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id_appareil`) REFERENCES `Listing` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+
+
+--
+-- Table structure for table `version`
+--
+
+DROP TABLE IF EXISTS `version`;
+CREATE TABLE `version` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `soft` varchar(20) NOT NULL DEFAULT '',
+  `version` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `soft` (`soft`)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+
+
+--
+-- Fix foreign key
+--
+
+ALTER TABLE `equipe` ADD FOREIGN KEY (`chef`) REFERENCES `users` (`id`);
+
+ALTER TABLE `Listing` ADD FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`);
+ALTER TABLE `Listing` ADD FOREIGN KEY (`fournisseur`) REFERENCES `fournisseurs` (`id`);
+ALTER TABLE `Listing` ADD FOREIGN KEY (`responsable`) REFERENCES `users` (`id`);
+
+
+--
+-- Fix global DB version
+--
+
+INSERT INTO version (soft, version) VALUES ('database',  2);

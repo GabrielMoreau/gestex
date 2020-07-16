@@ -85,40 +85,40 @@ if ( $pdo = connect_db() ){
 
 	// $last_id=0;
 
-$data = result_db($qh);
-		echo "de $nom[nom]$equipe $nom<br />";
+// $data = result_db($qh);
+		// echo "de $equipe $nom<br />";
 //	}//end if connect
 
-$querry = "SELECT id, nom FROM equipe WHERE id='$equipe'";
-	list($qheq,$numeq) = query_db($querry);
-		$equip = result_db($qheq);
+// $querry = "SELECT id, nom FROM equipe WHERE id='$equipe'";
+// 	list($qheq,$numeq) = query_db($querry);
+// 		$equip = result_db($qheq);
 
-		$querry = "SELECT id, nom FROM Listing WHERE id='$nom'";
-	list($qheeq,$numeeq) = query_db($querry);
-		$nom = result_db($qheeq);
+// 		$querry = "SELECT id, nom FROM Listing WHERE id='$nom'";
+// 	list($qheeq,$numeeq) = query_db($querry);
+// 		$nom = result_db($qheeq);
 
-echo "de   $equip[nom] <br />";
+// echo "de   $equip['nom'] <br />";
 
-echo "de  $nom[nom]  <br />";
+// echo "de  $nom['nom']  <br />";
 
 			//echo "<br />ajout <br />";
 //echo "de $nom[nom] $equip[nom]<br />";
 //echo" est valid&eacute;e ";
 echo"<br /><br /><a href=\"list_pret.php?user=3\">Suite</a><br /><br />\n";
 
-$querry = "SELECT email FROM users WHERE id='2'";
-	list($qheh,$numeh) = query_db($querry);
-	$email = result_db($qheh);
+// $querry = "SELECT email FROM users WHERE id='2'";
+// 	list($qheh,$numeh) = query_db($querry);
+// 	$email = result_db($qheh);
 
-$querry = "SELECT email FROM users WHERE id='33'";
-	list($qheeh,$numeeh) = query_db($querry);
-	$email2 = result_db($qheeh);
+// $querry = "SELECT email FROM users WHERE id='33'";
+// 	list($qheeh,$numeeh) = query_db($querry);
+// 	$email2 = result_db($qheeh);
 //echo $email2[email];
 
 //echo $email[email];
-mail($email[email],demandedepret,$nom[nom].$equip[nom].$commentaire);
+// mail($email[email],demandedepret,$nom[nom].$equip[nom].$commentaire);
 
-mail($email2[email],demandedepret,$nom[nom].$equip[nom].$commentaire);
+// mail($email2[email],demandedepret,$nom[nom].$equip[nom].$commentaire);
 //quand on va sur suite, on retourne sur la page du materiel commun
 pied_page();
 
