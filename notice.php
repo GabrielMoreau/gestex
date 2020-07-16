@@ -21,11 +21,10 @@ require("html_functions.php");
 
 if ($pdo = connect_db()) {
 
-	$sql = 'SELECT nom FROM Listing WHERE id = ?;' ;
+	$sql = 'SELECT id FROM Listing WHERE id = ?;' ;
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_app));
 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	$nom_app = $listing[0]['nom'];
 
 	$titre = 'Documents de l\'appareil : '.$listing[0]['nom'].' ('.$id_app.')';
 	en_tete($titre);
@@ -38,15 +37,9 @@ if ($pdo = connect_db()) {
 	$notice = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-	$dossier_proj = './data/instru/'.$nom_app.'/';
-	//remplace les espaces par des underscore
-	$dossier_proj = str_replace(" ", "_", $dossier_proj);
-	// cherche l'existence de ce dossier
-	//echo $dossier_proj;
-	/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
+	$dossier_proj = './data/notice/'.$id_app.'/';
 	foreach($notice as $notice){
 		if(is_file($notice['chemin_notice'])){
-			echo "le fichier existe :".$notice['nom_notice']."<br />";
 		// if (($handle = opendir($dossier_proj))) {
 		$images = array();
 		$fichiers = array();
@@ -155,9 +148,6 @@ if ($pdo = connect_db()) {
 </table>
 
  <?php
-		}else {
-			echo 'Pas de documents disponibles pour ce projet !<br />';
-			echo $notice;
 		}
 		}
 	
