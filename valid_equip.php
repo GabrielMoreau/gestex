@@ -52,9 +52,7 @@ if ($pdo = connect_db()) {
 	$stmt->execute(array($nom, $descr, $compte, $chef));
 	$id_equip = $pdo->lastInsertId();
 
-	echo 'Inscription de '.$nom.'<br />';
-	echo  '<img src="images/pool_project.jpg" height="100" nosave="" align="middle" alt="">';
-	echo ' est valid&eacute;e ';
+	echo 'Ajout de '.$nom.' validé<br />';
 	echo '<br /><br /><a href="list_equip.php?highlight='.$id_equip.'#'.$id_equip.'">Suite</a><br /><br />';
 	} //end if connect
 
