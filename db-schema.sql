@@ -264,3 +264,14 @@ CREATE TABLE `notice` (
   `id_appareil` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+
+
+
+--
+-- Modification de la table users, ajout de theme
+--
+
+ALTER TABLE `users`
+ADD `theme` VARCHAR (50) DEFAULT 'clair';
+
+
