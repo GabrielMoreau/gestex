@@ -174,8 +174,19 @@ en_tete($title);
 		if(!empty($fournisseur)) { echo $fournisseur[0]['nom'];}
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		///bouton lien vers la doc
-		$dossier_proj = "data/notice/".$data['id'];
+		
+		// cherche l'existence de la notice
+
+		$sql = 'SELECT nom_notice FROM notice WHERE id_appareil = ?;';
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array($data['id']));
+		$notice = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if (!empty($notice[0]['nom_notice'] ) || !empty($notice[1]['nom_notice']) || !empty($notice[2]['nom_notice']) || !empty($notice[3]['nom_notice']) || !empty($notice[4]['nom_notice']) || !empty($notice[5]['nom_notice']) || !empty($notice[6]['nom_notice'])){
+			//si trouve ajoute un bouton
+			echo ' <a href ="notice.php?id=', $data['id'],'">'.ICON_SEE_DOC.'</a><br />';
+		}
+		echo '  </td>'.PHP_EOL;
+
 		$sql = 'SELECT id FROM pret WHERE nom = ?;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($data['id']));
@@ -186,19 +197,6 @@ en_tete($title);
 		}else{
 			$emprunt = 0;
 		}
-		// cherche l'existence de ce dossier
-		/// @ devant la fonction pour eviter d'avoir un message d'erreur sur la page web, s'il n'y a pas de dossier
-
-		$sql = 'SELECT nom_notice FROM notice WHERE id_appareil = ?;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($data['id']));
-		$notice = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		if (!empty($notice[0]['nom_notice'])){
-			//si trouve ajoute un bouton
-			echo 'Voir : <a href ="notice.php?id=', $data['id'],'">',$notice[0]['nom_notice'],' '.ICON_SEE_DOC.'</a><br />';
-		}
-		echo '  </td>'.PHP_EOL;
-
 		if ($log === true && $eq==15 && $emprunt == 0) {
 			echo '  <td>';
 			echo '    <a href="add-pret.php?id=',$data['id'],'">'.ICON_BOOKING.'</a>';
