@@ -97,17 +97,12 @@ if ($pdo = connect_db()) {
 	if (!is_dir($path)) {
 		mkdir($path, 0750);
 	}
-	if (move_uploaded_file($_FILES['notice']['tmp_name'], $path.'/'.$notice )) {
-		echo 'Ca a marche\n';
-	} else {
-		echo 'Ca n\'a pas marche\n';
-	}
+	move_uploaded_file($_FILES['notice']['tmp_name'], $path.'/'.$notice )
 
 	$sql = 'INSERT INTO notice (nom_notice, chemin_notice, id_appareil) VALUES (?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
 	$path_complet = $path."/".$notice;
 	$stmt->execute(array($notice,$path_complet,$id_app));
-	echo '<br /> Votre requ&ecirc;te a bien &eacute;t&eacute; ajout&eacute;';
 
 } //end if connect
 
