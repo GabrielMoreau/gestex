@@ -85,10 +85,8 @@ if ($pdo = connect_db()) {
 			$texte = 'Inscription de '.$prenom.' '.$nom;
 			mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
 
-			echo 'Inscription de '.$prenom.' '.$nom.'<br />';
-			echo ' <img src="images/pool_project.jpg" height="100" nosave="" align="middle" alt="" />"';
-			echo ' est propos&eacute;e avec l\'identifiant (login) : '.$loggin;
-			echo '<br />Vous serez pr&eacute;venu de sa validation par courriel...';
+			echo 'Ajout de '.$prenom.' '.$nom.' validé<br />';
+		
 		//} // end else
 		echo '<br /><center><a href="list_user.php">Suite</a></center><br /><br />';
 	} // else end
