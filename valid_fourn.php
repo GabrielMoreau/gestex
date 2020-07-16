@@ -62,9 +62,7 @@ if ($pdo = connect_db()) {
 
 ////en_tete('inscription Valid&eacute;e');
 
-	echo 'Inscription de '.$nom.'<br />';
-	echo  '<img src="images/pool_project.jpg" height="100" nosave="" align="middle" alt="">';
-	echo ' est valid&eacute;e ';
+	echo 'Ajout de '.$nom.' validé<br />';
 	echo '<br /><br /><a href="list_fourn.php?highlight='.$id_fourn.'#'.$id_fourn.'">Suite</a><br /><br />';
 	} //end if connect
 
