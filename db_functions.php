@@ -65,7 +65,9 @@ function check_val_in_db($pdo, $table, $col, $value) {
 	///echo "check_val:".numrows_db($reponse)."<br />";
 	//renvoie 0 si non trouve
 	//renvoie le nbre d'occurences autrement
-	return $result;
+	if (count($result) > 0)
+		return true;
+	return false;
 }
 
 // -------------------------------------------------------------

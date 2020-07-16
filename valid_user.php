@@ -60,7 +60,7 @@ en_tete('R&eacute;sultat inscription');
 
 if ($pdo = connect_db()) {
 
-	if (!empty(check_val_in_db($pdo, 'users', 'loggin', $loggin))) {
+	if (check_val_in_db($pdo, 'users', 'loggin', $loggin)) {
 		//nom existant deja dans db
 		$erreur = 'L\'identifiant <i>'.$loggin.'</i> est d&eacute;j&agrave; utilis&eacute; dans la base de donn&eacute;es';
 	}
