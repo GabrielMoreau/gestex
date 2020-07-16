@@ -17,6 +17,13 @@ body {
 }
 
 
+/*============ tableau======*/
+
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid black;
+  }
+
 /* ================= form */
 
 input, select, textarea {
@@ -344,24 +351,3 @@ span.option-right {
 	text-decoration : none;
 }
 
-
-/*============ tableau======*/
-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid black;
-  }
-  
-  tr:hover {
-    background-color:rgb(160, 156, 156);
-    color : black;
-}
-th {
-  background-color: #4CAF50;
-  color: white;
-}
