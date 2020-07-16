@@ -30,29 +30,30 @@ define('ICON_MARK_RIGHT',    '<span><svg width="1.2em" height="1.2em" fill="curr
 
 function en_tete($titre) {
    // <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-?>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-	<link rel="icon" sizes="192x126" href="images/logo-gestex-192.png">
-	<title>GestEx - <?php echo $titre ?></title>
-	<link href="pool_project.css" rel="stylesheet" type="text/css">
-	<script src="sorttable-gestex.js"></script>
-</head>
-<?php
-if(!empty($_SESSION)){
+   if(!empty($_SESSION)){
 	$pdo            = connect_db();
 	$logged_in_user = $_SESSION['logged_in_user'];
 	$sql            = 'SELECT nom, prenom, theme FROM users WHERE loggin = ?;';
 	$stmt           = $pdo->prepare($sql);
 	$stmt->execute(array($logged_in_user));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	$theme = $user[0]['theme'];
+	$link = '<link href="pool_project_'.$user[0]['theme'].'.css" rel ="stylesheet" type="text/css">';
 }else{
-	$theme = 'clair';
+	$link = '<link href="pool_project_clair.css" rel ="stylesheet" type="text/css">';
 }
 ?>
-<body class = "<?php echo $theme ;?>">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+	<link rel="icon" sizes="192x126" href="images/logo-gestex-192.png">
+	<title>GestEx - <?php echo $titre ?></title>
+<?php echo $link; ?>
+	<script src="sorttable-gestex.js"></script>
+</head>
+<?php
+
+?>
+<body>
 <div class="header">
 	<div class="header-logo">
 		<a href="./"><img src="images/logo-gestex.png" alt="" height="100px"></a>
@@ -77,7 +78,6 @@ if(!empty($_SESSION)){
 function nav_bar($prenom, $nom, $level, $user_id) {
 ?>
 <div class="navbar">
-	<link rel="stylesheet" type="text/css" href="nav_bar.css"> 
 	<ul>
 	<?php if (empty($level)) { ?>
 		<li><a href="list_fourn.php">Liste des fournisseurs</a></li>
