@@ -37,7 +37,20 @@ function en_tete($titre) {
 	<link href="pool_project.css" rel="stylesheet" type="text/css">
 	<script src="sorttable-gestex.js"></script>
 </head>
-<body>
+<?php
+if(!empty($_SESSION)){
+	$pdo            = connect_db();
+	$logged_in_user = $_SESSION['logged_in_user'];
+	$sql            = 'SELECT nom, prenom, theme FROM users WHERE loggin = ?;';
+	$stmt           = $pdo->prepare($sql);
+	$stmt->execute(array($logged_in_user));
+	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$theme = $user[0]['theme'];
+}else{
+	$theme = 'clair';
+}
+?>
+<body class = "<?php echo $theme ;?>">
 <div class="header">
 	<div class="header-logo">
 		<a href="./"><img src="images/logo-gestex.png" alt="" height="100px"></a>
@@ -51,12 +64,6 @@ function en_tete($titre) {
 
 <?php
 if(!empty($_SESSION)){
-	$pdo            = connect_db();
-	$logged_in_user = $_SESSION['logged_in_user'];
-	$sql            = 'SELECT nom, prenom FROM users WHERE loggin = ?;';
-	$stmt           = $pdo->prepare($sql);
-	$stmt->execute(array($logged_in_user));
-	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['level'], $_SESSION['user_id']);
 } else {
 	nav_bar('', '',0,0);
