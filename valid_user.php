@@ -37,7 +37,7 @@ $nom = $_POST['nom'];
 if (empty($_POST['nom']))
 	$erreur = 'Nom de famille non pr&eacute;cis&eacute;';
 
-$level = $_POST['level']
+$level = $_POST['level'];
 if (empty($_POST['level']))
 	$erreur = 'Qualit&eacute; non pr&eacute;cis&eacute;';
 
