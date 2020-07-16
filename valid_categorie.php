@@ -58,8 +58,7 @@ if(	$pdo = connect_db()){
 
 ////en_tete('inscription Valid&eacute;e');
 
-echo "<br />ajout de ".$categorie."<br />";
-echo" est valid&eacute;e ";
+echo "<br />ajout de ".$categorie." valid&eacute;e ";
 echo"<br /><br /><a href=\"list_appareil.php\">Suite</a><br /><br />\n";
 pied_page();
 exit();
