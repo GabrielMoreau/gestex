@@ -29,20 +29,20 @@ echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_notice."&ok=yes\">OUI</a><br /
 echo "<a href=\"".$_SERVER['HTTP_REFERER']."\">NON</a><br />";
 }
 else{
-	if ( $pdo = connect_db() ){
+	if ($pdo = connect_db()){
 
 		// on supprime la notice
 		$sql = 'SELECT chemin_notice FROM notice WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($id_notice));
-        $notice = $stmt->fetchAll(PDO::FETCH_ASSOC);  // on récupère le chemin de la notice a supprimer
+        $notice = $stmt->fetchAll(PDO::FETCH_ASSOC);  // on recupere le chemin de la notice a supprimer
         var_dump($notice);
-        if (!$notice){ // si ça n'a pas marché
-            echo "<br />erreur dans la récupération du chemin de la notice : ".$id_notice;
+        if (!$notice){ // si ca n'a pas marche
+            echo "<br />erreur dans la r&eacute;cup&eacute;ration du chemin de la notice : ".$id_notice;
         }else{
             if( file_exists ( $notice[0]['chemin_notice'])){
                 $result = unlink( $notice[0]['chemin_notice'] );
-                if (!$result){ // si ça n'a pas marché
+                if (!$result){ // si ca n'a pas marche
                     echo "<br />erreur dans la suppression du fichier avec la notice : ".$id_notice;
                 }else{
                     $sql = 'DELETE LOW_PRIORITY FROM notice WHERE id = ? LIMIT 1;';
@@ -55,7 +55,7 @@ else{
             }
         }
     }
-    //on retourne a la page d'accueil
+    // on retourne a la page d'accueil
 	Header("Location: list_appareil.php");
 }
 ?>

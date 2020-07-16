@@ -52,7 +52,7 @@ if ($pdo = connect_db()) {
 	$stmt->execute(array($nom, $descr, $compte, $chef));
 	$id_equip = $pdo->lastInsertId();
 
-	echo 'Ajout de '.$nom.' validé<br />';
+	echo 'Ajout de '.$nom.' valid&eacute;<br />';
 	echo '<br /><br /><a href="list_equip.php?highlight='.$id_equip.'#'.$id_equip.'">Suite</a><br /><br />';
 	} //end if connect
 

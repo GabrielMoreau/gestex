@@ -20,7 +20,7 @@ if(empty($_GET['ok'])) // On recupere une variable ok qui sert a verifier que la
 	$valide ='no'	// s'il n'y a pas d'id, on met 'no' dans $valid
 else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
 	$valide = 'yes';
-else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
+else // si c'est n'importe quoi d'autre, on ne valide pas la suppression
 	$valid = 'no'; 
 
 if (!isset($valid) || empty($valid) || $valid=="no"){
@@ -36,13 +36,13 @@ else{
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($id_app));
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		if (!$result){ // si ça n'a pas marché
+		if (!$result){ // si ca n'a pas marche
 			echo "<br />erreur dans la suppression du labview : ".$id_app;
 		}else{
 			echo "Labview ".$id_app." supprim&eacute;!<br />";
 		}
 	}
-	//on retourne a la page d'accueil
+	// on retourne a la page d'accueil
 	Header("Location: list_labview.php");
 }
 ?>

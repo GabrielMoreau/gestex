@@ -4,7 +4,7 @@ require_once('session_auth.php');
 require_once('html_functions.php');
 
 auth_or_login('valid_categorie.php');
-level_or_alert(3, 'Ajout d\'une catégorie');
+level_or_alert(3, 'Ajout d\'une cat&eacute;gorie');
 /// valid_categorie.php
 //validation d'un nouvel appareil
 unset($erreur);

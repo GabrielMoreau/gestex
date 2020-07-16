@@ -102,7 +102,7 @@ if ( $pdo = connect_db() ){
 // echo "de  $nom['nom']  <br />";
 
 			//echo "<br />ajout <br />";
-echo "Ajout du prêt sur l'appareil $nom validé<br />";
+echo "Ajout du pr&ecirc;t sur l'appareil $nom valid&eacute;<br />";
 //echo" est valid&eacute;e ";
 echo"<br /><br /><a href=\"list_pret.php?user=3\">Suite</a><br /><br />\n";
 
