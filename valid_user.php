@@ -1,9 +1,15 @@
 <?php
+// valid_user.php
+$web_page = true;
 
-require("html_functions.php");
+// Authenticate
+require_once('session_auth.php');
+require_once('html_functions.php');
 
-/// valid_user.php
-// validation d'un nouveau utilisateur
+auth_or_login('valid_user.php');
+level_or_alert(3, 'Validation d\'un utilisateur');
+
+//validation d'un nouvel utilisateur
 
 unset($erreur);
 unset($loggin);
@@ -52,8 +58,6 @@ else {
 
 en_tete('R&eacute;sultat inscription');
 
-require("db_functions.php");
-
 if ($pdo = connect_db()) {
 
 	if (!empty(check_val_in_db($pdo, 'users', 'loggin', $loggin))) {
@@ -73,24 +77,16 @@ if ($pdo = connect_db()) {
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($nom, $prenom, $loggin, $mot_crypte, $mail, $level, $phone, $equipe, $theme));
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	  
-		//if (!$result) {
-			// inscription !ok
-			// $erreur = mysql_error();
-		//	echo '<br /><b>Erreur dans l\'acc&egrave;s &agrave; la base de donn&eacute;es</b>';
-		//}
-		//else {
-			// inscription enregistree mais pas encore validee!
-			// envoi d'un courriel a l'admin
-			$texte = 'Inscription de '.$prenom.' '.$nom;
-			mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
 
-			echo 'Ajout de '.$prenom.' '.$nom.' validé<br />';
-		
-		//} // end else
+		// inscription enregistree mais pas encore validee!
+		// envoi d'un courriel a l'admin
+		$texte = 'Inscription de '.$prenom.' '.$nom;
+		mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
+
+		echo 'Ajout de '.$prenom.' '.$nom.' validé<br />';
 		echo '<br /><center><a href="list_user.php">Suite</a></center><br /><br />';
 	} // else end
-} //end if connect
+} // end if connect
 
 pied_page();
 ?>
