@@ -8,9 +8,11 @@
 	//Header("Location: login.php");
 
 //$logged_in_user = strtolower($_SESSION['logged_in_user']);
+require_once('session_auth.php');
+require_once('html_functions.php');
 
-require("html_functions.php");
-require ("db_functions.php");
+auth_or_login('list_equip.php');
+level_or_alert(3, 'Modification d\'une &eacute;quipe');
 
 //modification d'un appareil
 unset($erreur);
