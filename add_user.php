@@ -158,8 +158,8 @@ if ($pdo = connect_db()) {
 			<td style="vertical-align: top;">Thème<br />
 			</td>
 			<td style="vertical-align: top;">
-			<input type="radio" name="theme" value="clair" checked> Clair<br />
-				<input type="radio" name="theme" value="sombre"> Sombre<br />
+			<input type="radio" name="theme" value="clair" <?php if ($mode ==='modifier' && $data['theme']=='clair') echo "checked" ?> > Clair<br />
+				<input type="radio" name="theme" value="sombre" <?php if ($mode ==='modifier' && $data['theme']=='sombre') echo "checked" ?>> Sombre<br />
 			</td>
 		</tr>
 		<tr>
