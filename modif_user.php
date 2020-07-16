@@ -73,7 +73,7 @@ if ( $pdo = connect_db() ){
 		if ($prenom!=$user[0]['prenom'])
 			//modif du prenom
 			$querry.=" prenom='$prenom',";
-	if ($user_level==3){
+	if ($user_level>=3){
 		if ($level!=$user[0]['level'])
 			//modif du level
 			$querry.=" level='$level',";
@@ -98,6 +98,7 @@ if ( $pdo = connect_db() ){
 		//ajoute la clause
 		$querry.=" WHERE id='$user2ch_id'";
 		if ($user_level>= 3)
+		echo $querry;
 			$stmt = $pdo->prepare($querry);
 			$stmt->execute();
 			
