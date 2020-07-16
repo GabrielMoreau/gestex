@@ -9,11 +9,11 @@ $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
 
+$errormsg='';
+
+if (!empty($_GET['id'] )){
 	$user2chg = $_GET['id'];
-
-if (empty($_GET['id'] ))
-	Header("Location: list_manip.php");
-
+}
 if ( $pdo = connect_db() ){
 
 unset($passwd1);unset($passwd2);
@@ -30,8 +30,6 @@ if (!empty($_POST['passwd2']))
 if (!empty($_POST['old_pass']))
 	$old_pass = $_POST['old_pass'];
 
-unset($errormsg );
-$errormsg = '';
 	//recupere l'ancien pasword et  le nom
 		$sql = 'SELECT nom,password FROM users WHERE id = ?';
 		$stmt = $pdo->prepare($sql);
@@ -48,9 +46,9 @@ if (isset($passwd1) && isset($passwd2)){
 			if(md5($old_pass) != $user[0]['password'] )
 		 				 $errormsg = "Wrong password, sorry!";
 	}
-
-	if (!isset($errormsg)){
-
+echo $errormsg;
+	if ($errormsg==''){
+		echo "j'suis la";
 		$mot_crypte=md5($passwd1);
 		//ok on change
 
@@ -63,16 +61,13 @@ if (isset($passwd1) && isset($passwd2)){
 }
 }//end if isset
 //if errors, redirect to an error page.
-if ($errormsg)
-{
-  Header("Location: error.php?errormsg=$errormsg");
-  exit;
-}
+
 
 require("html_functions.php");
 $titre = "Changement de mot de Passe ";
 en_tete($titre);
 echo  $titre."pour <i>".$user[0]['nom']."</i>";
+if(!empty($_GET['id'])){
 ?>
 	<p>
 	<form action="user_changepwd.php" method="post">
@@ -125,4 +120,9 @@ echo  $titre."pour <i>".$user[0]['nom']."</i>";
 
 </div>
 
-<?php pied_page() ?>
+<?php
+
+}else{
+	echo $errormsg;
+}
+pied_page() ?>
