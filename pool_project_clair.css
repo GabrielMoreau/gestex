@@ -1,5 +1,5 @@
 
-/* ================= general */
+/* ================= general - theme clair */
 
 body {
 	background-color: #FFFADF;
@@ -17,14 +17,17 @@ body {
 }
 
 
-/*============ tableau======*/
+/* ================= tableau */
+
 table {
-    border-collapse: collapse;
-  }
-  th, td {
-    padding: 8px;
-    border-bottom: 1px solid black;
-  }
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 8px;
+	border-bottom: 1px solid black;
+}
+
 
 /* ================= form */
 
@@ -250,6 +253,7 @@ span.option-right {
 	line-height: 0px;
 }
 
+
 /* ================= footer */
 
 .footer img {
@@ -352,4 +356,3 @@ span.option-right {
 .navbar a.dropbtn:hover {
 	text-decoration : none;
 }
-

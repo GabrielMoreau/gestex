@@ -1,57 +1,65 @@
 
-/* theme sombre */
+/* ================= general - theme sombre */
 
-body{
-	color : rgb(235, 229, 229);
+body {
+	color: rgb(235, 229, 229);
 	background-color: 181818;
 	margin-left: 0px;
 	margin-right: 0px;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	font-family: Arial, Helvetica, sans-serif;
-	
 	scrollbar-darkshadow-color: #000000;
 }
-/* ======= couleur des liens ==========*/
-a{
+
+
+/* ================= couleur des liens */
+
+a {
 	color : #d3b405;
 }
 
-/*============ tableau======*/
-table {
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid black;
-  }
- 
 
+/* ================= tableau */
+
+table {
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid black;
+}
+ 
+tr:hover {
+	background-color: #f5f5f5;
+	color: black;
+}
+
+
+/* ================= form */
 
 .form {
-    color:white;
-    background-color: #383838;
+	color:white;
+	background-color: #383838;
 }
-.form th, .form td{
-    border-bottom: 1px solid #383838;
 
+.form th, .form td{
+	border-bottom: 1px solid #383838;
 }
 
 .form select, .form input, .form textarea {
-    background-color: #747474 ;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-
+	background-color: #747474 ;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
+
 .form tr:hover {
-    background-color:#383838;
-    color : white;
+	background-color:#383838;
+	color : white;
 }
-
-/* ================= form */
 
 input, select, textarea {
 	font-weight: normal;
@@ -148,7 +156,7 @@ input, select, textarea {
 .catalog th {
 	vertical-align: top;
 	text-align: center;
-	background-color: #f7d709;
+	background-color: #959595;
 }
 
 .catalog th:not(.sorttable_nosort):hover {
@@ -161,6 +169,14 @@ input, select, textarea {
 	border-collapse: collapse;
 	padding-left: 0.8ex;
 	padding-right: 0.8ex;
+}
+
+tr.pair {
+	background-color: #383838;
+}
+
+tr.impair {
+	background-color: #747474;
 }
 
 table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
@@ -230,17 +246,6 @@ span.option-right {
 	float: right;
 	margin-right: 2px;
 }
- tr.pair {
-	background-color: #383838;
-}
-
-tr.impair {
-	background-color: #747474;
-}
-
-.catalog th {
-	background-color: #959595;
-}
 
 
 /* ================= header */
@@ -266,7 +271,7 @@ tr.impair {
 	padding: 0px 0px 0px 30px;
 	font-size: 14;
 	font-weight: bold;
-	color : rgb(235, 229, 229);
+	color: rgb(235, 229, 229);
 }
 
 .header br {
@@ -287,9 +292,9 @@ tr.impair {
 }
 
 .footer i {
-    font-size: smaller;
-    
+	font-size: smaller;
 }
+
 
 /*----navbar----*/
 .navbar {
@@ -376,16 +381,4 @@ tr.impair {
 
 .navbar a.dropbtn:hover {
 	text-decoration : none;
-}
-
-/* Page responsive */
-/* @media screen and (max-width: 600px) {
-  ul li.right, 
-  ul li {float: none;}
-} */
-
- 
-tr:hover {
-    background-color:#f5f5f5;
-    color : black;
 }
