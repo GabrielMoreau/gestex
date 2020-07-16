@@ -245,3 +245,35 @@ span.option-right {
 .footer i {
 	font-size: smaller;
 }
+
+
+/* theme sombre */
+
+.sombre body{
+	color : rgb(235, 229, 229);
+	background-color: rgb(56, 56, 56);
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	scrollbar-arrow-color: #a79115;
+	scrollbar-face-color: #0D54BA;
+	scrollbar-highlight-color: #137EE8;
+	scrollbar-3dlight-color: #6DAEE9;
+	scrollbar-shadow-color: #1B2487;
+	scrollbar-darkshadow-color: #000000;
+}
+
+
+.sombre tr.pair {
+	background-color: #555;
+}
+
+.sombre tr.impair {
+	background-color: #747474;
+}
+
+.sombre .catalog th {
+	background-color: #959595;
+}
