@@ -97,7 +97,7 @@ if ($pdo = connect_db()) {
 	if (!is_dir($path)) {
 		mkdir($path, 0750);
 	}
-	move_uploaded_file($_FILES['notice']['tmp_name'], $path.'/'.$notice )
+	move_uploaded_file($_FILES['notice']['tmp_name'], $path.'/'.$notice );
 
 	$sql = 'INSERT INTO notice (nom_notice, chemin_notice, id_appareil) VALUES (?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
