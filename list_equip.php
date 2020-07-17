@@ -58,7 +58,7 @@ if ($pdo = connect_db()) {
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($tri));
 	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	$num_line = 0;
+	$num_line = 1;
 	foreach ($equipe as $data) {
 		// remplit le tableau
 		$class = 'impair';
