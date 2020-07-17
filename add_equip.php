@@ -14,14 +14,14 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 if (empty( $_GET['id'])) {
 	//->nouvelle inscription
-	$mode = 'ajouter';
+	$mode   = 'ajouter';
 	$action = 'valid_equip.php';
 }
 else {
 	//->modif coordonnees
 	$equip_id = $_GET['id'];
-	$mode = 'modifier';
-	$action= 'modif_equip.php';
+	$mode     = 'modifier';
+	$action   = 'modif_equip.php';
 }
 
 if ($pdo = connect_db()) {
@@ -40,35 +40,40 @@ else if ($mode == 'modifier') {
 }
 ?>
 
-<table cellpadding="2" cellspacing="2" border="1" style="text-align: left; width: 75%;"  class="form" align="center">
+<div class="form">
+<table>
 	<tbody>
 		<form action="<?php echo $action ?>" method="POST" name="inscrForm">
 		<input type="hidden" name="id_equip" value="<?php if( $mode=='modifier'){ echo $equip_id; }?>" >
 		<tr>
-			<td style="vertical-align: top;">Nom *<br />
-			</td>
-			<td style="vertical-align: top;">
-				<input type="text" name="nom" size="10" maxlength="10" value="<?php if( $mode=='modifier'){ echo $equipe[0]['nom']; } ?>" ><br />
-			</td>
-		</tr>
-		<tr>
-			<td style="vertical-align: top;">Description<br />
-			</td>
-			<td style="vertical-align: top;">
-				<input type="text" name="descr" size="25" maxlength="255" value="<?php if( $mode=='modifier'){ echo $equipe[0]['descr']; } ?>" ><br />
+			<th>
+				Nom *
+			</th>
+			<td>
+				<input type="text" name="nom" size="10" maxlength="10" placeholder="Nom *" value="<?php if( $mode=='modifier'){ echo $equipe[0]['nom']; } ?>" >
 			</td>
 		</tr>
 		<tr>
-			<td style="vertical-align: top;">Compte *<br />
-			</td>
-			<td style="vertical-align: top;">
-				<input type="text" name="compte" size="5" maxlength="5" value="<?php if( $mode=='modifier'){ echo $equipe[0]['compte']; } ?>" ><br />
+			<th>
+				Description
+			</th>
+			<td>
+				<input type="text" name="descr" size="25" maxlength="255" placeholder="Description" value="<?php if( $mode=='modifier'){ echo $equipe[0]['descr']; } ?>" >
 			</td>
 		</tr>
 		<tr>
-			<td style="vertical-align: top;">Chef d'&Eacute;quipe<br />
+			<th>
+				Compte *
+			</th>
+			<td>
+				<input type="text" name="compte" size="5" maxlength="5" placeholder="Compte *" value="<?php if( $mode=='modifier'){ echo $equipe[0]['compte']; } ?>" >
 			</td>
-			<td style="vertical-align: top;">
+		</tr>
+		<tr>
+			<th>
+				Chef d'&eacute;quipe<br />
+			</th>
+			<td>
 			<?php // if( $mode=='modifier'){ echo $equipe[0]['chef']; } ?>
 				<select name="chef">
 				<?php
@@ -88,14 +93,14 @@ else if ($mode == 'modifier') {
 				} //end foreach
 				?>
 				</select>
-				<span class="option-right"><a href="add_user.php?"><?php echo ICON_ADD_USER ?></a></span>
+				<span class="option-right"><a href="add_user.php"><?php echo ICON_ADD_USER ?></a></span>
 			</td>
 		</tr>
 		<tr>
-			<td style="vertical-align: top;">Les champs avec * sont &agrave;
-				remplir obligatoirement, les autres sont optionnels.<br />
+			<td>Les champs avec * sont &agrave;
+				remplir obligatoirement, les autres sont optionnels.
 			</td>
-			<td style="vertical-align: top;" align="right">
+			<td class="button">
 				<input type="submit" name="Login" value="<?php echo $mode ?>">
 			</td>
 		</tr>
@@ -104,13 +109,14 @@ else if ($mode == 'modifier') {
 	<tbody>
 		<form action="list_equip.php" method="POST" name="annulForm">
 		<tr>
-			<td colspan="2" style="vertical-align: top; text-align: right;">
+			<td colspan="2" class="button">
 				<input type="submit" name="annul" value="Annuler">
 			</td>
 		</tr>
 		</form>
 	</tbody>
 </table>
+</div>
 
 <?php } else { Header("Location: list_manip.php"); exit(); } ?>
 
