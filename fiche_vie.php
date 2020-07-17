@@ -1,159 +1,121 @@
 <?php
-//fiche_vie.php
+// fiche_vie.php
+$web_page = true;
 
 // Authenticate
-include("session_auth.php");
+require_once('session_auth.php');
+require_once('html_functions.php');
+
 session_start();
-//if (!auth(1))
-	//Header("Location: login.php");
-	if(empty($_SESSION['logged_in_user'])){
-		$log = false;
-		echo "log =false";
-	}else{
-		$user_id = $_SESSION['user_id'];
-		$logged_in_user = strtolower($_SESSION['logged_in_user']);
-		$user_level= $_SESSION['level'];
-		$log=true;
-		echo "log =true";
-	
-	}
-require("html_functions.php");
+if(empty($_SESSION['logged_in_user'])){
+	$log = false;
+	$user_level = 0;
+} else {
+	$user_id        = $_SESSION['user_id'];
+	$logged_in_user = strtolower($_SESSION['logged_in_user']);
+	$user_level     = $_SESSION['level'];
+	$log = true;
+}
 
-if (empty($_GET['id']))
-	Header("Location: list_appareil.php");
-else
-	$id_app=$_GET['id'];
+$id_app = $_GET['id'];
+if (empty($id_app))
+	redirect('list_appareil.php');
 
-	//interrogation base de donnees
-
-if ( $pdo = connect_db() ){
+if ($pdo = connect_db()) {
 	// recupere la liste de appareils
 	$sql = 'SELECT * FROM Listing WHERE id = ?;';
-	// list($qh,$num) = query_db($querry);
-	// $data = result_db($qh);
-	// $last_id=0;
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_app));
 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$listing[0]['nom'].'</b>');
-//recupere la methode de tri
-if (empty($_GET['tri']))
-	$tri ="id";
-else
-	$tri = $_GET['tri'];
 ?>
 
-<!-- <table cellpadding="2" cellspacing="2" border="1" -->
- <!-- style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;"> -->
-  <tbody>
-    <!-- <tr> -->
-	<!-- <td style="vertical-align: top; text-align: center;"> -->
-<? php//permet de retourner a la page pr&eacute;cedente?>
-	<!-- <a href="<?php //echo $_SERVER['HTTP_REFERER']?>">Retour &agrave; la liste</a> -->
+<!--
+<label for="element-toggle">Transpose</label>
+<input id="element-toggle" type="checkbox" />
+<div class="catalog" id="toggled-element">
+ -->
+<div class="catalog transpose">
+<table class="narrow">
+	<tbody>
+		<tr>
+			<th>
+				Nom
+			</th>
+			<th>
+				Mod&egrave;le
+			</th>
+			<th>
+				Achat
+			</th>
+			<th>
+				Accessoires
+			</th>
+			<th>
+				R&eacute;paration / &Eacute;talonnages
+			</th>
+			<th>
+				Responsable
+			</th>
 
-	<!-- <br /></td> -->
-
-<?php //if ( $user_level >=2 ) {	?>
-
-	 <!-- <td style="vertical-align: top; text-align: center;"> -->
-	<!-- <a href="logout.php?variable=instru">Quitter</a> -->
-
-<?php // } ?>
-	<!-- <br /></td></tr> -->
-</tbody>
-<!-- </table> -->
-<br />
+			<th>
+				Num&eacute;ro d'instrument
+			</th>
+			<th>
+				Inventaire
+			</th>
+		</tr>
 
 <?php
-echo "L'appareil <b>".$listing[0]['nom']."</b> a les caract&eacute;ristiques suivantes :<br />";
-?>
-
-<table cellpadding="2" cellspacing="2" border="1"
- style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-  <tbody>
-    <tr bgcolor="#f7d709">
-      <th style="vertical-align: top; text-align: center;">
-		Nom<br />
-      </th>
-      <th style="vertical-align: top; text-align: center;">
-	Mod&egrave;le<br />
-      </th>
-     <th style="vertical-align: top; text-align: center;">
-	Achat<br />
-      </th>
-    <th style="vertical-align: top; text-align: center;">
-	Accessoires<br /><br />
-      </th>
-
-  <th style="vertical-align: top; text-align: center;">
-	R&eacute;paration / &Eacute;talonnages<br /><br />
-      </th>
-
-<th style="vertical-align: top; text-align: center;">
-	Responsable<br />
-      </th>
-
-<th style="vertical-align: top; text-align: center;">
-	Num&eacute;ro d'instrument<br />
-      </th>
-<th style="vertical-align: top; text-align: center;">
-	Inventaire<br />
-      </th>
-
-
-    </tr>
-<?php
-
 	// recupere la liste de appareils
-	// $sql = 'SELECT * FROM Listing WHERE id = ?;';
-	// list($qh,$num) = query_db($querry);
-	// $last_id=0;
-	// $stmt = $pdo->prepare($sql);
-	// $stmt->execute(array($id_app));
-	// $listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// while ($data = result_db($qh)) {
-foreach($listing as $data){
-	// remplit le tableau
- echo"<tr><td style=\"vertical-align: top;\">";
-	echo $data['nom'];
-         echo"</td><td style=\"vertical-align: top;\">";
-	echo $data['modele'];
-   echo"</td><td style=\"vertical-align: top;\">";
-	echo $data['achat'];
-echo"</td><td style=\"vertical-align: top;\">";
-	echo $data['accessoires'];
-echo"</td><td style=\"vertical-align: top;\">";
-	echo $data['reparation'];
+	$num_line = 0;
+	foreach ($listing as $data) {
+		if ($num_line % 2)
+			echo '<tr class="impair">'.PHP_EOL;
+		else
+			echo '<tr class="pair">'.PHP_EOL;
+		$num_line++;
 
- echo"</td><td style=\"vertical-align: top;\">";
+	echo '  <td>';
+	echo      $data['nom'].'&nbsp;';
+	echo '  </td>';
+	echo '  <td>';
+	echo      $data['modele'].'&nbsp;';
+	echo '  </td>';
+	echo '  <td>';
+	echo      $data['achat'].'&nbsp;';
+	echo '  </td>';
+	echo '  <td>';
+	echo      $data['accessoires'].'&nbsp;';
+	echo '  </td>';
+	echo '  <td>';
+	echo      $data['reparation'].'&nbsp;';
+	echo '  </td>';
 
-// recupere le nom du tech
+
+	// recupere le nom du tech
 	$sql = 'SELECT id, nom FROM users WHERE id = ?;';
-	// list($qheq,$numeq) = query_db($querry);
-
-	// 	$resp = result_db($qheq);
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($data['responsable']));
 	$resp = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      		if(!empty($resp)){
-				  echo $resp[0]['nom'];
-			}
-
-  echo"</td><td style=\"vertical-align: top;\">";
-echo $data['id'];
-
-  echo"</td><td style=\"vertical-align: top;\">";
-echo $data['inventaire'];
-
-
-      echo"</tr>";
-	}//end while
-
-}//end if
+	echo '  <td>';
+	if (!empty($resp)) {
+		echo $resp[0]['nom'];
+	}
+	echo '  &nbsp;</td>';
+	echo '  <td>';
+	echo      $data['id'].'&nbsp;';
+	echo '  </td>';
+	echo '  <td>';
+	echo      $data['inventaire'].'&nbsp;';
+	echo '  </td>';
+	echo '</tr>';
+	} // end foreach
+} // end if
 ?>
-  </tbody>
+	</tbody>
 </table>
-<br />
 </div>
+
 <?php pied_page() ?>
