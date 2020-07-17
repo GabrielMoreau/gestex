@@ -2,7 +2,7 @@
 	--body-bg: #002b36;
 	--body-fg: #fdf6e3;
 	--link: #b58900;
-	--navbar-title: #268BD2; /* ; #1A94E7*/
+	--navbar-title: #268BD2;
 	--navbar-title-hover: #2AA198;
 	--navbar-login-bg: #dc322f;
 	--navbar-login-sub-bg: #cb4b16;
@@ -16,8 +16,9 @@
 	--form-bg: #657b83;
 	--form-fg: #fdf6e3;
 	--form-button-bg: #657b83;
-	--login-bg: #dc322f;
-	--login-bg: #fdf6e3;
+	--login-bg: #6c71c4;
+	--login-fg: #073642;
+	--button-bg: #93a1a1;
 }
 
 /* ================= general - theme sombre */
@@ -61,19 +62,34 @@ a {
 
 /* ================= form */
 
-.form {
-	color: var(--body-fg);
+.form table {
 	background-color: var(--body-bg);
+	border: 2px solid var(--navbar-title-hover);
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	border-radius: 10px;
+	width: auto;
 }
 
-.form th, .form td {
+.form th,
+.form td {
 	border-bottom: 1px solid var(--catalog-odd-bg);
 }
 
-.form select, .form input, .form textarea {
+.form tr + td,
+.form th {
+	text-align: left;
+	padding-right: 10px;
+	font-weight: normal;
+}
+
+.form select,
+.form input,
+.form textarea {
 	background-color: var(--form-button-bg);
 	padding: 5px 10px;
-	border: 1px solid #ccc;
+	border: 1px solid var(--body-fg);
 	border-radius: 4px;
 }
 
@@ -82,13 +98,49 @@ a {
 	color : var(--catalog-hover-fg);
 }
 
-input, select, textarea {
+.form input,
+.form select,
+.form textarea {
 	font-weight: normal;
 	color: var(--body-fg);
 }
 
 
 /* ================= admin.php and user_changepwd.php */
+
+.auth table {
+	background-color: var(--body-bg);
+	border: 2px solid var(--navbar-login-bg);
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	border-radius: 10px;
+	width: auto;
+}
+
+.auth input {
+	width: 100%;
+	background-color: var(--form-button-bg);
+	padding: 5px 10px;
+	border: 1px solid var(--body-fg);
+	border-radius: 4px;
+}
+
+.auth .button input {
+	color: var(--color-bad);
+	background-color: var(--button-bg);
+	width: auto;
+}
+
+.auth th {
+	text-align: right;
+	padding-right: 10px;
+}
+
+.auth td.button {
+	text-align: right;
+	color: var(--color-ok);
+}
 
 .outer_table {
 	background-color: var(--login-bg);
