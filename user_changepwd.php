@@ -1,22 +1,28 @@
 <?php
 // user_changepwd.php
+$web_page = true;
+
 // Authenticate
-include("session_auth.php");
-if (!auth(1))
-	Header("Location: login.php");
+require_once('session_auth.php');
+require_once('html_functions.php');
 
-$user_id = $_SESSION['user_id'];
+auth_or_login('index.php');
+level_or_alert(1, 'Modification du mot de passe');
+
+$user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
-$user_level= $_SESSION['level'];
+$user_level     = $_SESSION['level'];
 
-$errormsg='';
+$errormsg = '';
 
-if (!empty($_GET['id'] )){
+if (!empty($_GET['id'] )) {
 	$user2chg = $_GET['id'];
 }
-if ( $pdo = connect_db() ){
 
-unset($passwd1);unset($passwd2);
+if ($pdo = connect_db()) {
+
+unset($passwd1);
+unset($passwd2);
 
 if (!empty($_POST['user']))
 	$user2chg = $_POST['user'];
@@ -30,99 +36,67 @@ if (!empty($_POST['passwd2']))
 if (!empty($_POST['old_pass']))
 	$old_pass = $_POST['old_pass'];
 
-	//recupere l'ancien pasword et  le nom
-		$sql = 'SELECT nom,password FROM users WHERE id = ?';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($user2chg));
-		$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	// recupere l'ancien pasword et  le nom
+	$sql = 'SELECT nom, prenom, password FROM users WHERE id = ?';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($user2chg));
+	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($passwd1) && isset($passwd2)){
-	//check that passwords match
+	// check that passwords match
 	if ($passwd1 != $passwd2)
- 		 $errormsg = "Passwords do not match, please try again";
+ 		 $errormsg = 'Passwords do not match, please try again';
 
-	if (!isset($errormsg) && isset($old_pass) && $user_level<3 )
-	{
-			if(md5($old_pass) != $user[0]['password'] )
-		 				 $errormsg = "Wrong password, sorry!";
+	if (!isset($errormsg) && isset($old_pass) && $user_level < 3) {
+		if(md5($old_pass) != $user[0]['password'])
+			$errormsg = 'Wrong password, sorry!';
 	}
-echo $errormsg;
-	if ($errormsg==''){
-		echo "j'suis la";
-		$mot_crypte=md5($passwd1);
-		//ok on change
-
+	echo $errormsg;
+	if ($errormsg == '') {
+		$mot_crypte = md5($passwd1);
+		// ok on change
 		$sql = 'UPDATE users SET password = ? WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($mot_crypte,$user2chg));
-		Header("Location: list_user.php");
-		exit;
+		$stmt->execute(array($mot_crypte, $user2chg));
+		redirect('list_user.php');
 	}
-}
-}//end if isset
-//if errors, redirect to an error page.
+} // end if isset
+} // end pdo
 
+en_tete('Changement de mot de passe pour <i>'.$user[0]['nom'].' '.$user[0]['prenom'].'</i>');
 
-require("html_functions.php");
-$titre = "Changement de mot de Passe ";
-en_tete($titre);
-echo  $titre."pour <i>".$user[0]['nom']."</i>";
-if(!empty($_GET['id'])){
+if (!empty($_GET['id'])) {
 ?>
-	<p>
+
+<div class="auth">
 	<form action="user_changepwd.php" method="post">
 		<input type="hidden" name="user" value="<?php echo $user2chg; ?>">
-	<table width="350" align="center" border="0" cellpadding="0" cellspacing="0" class="outer_table">
-		<tr>
-			<td>
-				<table width="100%" border="0" class="table_head">
-					<tr>
-						<td align="left" nowrap class="outer_table_heading" nowrap>
-							Changement de  Password:
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<table width="100%" border="0" cellpadding="1" cellspacing="2" class="table_body">
-				<?php if ($user_level<3)	{	?>
-					<tr>
-						<td width="150" align="right" nowrap>ancien Password:</td>
-							<td><input type="password" name="old_pass" style="width: 100%;"></td>
-					</tr>
+		<table>
+			<tbody>
+				<?php if ($user_level < 3) { ?>
+				<tr>
+					<th>Ancien mot de passe</th>
+					<td><input type="password" name="old_pass" placeholder="Ancien mot de passe"></td>
+				</tr>
 				<?php }	?>
-					<tr>
-						<td width="150" align="right" nowrap>Nouveau Password:</td>
-						<td><input type="password" name="passwd1" style="width: 100%;"></td>
-					</tr>
-					<tr>
-						<td width="150" align="right" nowrap>Nouveau Password (again):</td>
-						<td><input type="password" name="passwd2" style="width: 100%;"></td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<table width="100%" border="0" class="table_bottom_panel">
-					<tr>
-						<td align="center">
-							<input type="submit" value="Change!">
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
+				<tr>
+					<th>Nouveau mot de passe</th>
+					<td><input type="password" name="passwd1" placeholder="Nouveau mot de passe"></td>
+				</tr>
+				<tr>
+					<th>Nouveau mot de passe (confirmer)</th>
+					<td><input type="password" name="passwd2" placeholder="Nouveau mot de passe (confirmer)"></td>
+				</tr>
+				<tr>
+					<td class="button" colspan=2">
+						<input type="submit" value="Change!">
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</form>
-
 </div>
 
-<?php
+<?php } else { echo $errormsg; } ?>
 
-}else{
-	echo $errormsg;
-}
-pied_page() ?>
+<?php pied_page() ?>
