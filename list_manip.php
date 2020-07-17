@@ -1,5 +1,6 @@
 <?php
 // list_manip.php
+$web_page = true;
 
 // Authenticate
 include("session_auth.php");
