@@ -22,13 +22,10 @@ if (empty($id_app))
 	redirect('list_appareil.php');
 
 if ($pdo = connect_db()) {
-	// recupere la liste de appareils
-	$sql = 'SELECT * FROM Listing WHERE id = ?;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_app));
-	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$appareil_selected = get_appareil_all_by_id($pdo, $id_app);
+	$responsable = get_user_by_id($pdo, $appareil_selected['responsable']);
 
-en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$listing[0]['nom'].'</b>');
+en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom'].'</b>');
 ?>
 
 <!-- 
@@ -36,86 +33,78 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$listing[0]['nom'].'</b>'
 <input id="element-toggle" type="checkbox" />
 <div class="catalog" id="toggled-element">
  -->
- 
-<div class="catalog transpose">
-<table class="narrow">
+
+<div class="form">
+<table>
 	<tbody>
 		<tr>
 			<th>
 				Nom
 			</th>
+			<td>
+				<?php echo $appareil_selected['nom'] ?>
+			</td>
+		</tr>
+		<tr>
 			<th>
 				Mod&egrave;le
 			</th>
+			<td>
+				<?php echo $appareil_selected['modele'] ?>
+			</td>
+		</tr>
+		<tr>
 			<th>
 				Achat
 			</th>
+			<td>
+				<?php echo $appareil_selected['achat'] ?>
+			</td>
+		</tr>
+		<tr>
 			<th>
 				Accessoires
 			</th>
+			<td>
+				<?php echo $appareil_selected['accessoires'] ?>
+			</td>
+		</tr>
+		<tr>
 			<th>
 				R&eacute;paration / &Eacute;talonnages
 			</th>
+			<td>
+				<?php echo $appareil_selected['reparation'] ?>
+			</td>
+		</tr>
+		<tr>
 			<th>
 				Responsable
 			</th>
+			<td>
+				<a href="list_user.php?item<?php echo $appareil_selected['responsable'] ?>"><?php echo $responsable['nom'] ?></a>
+			</td>
+		</tr>
+		<tr>
 			<th>
 				Num&eacute;ro d'instrument
 			</th>
+			<td>
+				<?php echo $appareil_selected['id'] ?>
+			</td>
+		</tr>
+		<tr>
 			<th>
 				Inventaire
 			</th>
+			<td>
+				<?php echo $appareil_selected['inventaire'] ?>
+			</td>
 		</tr>
-
-<?php
-	// recupere la liste de appareils
-	$num_line = 0;
-	foreach ($listing as $data) {
-		if ($num_line % 2)
-			echo '<tr class="impair">'.PHP_EOL;
-		else
-			echo '<tr class="pair">'.PHP_EOL;
-		$num_line++;
-
-	echo '  <td>';
-	echo      $data['nom'].'&nbsp;';
-	echo '  </td>';
-	echo '  <td>';
-	echo      $data['modele'].'&nbsp;';
-	echo '  </td>';
-	echo '  <td>';
-	echo      $data['achat'].'&nbsp;';
-	echo '  </td>';
-	echo '  <td>';
-	echo      $data['accessoires'].'&nbsp;';
-	echo '  </td>';
-	echo '  <td>';
-	echo      $data['reparation'].'&nbsp;';
-	echo '  </td>';
-
-
-	// recupere le nom du tech
-	$sql = 'SELECT id, nom FROM users WHERE id = ?;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($data['responsable']));
-	$resp = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	echo '  <td>';
-	if (!empty($resp)) {
-		echo $resp[0]['nom'];
-	}
-	echo '  &nbsp;</td>';
-	echo '  <td>';
-	echo      $data['id'].'&nbsp;';
-	echo '  </td>';
-	echo '  <td>';
-	echo      $data['inventaire'].'&nbsp;';
-	echo '  </td>';
-	echo '</tr>';
-	} // end foreach
-} // end if
-?>
 	</tbody>
 </table>
 </div>
+
+<?php } else { redirect('list_appareil.php'); } ?>
 
 <?php pied_page() ?>
