@@ -31,11 +31,12 @@ if ($pdo = connect_db()) {
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$listing[0]['nom'].'</b>');
 ?>
 
-<!--
+<!-- 
 <label for="element-toggle">Transpose</label>
 <input id="element-toggle" type="checkbox" />
 <div class="catalog" id="toggled-element">
  -->
+ 
 <div class="catalog transpose">
 <table class="narrow">
 	<tbody>
@@ -58,7 +59,6 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$listing[0]['nom'].'</b>'
 			<th>
 				Responsable
 			</th>
-
 			<th>
 				Num&eacute;ro d'instrument
 			</th>
