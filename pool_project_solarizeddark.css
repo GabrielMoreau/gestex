@@ -1,0 +1,443 @@
+:root {
+	--body-bg: #002b36;
+	--body-fg: #fdf6e3;
+	--link: #b58900;
+	--navbar-title: #268BD2; /* ; #1A94E7*/
+	--navbar-title-hover: #2AA198;
+	--navbar-login-bg: #dc322f;
+	--navbar-login-sub-bg: #cb4b16;
+	--catalog-even-bg: #839496;
+	--catalog-odd-bg: #657b83;
+	--catalog-hover-bg: #eee8d5;
+	--catalog-hover-fg: #002b36;
+	--color-ok: #859900;
+	--color-bad: #dc322f;
+	--color-alert: #cb4b16;
+	--form-bg: #657b83;
+	--form-fg: #fdf6e3;
+	--form-button-bg: #657b83;
+	--login-bg: #dc322f;
+	--login-bg: #fdf6e3;
+}
+
+/* ================= general - theme sombre */
+
+body {
+	color: var(--body-fg);
+	background-color: var(--body-bg);
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	scrollbar-darkshadow-color: #000000;
+}
+
+
+/* ================= couleur des liens */
+
+a {
+	color : var(--link);
+}
+
+
+/* ================= tableau */
+
+#table {
+#	border-collapse: collapse;
+#}
+
+#th, td {
+#	padding: 8px;
+#	text-align: left;
+#	border-bottom: 1px solid var(--body-fg);
+#}
+ 
+#tr:hover {
+#	background-color: #f5f5f5;
+#	color: black;
+#}
+
+
+/* ================= form */
+
+.form {
+	color: var(--body-fg);
+	background-color: var(--body-bg);
+}
+
+.form th, .form td {
+	border-bottom: 1px solid var(--catalog-odd-bg);
+}
+
+.form select, .form input, .form textarea {
+	background-color: var(--form-button-bg);
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.form tr:hover {
+	background-color: var(--catalog-hover-bg);
+	color : var(--catalog-hover-fg);
+}
+
+input, select, textarea {
+	font-weight: normal;
+	color: var(--body-fg);
+}
+
+
+/* ================= admin.php and user_changepwd.php */
+
+.outer_table {
+	background-color: var(--login-bg);
+}
+
+.table_head {
+	border-left: 1px dotted #000000;
+	border-right: 1px dotted #000000;
+	border-top: 1px dotted #000000;
+	background-color: #C0C0C0;
+}
+
+.table_body {
+	border: 1px dotted #001061;
+}
+
+.outer_table_heading {
+	font-size: 14;
+	cursor:default;
+	font-weight: bold;
+	color: #000000;
+}
+
+.outer_table_action {
+	font-size: 12;
+	font-weight: bold;
+	color: #001061;
+}
+
+.inner_table_head {
+	border-bottom: 1px dashed #001061;
+	background-color: #164093;
+}
+
+.inner_table_column_heading {
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.table_bottom_panel {
+	border-left: 1px dotted #000000;
+	border-right: 1px dotted #000000;
+	border-bottom: 1px dotted #000000;
+	background-color: #C0C0C0;
+}
+
+
+/* ================= login.php */
+
+.box {
+	border: 1px solid #629DE7;
+	background-color:#164093;
+}
+
+.box_text {
+	background-color: #164093;
+	padding-left: 3px;
+	padding-right: 3px;
+	cursor: default;
+	font-weight: normal;
+	color: #B0DDFF;
+}
+
+
+/* ================= catalog table */
+
+.highlight td {
+	font-weight: bold;
+}
+
+.catalog table {
+	width: 90%;
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
+}
+
+.catalog table.narrow {
+	width: 50%;
+}
+
+.catalog th {
+	vertical-align: top;
+	text-align: center;
+	background-color: var(--navbar-title);
+}
+
+.catalog th:not(.sorttable_nosort):hover {
+	text-decoration: none;
+	background-color: var(--navbar-title-hover);
+	color: var(--body-fg);
+}
+
+.catalog td,
+.catalog th {
+	padding-left: 0.8ex;
+	padding-right: 0.8ex;
+}
+
+tr.pair {
+	background-color: var(--catalog-even-bg);
+	border-bottom: 1px solid var(--navbar-title);
+}
+
+tr.impair {
+	background-color: var(--catalog-odd-fg);
+	border-bottom: 1px solid var(--navbar-title);
+}
+
+.catalog tr:hover.pair,
+.catalog tr:hover.impair {
+	background-color: var(--catalog-hover-bg);
+	color: var(--catalog-hover-fg);
+}
+
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+	content: "\00A0\21C5";
+	}
+
+
+/* ================= transpose table */
+
+.transpose tr {
+	display: block;
+	float: left;
+}
+
+.transpose th,
+.transpose td {
+	display: block;
+}
+
+
+/* ================= transpose table clickable */
+
+label[for=element-toggle] {
+	cursor: pointer;
+	color: var(--color-bad);
+}
+#element-toggle {
+	display: none;
+}
+
+#element-toggle:not(:checked) ~ #toggled-element tr {
+	display: block;
+	float: left;
+}
+
+#element-toggle:not(:checked) ~ #toggled-element th,
+#element-toggle:not(:checked) ~ #toggled-element td {
+	display: block;
+}
+
+
+/* ================= alert */
+
+@keyframes blink { 
+	50% {
+		border-color: var(--body-bg);
+	} 
+}
+
+center.alert {
+	border-width: 5px;
+	border-style: dotted;
+	border-color: var(--color-alert);
+	animation-name: blink ;
+	animation-duration: 0.5s ;
+	animation-timing-function: step-end ;
+	animation-iteration-count: infinite ;
+	animation-direction: alternate ;
+	border-radius: 25px;
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+
+.alert button.green {
+	color: var(--color-ok);
+}
+.alert button.red {
+	color: var(--color-bad);
+}
+
+.alert hr {
+	border-width: 2px;
+	border-style: solid;
+	color: var(--color-alert);
+	width: 30%;
+}
+
+/* ================= index */
+
+.index {
+	max-width: 60em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/* ================= icon */
+
+span.check-ok {
+	color: var(--color-ok);
+}
+
+span.check-bad {
+	color: var(--color-bad);
+}
+
+span.option-right {
+	float: right;
+	margin-right: 2px;
+}
+
+
+/* ================= header */
+
+.header {
+	display: block;
+	clear: both;
+	max-width: 60em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+}
+
+.header-logo {
+	float: left;
+	overflow: hidden;
+	padding: 0px;
+}
+
+.header-title {
+	float: left;
+	overflow: hidden;
+	padding: 0px 0px 0px 30px;
+	font-size: 14;
+	font-weight: bold;
+}
+
+.header br {
+	clear: both;
+	line-height: 0px;
+}
+
+
+/* ================= footer */
+
+.footer img {
+	padding-top: 1.5em;
+	padding-bottom: 1em;
+}
+
+.footer br {
+	line-height: 0.2em;
+}
+
+.footer i {
+	font-size: smaller;
+}
+
+
+/*----navbar----*/
+.navbar {
+	position: -webkit-sticky; /*Safari*/
+	position: sticky;
+	top: 0;
+}
+
+.navbar ul {
+	list-style-type: none;
+	padding: 0px;
+	overflow: hidden;
+	background-color: var(--navbar-title);
+	clear: both;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	margin-right: 0px;
+	margin-left: 0px
+}
+
+.navbar li {
+	float: left;
+}
+
+.navbar li>a, .dropbtn {
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.navbar li>a:not(.dropbtn):hover {
+	text-decoration: none;
+	background-color: var(--navbar-title-hover);
+	color: white;
+}
+
+.navbar li.dropdown {
+	display: inline-block;
+}
+
+.navbar .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: var(--navbar-title);
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.navbar .right .dropdown-content {
+	left: auto;
+	right: 0;
+}
+
+.navbar .dropdown-content a {
+	color: var(--body-fg);
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.navbar .dropdown-content a:hover {
+	text-decoration:none;
+	background-color: var(--navbar-title-hover);
+	color: var(--body-fg);
+}
+  
+.navbar .dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.navbar li.right {
+	float: right;
+	background-color: var(--navbar-login-bg); 
+}
+
+.navbar li.right a:hover {
+	background-color: var(--navbar-login-sub-bg);  
+	color: var(--body-fg);
+}
+
+.navbar a.dropbtn:hover {
+	text-decoration : none;
+}
