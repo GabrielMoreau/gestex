@@ -82,6 +82,16 @@ function get_appareil_by_id($pdo, $id) {
 
 // -------------------------------------------------------------
 
+function get_appareil_all_by_id($pdo, $id) {
+	$sql = 'SELECT * FROM Listing WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$appareil_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $appareil_fetch[0];
+}
+
+// -------------------------------------------------------------
+
 function get_categorie_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -128,6 +138,16 @@ function get_equip_with_appareil($pdo) {
 	$stmt->execute(array($id));
 	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $equip_fetch;
+}
+
+// -------------------------------------------------------------
+
+function get_user_by_id($pdo, $id) {
+	$sql = 'SELECT id, nom FROM users WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$user_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $user_fetch[0];
 }
 
 ?>
