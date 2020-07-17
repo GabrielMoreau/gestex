@@ -6,8 +6,8 @@
 	--navbar-title-hover: #2AA198;
 	--navbar-login-bg: #dc322f;
 	--navbar-login-sub-bg: #cb4b16;
-	--catalog-even-bg: #839496;
-	--catalog-odd-bg: #657b83;
+	--catalog-odd-bg: #586e75;   /* impair  */
+	--catalog-even-bg:  #073642; /*   pair  */
 	--catalog-hover-bg: #eee8d5;
 	--catalog-hover-fg: #002b36;
 	--color-ok: #859900;
@@ -43,7 +43,7 @@ a {
 
 
 /* ================= tableau */
-
+/*
 #table {
 #	border-collapse: collapse;
 #}
@@ -58,7 +58,7 @@ a {
 #	background-color: #f5f5f5;
 #	color: black;
 #}
-
+*/
 
 /* ================= form */
 
@@ -74,14 +74,19 @@ a {
 
 .form th,
 .form td {
-	border-bottom: 1px solid var(--catalog-odd-bg);
+	border-bottom: 1px solid var(--catalog-even-bg);
 }
 
-.form tr + td,
+/* .form td:first-child, */
 .form th {
-	text-align: left;
+	text-align: right;
 	padding-right: 10px;
 	font-weight: normal;
+	vertical-align: top;
+}
+
+.form td.button {
+	text-align: right;
 }
 
 .form select,
@@ -93,10 +98,10 @@ a {
 	border-radius: 4px;
 }
 
-.form tr:hover {
+/* .form tr:hover {
 	background-color: var(--catalog-hover-bg);
 	color : var(--catalog-hover-fg);
-}
+} */
 
 .form input,
 .form select,
@@ -207,7 +212,7 @@ a {
 
 /* ================= catalog table */
 
-.highlight td {
+.catalog .highlight td {
 	font-weight: bold;
 }
 
@@ -239,25 +244,26 @@ a {
 .catalog th {
 	padding-left: 0.8ex;
 	padding-right: 0.8ex;
+	padding-top: 0.8ex;
+	padding-bottom: 0.8ex;
 }
 
-tr.pair {
+.catalog tr.pair {
 	background-color: var(--catalog-even-bg);
-	border-bottom: 1px solid var(--navbar-title);
 }
 
-tr.impair {
-	background-color: var(--catalog-odd-fg);
-	border-bottom: 1px solid var(--navbar-title);
+.catalog tr.impair {
+	background-color: var(--catalog-odd-bg);
 }
 
 .catalog tr:hover.pair,
 .catalog tr:hover.impair {
 	background-color: var(--catalog-hover-bg);
 	color: var(--catalog-hover-fg);
+	border-bottom: 1px solid var(--navbar-title);
 }
 
-table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+.catalog table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
 	content: "\00A0\21C5";
 	}
 
@@ -430,7 +436,8 @@ span.option-right {
 	float: left;
 }
 
-.navbar li>a, .dropbtn {
+.navbar li>a,
+.navbar .dropbtn {
 	display: inline-block;
 	color: white;
 	text-align: center;
