@@ -103,7 +103,7 @@ if (isset($find_nom) || isset($find_descr)) {
 				Description
 			</th>
 			<?php if ($user_level >= 2) { ?>
-			<th colspan="2">
+			<th class="sorttable_nosort" colspan="2">
 			</th>
 			<?php } ?>
 		</tr>
