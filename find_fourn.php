@@ -32,37 +32,15 @@ if (isset($_POST[descr]))
 	$find_descr = $_POST[descr];
 ?>
 
-<br />
-<table cellpadding="2" cellspacing="2" border="0"
- style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+<!--------  table criteres de recherche ----->
+<div class="catalog">
+<table>
   <tbody>
     <tr>
-	 <td style="vertical-align: top; text-align: center;">
-	<a href="list_manip.php">Retour a l'accueil</a>
-	<br /></td>
- <td style="vertical-align: top; text-align: center;">
-	<a href="list_fourn.php">Liste des fournisseurs</a>
-	<br /></td>
-<?php if ( $user_level >=2 ) {	?>
- <td style="vertical-align: top; text-align: center;">
-	<a href="add_fourn.php">Ajout d'un fournisseur</a>
-	<br /></td>
-<?php }	?>
- <td style="vertical-align: top; text-align: center;">
-	<a href="logout.php">Quitter</a>
-	<br /></td> </tr></tbody>
-</table>
-<br />
-
-<!--------  table criteres de recherche ----->
-<table cellpadding="2" cellspacing="2" border="1"
- style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-  <tbody>
-    <tr bgcolor="#f7d709">
-      <th style="vertical-align: top; text-align: center;">
+      <th>
 	le Nom contient <br />
       </th>
-     <th style="vertical-align: top; text-align: center;">
+     <th>
 	la description contient <br />
       </th> <th>   </th></tr>
 	<form action="find_fourn.php" method="POST" name="findForm">
@@ -76,7 +54,7 @@ if (isset($_POST[descr]))
 	</td></tr></form>
 </tbody>
 </table>
-<br />
+</div>
 
 <?php
 if (isset($find_nom) || isset($find_descr)){
@@ -93,29 +71,29 @@ if (isset($find_nom) || isset($find_descr)){
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr bgcolor="#f7d709">
-      <th style="vertical-align: top; text-align: center;">
+      <th>
 	<a href ="list_fourn.php?tri=nom">Nom</a><br />
       </th>
-      <th style="vertical-align: top; text-align: center;">
+      <th>
 	Adresse<br />
       </th>
-      <th style="vertical-align: top; text-align: center;">
+      <th>
 	T&eacute;l&eacute;phone<br />
       </th>
       </th>
-      <th style="vertical-align: top; text-align: center;">
+      <th>
 	Fax<br />
       </th>
-      <th style="vertical-align: top; text-align: center;">
+      <th>
 	Courriel<br />
       </th>
-      <th style="vertical-align: top; text-align: center;">
+      <th>
 	WWW<br />
       </th>
-      <th style="vertical-align: top; text-align: center;">
+      <th>
 	Contacts<br />
       </th>
-      <th style="vertical-align: top; text-align: center;">
+      <th>
 	Description<br />
       </th>
 <?php if ( $user_level >=2 ) {	?>
