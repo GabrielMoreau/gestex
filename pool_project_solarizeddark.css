@@ -39,6 +39,7 @@ body {
 
 a {
 	color : var(--link);
+	text-decoration: none;
 }
 
 
@@ -89,25 +90,15 @@ a {
 	text-align: right;
 }
 
-.form select,
 .form input,
+.form select,
 .form textarea {
 	background-color: var(--form-button-bg);
+	color: var(--body-fg);
 	padding: 5px 10px;
 	border: 1px solid var(--body-fg);
 	border-radius: 4px;
-}
-
-/* .form tr:hover {
-	background-color: var(--catalog-hover-bg);
-	color : var(--catalog-hover-fg);
-} */
-
-.form input,
-.form select,
-.form textarea {
 	font-weight: normal;
-	color: var(--body-fg);
 }
 
 
@@ -404,6 +395,18 @@ span.option-right {
 	padding-bottom: 1em;
 }
 
+.footer hr {
+	margin-top: 2em;
+	margin-bottom: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50ex;
+	height: 6px;
+	border-radius: 3px;
+	border: none;
+	background-color: var(--link);
+}
+
 .footer br {
 	line-height: 0.2em;
 }
@@ -414,6 +417,7 @@ span.option-right {
 
 
 /*----navbar----*/
+
 .navbar {
 	position: -webkit-sticky; /*Safari*/
 	position: sticky;
@@ -514,4 +518,13 @@ span.option-right {
 
 .navbar a.dropbtn:hover {
 	text-decoration : none;
+}
+
+.navbar input {
+	background-color: var(--form-button-bg);
+	color: var(--body-fg);
+	padding: 5px 10px;
+	border: 1px solid var(--body-fg);
+	border-radius: 4px;
+	font-weight: normal;
 }

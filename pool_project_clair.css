@@ -267,6 +267,19 @@ span.option-right {
 	padding-bottom: 1em;
 }
 
+
+.footer hr {
+	margin-top: 2em;
+	margin-bottom: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50ex;
+	height: 6px;
+	border-radius: 3px;
+	border: none;
+	background-color: #d3b405;
+}
+
 .footer br {
 	line-height: 0.2em;
 }

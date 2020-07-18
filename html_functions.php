@@ -190,7 +190,8 @@ function pied_page() {
 
 <div class="footer">
 <center>
-	<img src="images/striped.gif" nosave="" border="0" height="13" width="532" align="bottom">
+	<!-- <img src="images/striped.gif" nosave="" border="0" height="13" width="532" align="bottom"> -->
+	<hr>
 	<address><a href="mailto:<?php echo GESTEX_ADMIN_MAIL ?>?Subject=GestEx%20to%20WebMaster">GestEx WebMaster</a></address>
 	<br>
 	<i>
