@@ -10,31 +10,21 @@ $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level     = $_SESSION['level'];
 
-en_tete('Liste de tous les fournisseurs');
-
-$find = '';
-if (!empty($_GET['find']))
-	$find = $_GET['find'];
+$find = true;
+#if (!empty($_SESSION['fournisseur_find']))
+#	$find = $_SESSION['fournisseur_find'];
 if (!empty($_POST['find']))
 	$find = $_POST['find'];
+#if ($user_level > 0)
+#	$_SESSION['fournisseur_find'] = $find;
 
 $id_highlight = 0;
 if (!empty($_GET['highlight']))
 	$id_highlight = $_GET['highlight'];
+
+en_tete('Liste de tous les fournisseurs', $find);
 ?>
 
-<table cellpadding="2" cellspacing="2" border="0"
-	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-	<tbody>
-		<tr>
-			<td style="vertical-align: top; text-align: center;">
-				<a href="find_fourn.php">Rechercher</a>
-				<br />
-			</td>
-		</tr>
-	</tbody>
-</table>
-<br />
 <div class="catalog">
 <table class="sortable">
 	<tbody>
