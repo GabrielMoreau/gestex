@@ -12,11 +12,6 @@ $user_level     = $_SESSION['level'];
 
 en_tete('Liste de tous les fournisseurs');
 
-// recupere la methode de tri
-$tri = $_GET['tri'];
-if (empty($_GET['tri']))
-	$tri = 'nom';
-
 $id_highlight = 0;
 if (!empty($_GET['highlight']))
 	$id_highlight = $_GET['highlight'];
@@ -62,52 +57,55 @@ if (!empty($_GET['highlight']))
 			<th>
 				Description
 			</th>
-			<?php
-			if ($user_level == 2)
-				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
-			if ($user_level >= 3)
-				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="add_fourn.php">'.ICON_ADD_FOURN.'</a></span></th>'.PHP_EOL;
-			?>
+			<?php if ($user_level == 2) { ?>
+			<th class="sorttable_nosort">
+			</th>
+			<?php } ?>
+			<?php if ($user_level >= 3) { ?>
+			<th class="sorttable_nosort" colspan=2">
+				<span class="option-right"><a href="add_fourn.php"><?php ICON_ADD_FOURN ?></a></span>
+			</th>
+			<?php } ?>
 		</tr>
 
 <?php	// interrogation base de donnees
 if ($pdo = connect_db()) {
 	// recupere la liste de fournisseurs
-	$sql = 'SELECT * FROM fournisseurs ORDER BY ?;';
+	$sql = 'SELECT * FROM fournisseurs;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($tri));
-	$fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$stmt->execute();
+	$fournisseur_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$num_line = 1;
-	foreach ($fournisseur as $data) {
+	foreach ($fournisseur_fetch as $fournisseur) {
 		$class = 'impair';
 		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
-		if ($data['id'] == $id_highlight)
+		if ($fournisseur['id'] == $id_highlight)
 			$class .= ' highlight';
-		echo '<tr class="'.$class.'" id="'.$data['id'].'">'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">'.$data['nom'].'</td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">'.$data['adresse'].'</td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;" nowrap>'.$data['tel'].'</td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;" nowrap>'.$data['fax'].'</td>'.PHP_EOL;
+		echo '<tr class="'.$class.'" id="'.$fournisseur['id'].'">'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">'.$fournisseur['nom'].'</td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">'.$fournisseur['adresse'].'</td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;" nowrap>'.$fournisseur['tel'].'</td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;" nowrap>'.$fournisseur['fax'].'</td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		if (!empty($data['mail']))
-			echo '    <a href="mailto:'.$data['mail'].'">'.ICON_MAIL.'</a>';
+		if (!empty($fournisseur['mail']))
+			echo '    <a href="mailto:'.$fournisseur['mail'].'">'.ICON_MAIL.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		if (!empty($data['www']))
-			echo '    <a href="http://'.$data['www'].'" target="_fournView">'.ICON_URL.'</a>';
+		if (!empty($fournisseur['www']))
+			echo '    <a href="http://'.$fournisseur['www'].'" target="_fournView">'.ICON_URL.'</a>';
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">'.$data['contact'].'</td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">'.$data['descr'].'</td>'.PHP_EOL;
-		if ($user_level >=2) {
+		echo '  <td style="vertical-align: top;">'.$fournisseur['contact'].'</td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">'.$fournisseur['descr'].'</td>'.PHP_EOL;
+		if ($user_level >= 2) {
 			echo '  </td><td style="vertical-align: top;">';
-			echo '    <a href="add_fourn.php?id='.$data['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="add_fourn.php?id='.$fournisseur['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
-		if ($user_level >=3) {
+		if ($user_level >= 3) {
 			echo '  </td><td style="vertical-align: top;">';
-			echo '    <a href="del_fourn.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
+			echo '    <a href="del_fourn.php?id='.$fournisseur['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} // end if
 		echo '</tr>'.PHP_EOL;
