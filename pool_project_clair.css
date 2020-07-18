@@ -6,8 +6,8 @@
 	--navbar-title-hover-fg: white;
 	--navbar-login-bg: red;
 	--navbar-login-sub-bg: rgb(216, 11, 11);
-	--catalog-odd-bg: #FFFF90;  /* impair  */
-	--catalog-even-bg: #FFFADF; /*   pair  */
+	--catalog-odd-bg: #fde482;  /* impair  */
+	--catalog-even-bg: #fcf3b5; /*   pair  */
 	--catalog-hover-bg: gray;
 	--catalog-hover-fg: white;
 	--color-ok: #00CC00;
