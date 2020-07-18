@@ -1,6 +1,6 @@
 <?php
 
-require("connect.php");
+require_once('connect.php');
 
 //////////////////////////////////////////////////////
 // function connect_db(){
@@ -13,14 +13,14 @@ require("connect.php");
 
 function connect_db() {
 	try{
-		$db = new PDO('mysql:host='.GESTEX_DB_SERVER.'; dbname='.GESTEX_DB_DATABASE, GESTEX_DB_USER, GESTEX_DB_PASSWORD);
+		$pdo = new PDO('mysql:host='.GESTEX_DB_SERVER.'; dbname='.GESTEX_DB_DATABASE, GESTEX_DB_USER, GESTEX_DB_PASSWORD);
 	}
 	catch(PDOException $exception){
 		error_log('Connection error: '.$exception->getMessage());
 		echo $exception->getMessage();
 		return false;
 	}
-	return $db;
+	return $pdo;
 }
 
 // -------------------------------------------------------------
@@ -138,6 +138,48 @@ function get_equip_with_appareil($pdo) {
 	$stmt->execute(array($id));
 	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $equip_fetch;
+}
+
+// -------------------------------------------------------------
+
+function get_fournisseur_by_id($pdo, $id) {
+	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$fournisseur_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $fournisseur_fetch[0];
+}
+
+// -------------------------------------------------------------
+
+function get_fournisseur_listshort($pdo) {
+	$sql = 'SELECT id, nom FROM fournisseurs;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$fournisseur_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $fournisseur_fetch;
+}
+
+// -------------------------------------------------------------
+
+function get_fournisseur_listall($pdo) {
+	$sql = 'SELECT * FROM fournisseurs;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$fournisseur_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $fournisseur_fetch;
+}
+
+// -------------------------------------------------------------
+
+function get_fournisseur_find($pdo, $find='') {
+	if (empty($find))
+		return get_fournisseur_listall($pdo);
+	$sql = 'SELECT * FROM fournisseurs WHERE nom RLIKE ? OR descr RLIKE ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($find, $find));
+	$fournisseur_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $fournisseur_fetch;
 }
 
 // -------------------------------------------------------------
