@@ -31,6 +31,12 @@ th, td {
 
 /* ================= form */
 
+.form table {
+	margin-left: auto;
+	margin-right: auto;
+	width: auto;
+}
+
 input, select, textarea {
 	font-weight: normal;
 	color: #000000;
