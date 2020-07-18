@@ -77,10 +77,10 @@ if ($pdo = connect_db()) {
 	$stmt = $pdo->prepare($sql);
     $stmt->execute(array($tri));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	$num_line = 0;
+	$num_line = 1;
 	foreach ($user as $data) {
 		$class = 'impair';
-		if (($num_line % 2 ) == 0)
+		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
 		if ($data['id'] == $id_highlight)

@@ -55,7 +55,7 @@ if( $pdo =connect_db()){
 			</th>
 			<?php
 			foreach ($pret as $data) {
-				if (($num_line % 2 )==0)
+				if ($num_line % 2)
 				echo '<tr class="pair">'.PHP_EOL;
 			else
 				echo '<tr class="impair">'.PHP_EOL;

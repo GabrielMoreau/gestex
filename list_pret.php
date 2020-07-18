@@ -66,7 +66,7 @@ if ($pdo = connect_db()) {
 	$stmt->execute();
 	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$num_line = 0;
+	$num_line = 1;
 	foreach ($pret as $data) {
 		if ($num_line % 2)
 			echo '<tr class="impair">'.PHP_EOL;

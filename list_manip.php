@@ -84,9 +84,9 @@ if ( $pdo = connect_db() ){
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(array($tri));
 			$manip_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			$num_line = 0;
+			$num_line = 1;
 			foreach ($manip_fetch as $manip) {
-				if (($num_line % 2 )==0)
+				if ($num_line % 2)
 					echo '<tr class="pair">'.PHP_EOL;
 				else
 					echo '<tr class="impair">'.PHP_EOL;

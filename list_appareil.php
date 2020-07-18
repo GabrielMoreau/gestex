@@ -122,7 +122,7 @@ en_tete($title);
 	// $data = result_db($qh);
 	$listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$num_line = 0;
+	$num_line = 1;
 	foreach ($listing as $data) {
 		// remplit le tableau
 		if ($num_line % 2)

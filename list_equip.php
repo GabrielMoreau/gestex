@@ -62,7 +62,7 @@ if ($pdo = connect_db()) {
 	foreach ($equipe as $data) {
 		// remplit le tableau
 		$class = 'impair';
-		if (($num_line % 2 ) == 0)
+		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
 		if ($data['id'] == $id_highlight)
