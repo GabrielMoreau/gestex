@@ -1,26 +1,26 @@
 :root {
 	--body-bg: #FFFADF;
 	--body-fg: #001061;
-	--link: blue;
 	--navbar-title-bg: rgb(250, 207, 41);
 	--navbar-title-hover-bg: gray;
 	--navbar-title-hover-fg: white;
 	--navbar-login-bg: red;
 	--navbar-login-sub-bg: rgb(216, 11, 11);
-	--catalog-odd-bg: #FFFF90;   /* impair  */
-	--catalog-even-bg:  #FFFADF; /*   pair  */
-	--catalog-hover-bg: gray; /* #657b83; */
+	--catalog-odd-bg: #FFFF90;  /* impair  */
+	--catalog-even-bg: #FFFADF; /*   pair  */
+	--catalog-hover-bg: gray;
 	--catalog-hover-fg: white;
 	--color-ok: #00CC00;
 	--color-bad: #CC0000;
 	--color-alert: orange;
+	--color-link: blue;
 	--form-bg: #657b83;
 	--form-fg: #fdf6e3;
 	--form-button-bg: white;
 	--login-bg: #164093;
 	--login-fg: #629DE7;
 	--button-bg: white;
-	--footer-separator: var(--navbar-title-bg);
+	--footer-separator-bg: var(--navbar-title-bg);
 }
 
 /* ================= general - theme sombre */
@@ -40,7 +40,7 @@ body {
 /* ================= couleur des liens */
 
 a {
-	color : var(--link);
+	color : var(--color-link);
 	text-decoration: none;
 }
 
@@ -406,7 +406,7 @@ span.option-right {
 	height: 6px;
 	border-radius: 3px;
 	border: none;
-	background-color: var(--footer-separator);
+	background-color: var(--footer-separator-bg);
 }
 
 .footer br {
