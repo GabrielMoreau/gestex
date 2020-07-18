@@ -40,19 +40,24 @@ tr:hover {
 
 /* ================= form */
 
-.form {
-	color:white;
-	background-color: #383838;
-}
-
 .form table {
+	color: white;
+	background-color: #383838;
+	background-color: var(--body-bg);
+	border: 2px solid white;
 	margin-left: auto;
 	margin-right: auto;
+	padding: 10px;
+	border-radius: 10px;
 	width: auto;
 }
 
-.form th, .form td{
+.form th, .form td {
 	border-bottom: 1px solid #383838;
+}
+
+.form td.button {
+	text-align: right;
 }
 
 .form select, .form input, .form textarea {
