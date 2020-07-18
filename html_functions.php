@@ -69,7 +69,7 @@ function en_tete($titre) {
 if(!empty($_SESSION)){
 	nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['level'], $_SESSION['user_id']);
 } else {
-	nav_bar('', '',0,0);
+	nav_bar('', '', 0, 0);
 }
 }
 
@@ -78,82 +78,81 @@ if(!empty($_SESSION)){
 function nav_bar($prenom, $nom, $level, $user_id) {
 ?>
 <div class="navbar">
-	<ul>
-	<?php if (empty($level)) { ?>
-		<li><a href="list_fourn.php">Liste des fournisseurs</a></li>
-		<li><a href="list_user.php">Liste des utilisateurs</a></li>
-		<li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
-		<li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
-		<li class="dropdown">
-			<a class="dropbtn">Liste des appareils</a>
-			<div class="dropdown-content">
-				<a href="list_categorie.php">Cat&eacute;gories</a>
-				<a href="list_appareil.php">Global</a>
-				<a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
-			</div>
-		</li>  
-		<li class="right"><a href="login.php">Se connecter</a></li>
+<ul>
+<?php if (empty($level)) { ?>
+	<li><a href="list_fourn.php">Liste des fournisseurs</a></li>
+	<li><a href="list_user.php">Liste des utilisateurs</a></li>
+	<li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
+	<li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
+	<li class="dropdown">
+		<a class="dropbtn">Liste des appareils</a>
+		<div class="dropdown-content">
+			<a href="list_categorie.php">Cat&eacute;gories</a>
+			<a href="list_appareil.php">Global</a>
+			<a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
+		</div>
+	</li>  
+	<li class="right"><a href="login.php">Se connecter</a></li>
 	<?php } else { ?>
-		<li><a href="list_fourn.php">Liste des fournisseurs</a></li>
-		<li><a href="list_user.php">Liste des utilisateurs</a></li>
-		<li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
-		<li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
-		<li class="dropdown">
-			<a class="dropbtn">Liste des appareils</a>
-			<div class="dropdown-content">
-				<a href="list_categorie.php">Cat&eacute;gories</a>
-				<a href="list_appareil.php">Global</a>
-				<?php
-				// $pdo = connect_db();
-				// foreach (get_equip_with_appareil($pdo) as $data) {
-				// 	echo '<a href="list_appareil.php?equipe='.$data['id'].'">au service <br />'.$data['nom'].'</a>'.PHP_EOL;
-				// }
-				?>
-				<a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
-			</div>
-		</li>
+	<li><a href="list_fourn.php">Liste des fournisseurs</a></li>
+	<li><a href="list_user.php">Liste des utilisateurs</a></li>
+	<li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
+	<li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
+	<li class="dropdown">
+		<a class="dropbtn">Liste des appareils</a>
+		<div class="dropdown-content">
+			<a href="list_categorie.php">Cat&eacute;gories</a>
+			<a href="list_appareil.php">Global</a>
+			<?php
+			// $pdo = connect_db();
+			// foreach (get_equip_with_appareil($pdo) as $data) {
+			// 	echo '<a href="list_appareil.php?equipe='.$data['id'].'">au service <br />'.$data['nom'].'</a>'.PHP_EOL;
+			// }
+			?>
+			<a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
+		</div>
+	</li>
 
 	<?php if ($level == 2) { ?>
-		<li class="dropdown">
-			<a class="dropbtn">Ajouter</a>
-			<div class="dropdown-content">
-				<a href="add_manip.php">Manip</a>
-				<a href="add_fourn.php">Fournisseur</a>
-				<a href="list_appareil.php?equipe=15 pret=15">Pr&ecirc;t</a>
-				<a href="add_time.php">Temps</a>
-				<a href="add_task.php">Task</a>
-				<a href="add_labviews.php">Labview</a>
-			</div>
-		</li>
+	<li class="dropdown">
+		<a class="dropbtn">Ajouter</a>
+		<div class="dropdown-content">
+			<a href="add_manip.php">Manip</a>
+			<a href="add_fourn.php">Fournisseur</a>
+			<a href="list_appareil.php?equipe=15 pret=15">Pr&ecirc;t</a>
+			<a href="add_time.php">Temps</a>
+			<a href="add_task.php">Task</a>
+			<a href="add_labviews.php">Labview</a>
+		</div>
+	</li>
 	<?php } else if ($level >= 3) { ?>
-		<li class="dropdown">
-			<a class="dropbtn">Ajouter</a>
-			<div class="dropdown-content">
-				<a href="add_appareil.php">Appareil</a>
-				<a href="add_categorie.php">Cat&eacute;gorie</a>
-				<a href="add_equip.php">&Eacute;quipe</a>
-				<a href="add_fourn.php">Fournisseur</a>
-				
-				<a href="add_user.php">Utilisateur</a>
-			</div>
-		</li>
+	<li class="dropdown">
+		<a class="dropbtn">Ajouter</a>
+		<div class="dropdown-content">
+			<a href="add_appareil.php">Appareil</a>
+			<a href="add_categorie.php">Cat&eacute;gorie</a>
+			<a href="add_equip.php">&Eacute;quipe</a>
+			<a href="add_fourn.php">Fournisseur</a>
+			<a href="add_user.php">Utilisateur</a>
+		</div>
+	</li>
 	<?php } ?>
 
 	<?php if ($level >= 4) { ?>
-		<li class="dropdown">
-			<a class="dropbtn">Bonus</a>
-			<div class="dropdown-content">
-				<a href="add_time.php">Temps</a>
-				<a href="add_task.php">Task</a>
-				<a href="add_demande.php">Demande</a>
-				<a href="add_labviews.php">Labview</a>
-				<a href="add_intapp.php?app=3">Intervention</a>
-				<a href="add_machine.php">Machine</a>
-				<a href="add_manip.php">Manip</a>
-				<a href="list_manip.php">Liste des manips</a>
+	<li class="dropdown">
+		<a class="dropbtn">Bonus</a>
+		<div class="dropdown-content">
+			<a href="add_time.php">Temps</a>
+			<a href="add_task.php">Task</a>
+			<a href="add_demande.php">Demande</a>
+			<a href="add_labviews.php">Labview</a>
+			<a href="add_intapp.php?app=3">Intervention</a>
+			<a href="add_machine.php">Machine</a>
+			<a href="add_manip.php">Manip</a>
+			<a href="list_manip.php">Liste des manips</a>
 
-			</div>
-		</li>
+		</div>
+	</li>
 	<?php } ?>
 
 	<li class="dropdown right">
