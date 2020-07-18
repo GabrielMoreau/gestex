@@ -487,6 +487,21 @@ span.option-right {
 	display: block;
 }
 
+.navbar li.search {
+	display: block;
+	float: right;
+	vertical-align: baseline;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.navbar li.search form {
+	margin: auto;
+	margin-bottom: auto;
+	padding-top: 8px;
+	padding-right: 8px;
+}
+
 .navbar li.right {
 	float: right;
 	background-color: var(--navbar-login-bg); 

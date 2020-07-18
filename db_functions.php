@@ -173,7 +173,7 @@ function get_fournisseur_listall($pdo) {
 // -------------------------------------------------------------
 
 function get_fournisseur_find($pdo, $find='') {
-	if (empty($find))
+	if (empty($find) or ($find === true))
 		return get_fournisseur_listall($pdo);
 	$sql = 'SELECT * FROM fournisseurs WHERE nom RLIKE ? OR descr RLIKE ?;';
 	$stmt = $pdo->prepare($sql);

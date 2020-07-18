@@ -28,31 +28,30 @@ define('ICON_MARK_RIGHT',    '<span><svg width="1.2em" height="1.2em" fill="curr
 
 // -------------------------------------------------------------
 
-function en_tete($titre) {
+function en_tete($titre, $find=false) {
    // <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-   if(!empty($_SESSION)){
+   if (!empty($_SESSION)) {
 	$pdo            = connect_db();
 	$logged_in_user = $_SESSION['logged_in_user'];
 	$sql            = 'SELECT nom, prenom, theme FROM users WHERE loggin = ?;';
 	$stmt           = $pdo->prepare($sql);
 	$stmt->execute(array($logged_in_user));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	$link = '<link href="pool_project_'.$user[0]['theme'].'.css" rel ="stylesheet" type="text/css">';
-}else{
-	$link = '<link href="pool_project_clair.css" rel ="stylesheet" type="text/css">';
-}
+
+	$css = 'pool_project_'.$user[0]['theme'].'.css';
+	} else {
+		$css = 'pool_project_clair.css';
+	}
 ?>
+
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
 	<link rel="icon" sizes="192x126" href="images/logo-gestex-192.png">
 	<title>GestEx - <?php echo $titre ?></title>
-<?php echo $link; ?>
+	<link href="<?php echo $css; ?>" rel ="stylesheet" type="text/css">
 	<script src="sorttable-gestex.js"></script>
 </head>
-<?php
-
-?>
 <body>
 <div class="header">
 	<div class="header-logo">
@@ -66,16 +65,16 @@ function en_tete($titre) {
 </div>
 
 <?php
-if(!empty($_SESSION)){
-	nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['level'], $_SESSION['user_id']);
-} else {
-	nav_bar('', '', 0, 0);
-}
+	if (!empty($_SESSION)) {
+		nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['level'], $_SESSION['user_id'], $find);
+	} else {
+		nav_bar('', '', 0, 0, $find);
+	}
 }
 
 // -------------------------------------------------------------
 
-function nav_bar($prenom, $nom, $level, $user_id) {
+function nav_bar($prenom, $nom, $level, $user_id, $find) {
 ?>
 <div class="navbar">
 <ul>
@@ -163,6 +162,15 @@ function nav_bar($prenom, $nom, $level, $user_id) {
 			<a href="user_changepwd.php?id=<?php echo $user_id ?>"><?php echo ICON_PERSON_PASWD;?> Changer le<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a>
 			<a href="user_pret.php?id=<?php echo $user_id ?>"><?php echo ICON_BOOKING;?> Mes emprunts</a>
 		</div>
+	</li>
+	<?php } ?>
+
+	<?php if ($find) { ?>
+	<li class="search">
+		<form method="POST" name="search">
+			<input type="search" name="find" size="10" maxlength="20" value="<?php if (!($find === true)) {echo $find;} ?>" placeholder="Rechercher" results>
+			<input type="submit" hidden>
+		</form>
 	</li>
 	<?php } ?>
 </ul>
