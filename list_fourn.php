@@ -12,6 +12,12 @@ $user_level     = $_SESSION['level'];
 
 en_tete('Liste de tous les fournisseurs');
 
+$find = '';
+if (!empty($_GET['find']))
+	$find = $_GET['find'];
+if (!empty($_POST['find']))
+	$find = $_POST['find'];
+
 $id_highlight = 0;
 if (!empty($_GET['highlight']))
 	$id_highlight = $_GET['highlight'];
@@ -70,11 +76,7 @@ if (!empty($_GET['highlight']))
 
 <?php	// interrogation base de donnees
 if ($pdo = connect_db()) {
-	// recupere la liste de fournisseurs
-	$sql = 'SELECT * FROM fournisseurs;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-	$fournisseur_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$fournisseur_fetch = get_fournisseur_find($pdo, $find);
 	$num_line = 1;
 	foreach ($fournisseur_fetch as $fournisseur) {
 		$class = 'impair';
