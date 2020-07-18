@@ -32,76 +32,83 @@ if (isset($_POST[descr]))
 	$find_descr = $_POST[descr];
 ?>
 
-<!--------  table criteres de recherche ----->
+<!-- table criteres de recherche -->
 <div class="catalog">
+<form action="find_fourn.php" method="POST" name="findForm">
 <table>
-  <tbody>
-    <tr>
-      <th>
-	le Nom contient <br />
-      </th>
-     <th>
-	la description contient <br />
-      </th> <th>   </th></tr>
-	<form action="find_fourn.php" method="POST" name="findForm">
-	<tr><td>
-	<input type="text" name="nom" size="50" maxlength="50" value="<?php echo $find_nom; ?>">
-	</td><td>
-	<input type="text" name="descr" size="50" maxlength="50" value="<?php echo $find_descr; ?>">
-	</td><td>
-	<input type="submit" name="find" value="Rechercher">
-
-	</td></tr></form>
-</tbody>
+	<tbody>
+		<tr>
+			<th>
+				Le Nom contient
+			</th>
+			<th>
+				La description contient
+			</th>
+			<th>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" name="nom" size="50" maxlength="50" value="<?php echo $find_nom; ?>">
+			</td>
+			<td>
+				<input type="text" name="descr" size="50" maxlength="50" value="<?php echo $find_descr; ?>">
+			</td>
+			<td>
+				<input type="submit" name="find" value="Rechercher">
+			</td>
+		</tr>
+	</tbody>
 </table>
+</form>
 </div>
 
 <?php
-if (isset($find_nom) || isset($find_descr)){
-	echo "Resultat de la recherche pour";
+if (isset($find_nom) || isset($find_descr)) {
+	echo 'Resultat de la recherche pour';
 	if ( !empty($find_nom))
-		echo " nom :".$find_nom;
+		echo ' nom :'.$find_nom;
 	if ( !empty($find_descr) )
-		echo " description :".$find_descr;
+		echo ' description :'.$find_descr;
 	}
 ?>
-<br />
-<!--------  table resultats ----->
-<table cellpadding="2" cellspacing="2" border="1"
- style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
-  <tbody>
-    <tr bgcolor="#f7d709">
-      <th>
-	<a href ="list_fourn.php?tri=nom">Nom</a><br />
-      </th>
-      <th>
-	Adresse<br />
-      </th>
-      <th>
-	T&eacute;l&eacute;phone<br />
-      </th>
-      </th>
-      <th>
-	Fax<br />
-      </th>
-      <th>
-	Courriel<br />
-      </th>
-      <th>
-	WWW<br />
-      </th>
-      <th>
-	Contacts<br />
-      </th>
-      <th>
-	Description<br />
-      </th>
-<?php if ( $user_level >=2 ) {	?>
-	</th><th></th><th>
-<?php	 }  ?>
-    </tr>
-<?php	//interrogation base de donnees
 
+<!-- table resultats -->
+<div class="catalog">
+<table>
+	<tbody>
+		<tr>
+			<th>
+				<a href ="list_fourn.php?tri=nom">Nom</a>
+			</th>
+			<th>
+				Adresse
+			</th>
+			<th>
+				T&eacute;l&eacute;phone
+			</th>
+			<th>
+				Fax
+			</th>
+			<th>
+				Courriel
+			</th>
+			<th>
+				WWW
+			</th>
+			<th>
+				Contacts
+			</th>
+			<th>
+				Description
+			</th>
+			<?php if ($user_level >= 2) { ?>
+			<th colspan="2">
+			</th>
+			<?php } ?>
+		</tr>
+
+<?php	//interrogation base de donnees
 if ( $connex = connect_db() ){
 	// recupere la liste de fournisseurs repondant aux criteres de recherche
 	if (isset($find_nom) && isset($find_descr))
@@ -153,8 +160,9 @@ while ($data = result_db($qh)) {
   }//end if  non vides
 }//end if connect
 ?>
-  </tbody>
+
+	</tbody>
 </table>
-<br />
 </div>
+
 <?php pied_page() ?>
