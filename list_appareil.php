@@ -124,12 +124,13 @@ en_tete($title);
 
 	$num_line = 1;
 	foreach ($listing as $data) {
-		// remplit le tableau
+		$class = 'impair';
 		if ($num_line % 2)
-			echo '<tr class="impair">'.PHP_EOL;
-		else
-			echo '<tr class="pair">'.PHP_EOL;
+			$class = 'pair';
 		$num_line++;
+		if ($data['id'] == $id_highlight)
+			$class .= ' highlight';
+		echo '<tr class="'.$class.'" id="'.$data['id'].'">'.PHP_EOL;
 
 		if ($cat == 0) {
 			echo '  <td>';
