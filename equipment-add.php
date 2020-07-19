@@ -1,12 +1,12 @@
 <?php
-// add_appareil.php
+// equipment-add.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('list_appareil.php');
+auth_or_login('equipment-list.php');
 level_or_alert(3, 'Modification d\'un appareil');
 
 $user_id        = $_SESSION['user_id'];
@@ -30,13 +30,13 @@ if ($pdo = connect_db()) {
 		// nouvel appareil
 		// transmet la valeur de la categorie a la page valid appareil
 		$mode   = 'ajouter';
-		$action = 'valid_appareil.php?categorie='.$cat;
+		$action = 'equipment-create.php?categorie='.$cat;
 		en_tete('Ajouter un appareil');
 	
 	} else {
 		// modif appareil
 		$mode   = 'modifier';
-		$action = 'modif_appareil.php?categorie='.$cat;
+		$action = 'equipment-update.php?categorie='.$cat;
 		en_tete('Modifier les caracteristiques d\'un appareil');
 
 		// recupere l'appareil selectionne
@@ -244,7 +244,7 @@ if ($pdo = connect_db()) {
 		</form>
 	</tbody>
 	<tbody>
-		<form action="list_appareil.php"method="POST" name="annulForm">
+		<form action="equipment-list.php"method="POST" name="annulForm">
 		<tr>
 			<td colspan="2" class="button">
 				<input type="submit" name="annul" value="Annuler">
@@ -255,6 +255,6 @@ if ($pdo = connect_db()) {
 </table>
 </div>
 
-<?php } else { redirect('list_appareil.php'); } ?>
+<?php } else { redirect('equipment-list.php'); } ?>
 
 <?php pied_page() ?>

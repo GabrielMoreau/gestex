@@ -1,12 +1,12 @@
 <?php
-// valid_appareil.php
+// equipment-create.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('valid_appareil.php');
+auth_or_login('equipment-create.php');
 level_or_alert(3, 'Ajout d\'un appareil');
 
 // validation d'un nouvel appareil
@@ -73,7 +73,7 @@ $cat = $_GET['categorie'];
 if (!empty($erreur) ){
 	//erreur
 	echo '<br />Erreur : '.$erreur;
-	echo '<br /><a href="add_appareil.php">Suite</a><br />';
+	echo '<br /><a href="equipment-add.php">Suite</a><br />';
 	pied_page();
 	exit();
 }
@@ -107,7 +107,7 @@ if ($pdo = connect_db()) {
 } //end if connect
 
 echo '<br />Ajout de '.$nom.' valid&eacute;e';
-echo '<br /><br /><a href="list_appareil.php?highlight='.$id_app.'#'.$id_app.'">Suite</a><br /><br />';
+echo '<br /><br /><a href="equipment-list.php?highlight='.$id_app.'#'.$id_app.'">Suite</a><br /><br />';
 
 pied_page();
 ?>

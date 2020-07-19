@@ -14,7 +14,7 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 
 if (empty($_GET['id']))
-	Header("Location: list_appareil.php");
+	Header("Location: equipment-list.php");
 else
 	$id_demande = $_GET['id'];
 

@@ -54,7 +54,7 @@ if ($pdo = connect_db()) {
 			echo '<tr class="impair">'.PHP_EOL;
 		$num_line++;
 		echo '  <td>';
-		echo '    <a href="list_appareil.php?categorie='.$data['id'].'">'.$data['nom'].'</a>';
+		echo '    <a href="equipment-list.php?categorie='.$data['id'].'">'.$data['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		if ($user_level >= 3) {
 			echo '  <td>';

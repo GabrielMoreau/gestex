@@ -60,7 +60,7 @@ if ($pdo = connect_db()) {
 		</form>
 	</tbody>
 	<tbody>
-		<form action="list_appareil.php" method="POST" name="annulForm">
+		<form action="equipment-list.php" method="POST" name="annulForm">
 		<tr>
 			<td colspan="2" class="button">
 				<input type="submit" name="annul" value="Annuler">

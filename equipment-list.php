@@ -1,5 +1,5 @@
 <?php
-// list_appareil.php
+// equipment-list.php
 $web_page = true;
 
 // Authenticate
@@ -84,7 +84,7 @@ en_tete($title);
 			if ($log == true && $user_level ==2)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($log == true && $user_level >=3)
-				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="add_appareil.php">'.ICON_ADD_APPAREIL.'</a></span></th>'.PHP_EOL;
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="equipment-add.php">'.ICON_ADD_APPAREIL.'</a></span></th>'.PHP_EOL;
 			?>
 		</tr>
 
@@ -146,7 +146,7 @@ en_tete($title);
 		echo      $data['id'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo '    <a href ="appareil_see.php?id='.$data['id'].'">'. $data['nom'].'</a>';
+		echo '    <a href ="equipment-see.php?id='.$data['id'].'">'. $data['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		echo      $data['modele'];
@@ -210,12 +210,12 @@ en_tete($title);
 
 		if (($log === true && $user_level >= 2) && ($eq != "15 pret=15")) {
 			echo '  <td>';
-			echo '    <a href="add_appareil.php?id=',$data['id'],'">'.ICON_EDIT.'</a>';
+			echo '    <a href="equipment-add.php?id=',$data['id'],'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}//end if
 		if (($log === true && $user_level >= 3) && ($eq != "15 pret=15")) {
 			echo '  <td>';
-			echo '    <a href="del_appareil.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
+			echo '    <a href="equipment-del.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 
 		}

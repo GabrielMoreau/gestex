@@ -164,7 +164,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
     </tr></form>
   </tbody>
  <tbody>
-	<form action="list_appareil.php" method="POST" name="annulForm">
+	<form action="equipment-list.php" method="POST" name="annulForm">
  	<tr >   <td colspan="2" style="vertical-align: top; text-align: right;">
 	<input type="submit" name="annul" value="Annuler">
 	 </td>    </tr>
@@ -174,7 +174,7 @@ remplir obligatoirement, les autres sont optionnels.<br />
 <br />
 <?php }
 	else
-	{	Header("Location: list_appareil.php");	}	?>
+	{	Header("Location: equipment-list.php");	}	?>
 <br />
 </div>
 <?php pied_page() ?>

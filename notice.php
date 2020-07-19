@@ -13,7 +13,7 @@ $user_level     = $_SESSION['level'];
 
 //recupere le numero du nom
 if (empty($_GET['id']))
-	Header('Location: list_appareil.php');
+	Header('Location: equipment-list.php');
 else
 	$id_app=$_GET['id'];
 
@@ -132,7 +132,7 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 			if ($user_level >=2){
 				echo '  <td style="vertical-align: top;">';
-				echo '    <a href="add_appareil.php?id=',$id_app,'">'.ICON_EDIT.'</a>';
+				echo '    <a href="equipment-add.php?id=',$id_app,'">'.ICON_EDIT.'</a>';
 				echo '  </td>'.PHP_EOL;
 			}
 			if ($user_level >=3){

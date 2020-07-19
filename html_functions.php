@@ -87,8 +87,8 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 		<a class="dropbtn">Liste des appareils</a>
 		<div class="dropdown-content">
 			<a href="category-list.php">Cat&eacute;gories</a>
-			<a href="list_appareil.php">Global</a>
-			<a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
+			<a href="equipment-list.php">Global</a>
+			<a href="equipment-list.php?equipe=15">au service <br />instrumentation</a>
 		</div>
 	</li>  
 	<li class="right"><a href="login.php">Se connecter</a></li>
@@ -101,14 +101,14 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 		<a class="dropbtn">Liste des appareils</a>
 		<div class="dropdown-content">
 			<a href="category-list.php">Cat&eacute;gories</a>
-			<a href="list_appareil.php">Global</a>
+			<a href="equipment-list.php">Global</a>
 			<?php
 			// $pdo = connect_db();
 			// foreach (get_equip_with_appareil($pdo) as $data) {
-			// 	echo '<a href="list_appareil.php?equipe='.$data['id'].'">au service <br />'.$data['nom'].'</a>'.PHP_EOL;
+			// 	echo '<a href="equipment-list.php?equipe='.$data['id'].'">au service <br />'.$data['nom'].'</a>'.PHP_EOL;
 			// }
 			?>
-			<a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
+			<a href="equipment-list.php?equipe=15">au service <br />instrumentation</a>
 		</div>
 	</li>
 
@@ -118,7 +118,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 		<div class="dropdown-content">
 			<a href="add_manip.php">Manip</a>
 			<a href="supplier-add.php">Fournisseur</a>
-			<a href="list_appareil.php?equipe=15 pret=15">Pr&ecirc;t</a>
+			<a href="equipment-list.php?equipe=15 pret=15">Pr&ecirc;t</a>
 			<a href="add_time.php">Temps</a>
 			<a href="add_task.php">Task</a>
 			<a href="add_labviews.php">Labview</a>
@@ -128,7 +128,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 	<li class="dropdown">
 		<a class="dropbtn">Ajouter</a>
 		<div class="dropdown-content">
-			<a href="add_appareil.php">Appareil</a>
+			<a href="equipment-add.php">Appareil</a>
 			<a href="category-add.php">Cat&eacute;gorie</a>
 			<a href="team-add.php">&Eacute;quipe</a>
 			<a href="supplier-add.php">Fournisseur</a>

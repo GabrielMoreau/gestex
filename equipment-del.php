@@ -1,6 +1,5 @@
 <?php
-
-//del_appareil.php
+// equipment-del.php
 
 // Authenticate
 include("session_auth.php");
@@ -12,7 +11,7 @@ $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 if (empty($_GET['id']))
-	Header("Location: list_appareil.php");
+	Header("Location: equipment-list.php");
 else
 	$id_app = $_GET['id'];
 
@@ -44,6 +43,6 @@ else{
 		}
 	}
 	//on retourne a la page d'accueil
-	Header("Location: list_appareil.php");
+	Header("Location: equipment-list.php");
 }
 ?>

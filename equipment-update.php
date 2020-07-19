@@ -1,5 +1,5 @@
  <?php
-/// modif_appareil.php
+// equipment-update.php
 
 // Authenticate
 //include("session_auth.php");
@@ -99,7 +99,7 @@ if (!empty($erreur) ){
 	//erreur
 
 	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"add_appareil.php?id=".$id_app ."\" >Suite</a><br />\n";
+	echo"<br /><a href=\"equipment-add.php?id=".$id_app ."\" >Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -214,7 +214,7 @@ if ($notice!=$listing[0]['notice']){
 	}//end if modif
 	else{
 		echo "aucune modif a faire";
-		echo"<br /><br /><a href=\"list_appareil.php\">Suite</a><br /><br />\n";
+		echo"<br /><br /><a href=\"equipment-list.php\">Suite</a><br /><br />\n";
 		pied_page();
 		exit();
 		}//else end
@@ -238,7 +238,7 @@ $categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 //quand on va sur suite, on retourne sur la page de la categorie choisie
-Header("Location: list_appareil.php");
+Header("Location: equipment-list.php");
 
 pied_page();
 exit();

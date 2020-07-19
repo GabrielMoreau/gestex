@@ -1,5 +1,5 @@
 <?php
-// appareil_see.php
+// equipment-see.php
 $web_page = true;
 
 // Authenticate
@@ -19,7 +19,7 @@ if(empty($_SESSION['logged_in_user'])){
 
 $id_app = $_GET['id'];
 if (empty($id_app))
-	redirect('list_appareil.php');
+	redirect('equipment-list.php');
 
 if ($pdo = connect_db()) {
 	$appareil_selected = get_appareil_all_by_id($pdo, $id_app);
@@ -105,6 +105,6 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 </table>
 </div>
 
-<?php } else { redirect('list_appareil.php'); } ?>
+<?php } else { redirect('equipment-list.php'); } ?>
 
 <?php pied_page() ?>
