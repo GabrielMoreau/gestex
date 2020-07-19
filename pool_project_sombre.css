@@ -1,9 +1,34 @@
+:root {
+	--body-bg: #181818;;
+	--body-fg: rgb(235, 229, 229);
+	--navbar-title-bg: #292929;
+	--navbar-title-hover-bg: gray;
+	--navbar-title-hover-fg: white;
+	--navbar-login-bg: red;
+	--navbar-login-sub-bg: rgb(216, 11, 11);
+	--catalog-odd-bg: #383838;  /* impair  */
+	--catalog-even-bg: #747474; /*   pair  */
+	--catalog-hover-bg: #f5f5f5; /* #9E9E9E;*/
+	--catalog-hover-fg: black;
+	--color-ok: #00CC00;
+	--color-bad: #CC0000;
+	--color-alert: orange;
+	--color-link: #d3b405;
+	--form-bg: #657b83;
+	--form-fg: #fdf6e3;
+	--form-button-bg: #383838;
+	--form-button-fg: var(--body-fg);
+	--login-bg: #164093;
+	--login-fg: #629DE7;
+	--button-bg: white;
+	--footer-separator-bg: #d3b405;
+}
 
 /* ================= general - theme sombre */
 
 body {
-	color: rgb(235, 229, 229);
-	background-color: 181818;
+	color: var(--body-fg);
+	background-color: var(--body-bg);
 	margin-left: 0px;
 	margin-right: 0px;
 	margin-top: 0px;
@@ -16,35 +41,34 @@ body {
 /* ================= couleur des liens */
 
 a {
-	color : #d3b405;
+	color : var(--color-link);
+	text-decoration: none;
 }
 
 
 /* ================= tableau */
+/*
+#table {
+#	border-collapse: collapse;
+#}
 
-table {
-	border-collapse: collapse;
-}
-
-th, td {
-	padding: 8px;
-	text-align: left;
-	border-bottom: 1px solid black;
-}
+#th, td {
+#	padding: 8px;
+#	text-align: left;
+#	border-bottom: 1px solid var(--body-fg);
+#}
  
-tr:hover {
-	background-color: #f5f5f5;
-	color: black;
-}
-
+#tr:hover {
+#	background-color: #f5f5f5;
+#	color: black;
+#}
+*/
 
 /* ================= form */
 
 .form table {
-	color: white;
-	background-color: #383838;
 	background-color: var(--body-bg);
-	border: 2px solid white;
+	border: 2px solid var(--navbar-title-hover-bg);
 	margin-left: auto;
 	margin-right: auto;
 	padding: 10px;
@@ -52,36 +76,74 @@ tr:hover {
 	width: auto;
 }
 
-.form th, .form td {
-	border-bottom: 1px solid #383838;
+.form th,
+.form td {
+	border-bottom: 1px solid var(--catalog-even-bg);
+}
+
+/* .form td:first-child, */
+.form th {
+	text-align: right;
+	padding-right: 10px;
+	font-weight: normal;
+	vertical-align: top;
 }
 
 .form td.button {
 	text-align: right;
 }
 
-.form select, .form input, .form textarea {
-	background-color: #747474 ;
+.form input,
+.form select,
+.form textarea {
+	background-color: var(--form-button-bg);
+	color: var(--body-fg);
 	padding: 5px 10px;
-	border: 1px solid #ccc;
+	border: 1px solid var(--body-fg);
 	border-radius: 4px;
-}
-
-.form tr:hover {
-	background-color:#383838;
-	color : white;
-}
-
-input, select, textarea {
 	font-weight: normal;
-	color: #000000;
 }
 
 
 /* ================= admin.php and user_changepwd.php */
 
+.auth table {
+	background-color: var(--body-bg);
+	border: 2px solid var(--navbar-login-bg);
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	border-radius: 10px;
+	width: auto;
+}
+
+.auth input {
+	width: 100%;
+	background-color: var(--form-button-bg);
+	color: var(--form-button-fg);
+	padding: 5px 10px;
+	border: 1px solid var(--body-fg);
+	border-radius: 4px;
+}
+
+.auth .button input {
+	color: var(--color-bad);
+	background-color: var(--button-bg);
+	width: auto;
+}
+
+.auth th {
+	text-align: right;
+	padding-right: 10px;
+}
+
+.auth td.button {
+	text-align: right;
+	color: var(--color-ok);
+}
+
 .outer_table {
-	background-color: #B5D3FF;
+	background-color: var(--login-bg);
 }
 
 .table_head {
@@ -145,7 +207,7 @@ input, select, textarea {
 
 /* ================= catalog table */
 
-.highlight td {
+.catalog .highlight td {
 	font-weight: bold;
 }
 
@@ -154,59 +216,99 @@ input, select, textarea {
 	text-align: left;
 	margin-left: auto;
 	margin-right: auto;
+	border-collapse: collapse;
 }
 
 .catalog table.narrow {
 	width: 50%;
 }
 
-.catalog tr {
-	border-collapse: collapse;
-}
-
 .catalog th {
 	vertical-align: top;
 	text-align: center;
-	background-color: #959595;
+	background-color: var(--navbar-title-bg);
 }
 
 .catalog th:not(.sorttable_nosort):hover {
 	text-decoration: none;
-	background-color: gray;
-	color: white;
+	background-color: var(--navbar-title-hover-bg);
+	color: var(--navbar-title-hover-fg);
 }
 
-.catalog td, th {
-	border-collapse: collapse;
+.catalog td,
+.catalog th {
 	padding-left: 0.8ex;
 	padding-right: 0.8ex;
+	padding-top: 0.8ex;
+	padding-bottom: 0.8ex;
 }
 
-tr.pair {
-	background-color: #383838;
+.catalog tr.pair {
+	background-color: var(--catalog-even-bg);
 }
 
-tr.impair {
-	background-color: #747474;
+.catalog tr.impair {
+	background-color: var(--catalog-odd-bg);
 }
 
-table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+.catalog tr:hover.pair,
+.catalog tr:hover.impair {
+	background-color: var(--catalog-hover-bg);
+	color: var(--catalog-hover-fg);
+	border-bottom: 1px solid var(--navbar-title-bg);
+}
+
+.catalog table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
 	content: "\00A0\21C5";
 	}
+
+
+/* ================= transpose table */
+
+.transpose tr {
+	display: block;
+	float: left;
+}
+
+.transpose th,
+.transpose td {
+	display: block;
+}
+
+
+/* ================= transpose table clickable */
+
+label[for=element-toggle] {
+	cursor: pointer;
+	color: var(--color-bad);
+}
+#element-toggle {
+	display: none;
+}
+
+#element-toggle:not(:checked) ~ #toggled-element tr {
+	display: block;
+	float: left;
+}
+
+#element-toggle:not(:checked) ~ #toggled-element th,
+#element-toggle:not(:checked) ~ #toggled-element td {
+	display: block;
+}
 
 
 /* ================= alert */
 
 @keyframes blink { 
 	50% {
-		border-color: #001061;
+		border-color: var(--body-bg);
 	} 
 }
 
 center.alert {
 	border-width: 5px;
 	border-style: dotted;
-	border-color: orange;
+	border-color: var(--color-alert);
 	animation-name: blink ;
 	animation-duration: 0.5s ;
 	animation-timing-function: step-end ;
@@ -221,16 +323,16 @@ center.alert {
 }
 
 .alert button.green {
-	color: #00CC00;
+	color: var(--color-ok);
 }
 .alert button.red {
-	color: #CC0000;
+	color: var(--color-bad);
 }
 
 .alert hr {
 	border-width: 2px;
 	border-style: solid;
-	color: orange;
+	color: var(--color-alert);
 	width: 30%;
 }
 
@@ -246,11 +348,11 @@ center.alert {
 /* ================= icon */
 
 span.check-ok {
-	color: #00CC00;
+	color: var(--color-ok);
 }
 
 span.check-bad {
-	color: #CC0000;
+	color: var(--color-bad);
 }
 
 span.option-right {
@@ -282,7 +384,6 @@ span.option-right {
 	padding: 0px 0px 0px 30px;
 	font-size: 14;
 	font-weight: bold;
-	color: rgb(235, 229, 229);
 }
 
 .header br {
@@ -307,7 +408,7 @@ span.option-right {
 	height: 6px;
 	border-radius: 3px;
 	border: none;
-	background-color: #d3b405;
+	background-color: var(--footer-separator-bg);
 }
 
 .footer br {
@@ -320,6 +421,7 @@ span.option-right {
 
 
 /*----navbar----*/
+
 .navbar {
 	position: -webkit-sticky; /*Safari*/
 	position: sticky;
@@ -330,7 +432,7 @@ span.option-right {
 	list-style-type: none;
 	padding: 0px;
 	overflow: hidden;
-	background-color: #292929;
+	background-color: var(--navbar-title-bg);
 	clear: both;
 	margin-top: 30px;
 	margin-bottom: 20px;
@@ -342,9 +444,10 @@ span.option-right {
 	float: left;
 }
 
-.navbar li>a, .dropbtn {
+.navbar li>a,
+.navbar .dropbtn {
 	display: inline-block;
-	color: white;
+	color: var(--body-fg);
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
@@ -352,8 +455,8 @@ span.option-right {
 
 .navbar li>a:not(.dropbtn):hover {
 	text-decoration: none;
-	background-color: gray;
-	color: white;
+	background-color: var(--navbar-title-hover-bg);
+	color: var(--navbar-title-hover-fg);
 }
 
 .navbar li.dropdown {
@@ -363,7 +466,7 @@ span.option-right {
 .navbar .dropdown-content {
 	display: none;
 	position: absolute;
-	background-color: #292929;
+	background-color: var(--navbar-title-bg);
 	min-width: 160px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
@@ -375,7 +478,7 @@ span.option-right {
 }
 
 .navbar .dropdown-content a {
-	color: white;
+	color: var(--body-fg);
 	padding: 12px 16px;
 	text-decoration: none;
 	display: block;
@@ -384,8 +487,8 @@ span.option-right {
 
 .navbar .dropdown-content a:hover {
 	text-decoration:none;
-	background-color: gray;
-	color: white;
+	background-color: var(--navbar-title-hover-bg);
+	color: var(--navbar-title-hover-fg);
 }
   
 .navbar .dropdown:hover .dropdown-content {
@@ -409,14 +512,23 @@ span.option-right {
 
 .navbar li.right {
 	float: right;
-	background-color: red; 
+	background-color: var(--navbar-login-bg); 
 }
 
 .navbar li.right a:hover {
-	background-color: rgb(216, 11, 11); 
-	color: white;
+	background-color: var(--navbar-login-sub-bg);  
+	color: var(--navbar-title-hover-fg);
 }
 
 .navbar a.dropbtn:hover {
 	text-decoration : none;
+}
+
+.navbar input {
+	background-color: var(--form-button-bg);
+	color: var(--body-fg);
+	padding: 5px 10px;
+	border: 1px solid var(--body-fg);
+	border-radius: 4px;
+	font-weight: normal;
 }
