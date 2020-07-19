@@ -1,26 +1,26 @@
 :root {
-	--body-bg: #002b36;
-	--body-fg: #fdf6e3;
+	--body-bg: #002B36;
+	--body-fg: #FDF6E3;
+	--color-ok: #859900;
+	--color-bad: #DC322F;
+	--color-alert: #CB4B16;
+	--color-link: #B58900;
 	--navbar-title-bg: #268BD2;
 	--navbar-title-hover-bg: #2AA198;
 	--navbar-title-hover-fg: var(--body-fg);
-	--navbar-login-bg: #dc322f;
-	--navbar-login-sub-bg: #cb4b16;
-	--catalog-odd-bg: #586e75;  /* impair  */
+	--navbar-login-bg: #DC322F;
+	--navbar-login-sub-bg: #CB4B16;
+	--catalog-odd-bg: #586E75;  /* impair  */
 	--catalog-even-bg: #073642; /*   pair  */
-	--catalog-hover-bg: #eee8d5;
-	--catalog-hover-fg: #002b36;
-	--color-ok: #859900;
-	--color-bad: #dc322f;
-	--color-alert: #cb4b16;
-	--color-link: #b58900;
-	--form-bg: #657b83;
-	--form-fg: #fdf6e3;
-	--form-button-bg: #657b83;
+	--catalog-hover-bg: #EEE8D5;
+	--catalog-hover-fg: var(--body-bg);
+	--form-bg: #657B83;
+	--form-fg: #FDF6E3;
+	--form-button-bg: #657B83;
 	--form-button-fg: var(--body-fg);
-	--login-bg: #6c71c4;
+	--login-bg: #6C71C4;
 	--login-fg: #073642;
-	--button-bg: #93a1a1;
+	--button-bg: #93A1A1;
 	--footer-separator-bg: var(--color-link);
 }
 

@@ -1,6 +1,10 @@
 :root {
-	--body-bg: #181818;;
+	--body-bg: #181818;
 	--body-fg: rgb(235, 229, 229);
+	--color-ok: #00CC00;
+	--color-bad: #CC0000;
+	--color-alert: orange;
+	--color-link: #D3B405;
 	--navbar-title-bg: #292929;
 	--navbar-title-hover-bg: gray;
 	--navbar-title-hover-fg: white;
@@ -8,20 +12,16 @@
 	--navbar-login-sub-bg: rgb(216, 11, 11);
 	--catalog-odd-bg: #383838;  /* impair  */
 	--catalog-even-bg: #747474; /*   pair  */
-	--catalog-hover-bg: #f5f5f5; /* #9E9E9E;*/
+	--catalog-hover-bg: #F5F5F5; /* #9E9E9E;*/
 	--catalog-hover-fg: black;
-	--color-ok: #00CC00;
-	--color-bad: #CC0000;
-	--color-alert: orange;
-	--color-link: #d3b405;
-	--form-bg: #657b83;
-	--form-fg: #fdf6e3;
+	--form-bg: #657B83;
+	--form-fg: #FDF6E3;
 	--form-button-bg: #383838;
 	--form-button-fg: var(--body-fg);
 	--login-bg: #164093;
 	--login-fg: #629DE7;
 	--button-bg: white;
-	--footer-separator-bg: #d3b405;
+	--footer-separator-bg: var(--color-link);
 }
 
 /* ================= general - theme sombre */

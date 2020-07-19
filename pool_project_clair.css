@@ -1,21 +1,21 @@
 :root {
 	--body-bg: #FFFADF;
 	--body-fg: #001061;
+	--color-ok: #00CC00;
+	--color-bad: #CC0000;
+	--color-alert: orange;
+	--color-link: blue;
 	--navbar-title-bg: rgb(250, 207, 41);
 	--navbar-title-hover-bg: gray;
 	--navbar-title-hover-fg: white;
 	--navbar-login-bg: red;
 	--navbar-login-sub-bg: rgb(216, 11, 11);
-	--catalog-odd-bg: #fde482;  /* impair  */
-	--catalog-even-bg: #fcf3b5; /*   pair  */
+	--catalog-odd-bg: #FDE482;  /* impair  */
+	--catalog-even-bg: #FCF3B5; /*   pair  */
 	--catalog-hover-bg: gray;
 	--catalog-hover-fg: white;
-	--color-ok: #00CC00;
-	--color-bad: #CC0000;
-	--color-alert: orange;
-	--color-link: blue;
-	--form-bg: #657b83;
-	--form-fg: #fdf6e3;
+	--form-bg: #657B83;
+	--form-fg: #FDF6E3;
 	--form-button-bg: white;
 	--form-button-fg: var(--body-fg);
 	--login-bg: #164093;
