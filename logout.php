@@ -1,7 +1,7 @@
 <?php
 ///logout.php
 
-include("session_auth.php");
+include("auth-functions.php");
 
 // $truc2=$_GET['variable'];
 logout();

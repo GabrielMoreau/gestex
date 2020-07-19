@@ -3,8 +3,8 @@
 $web_page = true;
 
 // Authenticate
-require_once('session_auth.php');
-require_once('html_functions.php');
+require_once('auth-functions.php');
+require_once('html-functions.php');
 
 session_start();
 if(empty($_SESSION['logged_in_user'])){

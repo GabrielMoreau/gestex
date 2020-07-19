@@ -3,7 +3,7 @@
 //task_info.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
 
 if (!auth(1))
  Header("Location: login.php");
@@ -27,7 +27,7 @@ $task_id=$_GET['idt'];
 if (empty($task_id))
  Header("Location: list_manip.php");
 
-require("html_functions.php");
+require("html-functions.php");
 
 en_tete('Infos T&acirc;che '.$task_id);
 

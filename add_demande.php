@@ -1,7 +1,7 @@
 <?php
 // add_demande.php
 	// Authenticate
-	include("session_auth.php");
+	include("auth-functions.php");
 
 	if (!auth(3))
 		Header("Location: login.php");
@@ -46,7 +46,7 @@ else{
 
 }
 }
-require("html_functions.php");
+require("html-functions.php");
 if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete('Ajouter une demande');

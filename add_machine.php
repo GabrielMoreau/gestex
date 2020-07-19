@@ -1,7 +1,7 @@
 <?php
 /// add_machine.php
 	// Authenticate
-	include("session_auth.php");
+	include("auth-functions.php");
 
 	if (!auth(3))
 		Header("Location: login.php");
@@ -22,7 +22,7 @@ else{
 	$action = 'modif_machine.php';
 }
 
-require("html_functions.php");
+require("html-functions.php");
 
 if ($pdo = connect_db()) {
 

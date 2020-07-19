@@ -2,7 +2,7 @@
 //list_intapp.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
 
 if (!auth(1))
 	Header("Location: login.php");
@@ -11,7 +11,7 @@ $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
 
-require("html_functions.php");
+require("html-functions.php");
 
 if (empty($_GET[id]))
 	Header("Location: list_machine.php");

@@ -1,5 +1,5 @@
 <?php
-include("session_auth.php");
+include("auth-functions.php");
 session_start();
 if(empty($_SESSION['logged_in_user'])){
 	$log = false;
@@ -9,7 +9,7 @@ if(empty($_SESSION['logged_in_user'])){
 	$user_level     = $_SESSION['level'];
 	$log            = true;
 }
-require("html_functions.php");
+require("html-functions.php");
 en_tete('Gestion des plateformes exp&eacute;rimentales');
 ?>
 

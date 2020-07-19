@@ -2,7 +2,7 @@
 /// add_task.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
  if (!auth(2))
   Header("Location: login.php");
 
@@ -32,7 +32,7 @@ else{
 
 }
 
-require("html_functions.php");
+require("html-functions.php");
 
 if ( $connex = connect_db() ){
  // recupere la manip selectionnee

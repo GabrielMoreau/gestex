@@ -1,6 +1,6 @@
 <?php
  // Authenticate
- include("session_auth.php");
+ include("auth-functions.php");
 
  if (!auth(2))
   Header("Location: login.php");
@@ -8,7 +8,7 @@
  $user_id = $_SESSION['user_id'];
  $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-require("html_functions.php");
+require("html-functions.php");
 
 /// valid_assoc.php
 //validation de l'assoc' d'un projet annexe a une manip

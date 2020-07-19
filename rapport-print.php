@@ -2,7 +2,7 @@
 // rapport-print.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
 
 if (!auth(2))
 //il faut etre au moins ita
@@ -23,7 +23,7 @@ if (!empty($_POST[tache]))
 if (!empty($_POST[date]))
 	$depuis=$_POST[date];
 
-require("html_functions.php");
+require("html-functions.php");
 
 en_tete('Rapport');
 

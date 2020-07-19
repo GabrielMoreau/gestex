@@ -2,7 +2,7 @@
 // equipment-datasheet.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
 session_start();
 //if (!auth(1))
 	//Header("Location: login.php");
@@ -17,7 +17,7 @@ if (empty($_GET['id']))
 else
 	$id_app=$_GET['id'];
 
-require("html_functions.php");
+require("html-functions.php");
 
 if ($pdo = connect_db()) {
 

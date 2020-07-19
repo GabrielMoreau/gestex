@@ -1,7 +1,7 @@
 <?php
 	// Authenticate
-	require("session_auth.php");
-	require("html_functions.php");
+	require("auth-functions.php");
+	require("html-functions.php");
 
 	$username='';
 	if(!empty($_POST['username'])){

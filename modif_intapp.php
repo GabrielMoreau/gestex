@@ -2,14 +2,14 @@
 /// modif_intapp.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
 
 if (!auth(3))
 	Header("Location: login.php");
 
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-require("html_functions.php");
+require("html-functions.php");
 
 //modification d'une intervention sur  appareil
 unset($erreur);

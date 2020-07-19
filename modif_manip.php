@@ -2,7 +2,7 @@
 /// modif_manip.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
 
 if (!auth(2))
 	Header("Location: login.php");
@@ -10,7 +10,7 @@ if (!auth(2))
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
 
-require("html_functions.php");
+require("html-functions.php");
 
 //modification d'une manip
 

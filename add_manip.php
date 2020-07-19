@@ -2,7 +2,7 @@
 /// add_manip.php
 //ajout/modif manip
 	// Authenticate
-	include("session_auth.php");
+	include("auth-functions.php");
 
 	if (!auth(2))
 		Header("Location: login.php");
@@ -22,7 +22,7 @@ if (empty($_GET['id'])){
 
 }
 
-require("html_functions.php");
+require("html-functions.php");
 
 if ( $pdo = connect_db() ){
 

@@ -1,6 +1,6 @@
 <?php
 
-require("html_functions.php");
+require("html-functions.php");
 
 /// valid_task.php
 //validation d'une nouvelle task
@@ -45,7 +45,7 @@ else{
 ///tout est ok
 //pas d'erreur
 ///on inscrit
-require("db_functions.php");
+require("db-functions.php");
 
 if ( $connex = connect_db() ){
  // chaine :liste des fournissuers separes par des ,

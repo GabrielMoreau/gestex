@@ -1,6 +1,6 @@
 <?php
 
-require("html_functions.php");
+require("html-functions.php");
 
 /// valid_intapp.php
 //validation d'une nouvelle intervention appareil
@@ -47,7 +47,7 @@ else{
 ///tout est ok
 //pas d'erreur
 ///on inscrit
-require("db_functions.php");
+require("db-functions.php");
 
 if ( $pdo = connect_db() ){
 		//inscription

@@ -3,7 +3,7 @@
 //browse_proj.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
 
 if (!auth(1))
  Header("Location: login.php");
@@ -22,7 +22,7 @@ $proj_id =$_GET['idp'];
 if (empty($proj_id))
  Header("Location: list_manip.php");
 
-require("html_functions.php");
+require("html-functions.php");
 
 if ( $connex = connect_db() ){
 

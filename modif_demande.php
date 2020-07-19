@@ -2,14 +2,14 @@
 /// modif_demande.php
 
 // Authenticate
-//include("session_auth.php");
+//include("auth-functions.php");
 
 //if (!auth(3))
 	//Header("Location: login.php");
 
 //$logged_in_user = strtolower($_SESSION['logged_in_user']);
-require_once('session_auth.php');
-require_once('html_functions.php');
+require_once('auth-functions.php');
+require_once('html-functions.php');
 
 auth_or_login('team-list.php');
 level_or_alert(3, 'Modification d\'une &eacute;quipe');

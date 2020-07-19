@@ -3,7 +3,7 @@
 //del_labview.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
 
 if (!auth(3))
 	Header("Location: login.php");

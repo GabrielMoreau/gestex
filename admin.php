@@ -2,7 +2,7 @@
 {
   // $Header: /cvsroot/tsheet/timesheet.php/admin.php,v 1.2 2003/10/26 22:59:19 vexil Exp $
 
-	require("session_auth.php");
+	require("auth-functions.php");
 	if (!auth(5))
 		Header("Location: login.php");
 

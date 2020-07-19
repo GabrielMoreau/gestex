@@ -1,8 +1,8 @@
 <?php
 // category-create.php
 
-require_once('session_auth.php');
-require_once('html_functions.php');
+require_once('auth-functions.php');
+require_once('html-functions.php');
 
 auth_or_login('category-create.php');
 level_or_alert(3, 'Ajout d\'une cat&eacute;gorie');

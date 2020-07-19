@@ -3,8 +3,8 @@
 $web_page = true;
 
 // Authenticate
-require_once('session_auth.php');
-require_once('html_functions.php');
+require_once('auth-functions.php');
+require_once('html-functions.php');
 
 auth_or_login('index.php');
 level_or_alert(1, 'Modification du mot de passe');

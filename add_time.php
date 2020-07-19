@@ -2,7 +2,7 @@
 /// add_time.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
  if (!auth(2))
 // il faut etre au moins ITA (ou admin)
   Header("Location: login.php");
@@ -23,7 +23,7 @@ $task_id = $_GET[idt];
 if (empty($task_id))
   Header("Location: list_manip.php");
 
-require("html_functions.php");
+require("html-functions.php");
 
 if ( $connex = connect_db() ){
  // recupere la manip selectionnee

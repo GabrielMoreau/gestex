@@ -1,7 +1,7 @@
 <?php
 /// add_intapp.php
 	// Authenticate
-	include("session_auth.php");
+	include("auth-functions.php");
 
 	if (!auth(3))
 		Header("Location: login.php");
@@ -26,7 +26,7 @@ else{
 
 }
 
-require("html_functions.php");
+require("html-functions.php");
 if ( $connex = connect_db() ){
 
 // recupere l'appareil selectionne

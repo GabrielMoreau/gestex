@@ -3,8 +3,8 @@
 //del_proj.php
 
 // Authenticate
-include("session_auth.php");
-require("html_functions.php");
+include("auth-functions.php");
+require("html-functions.php");
 
 if (!auth(3))
  Header("Location: login.php");

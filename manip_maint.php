@@ -3,7 +3,7 @@
 //manip_maint.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
 
 if (!auth(1))
 	Header("Location: login.php");
@@ -24,7 +24,7 @@ if (empty($_GET['id']))
 else
 	$manip_id=$_GET['id'];
 
-require("html_functions.php");
+require("html-functions.php");
 
 en_tete('Historique Manip');
 if ($pdo = connect_db()){

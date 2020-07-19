@@ -1,6 +1,6 @@
 <?php
 
-require("html_functions.php");
+require("html-functions.php");
 
 /// valid_manip.php
 //validation d'une nouvelle manip
@@ -42,7 +42,7 @@ else{
 ///tout est ok
 //pas d'erreur
 ///on inscrit
-require("db_functions.php");
+require("db-functions.php");
 
 if ( $pdo = connect_db() ){
   //ajout de la manip

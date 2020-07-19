@@ -3,7 +3,7 @@
 //joint_demande.php
 
 // Authenticate
-include("session_auth.php");
+include("auth-functions.php");
 
 //if (!auth(1))
 	//Header("Location: login.php");
@@ -17,7 +17,7 @@ $tache_id=$_GET['id'];
 if (empty($tache_id))
 	Header("Location: list_demande.php");
 
-require("html_functions.php");
+require("html-functions.php");
 
 if ( $connex = connect_db() ){
 

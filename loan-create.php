@@ -1,7 +1,7 @@
 <?php
 // loan-create.php
 
-require("html_functions.php");
+require("html-functions.php");
 //recuper la methode de tri
 
 /// valid_pret.php
@@ -54,7 +54,7 @@ else{
 //pas d'erreur
 ///on inscrit
 }
-require("db_functions.php");
+require("db-functions.php");
 
 if ( $pdo = connect_db() ){
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND equipe = ?;';

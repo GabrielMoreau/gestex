@@ -1,6 +1,6 @@
 <?php
 
-require("html_functions.php");
+require("html-functions.php");
 
 /// valid_time.php
 //validation de temps passe pour une tache
@@ -58,7 +58,7 @@ else{
 ///tout est ok
 //pas d'erreur
 ///on inscrit
-require("db_functions.php");
+require("db-functions.php");
 
 if ( $connex = connect_db() ){
 
