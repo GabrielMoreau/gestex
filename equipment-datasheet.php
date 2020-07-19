@@ -1,5 +1,5 @@
 <?php
-// notice.php
+// equipment-datasheet.php
 
 // Authenticate
 include("session_auth.php");
@@ -137,7 +137,7 @@ if ($pdo = connect_db()) {
 			}
 			if ($user_level >=3){
 				echo '  <td style="vertical-align: top;">';
-				echo '    <a href="del_notice.php?id=',$notice['id'],'">'.ICON_TRASH.'</a>';
+				echo '    <a href="datasheet-del.php?id=',$notice['id'],'">'.ICON_TRASH.'</a>';
 				echo '  </td>'.PHP_EOL;
 			}
 			echo '</tr>';

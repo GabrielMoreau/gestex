@@ -1,5 +1,5 @@
 <?php
-//del_notice.php
+// datasheet-del.php
 
 // Authenticate
 include("session_auth.php");

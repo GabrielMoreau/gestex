@@ -184,7 +184,7 @@ en_tete($title);
 		$notice = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		if (!empty($notice[0]['nom_notice'] ) || !empty($notice[1]['nom_notice']) || !empty($notice[2]['nom_notice']) || !empty($notice[3]['nom_notice']) || !empty($notice[4]['nom_notice']) || !empty($notice[5]['nom_notice']) || !empty($notice[6]['nom_notice'])){
 			//si trouve ajoute un bouton
-			echo ' <a href ="notice.php?id=', $data['id'],'">'.ICON_SEE_DOC.'</a><br />';
+			echo ' <a href ="equipment-datasheet.php?id=', $data['id'],'">'.ICON_SEE_DOC.'</a><br />';
 		}
 		echo '  </td>'.PHP_EOL;
 
