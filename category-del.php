@@ -2,7 +2,7 @@
 // category-del.php
 
 // Authenticate
-include("auth-functions.php");
+require_once('auth-functions.php');
 require_once('html-functions.php');
 
 if (!auth(3)) // si le level du user n'est pas >= 3, on l'emmene a la page pour se logger

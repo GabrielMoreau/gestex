@@ -2,7 +2,7 @@
 // rapport-print.php
 
 // Authenticate
-include("auth-functions.php");
+require_once('auth-functions.php');
 
 if (!auth(2))
 //il faut etre au moins ita

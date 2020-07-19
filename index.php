@@ -1,5 +1,5 @@
 <?php
-include("auth-functions.php");
+require_once('auth-functions.php');
 session_start();
 if(empty($_SESSION['logged_in_user'])){
 	$log = false;

@@ -2,7 +2,7 @@
 //list_machine.php
 
 // Authenticate
-include("auth-functions.php");
+require_once('auth-functions.php');
 
 if (!auth(1))
 	Header("Location: login.php");

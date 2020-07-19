@@ -3,7 +3,7 @@
 //del_intapp.php
 
 // Authenticate
-include("auth-functions.php");
+require_once('auth-functions.php');
 
 if (!auth(3))
 	Header("Location: login.php");

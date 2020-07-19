@@ -2,7 +2,7 @@
 /// add_doc.php
 //ajoute un document quelconque dans un repertoire associe a un projet ou une tache
 // Authenticate
-include("auth-functions.php");
+require_once('auth-functions.php');
  if (!auth(2))
   Header("Location: login.php");
 
