@@ -1,5 +1,7 @@
 <?php
 // loan-add.php
+$web_page = true;
+
 // Authenticate
 require_once('auth-functions.php');
 
@@ -140,7 +142,7 @@ if ($pdo = connect_db()) {
 
 		<tr>
 			<td style="vertical-align: top;">Les champs avec * sont &agrave;
-remplir obligatoirement, les autres sont optionnels.<br />
+				remplir obligatoirement, les autres sont optionnels.<br />
 			</td>
 			<td style="vertical-align: top;" align="right">
 				<input type="submit" name="Login" value="<?php echo $mode ?>">

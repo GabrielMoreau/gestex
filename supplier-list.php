@@ -1,5 +1,6 @@
 <?php
 // supplier-list.php
+$web_page = true;
 
 // Authenticate
 require_once('auth-functions.php');
