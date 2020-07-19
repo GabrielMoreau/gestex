@@ -1,12 +1,12 @@
 <?php
-// add_fourn.php
+// supplier-add.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('list_fourn.php');
+auth_or_login('supplier-list.php');
 level_or_alert(2, 'Modification d\'une &eacute;quipe');
 
 $user_id        = $_SESSION['user_id'];
@@ -16,14 +16,14 @@ if (empty($_GET['id'])) {
 	//on vient depuis index.html
 	//->nouvelle inscription
 	$mode   = 'ajouter';
-	$action = 'valid_fourn.php';
+	$action = 'supplier-create.php';
 }
 else {
 	//on vient depuis list_manip.php
 	//->modif coordonnees
 	$fourn_id = $_GET['id'];
 	$mode     = 'modifier';
-	$action   = 'modif_fourn.php';
+	$action   = 'supplier-update.php';
 }
 
 if ($pdo = connect_db()) {
@@ -42,7 +42,7 @@ else if ($mode == 'modifier') {
 	$fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 else
-	redirect('list_fourn.php');
+	redirect('supplier-list.php');
 }
 ?>
 
@@ -126,7 +126,7 @@ else
 		</form>
 	</tbody>
 	<tbody>
-		<form action="list_fourn.php" method="POST" name="annulForm">
+		<form action="supplier-list.php" method="POST" name="annulForm">
 		<tr >
 			<td colspan="2" class="button">
 				<input type="submit" name="annul" value="Annuler">

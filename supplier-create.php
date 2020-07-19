@@ -1,12 +1,12 @@
 <?php
-// valid_fourn.php
+// supplier-create.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('valid_fourn.php');
+auth_or_login('supplier-create.php');
 level_or_alert(3, 'Ajout d\'un fournisseur');
 
 //validation d'un nouveau fournisseur
@@ -42,7 +42,7 @@ en_tete('R&eacute;sultat inscription');
 if (!empty($erreur)) {
 	//erreur
 	echo '<br />Erreur :'.$erreur;
-	echo '<br /><a href="add_fourn.php">Suite</a><br />';
+	echo '<br /><a href="supplier-add.php">Suite</a><br />';
 	pied_page();
 	exit();
 }
@@ -63,7 +63,7 @@ if ($pdo = connect_db()) {
 ////en_tete('inscription Valid&eacute;e');
 
 	echo 'Ajout de '.$nom.' valid&eacute;<br />';
-	echo '<br /><br /><a href="list_fourn.php?highlight='.$id_fourn.'#'.$id_fourn.'">Suite</a><br /><br />';
+	echo '<br /><br /><a href="supplier-list.php?highlight='.$id_fourn.'#'.$id_fourn.'">Suite</a><br /><br />';
 	} //end if connect
 
 pied_page();

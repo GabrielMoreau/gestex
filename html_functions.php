@@ -79,7 +79,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 <div class="navbar">
 <ul>
 <?php if (empty($level)) { ?>
-	<li><a href="list_fourn.php">Liste des fournisseurs</a></li>
+	<li><a href="supplier-list.php">Liste des fournisseurs</a></li>
 	<li><a href="list_user.php">Liste des utilisateurs</a></li>
 	<li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
 	<li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
@@ -93,7 +93,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 	</li>  
 	<li class="right"><a href="login.php">Se connecter</a></li>
 	<?php } else { ?>
-	<li><a href="list_fourn.php">Liste des fournisseurs</a></li>
+	<li><a href="supplier-list.php">Liste des fournisseurs</a></li>
 	<li><a href="list_user.php">Liste des utilisateurs</a></li>
 	<li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
 	<li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
@@ -117,7 +117,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 		<a class="dropbtn">Ajouter</a>
 		<div class="dropdown-content">
 			<a href="add_manip.php">Manip</a>
-			<a href="add_fourn.php">Fournisseur</a>
+			<a href="supplier-add.php">Fournisseur</a>
 			<a href="list_appareil.php?equipe=15 pret=15">Pr&ecirc;t</a>
 			<a href="add_time.php">Temps</a>
 			<a href="add_task.php">Task</a>
@@ -131,7 +131,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 			<a href="add_appareil.php">Appareil</a>
 			<a href="add_categorie.php">Cat&eacute;gorie</a>
 			<a href="add_equip.php">&Eacute;quipe</a>
-			<a href="add_fourn.php">Fournisseur</a>
+			<a href="supplier-add.php">Fournisseur</a>
 			<a href="add_user.php">Utilisateur</a>
 		</div>
 	</li>

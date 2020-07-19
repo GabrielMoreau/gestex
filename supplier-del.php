@@ -1,6 +1,5 @@
 <?php
-
-//del_fourn.php
+// supplier-del.php
 
 // Authenticate
 include("session_auth.php");
@@ -14,7 +13,7 @@ $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 if (empty($_GET['id']))
-  Header("Location: list_fourn.php");
+  Header("Location: supplier-list.php");
 else
   $id_fourn = $_GET['id'];
   
@@ -39,7 +38,7 @@ if ( $pdo = connect_db() ){
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }//end if connect
 //on retourne a la page de la liste des fournisseur
-Header("Location: list_fourn.php");
+Header("Location: supplier-list.php");
 } //else end
 
 ?>

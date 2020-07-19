@@ -1,5 +1,5 @@
 <?php
-//list_fourn.php
+// supplier-list.php
 
 // Authenticate
 require_once('session_auth.php');
@@ -59,7 +59,7 @@ en_tete('Liste de tous les fournisseurs', $find);
 			<?php } ?>
 			<?php if ($user_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan=2">
-				<span class="option-right"><a href="add_fourn.php"><?php ICON_ADD_FOURN ?></a></span>
+				<span class="option-right"><a href="supplier-add.php"><?php ICON_ADD_FOURN ?></a></span>
 			</th>
 			<?php } ?>
 		</tr>
@@ -92,12 +92,12 @@ if ($pdo = connect_db()) {
 		echo '  <td style="vertical-align: top;">'.$fournisseur['descr'].'</td>'.PHP_EOL;
 		if ($user_level >= 2) {
 			echo '  </td><td style="vertical-align: top;">';
-			echo '    <a href="add_fourn.php?id='.$fournisseur['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="supplier-add.php?id='.$fournisseur['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($user_level >= 3) {
 			echo '  </td><td style="vertical-align: top;">';
-			echo '    <a href="del_fourn.php?id='.$fournisseur['id'].'">'.ICON_TRASH.'</a>';
+			echo '    <a href="supplier-del.php?id='.$fournisseur['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} // end if
 		echo '</tr>'.PHP_EOL;

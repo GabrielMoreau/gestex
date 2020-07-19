@@ -1,12 +1,12 @@
 <?php
-/// modif_fourn.php
+// supplier-update.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('modif_fourn.php');
+auth_or_login('supplier-update.php');
 level_or_alert(3, 'Modification d\'un fournisseur');
 
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -44,7 +44,7 @@ en_tete('R&eacute;sultat modification');
 if (!empty($erreur)) {
 	//erreur
 	echo '<br />Erreur : '.$erreur;
-	echo '<br /><a href="list_fourn.php?highlight='.$id_fourn.'#'.$id_fourn.'">Suite</a><br />';
+	echo '<br /><a href="supplier-list.php?highlight='.$id_fourn.'#'.$id_fourn.'">Suite</a><br />';
 	pied_page();
 	exit();
 }
@@ -101,8 +101,8 @@ if ($pdo = connect_db()) {
 // echo "<br />".$nom." modifi&eacute; ";
 // echo " <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
 // echo "  valid&eacute;e !!";
-// echo "<br /><br /><a href=\"list_fourn.php\">Suite</a><br /><br />\n";
+// echo "<br /><br /><a href=\"supplier-list.php\">Suite</a><br /><br />\n";
 
-Header('Location: list_fourn.php?highlight='.$id_fourn.'#'.$id_fourn);
+Header('Location: supplier-list.php?highlight='.$id_fourn.'#'.$id_fourn);
 exit();
 ?>
