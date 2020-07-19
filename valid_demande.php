@@ -66,7 +66,7 @@ else{
 ///tout est ok
 //pas d'erreur
 ///on inscrit
-require("db-functions.php");
+require_once('db-functions.php');
 
 if ( $connex = connect_db() ){
 		//inscription

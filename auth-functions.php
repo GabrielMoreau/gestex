@@ -1,6 +1,6 @@
 <?php
 
-require("db-functions.php");
+require_once('db-functions.php');
 
 /* authentication function: this is called by
    each page to ensure that there is an authenticated user

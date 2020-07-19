@@ -42,7 +42,7 @@ else{
 ///tout est ok
 //pas d'erreur
 ///on inscrit
-require("db-functions.php");
+require_once('db-functions.php');
 
 if ( $pdo = connect_db() ){
   //ajout de la manip

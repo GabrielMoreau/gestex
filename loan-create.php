@@ -54,7 +54,7 @@ else{
 //pas d'erreur
 ///on inscrit
 }
-require("db-functions.php");
+require_once('db-functions.php');
 
 if ( $pdo = connect_db() ){
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND equipe = ?;';

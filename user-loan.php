@@ -2,9 +2,9 @@
 // user-loan.php
 // Authenticate
 
-include("auth-functions.php");
+require_once('auth-functions.php');
 
-//include("db-functions.php");
+//require_once('db-functions.php');
 if (!auth(1))
 	Header("Location: login.php");
 
