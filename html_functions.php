@@ -81,7 +81,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 <?php if (empty($level)) { ?>
 	<li><a href="supplier-list.php">Liste des fournisseurs</a></li>
 	<li><a href="list_user.php">Liste des utilisateurs</a></li>
-	<li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
+	<li><a href="team-list.php">Liste des &eacute;quipes</a></li>
 	<li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
 	<li class="dropdown">
 		<a class="dropbtn">Liste des appareils</a>
@@ -95,7 +95,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 	<?php } else { ?>
 	<li><a href="supplier-list.php">Liste des fournisseurs</a></li>
 	<li><a href="list_user.php">Liste des utilisateurs</a></li>
-	<li><a href="list_equip.php">Liste des &eacute;quipes</a></li>
+	<li><a href="team-list.php">Liste des &eacute;quipes</a></li>
 	<li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
 	<li class="dropdown">
 		<a class="dropbtn">Liste des appareils</a>
@@ -130,7 +130,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 		<div class="dropdown-content">
 			<a href="add_appareil.php">Appareil</a>
 			<a href="add_categorie.php">Cat&eacute;gorie</a>
-			<a href="add_equip.php">&Eacute;quipe</a>
+			<a href="team-add.php">&Eacute;quipe</a>
 			<a href="supplier-add.php">Fournisseur</a>
 			<a href="add_user.php">Utilisateur</a>
 		</div>

@@ -1,12 +1,12 @@
 <?php
-// add_equip.php
+// team-add.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('list_equip.php');
+auth_or_login('team-list.php');
 level_or_alert(3, 'Modification d\'une &eacute;quipe');
 
 $user_id        = $_SESSION['user_id'];
@@ -15,13 +15,13 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 if (empty( $_GET['id'])) {
 	//->nouvelle inscription
 	$mode   = 'ajouter';
-	$action = 'valid_equip.php';
+	$action = 'team-create.php';
 }
 else {
 	//->modif coordonnees
 	$equip_id = $_GET['id'];
 	$mode     = 'modifier';
-	$action   = 'modif_equip.php';
+	$action   = 'team-update.php';
 }
 
 if ($pdo = connect_db()) {
@@ -107,7 +107,7 @@ else if ($mode == 'modifier') {
 		</form>
 	</tbody>
 	<tbody>
-		<form action="list_equip.php" method="POST" name="annulForm">
+		<form action="team-list.php" method="POST" name="annulForm">
 		<tr>
 			<td colspan="2" class="button">
 				<input type="submit" name="annul" value="Annuler">

@@ -1,12 +1,12 @@
 <?php
-// modif_equip.php
+// team-update.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('list_equip.php');
+auth_or_login('team-list.php');
 level_or_alert(3, 'Modification d\'une &eacute;quipe');
 
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
@@ -32,7 +32,7 @@ en_tete('R&eacute;sultat modification');
 if (!empty($erreur) ){
 	//erreur
 	echo '<br />Erreur : '.$erreur;
-	echo '<br /><a href="add_equip.php?id='.$id_equip.'">Suite</a><br />'.PHP_EOL;
+	echo '<br /><a href="team-add.php?id='.$id_equip.'">Suite</a><br />'.PHP_EOL;
 	pied_page();
 	exit();
 }
@@ -85,12 +85,12 @@ if ($pdo = connect_db()) {
 	}//end if modif
 	else {
 		echo 'Aucune modif a faire';
-		echo '<br /><br /><a href="list_equip.php?highlight='.$id_equip.'#'.$id_equip.'">Suite</a><br /><br />';
+		echo '<br /><br /><a href="team-list.php?highlight='.$id_equip.'#'.$id_equip.'">Suite</a><br /><br />';
 		pied_page();
 		exit();
 		} // else end
 	} // end if connect
 
-Header('Location: list_equip.php?highlight='.$id_equip.'#'.$id_equip);
+Header('Location: team-list.php?highlight='.$id_equip.'#'.$id_equip);
 exit();
 ?>

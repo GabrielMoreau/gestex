@@ -11,7 +11,7 @@
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('list_equip.php');
+auth_or_login('team-list.php');
 level_or_alert(3, 'Modification d\'une &eacute;quipe');
 
 //modification d'un appareil

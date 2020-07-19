@@ -1,12 +1,12 @@
 <?php
-//del_user.php
+// del_user.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('del_equip.php');
+auth_or_login('team-del.php');
 level_or_alert(3, 'Changer l\'&eacute;tat d\'un utilisateur');
 
 $user_id        = $_SESSION['user_id'];

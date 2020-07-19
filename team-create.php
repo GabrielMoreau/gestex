@@ -1,12 +1,12 @@
 <?php
-// valid_equip.php
+// team-create.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('del_equip.php');
+auth_or_login('team-del.php');
 level_or_alert(3, 'Suppression d\'une &eacute;quipe');
 
 //validation d'une nouvelle equipe
@@ -38,7 +38,7 @@ en_tete('R&eacute;sultat inscription');
 if (!empty($erreur)) {
 	//erreur
 	echo '<br />Erreur : '.$erreur;
-	echo '<br /><a href="add_equip.php">Suite</a><br />'.PHP_EOL;
+	echo '<br /><a href="team-add.php">Suite</a><br />'.PHP_EOL;
 	pied_page();
 	exit();
 }
@@ -53,7 +53,7 @@ if ($pdo = connect_db()) {
 	$id_equip = $pdo->lastInsertId();
 
 	echo 'Ajout de '.$nom.' valid&eacute;<br />';
-	echo '<br /><br /><a href="list_equip.php?highlight='.$id_equip.'#'.$id_equip.'">Suite</a><br /><br />';
+	echo '<br /><br /><a href="team-list.php?highlight='.$id_equip.'#'.$id_equip.'">Suite</a><br /><br />';
 	} //end if connect
 
 pied_page();

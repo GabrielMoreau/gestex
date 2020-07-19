@@ -1,12 +1,12 @@
 <?php
-// list_equip.php
+// team-list.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('list_equip.php');
+auth_or_login('team-list.php');
 level_or_alert(1, 'Liste de toutes les &eacute;quipes');
 
 $user_id        = $_SESSION['user_id'];
@@ -47,7 +47,7 @@ if (!empty($_GET['highlight']))
 			if ($user_level == 2)
 				echo '<th class="sorttable_nosort"></th>';
 			if ($user_level >= 3)
-				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="add_equip.php">'.ICON_ADD_EQUIP.'</a></span></th>';
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="team-add.php">'.ICON_ADD_EQUIP.'</a></span></th>';
 			?>
 		</tr>
 
@@ -91,12 +91,12 @@ if ($pdo = connect_db()) {
 
 		if ($user_level >= 2) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="add_equip.php?id='.$data['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="team-add.php?id='.$data['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($user_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="del_equip.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
+			echo '    <a href="team-del.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		echo '</tr>'.PHP_EOL;
