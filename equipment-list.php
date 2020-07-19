@@ -31,7 +31,7 @@ if (!$pdo = connect_db()) {
 $cat = 0;
 if (!empty($_GET['categorie'])) {
 	$cat = $_GET['categorie'];
-	$categorie_selected = get_categorie_by_id($pdo, $cat);
+	$categorie_selected = get_category_by_id($pdo, $cat);
 	$title .= ' de la cat&eacute;gorie <i>'.$categorie_selected['nom'].'</i>';
 }
 
@@ -39,7 +39,7 @@ if (!empty($_GET['categorie'])) {
 $eq = 0;
 if (!empty($_GET['equipe'])) {
 	$eq = $_GET['equipe'];
-	$equip_selected = get_equip_by_id($pdo, $eq);
+	$equip_selected = get_team_by_id($pdo, $eq);
 	$title .= ' de l\'&eacute;quipe <i>'.$equip_selected['nom'].'</i>';
 }
 

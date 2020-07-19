@@ -72,114 +72,114 @@ function check_val_in_db($pdo, $table, $col, $value) {
 
 // -------------------------------------------------------------
 
-function get_appareil_by_id($pdo, $id) {
+function get_equipment_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
-	$appareil_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $appareil_fetch[0];
+	$equipment_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $equipment_fetch[0];
 }
 
 // -------------------------------------------------------------
 
-function get_appareil_all_by_id($pdo, $id) {
+function get_equipment_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM Listing WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
-	$appareil_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $appareil_fetch[0];
+	$equipment_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $equipment_fetch[0];
 }
 
 // -------------------------------------------------------------
 
-function get_categorie_by_id($pdo, $id) {
+function get_category_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
-	$categorie_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $categorie_fetch[0];
+	$category_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $category_fetch[0];
 }
 
 // -------------------------------------------------------------
 
-function get_equip_by_id($pdo, $id) {
-	$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
-	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $equip_fetch[0];
-}
-
-// -------------------------------------------------------------
-
-function get_equip_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM equipe;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
-	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $equip_fetch;
-}
-
-// -------------------------------------------------------------
-
-function get_equip_listall($pdo) {
-	$sql = 'SELECT * FROM equipe;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
-	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $equip_fetch;
-}
-
-// -------------------------------------------------------------
-
-function get_equip_with_appareil($pdo) {
-	$sql = 'SELECT id, nom FROM equipe INNER JOIN Listing ON equipe.id = Listing.equipe;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
-	$equip_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $equip_fetch;
-}
-
-// -------------------------------------------------------------
-
-function get_fournisseur_by_id($pdo, $id) {
+function get_supplier_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
-	$fournisseur_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $fournisseur_fetch[0];
+	$supplier_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $supplier_fetch[0];
 }
 
 // -------------------------------------------------------------
 
-function get_fournisseur_listshort($pdo) {
+function get_supplier_listshort($pdo) {
 	$sql = 'SELECT id, nom FROM fournisseurs;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
-	$fournisseur_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $fournisseur_fetch;
+	$supplier_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $supplier_fetch;
 }
 
 // -------------------------------------------------------------
 
-function get_fournisseur_listall($pdo) {
+function get_supplier_listall($pdo) {
 	$sql = 'SELECT * FROM fournisseurs;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
-	$fournisseur_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $fournisseur_fetch;
+	$supplier_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $supplier_fetch;
 }
 
 // -------------------------------------------------------------
 
-function get_fournisseur_find($pdo, $find='') {
+function get_supplier_find($pdo, $find='') {
 	if (empty($find) or ($find === true))
-		return get_fournisseur_listall($pdo);
+		return get_supplier_listall($pdo);
 	$sql = 'SELECT * FROM fournisseurs WHERE nom RLIKE ? OR descr RLIKE ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($find, $find));
-	$fournisseur_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $fournisseur_fetch;
+	$supplier_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $supplier_fetch;
+}
+
+// -------------------------------------------------------------
+
+function get_team_by_id($pdo, $id) {
+	$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$team_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $team_fetch[0];
+}
+
+// -------------------------------------------------------------
+
+function get_team_listshort($pdo) {
+	$sql = 'SELECT id, nom FROM equipe;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$team_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $team_fetch;
+}
+
+// -------------------------------------------------------------
+
+function get_team_listall($pdo) {
+	$sql = 'SELECT * FROM equipe;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$team_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $team_fetch;
+}
+
+// -------------------------------------------------------------
+
+function get_team_with_appareil($pdo) {
+	$sql = 'SELECT id, nom FROM equipe INNER JOIN Listing ON equipe.id = Listing.equipe;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$team_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $team_fetch;
 }
 
 // -------------------------------------------------------------

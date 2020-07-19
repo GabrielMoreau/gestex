@@ -66,9 +66,9 @@ en_tete('Liste de tous les fournisseurs', $find);
 
 <?php	// interrogation base de donnees
 if ($pdo = connect_db()) {
-	$fournisseur_fetch = get_fournisseur_find($pdo, $find);
+	$supplier_fetch = get_supplier_find($pdo, $find);
 	$num_line = 1;
-	foreach ($fournisseur_fetch as $fournisseur) {
+	foreach ($supplier_fetch as $fournisseur) {
 		$class = 'impair';
 		if ($num_line % 2)
 			$class = 'pair';

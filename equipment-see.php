@@ -22,7 +22,7 @@ if (empty($id_app))
 	redirect('equipment-list.php');
 
 if ($pdo = connect_db()) {
-	$appareil_selected = get_appareil_all_by_id($pdo, $id_app);
+	$appareil_selected = get_equipment_all_by_id($pdo, $id_app);
 	$responsable = get_user_by_id($pdo, $appareil_selected['responsable']);
 
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom'].'</b>');
