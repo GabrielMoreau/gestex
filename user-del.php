@@ -1,5 +1,5 @@
 <?php
-// del_user.php
+// user-del.php
 $web_page = true;
 
 // Authenticate
@@ -16,7 +16,7 @@ $id_user = $_POST['id'];
 if (empty($id_user))
 	$id_user = $_GET['id'];
 if (empty($id_user) || $_POST['ok'] == 'cancel')
-	redirect('list_user.php');
+	redirect('user-list.php');
 
 $status_user = $_POST['status'];
 if (empty($status_user))
@@ -38,19 +38,19 @@ if ($valid == 'yes') {
 		}
 	}
 	//on retourne a la page precedente
-	redirect('list_user.php?highlight='.$id_user.'#'.$id_user);
+	redirect('user-list.php?highlight='.$id_user.'#'.$id_user);
 }
 
 en_tete('Changer l\'&eacute;tat d\'un utilisateur');
 ?>
 
 <center class="alert">
-<form action="del_user.php" method="POST">
+<form action="user-del.php" method="POST">
 	<input type="hidden" name="id" value="<?php echo $id_user ?>">
 	<input type="hidden" name="status" value="<?php echo $status_user ?>">
 	Voulez-vous changer l'&eacute;tat de l'utilisateur <?php echo $id_user ?> ?
 	<button class="red" type="submit" name="ok" value="yes">Oui</button>
-	<button class="green" type="submit" formaction="list_user.php" value="no">Non</button>
+	<button class="green" type="submit" formaction="user-list.php" value="no">Non</button>
 	<hr>
 	<button type="submit" name="ok" value="cancel">Annuler</button>
 </form>

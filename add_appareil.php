@@ -195,7 +195,7 @@ if ($pdo = connect_db()) {
 				} // end foreach
 				?>
 				</select>
-				<span class="option-right"><a href="add_user.php?"><?php echo ICON_ADD_USER ?></a></span>
+				<span class="option-right"><a href="user-add.php?"><?php echo ICON_ADD_USER ?></a></span>
 			</td>
 		</tr>
 

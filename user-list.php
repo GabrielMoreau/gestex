@@ -1,12 +1,12 @@
 <?php
-// list_user.php
+// user-list.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('list_user.php');
+auth_or_login('user-list.php');
 level_or_alert(1, 'Liste de tous les utilisateurs');
 
 $user_id        = $_SESSION['user_id'];
@@ -57,7 +57,7 @@ en_tete('Liste de tous les utilisateurs');
 			</th>
 			<?php if ($user_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan="3">
-				<span class="option-right"><a href="add_user.php?"><?php echo ICON_ADD_USER ?></a></span>
+				<span class="option-right"><a href="user-add.php?"><?php echo ICON_ADD_USER ?></a></span>
 			</th>
 			<?php } ?>
 		</tr>
@@ -97,7 +97,7 @@ if ($pdo = connect_db()) {
 		echo '  <td style="vertical-align: top;">';
 		// l'utilisateur a la possiblite de modifier ses coordonnees
 		if ($user_id == $data['id'] || $user_level >= 3)
-			echo '    <a href="add_user.php?id='.$data['id'].'">'.$data['nom'].'</a>';
+			echo '    <a href="user-add.php?id='.$data['id'].'">'.$data['nom'].'</a>';
 		else
 			echo      $data['nom'];
 
@@ -121,22 +121,22 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 		if ($user_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="add_user.php?id='.$data['id'].'">';
+			echo '    <a href="user-add.php?id='.$data['id'].'">';
 			echo        ICON_PERSON_PROFIL;
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="user_changepwd.php?id='.$data['id'].'">';
+			echo '    <a href="user-changepwd.php?id='.$data['id'].'">';
 			echo        ICON_PERSON_PASWD;
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
 			echo '  <td style="vertical-align: top; background-color:grss	ay;">';
 			if ($data['valid'] == 0){
-				echo '<a href="del_user.php?id='.$data['id'].'&status=0">';
+				echo '<a href="user-del.php?id='.$data['id'].'&status=0">';
 				echo ICON_PERSON_BAD;
 				echo '</a>';
 			}else{
-				echo '<a href="del_user.php?id='.$data['id'].'&status=1">';
+				echo '<a href="user-del.php?id='.$data['id'].'&status=1">';
 				echo ICON_PERSON_OK;
 				echo '</a>';
 			}

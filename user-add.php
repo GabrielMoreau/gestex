@@ -1,12 +1,12 @@
 <?php
-// add_user.php
+// user-add.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('list_user.php');
+auth_or_login('user-list.php');
 level_or_alert(3, 'Modification d\'un utilisateur');
 
 $user_id        = $_SESSION['user_id'];
@@ -16,12 +16,12 @@ $user_level     = $_SESSION['level'];
 if (empty($_GET['id'])) {
 	//->nouvelle inscription
 	$mode       = 'ajouter';
-	$action     = 'valid_user.php';
+	$action     = 'user-create.php';
 	$user2ch_id = '';
 } else {
 	//->modif coordonnees
 	$mode       = 'modifier';
-	$action     = 'modif_user.php';
+	$action     = 'user-update.php';
 	$user2ch_id = $_GET['id'];
 }
 
@@ -188,6 +188,6 @@ if ($pdo = connect_db()) {
 </form>	
 </div>
 
-<?php } else { redirect('list_user.php'); } ?>
+<?php } else { redirect('user-list.php'); } ?>
 
 <?php pied_page() ?>

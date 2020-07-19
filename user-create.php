@@ -1,12 +1,12 @@
 <?php
-// valid_user.php
+// user-create.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('valid_user.php');
+auth_or_login('user-create.php');
 level_or_alert(3, 'Validation d\'un utilisateur');
 
 //validation d'un nouvel utilisateur
@@ -64,7 +64,7 @@ if ($pdo = connect_db()) {
 	if (!empty($erreur)) {
 		//erreur
 		echo '<br /><b>Erreur de saisie : </b>'.$erreur;
-		echo '<br /><center><a href="add_user.php?'.$loggin.'">Suite</a></center><br />';
+		echo '<br /><center><a href="user-add.php?'.$loggin.'">Suite</a></center><br />';
 	}
 	else {
 		/// tout est ok
@@ -80,7 +80,7 @@ if ($pdo = connect_db()) {
 		mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
 
 		echo 'Ajout de '.$prenom.' '.$nom.' valid&eacute;<br />';
-		echo '<br /><center><a href="list_user.php">Suite</a></center><br /><br />';
+		echo '<br /><center><a href="user-list.php">Suite</a></center><br /><br />';
 	} // else end
 } // end if connect
 

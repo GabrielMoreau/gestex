@@ -1,5 +1,5 @@
 <?php
-// user_changepwd.php
+// user-changepwd.php
 $web_page = true;
 
 // Authenticate
@@ -58,7 +58,7 @@ if (isset($passwd1) && isset($passwd2)){
 		$sql = 'UPDATE users SET password = ? WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($mot_crypte, $user2chg));
-		redirect('list_user.php');
+		redirect('user-list.php');
 	}
 } // end if isset
 } // end pdo
@@ -69,7 +69,7 @@ if (!empty($_GET['id'])) {
 ?>
 
 <div class="auth">
-	<form action="user_changepwd.php" method="post">
+	<form action="user-changepwd.php" method="post">
 		<input type="hidden" name="user" value="<?php echo $user2chg; ?>">
 		<table>
 			<tbody>

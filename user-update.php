@@ -1,5 +1,5 @@
 <?php
-//modif_user.php
+// user-update.php
 
 // Authenticate
 include("session_auth.php");
@@ -13,7 +13,7 @@ $user_level     = $_SESSION['level'];
 
 require("html_functions.php");
 
-/// modif_user.php
+/// user-update.php
 //modification d'un utilisateur
 
 unset($erreur); unset($nom);unset($user_id );
@@ -47,7 +47,7 @@ if (!empty($erreur) ){
 	//erreur
 
 	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"list_user.php\">Suite</a><br />\n";
+	echo"<br /><a href=\"user-list.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -110,7 +110,7 @@ if ( $pdo = connect_db() ){
 		}
 	}//end if connect
 
-	Header("Location: list_user.php");
+	Header("Location: user-list.php");
 
 pied_page();
 exit();

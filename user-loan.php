@@ -1,5 +1,5 @@
 <?php
-//user_pret.php
+// user-loan.php
 // Authenticate
 
 include("session_auth.php");

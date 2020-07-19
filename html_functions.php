@@ -80,7 +80,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 <ul>
 <?php if (empty($level)) { ?>
 	<li><a href="supplier-list.php">Liste des fournisseurs</a></li>
-	<li><a href="list_user.php">Liste des utilisateurs</a></li>
+	<li><a href="user-list.php">Liste des utilisateurs</a></li>
 	<li><a href="team-list.php">Liste des &eacute;quipes</a></li>
 	<li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
 	<li class="dropdown">
@@ -94,7 +94,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 	<li class="right"><a href="login.php">Se connecter</a></li>
 	<?php } else { ?>
 	<li><a href="supplier-list.php">Liste des fournisseurs</a></li>
-	<li><a href="list_user.php">Liste des utilisateurs</a></li>
+	<li><a href="user-list.php">Liste des utilisateurs</a></li>
 	<li><a href="team-list.php">Liste des &eacute;quipes</a></li>
 	<li><a href="list_pret.php">Liste des appareils en pr&ecirc;t</a></li>
 	<li class="dropdown">
@@ -132,7 +132,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 			<a href="add_categorie.php">Cat&eacute;gorie</a>
 			<a href="team-add.php">&Eacute;quipe</a>
 			<a href="supplier-add.php">Fournisseur</a>
-			<a href="add_user.php">Utilisateur</a>
+			<a href="user-add.php">Utilisateur</a>
 		</div>
 	</li>
 	<?php } ?>
@@ -158,9 +158,9 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 		<a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
 		<div class="dropdown-content">
 			<a href="logout.php"><?php echo ICON_LOGIN;?> Se d&eacute;connecter</a>
-			<a href="add_user.php?id=<?php echo $user_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>
-			<a href="user_changepwd.php?id=<?php echo $user_id ?>"><?php echo ICON_PERSON_PASWD;?> Changer le<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a>
-			<a href="user_pret.php?id=<?php echo $user_id ?>"><?php echo ICON_BOOKING;?> Mes emprunts</a>
+			<a href="user-add.php?id=<?php echo $user_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>
+			<a href="user-changepwd.php?id=<?php echo $user_id ?>"><?php echo ICON_PERSON_PASWD;?> Changer le<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a>
+			<a href="user-loan.php?id=<?php echo $user_id ?>"><?php echo ICON_BOOKING;?> Mes emprunts</a>
 		</div>
 	</li>
 	<?php } ?>

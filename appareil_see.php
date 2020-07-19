@@ -82,7 +82,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Responsable
 			</th>
 			<td>
-				<a href="list_user.php?item<?php echo $appareil_selected['responsable'] ?>"><?php echo $responsable['nom'] ?></a>
+				<a href="user-list.php?item<?php echo $appareil_selected['responsable'] ?>"><?php echo $responsable['nom'] ?></a>
 			</td>
 		</tr>
 		<tr>

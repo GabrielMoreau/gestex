@@ -21,14 +21,14 @@ destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l
 <h2>Gestion instrumentation</h2>
 <ul>
 	<li><a href="list_categorie.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</li>
-	<li><a href="user_pret.php">Liste de vos emprunts d'appareils</a></li>
+	<li><a href="user-loan.php">Liste de vos emprunts d'appareils</a></li>
 	<li><a href="list_labview.php">Liste des programmes Labview d&eacute;velopp&eacute;s</a></li>
 </ul>
 
 <h2>Gestion des projets techniques</h2>
 <p>Il faut &ecirc;tre un utilisateur r&eacute;f&eacute;renc&eacute; pour pouvoir acc&eacute;der &agrave; cette partie.</p>
 <ul>
-  <li><a href="add_user.php">Demander son inscription</a></li>
+  <li><a href="user-add.php">Demander son inscription</a></li>
   <li><a href="list_manip.php">Acc&eacute;der au gestionnaire de Projets</a></li>
 </ul>
 </center>
