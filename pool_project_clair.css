@@ -17,6 +17,7 @@
 	--form-bg: #657b83;
 	--form-fg: #fdf6e3;
 	--form-button-bg: white;
+	--form-button-fg: var(--body-fg);
 	--login-bg: #164093;
 	--login-fg: #629DE7;
 	--button-bg: white;
@@ -119,6 +120,7 @@ a {
 .auth input {
 	width: 100%;
 	background-color: var(--form-button-bg);
+	color: var(--form-button-fg);
 	padding: 5px 10px;
 	border: 1px solid var(--body-fg);
 	border-radius: 4px;
