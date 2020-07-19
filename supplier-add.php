@@ -32,7 +32,7 @@ if ($mode == 'ajouter') {
 	en_tete('Ajouter un fournisseur');
 }
 else if ($mode == 'modifier') {
-	en_tete('Mdifier les coordonn&eacute;es d\'un fournisseur');
+	en_tete('Modifier les coordonn&eacute;es d\'un fournisseur');
 	// recupere le fournisseur selectionne
 	$sql = 'SELECT * FROM fournisseurs WHERE id = ?;';
 	// list($qh,$num) = query_db($querry);
