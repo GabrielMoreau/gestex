@@ -49,7 +49,7 @@ if( $pdo =connect_db()){
 				Emprunteur<br />
 			</th>
 			<th style="vertical-align: top; text-align: center;">
-				<a href="list_pret.php?tri=nom">
+				<a href="loan-list.php?tri=nom">
 					Num&eacute;ro de l'appareil<br />
 				</a>
 			</th>
@@ -93,7 +93,7 @@ if( $pdo =connect_db()){
 	
 			if ($user_level >= 3) 	{
 				echo '  <td style="vertical-align: top;">';
-				echo '    <a href="del-pret.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
+				echo '    <a href="loan-del.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
 				echo '  </td>'.PHP_EOL;
 			}
 	

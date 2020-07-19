@@ -1,5 +1,5 @@
 <?php
-// list_pret.php
+// loan-list.php
 $web_page = true;
 
 // Authenticate
@@ -101,7 +101,7 @@ if ($pdo = connect_db()) {
 
 		if ($user_level >= 3) {
 			echo '  <td>';
-			echo '    <a href="del-pret.php?id=',$data['id'],'">'.ICON_RETURN.'</a>';
+			echo '    <a href="loan-del.php?id=',$data['id'],'">'.ICON_RETURN.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 

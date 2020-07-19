@@ -200,11 +200,11 @@ en_tete($title);
 		}
 		if ($log === true && $eq==15 && $emprunt == 0) {
 			echo '  <td>';
-			echo '    <a href="add-pret.php?id=',$data['id'],'">'.ICON_BOOKING.'</a>';
+			echo '    <a href="loan-add.php?id=',$data['id'],'">'.ICON_BOOKING.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}else if ($log === true && $eq==15 && $emprunt == 1) {
 			echo '  <td>';
-			echo '    <a href="del-pret.php?id=',$pret[0]['id'],'">'.ICON_RETURN.'</a>';
+			echo '    <a href="loan-del.php?id=',$pret[0]['id'],'">'.ICON_RETURN.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 

@@ -1,4 +1,5 @@
 <?php
+// loan-create.php
 
 require("html_functions.php");
 //recuper la methode de tri
@@ -43,7 +44,7 @@ if (!empty($erreur) ){
 	//erreur
 
 	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"add-pret.php\">Suite</a><br />\n";
+	echo"<br /><a href=\"loan-add.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -104,7 +105,7 @@ if ( $pdo = connect_db() ){
 			//echo "<br />ajout <br />";
 echo "Ajout du pr&ecirc;t sur l'appareil $nom valid&eacute;<br />";
 //echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"list_pret.php?user=3\">Suite</a><br /><br />\n";
+echo"<br /><br /><a href=\"loan-list.php?user=3\">Suite</a><br /><br />\n";
 
 // $querry = "SELECT email FROM users WHERE id='2'";
 // 	list($qheh,$numeh) = query_db($querry);

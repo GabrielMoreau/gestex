@@ -1,5 +1,5 @@
 <?php
-/// add_pret.php
+// loan-add.php
 // Authenticate
 include("session_auth.php");
 
@@ -24,7 +24,7 @@ if (empty($_GET['id'])) {
 
 if (empty($_GET['pret'])) {
 	$mode    = 'ajouter';
-	$action  = 'valid-pret.php';
+	$action  = 'loan-create.php';
 	$id_pret = '';
 } else {
 	$mode    = 'modifier';

@@ -1,18 +1,18 @@
 <?php
-//del-pret.php
+// loan-del.php
 
 // Authenticate
 include("session_auth.php");
 require("html_functions.php");
 
 if (!auth(3))
-	Header("Location: list_pret.php");
+	Header("Location: loan-list.php");
 
 $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 if (empty($_GET['id']) || $_POST['ok'] == 'cancel')
-	Header("Location: list_pret.php");
+	Header("Location: loan-list.php");
 else
 	$id_pret = $_GET['id'];
 
@@ -29,17 +29,17 @@ if ($valid == 'yes') {
 		$stmt->execute(array($id_pret));
 	}
 	//on retourne a la page d'accueil
-	Header("Location: list_pret.php");
+	Header("Location: loan-list.php");
 }
 
 en_tete('Ramener un pr&ecirc;t');
 ?>
 
 <center class="alert">
-<form action="del-pret.php?id=<?php echo $id_pret ?>" method="POST">
+<form action="loan-del.php?id=<?php echo $id_pret ?>" method="POST">
 	Voulez-vous supprimer le pr&ecirc;t <?php echo $id_pret ?> ?
 	<button class="red" type="submit" name="ok" value="yes">Oui</button>
-	<button class="green" type="submit" formaction="list_pret.php" value="no">Non</button>
+	<button class="green" type="submit" formaction="loan-list.php" value="no">Non</button>
 	<hr>
 	<button type="submit" name="ok" value="cancel">Annuler</button>
 </form>
