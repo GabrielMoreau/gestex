@@ -86,7 +86,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 	<li class="dropdown">
 		<a class="dropbtn">Liste des appareils</a>
 		<div class="dropdown-content">
-			<a href="list_categorie.php">Cat&eacute;gories</a>
+			<a href="category-list.php">Cat&eacute;gories</a>
 			<a href="list_appareil.php">Global</a>
 			<a href="list_appareil.php?equipe=15">au service <br />instrumentation</a>
 		</div>
@@ -100,7 +100,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 	<li class="dropdown">
 		<a class="dropbtn">Liste des appareils</a>
 		<div class="dropdown-content">
-			<a href="list_categorie.php">Cat&eacute;gories</a>
+			<a href="category-list.php">Cat&eacute;gories</a>
 			<a href="list_appareil.php">Global</a>
 			<?php
 			// $pdo = connect_db();
@@ -129,7 +129,7 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 		<a class="dropbtn">Ajouter</a>
 		<div class="dropdown-content">
 			<a href="add_appareil.php">Appareil</a>
-			<a href="add_categorie.php">Cat&eacute;gorie</a>
+			<a href="category-add.php">Cat&eacute;gorie</a>
 			<a href="team-add.php">&Eacute;quipe</a>
 			<a href="supplier-add.php">Fournisseur</a>
 			<a href="user-add.php">Utilisateur</a>

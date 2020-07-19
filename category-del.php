@@ -1,7 +1,6 @@
 <?php
+// category-del.php
 
-//del_categorie.php
-//supprime une categorie de la base de donnee
 // Authenticate
 include("session_auth.php");
 require("html_functions.php");
@@ -13,7 +12,7 @@ $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
 if (empty($_GET['id'])) // on recupere l'id de la categorie a supprimer dans l'url, s'il n'y en a pas, on va a la liste des categorie
-	Header("Location: list_categorie.php");
+	Header("Location: category-list.php");
 else
 	$id_cat = $_GET['id']; // s'il y en a un, on le stock dans id_cat
 
@@ -27,7 +26,7 @@ else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
 if (!isset($valid) || empty($valid) || $valid=="no"){ // on regarde ce qu'il y a dans $valid et si c'est NULL ou 'no', on pose la question
 	echo "Sur de supprimer la cat&eacute;gorie ".$id_cat. " ?<br />";
 	echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_cat."&ok=yes\">OUI</a><br />"; // si la personne repond 'oui', on recharge la page en mettant ok=yes dans l'url 
-	echo "<a href=\"list_categorie.php\">NON</a><br />";	// sinon, on retourne a la page precedente
+	echo "<a href=\"category-list.php\">NON</a><br />";	// sinon, on retourne a la page precedente
 }
 else{ // s'il y a ok=yes dans l'url
 	if ( $pdo = connect_db() ){ // et que l'on arrive a se connecter a la base de donnee
@@ -43,7 +42,7 @@ else{ // s'il y a ok=yes dans l'url
 		}
 	}
 	//on retourne a la page d'accueil
-Header("Location: list_categorie.php");
+Header("Location: category-list.php");
 
 }
 

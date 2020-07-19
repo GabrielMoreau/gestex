@@ -1,11 +1,12 @@
 <?php
+// category-create.php
 
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('valid_categorie.php');
+auth_or_login('category-create.php');
 level_or_alert(3, 'Ajout d\'une cat&eacute;gorie');
-/// valid_categorie.php
+
 //validation d'un nouvel appareil
 unset($erreur);
 //variables ne pouvant etre nulles
@@ -33,7 +34,7 @@ if (!empty($erreur) ){
 	//erreur
 
 	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"add_categorie.php\">Suite</a><br />\n";
+	echo"<br /><a href=\"category-add.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();

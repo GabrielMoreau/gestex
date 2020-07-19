@@ -1,12 +1,12 @@
 <?php
-// add_categorie.php
+// category-add.php
 $web_page = true;
 
 // Authenticate
 require_once('session_auth.php');
 require_once('html_functions.php');
 
-auth_or_login('list_categorie.php');
+auth_or_login('category-list.php');
 level_or_alert(3, 'Modification d\'une &eacute;quipe');
 
 $user_id        = $_SESSION['user_id'];
@@ -15,7 +15,7 @@ $logged_in_user = strtolower($_SESSION['logged_in_user']);
 if (empty($_GET['id'])){
 	//->nouvelle categorie
 	$mode   = 'ajouter';
-	$action = 'valid_categorie.php';
+	$action = 'category-create.php';
 	$cat_id = '';
 }
 else

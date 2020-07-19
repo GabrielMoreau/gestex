@@ -20,7 +20,7 @@ destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l
 <center>
 <h2>Gestion instrumentation</h2>
 <ul>
-	<li><a href="list_categorie.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</li>
+	<li><a href="category-list.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</li>
 	<li><a href="user-loan.php">Liste de vos emprunts d'appareils</a></li>
 	<li><a href="list_labview.php">Liste des programmes Labview d&eacute;velopp&eacute;s</a></li>
 </ul>
