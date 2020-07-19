@@ -1,5 +1,5 @@
 <?php
-// fiche_vie.php
+// appareil_see.php
 $web_page = true;
 
 // Authenticate

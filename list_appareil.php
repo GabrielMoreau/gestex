@@ -146,7 +146,7 @@ en_tete($title);
 		echo      $data['id'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo '    <a href ="fiche_vie.php?id='.$data['id'].'">'. $data['nom'].'</a>';
+		echo '    <a href ="appareil_see.php?id='.$data['id'].'">'. $data['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		echo      $data['modele'];
