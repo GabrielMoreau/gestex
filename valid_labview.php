@@ -1,6 +1,6 @@
 <?php
 
-require("html-functions.php");
+require_once('html-functions.php');
 //recuper la methode de tri
 
 /// valid_labview.php

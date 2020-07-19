@@ -25,7 +25,7 @@ else
 
 	$tache_id =0;
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 if ( $pdo = connect_db() ){
 	// recupere l'equip selectionnee

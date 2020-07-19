@@ -17,7 +17,7 @@ $nom_id=$_GET['id'];
 if (empty($nom_id))
 	Header("Location: list_labview.php");
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 if ( $connex = connect_db() ){
 

@@ -1,6 +1,6 @@
 <?php
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 /// valid_intapp.php
 //validation d'une nouvelle intervention appareil

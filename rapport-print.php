@@ -23,7 +23,7 @@ if (!empty($_POST[tache]))
 if (!empty($_POST[date]))
 	$depuis=$_POST[date];
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 en_tete('Rapport');
 

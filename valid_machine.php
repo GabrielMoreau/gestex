@@ -1,6 +1,6 @@
 <?php
 
-require("html-functions.php");
+require_once('html-functions.php');
 /// valid_machine.php
 //validation d'un nouvel appareil
 unset($erreur);

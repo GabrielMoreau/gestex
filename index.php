@@ -9,7 +9,7 @@ if(empty($_SESSION['logged_in_user'])){
 	$user_level     = $_SESSION['level'];
 	$log            = true;
 }
-require("html-functions.php");
+require_once('html-functions.php');
 en_tete('Gestion des plateformes exp&eacute;rimentales');
 ?>
 

@@ -10,7 +10,7 @@ if (!auth(2))
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 //modification d'une manip
 

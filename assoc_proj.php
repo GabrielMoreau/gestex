@@ -16,7 +16,7 @@ if (empty($manip_id)){
   Header("Location: list_manip.php");
 }
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 if ( $connex = connect_db() ){
 

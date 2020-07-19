@@ -3,7 +3,7 @@
 
 // Authenticate
 include("auth-functions.php");
-require("html-functions.php");
+require_once('html-functions.php');
 
 if (!auth(3))
   Header("Location: login.php");

@@ -17,7 +17,7 @@ $tache_id=$_GET['id'];
 if (empty($tache_id))
 	Header("Location: list_demande.php");
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 if ( $connex = connect_db() ){
 

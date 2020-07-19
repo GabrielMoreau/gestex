@@ -19,7 +19,7 @@ if (empty($proj_id))
 
 $task_id = $_GET[idt];
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 if ( $connex = connect_db() ){
  // recupere les nom de manip, projet et tache selectionnes

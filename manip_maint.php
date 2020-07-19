@@ -24,7 +24,7 @@ if (empty($_GET['id']))
 else
 	$manip_id=$_GET['id'];
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 en_tete('Historique Manip');
 if ($pdo = connect_db()){

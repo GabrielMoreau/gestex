@@ -27,7 +27,7 @@ $task_id=$_GET['idt'];
 if (empty($task_id))
  Header("Location: list_manip.php");
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 en_tete('Infos T&acirc;che '.$task_id);
 

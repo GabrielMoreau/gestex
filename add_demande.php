@@ -46,7 +46,7 @@ else{
 
 }
 }
-require("html-functions.php");
+require_once('html-functions.php');
 if ( $pdo = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete('Ajouter une demande');

@@ -28,7 +28,7 @@ else{
 
 }
 
-require("html-functions.php");
+require_once('html-functions.php');
 if ( $pdo = connect_db() ){
 
 // recupere l'appareil selectionne

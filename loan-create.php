@@ -1,7 +1,7 @@
 <?php
 // loan-create.php
 
-require("html-functions.php");
+require_once('html-functions.php');
 //recuper la methode de tri
 
 /// valid_pret.php

@@ -32,7 +32,7 @@ else{
 
 }
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 if ( $connex = connect_db() ){
  // recupere la manip selectionnee

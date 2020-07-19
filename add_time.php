@@ -23,7 +23,7 @@ $task_id = $_GET[idt];
 if (empty($task_id))
   Header("Location: list_manip.php");
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 if ( $connex = connect_db() ){
  // recupere la manip selectionnee

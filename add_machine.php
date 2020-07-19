@@ -22,7 +22,7 @@ else{
 	$action = 'modif_machine.php';
 }
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 if ($pdo = connect_db()) {
 

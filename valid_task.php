@@ -1,6 +1,6 @@
 <?php
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 /// valid_task.php
 //validation d'une nouvelle task

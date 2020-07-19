@@ -8,7 +8,7 @@
  $user_id = $_SESSION['user_id'];
  $logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 /// valid_proj.php
 //validation d'un nouveau projet

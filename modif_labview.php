@@ -9,7 +9,7 @@
 
 //$logged_in_user = strtolower($_SESSION['logged_in_user']);
 
-require("html-functions.php");
+require_once('html-functions.php');
 require ("db-functions.php");
 
 //modification d'une manip labview

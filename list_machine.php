@@ -11,7 +11,7 @@ $user_id = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level= $_SESSION['level'];
 
-require("html-functions.php");
+require_once('html-functions.php');
 
 en_tete('Liste des appareils');
 
