@@ -76,6 +76,11 @@ a {
 	width: auto;
 }
 
+.form .datasheet th,
+.form .datasheet td{
+	padding-top: 25px;
+}
+
 .form th,
 .form td {
 	border-bottom: 1px solid var(--catalog-even-bg);
