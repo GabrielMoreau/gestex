@@ -24,6 +24,10 @@ if (empty($id_app))
 if ($pdo = connect_db()) {
 	$appareil_selected = get_equipment_all_by_id($pdo, $id_app);
 	$responsable = get_user_by_id($pdo, $appareil_selected['responsable']);
+	
+	$datacheet_path = './data/datasheet';
+	$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $id_app);
+	$datasheet_count = count($datasheet_fetch);
 
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom'].'</b>');
 ?>
@@ -101,6 +105,26 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				<?php echo $appareil_selected['inventaire'] ?>
 			</td>
 		</tr>
+		<?php if ($datasheet_count > 0) { ?>
+		<tr>
+			<th rowspan="<?php echo $datasheet_count ?>">
+				Notice
+			</th>
+		<?php } ?>
+		<?php
+		foreach ($datasheet_fetch as $datasheet) {
+			#if (!is_file($dossier_proj.'/'.$datasheet['pathname']))
+			#	continue;
+			?>
+			<td>
+				<a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_blank">
+					<?php echo $datasheet['description'] ?>
+				</a>
+			</td>
+		<?php } ?>
+		<?php if ($datasheet_count > 0) { ?>
+		</tr>
+		<?php } ?>
 	</tbody>
 </table>
 </div>

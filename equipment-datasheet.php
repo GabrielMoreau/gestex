@@ -15,11 +15,11 @@ $user_level     = $_SESSION['level'];
 if (empty($_GET['id']))
 	Header('Location: equipment-list.php');
 else
-	$id_app=$_GET['id'];
+	$id_app = $_GET['id'];
 
 if ($pdo = connect_db()) {
 
-	$sql = 'SELECT id FROM Listing WHERE id = ?;' ;
+	$sql = 'SELECT id, nom FROM Listing WHERE id = ?;' ;
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_app));
 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -27,116 +27,33 @@ if ($pdo = connect_db()) {
 	$titre = 'Documents de l\'appareil : '.$listing[0]['nom'].' ('.$id_app.')';
 	en_tete($titre);
 
-	$sql = 'SELECT id,nom_notice,chemin_notice FROM notice WHERE id_appareil = ?;' ;
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_app));
-	$notice_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-	$dossier_proj = './data/notice/'.$id_app.'/';
-	foreach ($notice_fetch as $notice) {
-		if (is_file($notice['chemin_notice'])) {
-			// if (($handle = opendir($dossier_proj))) {
-			$images = array();
-			$fichiers = array();
-			if ($notice['chemin_notice'] != "." && $notice['chemin_notice'] != "..") {
-				if (preg_match('/^[a-zA-Z0-9_\-]+(:?\.jpg|\.gif|\.png|\.pdf|\.doc|\.xls|\.mov|\.avi|\.mpg|\.html|\.htm)$/', $notice['nom_notice'])) {
-					//entasse les images
-					//echo $file;
-					array_push($images, $notice['nom_notice']);
-				}
-				else if (preg_match('/^[a-zA-Z0-9_\-]+(:?\.txt)$/', $notice['nom_notice'] ) == TRUE) {
-					//et les fichiers textes
-					array_push ($fichiers, $notice['nom_notice']);
-				}
-			} // end if file!=".."
-			// repere le max
-			$max = count($images);
-			if (count($fichiers) > $max) {
-				$max = count($fichiers);
-				$min = count($images);
-			}
-			else
-				$min = count($fichiers);
-			?>
+	$dossier_proj = './data/datasheet';
+	?>
 
 <div>
-<table cellpadding="1" cellspacing="1" border="1" style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
+<table>
 	<tbody>
 
-			<?php
-			while ($file = array_pop($images)) {
-				echo '<tr style="width: 40%; text-align: center;">';
-				echo '  <td>';
-				echo '    <a href="'.$dossier_proj.$file.'" target="_newFrame">';
-				echo '      <img src="';
-				//teste l'etension
-				$pos = strrpos($file, ".");
-				switch (strtolower(substr($file, $pos+1))){
-					case "htm":
-					case "html":
-						echo 'images/link.svg"><br />';
-						break;
-					case "doc":
-						echo 'images/document.png"><br />';
-						break;
-					case "xls":
-						echo 'images/spreadsheet.png"><br />';
-						break;
-					case "pdf":
-						echo 'images/pdf.png"><br />';
-						break;
-					case "gif":
-					case "jpg":
-					case "png":///image
-						echo $dossier_proj.$file.'" width="150"><br />';
-						break;
-					case "avi":
-					case "mov":
-					case "mpg":///videos
-						echo 'images/video.png"><br />';
-						break;
-					default :
-						echo 'images/unknown.png"><br />';
-						break;
-				} // end switch
-				//ajoute le nom du fichier sous l'image
-				echo '    </a>'.$file;
-				echo '  </td>';
-				echo '  <td rowspan="'.$max.'" style="text-align: left;">';
-				while ($autres = array_pop($fichiers)) {
-					echo '    <h3>'.$autres.'</h3>';
-					//inclue le fichier
-					if ($text_handle = fopen($dossier_proj.$autres, "r")) {
-						while (!feof($text_handle))
-							echo  fgets($text_handle, 4096).'<br />';
-						fclose($text_handle);
-					} // end if fopen
-				} // while end autres
-				echo '  </td>';
-				echo '  <td>';
-				echo '    <a>'.$notice['id'].'</a>';
-				echo '  </td>'.PHP_EOL;
-				if ($user_level >=2){
-					echo '  <td>';
-					echo '    <a href="equipment-add.php?id=',$id_app,'">'.ICON_EDIT.'</a>';
-					echo '  </td>'.PHP_EOL;
-				}
-				if ($user_level >=3){
-					echo '  <td>';
-					echo '    <a href="datasheet-del.php?id=',$notice['id'],'">'.ICON_TRASH.'</a>';
-					echo '  </td>'.PHP_EOL;
-				}
-				echo '</tr>';
-			} // while end  file
+		<?php
+		$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $id_app);
+		foreach ($datasheet_fetch as $datasheet) {
+			if (!is_file($dossier_proj.'/'.$datasheet['pathname']))
+				continue;
 			?>
+		<tr>
+			<td>
+				<a href="<?php echo $dossier_proj.'/'.$datasheet['pathname'] ?>" target="_blank">
+					<?php echo $datasheet['description'] ?>
+				</a>
+			</td>
+		</tr>
+		<?php } ?>
 
 	<tbody>
 </table>
 </div>
 
-		<?php
-		}
-	}
+<?php
 } // end if connect
 ?>
 

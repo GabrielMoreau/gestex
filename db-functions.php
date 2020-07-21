@@ -72,12 +72,24 @@ function check_val_in_db($pdo, $table, $col, $value) {
 
 // -------------------------------------------------------------
 
+function get_datasheet_listall_by_equipment($pdo, $id_equipment) {
+	$sql = 'SELECT * FROM datasheet WHERE id_equipment = ?;' ;
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equipment));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch;
+}
+
+// -------------------------------------------------------------
+
 function get_equipment_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
-	$equipment_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $equipment_fetch[0];
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch[0];
+	return false;
 }
 
 // -------------------------------------------------------------
@@ -86,8 +98,20 @@ function get_equipment_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM Listing WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
-	$equipment_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $equipment_fetch[0];
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch[0];
+	return false;
+}
+
+// -------------------------------------------------------------
+
+function get_equipment_listshort($pdo) {
+	$sql = 'SELECT id, nom FROM Listing;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
+	$result_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch;
 }
 
 // -------------------------------------------------------------
@@ -115,7 +139,7 @@ function get_supplier_by_id($pdo, $id) {
 function get_supplier_listshort($pdo) {
 	$sql = 'SELECT id, nom FROM fournisseurs;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
+	$stmt->execute();
 	$supplier_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $supplier_fetch;
 }
@@ -125,7 +149,7 @@ function get_supplier_listshort($pdo) {
 function get_supplier_listall($pdo) {
 	$sql = 'SELECT * FROM fournisseurs;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
+	$stmt->execute();
 	$supplier_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $supplier_fetch;
 }
@@ -157,7 +181,7 @@ function get_team_by_id($pdo, $id) {
 function get_team_listshort($pdo) {
 	$sql = 'SELECT id, nom FROM equipe;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
+	$stmt->execute();
 	$team_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $team_fetch;
 }
@@ -167,7 +191,7 @@ function get_team_listshort($pdo) {
 function get_team_listall($pdo) {
 	$sql = 'SELECT * FROM equipe;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
+	$stmt->execute();
 	$team_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $team_fetch;
 }
@@ -177,7 +201,7 @@ function get_team_listall($pdo) {
 function get_team_with_appareil($pdo) {
 	$sql = 'SELECT id, nom FROM equipe INNER JOIN Listing ON equipe.id = Listing.equipe;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
+	$stmt->execute();
 	$team_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $team_fetch;
 }
@@ -190,6 +214,27 @@ function get_user_by_id($pdo, $id) {
 	$stmt->execute(array($id));
 	$user_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $user_fetch[0];
+}
+
+// -------------------------------------------------------------
+
+function get_version_by_name($pdo, $name) {
+	$sql = 'SELECT version FROM version WHERE name = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($name));
+	$version_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($version_fetch) > 0)
+		return $version_fetch[0];
+	return false;
+}
+// -------------------------------------------------------------
+
+function set_version_by_name($pdo, $name, $version) {
+	$sql = 'INSERT INTO version (name, version) VALUES (?, ?);';
+	if (get_version_by_name($pdo, $name))
+		$sql = 'UPDATE version SET version = ? WHERE name = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($name, $version));
 }
 
 ?>

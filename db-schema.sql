@@ -276,6 +276,38 @@ CREATE TABLE `notice` (
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
 
+DROP TABLE IF EXISTS `datasheet`;
+CREATE TABLE `datasheet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pathname` varchar(500) NOT NULL DEFAULT '',
+  `description` varchar(150) NOT NULL DEFAULT '',
+  `id_equipment` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id_equipment`) REFERENCES `Listing` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `datasheet`
+--
+
+DROP TABLE IF EXISTS `datasheet`;
+CREATE TABLE `datasheet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `path` varchar(250) NOT NULL DEFAULT '',
+  `desc` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `relation_equipment_datasheet`;
+CREATE TABLE `relation_equipment_datasheet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_equipment` int(11) NOT NULL,
+  `id_datasheet` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id_equipment`) REFERENCES `listing` (`id`),
+  FOREIGN KEY (`id_datasheet`) REFERENCES `datasheet` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+
 
 --
 -- Modification de la table users, ajout de theme
