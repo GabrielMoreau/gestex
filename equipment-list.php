@@ -174,17 +174,11 @@ en_tete($title);
 		$fournisseur =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 		if(!empty($fournisseur)) { echo $fournisseur[0]['nom'];}
 		echo '  </td>'.PHP_EOL;
-		echo '  <td>';
-		
-		// cherche l'existence de la notice
 
-		$sql = 'SELECT nom_notice FROM notice WHERE id_appareil = ?;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($data['id']));
-		$notice = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		if (!empty($notice[0]['nom_notice'] ) || !empty($notice[1]['nom_notice']) || !empty($notice[2]['nom_notice']) || !empty($notice[3]['nom_notice']) || !empty($notice[4]['nom_notice']) || !empty($notice[5]['nom_notice']) || !empty($notice[6]['nom_notice'])){
-			//si trouve ajoute un bouton
-			echo ' <a href ="equipment-datasheet.php?id=', $data['id'],'">'.ICON_SEE_DOC.'</a><br />';
+		echo '  <td>';
+		// cherche l'existence de la notice
+		if (get_datasheet_count_by_equipment($pdo, $data['id'])> 0) {
+			echo ' <a href ="equipment-see.php?id=', $data['id'],'">'.ICON_SEE_DOC.'</a>';
 		}
 		echo '  </td>'.PHP_EOL;
 

@@ -82,6 +82,16 @@ function get_datasheet_listall_by_equipment($pdo, $id_equipment) {
 
 // -------------------------------------------------------------
 
+function get_datasheet_count_by_equipment($pdo, $id_equipment) {
+	$sql = 'SELECT COUNT(*) as count FROM datasheet WHERE id_equipment = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equipment));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch[0]['count'];
+}
+
+// -------------------------------------------------------------
+
 function get_equipment_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
