@@ -85,12 +85,11 @@ if ($pdo = connect_db()) {
 	}//end if modif
 	else {
 		echo 'Aucune modif a faire';
-		echo '<br /><br /><a href="team-list.php?highlight='.$id_equip.'#'.$id_equip.'">Suite</a><br /><br />';
+		echo '<br /><br /><a href="team-list.php?highlight='.$id_equip.'#item'.$id_equip.'">Suite</a><br /><br />';
 		pied_page();
 		exit();
 		} // else end
 	} // end if connect
 
-Header('Location: team-list.php?highlight='.$id_equip.'#'.$id_equip);
-exit();
+redirect('team-list.php?highlight='.$id_equip.'#item'.$id_equip);
 ?>

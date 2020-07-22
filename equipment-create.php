@@ -107,7 +107,7 @@ if ($pdo = connect_db()) {
 } //end if connect
 
 echo '<br />Ajout de '.$nom.' valid&eacute;e';
-echo '<br /><br /><a href="equipment-list.php?highlight='.$id_app.'#'.$id_app.'">Suite</a><br /><br />';
+echo '<br /><br /><a href="equipment-list.php?highlight='.$id_app.'#item'.$id_app.'">Suite</a><br /><br />';
 
 pied_page();
 ?>

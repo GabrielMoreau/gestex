@@ -44,7 +44,7 @@ en_tete('R&eacute;sultat modification');
 if (!empty($erreur)) {
 	//erreur
 	echo '<br />Erreur : '.$erreur;
-	echo '<br /><a href="supplier-list.php?highlight='.$id_fourn.'#'.$id_fourn.'">Suite</a><br />';
+	echo '<br /><a href="supplier-list.php?highlight='.$id_fourn.'#item'.$id_fourn.'">Suite</a><br />';
 	pied_page();
 	exit();
 }
@@ -94,15 +94,7 @@ if ($pdo = connect_db()) {
 		$stmt = $pdo->prepare($querry);
 		$stmt->execute();
 
-} //end if connect
+} // end if connect
 
-////en_tete('modification fournisseur Valid&eacute;e');
-
-// echo "<br />".$nom." modifi&eacute; ";
-// echo " <img src=\"images/pool_project.jpg\" height=\"100\" nosave=\"\" align=\"middle\" alt=\"\">";
-// echo "  valid&eacute;e !!";
-// echo "<br /><br /><a href=\"supplier-list.php\">Suite</a><br /><br />\n";
-
-Header('Location: supplier-list.php?highlight='.$id_fourn.'#'.$id_fourn);
-exit();
+redirect('supplier-list.php?highlight='.$id_fourn.'#item'.$id_fourn);
 ?>

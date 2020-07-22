@@ -63,7 +63,7 @@ if ($pdo = connect_db()) {
 ////en_tete('inscription Valid&eacute;e');
 
 	echo 'Ajout de '.$nom.' valid&eacute;<br />';
-	echo '<br /><br /><a href="supplier-list.php?highlight='.$id_fourn.'#'.$id_fourn.'">Suite</a><br /><br />';
+	echo '<br /><br /><a href="supplier-list.php?highlight='.$id_fourn.'#item'.$id_fourn.'">Suite</a><br /><br />';
 	} //end if connect
 
 pied_page();

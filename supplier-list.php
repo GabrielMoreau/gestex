@@ -76,8 +76,8 @@ if ($pdo = connect_db()) {
 		$num_line++;
 		if ($fournisseur['id'] == $id_highlight)
 			$class .= ' highlight';
-		echo '<tr class="'.$class.'" id="'.$fournisseur['id'].'">'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">'.$fournisseur['nom'].'</td>'.PHP_EOL;
+		echo '<tr class="'.$class.'">'.PHP_EOL;
+		echo '  <td style="vertical-align: top;"><a name="item'.$fournisseur['id'].'"></a>'.$fournisseur['nom'].'</td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">'.$fournisseur['adresse'].'</td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;" nowrap>'.$fournisseur['tel'].'</td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;" nowrap>'.$fournisseur['fax'].'</td>'.PHP_EOL;

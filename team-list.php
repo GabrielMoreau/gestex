@@ -67,9 +67,9 @@ if ($pdo = connect_db()) {
 		$num_line++;
 		if ($data['id'] == $id_highlight)
 			$class .= ' highlight';
-		echo '<tr class="'.$class.'" id="'.$data['id'].'">'.PHP_EOL;
+		echo '<tr class="'.$class.'">'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		echo      $data['nom'];
+		echo '    <a name="item'.$data['id'].'"></a>'.$data['nom'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $data['descr'];

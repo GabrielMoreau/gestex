@@ -53,7 +53,7 @@ if ($pdo = connect_db()) {
 	$id_equip = $pdo->lastInsertId();
 
 	echo 'Ajout de '.$nom.' valid&eacute;<br />';
-	echo '<br /><br /><a href="team-list.php?highlight='.$id_equip.'#'.$id_equip.'">Suite</a><br /><br />';
+	echo '<br /><br /><a href="team-list.php?highlight='.$id_equip.'#item'.$id_equip.'">Suite</a><br /><br />';
 	} //end if connect
 
 pied_page();

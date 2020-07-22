@@ -130,7 +130,7 @@ en_tete($title);
 		$num_line++;
 		if ($data['id'] == $id_highlight)
 			$class .= ' highlight';
-		echo '<tr class="'.$class.'" id="'.$data['id'].'">'.PHP_EOL;
+		echo '<tr class="'.$class.'">'.PHP_EOL;
 
 		if ($cat == 0) {
 			echo '  <td>';
@@ -146,7 +146,7 @@ en_tete($title);
 		echo      $data['id'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo '    <a href ="equipment-see.php?id='.$data['id'].'">'. $data['nom'].'</a>';
+		echo '    <a name="item'.$data['id'].'"></a><a href="equipment-see.php?id='.$data['id'].'">'. $data['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		echo      $data['modele'];
