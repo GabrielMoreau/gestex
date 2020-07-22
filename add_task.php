@@ -6,7 +6,7 @@ require_once('auth-functions.php');
  if (!auth(2))
   Header("Location: login.php");
 
- $user_id = $_SESSION['user_id'];
+ $logged_id = $_SESSION['logged_id'];
  $logged_user = strtolower($_SESSION['logged_user']);
 
 $manip_id = $_GET[idm];
@@ -44,7 +44,7 @@ if ( $connex = connect_db() ){
  list($qh,$num) = query_db($querry);
  $projet = result_db($qh);
 
-$texte = $logged_user." (".$user_id.") Voila un formulaire pour ".$mode;
+$texte = $logged_user." (".$logged_id.") Voila un formulaire pour ".$mode;
 
 if ($mode=="ajouter"){
  $titre.="inscrire une nouvelle tache au projet ";
@@ -80,7 +80,7 @@ echo $texte;
   <input type="hidden" name="id_manip" value="<?php echo $manip_id ?>" >
   <input type="hidden" name="id_proj" value="<?php echo $proj_id ?>" >
   <input type="hidden" name="id_task" value="<?php echo $task_id ?>" >
-  <input type="hidden" name="id_user" value="<?php echo $user_id ?>" >
+  <input type="hidden" name="id_user" value="<?php echo $logged_id ?>" >
 
     <tr>
 

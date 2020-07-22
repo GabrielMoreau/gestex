@@ -25,9 +25,9 @@ else{
   $erreur="utilisateur non pr&eacute;cis&eacute;";
  else{
   if ($_POST[id_user] == 1) //admin
-   $user_id =$_POST[user];
+   $logged_id =$_POST[user];
   else
-   $user_id =$_POST[id_user];
+   $logged_id =$_POST[id_user];
 
   if (empty($_POST[date]))
    $erreur="date non pr&eacute;cis&eacute;";
@@ -64,7 +64,7 @@ if ( $connex = connect_db() ){
 
  //ajout du temps a  la tache
  $querry = "INSERT INTO temps (id_tache,date,user,duree, remarks)".
-   " VALUES ('$task_id', '$date', '$user_id',  '$temps', '$remark')";
+   " VALUES ('$task_id', '$date', '$logged_id',  '$temps', '$remark')";
   $result = mysql_query($querry);
    //echo $querry."<br />";
 

@@ -11,7 +11,7 @@ if (!auth(3))
 
 en_tete('Suppression Projet');
 
-$user_id = $_SESSION['user_id'];
+$logged_id = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $valid= $_GET['ok'];

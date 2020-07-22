@@ -6,7 +6,7 @@
 	if (!auth(2))
 		Header("Location: login.php");
 
-	$user_id = $_SESSION['user_id'];
+	$logged_id = $_SESSION['logged_id'];
 	$logged_user = strtolower($_SESSION['logged_user']);
 
 $manip_id = $_GET[idm];

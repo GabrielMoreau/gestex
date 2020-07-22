@@ -10,7 +10,7 @@ if (!auth(3))
   Header("Location: login.php");
 
 en_tete('Suppression Fournisseur');
-$user_id = $_SESSION['user_id'];
+$logged_id = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 if (empty($_GET['id']))

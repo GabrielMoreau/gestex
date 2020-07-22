@@ -8,7 +8,7 @@ if (!auth(2))
 //il faut etre au moins ita
 	Header("Location: login.php");
 
-$user_id = $_SESSION['user_id'];
+$logged_id = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 $user_level= $_SESSION['level'];
 
@@ -34,7 +34,7 @@ if ( $connex = connect_db() ){
 	list($qh,$num) = query_db($querry);
 
 $data = result_db($qh);
-echo " Bienvenue $data['prenom'] $data['nom'] ($user_id)<br /><br />";
+echo " Bienvenue $data['prenom'] $data['nom'] ($logged_id)<br /><br />";
 /////echo "equipe:".$equip_id." manip :".$manip_id." projet :".$projet_id." tache :".$tache_id."<br />";
 ?>
 <br />

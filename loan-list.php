@@ -10,7 +10,7 @@ session_start();
 if (empty($_SESSION['logged_user'])) {
 	$user_level = 0;
 } else {
-	$user_id        = $_SESSION['user_id'];
+	$logged_id        = $_SESSION['logged_id'];
 	$logged_user = strtolower($_SESSION['logged_user']);
 	$user_level     = $_SESSION['level'];
 }

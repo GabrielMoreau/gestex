@@ -9,7 +9,7 @@ require_once('html-functions.php');
 auth_or_login('user-list.php');
 level_or_alert(1, 'Liste de tous les utilisateurs');
 
-$user_id        = $_SESSION['user_id'];
+$logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 $user_level     = $_SESSION['level'];
 
@@ -96,7 +96,7 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		// l'utilisateur a la possiblite de modifier ses coordonnees
-		if ($user_id == $data['id'] || $user_level >= 3)
+		if ($logged_id == $data['id'] || $user_level >= 3)
 			echo '    <a href="user-add.php?id='.$data['id'].'">'.$data['nom'].'</a>';
 		else
 			echo      $data['nom'];

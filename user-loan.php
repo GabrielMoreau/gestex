@@ -8,7 +8,7 @@ require_once('auth-functions.php');
 if (!auth(1))
 	Header("Location: login.php");
 
-$user_id        = $_SESSION['user_id'];
+$logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 $user_level     = $_SESSION['level'];
 
@@ -24,7 +24,7 @@ else
 if( $pdo =connect_db()){
 	$sql = 'SELECT * from pret where nom_utilisateur = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($user_id));
+	$stmt->execute(array($logged_id));
 	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>

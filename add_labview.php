@@ -3,7 +3,7 @@
 	// Authenticate
 	require_once('auth-functions.php');
 
-	$user_id = $_SESSION['user_id'];
+	$logged_id = $_SESSION['logged_id'];
 	$logged_user = strtolower($_SESSION['logged_user']);
 
 //recuper la methode de tri

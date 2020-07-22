@@ -8,7 +8,7 @@ require_once('auth-functions.php');
 if (!auth(1))
 	Header("Location: login.php");
 
-$user_id        = $_SESSION['user_id'];
+$logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 $user_level     = $_SESSION['level'];
 
@@ -41,7 +41,7 @@ if ($pdo = connect_db()){
 	// var_dump($user);
 	// echo $[0]]['prenom'];
 	// echo $user[0]['nom'];
-	// echo " ($user_id)<br /><br />";
+	// echo " ($logged_id)<br /><br />";
 ?>
 
 <br />

@@ -66,7 +66,7 @@ function en_tete($titre, $find=false) {
 
 <?php
 	if (!empty($_SESSION)) {
-		nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['level'], $_SESSION['user_id'], $find);
+		nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['level'], $_SESSION['logged_id'], $find);
 	} else {
 		nav_bar('', '', 0, 0, $find);
 	}
@@ -74,7 +74,7 @@ function en_tete($titre, $find=false) {
 
 // -------------------------------------------------------------
 
-function nav_bar($prenom, $nom, $level, $user_id, $find) {
+function nav_bar($prenom, $nom, $level, $logged_id, $find) {
 ?>
 <div class="navbar">
 <ul>
@@ -158,9 +158,9 @@ function nav_bar($prenom, $nom, $level, $user_id, $find) {
 		<a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
 		<div class="dropdown-content">
 			<a href="logout.php"><?php echo ICON_LOGIN;?> Se d&eacute;connecter</a>
-			<a href="user-add.php?id=<?php echo $user_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>
-			<a href="user-changepwd.php?id=<?php echo $user_id ?>"><?php echo ICON_PERSON_PASWD;?> Changer le<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a>
-			<a href="user-loan.php?id=<?php echo $user_id ?>"><?php echo ICON_BOOKING;?> Mes emprunts</a>
+			<a href="user-add.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>
+			<a href="user-changepwd.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PASWD;?> Changer le<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a>
+			<a href="user-loan.php?id=<?php echo $logged_id ?>"><?php echo ICON_BOOKING;?> Mes emprunts</a>
 		</div>
 	</li>
 	<?php } ?>

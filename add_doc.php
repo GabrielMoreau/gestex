@@ -6,7 +6,7 @@ require_once('auth-functions.php');
  if (!auth(2))
   Header("Location: login.php");
 
- $user_id = $_SESSION['user_id'];
+ $logged_id = $_SESSION['logged_id'];
  $logged_user = strtolower($_SESSION['logged_user']);
 
 $manip_id = $_GET[idm];
@@ -34,7 +34,7 @@ if (!empty($task_id)){
  $nom_tache = mysql_result($result,0);
  }
 
-$texte = $logged_user." (".$user_id.") Voila un formulaire pour jouter un document <br />";
+$texte = $logged_user." (".$logged_id.") Voila un formulaire pour jouter un document <br />";
 
  $titre.="Ajouter un document";
  $texte.= "&agrave; <b>".$nom_manip.":".$nom_projet;

@@ -9,7 +9,7 @@ if (!auth(1))
 	Header("Location: login.php");
 
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_id = $_SESSION['user_id'];
+$logged_id = $_SESSION['logged_id'];
 $user_level = $_SESSION['level'];
 require_once('html-functions.php');
 
@@ -97,7 +97,7 @@ if ( $pdo = connect_db() ){
 				// remplit le tableau
 				//if ($user_level <= 1) {
 				//mise en evidence des manips concernant le chercheur connecte
-				//	if ($manip['chercheur'] == $user_id || $manip['chercheur_bis'] == $user_id){
+				//	if ($manip['chercheur'] == $logged_id || $manip['chercheur_bis'] == $logged_id){
 				//		echo '<tr bgcolor="#FFFAD0" style="vertical-align: top;">';
 				//		$relief = 1;
 				//	} else {

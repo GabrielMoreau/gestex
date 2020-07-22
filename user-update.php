@@ -9,13 +9,13 @@ require_once('html-functions.php');
 if (!auth(1))
 	Header("Location: login.php");
 
-$user_id        = $_SESSION['user_id'];
+$logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 $user_level     = $_SESSION['level'];
 
 //modification d'un utilisateur
 
-unset($erreur); unset($nom);unset($user_id );
+unset($erreur); unset($nom);unset($logged_id );
 //variables ne pouvant etre nulles
 	if (empty($_POST['user2ch_id']))
 		$erreur="identifiant utilisateur non pr&eacute;cis&eacute;";

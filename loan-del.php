@@ -9,7 +9,7 @@ require_once('html-functions.php');
 if (!auth(3))
 	Header("Location: loan-list.php");
 
-$user_id        = $_SESSION['user_id'];
+$logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 if (empty($_GET['id']) || $_POST['ok'] == 'cancel')

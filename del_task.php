@@ -12,7 +12,7 @@ require_once('html-functions.php');
 
 en_tete('Suppression T&acirc;che');
 
-$user_id = $_SESSION['user_id'];
+$logged_id = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $valid= $_GET['ok'];

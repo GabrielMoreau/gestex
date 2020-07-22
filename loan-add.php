@@ -8,7 +8,7 @@ require_once('auth-functions.php');
 //if (!auth(3))
 	//Header("Location: login.php");
 session_start();
-$user_id = $_SESSION['user_id'];
+$logged_id = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 //recuper la methode de tri

@@ -34,7 +34,7 @@ function auth($reqlevel, $logged_user='', $password='') {
 			if ($user[0]['valid'] == 0 && $level > 1)
 				$level = 1;
 			// set session variables
-			$_SESSION['user_id'] = $user[0]['id'];
+			$_SESSION['logged_id'] = $user[0]['id'];
 			$_SESSION['logged_user'] = $logged_user;
 			$_SESSION['level'] = $level;
 			return 1;

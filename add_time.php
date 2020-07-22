@@ -7,7 +7,7 @@ require_once('auth-functions.php');
 // il faut etre au moins ITA (ou admin)
   Header("Location: login.php");
 
- $user_id = $_SESSION['user_id'];
+ $logged_id = $_SESSION['logged_id'];
  $logged_user = strtolower($_SESSION['logged_user']);
  $user_level= $_SESSION['level'];
 
@@ -35,7 +35,7 @@ if ( $connex = connect_db() ){
  list($qh,$num) = query_db($querry);
  $projet = result_db($qh);
 
-$titre= $logged_user." (".$user_id.")<br />Voila un formulaire pour ajouter du temps &agrave; <ul>la tache :";
+$titre= $logged_user." (".$logged_id.")<br />Voila un formulaire pour ajouter du temps &agrave; <ul>la tache :";
 
  // recupere la tache selectionnee
  $querry = "SELECT * FROM tache WHERE id='$task_id'";
@@ -60,14 +60,14 @@ echo $titre;
   <input type="hidden" name="id_manip" value="<?php echo $manip_id ?>" >
   <input type="hidden" name="id_proj" value="<?php echo $proj_id ?>" >
   <input type="hidden" name="id_task" value="<?php echo $task_id ?>" >
-  <input type="hidden" name="id_user" value="<?php echo $user_id ?>" >
+  <input type="hidden" name="id_user" value="<?php echo $logged_id ?>" >
     <tr>
 
       <td style="vertical-align: top;">utilisateur :<br />
       </td>
       <td style="vertical-align: top;" colspan ="2">
  <?php if ($user_level ==2)
-   echo $logged_user.":".$user_id ;
+   echo $logged_user.":".$logged_id ;
  else if ($user_level ==3){ //admin
   //selection du user
   // recupere la liste des users possibles

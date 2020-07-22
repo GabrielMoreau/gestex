@@ -9,7 +9,7 @@ require_once('html-functions.php');
 auth_or_login('team-del.php');
 level_or_alert(3, 'Suppression d\'une &eacute;quipe');
 
-$user_id        = $_SESSION['user_id'];
+$logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $id_equip = $_POST['id'];
