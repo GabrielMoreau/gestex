@@ -85,14 +85,14 @@ if ($pdo = connect_db()) {
 		$num_line++;
 		if ($data['id'] == $id_highlight)
 			$class .= ' highlight';
-		echo '<tr class="'.$class.'" id="'.$data['id'].'">'.PHP_EOL;
+		echo '<tr class="'.$class.'">'.PHP_EOL;
 		if ($user_level >=3 ) {
 			echo '  <td style="vertical-align: top;">';
 			echo      $data['level'];
 			echo '  </td>'.PHP_EOL;
 		}
 		echo '  <td style="vertical-align: top;">';
-		echo      $data['prenom'];
+		echo '    <a name="item'.$data['id'].'"></a>'.$data['prenom'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		// l'utilisateur a la possiblite de modifier ses coordonnees

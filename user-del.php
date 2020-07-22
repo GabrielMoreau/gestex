@@ -38,7 +38,7 @@ if ($valid == 'yes') {
 		}
 	}
 	//on retourne a la page precedente
-	redirect('user-list.php?highlight='.$id_user.'#'.$id_user);
+	redirect('user-list.php?highlight='.$id_user.'#item'.$id_user);
 }
 
 en_tete('Changer l\'&eacute;tat d\'un utilisateur');
