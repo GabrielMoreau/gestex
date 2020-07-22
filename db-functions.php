@@ -242,6 +242,18 @@ function get_user_all_by_id($pdo, $id) {
 
 // -------------------------------------------------------------
 
+function get_user_all_by_login($pdo, $login) {
+	$sql = 'SELECT * FROM users WHERE loggin = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($login));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch[0];
+	return false;
+}
+
+// -------------------------------------------------------------
+
 function get_version_by_name($pdo, $name) {
 	$sql = 'SELECT version FROM version WHERE name = ?;';
 	$stmt = $pdo->prepare($sql);

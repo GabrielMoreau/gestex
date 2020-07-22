@@ -33,12 +33,9 @@ function en_tete($titre, $find=false) {
    if (!empty($_SESSION)) {
 	$pdo         = connect_db();
 	$logged_user = $_SESSION['logged_user'];
-	$sql         = 'SELECT nom, prenom, theme FROM users WHERE loggin = ?;';
-	$stmt        = $pdo->prepare($sql);
-	$stmt->execute(array($logged_user));
-	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$user        = get_user_all_by_login($pdo, $logged_user);
 
-	$css = 'pool_project_'.$user[0]['theme'].'.css';
+	$css = 'pool_project_'.$user['theme'].'.css';
 	} else {
 		$css = 'pool_project_clair.css';
 	}
@@ -66,7 +63,7 @@ function en_tete($titre, $find=false) {
 
 <?php
 	if (!empty($_SESSION)) {
-		nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['logged_level'], $_SESSION['logged_id'], $find);
+		nav_bar($user['prenom'], $user['nom'], $_SESSION['logged_level'], $_SESSION['logged_id'], $find);
 	} else {
 		nav_bar('', '', 0, 0, $find);
 	}
