@@ -9,9 +9,9 @@ require_once('html-functions.php');
 auth_or_login('team-list.php');
 level_or_alert(1, 'Liste de toutes les &eacute;quipes');
 
-$logged_id        = $_SESSION['logged_id'];
-$logged_user = strtolower($_SESSION['logged_user']);
-$logged_level     = $_SESSION['level'];
+$logged_id    = $_SESSION['logged_id'];
+$logged_user  = strtolower($_SESSION['logged_user']);
+$logged_level = $_SESSION['logged_level'];
 
 en_tete('Liste de toutes les &eacute;quipes');
 

@@ -31,10 +31,10 @@ define('ICON_MARK_RIGHT',    '<span><svg width="1.2em" height="1.2em" fill="curr
 function en_tete($titre, $find=false) {
    // <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
    if (!empty($_SESSION)) {
-	$pdo            = connect_db();
+	$pdo         = connect_db();
 	$logged_user = $_SESSION['logged_user'];
-	$sql            = 'SELECT nom, prenom, theme FROM users WHERE loggin = ?;';
-	$stmt           = $pdo->prepare($sql);
+	$sql         = 'SELECT nom, prenom, theme FROM users WHERE loggin = ?;';
+	$stmt        = $pdo->prepare($sql);
 	$stmt->execute(array($logged_user));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -66,7 +66,7 @@ function en_tete($titre, $find=false) {
 
 <?php
 	if (!empty($_SESSION)) {
-		nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['level'], $_SESSION['logged_id'], $find);
+		nav_bar($user[0]['prenom'], $user[0]['nom'], $_SESSION['logged_level'], $_SESSION['logged_id'], $find);
 	} else {
 		nav_bar('', '', 0, 0, $find);
 	}

@@ -10,7 +10,7 @@ if (!auth(1))
 
 $logged_user = strtolower($_SESSION['logged_user']);
 $logged_id = $_SESSION['logged_id'];
-$logged_level = $_SESSION['level'];
+$logged_level = $_SESSION['logged_level'];
 require_once('html-functions.php');
 
 en_tete('Liste des Manips');

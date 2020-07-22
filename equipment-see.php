@@ -13,7 +13,7 @@ if(empty($_SESSION['logged_user'])){
 } else {
 	$logged_id        = $_SESSION['logged_id'];
 	$logged_user = strtolower($_SESSION['logged_user']);
-	$logged_level     = $_SESSION['level'];
+	$logged_level     = $_SESSION['logged_level'];
 	$log = true;
 }
 

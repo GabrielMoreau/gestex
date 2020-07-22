@@ -36,7 +36,7 @@ function auth($reqlevel, $logged_user='', $password='') {
 			// set session variables
 			$_SESSION['logged_id'] = $user[0]['id'];
 			$_SESSION['logged_user'] = $logged_user;
-			$_SESSION['level'] = $level;
+			$_SESSION['logged_level'] = $level;
 			return 1;
 		}
 	} else {
@@ -64,7 +64,7 @@ function logout() {
 ////////////////////////////////////////////////////////////////////////////
 
 function level($reqlevel) {
-	$level = $_SESSION['level'];
+	$level = $_SESSION['logged_level'];
 	if ($reqlevel > $level)
 		return false;
 	return true;

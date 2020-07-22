@@ -7,9 +7,9 @@ require_once('auth-functions.php');
 require_once('html-functions.php');
 
 session_start();
-$logged_id        = $_SESSION['logged_id'];
-$logged_user = strtolower($_SESSION['logged_user']);
-$logged_level     = $_SESSION['level'];
+$logged_id    = $_SESSION['logged_id'];
+$logged_user  = strtolower($_SESSION['logged_user']);
+$logged_level = $_SESSION['logged_level'];
 
 $find = true;
 #if (!empty($_SESSION['fournisseur_find']))

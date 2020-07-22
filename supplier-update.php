@@ -10,7 +10,7 @@ auth_or_login('supplier-update.php');
 level_or_alert(3, 'Modification d\'un fournisseur');
 
 $logged_user = strtolower($_SESSION['logged_user']);
-$logged_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['logged_level'];
 
 //modification d'un fournisseur
 

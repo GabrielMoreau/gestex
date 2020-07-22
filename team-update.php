@@ -10,7 +10,7 @@ auth_or_login('team-list.php');
 level_or_alert(3, 'Modification d\'une &eacute;quipe');
 
 $logged_user = strtolower($_SESSION['logged_user']);
-$logged_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['logged_level'];
 
 unset($erreur);
 
