@@ -1,8 +1,10 @@
 <?php
 // user-update.php
+$web_page = true;
 
 // Authenticate
 require_once('auth-functions.php');
+require_once('html-functions.php');
 
 if (!auth(1))
 	Header("Location: login.php");
@@ -11,9 +13,6 @@ $user_id        = $_SESSION['user_id'];
 $logged_in_user = strtolower($_SESSION['logged_in_user']);
 $user_level     = $_SESSION['level'];
 
-require_once('html-functions.php');
-
-/// user-update.php
 //modification d'un utilisateur
 
 unset($erreur); unset($nom);unset($user_id );
@@ -33,10 +32,10 @@ unset($erreur); unset($nom);unset($user_id );
 						else{
 							$mail=$_POST['addr_mail'];
 							//variables pouvant etre nulles
-							$prenom =$_POST['prenom'];
-							$phone =$_POST['phone'];
-							$equipe =$_POST['equipe'];
-							$level =$_POST['level'];
+							$prenom = $_POST['prenom'];
+							$phone = $_POST['phone'];
+							$equipe = $_POST['equipe'];
+							$level = $_POST['level'];
 							$theme = $_POST['theme'];
 }}}
 
@@ -47,7 +46,7 @@ if (!empty($erreur) ){
 	//erreur
 
 	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"user-list.php\">Suite</a><br />\n";
+	echo "<br /><a href=\"user-list.php\">Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -73,10 +72,10 @@ if ( $pdo = connect_db() ){
 		if ($prenom!=$user[0]['prenom'])
 			//modif du prenom
 			$querry.=" prenom='$prenom',";
-	if ($user_level>=3){
-		if ($level!=$user[0]['level'])
+	if ($user_level >= 3) {
+		if ($level != $user[0]['level'])
 			//modif du level
-			$querry.=" level='$level',";
+			$querry.= " level='$level',";
 		if ($user[0]['valid'] ==0){
 			//validation du user
 			$querry.=" valid=1,";
@@ -97,12 +96,12 @@ if ( $pdo = connect_db() ){
 		$querry[strlen($querry)-1]=' ';
 		//ajoute la clause
 		$querry.=" WHERE id='$user2ch_id'";
-		if ($user_level>= 3)
+		if ($user_level >= 3)
 		echo $querry;
 			$stmt = $pdo->prepare($querry);
 			$stmt->execute();
 			
-		if ($user_level == 3 && $valid==1 ){
+		if ($user_level == 3 && $valid == 1) {
 			//validation d'un user acceptee
 			//envoi d'un mail a cet user
 		$texte = $prenom." ".$nom." votre inscription au systeme GestEx a &eacute;t&eacute; accept&eacute;e !";
