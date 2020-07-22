@@ -6,7 +6,7 @@ if(empty($_SESSION['logged_user'])){
 }else{
 	$logged_id        = $_SESSION['logged_id'];
 	$logged_user = strtolower($_SESSION['logged_user']);
-	$user_level     = $_SESSION['level'];
+	$logged_level     = $_SESSION['level'];
 	$log            = true;
 }
 require_once('html-functions.php');

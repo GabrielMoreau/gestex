@@ -8,11 +8,11 @@ require_once('html-functions.php');
 
 session_start();
 if (empty($_SESSION['logged_user'])) {
-	$user_level = 0;
+	$logged_level = 0;
 } else {
 	$logged_id        = $_SESSION['logged_id'];
 	$logged_user = strtolower($_SESSION['logged_user']);
-	$user_level     = $_SESSION['level'];
+	$logged_level     = $_SESSION['level'];
 }
 
 //recuper la methode de tri
@@ -52,7 +52,7 @@ en_tete('Liste des pr&ecirc;ts');
 				Num&eacute;ro de l'appareil
 			</th>
 			<?php 
-			if ($user_level >= 3)
+			if ($logged_level >= 3)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			?>
 		</tr>
@@ -99,7 +99,7 @@ if ($pdo = connect_db()) {
 		echo      $data['nom'];
 		echo '  </td>'.PHP_EOL;
 
-		if ($user_level >= 3) {
+		if ($logged_level >= 3) {
 			echo '  <td>';
 			echo '    <a href="loan-del.php?id=',$data['id'],'">'.ICON_RETURN.'</a>';
 			echo '  </td>'.PHP_EOL;

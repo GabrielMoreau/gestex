@@ -11,7 +11,7 @@ level_or_alert(3, 'Modification d\'un utilisateur');
 
 $logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['level'];
 
 if (empty($_GET['id'])) {
 	//->nouvelle inscription
@@ -137,21 +137,21 @@ if ($pdo = connect_db()) {
 				Qualit&eacute;
 			</th>
 			<td>
-				<?php  if ($user_level >= 3 || !isset($user_level)) { // admin loggue ou premiere inscription: modif possible ?>
+				<?php  if ($logged_level >= 3 || !isset($logged_level)) { // admin loggue ou premiere inscription: modif possible ?>
 				<input type="radio" name="level" value="0" <?php if ($mode === 'modifier' && $data['level'] == 0) echo 'checked="checked"' ?> >&Eacute;tudiant<br>
 				<input type="radio" name="level" value="1" <?php if ($mode === 'modifier' && $data['level'] == 1) echo 'checked="checked"' ?> >Chercheur<br>
 				<input type="radio" name="level" value="2" <?php if ($mode === 'modifier' && $data['level'] == 2) echo 'checked="checked"' ?> >ITA<br>
 				<?php } ?>
 				
-				<?php if (isset($user_level) && $user_level >= 3) { ?>
+				<?php if (isset($logged_level) && $logged_level >= 3) { ?>
 				<input type="radio" name="level" value="3" <?php if ($mode === 'modifier' && $data['level'] >= 3) echo 'checked="checked"' ?> >Admin<br>
 				<?php } ?>
 
-				<?php if (isset($user_level) && $user_level >= 4) { ?>
+				<?php if (isset($logged_level) && $logged_level >= 4) { ?>
 				<input type="radio" name="level" value="4" <?php if ($mode === 'modifier' && $data['level'] >= 3) echo 'checked="checked"' ?> >SuperAdmin<br>
 				<?php } ?>
 				
-				<?php if (isset($user_level) && ($user_level < 3)) { // consultation seulement
+				<?php if (isset($logged_level) && ($logged_level < 3)) { // consultation seulement
 					switch ($data['level']) {
 						case 0: echo "&Eacute;tudiant"; break;
 						case 1: echo "Chercheur"; break;

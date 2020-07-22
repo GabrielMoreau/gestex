@@ -8,11 +8,11 @@ require_once('html-functions.php');
 
 session_start();
 if (empty($_SESSION['logged_user'])) {
-	$user_level = 0; // no auth
+	$logged_level = 0; // no auth
 } else {
 	$logged_id        = $_SESSION['logged_id'];
 	$logged_user = strtolower($_SESSION['logged_user']);
-	$user_level     = $_SESSION['level'];
+	$logged_level     = $_SESSION['level'];
 }
 
 en_tete('Liste des appareils par cat&eacute;gorie');
@@ -32,7 +32,7 @@ else
 			<th>
 				Cat&eacute;gorie
 			</th>
-			<?php if ($user_level >= 3) { ?>
+			<?php if ($logged_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan="3">
 				<span class="option-right"><a href="category-add.php"><?php echo ICON_ADD_CAT ?></a></span>
 			</th>
@@ -56,7 +56,7 @@ if ($pdo = connect_db()) {
 		echo '  <td>';
 		echo '    <a href="equipment-list.php?categorie='.$data['id'].'">'.$data['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
-		if ($user_level >= 3) {
+		if ($logged_level >= 3) {
 			echo '  <td>';
 			echo '    <a href="category-del.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;

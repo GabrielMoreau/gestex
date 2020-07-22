@@ -10,7 +10,7 @@ auth_or_login('supplier-update.php');
 level_or_alert(3, 'Modification d\'un fournisseur');
 
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['level'];
 
 //modification d'un fournisseur
 
@@ -90,7 +90,7 @@ if ($pdo = connect_db()) {
 		//ajoute la clause
 		$querry.=" WHERE id = '$id_fourn'";
 
-	if ($user_level >= 3)
+	if ($logged_level >= 3)
 		$stmt = $pdo->prepare($querry);
 		$stmt->execute();
 

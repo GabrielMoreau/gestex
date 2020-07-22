@@ -9,7 +9,7 @@ if (!auth(1))
 
 $logged_id = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level= $_SESSION['level'];
+$logged_level= $_SESSION['level'];
 
 require_once('html-functions.php');
 
@@ -47,7 +47,7 @@ else
 				<a href="historique_demande.php">Historique<br />des demandes</a>
 				<br />
 			</td>
-			<?php if ( $user_level >=2 ) { ?>
+			<?php if ( $logged_level >=2 ) { ?>
 			<td style="vertical-align: top; text-align: center;">
 				<a href="logout.php?variable=instru">Quitter</a>
 				<br />
@@ -85,9 +85,9 @@ Liste des demandes en cours :<br />
 		<th style="vertical-align: top; text-align: center;">
 			Pi&egrave;ces jointes<br />
 		</th>
-		<?php if ( $user_level >=2 )
+		<?php if ( $logged_level >=2 )
 			echo "</th><th>";
-			if ( $user_level >=3 )
+			if ( $logged_level >=3 )
 			echo "</th><th>";
 			?>
 		</tr>
@@ -133,12 +133,12 @@ Liste des demandes en cours :<br />
 			// si trouve ajoute un bouton
 			echo "Voir : <a href =\"joint_demande.php?id=". $data['id']."\">".$data['tache'].' '.ICON_SEE_DOC.'></a><br />';
 		}
-		if ($user_level >= 2) {
+		if ($logged_level >= 2) {
 			echo"</td><td style=\"vertical-align: top;\">";
 			echo '<a href="add_demande.php?id='.$data['id'].'">'.ICON_EDIT.'</a>';
 			echo"</td>";
 		}//end if
-		if ($user_level >= 3) {
+		if ($logged_level >= 3) {
 			echo"</td><td style=\"vertical-align: top;\">";
 			echo '<a href="del_demande.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
 			echo"</td>";

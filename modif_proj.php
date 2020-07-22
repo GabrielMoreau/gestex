@@ -8,7 +8,7 @@ if (!auth(2))
 	Header("Location: login.php");
 
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level= $_SESSION['level'];
+$logged_level= $_SESSION['level'];
 
 require_once('html-functions.php');
 
@@ -75,7 +75,7 @@ if ( $connex = connect_db() ){
 		$querry[strlen($querry)-1]=' ';
 		//ajoute la clause
 		$querry.=" WHERE id='$id_proj'";
-		if ($user_level>= 3)
+		if ($logged_level>= 3)
 			echo "MySQL Querry : ". $querry."<br />";
 		$result = mysql_query($querry);
 			//

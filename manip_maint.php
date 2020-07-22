@@ -10,7 +10,7 @@ if (!auth(1))
 
 $logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['level'];
 
 //recuper la methode de tri
 if (empty($_GET['tri']))
@@ -99,7 +99,7 @@ $dossier_manip=$manip[0]['nom'];
 	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	<tbody>
 		<tr class="menu">
-			<?php if ($user_level >=2){ ?>
+			<?php if ($logged_level >=2){ ?>
 			<td style="vertical-align: top; text-align: center;">
 				<a href="add_proj.php?idm=<?php echo $manip_id ?>">Ajout d'un Projet</a>
 				<br />
@@ -168,7 +168,7 @@ function windowToTop(lien){
  }
  ?>
   </th>
-<?php if ($user_level >= 2) { ?>
+<?php if ($logged_level >= 2) { ?>
   <!-- <th colspan="3"></th> //ajout de doc   -->
     <th style="vertical-align: top; text-align: left;">
 
@@ -191,7 +191,7 @@ function windowToTop(lien){
   <th style="vertical-align: top; text-align: center;">Par :<br />      </th>
   <th style="vertical-align: top; text-align: center;">Temps pass&eacute;:<br />      </th>
 
- <?php if ($user_level >= 2) { ?>
+ <?php if ($logged_level >= 2) { ?>
   <th colspan="2" style="vertical-align: top; text-align: right;" >
   <a href ="add_task.php?idm=<?php echo $manip_id ?>&idp=<?php echo $proj_id ?>">Ajouter une tache</a><br />
     </th>
@@ -254,7 +254,7 @@ function windowToTop(lien){
    echo "dur&eacute;e :";
   echo $temps_tache." heures";
   $total_projet += $temps_tache;
-   if ($user_level >= 2) {
+   if ($logged_level >= 2) {
    echo "<a href=\"add_time.php?idm=".$manip_id."&idp=".$proj_id."&idt=".$taches['id']."\">".ICON_ADD_TIME.'</a>';
      echo"</td><td style=\"vertical-align: top;\">";
    // ajout d'un document a une tache -->
@@ -271,7 +271,7 @@ function windowToTop(lien){
  }//end while taches
 
    echo"<tr><td style=\"vertical-align: top;text-align: left;\" >";
- if ($user_level >= 2) {
+ if ($logged_level >= 2) {
  echo" <a href =\"add_task.php?idm=".$manip_id." ?>&idp=". $proj_id ."?>\">".ICON_ADD_TASK.'</a><br />';
  }
 

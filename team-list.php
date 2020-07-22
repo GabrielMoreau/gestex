@@ -11,7 +11,7 @@ level_or_alert(1, 'Liste de toutes les &eacute;quipes');
 
 $logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['level'];
 
 en_tete('Liste de toutes les &eacute;quipes');
 
@@ -44,9 +44,9 @@ if (!empty($_GET['highlight']))
 			</th>
 
 			<?php
-			if ($user_level == 2)
+			if ($logged_level == 2)
 				echo '<th class="sorttable_nosort"></th>';
-			if ($user_level >= 3)
+			if ($logged_level >= 3)
 				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="team-add.php">'.ICON_ADD_EQUIP.'</a></span></th>';
 			?>
 		</tr>
@@ -89,12 +89,12 @@ if ($pdo = connect_db()) {
 		}
 		echo '  </td>'.PHP_EOL;
 
-		if ($user_level >= 2) {
+		if ($logged_level >= 2) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="team-add.php?id='.$data['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
-		if ($user_level >= 3) {
+		if ($logged_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="team-del.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;

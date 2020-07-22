@@ -10,7 +10,7 @@ if (!auth(2))
 
 $logged_id = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level= $_SESSION['level'];
+$logged_level= $_SESSION['level'];
 
 if (!empty($_POST[equipe]))
 	$equip_id=$_POST[equipe];

@@ -10,7 +10,7 @@ if (!auth(1))
 
 $logged_user = strtolower($_SESSION['logged_user']);
 $logged_id = $_SESSION['logged_id'];
-$user_level = $_SESSION['level'];
+$logged_level = $_SESSION['level'];
 require_once('html-functions.php');
 
 en_tete('Liste des Manips');
@@ -63,7 +63,7 @@ if ( $pdo = connect_db() ){
 				<th style="vertical-align: top; text-align: center;">
 					<a href ="list_manip.php?tri=equipe">&Eacute;quipe</a>
 				</th>
-				<?php if ($user_level!=1){
+				<?php if ($logged_level!=1){
 				//pas necessaire si chercheur logue
 				?>
 				<th style="vertical-align: top; text-align: center;">
@@ -92,10 +92,10 @@ if ( $pdo = connect_db() ){
 					echo '<tr class="impair">'.PHP_EOL;
 				$num_line++;
 				$relief = 0;
-				if ($user_level > 1)
+				if ($logged_level > 1)
 					$relief = 1;
 				// remplit le tableau
-				//if ($user_level <= 1) {
+				//if ($logged_level <= 1) {
 				//mise en evidence des manips concernant le chercheur connecte
 				//	if ($manip['chercheur'] == $logged_id || $manip['chercheur_bis'] == $logged_id){
 				//		echo '<tr bgcolor="#FFFAD0" style="vertical-align: top;">';
@@ -133,7 +133,7 @@ if ( $pdo = connect_db() ){
 					echo $equipe[0]['nom'];
 				}
 				echo '  </td>';
-				if ($user_level != 1) {
+				if ($logged_level != 1) {
 					//si chercheur logue pas necessaire
 					// recupere la liste des chercheurs
 					$sql = 'SELECT nom FROM users WHERE id = ?;';
@@ -147,12 +147,12 @@ if ( $pdo = connect_db() ){
 					}
 					echo '  </td>';
 				}
-				if ($user_level >= 2) {
+				if ($logged_level >= 2) {
 					echo '  <td style="vertical-align: top;">';
 					echo '    <a href="add_manip.php?id=',$manip['id'],'">'.ICON_EDIT.'</a>';
 					echo '  </td>';
 				}
-				if ($user_level >= 3) {
+				if ($logged_level >= 3) {
 					echo '  <td style="vertical-align: top;">';
 					echo '    <a href="del_manip.php?id=',$manip['id'],'">'.ICON_TRASH.'</a>';
 					echo '  </td>';

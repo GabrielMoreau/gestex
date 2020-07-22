@@ -11,7 +11,7 @@ level_or_alert(1, 'Modification du mot de passe');
 
 $logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['level'];
 
 $errormsg = '';
 
@@ -47,7 +47,7 @@ if (isset($passwd1) && isset($passwd2)){
 	if ($passwd1 != $passwd2)
  		 $errormsg = 'Passwords do not match, please try again';
 
-	if (!isset($errormsg) && isset($old_pass) && $user_level < 3) {
+	if (!isset($errormsg) && isset($old_pass) && $logged_level < 3) {
 		if(md5($old_pass) != $user[0]['password'])
 			$errormsg = 'Wrong password, sorry!';
 	}
@@ -73,7 +73,7 @@ if (!empty($_GET['id'])) {
 		<input type="hidden" name="user" value="<?php echo $user2chg; ?>">
 		<table>
 			<tbody>
-				<?php if ($user_level < 3) { ?>
+				<?php if ($logged_level < 3) { ?>
 				<tr>
 					<th>Ancien mot de passe</th>
 					<td><input type="password" name="old_pass" placeholder="Ancien mot de passe"></td>

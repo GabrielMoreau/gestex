@@ -10,7 +10,7 @@ auth_or_login('team-list.php');
 level_or_alert(3, 'Modification d\'une &eacute;quipe');
 
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['level'];
 
 unset($erreur);
 
@@ -78,7 +78,7 @@ if ($pdo = connect_db()) {
 		//ajoute la clause
 		$querry .= " WHERE id='$id_equip'";
 	if ($modif != 0){
-		if ($user_level >= 3)
+		if ($logged_level >= 3)
 			$stmt = $pdo->prepare($querry);
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -10,7 +10,7 @@ if (!auth(1))
 
 $logged_id = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level= $_SESSION['level'];
+$logged_level= $_SESSION['level'];
 
 //et le numero de manip
 $manip_id=$_GET['idm'];

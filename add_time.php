@@ -9,7 +9,7 @@ require_once('auth-functions.php');
 
  $logged_id = $_SESSION['logged_id'];
  $logged_user = strtolower($_SESSION['logged_user']);
- $user_level= $_SESSION['level'];
+ $logged_level= $_SESSION['level'];
 
 $manip_id = $_GET[idm];
 if (empty($manip_id))
@@ -66,9 +66,9 @@ echo $titre;
       <td style="vertical-align: top;">utilisateur :<br />
       </td>
       <td style="vertical-align: top;" colspan ="2">
- <?php if ($user_level ==2)
+ <?php if ($logged_level ==2)
    echo $logged_user.":".$logged_id ;
- else if ($user_level ==3){ //admin
+ else if ($logged_level ==3){ //admin
   //selection du user
   // recupere la liste des users possibles
   $querry = "SELECT id,nom FROM users WHERE level>=2 AND valid=1 ";

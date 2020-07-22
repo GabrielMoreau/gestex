@@ -10,7 +10,7 @@ if (!auth(1))
 
 $logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['level'];
 
 require_once('html-functions.php');
 
@@ -91,7 +91,7 @@ if( $pdo =connect_db()){
 			echo      $data['nom'];
 			echo '  </td>'.PHP_EOL;
 	
-			if ($user_level >= 3) 	{
+			if ($logged_level >= 3) 	{
 				echo '  <td style="vertical-align: top;">';
 				echo '    <a href="loan-del.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
 				echo '  </td>'.PHP_EOL;

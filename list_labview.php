@@ -4,7 +4,7 @@ require_once('auth-functions.php');
 
 $logged_id = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level= $_SESSION['level'];
+$logged_level= $_SESSION['level'];
 
 require_once('html-functions.php');
 
@@ -29,7 +29,7 @@ if (empty($tri))
 	<a href="add_labview.php">Ajouter<br />une manip Labview</a>
 	<br /></td>
 
-<?php if ( $user_level >=2 ) {
+<?php if ( $logged_level >=2 ) {
 ?>
 
  <td style="vertical-align: top; text-align: center;">
@@ -78,9 +78,9 @@ Liste des manip labview en cours : <br />
 	Impression &eacute;cran+doc pdf manip<br />
       </th>
 
-<?php if ( $user_level >=2 )
+<?php if ( $logged_level >=2 )
 		echo "</th><th>";
-	if ( $user_level >=3 )
+	if ( $logged_level >=3 )
 		echo "</th><th>";
 	  ?>
     </tr>

@@ -12,7 +12,7 @@ if (empty($_SESSION['logged_user'])) {
 } else {
 	$logged_id        = $_SESSION['logged_id'];
 	$logged_user = strtolower($_SESSION['logged_user']);
-	$user_level     = $_SESSION['level'];
+	$logged_level     = $_SESSION['level'];
 	$log            = true;
 }
 
@@ -81,9 +81,9 @@ en_tete($title);
 			<?php
 			if ($log == true && $eq == 15)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
-			if ($log == true && $user_level ==2)
+			if ($log == true && $logged_level ==2)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
-			if ($log == true && $user_level >=3)
+			if ($log == true && $logged_level >=3)
 				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="equipment-add.php">'.ICON_ADD_APPAREIL.'</a></span></th>'.PHP_EOL;
 			?>
 		</tr>
@@ -202,12 +202,12 @@ en_tete($title);
 			echo '  </td>'.PHP_EOL;
 		}
 
-		if (($log === true && $user_level >= 2) && ($eq != "15 pret=15")) {
+		if (($log === true && $logged_level >= 2) && ($eq != "15 pret=15")) {
 			echo '  <td>';
 			echo '    <a href="equipment-add.php?id=',$data['id'],'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}//end if
-		if (($log === true && $user_level >= 3) && ($eq != "15 pret=15")) {
+		if (($log === true && $logged_level >= 3) && ($eq != "15 pret=15")) {
 			echo '  <td>';
 			echo '    <a href="equipment-del.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;

@@ -11,11 +11,11 @@ level_or_alert(1, 'Liste de tous les utilisateurs');
 
 $logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['level'];
 
 //recuper la methode de tri
 if (empty($_GET['tri'])){
-	if ($user_level >= 3) {
+	if ($logged_level >= 3) {
 		$tri = 'level';
 	} else {
 		$tri = 'nom';
@@ -35,7 +35,7 @@ en_tete('Liste de tous les utilisateurs');
 <table class="sortable">
 	<tbody>
 		<tr>
-			<?php if ($user_level >= 3) { ?>
+			<?php if ($logged_level >= 3) { ?>
 			<th>
 				Level
 			</th>
@@ -55,7 +55,7 @@ en_tete('Liste de tous les utilisateurs');
 			<th>
 				&Eacute;quipe
 			</th>
-			<?php if ($user_level >= 3) { ?>
+			<?php if ($logged_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan="3">
 				<span class="option-right"><a href="user-add.php?"><?php echo ICON_ADD_USER ?></a></span>
 			</th>
@@ -65,10 +65,10 @@ en_tete('Liste de tous les utilisateurs');
 <?php	//interrogation base de donnees
 if ($pdo = connect_db()) {
 	// recupere la liste des users
-	if ($user_level > 3){ // lorsqu'on est haut place, on voit tout le monde
+	if ($logged_level > 3){ // lorsqu'on est haut place, on voit tout le monde
 		$sql = 'SELECT * FROM users ORDER BY ?;';
 	}
-	else if ($user_level == 3) { // losrqu'on est de niveau 3, on voit tout le monde sauf les users de plus haut level
+	else if ($logged_level == 3) { // losrqu'on est de niveau 3, on voit tout le monde sauf les users de plus haut level
 		$sql = 'SELECT * FROM users WHERE level < 3 ORDER BY ?;';
 	}
 	else { // lorsqu'on est < 3, on voit tout le monde sauf le suser de level > 3 et les users non valide
@@ -86,7 +86,7 @@ if ($pdo = connect_db()) {
 		if ($data['id'] == $id_highlight)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
-		if ($user_level >=3 ) {
+		if ($logged_level >=3 ) {
 			echo '  <td style="vertical-align: top;">';
 			echo      $data['level'];
 			echo '  </td>'.PHP_EOL;
@@ -96,7 +96,7 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		// l'utilisateur a la possiblite de modifier ses coordonnees
-		if ($logged_id == $data['id'] || $user_level >= 3)
+		if ($logged_id == $data['id'] || $logged_level >= 3)
 			echo '    <a href="user-add.php?id='.$data['id'].'">'.$data['nom'].'</a>';
 		else
 			echo      $data['nom'];
@@ -119,7 +119,7 @@ if ($pdo = connect_db()) {
 			echo " (".$data['equipe'].")";
 		}
 		echo '  </td>'.PHP_EOL;
-		if ($user_level >= 3) {
+		if ($logged_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
 			echo '    <a href="user-add.php?id='.$data['id'].'">';
 			echo        ICON_PERSON_PROFIL;

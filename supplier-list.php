@@ -9,14 +9,14 @@ require_once('html-functions.php');
 session_start();
 $logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['level'];
 
 $find = true;
 #if (!empty($_SESSION['fournisseur_find']))
 #	$find = $_SESSION['fournisseur_find'];
 if (!empty($_POST['find']))
 	$find = $_POST['find'];
-#if ($user_level > 0)
+#if ($logged_level > 0)
 #	$_SESSION['fournisseur_find'] = $find;
 
 $id_highlight = 0;
@@ -54,11 +54,11 @@ en_tete('Liste de tous les fournisseurs', $find);
 			<th>
 				Description
 			</th>
-			<?php if ($user_level == 2) { ?>
+			<?php if ($logged_level == 2) { ?>
 			<th class="sorttable_nosort">
 			</th>
 			<?php } ?>
-			<?php if ($user_level >= 3) { ?>
+			<?php if ($logged_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan=2">
 				<span class="option-right"><a href="supplier-add.php"><?php ICON_ADD_FOURN ?></a></span>
 			</th>
@@ -91,12 +91,12 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">'.$fournisseur['contact'].'</td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">'.$fournisseur['descr'].'</td>'.PHP_EOL;
-		if ($user_level >= 2) {
+		if ($logged_level >= 2) {
 			echo '  </td><td style="vertical-align: top;">';
 			echo '    <a href="supplier-add.php?id='.$fournisseur['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
-		if ($user_level >= 3) {
+		if ($logged_level >= 3) {
 			echo '  </td><td style="vertical-align: top;">';
 			echo '    <a href="supplier-del.php?id='.$fournisseur['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;

@@ -10,7 +10,7 @@ require_once('auth-functions.php');
 
 $logged_id = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level= $_SESSION['level'];
+$logged_level= $_SESSION['level'];
 
 //recupere  le numero du nom
 $tache_id=$_GET['id'];

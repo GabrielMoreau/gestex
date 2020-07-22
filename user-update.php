@@ -11,7 +11,7 @@ if (!auth(1))
 
 $logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
-$user_level     = $_SESSION['level'];
+$logged_level     = $_SESSION['level'];
 
 //modification d'un utilisateur
 
@@ -72,7 +72,7 @@ if ( $pdo = connect_db() ){
 		if ($prenom!=$user[0]['prenom'])
 			//modif du prenom
 			$querry.=" prenom='$prenom',";
-	if ($user_level >= 3) {
+	if ($logged_level >= 3) {
 		if ($level != $user[0]['level'])
 			//modif du level
 			$querry.= " level='$level',";
@@ -96,12 +96,12 @@ if ( $pdo = connect_db() ){
 		$querry[strlen($querry)-1]=' ';
 		//ajoute la clause
 		$querry.=" WHERE id='$user2ch_id'";
-		if ($user_level >= 3)
+		if ($logged_level >= 3)
 		echo $querry;
 			$stmt = $pdo->prepare($querry);
 			$stmt->execute();
 			
-		if ($user_level == 3 && $valid == 1) {
+		if ($logged_level == 3 && $valid == 1) {
 			//validation d'un user acceptee
 			//envoi d'un mail a cet user
 		$texte = $prenom." ".$nom." votre inscription au systeme GestEx a &eacute;t&eacute; accept&eacute;e !";
