@@ -9,9 +9,9 @@ require_once('html-functions.php');
 auth_or_login('user-list.php');
 level_or_alert(3, 'Modification d\'un utilisateur');
 
-$logged_id        = $_SESSION['logged_id'];
-$logged_user = strtolower($_SESSION['logged_user']);
-$logged_level     = $_SESSION['level'];
+$logged_id    = $_SESSION['logged_id'];
+$logged_user  = strtolower($_SESSION['logged_user']);
+$logged_level = $_SESSION['logged_level'];
 
 if (empty($_GET['id'])) {
 	//->nouvelle inscription
