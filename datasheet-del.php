@@ -10,7 +10,7 @@ auth_or_login('equipment-list.php');
 level_or_alert(3, 'Suppression d\'une notice');
 
 $user_id        = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 
 $id_datasheet = $_GET['id'];
 if (empty($_GET['id']))

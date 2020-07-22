@@ -7,7 +7,7 @@ require_once('auth-functions.php');
 		Header("Location: login.php");
 
 	$user_id = $_SESSION['user_id'];
-	$logged_in_user = strtolower($_SESSION['logged_in_user']);
+	$logged_user = strtolower($_SESSION['logged_user']);
 
  if (!empty($_GET['ide']))
 	$equip_id = $_GET['ide'];
@@ -60,7 +60,7 @@ if ( $pdo = connect_db() ){
 }
 en_tete('Cr&eacute;ation de rapport');
 
-$texte = $logged_in_user." (".$user_id.") Voila un formulaire pour cr&eacute;&eacute;r un rapport<br />";
+$texte = $logged_user." (".$user_id.") Voila un formulaire pour cr&eacute;&eacute;r un rapport<br />";
 echo $texte;
 
 }//end if connex

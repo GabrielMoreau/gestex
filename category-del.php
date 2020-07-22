@@ -10,7 +10,7 @@ if (!auth(3)) // si le level du user n'est pas >= 3, on l'emmene a la page pour 
 	Header("Location: login.php");
 			  // Sinon, on passe a la suite
 $user_id = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 
 if (empty($_GET['id'])) // on recupere l'id de la categorie a supprimer dans l'url, s'il n'y en a pas, on va a la liste des categorie
 	Header("Location: category-list.php");

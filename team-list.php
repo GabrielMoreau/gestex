@@ -10,7 +10,7 @@ auth_or_login('team-list.php');
 level_or_alert(1, 'Liste de toutes les &eacute;quipes');
 
 $user_id        = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 $user_level     = $_SESSION['level'];
 
 en_tete('Liste de toutes les &eacute;quipes');

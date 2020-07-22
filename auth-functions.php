@@ -5,20 +5,20 @@ require_once('db-functions.php');
 /* authentication function: this is called by
    each page to ensure that there is an authenticated user
 */
-function auth($reqlevel, $logged_in_user='', $password='') {
+function auth($reqlevel, $logged_user='', $password='') {
 
 	// start/continue the session
 	session_start();
-	if (!empty($_SESSION['logged_in_user']))
+	if (!empty($_SESSION['logged_user']))
 		return true;
 
-	$check = !empty($logged_in_user);
+	$check = !empty($logged_user);
 
 	if ($check) {
 		$pdo = connect_db();
 		$sql = 'SELECT password, id, level, valid FROM users WHERE loggin = ?;';
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($logged_in_user));
+		$stmt->execute(array($logged_user));
 		$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		// is the password correct
@@ -35,7 +35,7 @@ function auth($reqlevel, $logged_in_user='', $password='') {
 				$level = 1;
 			// set session variables
 			$_SESSION['user_id'] = $user[0]['id'];
-			$_SESSION['logged_in_user'] = $logged_in_user;
+			$_SESSION['logged_user'] = $logged_user;
 			$_SESSION['level'] = $level;
 			return 1;
 		}
@@ -87,7 +87,7 @@ function auth_or_login($referer='index.php') {
 	// start or continue the session
 	session_start();
 
-	if (!empty($_SESSION['logged_in_user']))
+	if (!empty($_SESSION['logged_user']))
 		return true;
 
 	$url = $referer;

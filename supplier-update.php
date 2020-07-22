@@ -9,7 +9,7 @@ require_once('html-functions.php');
 auth_or_login('supplier-update.php');
 level_or_alert(3, 'Modification d\'un fournisseur');
 
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 $user_level     = $_SESSION['level'];
 
 //modification d'un fournisseur

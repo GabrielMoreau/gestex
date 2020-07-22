@@ -9,7 +9,7 @@ if (!auth(2))
 	Header("Location: login.php");
 
 $user_id = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 $user_level= $_SESSION['level'];
 
 if (!empty($_POST[equipe]))
@@ -30,7 +30,7 @@ en_tete('Rapport');
 if ( $connex = connect_db() ){
 
 	// recupere les refs du user
-	$querry = "SELECT prenom, nom FROM users WHERE loggin = '$logged_in_user';" ;
+	$querry = "SELECT prenom, nom FROM users WHERE loggin = '$logged_user';" ;
 	list($qh,$num) = query_db($querry);
 
 $data = result_db($qh);

@@ -10,7 +10,7 @@ auth_or_login('equipment-list.php');
 level_or_alert(3, 'Modification d\'un appareil');
 
 $user_id        = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 
 $cat = '';
 if (!empty($_GET['categorie']))

@@ -9,7 +9,7 @@ require_once('html-functions.php');
 auth_or_login('team-list.php');
 level_or_alert(3, 'Modification d\'une &eacute;quipe');
 
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 $user_level     = $_SESSION['level'];
 
 unset($erreur);

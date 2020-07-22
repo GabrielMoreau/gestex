@@ -7,7 +7,7 @@
 		Header("Location: login.php");
 
 	$user_id = $_SESSION['user_id'];
-	$logged_in_user = strtolower($_SESSION['logged_in_user']);
+	$logged_user = strtolower($_SESSION['logged_user']);
 
 if (empty($_GET['id'])){
 	//->nouvel appareil

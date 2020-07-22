@@ -3,7 +3,7 @@
 require_once('auth-functions.php');
 
 $user_id = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 $user_level= $_SESSION['level'];
 
 require_once('html-functions.php');

@@ -1,11 +1,11 @@
 <?php
 require_once('auth-functions.php');
 session_start();
-if(empty($_SESSION['logged_in_user'])){
+if(empty($_SESSION['logged_user'])){
 	$log = false;
 }else{
 	$user_id        = $_SESSION['user_id'];
-	$logged_in_user = strtolower($_SESSION['logged_in_user']);
+	$logged_user = strtolower($_SESSION['logged_user']);
 	$user_level     = $_SESSION['level'];
 	$log            = true;
 }

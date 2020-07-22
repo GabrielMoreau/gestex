@@ -8,7 +8,7 @@ require_once('auth-functions.php');
   Header("Location: login.php");
 
  $user_id = $_SESSION['user_id'];
- $logged_in_user = strtolower($_SESSION['logged_in_user']);
+ $logged_user = strtolower($_SESSION['logged_user']);
  $user_level= $_SESSION['level'];
 
 $manip_id = $_GET[idm];
@@ -35,7 +35,7 @@ if ( $connex = connect_db() ){
  list($qh,$num) = query_db($querry);
  $projet = result_db($qh);
 
-$titre= $logged_in_user." (".$user_id.")<br />Voila un formulaire pour ajouter du temps &agrave; <ul>la tache :";
+$titre= $logged_user." (".$user_id.")<br />Voila un formulaire pour ajouter du temps &agrave; <ul>la tache :";
 
  // recupere la tache selectionnee
  $querry = "SELECT * FROM tache WHERE id='$task_id'";
@@ -67,7 +67,7 @@ echo $titre;
       </td>
       <td style="vertical-align: top;" colspan ="2">
  <?php if ($user_level ==2)
-   echo $logged_in_user.":".$user_id ;
+   echo $logged_user.":".$user_id ;
  else if ($user_level ==3){ //admin
   //selection du user
   // recupere la liste des users possibles

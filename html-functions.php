@@ -32,10 +32,10 @@ function en_tete($titre, $find=false) {
    // <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
    if (!empty($_SESSION)) {
 	$pdo            = connect_db();
-	$logged_in_user = $_SESSION['logged_in_user'];
+	$logged_user = $_SESSION['logged_user'];
 	$sql            = 'SELECT nom, prenom, theme FROM users WHERE loggin = ?;';
 	$stmt           = $pdo->prepare($sql);
-	$stmt->execute(array($logged_in_user));
+	$stmt->execute(array($logged_user));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	$css = 'pool_project_'.$user[0]['theme'].'.css';

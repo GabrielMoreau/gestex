@@ -9,7 +9,7 @@ if (!auth(1))
 	Header("Location: login.php");
 
 $user_id        = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 $user_level     = $_SESSION['level'];
 
 //recuper la methode de tri
@@ -35,7 +35,7 @@ if ($pdo = connect_db()){
 
 	// $data = result_db($qh);
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($logged_in_user));
+	$stmt->execute(array($logged_user));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	// echo " Bienvenue ";
 	// var_dump($user);

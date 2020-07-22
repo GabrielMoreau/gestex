@@ -7,7 +7,7 @@
 //if (!auth(3))
 	//Header("Location: login.php");
 
-//$logged_in_user = strtolower($_SESSION['logged_in_user']);
+//$logged_user = strtolower($_SESSION['logged_user']);
 
 require_once('html-functions.php');
 require ("db-functions.php");

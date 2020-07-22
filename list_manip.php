@@ -8,7 +8,7 @@ require_once('auth-functions.php');
 if (!auth(1))
 	Header("Location: login.php");
 
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 $user_id = $_SESSION['user_id'];
 $user_level = $_SESSION['level'];
 require_once('html-functions.php');
@@ -23,12 +23,12 @@ else
 
 if ( $pdo = connect_db() ){
 	// recupere les refs du user
-	// $querry = "SELECT * FROM users WHERE loggin='$logged_in_user' " ;
+	// $querry = "SELECT * FROM users WHERE loggin='$logged_user' " ;
 	// list($qh,$num) = query_db($querry);
 	// $data = result_db($qh);
 	$sql = 'SELECT nom, prenom FROM users WHERE loggin = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($logged_in_user));
+	$stmt->execute(array($logged_user));
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	?>
 	<br />

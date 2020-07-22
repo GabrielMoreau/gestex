@@ -10,7 +10,7 @@ auth_or_login('index.php');
 level_or_alert(1, 'Modification du mot de passe');
 
 $user_id        = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 $user_level     = $_SESSION['level'];
 
 $errormsg = '';

@@ -10,7 +10,7 @@ if (!auth(3))
 	Header("Location: loan-list.php");
 
 $user_id        = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 
 if (empty($_GET['id']) || $_POST['ok'] == 'cancel')
 	Header("Location: loan-list.php");

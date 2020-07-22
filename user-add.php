@@ -10,7 +10,7 @@ auth_or_login('user-list.php');
 level_or_alert(3, 'Modification d\'un utilisateur');
 
 $user_id        = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 $user_level     = $_SESSION['level'];
 
 if (empty($_GET['id'])) {

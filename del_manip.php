@@ -11,7 +11,7 @@ if (!auth(3))
 en_tete('Suppression Manip');
 
 $user_id = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 
 
 if (empty($_GET['id']))

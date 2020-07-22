@@ -7,7 +7,7 @@ require_once('auth-functions.php');
 if (!auth(2))
 	Header("Location: login.php");
 
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 $user_level= $_SESSION['level'];
 
 require_once('html-functions.php');

@@ -10,7 +10,7 @@ auth_or_login('supplier-list.php');
 level_or_alert(2, 'Modification d\'une &eacute;quipe');
 
 $user_id        = $_SESSION['user_id'];
-$logged_in_user = strtolower($_SESSION['logged_in_user']);
+$logged_user = strtolower($_SESSION['logged_user']);
 
 if (empty($_GET['id'])) {
 	//on vient depuis index.html
