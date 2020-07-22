@@ -30,12 +30,8 @@ if ($pdo = connect_db()) {
 		en_tete('Inscrire un utilisateur');
 	} else if ($mode == 'modifier') {
 		en_tete('Modifier mon profil');
-		// recupere la liste des users
-		$sql = 'SELECT * FROM users WHERE id = ?;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($user2ch_id));
-		$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$data = $user[0];
+		// recupere le user concerne
+		$data = get_user_all_by_id($pdo, $user2ch_id);
 	}
 ?>
 
@@ -86,7 +82,7 @@ if ($pdo = connect_db()) {
 				Nom de famille *
 			</th>
 			<td>
-				<input type="text" name="nom" size="25" maxlength="25" value="<?php if ($mode=='modifier') echo $data['nom'] ?>" placeholder="Nom de famille *">
+				<input type="text" name="nom" size="25" maxlength="25" value="<?php if ($mode == 'modifier') echo $data['nom'] ?>" placeholder="Nom de famille *">
 			</td>
 		</tr>
 		<tr>
@@ -94,7 +90,7 @@ if ($pdo = connect_db()) {
 				Pr&eacute;nom
 			</th>
 			<td>
-				<input type="text" name="prenom" size="25" maxlength="25" value="<?php if ($mode=='modifier') echo $data['prenom'] ?>" placeholder="Pr&eacute;nom">
+				<input type="text" name="prenom" size="25" maxlength="25" value="<?php if ($mode == 'modifier') echo $data['prenom'] ?>" placeholder="Pr&eacute;nom">
 			</td>
 		</tr>
 		<tr>
@@ -102,7 +98,7 @@ if ($pdo = connect_db()) {
 				Adresse courriel *
 			</th>
 			<td>
-				<input type="text" name="addr_mail" size="25" maxlength="50" value="<?php if ($mode=='modifier') echo $data['email'] ?>" placeholder="Adresse courriel *">
+				<input type="text" name="addr_mail" size="25" maxlength="50" value="<?php if ($mode == 'modifier') echo $data['email'] ?>" placeholder="Adresse courriel *">
 			</td>
 		</tr>
 		<tr>
@@ -118,23 +114,20 @@ if ($pdo = connect_db()) {
 				&Eacute;quipe
 			</th>
 			<?php // recupere la liste des equipes
-			$sql = 'SELECT id, nom FROM equipe ORDER BY nom;';
-			$stmt = $pdo->prepare($sql);
-			$stmt->execute();
-			$equipe_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$equipe_fetch = get_team_listshort($pdo);
 			?>
 			<td>
 				<select  name="equipe">
 					<?php
 					foreach ($equipe_fetch as $equipe) {
 						echo '<option value="'.$equipe['id'].'"';
-						/// selectionne la bonne equipe
+						// selectionne la bonne equipe
 						if($mode == 'modifier'){
-						if ($equipe['id'] == $data['equipe'])
-							echo ' selected';
+							if ($equipe['id'] == $data['equipe'])
+								echo ' selected';
 						}
 						echo '>'.$equipe['nom'].'</option>';
-					} //end foreach ?>
+					} // end foreach ?>
 				</select>
 				<span class="option-right"><a href="team-add.php"><?php echo ICON_ADD_EQUIP ?></a></span>
 			</td>
