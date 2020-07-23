@@ -3,7 +3,7 @@
 //browse_proj.php
 
 // Authenticate
-require_once('auth-functions.php');
+require_once('module/auth-functions.php');
 
 if (!auth(1))
  Header("Location: login.php");
@@ -22,7 +22,7 @@ $proj_id =$_GET['idp'];
 if (empty($proj_id))
  Header("Location: list_manip.php");
 
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 
 if ( $connex = connect_db() ){
 

@@ -1,7 +1,7 @@
 <?php
 /// add_intapp.php
 	// Authenticate
-	require_once('auth-functions.php');
+	require_once('module/auth-functions.php');
 
 	if (!auth(3))
 		Header("Location: login.php");
@@ -28,7 +28,7 @@ else{
 
 }
 
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 if ( $pdo = connect_db() ){
 
 // recupere l'appareil selectionne

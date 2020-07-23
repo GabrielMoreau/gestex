@@ -1,7 +1,7 @@
 <?php
 ///logout.php
 
-require_once('auth-functions.php');
+require_once('module/auth-functions.php');
 
 // $truc2=$_GET['variable'];
 logout();

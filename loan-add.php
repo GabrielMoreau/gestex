@@ -3,7 +3,7 @@
 $web_page = true;
 
 // Authenticate
-require_once('auth-functions.php');
+require_once('module/auth-functions.php');
 
 //if (!auth(3))
 	//Header("Location: login.php");
@@ -36,7 +36,7 @@ if (empty($_GET['pret'])) {
 
 //transmet la valeur de la categorie a la page valid appareil
 
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 if ($pdo = connect_db()) {
 	if ($mode == 'ajouter') {
 		en_tete('Ajouter un pr&ecirc;t');

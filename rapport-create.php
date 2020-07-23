@@ -2,7 +2,7 @@
 // rapport-create.php
 
 // Authenticate
-require_once('auth-functions.php');
+require_once('module/auth-functions.php');
 	if (!auth(2))
 		Header("Location: login.php");
 
@@ -25,7 +25,7 @@ else
 
 	$tache_id =0;
 
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 
 if ( $pdo = connect_db() ){
 	// recupere l'equip selectionnee

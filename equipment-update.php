@@ -2,14 +2,14 @@
 // equipment-update.php
 
 // Authenticate
-//require_once('auth-functions.php');
+//require_once('module/auth-functions.php');
 
 //if (!auth(3))
 	//Header("Location: login.php");
 
 //$logged_user = strtolower($_SESSION['logged_user']);
-require_once('auth-functions.php');
-require_once('html-functions.php');
+require_once('module/auth-functions.php');
+require_once('module/html-functions.php');
 
 auth_or_login('team-list.php');
 level_or_alert(3, 'Modification d\'une &eacute;quipe');

@@ -1,6 +1,6 @@
 <?php
  // Authenticate
- require_once('auth-functions.php');
+ require_once('module/auth-functions.php');
 
  if (!auth(2))
   Header("Location: login.php");
@@ -8,7 +8,7 @@
  $logged_id = $_SESSION['logged_id'];
  $logged_user = strtolower($_SESSION['logged_user']);
 
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 
 /// valid_proj.php
 //validation d'un nouveau projet

@@ -2,7 +2,7 @@
 /// modif_manip.php
 
 // Authenticate
-require_once('auth-functions.php');
+require_once('module/auth-functions.php');
 
 if (!auth(2))
 	Header("Location: login.php");
@@ -10,7 +10,7 @@ if (!auth(2))
 $logged_user = strtolower($_SESSION['logged_user']);
 $logged_level= $_SESSION['logged_level'];
 
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 
 //modification d'une tache de manip
 

@@ -1,5 +1,5 @@
 <?php
-require_once('auth-functions.php');
+require_once('module/auth-functions.php');
 session_start();
 if(empty($_SESSION['logged_user'])){
 	$log = false;
@@ -9,7 +9,7 @@ if(empty($_SESSION['logged_user'])){
 	$logged_level     = $_SESSION['logged_level'];
 	$log            = true;
 }
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 en_tete('Gestion des plateformes exp&eacute;rimentales');
 ?>
 

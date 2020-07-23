@@ -3,8 +3,8 @@
 $web_page = true;
 
 // Authenticate
-require_once('auth-functions.php');
-require_once('html-functions.php');
+require_once('module/auth-functions.php');
+require_once('module/html-functions.php');
 
 auth_or_login('supplier-update.php');
 level_or_alert(3, 'Modification d\'un fournisseur');

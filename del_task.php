@@ -3,12 +3,12 @@
 //del_task.php
 
 // Authenticate
-require_once('auth-functions.php');
+require_once('module/auth-functions.php');
 
 if (!auth(3))
  Header("Location: login.php");
 
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 
 en_tete('Suppression T&acirc;che');
 

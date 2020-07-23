@@ -1,6 +1,6 @@
 <?php
 
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 /// valid_machine.php
 //validation d'un nouvel appareil
 unset($erreur);
@@ -61,7 +61,7 @@ else{
 ///tout est ok
 //pas d'erreur
 ///on inscrit
-require_once('db-functions.php');
+require_once('module/db-functions.php');
 
 if ( $pdo = connect_db() ){
 		//inscription

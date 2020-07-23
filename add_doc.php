@@ -2,7 +2,7 @@
 /// add_doc.php
 //ajoute un document quelconque dans un repertoire associe a un projet ou une tache
 // Authenticate
-require_once('auth-functions.php');
+require_once('module/auth-functions.php');
  if (!auth(2))
   Header("Location: login.php");
 
@@ -19,7 +19,7 @@ if (empty($proj_id))
 
 $task_id = $_GET[idt];
 
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 
 if ( $connex = connect_db() ){
  // recupere les nom de manip, projet et tache selectionnes

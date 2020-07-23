@@ -1,7 +1,7 @@
 <?php
 // add_labview.php
 	// Authenticate
-	require_once('auth-functions.php');
+	require_once('module/auth-functions.php');
 
 	$logged_id = $_SESSION['logged_id'];
 	$logged_user = strtolower($_SESSION['logged_user']);
@@ -30,7 +30,7 @@ else{
 
 }
 
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 if ( $connex = connect_db() ){
 if ($mode=="ajouter"){
 	en_tete('Ajouter une manip labview');

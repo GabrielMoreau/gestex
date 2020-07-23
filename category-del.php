@@ -3,8 +3,8 @@
 $web_page = true;
 
 // Authenticate
-require_once('auth-functions.php');
-require_once('html-functions.php');
+require_once('module/auth-functions.php');
+require_once('module/html-functions.php');
 
 if (!auth(3)) // si le level du user n'est pas >= 3, on l'emmene a la page pour se logger
 	Header("Location: login.php");

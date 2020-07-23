@@ -3,7 +3,7 @@
 //doc_labview.php
 
 // Authenticate
-require_once('auth-functions.php');
+require_once('module/auth-functions.php');
 
 //if (!auth(1))
 	//Header("Location: login.php");
@@ -17,7 +17,7 @@ $nom_id=$_GET['id'];
 if (empty($nom_id))
 	Header("Location: list_labview.php");
 
-require_once('html-functions.php');
+require_once('module/html-functions.php');
 
 if ( $connex = connect_db() ){
 

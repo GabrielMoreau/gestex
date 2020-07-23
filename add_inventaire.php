@@ -1,7 +1,7 @@
 <?php
 /// add_inventaire.php
 	// Authenticate
-	require_once('auth-functions.php');
+	require_once('module/auth-functions.php');
 
 	if (!auth(3))
 		Header("Location: login.php");

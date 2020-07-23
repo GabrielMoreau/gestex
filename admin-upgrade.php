@@ -3,9 +3,9 @@
 $web_page = true;
 
 // Authenticate
-require_once('auth-functions.php');
-require_once('html-functions.php');
-require_once('upgrade-functions.php');
+require_once('module/auth-functions.php');
+require_once('module/html-functions.php');
+require_once('module/upgrade-functions.php');
 
 auth_or_login('index.php');
 level_or_alert(5, 'Mise &agrave; jour de l\'application');

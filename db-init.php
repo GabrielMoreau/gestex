@@ -1,5 +1,5 @@
 <?php
-require_once('db-functions.php');
+require_once('module/db-functions.php');
 
 if ( $connex = connect_db() ){
 		//inscription
