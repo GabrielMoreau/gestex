@@ -2,14 +2,9 @@
 
 require_once('connect.php');
 
-//////////////////////////////////////////////////////
-// function connect_db(){
-// connexion au serveur mySQL
-// $connexion= mysql_pconnect(SERVER, USER, PASSWD);
+// ---------------------------------------------------------------------
 
-// selection de la base bultaco
-// return mysql_select_db(DATABASE, $connexion);
-// }
+// connexion au serveur mySQL
 
 function connect_db() {
 	try{
@@ -23,7 +18,7 @@ function connect_db() {
 	return $pdo;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function query_db($statement) {
 	$result   = mysql_query($statement) or die("<pre>\n\nCan't perform query: " . mysql_error() . " \n\n$statement\n\n</pre>");
@@ -31,13 +26,13 @@ function query_db($statement) {
 	return array($result, $num_rows);
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function numrows_db($result) {
 	return @mysql_num_rows($result);
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function result_db($result,$i=-1) {
 	if ($i >= 0) {
@@ -46,13 +41,13 @@ function result_db($result,$i=-1) {
 	return mysql_fetch_array($result);
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function last_id_db() {
 	return mysql_insert_id();
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function check_val_in_db($pdo, $table, $col, $value) {
 	//teste l'existence de $value dans le champ $col de la table $table
@@ -70,7 +65,7 @@ function check_val_in_db($pdo, $table, $col, $value) {
 	return false;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_datasheet_listall_by_equipment($pdo, $id_equipment) {
 	$sql = 'SELECT * FROM datasheet WHERE id_equipment = ?;' ;
@@ -80,7 +75,7 @@ function get_datasheet_listall_by_equipment($pdo, $id_equipment) {
 	return $result_fetch;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_datasheet_count_by_equipment($pdo, $id_equipment) {
 	$sql = 'SELECT COUNT(*) as count FROM datasheet WHERE id_equipment = ?;';
@@ -90,7 +85,7 @@ function get_datasheet_count_by_equipment($pdo, $id_equipment) {
 	return $result_fetch[0]['count'];
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_equipment_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
@@ -102,7 +97,7 @@ function get_equipment_by_id($pdo, $id) {
 	return false;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_equipment_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM Listing WHERE id = ?;';
@@ -114,7 +109,7 @@ function get_equipment_all_by_id($pdo, $id) {
 	return false;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_equipment_listshort($pdo) {
 	$sql = 'SELECT id, nom FROM Listing;';
@@ -124,7 +119,7 @@ function get_equipment_listshort($pdo) {
 	return $result_fetch;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_category_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
@@ -134,7 +129,7 @@ function get_category_by_id($pdo, $id) {
 	return $category_fetch[0];
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_supplier_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
@@ -144,7 +139,7 @@ function get_supplier_by_id($pdo, $id) {
 	return $supplier_fetch[0];
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_supplier_listshort($pdo) {
 	$sql = 'SELECT id, nom FROM fournisseurs;';
@@ -154,7 +149,7 @@ function get_supplier_listshort($pdo) {
 	return $supplier_fetch;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_supplier_listall($pdo) {
 	$sql = 'SELECT * FROM fournisseurs;';
@@ -164,7 +159,7 @@ function get_supplier_listall($pdo) {
 	return $supplier_fetch;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_supplier_find($pdo, $find='') {
 	if (empty($find) or ($find === true))
@@ -176,7 +171,7 @@ function get_supplier_find($pdo, $find='') {
 	return $supplier_fetch;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_team_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
@@ -186,7 +181,7 @@ function get_team_by_id($pdo, $id) {
 	return $team_fetch[0];
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_team_listshort($pdo) {
 	$sql = 'SELECT id, nom FROM equipe;';
@@ -196,7 +191,7 @@ function get_team_listshort($pdo) {
 	return $team_fetch;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_team_listall($pdo) {
 	$sql = 'SELECT * FROM equipe;';
@@ -206,7 +201,7 @@ function get_team_listall($pdo) {
 	return $team_fetch;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_team_with_appareil($pdo) {
 	$sql = 'SELECT id, nom FROM equipe INNER JOIN Listing ON equipe.id = Listing.equipe;';
@@ -216,7 +211,7 @@ function get_team_with_appareil($pdo) {
 	return $team_fetch;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_user_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM users WHERE id = ?;';
@@ -228,7 +223,7 @@ function get_user_by_id($pdo, $id) {
 	return false;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_user_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM users WHERE id = ?;';
@@ -240,7 +235,7 @@ function get_user_all_by_id($pdo, $id) {
 	return false;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_user_all_by_login($pdo, $login) {
 	$sql = 'SELECT * FROM users WHERE loggin = ?;';
@@ -252,7 +247,7 @@ function get_user_all_by_login($pdo, $login) {
 	return false;
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function get_version_by_name($pdo, $name) {
 	$sql = 'SELECT version FROM version WHERE name = ?;';
@@ -263,7 +258,7 @@ function get_version_by_name($pdo, $name) {
 		return $version_fetch[0];
 	return false;
 }
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function set_version_by_name($pdo, $name, $version) {
 	$sql = 'INSERT INTO version (name, version) VALUES (?, ?);';

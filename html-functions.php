@@ -3,7 +3,7 @@
 require_once('db-functions.php');
 require_once('base-functions.php');
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 define('ICON_PERSON_OK',     '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-check"/></svg></span>');
 define('ICON_PERSON_BAD',    '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Non Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-dash"/></svg></span>');
@@ -27,7 +27,7 @@ define('ICON_ADD_APPAREIL',  '<span><svg width="1.2em" height="1.2em" fill="curr
 define('ICON_ADD_USER',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un utilisateur</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
 define('ICON_MARK_RIGHT',    '<span><svg width="1.2em" height="1.2em" fill="currentColor"><use xlink:href="images/bootstrap-icons.svg#arrow-right-square"/></svg></span>');
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function en_tete($titre, $find=false) {
    // <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -76,7 +76,7 @@ function en_tete($titre, $find=false) {
 	}
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function nav_bar($prenom, $nom, $level, $logged_id, $find) {
 ?>
@@ -182,7 +182,7 @@ function nav_bar($prenom, $nom, $level, $logged_id, $find) {
 <?php
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function pied_page() {
    //ne garde que le nom de fichier
@@ -209,7 +209,7 @@ function pied_page() {
 <?php
 }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function check_mail($mail) {
    $atom = '[-a-z0-9!#$%&\'*+/=?^_`{|}~]';    // allowed characters for part before "at" character
@@ -239,7 +239,7 @@ function check_mail($mail) {
    return $erreur;
    }
 
-// -------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 function redirect($link='index.php') {
 	Header('Location: '.$link);

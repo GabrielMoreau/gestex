@@ -3,7 +3,7 @@
 require_once('db-functions.php');
 require_once('base-functions.php');
 
-////////////////////////////////////////////////////////////////////////////
+// ---------------------------------------------------------------------
 
 /* authentication function: this is called by
    each page to ensure that there is an authenticated user
@@ -51,7 +51,7 @@ function auth($reqlevel, $logged_user='', $password='') {
 	return true;
 }
 
-////////////////////////////////////////////////////////////////////////////
+// ---------------------------------------------------------------------
 
 function logout() {
 	// continue the session
@@ -62,7 +62,7 @@ function logout() {
 	session_destroy();
 }
 
-////////////////////////////////////////////////////////////////////////////
+// ---------------------------------------------------------------------
 
 function level($reqlevel) {
 	$level = $_SESSION['logged_level'];
@@ -71,7 +71,7 @@ function level($reqlevel) {
 	return true;
 }
 
-////////////////////////////////////////////////////////////////////////////
+// ---------------------------------------------------------------------
 
 function level_or_alert($reqlevel, $msg_alert='') {
 	if (level($reqlevel))
@@ -82,7 +82,7 @@ function level_or_alert($reqlevel, $msg_alert='') {
 	exit();
 }
 
-////////////////////////////////////////////////////////////////////////////
+// ---------------------------------------------------------------------
 
 function auth_or_login($referer='index.php') {
 	// start or continue the session
