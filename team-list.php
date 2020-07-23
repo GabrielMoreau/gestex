@@ -5,6 +5,7 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
+require_once('module/base-functions.php');
 
 auth_or_login('team-list.php');
 level_or_alert(1, 'Liste de toutes les &eacute;quipes');
@@ -12,12 +13,9 @@ level_or_alert(1, 'Liste de toutes les &eacute;quipes');
 $logged_id    = $_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
+$id_highlight = param_get('highlight', 0);
 
 en_tete('Liste de toutes les &eacute;quipes');
-
-$id_highlight = 0;
-if (!empty($_GET['highlight']))
-	$id_highlight = $_GET['highlight'];
 ?>
 
 <div class="catalog">
