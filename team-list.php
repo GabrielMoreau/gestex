@@ -15,12 +15,6 @@ $logged_level = $_SESSION['logged_level'];
 
 en_tete('Liste de toutes les &eacute;quipes');
 
-//recuper la methode de tri
-if (empty($_GET['tri']))
-	$tri = 'nom';
-else
-	$tri = $_GET['tri'];
-
 $id_highlight = 0;
 if (!empty($_GET['highlight']))
 	$id_highlight = $_GET['highlight'];
@@ -54,9 +48,9 @@ if (!empty($_GET['highlight']))
 <?php	//interrogation base de donnees
 if ($pdo = connect_db()) {
 	// recupere la liste de fournisseurs
-	$sql = 'SELECT * FROM equipe ORDER BY ?;';
+	$sql = 'SELECT * FROM equipe;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($tri));
+	$stmt->execute();
 	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$num_line = 1;
 	foreach ($equipe as $data) {

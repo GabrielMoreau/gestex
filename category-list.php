@@ -16,13 +16,6 @@ if (empty($_SESSION['logged_user'])) {
 }
 
 en_tete('Liste des appareils par cat&eacute;gorie');
-
-//recupere la methode de tri
-
-if (empty($_GET['tri']))
-	$tri = 'nom';
-else
-	$tri = $_GET['tri'];
 ?>
 
 <div class="catalog">
@@ -42,9 +35,9 @@ else
 <?php
 if ($pdo = connect_db()) {
 	// recupere les refs du user
-	$sql = 'SELECT id, nom FROM categorie ORDER BY ? ASC;';
+	$sql = 'SELECT id, nom FROM categorie;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($tri));
+	$stmt->execute();
 	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$num_line = 1;
 	foreach ($categorie as $data) {

@@ -13,17 +13,6 @@ $logged_id    = $_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
-//recuper la methode de tri
-if (empty($_GET['tri'])){
-	if ($logged_level >= 3) {
-		$tri = 'level';
-	} else {
-		$tri = 'nom';
-	}
-} else {
-	$tri = $_GET['tri'];
-}
-
 $id_highlight = 0;
 if (!empty($_GET['highlight']))
 	$id_highlight = $_GET['highlight'];
@@ -66,16 +55,16 @@ en_tete('Liste de tous les utilisateurs');
 if ($pdo = connect_db()) {
 	// recupere la liste des users
 	if ($logged_level > 3){ // lorsqu'on est haut place, on voit tout le monde
-		$sql = 'SELECT * FROM users ORDER BY ?;';
+		$sql = 'SELECT * FROM users;';
 	}
 	else if ($logged_level == 3) { // losrqu'on est de niveau 3, on voit tout le monde sauf les users de plus haut level
-		$sql = 'SELECT * FROM users WHERE level < 3 ORDER BY ?;';
+		$sql = 'SELECT * FROM users WHERE level < 3;';
 	}
 	else { // lorsqu'on est < 3, on voit tout le monde sauf le suser de level > 3 et les users non valide
-		$sql = 'SELECT * FROM users WHERE valid = 1 and level < 3 ORDER BY ?;';
+		$sql = 'SELECT * FROM users WHERE valid = 1 and level < 3;';
 	}
 	$stmt = $pdo->prepare($sql);
-    $stmt->execute(array($tri));
+    $stmt->execute();
 	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$num_line = 1;
 	foreach ($user as $data) {
