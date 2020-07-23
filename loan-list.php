@@ -5,6 +5,7 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
+require_once('module/base-functions.php');
 
 session_start();
 if (empty($_SESSION['logged_user'])) {
@@ -15,16 +16,8 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-//recuper la methode de tri
-if (empty($_GET['tri']))
-	$tri = 'emprunt';
-else
-	$tri = $_GET['tri'];
-
-//recupere l'equipe
-$eq = '';
-if (!empty($_GET['equipe']))
-	$eq = $_GET['equipe'];
+// recupere l'equipe
+$eq = param_get('equipe']);
 
 en_tete('Liste des pr&ecirc;ts');
 ?>
@@ -61,7 +54,7 @@ en_tete('Liste des pr&ecirc;ts');
 if ($pdo = connect_db()) {
 	// recupere la liste de appareils
 
-	$sql = 'SELECT * FROM pret ORDER BY nom DESC;';
+	$sql = 'SELECT * FROM pret;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -10,6 +10,14 @@ function param_post($string, $default = '') {
 
 // ---------------------------------------------------------------------
 
+function param_get($string, $default = '') {
+	if (!empty($_GET[$string]))
+		return $_GET[$string];
+	return $default;
+}
+
+// ---------------------------------------------------------------------
+
 function param_post_or_get($string, $default = '') {
 	if (!empty($_POST[$string]))
 		return $_POST[$string];
