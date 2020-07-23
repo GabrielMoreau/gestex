@@ -167,9 +167,10 @@ if ($pdo = connect_db()) {
 				Th&egrave;me
 			</th>
 			<td>
-				<input type="radio" name="theme" value="clair" <?php if ($mode ==='modifier' && $data['theme']=='clair') echo 'checked' ?> >Clair<br>
-				<input type="radio" name="theme" value="sombre" <?php if ($mode ==='modifier' && $data['theme']=='sombre') echo 'checked' ?>>Sombre<br>
-				<input type="radio" name="theme" value="solarizeddark" <?php if ($mode ==='modifier' && $data['theme']=='solarizeddark') echo 'checked' ?>>Solarized-Dark<br>
+				<input type="radio" name="theme" value="random" <?php if ($mode === 'modifier' && $data['theme'] == 'random') echo 'checked' ?> >Al&eacute;atoire<br>
+				<input type="radio" name="theme" value="clair" <?php if ($mode === 'modifier' && $data['theme'] == 'clair') echo 'checked' ?> >Clair<br>
+				<input type="radio" name="theme" value="sombre" <?php if ($mode === 'modifier' && $data['theme'] == 'sombre') echo 'checked' ?>>Sombre<br>
+				<input type="radio" name="theme" value="solarizeddark" <?php if ($mode === 'modifier' && $data['theme'] == 'solarizeddark') echo 'checked' ?>>Solarized-Dark<br>
 			</td>
 		</tr>
 		<tr>

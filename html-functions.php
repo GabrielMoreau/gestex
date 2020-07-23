@@ -1,6 +1,7 @@
 <?php
 
 require_once('db-functions.php');
+require_once('base-functions.php');
 
 // -------------------------------------------------------------
 
@@ -31,14 +32,20 @@ define('ICON_MARK_RIGHT',    '<span><svg width="1.2em" height="1.2em" fill="curr
 function en_tete($titre, $find=false) {
    // <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
    if (!empty($_SESSION)) {
-	$pdo         = connect_db();
-	$logged_user = $_SESSION['logged_user'];
-	$user        = get_user_all_by_login($pdo, $logged_user);
-
-	$css = 'pool_project_'.$user['theme'].'.css';
-	} else {
-		$css = 'pool_project_clair.css';
+	$pdo          = connect_db();
+	$logged_user  = $_SESSION['logged_user'];
+	$actual_theme = $_SESSION['logged_theme'];
+	$user         = get_user_all_by_login($pdo, $logged_user);
 	}
+	else {
+		if (empty($_COOKIE['GestEx-Theme'])) {
+			$actual_theme = theme('random');
+			setcookie('GestEx-Theme', "$actual_theme", time() + 7200); // 2 h
+		}
+		else
+			$actual_theme = $_COOKIE['GestEx-Theme'];
+	}
+	$css_style = 'pool_project_'.$actual_theme.'.css';
 ?>
 
 <html>
@@ -46,7 +53,7 @@ function en_tete($titre, $find=false) {
 	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
 	<link rel="icon" sizes="192x126" href="images/logo-gestex-192.png">
 	<title>GestEx - <?php echo $titre ?></title>
-	<link href="<?php echo $css; ?>" rel ="stylesheet" type="text/css">
+	<link href="<?php echo $css_style ?>" rel ="stylesheet" type="text/css">
 	<script src="sorttable-gestex.js"></script>
 </head>
 <body>

@@ -1,6 +1,9 @@
 <?php
 
 require_once('db-functions.php');
+require_once('base-functions.php');
+
+////////////////////////////////////////////////////////////////////////////
 
 /* authentication function: this is called by
    each page to ensure that there is an authenticated user
@@ -14,37 +17,38 @@ function auth($reqlevel, $logged_user='', $password='') {
 
 	$check = !empty($logged_user);
 
-	if ($check) {
-		$pdo = connect_db();
-		$user = get_user_all_by_login($pdo, $logged_user);
-
-		// is the password correct
-		if ($user['password'] != md5($password)) {
-			// pas le bon ppasswd
-			return 0; // false;
-		} else if ($reqlevel > $user['level']){
-			// pas le niveau d'autorisation requis
-			return 0;//false;
-		} else { // tout ok
-			// down the level for disable user
-			$level = $user['level'];
-			if ($user['valid'] == 0 && $level > 1)
-				$level = 1;
-			// set session variables
-			$_SESSION['logged_id']    = $user['id'];
-			$_SESSION['logged_user']  = $logged_user;
-			$_SESSION['logged_level'] = $level;
-			return 1;
-		}
-	} else {
+	if (empty($logged_user)) {
 		// unset all the variables
 		session_unset();
-
 		// destroy the session
 		session_destroy();
-
-		return 0; ///false;
+		return false;
 	}
+
+	$pdo = connect_db();
+	$user = get_user_all_by_login($pdo, $logged_user);
+
+	// is the password correct
+	if ($user['password'] != md5($password)) {
+		// pas le bon ppasswd
+		return false;
+	}
+	if ($reqlevel > $user['level']) {
+		// pas le niveau d'autorisation requis
+		return false;
+	}
+	
+	// tout ok
+	// down the level for disable user
+	$level = $user['level'];
+	if ($user['valid'] == 0 && $level > 1)
+		$level = 1;
+	// set session variables
+	$_SESSION['logged_id']    = $user['id'];
+	$_SESSION['logged_user']  = $logged_user;
+	$_SESSION['logged_level'] = $level;
+	$_SESSION['logged_theme'] = theme($user['theme']);
+	return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -94,5 +98,6 @@ function auth_or_login($referer='index.php') {
 	Header('Location: login.php?referer='.urlencode($url));
 	exit();
 }
+
 
 ?>
