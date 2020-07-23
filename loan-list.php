@@ -10,9 +10,9 @@ session_start();
 if (empty($_SESSION['logged_user'])) {
 	$logged_level = 0;
 } else {
-	$logged_id        = $_SESSION['logged_id'];
-	$logged_user = strtolower($_SESSION['logged_user']);
-	$logged_level     = $_SESSION['logged_level'];
+	$logged_id    = $_SESSION['logged_id'];
+	$logged_user  = strtolower($_SESSION['logged_user']);
+	$logged_level = $_SESSION['logged_level'];
 }
 
 //recuper la methode de tri
