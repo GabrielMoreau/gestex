@@ -5,6 +5,7 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
+require_once('module/base-functions.php');
 
 session_start();
 if (empty($_SESSION['logged_user'])) {
@@ -15,17 +16,8 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$find = true;
-#if (!empty($_SESSION['fournisseur_find']))
-#	$find = $_SESSION['fournisseur_find'];
-if (!empty($_POST['find']))
-	$find = $_POST['find'];
-#if ($logged_level > 0)
-#	$_SESSION['fournisseur_find'] = $find;
-
-$id_highlight = 0;
-if (!empty($_GET['highlight']))
-	$id_highlight = $_GET['highlight'];
+$id_highlight = param_get('highlight', 0);
+$find = param_post('find', true);
 
 en_tete('Liste de tous les fournisseurs', $find);
 ?>
