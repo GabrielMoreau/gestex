@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 session_start();
 if (empty($_SESSION['logged_user'])) {
-	$log            = false;
+	$log          = false;
 } else {
 	$logged_id    = $_SESSION['logged_id'];
 	$logged_user  = strtolower($_SESSION['logged_user']);
@@ -18,10 +18,9 @@ if (empty($_SESSION['logged_user'])) {
 
 $title = 'Liste des appareils';
 
-//recuper la methode de tri
-$tri = 'id';
-if (!empty($_GET['tri']))
-	$tri = $_GET['tri'];
+$id_highlight = 0;
+if (!empty($_GET['highlight']))
+	$id_highlight = $_GET['highlight'];
 
 if (!$pdo = connect_db()) {
 	echo 'Erreur sur la DBD';
@@ -90,36 +89,20 @@ en_tete($title);
 
 <?php
 	// recupere la liste de appareils
-
-	// if ((!empty($cat))||(!empty($eq)))
 	if ($cat == 0 && $eq != 0) {
-		// echo "SELECT * FROM Listing WHERE equipe = ",$eq," ORDER BY ",$tri,"  ASC;"; 
-
-		$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY ? ASC;';
-
-		// list($qh,$num) = query_db($querry);
-		// $last_id=0;
+		$sql = 'SELECT * FROM Listing WHERE equipe = ?;';
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($eq, $tri));
+		$stmt->execute(array($eq));
 	} else if ($eq == 0 && $cat != 0) {
-		// echo "SELECT * FROM Listing WHERE categorie = ",$cat," ORDER BY ",$tri,"  ASC;"; 
-		$sql = 'SELECT * FROM Listing WHERE categorie = ? ORDER BY ? ASC;';
-		// list($qh,$num) = query_db($querry);
-		// $last_id=0;
+		$sql = 'SELECT * FROM Listing WHERE categorie = ?;';
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($cat, $tri));
+		$stmt->execute(array($cat));
 	}
-
 	if ($cat == 0 && $eq == 0) {
-		// echo "SELECT * FROM Listing ORDER BY ",$tri,"  ASC;"; 
-		$sql = 'SELECT * FROM Listing ORDER BY ? ASC;';
-		// list($qh,$num) = query_db($querry);
+		$sql = 'SELECT * FROM Listing;';
 		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($tri));
-		// $last_id=0;
+		$stmt->execute(array());
 	}
-
-	// $data = result_db($qh);
 	$listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	$num_line = 1;
