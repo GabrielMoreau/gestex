@@ -5,6 +5,7 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
+require_once('module/base-functions.php');
 
 session_start();
 if (empty($_SESSION['logged_user'])) {
@@ -16,11 +17,9 @@ if (empty($_SESSION['logged_user'])) {
 	$log          = true;
 }
 
-$title = 'Liste des appareils';
+$id_highlight = param_get('highlight', 0);
 
-$id_highlight = 0;
-if (!empty($_GET['highlight']))
-	$id_highlight = $_GET['highlight'];
+$title = 'Liste des appareils';
 
 if (!$pdo = connect_db()) {
 	echo 'Erreur sur la DBD';
@@ -80,9 +79,9 @@ en_tete($title);
 			<?php
 			if ($log == true && $eq == 15)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
-			if ($log == true && $logged_level ==2)
+			if ($log == true && $logged_level == 2)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
-			if ($log == true && $logged_level >=3)
+			if ($log == true && $logged_level >= 3)
 				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="equipment-add.php">'.ICON_ADD_APPAREIL.'</a></span></th>'.PHP_EOL;
 			?>
 		</tr>
