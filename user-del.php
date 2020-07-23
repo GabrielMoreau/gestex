@@ -5,6 +5,7 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
+require_once('module/base-functions.php');
 
 auth_or_login('team-del.php');
 level_or_alert(3, 'Changer l\'&eacute;tat d\'un utilisateur');
@@ -12,19 +13,12 @@ level_or_alert(3, 'Changer l\'&eacute;tat d\'un utilisateur');
 $logged_id        = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-$id_user = $_POST['id'];
-if (empty($id_user))
-	$id_user = $_GET['id'];
-if (empty($id_user) || $_POST['ok'] == 'cancel')
+$id_user     = param_post_or_get('id');
+$valid       = param_post('ok', 'no');
+$status_user = param_post_or_get('status');
+
+if (empty($id_user) || $valid == 'cancel')
 	redirect('user-list.php');
-
-$status_user = $_POST['status'];
-if (empty($status_user))
-	$status_user = $_GET['status'];
-
-$valid = 'no';
-if ($_POST['ok'] == 'yes') // si ok dans l'url est 'yes', on valide la suppression
-	$valid = 'yes';
 
 if ($valid == 'yes') {
 	if ($pdo = connect_db()) {
