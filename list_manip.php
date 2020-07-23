@@ -63,7 +63,7 @@ if ( $pdo = connect_db() ){
 				<th style="vertical-align: top; text-align: center;">
 					<a href ="list_manip.php?tri=equipe">&Eacute;quipe</a>
 				</th>
-				<?php if ($logged_level!=1){
+				<?php if ($logged_level != 1) {
 				//pas necessaire si chercheur logue
 				?>
 				<th style="vertical-align: top; text-align: center;">

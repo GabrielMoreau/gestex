@@ -29,7 +29,7 @@ if (empty($tri))
 	<a href="add_labview.php">Ajouter<br />une manip Labview</a>
 	<br /></td>
 
-<?php if ( $logged_level >=2 ) {
+<?php if ($logged_level >= 2) {
 ?>
 
  <td style="vertical-align: top; text-align: center;">
@@ -78,9 +78,9 @@ Liste des manip labview en cours : <br />
 	Impression &eacute;cran+doc pdf manip<br />
       </th>
 
-<?php if ( $logged_level >=2 )
+<?php if ($logged_level >= 2)
 		echo "</th><th>";
-	if ( $logged_level >=3 )
+	if ($logged_level >= 3)
 		echo "</th><th>";
 	  ?>
     </tr>

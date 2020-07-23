@@ -45,7 +45,7 @@ if (empty($tri))
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="list_machine.php">Retour a<br />liste des Appareils</a>
 	<br /></td>
-<?php if ( $logged_level >=3 ) {	?>
+<?php if ($logged_level >= 3) { ?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_intapp.php?app=<?php echo $id_app; ?>">Ajout d'une<br />intervention</a>
 	<br /></td>
@@ -82,9 +82,9 @@ echo "L'appareil <b>".$data['nom']."</b> a deja subi les interventions suivantes
     <th style="vertical-align: top; text-align: center;">
 	facture<br />
       </th>
-<?php if ( $logged_level >=2 )
+<?php if ($logged_level >= 2)
 		echo "</th><th>";
-	if ( $logged_level >=3 )
+	if ($logged_level >= 3)
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -120,12 +120,12 @@ while ($data = result_db($qh)) {
 		echo $data['facture'];
       echo"</td>";
 
- if ( $logged_level >=2 ) {
+ if ($logged_level >= 2) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"add_intapp.php?app=".$id_app."&id=".$data['id'].'">'.ICON_EDIT.'</a>';
       echo"</td>";
 	}//end if
- if ( $logged_level >=3 ) {
+ if ($logged_level >= 3) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_intapp.php?id=".$data['id']."\">".ICON_TRASH.'</a>';
       echo"</td>";

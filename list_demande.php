@@ -47,7 +47,7 @@ else
 				<a href="historique_demande.php">Historique<br />des demandes</a>
 				<br />
 			</td>
-			<?php if ( $logged_level >=2 ) { ?>
+			<?php if ($logged_level >= 2) { ?>
 			<td style="vertical-align: top; text-align: center;">
 				<a href="logout.php?variable=instru">Quitter</a>
 				<br />
@@ -85,9 +85,9 @@ Liste des demandes en cours :<br />
 		<th style="vertical-align: top; text-align: center;">
 			Pi&egrave;ces jointes<br />
 		</th>
-		<?php if ( $logged_level >=2 )
+		<?php if ($logged_level >= 2)
 			echo "</th><th>";
-			if ( $logged_level >=3 )
+			if ($logged_level >= 3)
 			echo "</th><th>";
 			?>
 		</tr>

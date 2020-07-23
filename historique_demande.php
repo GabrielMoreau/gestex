@@ -39,7 +39,7 @@ $cat=$_GET[categorie];
 				<br />
 			</td>
 
-			<?php if ( $logged_level >=2 ) { ?>
+			<?php if ($logged_level >= 2) { ?>
 				<td style="vertical-align: top; text-align: center;">
 					<a href="logout.php?variable=instru">Quitter</a>
 					<br />
@@ -84,9 +84,9 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 			Pi&egrave;ces jointes<br />
 		</th>
 
-		<?php if ( $logged_level >=2 )
+		<?php if ($logged_level >= 2)
 		echo "</th><th>";
-		if ( $logged_level >=3 )
+		if ($logged_level >= 3)
 			echo "</th><th>";
 		?>
 	</tr>
@@ -123,12 +123,12 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	echo"</td><td style=\"vertical-align: top;\">";
 	echo $data['piecesjointes'];
 
-	if ( $logged_level >=2) {
+	if ($logged_level >= 2) {
 		echo"</td><td style=\"vertical-align: top;\">";
 		echo "<a href=\"add_demande.php?id=$data['id']\">".ICON_EDIT."</a>";
 		echo"</td>";
 	}
-	if ( $logged_level >=3 ) {
+	if ($logged_level >= 3) {
 		echo"</td><td style=\"vertical-align: top;\">";
 		echo "<a href=\"del_demande.php?id=$data['id']\">".ICON_TRASH."</a>";
 		echo"</td>";
@@ -168,12 +168,12 @@ style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 			echo "Voir : <a href =\"joint_demande.php?id=". $data['id']."\">".$data['tache'].' '.ICON_SEE_DOC."</a><br />";
 		}
 
-		if ( $logged_level >=2) {
+		if ($logged_level >= 2) {
 			echo"</td><td style=\"vertical-align: top;\">";
 			echo "<a href=\"add_demande.php?id=$data['id']\">".ICON_EDIT."</a>";
 			echo"</td>";
 		}
-		if ( $logged_level >=3 ) {
+		if ($logged_level >= 3) {
 			echo"</td><td style=\"vertical-align: top;\">";
 			echo "<a href=\"del_demande.php?id=$data['id']\">".ICON_TRASH."</a>";
 			echo"</td>";

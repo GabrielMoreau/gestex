@@ -30,7 +30,7 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
 	 <td style="vertical-align: top; text-align: center;">
 	<a href="list_manip.php">Retour a<br />l'accueil</a>
 	<br /></td>
-<?php if ( $logged_level >=3 ) {	?>
+<?php if ( $logged_level >=3) { ?>
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_machine.php">Ajout<br />d'un appareil</a>
 	<br /></td>
@@ -67,9 +67,9 @@ Liste des appareils pour lesquels la maintenance est enregistr&eacute;e r&eacute
     <th style="vertical-align: top; text-align: center;">
 	Facture<br />
       </th>
-<?php if ( $logged_level >=2 )
+<?php if ($logged_level >= 2)
 		echo "</th><th>";
-	if ( $logged_level >=3 )
+	if ($logged_level >= 3)
 		echo "</th><th>";
 	  ?>
     </tr>
@@ -131,12 +131,12 @@ if ( $pdo = connect_db() ){
 		echo $data['facture'];
       echo"</td>";
 
- if ( $logged_level >=2 ) {
+ if ($logged_level >= 2) {
       echo '</td><td style="vertical-align: top;">';
       echo '<a href="add_machine.php?id="'.$data['id'].'">'.ICON_EDIT.'</a>';
       echo '</td>';
 	}//end if
- if ( $logged_level >=3 ) {
+ if ($logged_level >= 3) {
       echo"</td><td style=\"vertical-align: top;\">";
       echo "<a href=\"del_machine.php?id=".$data['id']."\">".ICON_TRASH.'</a>';
       echo"</td>";

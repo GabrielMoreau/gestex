@@ -99,7 +99,7 @@ $dossier_manip=$manip[0]['nom'];
 	style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
 	<tbody>
 		<tr class="menu">
-			<?php if ($logged_level >=2){ ?>
+			<?php if ($logged_level >= 2) { ?>
 			<td style="vertical-align: top; text-align: center;">
 				<a href="add_proj.php?idm=<?php echo $manip_id ?>">Ajout d'un Projet</a>
 				<br />

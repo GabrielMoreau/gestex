@@ -101,7 +101,7 @@ if ( $pdo = connect_db() ){
 			$stmt = $pdo->prepare($querry);
 			$stmt->execute();
 			
-		if ($logged_level == 3 && $valid == 1) {
+		if ($logged_level >= 3 && $valid == 1) {
 			//validation d'un user acceptee
 			//envoi d'un mail a cet user
 		$texte = $prenom." ".$nom." votre inscription au systeme GestEx a &eacute;t&eacute; accept&eacute;e !";
