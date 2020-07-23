@@ -2,6 +2,24 @@
 
 // ---------------------------------------------------------------------
 
+function param_post($string, $default = '') {
+	if (!empty($_POST[$string]))
+		return $_POST[$string];
+	return $default;
+}
+
+// ---------------------------------------------------------------------
+
+function param_post_or_get($string, $default = '') {
+	if (!empty($_POST[$string]))
+		return $_POST[$string];
+	if (!empty($_GET[$string]))
+		return $_GET[$string];
+	return $default;
+}
+
+// ---------------------------------------------------------------------
+
 function string_to_filename_snake($string) {
 	# $string = strtolower($string);
 	$string = str_replace(' ', '_', $string);
