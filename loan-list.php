@@ -17,7 +17,7 @@ if (empty($_SESSION['logged_user'])) {
 }
 
 // recupere l'equipe
-$eq = param_get('equipe']);
+$eq = param_get('equipe');
 
 en_tete('Liste des pr&ecirc;ts');
 ?>
