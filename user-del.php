@@ -10,7 +10,7 @@ require_once('module/base-functions.php');
 auth_or_login('team-del.php');
 level_or_alert(3, 'Changer l\'&eacute;tat d\'un utilisateur');
 
-$logged_id        = $_SESSION['logged_id'];
+$logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $id_user     = param_post_or_get('id');
@@ -22,8 +22,7 @@ if (empty($id_user) || $valid == 'cancel')
 
 if ($valid == 'yes') {
 	if ($pdo = connect_db()) {
-		//on supprime cet user
-		// $sql = 'DELETE LOW_PRIORITY FROM users WHERE id = ? LIMIT 1';
+		// on change le status de cet user
 		if ($status_user == 0 || $status_user == 1) {
 			$sql = 'UPDATE users SET valid = ? WHERE id = ?;';
 			// 1 -> 0 and 0 -> 1 (modulo)
