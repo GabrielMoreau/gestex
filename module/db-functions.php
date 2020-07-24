@@ -112,7 +112,7 @@ function get_equipment_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 function get_equipment_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM Listing;';
+	$sql = 'SELECT id, nom FROM Listing ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -186,7 +186,7 @@ function get_supplier_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 function get_supplier_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM fournisseurs;';
+	$sql = 'SELECT id, nom FROM fournisseurs ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$supplier_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -196,7 +196,7 @@ function get_supplier_listshort($pdo) {
 // ---------------------------------------------------------------------
 
 function get_supplier_listall($pdo) {
-	$sql = 'SELECT * FROM fournisseurs;';
+	$sql = 'SELECT * FROM fournisseurs ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$supplier_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -228,7 +228,7 @@ function get_team_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 function get_team_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM equipe;';
+	$sql = 'SELECT id, nom FROM equipe ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$team_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -238,7 +238,7 @@ function get_team_listshort($pdo) {
 // ---------------------------------------------------------------------
 
 function get_team_listall($pdo) {
-	$sql = 'SELECT * FROM equipe;';
+	$sql = 'SELECT * FROM equipe ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$team_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
