@@ -1,129 +1,64 @@
 <?php
 // loan-create.php
+$web_page = true;
 
 require_once('module/html-functions.php');
-//recuper la methode de tri
+require_once('module/db-functions.php');
+require_once('module/base-functions.php');
 
-/// valid_pret.php
 //validation d'un pret
 unset($erreur);
+
 //variables ne pouvant etre nulles
+$id_equipment = param_post('id_equipment');
+if (empty($id_equipment))
+	$erreur = 'Nom de l\'appareil non pr&eacute;cis&eacute;';
 
-if (empty($_POST['nom']))
-	$erreur="nom non pr&eacute;cis&eacute;";
-else{
-	$nom =$_POST['nom'];
+$nom = param_post('nom');
+if (empty($nom))
+	$erreur = 'Nom de l\'appareil non pr&eacute;cis&eacute;';
 
-		if (empty($_POST['equipe']))
-			$erreur="&Eacute;quipe non pr&eacute;cis&eacute;";
-		else{
-			$equipe =$_POST['equipe'];
+$equipe = param_post('equipe');
+if (empty($equipe))
+	$erreur = '&Eacute;quipe non pr&eacute;cis&eacute;';
 
-							//variables pouvant etre nulles
+$emprunt = param_post('emprunt');
+if (empty($emprunt))
+	$erreur = 'Date d\'emprunt non pr&eacute;cis&eacute;';
 
-if (empty($_POST['emprunt']))
-		$erreur="date non pr&eacute;cis&eacute;";
-	else{
-		$emprunt=$_POST['emprunt'];
+//variables pouvant etre nulles
+$retour      = param_post('retour');
+$commentaire = param_post('commentaire');
 
-	$retour =$_POST['retour'];
+en_tete('R&eacute;sultat demande d\'emprunt');
 
-				$commentaire =$_POST['commentaire'];
-
-	}}}
-
-en_tete('R&eacute;sultat ajout appareil');
-
-if (empty($_GET['tri']))
-	$tri ="id";
-else
-	$tri = $_GET['tri'];
-
-if (!empty($erreur) ){
-
+if (!empty($erreur)) {
 	//erreur
-
-	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"loan-add.php\">Suite</a><br />\n";
-
+	echo '<br />Erreur : '.$erreur;
+	echo '<br /><a href="loan-add.php?id='.$id_equipment.'">Suite</a>';
 	pied_page();
 	exit();
 }
-else{
-///tout est ok
-//pas d'erreur
-///on inscrit
-}
-require_once('module/db-functions.php');
 
-if ( $pdo = connect_db() ){
+if ($pdo = connect_db()) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND equipe = ?;';
 	$stmt = $pdo->prepare($sql);
-    $stmt->execute(array($nom,$equipe));
+    $stmt->execute(array($nom, $equipe));
 	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	if(!empty($pret)){
-		echo 'erreur, l\'appareil est d&eacute;j&agrave; emprunt&eacute;';
+	if (!empty($pret)) {
+		echo 'Erreur: l\'appareil est d&eacute;j&agrave; emprunt&eacute;';
 		pied_page();
 		exit();
 	}
-		//inscription
-	$table = "pret";
 
-		// $result = mysql_query("INSERT INTO $table ".
-		// 	"(nom, equipe, emprunt, retour, commentaire)".
-		// 	" VALUES ('$nom','$equipe','$emprunt','$retour','$commentaire')");
-		$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?,?,?,?,?);';
-		$stmt = $pdo->prepare($sql);
-        $stmt->execute(array($nom,$equipe,$emprunt,$retour,$commentaire));
-			//
-// if (!$result){
-			//inscription !ok
-			// $erreur = mysql_error();
-		// echo "<br />erreur :".$erreur;
-		// }
-	// 	$querry = "SELECT * FROM pret ";
-	// list($qh,$num) = query_db($querry);
+	// inscription
+	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?, ?, ?, ?, ?);';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($nom, $equipe, $emprunt, $retour, $commentaire));
 
-	// $last_id=0;
-
-// $data = result_db($qh);
-		// echo "de $equipe $nom<br />";
-//	}//end if connect
-
-// $querry = "SELECT id, nom FROM equipe WHERE id='$equipe'";
-// 	list($qheq,$numeq) = query_db($querry);
-// 		$equip = result_db($qheq);
-
-// 		$querry = "SELECT id, nom FROM Listing WHERE id='$nom'";
-// 	list($qheeq,$numeeq) = query_db($querry);
-// 		$nom = result_db($qheeq);
-
-// echo "de   $equip['nom'] <br />";
-
-// echo "de  $nom['nom']  <br />";
-
-			//echo "<br />ajout <br />";
-echo "Ajout du pr&ecirc;t sur l'appareil $nom valid&eacute;<br />";
-//echo" est valid&eacute;e ";
-echo"<br /><br /><a href=\"loan-list.php?user=3\">Suite</a><br /><br />\n";
-
-// $querry = "SELECT email FROM users WHERE id='2'";
-// 	list($qheh,$numeh) = query_db($querry);
-// 	$email = result_db($qheh);
-
-// $querry = "SELECT email FROM users WHERE id='33'";
-// 	list($qheeh,$numeeh) = query_db($querry);
-// 	$email2 = result_db($qheeh);
-//echo $email2[email];
-
-//echo $email[email];
-// mail($email[email],demandedepret,$nom[nom].$equip[nom].$commentaire);
-
-// mail($email2[email],demandedepret,$nom[nom].$equip[nom].$commentaire);
-//quand on va sur suite, on retourne sur la page du materiel commun
-pied_page();
-
-}//end if connect
-exit();
-
+	echo 'Ajout du pr&ecirc;t sur l\'appareil '.$nom.' valid&eacute;<br />';
+	echo '<br /><br /><a href="loan-list.php">Suite</a>';
+} // end if connect
 ?>
+
+<?php pied_page() ?>
