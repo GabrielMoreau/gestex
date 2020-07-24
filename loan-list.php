@@ -5,7 +5,6 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
-require_once('module/base-functions.php');
 
 session_start();
 if (empty($_SESSION['logged_user'])) {
@@ -15,9 +14,6 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_user  = strtolower($_SESSION['logged_user']);
 	$logged_level = $_SESSION['logged_level'];
 }
-
-// recupere l'equipe
-$eq = param_get('equipe');
 
 en_tete('Liste des pr&ecirc;ts');
 ?>
@@ -50,17 +46,12 @@ en_tete('Liste des pr&ecirc;ts');
 			?>
 		</tr>
 
-<?php	// interrogation base de donnees
+<?php
 if ($pdo = connect_db()) {
-	// recupere la liste de appareils
-
-	$sql = 'SELECT * FROM pret;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$loan_fetch = get_loan_listall($pdo);
 
 	$num_line = 1;
-	foreach ($pret as $data) {
+	foreach ($loan_fetch as $data) {
 		if ($num_line % 2)
 			echo '<tr class="impair">'.PHP_EOL;
 		else

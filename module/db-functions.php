@@ -131,6 +131,16 @@ function get_category_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+function get_loan_listall($pdo) {
+	$sql = 'SELECT * FROM pret;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch;
+}
+
+// ---------------------------------------------------------------------
+
 function get_supplier_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
