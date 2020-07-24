@@ -24,14 +24,6 @@ else
 if ($pdo = connect_db()) {
 	if ($mode=="ajouter")
 		en_tete('Ajouter une cat&eacute;gorie');
-
-		// recupere l'appareil selectionne
-		$sql = 'SELECT * FROM categorie ';
-		// list($qh,$num) = query_db($querry);
-		// $data = result_db($qh);
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute();
-		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
