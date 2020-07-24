@@ -302,7 +302,7 @@ label[for=element-toggle] {
 }
 
 
-/* ================= alert */
+/* ================= box-alert/warn/info */
 
 @keyframes blink { 
 	50% {
@@ -310,15 +310,11 @@ label[for=element-toggle] {
 	} 
 }
 
-center.alert {
+center.box-alert,
+center.box-warn,
+center.box-info {
 	border-width: 5px;
 	border-style: dotted;
-	border-color: var(--color-alert);
-	animation-name: blink ;
-	animation-duration: 0.5s ;
-	animation-timing-function: step-end ;
-	animation-iteration-count: infinite ;
-	animation-direction: alternate ;
 	border-radius: 25px;
 	width: 40%;
 	margin-left: auto;
@@ -327,17 +323,45 @@ center.alert {
 	padding-bottom: 20px;
 }
 
-.alert button.green {
+center.box-alert {
+	animation-name: blink ;
+	animation-duration: 0.5s ;
+	animation-timing-function: step-end ;
+	animation-iteration-count: infinite ;
+	animation-direction: alternate ;
+}
+
+center.box-alert,
+.box-alert hr {
+	color: var(--color-alert);
+}
+
+center.box-warn,
+.box-warn hr {
+	border-color: var(--color-bad);
+}
+
+center.box-info,
+.box-info hr  {
+	border-color: var(--color-ok);
+}
+
+.box-alert button.green,
+-box-warn button.green,
+.box-info button.green {
 	color: var(--color-ok);
 }
-.alert button.red {
+.box-alert button.red,
+.box-warn button.red,
+.box-info button.red {
 	color: var(--color-bad);
 }
 
-.alert hr {
+.box-alert hr,
+.box-warn hr,
+.box-info hr {
 	border-width: 2px;
 	border-style: solid;
-	color: var(--color-alert);
 	width: 30%;
 }
 

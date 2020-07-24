@@ -2,7 +2,7 @@
 
 <?php en_tete('Suppression de la cat&eacute;gorie <i>'.$category_name.'</i>') ?>
 
-<center class="alert">
+<center class="box-alert">
 <form action="category-del.php" method="POST">
 	<input type="hidden" name="id" value="<?=$id_category?>">
 	Voulez-vous supprimer la cat&eacute;gorie <i><?=$category_name?></i> ?

@@ -9,7 +9,7 @@
 
 <?php en_tete($title) ?>
 
-<center class="info">
+<center class="box-info">
 <?php if (empty($highlight)): ?>
 <form action="<?=$action?>" method="POST">
 <?php else: ?>

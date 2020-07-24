@@ -8,7 +8,7 @@
 
 <?php en_tete($title) ?>
 
-<center class="warn">
+<center class="box-warn">
 <form action="<?=$action?>" method="POST">
 	<?=$message_text?>
 	<hr>

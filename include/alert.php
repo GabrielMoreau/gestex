@@ -2,7 +2,7 @@
 
 <?php en_tete('Alerte') ?>
 
-<div class="alert">
+<div class="box-alert">
 	<center>
 		Vous ne disposez pas des autorisations suffisantes pour consulter la page
 		<br>
