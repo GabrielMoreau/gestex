@@ -16,30 +16,19 @@ $valid       = param_post('ok', 'no');
 if (empty($id_category) || $valid == 'cancel')
 	redirect('category-list.php');
 
+$pdo = connect_db();
+$category_name = get_category_by_id($pdo, $id_category)['nom'];
+
 if ($valid == 'yes') {
-	if ($pdo = connect_db()) {
-		// on supprime la categorie
-		$result = del_category_by_id($pdo, $id_category);
-		if (!$result) { // si ca n'a pas marche
-			echo "<br />Erreur dans la suppression de la cat&eacute;gorie : ".$id_category;
-		}
+	// on supprime la categorie
+	$result = del_category_by_id($pdo, $id_category);
+	if (!$result) { // si ca n'a pas marche
+		echo "<br />Erreur dans la suppression de la cat&eacute;gorie : ".$id_category;
 	}
 	//on retourne a la page precedente
 	redirect('category-list.php');
 }
 
-en_tete('Suppression d\'une cat&eacute;gorie');
+// $id_category $category_name
+include_once('include/category-del.php');
 ?>
-
-<center class="alert">
-<form action="category-del.php" method="POST">
-	<input type="hidden" name="id" value="<?php echo $id_category ?>">
-	Voulez-vous supprimer la cat&eacute;gorie <?php echo $id_category ?> ?
-	<button class="red" type="submit" name="ok" value="yes">Oui</button>
-	<button class="green" type="submit" formaction="category-list.php" value="no">Non</button>
-	<hr>
-	<button type="submit" name="ok" value="cancel">Annuler</button>
-</form>
-</center>
-
-<?php pied_page() ?>
