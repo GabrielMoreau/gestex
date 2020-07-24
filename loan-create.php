@@ -14,20 +14,16 @@ $id_equipment = param_post('id_equipment');
 if (empty($id_equipment))
 	$erreur = 'Nom de l\'appareil non pr&eacute;cis&eacute;';
 
-$nom = param_post('nom');
-if (empty($nom))
-	$erreur = 'Nom de l\'appareil non pr&eacute;cis&eacute;';
-
-$equipe = param_post('equipe');
-if (empty($equipe))
+$id_equipe = param_post('equipe');
+if (empty($id_equipe))
 	$erreur = '&Eacute;quipe non pr&eacute;cis&eacute;';
 
-$emprunt = param_post('emprunt');
-if (empty($emprunt))
+$date_emprunt = param_post('emprunt');
+if (empty($date_emprunt))
 	$erreur = 'Date d\'emprunt non pr&eacute;cis&eacute;';
 
 //variables pouvant etre nulles
-$retour      = param_post('retour');
+$date_retour = param_post('retour');
 $commentaire = param_post('commentaire');
 
 en_tete('R&eacute;sultat demande d\'emprunt');
@@ -41,10 +37,7 @@ if (!empty($erreur)) {
 }
 
 if ($pdo = connect_db()) {
-	$sql = 'SELECT * FROM pret WHERE nom = ? AND equipe = ?;';
-	$stmt = $pdo->prepare($sql);
-    $stmt->execute(array($nom, $equipe));
-	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$pret = get_loan_all_by_id_equipment($pdo, $id_equipment);
 	if (!empty($pret)) {
 		echo 'Erreur: l\'appareil est d&eacute;j&agrave; emprunt&eacute;';
 		pied_page();
@@ -52,11 +45,9 @@ if ($pdo = connect_db()) {
 	}
 
 	// inscription
-	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?, ?, ?, ?, ?);';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($nom, $equipe, $emprunt, $retour, $commentaire));
+	$id_loan = set_loan_new($pdo, $id_equipment, $id_equipe, $date_emprunt, $date_retour, $commentaire);
 
-	echo 'Ajout du pr&ecirc;t sur l\'appareil '.$nom.' valid&eacute;<br />';
+	echo 'Ajout du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
 	echo '<br /><br /><a href="loan-list.php">Suite</a>';
 } // end if connect
 ?>

@@ -131,12 +131,46 @@ function get_category_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+function get_loan_all_by_id_equipment($pdo, $id_equipment) {
+	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
+	$sql = 'SELECT * FROM pret WHERE nom = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equipment));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch[0];
+	return false;
+}
+
+// ---------------------------------------------------------------------
+
+function get_loan_all_by_id($pdo, $id) {
+	$sql = 'SELECT * FROM pret WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch[0];
+	return false;
+}
+
+// ---------------------------------------------------------------------
+
 function get_loan_listall($pdo) {
 	$sql = 'SELECT * FROM pret;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
+}
+
+// ---------------------------------------------------------------------
+
+function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
+	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?, ?, ?, ?, ?);';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment));
+	return $pdo->lastInsertId();
 }
 
 // ---------------------------------------------------------------------
