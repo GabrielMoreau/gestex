@@ -131,6 +131,16 @@ function get_category_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+function get_category_listshort($pdo) {
+	$sql = 'SELECT id, nom FROM categorie ORDER BY nom;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch;
+}
+
+// ---------------------------------------------------------------------
+
 function get_loan_all_by_id_equipment($pdo, $id_equipment) {
 	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
 	$sql = 'SELECT * FROM pret WHERE nom = ?;';

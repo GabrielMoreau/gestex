@@ -34,13 +34,9 @@ en_tete('Liste des appareils par cat&eacute;gorie');
 
 <?php
 if ($pdo = connect_db()) {
-	// recupere les refs du user
-	$sql = 'SELECT id, nom FROM categorie;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$category_fetch = get_category_listshort($pdo);
 	$num_line = 1;
-	foreach ($categorie as $data) {
+	foreach ($category_fetch as $data) {
 		if ($num_line % 2)
 			echo '<tr class="pair">'.PHP_EOL;
 		else
