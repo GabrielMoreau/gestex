@@ -158,6 +158,14 @@ function set_category_new($pdo, $name) {
 	return $pdo->lastInsertId();
 }
 
+function del_category_by_id($pdo, $id) {
+	$sql = 'DELETE LOW_PRIORITY FROM categorie WHERE id = ? LIMIT 1';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch ? true : false;
+}
+
 // ---------------------------------------------------------------------
 
 function get_loan_all_by_id_equipment($pdo, $id_equipment) {
