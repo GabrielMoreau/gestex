@@ -37,6 +37,7 @@ if ($pdo = connect_db()) {
 		en_tete('Ajouter un pr&ecirc;t');
 	}
 	else if ($mode == 'modifier') {
+		$pret = get_loan_all_by_id($pdo, $id_pret);
 		en_tete('Modifier les pr&ecirc;ts d\'un appareil');
 	}
 ?>
@@ -52,6 +53,7 @@ if ($pdo = connect_db()) {
 			<td>
 				<select name="nom">
 				<!-- listing des appareils -->
+				<!--cle nom de l'appareil via l'ID qui est mis dans un champs texte ! -->
 				<?php
 				if ($mode == 'ajouter') {
 					$equipment = get_equipment_by_id($pdo, $id_equipment);
@@ -76,7 +78,7 @@ if ($pdo = connect_db()) {
 				$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				foreach($equipe as $chef){
 					echo '<option value="'.$chef['id'].'"';
-					if ($mode == 'modifier' && $chef['id'] == $pret[0]['equipe']) {
+					if ($mode == 'modifier' && $chef['id'] == $pret['equipe']) {
 						echo ' selected';
 					}
 					echo '>'.$chef['nom'].'</option>';
@@ -93,7 +95,7 @@ if ($pdo = connect_db()) {
 			<td>
 				<input type="text" name="emprunt" size="10" maxlength="10" value="<?php
 					if ($mode == 'modifier')
-						echo $pret[0]['emprunt'];
+						echo $pret['emprunt'];
 					else
 						echo date('Y-m-d', time() );
 					?>" >
@@ -106,7 +108,7 @@ if ($pdo = connect_db()) {
 			<td>
 				<input type="text" name="retour" size="10" maxlength="10" value="<?php
 					if ($mode == 'modifier')
-						echo $pret[0]['retour'];
+						echo $pret['retour'];
 					else
 						echo date('Y-m-d', time() );
 					?>" >
@@ -117,7 +119,7 @@ if ($pdo = connect_db()) {
 			<td>Commentaire
 			</td>
 			<td>
-				<input type="text" name="commentaire" size="30" maxlength="30" value="<?php if($mode=='modifier'){echo $pret[0]['commentaire'];} ?>" >
+				<input type="text" name="commentaire" size="30" maxlength="30" value="<?php if($mode=='modifier'){echo $pret['commentaire'];} ?>" >
 			</td>
 		</tr>
 
