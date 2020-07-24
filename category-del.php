@@ -5,42 +5,41 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
+require_once('module/base-functions.php');
 
-if (!auth(3)) // si le level du user n'est pas >= 3, on l'emmene a la page pour se logger
-	Header("Location: login.php");
-			  // Sinon, on passe a la suite
-$logged_id   = $_SESSION['logged_id'];
-$logged_user = strtolower($_SESSION['logged_user']);
+auth_or_login('category-list.php');
+level_or_alert(3, 'Suppression d\'une cat&eacute;gorie');
 
-if (empty($_GET['id'])) // on recupere l'id de la categorie a supprimer dans l'url, s'il n'y en a pas, on va a la liste des categorie
-	Header("Location: category-list.php");
-else
-	$id_cat = $_GET['id']; // s'il y en a un, on le stock dans id_cat
+$id_category = param_post_or_get('id');
+$valid       = param_post('ok', 'no');
 
-if (empty($_GET['ok'])) // On recupere une variable ok qui sert a verifier que la personne est bien sur de supprimer la categorie choisi
-	$valid ='no';	// s'il n'y a pas d'id, on met 'no' dans $valid
-else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
-	$valid = 'yes';
-else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
-	$valid = 'no'; 
+if (empty($id_category) || $valid == 'cancel')
+	redirect('category-list.php');
 
-if (!isset($valid) || empty($valid) || $valid == "no"){ // on regarde ce qu'il y a dans $valid et si c'est NULL ou 'no', on pose la question
-	echo "Sur de supprimer la cat&eacute;gorie ".$id_cat. " ?<br />";
-	echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_cat."&ok=yes\">OUI</a><br />"; // si la personne repond 'oui', on recharge la page en mettant ok=yes dans l'url 
-	echo "<a href=\"category-list.php\">NON</a><br />";	// sinon, on retourne a la page precedente
-}
-else{ // s'il y a ok=yes dans l'url
-	if ($pdo = connect_db()) { // et que l'on arrive a se connecter a la base de donnee
+if ($valid == 'yes') {
+	if ($pdo = connect_db()) {
 		// on supprime la categorie
-		$result = del_category_by_id($pdo, $id_cat);
-		if (!$result){ // si ca n'a pas marche
-			echo "<br />Erreur dans la suppression de la cat&eacute;gorie : ".$id_cat;
-		}else{
-			echo "Cat&eacute;gorie ".$id_cat." supprim&eacute;!<br />";
+		$result = del_category_by_id($pdo, $id_category);
+		if (!$result) { // si ca n'a pas marche
+			echo "<br />Erreur dans la suppression de la cat&eacute;gorie : ".$id_category;
 		}
 	}
-	//on retourne a la page d'accueil
-redirect('category-list.php');
-
+	//on retourne a la page precedente
+	redirect('category-list.php');
 }
+
+en_tete('Suppression d\'une cat&eacute;gorie');
 ?>
+
+<center class="alert">
+<form action="category-del.php" method="POST">
+	<input type="hidden" name="id" value="<?php echo $id_category ?>">
+	Voulez-vous supprimer la cat&eacute;gorie <?php echo $id_category ?> ?
+	<button class="red" type="submit" name="ok" value="yes">Oui</button>
+	<button class="green" type="submit" formaction="category-list.php" value="no">Non</button>
+	<hr>
+	<button type="submit" name="ok" value="cancel">Annuler</button>
+</form>
+</center>
+
+<?php pied_page() ?>
