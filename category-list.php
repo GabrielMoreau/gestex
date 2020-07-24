@@ -5,6 +5,7 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
+require_once('module/base-functions.php');
 
 session_start();
 if (empty($_SESSION['logged_user'])) {
@@ -14,6 +15,8 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_user  = strtolower($_SESSION['logged_user']);
 	$logged_level = $_SESSION['logged_level'];
 }
+
+$id_highlight = param_post_or_get('highlight', 0);
 
 en_tete('Liste des appareils par cat&eacute;gorie');
 ?>
@@ -36,18 +39,20 @@ en_tete('Liste des appareils par cat&eacute;gorie');
 if ($pdo = connect_db()) {
 	$category_fetch = get_category_listshort($pdo);
 	$num_line = 1;
-	foreach ($category_fetch as $data) {
+	foreach ($category_fetch as $category) {
+		$class = 'impair';
 		if ($num_line % 2)
-			echo '<tr class="pair">'.PHP_EOL;
-		else
-			echo '<tr class="impair">'.PHP_EOL;
+			$class = 'pair';
 		$num_line++;
+		if ($category['id'] == $id_highlight)
+			$class .= ' highlight';
+		echo '<tr class="'.$class.'">'.PHP_EOL;
 		echo '  <td>';
-		echo '    <a href="equipment-list.php?categorie='.$data['id'].'">'.$data['nom'].'</a>';
+		echo '    <a href="equipment-list.php?categorie='.$category['id'].'" name="item'.$category['id'].'">'.$category['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		if ($logged_level >= 3) {
 			echo '  <td>';
-			echo '    <a href="category-del.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
+			echo '    <a href="category-del.php?id=',$category['id'],'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 		echo '</tr>'.PHP_EOL;

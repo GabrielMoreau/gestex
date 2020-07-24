@@ -4,8 +4,8 @@
 
 <center class="alert">
 <form action="category-del.php" method="POST">
-	<input type="hidden" name="id" value="<?php echo $id_category ?>">
-	Voulez-vous supprimer la cat&eacute;gorie <i><?php echo $category_name ?></i> ?
+	<input type="hidden" name="id" value="<?=$id_category?>">
+	Voulez-vous supprimer la cat&eacute;gorie <i><?=$category_name?></i> ?
 	<button class="red" type="submit" name="ok" value="yes">Oui</button>
 	<button class="green" type="submit" formaction="category-list.php" value="no">Non</button>
 	<hr>

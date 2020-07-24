@@ -1,5 +1,6 @@
 <?php
 // category-create.php
+$web_page = true;
 
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
@@ -18,22 +19,23 @@ if (empty($categorie_name))
 $pdo = connect_db();
 
 if (check_category_by_name($pdo, $categorie_name))
-	$erreur = 'la cat&eacute;gorie existe d&eacute;j&agrave;';
-
-en_tete('R&eacute;sultat ajout cat&eacute;gorie');
+	$erreur = 'La cat&eacute;gorie <i>'.$categorie_name.'</i> existe d&eacute;j&agrave;';
 
 if (!empty($erreur)) {
 	//erreur
-	echo '<br />Erreur : '.$erreur;
-	echo '<br /><a href="category-add.php">Suite</a><br />';
-	pied_page();
+	$title        = 'Erreur';
+	$action       = 'category-list.php';
+	$message_text = $erreur;
+	include_once('include/warning-box.php');
 	exit();
 }
 
 $id_category = set_category_new($pdo, $categorie_name);
 
-echo '<br />Ajout de la cat&eacute;gorie '.$categorie_name.' valid&eacute;e';
-echo '<br /><br /><a href="equipment-list.php">Suite</a><br /><br />';
+$title        = 'R&eacute;sultat ajout cat&eacute;gorie';
+$action       = 'category-list.php';
+$highlight    = $id_category;
+$message_text = 'Ajout de la cat&eacute;gorie '.$categorie_name.' valid&eacute;e';
+include_once('include/message-box.php');
+exit();
 ?>
-
-<?php pied_page() ?>
