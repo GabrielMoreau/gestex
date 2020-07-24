@@ -116,11 +116,8 @@ en_tete($title);
 
 		if ($cat == 0) {
 			echo '  <td>';
-			$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
-			$stmt = $pdo->prepare($sql);
-			$stmt->execute(array($data['categorie']));
-			$categorie =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-			echo      $categorie[0]['nom'];
+			$categorie = get_category_by_id($pdo, $data['categorie']);
+			echo      $categorie['nom'];
 			echo '  </td>'.PHP_EOL;
 		}
 

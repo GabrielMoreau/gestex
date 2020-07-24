@@ -85,11 +85,6 @@ $gamme=$_POST['gamme'];
 
 en_tete('R&eacute;sultat modification appareil');
 
-if (empty($_GET['tri']))
-	$tri ="id";
-else
-	$tri = $_GET['tri'];
-
 $cat=$_GET['categorie'];
 echo "$cat";
 //recupere la categorie de la page ajout appareil
@@ -109,7 +104,7 @@ else{
 //pas d'erreur
 ///on inscrit
 
-if ( $pdo = connect_db() ){
+if ($pdo = connect_db()) {
 
 	//recupere les anciennes caracteristiques
 
@@ -220,28 +215,10 @@ if ($notice!=$listing[0]['notice']){
 		}//else end
 	}//end if connect
 
-////en_tete('modification appareil Valid&eacute;e');
-
-if ( $connex = connect_db() ){
-	// recupere la liste de appareils
-
-$sql = 'SELECT * FROM categorie WHERE id = ?;' ;
-// 	list($qh,$num) = query_db($querry);
-// 	$last_id=0;
-// $datax = result_db($qh);
-$stmt = $pdo->prepare($sql);
-$stmt->execute(array($cat));
-$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-
-
-
 //quand on va sur suite, on retourne sur la page de la categorie choisie
-Header("Location: equipment-list.php");
+redirect('equipment-list.php');
 
 pied_page();
-exit();
 }
 
 ?>

@@ -21,11 +21,6 @@ if (!empty($_GET['id']))
 	$app_id = $_GET['id'];
 
 if ($pdo = connect_db()) {
-
-	$sql = 'SELECT * FROM categorie WHERE id = ?;' ;
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($cat));
-	$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (empty($app_id)) {
 		// nouvel appareil
 		// transmet la valeur de la categorie a la page valid appareil
@@ -60,22 +55,18 @@ if ($pdo = connect_db()) {
 				<select name="categorie">
 				<?php
 				// listing des categories
-				$sql = 'SELECT id, nom FROM categorie ORDER BY nom;';
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute();
-				$categorie = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-				foreach ($categorie as $chef) {
-					echo '<option value="'.$chef['id'].'"';
-					if ($mode == 'modifier' && $chef['id'] == $listing[0]['categorie']) {
+				$category_fetch = get_category_listshort($pdo);
+				foreach ($category_fetch as $category) {
+					echo '<option value="'.$category['id'].'"';
+					if ($mode == 'modifier' && $category['id'] == $listing[0]['categorie']) {
 						echo " selected";
 					}
-					if ($mode == 'ajouter' && $chef['id'] == $cat) {
+					if ($mode == 'ajouter' && $category['id'] == $cat) {
 						echo " selected";
 					}
 
 					// si on choisit ajouter, le listing preselectionne la categorie
-					echo '>'.$chef['nom'].'</option>';
+					echo '>'.$category['nom'].'</option>';
 				} // end foreach
 				?>
 				</select>
