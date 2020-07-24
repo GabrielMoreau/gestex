@@ -151,6 +151,15 @@ function check_category_by_name($pdo, $name) {
 
 // ---------------------------------------------------------------------
 
+function set_category_new($pdo, $name) {
+	$sql = 'INSERT INTO categorie (nom) VALUE (?);';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($name));
+	return $pdo->lastInsertId();
+}
+
+// ---------------------------------------------------------------------
+
 function get_loan_all_by_id_equipment($pdo, $id_equipment) {
 	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
 	$sql = 'SELECT * FROM pret WHERE nom = ?;';

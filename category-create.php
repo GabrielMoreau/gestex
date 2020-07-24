@@ -30,11 +30,9 @@ if (!empty($erreur)) {
 	exit();
 }
 
-$sql = 'INSERT INTO categorie (nom) VALUE (?);';
-$stmt = $pdo->prepare($sql);
-$stmt->execute(array($categorie));
+$id_category = set_category_new($pdo, $categorie);
 
-echo '<br />ajout de '.$categorie.' valid&eacute;e';
+echo '<br />Ajout de la cat&eacute;gorie '.$categorie.' valid&eacute;e';
 echo '<br /><br /><a href="equipment-list.php">Suite</a><br /><br />';
 ?>
 
