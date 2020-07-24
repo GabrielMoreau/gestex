@@ -5,9 +5,10 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
+require_once('module/base-functions.php');
 
 session_start();
-if(empty($_SESSION['logged_user'])){
+if (empty($_SESSION['logged_user'])) {
 	$log = false;
 	$logged_level = 0;
 } else {
@@ -17,7 +18,7 @@ if(empty($_SESSION['logged_user'])){
 	$log = true;
 }
 
-$id_app = $_GET['id'];
+$id_app = param_get('id');
 if (empty($id_app))
 	redirect('equipment-list.php');
 
