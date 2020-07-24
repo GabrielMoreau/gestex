@@ -3,68 +3,39 @@
 
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
+require_once('module/base-functions.php');
 
 auth_or_login('category-create.php');
 level_or_alert(3, 'Ajout d\'une cat&eacute;gorie');
 
-//validation d'un nouvel appareil
 unset($erreur);
 //variables ne pouvant etre nulles
 
-if (empty($_POST['categorie']))
-	$erreur="categorie non pr&eacute;cis&eacute;";
-else{
-	$categorie =$_POST['categorie'];
-	if($pdo = connect_db()){
-		$sql = 'SELECT * FROM categorie WHERE nom = ?';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($categorie));
-		$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		if(!empty($categories)){
-			$erreur = "le categorie existe deja";
-		}
-	}
+$categorie = param_post('categorie');
+if (empty($categorie))
+	$erreur = 'categorie non pr&eacute;cis&eacute;';
 
-	}
+$pdo = connect_db();
 
-en_tete('R&eacute;sultat ajout appareil');
+if (check_category_by_name($pdo, $categorie))
+	$erreur = 'La cat&eacute;gorie existe d&eacute;j&agrave;';
 
-if (!empty($erreur) ){
+en_tete('R&eacute;sultat ajout cat&eacute;gorie');
 
+if (!empty($erreur)) {
 	//erreur
-
-	echo "<br />erreur :".$erreur;
-	echo"<br /><a href=\"category-add.php\">Suite</a><br />\n";
-
+	echo '<br />Erreur : '.$erreur;
+	echo '<br /><a href="category-add.php">Suite</a><br />';
 	pied_page();
 	exit();
 }
-else{
-///tout est ok
-//pas d'erreur
-///on inscrit
 
-		//inscription
-if(	$pdo = connect_db()){
-	$sql ='INSERT INTO categorie (nom) VALUE (?);';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($categorie));
-		// $result = mysql_query("INSERT INTO $table ".
-		// 	"(nom)".
-		// 	" VALUES ('$categorie')");
-			//
-}else
-// catch  (PDOException $exception){
-	echo 'Request error: ';
+$sql = 'INSERT INTO categorie (nom) VALUE (?);';
+$stmt = $pdo->prepare($sql);
+$stmt->execute(array($categorie));
 
-//end if connect
-
-////en_tete('inscription Valid&eacute;e');
-
-echo "<br />ajout de ".$categorie." valid&eacute;e ";
-echo"<br /><br /><a href=\"equipment-list.php\">Suite</a><br /><br />\n";
-pied_page();
-exit();
-}
-
+echo '<br />ajout de '.$categorie.' valid&eacute;e';
+echo '<br /><br /><a href="equipment-list.php">Suite</a><br /><br />';
 ?>
+
+<?php pied_page() ?>

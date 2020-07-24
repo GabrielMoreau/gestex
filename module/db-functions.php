@@ -141,6 +141,16 @@ function get_category_listshort($pdo) {
 
 // ---------------------------------------------------------------------
 
+function check_category_by_name($pdo, $name) {
+	$sql = 'SELECT COUNT(*) as count FROM categorie WHERE nom = ?';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($name));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch[0]['count'] > 0 ? true : false;
+}
+
+// ---------------------------------------------------------------------
+
 function get_loan_all_by_id_equipment($pdo, $id_equipment) {
 	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
 	$sql = 'SELECT * FROM pret WHERE nom = ?;';
