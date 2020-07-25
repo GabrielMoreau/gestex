@@ -73,27 +73,27 @@ if ($pdo = connect_db()) {
 		if ($fournisseur['id'] == $id_highlight)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
-		echo '  <td style="vertical-align: top;"><a name="item'.$fournisseur['id'].'"></a>'.$fournisseur['nom'].'</td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">'.$fournisseur['adresse'].'</td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;" nowrap>'.$fournisseur['tel'].'</td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;" nowrap>'.$fournisseur['fax'].'</td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td><a name="item'.$fournisseur['id'].'"></a>'.$fournisseur['nom'].'</td>'.PHP_EOL;
+		echo '  <td>'.$fournisseur['adresse'].'</td>'.PHP_EOL;
+		echo '  <td>'.$fournisseur['tel'].'</td>'.PHP_EOL;
+		echo '  <td>'.$fournisseur['fax'].'</td>'.PHP_EOL;
+		echo '  <td>';
 		if (!empty($fournisseur['mail']))
 			echo '    <a href="mailto:'.$fournisseur['mail'].'">'.ICON_MAIL.'</a>';
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		if (!empty($fournisseur['www']))
 			echo '    <a href="http://'.$fournisseur['www'].'" target="_fournView">'.ICON_URL.'</a>';
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">'.$fournisseur['contact'].'</td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">'.$fournisseur['descr'].'</td>'.PHP_EOL;
+		echo '  <td>'.$fournisseur['contact'].'</td>'.PHP_EOL;
+		echo '  <td>'.$fournisseur['descr'].'</td>'.PHP_EOL;
 		if ($logged_level >= 2) {
-			echo '  </td><td style="vertical-align: top;">';
+			echo '  </td><td>';
 			echo '    <a href="supplier-add.php?id='.$fournisseur['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($logged_level >= 3) {
-			echo '  </td><td style="vertical-align: top;">';
+			echo '  </td><td>';
 			echo '    <a href="supplier-del.php?id='.$fournisseur['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} // end if
