@@ -2,6 +2,7 @@
 // category-create.php
 $web_page = true;
 
+// Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 require_once('module/base-functions.php');
@@ -14,7 +15,7 @@ unset($erreur);
 //variables ne pouvant etre nulles
 $categorie_name = strtolower(param_post('categorie'));
 if (empty($categorie_name))
-	$erreur = 'categorie non pr&eacute;cis&eacute;';
+	$erreur = 'Cat&eacute;gorie non pr&eacute;cis&eacute;e';
 
 $pdo = connect_db();
 
