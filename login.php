@@ -5,7 +5,7 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
-require_once('base/html-functions.php');
+require_once('module/base-functions.php');
 
 $username = param_post('username');
 $password = param_post('password');
