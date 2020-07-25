@@ -73,12 +73,12 @@ function level($reqlevel) {
 
 // ---------------------------------------------------------------------
 
-function level_or_alert($reqlevel, $msg_alert='') {
+function level_or_alert($reqlevel, $message_alert='') {
 	if (level($reqlevel))
 		return true;
 
 	$web_page = true;
-	include_once('include/alert.php');
+	include_once('include/alert-auth.php');
 	exit();
 }
 
