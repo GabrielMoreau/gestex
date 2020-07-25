@@ -53,42 +53,33 @@
 en_tete('Authentification');
 ?>
 
-<div width="100%" height="100%" align="center" valign="center">
+<div class="auth">
 	<form action="login.php" method="POST" name="loginForm">
 		<input type="hidden" name="referer" value="<?php echo $referer ?>">
 		<input type="hidden" name="first" value="false">
-		<table width="100%" height="200" cellspacing="0" cellpadding="1" valign="center">
-			<tr>
-				<td>
-					<table width="300" cellspacing="0" cellpadding="5" bgcolor="#1F32F0" align="center" class="box">
-						<tr>
-							<td><span class="box_text">Identifiant</span><br /><input type="text" name="username" size="25" maxlength="25"></td>
-							<td><span class="box_text">Mot de passe</span><br /><input type="password" name="password" size="25" maxlength="25"></td>
-							<td><br /><input type="submit" name="Login" value="Entrer"></td>
-						</tr>
-						<?php if ($login_failure) { ?>
-						<tr>
-							<td colspan="2">
-								<table width="100%" border="0" bgcolor="black" cellspacing="0" cellpadding="1">
-									<tr>
-										<td>
-											<table width="100%" border="0" bgcolor="yellow">
-												<tr>
-													<td class="login_error">
-														Identifiant ou mot de passe invalide !
-													</td>
-												</tr>
-											</table>
-										</td>
-									</tr>
-								</table>
-							</td>
-							<td>&nbsp;</td>
-						</tr>
-						<?php } ?>
-					</table>
-				</td>
-			</tr>
+		<table>
+			<tbody>
+				<tr>
+					<th>Identifiant</th>
+					<td><input type="text" name="username" size="25" maxlength="25"></td>
+				</tr>
+				<tr>
+					<th>Mot de passe</th>
+					<td><input type="password" name="password" size="25" maxlength="25"></td>
+				</tr>
+				<?php if ($login_failure): ?>
+				<tr>
+					<td class="login-error" colspan="2">
+						Identifiant ou mot de passe invalide !
+					</td>
+				</tr>
+				<?php endif; ?>
+				<tr>
+					<td class="button" colspan="2">
+						<input type="submit" name="Login" value="Entrer">
+					</td>
+				</tr>
+			</tbody>
 		</table>
 	</form>
 </div>
