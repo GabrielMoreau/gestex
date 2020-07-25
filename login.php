@@ -1,54 +1,47 @@
 <?php
-	// Authenticate
-	require_once('module/auth-functions.php');
-	require_once('module/html-functions.php');
+// login.php
+$web_page = true;
 
-	$username='';
-	if(!empty($_POST['username'])){
-		$username = $_POST['username'];
-	}
-	$password='';
-	if(!empty($_POST['password'])){
-		$password = $_POST['password'];
-	}
-	//valeur par defaut
-	$login_failure = false;
+// Authenticate
+require_once('module/auth-functions.php');
+require_once('module/html-functions.php');
+require_once('base/html-functions.php');
 
-	// return URL after auth (or no auth)
-	$referer = urlencode($_SERVER['HTTP_REFERER']);
-	if (!empty($_GET['referer']))
-		$referer = $_GET['referer'];
-	if (!empty($_POST['referer']))
-		$referer = $_POST['referer'];
-	if (empty($referer))
-		$referer = urlencode('index.php');
+$username = param_post('username');
+$password = param_post('password');
 
-	$first = true;
-	if (!empty($_POST['first']))
-		$first = false;
+//valeur par defaut
+$login_failure = false;
 
-	// check that this form has been submitted
-	if ($username!='' && $password!='') {
-		// log the user in normally
-		if (auth(0, $username, $password)) {
-			Header('Location: '.urldecode($referer));
-			exit();
-		}
-		else
-			$login_failure = true;
-	} else {
-		//load the session so we can destroy it
-		session_start();
+// return URL after auth (or no auth)
+$referer = param_post_or_get('referer');
+if (empty($referer))
+	$referer = urlencode('index.php');
 
-		//unset all the variables
-		session_unset();
+$first = true;
+if (!empty($_POST['first']))
+	$first = false;
 
-		//destroy the session
-		session_destroy();
+// check that this form has been submitted
+if ($username != '' && $password != '') {
+	// log the user in normally
+	if (auth(0, $username, $password))
+		redirect(urldecode($referer));
+	else
+		$login_failure = true;
+} else {
+	//load the session so we can destroy it
+	session_start();
 
-		if (!$first)
-			$login_failure = true;
-	}
+	//unset all the variables
+	session_unset();
+
+	//destroy the session
+	session_destroy();
+
+	if (!$first)
+		$login_failure = true;
+}
 
 en_tete('Authentification');
 ?>
