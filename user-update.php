@@ -5,59 +5,49 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
+require_once('module/base-functions.php');
 
-if (!auth(1))
-	Header("Location: login.php");
+auth_or_login('user-list.php');
+level_or_alert(1, 'Mise &agrave; jour d\'un utilisateur');
 
-$logged_id        = $_SESSION['logged_id'];
-$logged_user = strtolower($_SESSION['logged_user']);
-$logged_level     = $_SESSION['logged_level'];
+$logged_id    = $_SESSION['logged_id'];
+$logged_user  = strtolower($_SESSION['logged_user']);
+$logged_level = $_SESSION['logged_level'];
 
 //modification d'un utilisateur
+unset($erreur);
 
-unset($erreur); unset($nom);unset($logged_id );
 //variables ne pouvant etre nulles
-	if (empty($_POST['user2ch_id']))
-		$erreur="identifiant utilisateur non pr&eacute;cis&eacute;";
-	else{
-		$user2ch_id =$_POST['user2ch_id'];
+$user2ch_id = param_post('user2ch_id');
+if (empty($user2ch_id))
+	$erreur = 'Identifiant utilisateur non pr&eacute;cis&eacute;';
 
-				if (empty($_POST['nom']))
-					$erreur="nom non pr&eacute;cis&eacute;";
-				else{
-					$nom =$_POST['nom'];
+$nom = param_post('nom');
+if (empty($nom))
+	$erreur = 'Nom de famille non pr&eacute;cis&eacute;';
 
-						if (empty($_POST['addr_mail']))
-							$erreur="adresse de courriel non pr&eacute;cis&eacute;";
-						else{
-							$mail=$_POST['addr_mail'];
-							//variables pouvant etre nulles
-							$prenom = $_POST['prenom'];
-							$phone = $_POST['phone'];
-							$equipe = $_POST['equipe'];
-							$level = $_POST['level'];
-							$theme = $_POST['theme'];
-}}}
+$mail = param_post('addr_mail');
+if (empty($mail))
+	$erreur = 'Adresse de courriel non pr&eacute;cis&eacute;';
 
-en_tete('R&eacute;sultat inscription');
+//variables pouvant etre nulles
+$prenom = param_post('prenom');
+$phone  = param_post('phone');
+$equipe = param_post('equipe');
+$level  = param_post('level');
+$theme  = param_post('theme');
 
-if (!empty($erreur) ){
-
+if (!empty($erreur)) {
 	//erreur
-
-	echo "<br />erreur :".$erreur;
-	echo "<br /><a href=\"user-list.php\">Suite</a><br />\n";
-
-	pied_page();
+	$title        = 'Erreur';
+	$action       = 'user-list.php';
+	$message_text = $erreur;
+	include_once('include/warning-box.php');
 	exit();
 }
-else{
-///tout est ok
-//pas d'erreur
-///on modifie
 
-if ( $pdo = connect_db() ){
-		//relit les anciennes coordonnees
+if ($pdo = connect_db()) {
+	//relit les anciennes coordonnees
 	$sql = 'SELECT * FROM users WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($user2ch_id));
@@ -66,53 +56,45 @@ if ( $pdo = connect_db() ){
 	//modif inscription
 	//on construit la demande
 	$querry = "UPDATE LOW_PRIORITY users SET ";
-		if ($nom!=$user[0]['nom'])
-			//modif du nom
-			$querry.="nom='$nom',";
-		if ($prenom!=$user[0]['prenom'])
-			//modif du prenom
-			$querry.=" prenom='$prenom',";
+	if ($nom != $user[0]['nom'])
+		$querry .= "nom='$nom',";
+	if ($prenom != $user[0]['prenom'])
+		$querry .= " prenom='$prenom',";
 	if ($logged_level >= 3) {
 		if ($level != $user[0]['level'])
-			//modif du level
-			$querry.= " level='$level',";
-		if ($user[0]['valid'] ==0){
+			$querry .= " level='$level',";
+		if ($user[0]['valid'] == 0) {
 			//validation du user
-			$querry.=" valid=1,";
-			$valid=1;
-			}
+			$querry .= " valid=1,";
+			$valid = 1;
 		}
-		if ($phone!=$user[0]['tel'])
-			//modif du telephone
-			$querry.=" tel='$phone',";
-		if ($mail!=$user[0]['mail'])
-			//modif du mail
-			$querry.=" email='$mail',";
-		if ($equipe!=$user[0]['equipe'])
-			//modif du club
-			$querry.=" equipe='$equipe',";
-		$querry.=" theme='$theme',";
-		// supprime la derniere virgule
-		$querry[strlen($querry)-1]=' ';
-		//ajoute la clause
-		$querry.=" WHERE id='$user2ch_id'";
-		if ($logged_level >= 3)
+	}
+	if ($phone != $user[0]['tel'])
+		$querry.=" tel='$phone',";
+	if ($mail != $user[0]['mail'])
+		$querry.=" email='$mail',";
+	if ($equipe != $user[0]['equipe'])
+		$querry .=" equipe='$equipe',";
+	$querry .= " theme='$theme',";
+	// supprime la derniere virgule
+	$querry[strlen($querry)-1] = ' ';
+	//ajoute la clause
+	$querry.= " WHERE id='$user2ch_id'";
+	if ($logged_level >= 3)
 		echo $querry;
-			$stmt = $pdo->prepare($querry);
-			$stmt->execute();
-			
-		if ($logged_level >= 3 && $valid == 1) {
-			//validation d'un user acceptee
-			//envoi d'un mail a cet user
-		$texte = $prenom." ".$nom." votre inscription au systeme GestEx a &eacute;t&eacute; accept&eacute;e !";
-			mail($mail, "[GestEx] inscription accept&eacute;e - ".$nom." ".$prenom, $texte);
-		}
-	}//end if connect
+	$stmt = $pdo->prepare($querry);
+	$stmt->execute();
 
-	Header("Location: user-list.php");
+	if ($user2ch_id == $logged_id)
+		$_SESSION['logged_theme'] = theme($theme);
 
-pied_page();
-exit();
-}
+	if ($logged_level >= 3 && $valid == 1) {
+		//validation d'un user acceptee
+		//envoi d'un mail a cet user
+		$texte = $prenom.' '.$nom.' votre inscription au systeme GestEx &agrave; &eacute;t&eacute; accept&eacute;e !';
+		// mail($mail, "[GestEx] inscription accept&eacute;e - ".$nom." ".$prenom, $texte);
+	}
+} //end if connect
 
+redirect('user-list.php?highlight='.$user2ch_id.'#item'.$user2ch_id);
 ?>
