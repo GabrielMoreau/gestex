@@ -110,7 +110,7 @@ a {
 }
 
 
-/* ================= admin.php and user-changepwd.php */
+/* ================= auth */
 
 .auth table {
 	background-color: var(--body-bg);
@@ -147,66 +147,11 @@ a {
 	color: var(--color-ok);
 }
 
-.outer_table {
-	background-color: var(--login-bg);
-}
-
-.table_head {
-	border-left: 1px dotted #000000;
-	border-right: 1px dotted #000000;
-	border-top: 1px dotted #000000;
-	background-color: #C0C0C0;
-}
-
-.table_body {
-	border: 1px dotted #001061;
-}
-
-.outer_table_heading {
-	font-size: 14;
-	cursor:default;
-	font-weight: bold;
-	color: #000000;
-}
-
-.outer_table_action {
-	font-size: 12;
-	font-weight: bold;
-	color: #001061;
-}
-
-.inner_table_head {
-	border-bottom: 1px dashed #001061;
-	background-color: #164093;
-}
-
-.inner_table_column_heading {
-	font-weight: bold;
-	color: #FFFFFF;
-}
-
-.table_bottom_panel {
-	border-left: 1px dotted #000000;
-	border-right: 1px dotted #000000;
-	border-bottom: 1px dotted #000000;
-	background-color: #C0C0C0;
-}
-
-
-/* ================= login.php */
-
-.box {
-	border: 1px solid #629DE7;
-	background-color:#164093;
-}
-
-.box_text {
-	background-color: #164093;
-	padding-left: 3px;
-	padding-right: 3px;
-	cursor: default;
-	font-weight: normal;
-	color: #B0DDFF;
+.auth td.login-error {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	color: var(--color-alert);
 }
 
 
