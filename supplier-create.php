@@ -5,6 +5,7 @@ $web_page = true;
 // Authenticate
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
+require_once('module/base-functions.php');
 
 auth_or_login('supplier-create.php');
 level_or_alert(3, 'Ajout d\'un fournisseur');
@@ -12,38 +13,31 @@ level_or_alert(3, 'Ajout d\'un fournisseur');
 //validation d'un nouveau fournisseur
 
 unset($erreur);
-unset($loggin);
-unset($password);
-unset($password2);
 unset($nom);
 
 //variables ne pouvant etre nulles
-
-if (empty($_POST['nom']))
+$nom = param_post('nom');
+if (empty($nom))
 	$erreur = 'Nom du fournisseur non pr&eacute;cis&eacute;';
-else {
-	$nom = $_POST['nom'];
-	if (empty($_POST['adresse']))
-		$erreur = 'Adresse non pr&eacute;cis&eacute;';
-	else {
-		$adresse = $_POST['adresse'];
-		$mail = $_POST['addr_mail'];
-		//variables pouvant etre nulles
-		$www = $_POST['www'];
-		$phone = $_POST['phone'];
-		$fax = $_POST['fax'];
-		$contact = $_POST['contact'];
-		$descr = $_POST['descr'];
-	}
-}
 
-en_tete('R&eacute;sultat inscription');
+$adresse = param_post('adresse');
+if (empty($adresse))
+	$erreur = 'Adresse non pr&eacute;cis&eacute;e';
+
+//variables pouvant etre nulles
+$mail    = param_post('addr_mail');
+$www     = param_post('www');
+$phone   = param_post('phone');
+$fax     = param_post('fax');
+$contact = param_post('contact');
+$descr   = param_post('descr');
 
 if (!empty($erreur)) {
 	//erreur
-	echo '<br />Erreur :'.$erreur;
-	echo '<br /><a href="supplier-add.php">Suite</a><br />';
-	pied_page();
+	$title        = 'Erreur';
+	$action       = 'supplier-add.php';
+	$message_text =  $erreur;
+	include_once('include/warning-box.php');
 	exit();
 }
 
@@ -53,18 +47,18 @@ if ($pdo = connect_db()) {
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($nom, $adresse, $mail, $www, $phone, $fax, $contact, $descr));
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	$id_fourn = $pdo->lastInsertId();
+	$id_supplier = $pdo->lastInsertId();
 	if (!$result) {
-		//inscription !ok
-		// $erreur = mysql_error();
-		echo '<br />Erreur ';
+		// sql request !ok
+		include_once('include/alert-data.php');
+		exit();
 	}
 
-////en_tete('inscription Valid&eacute;e');
-
-	echo 'Ajout de '.$nom.' valid&eacute;<br />';
-	echo '<br /><br /><a href="supplier-list.php?highlight='.$id_fourn.'#item'.$id_fourn.'">Suite</a><br /><br />';
+	$title        = 'R&eacute;sultat ajout fournisseur';
+	$action       = 'supplier-list.php';
+	$highlight    = $id_supplier;
+	$message_text = 'Ajout du fournisseur '.$nom.' valid&eacute;';
+	include_once('include/message-box.php');
+	exit();
 	} //end if connect
-
-pied_page();
 ?>
