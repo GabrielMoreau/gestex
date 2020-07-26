@@ -74,14 +74,14 @@ if ($pdo = connect_db()) {
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		if ($logged_level >=3 ) {
-			echo '  <td style="vertical-align: top;">';
+			echo '  <td>';
 			echo      $data['level'];
 			echo '  </td>'.PHP_EOL;
 		}
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		echo '    <a name="item'.$data['id'].'"></a>'.$data['prenom'];
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		// l'utilisateur a la possiblite de modifier ses coordonnees
 		if ($logged_id == $data['id'] || $logged_level >= 3)
 			echo '    <a href="user-add.php?id='.$data['id'].'">'.$data['nom'].'</a>';
@@ -89,15 +89,15 @@ if ($pdo = connect_db()) {
 			echo      $data['nom'];
 
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		echo      $data['tel'];
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		$user_mail = sanitize_mail($data['email']);
 		if (!empty($user_mail))
 			echo '    <a href="mailto:'.$user_mail.'">'.ICON_MAIL.'</a>';
 		echo '  </td>'.PHP_EOL;
-		echo '  <td style="vertical-align: top;">';
+		echo '  <td>';
 		// recupere la liste de equipes
 		$sql = 'SELECT nom FROM equipe WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
@@ -109,17 +109,17 @@ if ($pdo = connect_db()) {
 		}
 		echo '  </td>'.PHP_EOL;
 		if ($logged_level >= 3) {
-			echo '  <td style="vertical-align: top;">';
+			echo '  <td>';
 			echo '    <a href="user-add.php?id='.$data['id'].'">';
 			echo        ICON_PERSON_PROFIL;
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
-			echo '  <td style="vertical-align: top;">';
+			echo '  <td>';
 			echo '    <a href="user-changepwd.php?id='.$data['id'].'">';
 			echo        ICON_PERSON_PASWD;
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
-			echo '  <td style="vertical-align: top; background-color:grss	ay;">';
+			echo '  <td>';
 			if ($data['valid'] == 0){
 				echo '<a href="user-del.php?id='.$data['id'].'&status=0">';
 				echo ICON_PERSON_BAD;
@@ -132,8 +132,8 @@ if ($pdo = connect_db()) {
 		}
 		echo '  </td>'.PHP_EOL;
 		echo '</tr>'.PHP_EOL;
-	} //end foreach
-} //end if
+	} // end foreach
+} // end if
 ?>
 
 	</tbody>
