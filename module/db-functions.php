@@ -266,6 +266,18 @@ function get_team_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+function get_team_all_by_id($pdo, $id) {
+	$sql = 'SELECT * FROM equipe WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch[0];
+	return false;
+}
+
+// ---------------------------------------------------------------------
+
 function get_team_listshort($pdo) {
 	$sql = 'SELECT id, nom FROM equipe ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
