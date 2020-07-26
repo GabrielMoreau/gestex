@@ -13,7 +13,7 @@ level_or_alert(1, 'Liste de tous les utilisateurs');
 $logged_id    = $_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
-$id_highlight = param_get('highlight', 0);
+$id_highlight = param_post_or_get('highlight', 0);
 
 en_tete('Liste de tous les utilisateurs');
 ?>
@@ -52,20 +52,9 @@ en_tete('Liste de tous les utilisateurs');
 <?php	//interrogation base de donnees
 if ($pdo = connect_db()) {
 	// recupere la liste des users
-	if ($logged_level > 3){ // lorsqu'on est haut place, on voit tout le monde
-		$sql = 'SELECT * FROM users;';
-	}
-	else if ($logged_level == 3) { // losrqu'on est de niveau 3, on voit tout le monde sauf les users de plus haut level
-		$sql = 'SELECT * FROM users WHERE level < 3;';
-	}
-	else { // lorsqu'on est < 3, on voit tout le monde sauf le suser de level > 3 et les users non valide
-		$sql = 'SELECT * FROM users WHERE valid = 1 and level < 3;';
-	}
-	$stmt = $pdo->prepare($sql);
-    $stmt->execute();
-	$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$user_fetch = get_user_listall_by_logged_level($pdo, $logged_level);
 	$num_line = 1;
-	foreach ($user as $data) {
+	foreach ($user_fetch as $data) {
 		$class = 'impair';
 		if ($num_line % 2)
 			$class = 'pair';
@@ -99,14 +88,9 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		// recupere la liste de equipes
-		$sql = 'SELECT nom FROM equipe WHERE id = ?;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($data['equipe']));
-		$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		if (!empty($equipe)) {
-			echo $equipe[0]['nom'];
-			echo " (".$data['equipe'].")";
-		}
+		$equipe = get_team_by_id($pdo, $data['equipe']);
+		if ($equipe)
+			echo $equipe['nom'].' ('.$data['equipe'].')';
 		echo '  </td>'.PHP_EOL;
 		if ($logged_level >= 3) {
 			echo '  <td>';
