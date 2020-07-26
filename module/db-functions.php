@@ -258,8 +258,10 @@ function get_team_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
-	$team_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $team_fetch[0];
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch[0];
+	return false;
 }
 
 // ---------------------------------------------------------------------
@@ -326,6 +328,21 @@ function get_user_all_by_login($pdo, $login) {
 	if (count($result_fetch) > 0)
 		return $result_fetch[0];
 	return false;
+}
+
+// ---------------------------------------------------------------------
+
+function get_user_listall_by_logged_level($pdo, $logged_level) {
+	if ($logged_level > 3)       // lorsqu'on est haut place, on voit tout le monde
+		$sql = 'SELECT * FROM users;';
+	else if ($logged_level == 3) // losrqu'on est de niveau 3, on voit tout le monde sauf les users de plus haut level
+		$sql = 'SELECT * FROM users WHERE level < 4;';
+	else                         // lorsqu'on est < 3, on voit tout le monde sauf le suser de level > 3 et les users non valides
+		$sql = 'SELECT * FROM users WHERE valid = 1 and level < 3;';
+	$stmt = $pdo->prepare($sql);
+    $stmt->execute();
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch;
 }
 
 // ---------------------------------------------------------------------
