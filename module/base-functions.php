@@ -99,21 +99,15 @@ function theme($theme) {
 // ---------------------------------------------------------------------
 
 function sanitize_mail($mail) {
-	$mail = str_replace(' ', '', $mail);
-	if (strpos($mail, '@') === false)
-		return '';
-	return $mail;
+	return filter_var($mail, FILTER_VALIDATE_EMAIL);
 }
 
 // ---------------------------------------------------------------------
 
 function sanitize_url($url) {
-	$url = str_replace(' ', '', $url);
-	if (preg_match('/^https?:\/\//', $url))
-		return $url;
-	if (strpos($url, '.') === false)
-		return '';
-	return 'http://'.$url;
+	if (!preg_match('/^https?:\/\//', $url))
+		$url = 'http://'.$url;
+	return filter_var($url, FILTER_VALIDATE_URL);
 }
 
 // ---------------------------------------------------------------------
