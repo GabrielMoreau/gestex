@@ -93,7 +93,9 @@ if ($pdo = connect_db()) {
 		echo      $data['tel'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		echo '    <a href="mailto:'.$data['email'].'">'.ICON_MAIL.'</a>';
+		$user_mail = sanitize_mail($data['email']);
+		if (!empty($user_mail))
+			echo '    <a href="mailto:'.$user_mail.'">'.ICON_MAIL.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		// recupere la liste de equipes
