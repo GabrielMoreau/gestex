@@ -99,6 +99,7 @@ function theme($theme) {
 // ---------------------------------------------------------------------
 
 function sanitize_mail($mail) {
+	$mail = str_replace(' ', '', $mail);
 	if (strpos($mail, '@') === false)
 		return '';
 	return $mail;
@@ -107,7 +108,12 @@ function sanitize_mail($mail) {
 // ---------------------------------------------------------------------
 
 function sanitize_url($url) {
-	return $url;
+	$url = str_replace(' ', '', $url);
+	if (preg_match('/^https?:\/\//', $url))
+		return $url;
+	if (strpos($url, '.') === false)
+		return '';
+	return 'http://'.$url;
 }
 
 // ---------------------------------------------------------------------
