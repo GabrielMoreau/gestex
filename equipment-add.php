@@ -108,11 +108,8 @@ if ($pdo = connect_db()) {
 				<select name="equipe">
 				<?php
 				// recupere la liste des equipes
-				$sql = 'SELECT id, nom FROM equipe ORDER BY nom;';
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute();
-				$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
-				foreach ($equipe as $chef) {
+				$equipe_fetch = get_team_listshort($pdo);
+				foreach ($equipe_fetch as $chef) {
 					echo '<option value="'.$chef['id'].'"';
 					if ($mode == 'modifier' && $chef['id'] == $listing[0]['equipe']) {
 						echo ' selected';

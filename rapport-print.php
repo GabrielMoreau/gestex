@@ -58,23 +58,13 @@ echo " Bienvenue $data['prenom'] $data['nom'] ($logged_id)<br /><br />";
 <h1>Rapport de temps pass&eacute; depuis :
 <?php
 	echo $depuis."</h1>";
-/****$querry = "SELECT id, nom FROM equipe;" ;
-	list($qh,$num) = query_db($querry);
-	///recupere les infos des equipes
-****/
 $temps_proj=0;
 $temps_manip = 0;
 $temps_equip = 0;
-	//pour toutes les equipes
-/***	while($equipes = result_db($qh)){
-
-	echo "<h2>&Eacute;quipe :".$equipes[nom]." (".$equipes[id].")</h2><ul>";	****/
 
 		$querry = "SELECT * FROM manip;";
 		if ($manip_id != 0)	// pour une manip, sinon pour toutes
 			$querry.=" WHERE id='$manip_id'";
-	//////	if (!empty($depuis))
-	//////		$querry.=" AND date>='$depuis';";
 		list($qh1,$num) = query_db($querry);
 		///recupere les infos des manips par equipes
 

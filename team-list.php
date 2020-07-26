@@ -46,12 +46,9 @@ en_tete('Liste de toutes les &eacute;quipes');
 <?php	//interrogation base de donnees
 if ($pdo = connect_db()) {
 	// recupere la liste de fournisseurs
-	$sql = 'SELECT * FROM equipe;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$equipe_fetch = get_team_listall($pdo)
 	$num_line = 1;
-	foreach ($equipe as $data) {
+	foreach ($equipe_fetch as $data) {
 		// remplit le tableau
 		$class = 'impair';
 		if ($num_line % 2)

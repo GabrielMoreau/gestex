@@ -27,12 +27,12 @@ else
 
 require_once('module/html-functions.php');
 
-if ( $pdo = connect_db() ){
+if ($pdo = connect_db()) {
 	// recupere l'equip selectionnee
 	$sql = "SELECT id,nom FROM equipe";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
-	$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$data = get_team_listshort($pdo);
 	if ($equip_id!=0){
 
 	// recupere la manip selectionnee

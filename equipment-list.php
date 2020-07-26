@@ -137,11 +137,8 @@ en_tete($title);
 		if ($eq == 0) {
 			echo '  <td>';
 			// recupere le nom d'equipe
-			$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
-			$stmt = $pdo->prepare($sql);
-			$stmt->execute(array($data['equipe']));
-			$equipe =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-			echo      $equipe[0]['nom'];
+			$team =  get_team_by_id($pdo, $data['equipe']);
+			echo      $team['nom'];
 			echo '  </td>'.PHP_EOL;
 		}
 
