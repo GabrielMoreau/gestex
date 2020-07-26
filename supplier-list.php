@@ -78,12 +78,14 @@ if ($pdo = connect_db()) {
 		echo '  <td>'.$fournisseur['tel'].'</td>'.PHP_EOL;
 		echo '  <td>'.$fournisseur['fax'].'</td>'.PHP_EOL;
 		echo '  <td>';
-		if (!empty($fournisseur['mail']))
-			echo '    <a href="mailto:'.$fournisseur['mail'].'">'.ICON_MAIL.'</a>';
+		$supplier_mail = sanitize_mail($fournisseur['mail']);
+		if (!empty($supplier_mail))
+			echo '    <a href="mailto:'.$supplier_mail.'">'.ICON_MAIL.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		if (!empty($fournisseur['www']))
-			echo '    <a href="http://'.$fournisseur['www'].'" target="_fournView">'.ICON_URL.'</a>';
+		$url = sanitize_url($fournisseur['www']);
+		if (!empty($url))
+			echo '    <a href="'.$url.'">'.ICON_URL.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>'.$fournisseur['contact'].'</td>'.PHP_EOL;
 		echo '  <td>'.$fournisseur['descr'].'</td>'.PHP_EOL;
