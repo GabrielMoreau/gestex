@@ -39,36 +39,33 @@ if (!empty($erreur) ){
 
 if ($pdo = connect_db()) {
 	//recupere les anciennes caracteristiques
-	$sql = 'SELECT * FROM equipe WHERE id = ?;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equip));
-	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$team = get_team_all_by_id($pdo, $id_equip);
 
-	echo $nom." ".$equipe[0]['nom']."<br />";
-	echo $descr." ".$equipe[0]['descr']."<br />";
-	echo $compte." ".$equipe[0]['compte']."<br />";
-	echo $chef." ".$equipe[0]['chef']."<br />";
+	echo $nom." ".$team['nom']."<br />";
+	echo $descr." ".$team['descr']."<br />";
+	echo $compte." ".$team['compte']."<br />";
+	echo $chef." ".$team['chef']."<br />";
 
 	//modification equip
 	$modif = 0;
 	//on construit la demande
 	$querry = 'UPDATE LOW_PRIORITY equipe SET ';
-		if ($nom != $equipe[0]['nom']){
+		if ($nom != $team['nom']){
 			//modif du nom
 			$modif = 1;
 			$querry .= "nom='$nom',";
 		}
-		if ($descr != $equipe[0]['descr']){
+		if ($descr != $team['descr']){
 			//modif de la descr
 			$modif = 1;
 			$querry .= "descr='$descr',";
 		}
-		if ($compte != $equipe[0]['compte']){
+		if ($compte != $team['compte']){
 			//modif du compte
 			$modif = 1;
 			$querry .= "compte='$compte',";
 		}
-		if ($chef!=$equipe[0]['chef']){
+		if ($chef != $team['chef']){
 			//modif du chef
 			$modif = 1;
 			$querry .= "chef='$chef',";

@@ -33,10 +33,7 @@ else if ($mode == 'modifier') {
 	en_tete('Modifier les coordonn&eacute;es d\'une &eacute;quipe');
 
 	// recupere le fournisseur selectionne
-	$sql = 'SELECT * FROM equipe WHERE id = ?;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($equip_id));
-	$equipe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$team = get_team_all_by_id($pdo, $equip_id);
 }
 ?>
 
@@ -50,7 +47,7 @@ else if ($mode == 'modifier') {
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="10" maxlength="10" placeholder="Nom *" value="<?php if( $mode=='modifier'){ echo $equipe[0]['nom']; } ?>" >
+				<input type="text" name="nom" size="10" maxlength="10" placeholder="Nom *" value="<?php if( $mode=='modifier'){ echo $team['nom']; } ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -58,7 +55,7 @@ else if ($mode == 'modifier') {
 				Description
 			</th>
 			<td>
-				<input type="text" name="descr" size="25" maxlength="255" placeholder="Description" value="<?php if( $mode=='modifier'){ echo $equipe[0]['descr']; } ?>" >
+				<input type="text" name="descr" size="25" maxlength="255" placeholder="Description" value="<?php if( $mode=='modifier'){ echo $team['descr']; } ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -66,7 +63,7 @@ else if ($mode == 'modifier') {
 				Compte *
 			</th>
 			<td>
-				<input type="text" name="compte" size="5" maxlength="5" placeholder="Compte *" value="<?php if( $mode=='modifier'){ echo $equipe[0]['compte']; } ?>" >
+				<input type="text" name="compte" size="5" maxlength="5" placeholder="Compte *" value="<?php if( $mode=='modifier'){ echo $team['compte']; } ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -74,7 +71,7 @@ else if ($mode == 'modifier') {
 				Chef d'&eacute;quipe<br />
 			</th>
 			<td>
-			<?php // if( $mode=='modifier'){ echo $equipe[0]['chef']; } ?>
+			<?php // if( $mode=='modifier'){ echo $team['chef']; } ?>
 				<select name="chef">
 				<?php
 				// recupere laliste des chercheurs
@@ -86,7 +83,7 @@ else if ($mode == 'modifier') {
 				// 	while ($chef = result_db($qheq)){
 				foreach ($user as $chef) {
 					echo "<option value=\"".$chef['id']."\"";
-					if ($mode == "modifier" && $chef['id'] == $equipe[0]['chef']) {
+					if ($mode == "modifier" && $chef['id'] == $team['chef']) {
 						echo " selected";
 					}
 					echo ">".$chef['nom']."</option>";

@@ -70,12 +70,9 @@ if( $pdo =connect_db()){
 			echo '  </td>'.PHP_EOL;
 	
 			// recupere le nom d'equipe
-			$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
-			$stmt = $pdo->prepare($sql);
-			$stmt->execute(array($data['equipe']));
-			$equip = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$team = get_team_by_id($pdo, $data['equipe']);
 			echo '  <td style="vertical-align: top;">';
-			echo      $equip[0]['nom'];
+			echo      $team['nom'];
 			echo '  </td>'.PHP_EOL;
 	
 			echo '  <td style="vertical-align: top;">';
@@ -99,10 +96,6 @@ if( $pdo =connect_db()){
 	
 			echo '</tr>'.PHP_EOL;
 		}
-			
-			
-			
-			
 			?>
 
 
