@@ -157,6 +157,10 @@ a {
 
 /* ================= catalog table */
 
+div.catalog {
+	overflow-x: auto;
+}
+
 .catalog .highlight td {
 	font-weight: bold;
 }
