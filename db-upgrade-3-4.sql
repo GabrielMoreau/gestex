@@ -6,8 +6,8 @@
 -- Upgrade table
 --
 
-ALTER TABLE `Listing` ADD `loanable` boolean NOT NULL DEFAULT false,
-ALTER TABLE `Listing` ADD `barcode` int(11) DEFAULT NULL UNIQUE,
+ALTER TABLE `Listing` ADD `loanable` boolean NOT NULL DEFAULT false;
+ALTER TABLE `Listing` ADD `barcode` int(11) DEFAULT NULL UNIQUE;
 
 --
 -- Fix global DB version
