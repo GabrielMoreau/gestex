@@ -6,7 +6,7 @@
 -- Version 1 Date : 22/06/2020
 
 --
--- Table structure for table `Listing`
+-- Table structure for table `Listing` (equipment)
 --
 
 DROP TABLE IF EXISTS `Listing`;
@@ -24,6 +24,8 @@ CREATE TABLE `Listing` (
   `accessoires` varchar(255) DEFAULT NULL,
   `notice` varchar(255) DEFAULT NULL,
   `inventaire` varchar(50) DEFAULT NULL,
+  `loanable` boolean NOT NULL DEFAULT false,
+  `barcode` int(11) DEFAULT NULL UNIQUE,
   PRIMARY KEY (`id`),
   INDEX `nom` (`nom`)
 ) ENGINE=MyISAM AUTO_INCREMENT=342 DEFAULT CHARSET=latin1;
