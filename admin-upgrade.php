@@ -8,12 +8,12 @@ require_once('module/html-functions.php');
 require_once('module/upgrade-functions.php');
 
 auth_or_login('index.php');
-level_or_alert(5, 'Mise &agrave; jour de l\'application');
+level_or_alert(4, 'Mise &agrave; jour de l\'application');
 
 if (!$pdo = connect_db())
 	exit();
 
-en_tete('Mise à jour de la base de donnée des notices');
+en_tete('Mise &agrave; jour de la base de donn&eacute;e des notices');
 
 $datasheet_version = get_version_by_name($pdo, 'datasheet');
 echo "HERE31 $datasheet_version TTT<br>";

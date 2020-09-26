@@ -46,7 +46,7 @@ else {
 			if(file_exists($datasheet_fetch[0]['chemin_notice'])) {
 				$result = unlink($datasheet_fetch[0]['chemin_notice']);
 				if (!$result) { // si ca n'a pas marche
-					echo "<br />erreur dans la suppression du fichier avec la notice : ".$id_datasheet;
+					echo "<br />Erreur dans la suppression du fichier avec la notice : ".$id_datasheet;
 				} else {
 					$sql = 'DELETE LOW_PRIORITY FROM notice WHERE id = ? LIMIT 1;';
 					$stmt = $pdo->prepare($sql);
@@ -54,7 +54,7 @@ else {
 					echo "Notice ".$id_datasheet." supprim&eacute;!<br />";
 				}
 			} else {
-				echo "la notice a supprimer n'existe pas";
+				echo "Erreur: la notice &agrave; supprimer n'existe pas";
 			}
 		}
 	}

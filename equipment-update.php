@@ -208,7 +208,7 @@ if ($notice!=$listing[0]['notice']){
 	
 	}//end if modif
 	else{
-		echo "aucune modif a faire";
+		echo "aucune modification &agrave; faire";
 		echo"<br /><br /><a href=\"equipment-list.php\">Suite</a><br /><br />\n";
 		pied_page();
 		exit();
