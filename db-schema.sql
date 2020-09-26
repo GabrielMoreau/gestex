@@ -254,7 +254,7 @@ CREATE TABLE `users` (
   `nom` varchar(20) NOT NULL DEFAULT '',
   `prenom` varchar(20) NOT NULL DEFAULT '',
   `tel` int(11) NOT NULL DEFAULT '0',
-  `email` varchar(30) NOT NULL DEFAULT '',
+  `email` varchar(50) NOT NULL DEFAULT '',
   `equipe` int(11) NOT NULL DEFAULT '1',
   `valid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -351,4 +351,4 @@ ALTER TABLE `Listing` ADD FOREIGN KEY (`responsable`) REFERENCES `users` (`id`);
 -- Fix global DB version
 --
 
-INSERT INTO version (soft, version) VALUES ('database',  2);
+INSERT INTO version (soft, version) VALUES ('database',  3);
