@@ -104,14 +104,14 @@ Chaque chose en son temps !
 
 ```bash
 mysql -u root -p
-CREATE DATABASE pool;
+CREATE DATABASE gestex;
 
-CREATE USER 'pool'@'localhost' IDENTIFIED BY 'ZZZZZZZZZ';
-GRANT ALL PRIVILEGES ON pool . * TO 'pool'@'localhost';
+CREATE USER 'gestex-server'@'localhost' IDENTIFIED BY 'ZZZZZZZZZ';
+GRANT ALL PRIVILEGES ON gestex . * TO 'gestex-server'@'localhost';
 FLUSH PRIVILEGES;
 QUIT;
 
-mysql -u root -p pool < db-schema.sql
+mysql -u root -p gestex < db-schema.sql
 ```
 
 #### Mot de passe
@@ -122,11 +122,11 @@ ainsi que pour mettre manuellement un nouveau mot de passe à une personne au ca
 ```bash
 echo -n XXXXXXXXX | md5sum
 
-mysql -u root -p
+mysql -u root -p gestex
 INSERT INTO `users`(`id`, `loggin`, `password`, `level`, `nom`, `prenom`, `tel`, `email`, `equipe`, `valid`) VALUES (1,'sys-admin','YYYYYYYYYYYYYYYYY',5,'Sys','Admin',0,0,0,1);
 QUIT;
 
-mysql -u root -p
+mysql -u root -p gestex
 UPDATE users SET password='YYYYYYYYYYYYYYYYY'  WHERE id='1';
 QUIT;
 ```
@@ -134,7 +134,15 @@ QUIT;
 #### Sauvegarde de la base de donnée
 
 ```bash
-mysqldump -u root -p pool > db-gestex-dump.sql
+mysqldump -u root -p gestex > db-gestex-dump.sql
+```
+
+Pour récupérer la base de donnée ainsi sauvée,
+il suffit de faire l'inverse.
+Attention cependant que cette opération va annuler toutes les opérations qui auront été faites entre temps...
+
+```bash
+mysql -u root -p gestex < db-gestex-dump.sql
 ```
 
 
@@ -145,3 +153,19 @@ plus particulièrement de la partie [icons](https://icons.getbootstrap.com/#icon
 Ces images sont libres de droits.
 Elles sont au format SVG.
 Actuellement, nous avons recopié dans le projet GestEx uniquement les quelques icônes dont nous avons besoin.
+
+
+### Vocabulaire
+
+Anglais	Français
+datasheet	notice / fiche technique
+user	utilisateur
+team	équipe
+equipment	équipement
+supplier	fournisseur
+category	catégorie
+loan	prêt
+device	dispositif
+platform	plateau expérimental
+
+
