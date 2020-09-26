@@ -1,13 +1,8 @@
  <?php
 // equipment-update.php
+$web_page = true;
 
 // Authenticate
-//require_once('module/auth-functions.php');
-
-//if (!auth(3))
-	//Header("Location: login.php");
-
-//$logged_user = strtolower($_SESSION['logged_user']);
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
@@ -17,50 +12,46 @@ level_or_alert(3, 'Modification d\'une &eacute;quipe');
 //modification d'un appareil
 unset($erreur);
 //variables ne pouvant etre nulles
-if (empty($_POST['id_app']))
-	$erreur="id non pr&eacute;cis&eacute;";
-else{
-	$id_app =$_POST['id_app'];
+$id_app = param_post('id_app');
+if (empty($id_app))
+	$erreur = "Id non pr&eacute;cis&eacute;";
 
-if (empty($_POST['categorie']))
-	$erreur="categorie non pr&eacute;cis&eacute;";
-else{
-	$categorie =$_POST['categorie'];
+$categorie = param_post('categorie');
+if (empty($categorie))
+	$erreur = "Cat&eacute;gorie non pr&eacute;cis&eacute;";
 
-if (empty($_POST['nom']))
-	$erreur="nom non pr&eacute;cis&eacute;";
-else{
-	$nom =$_POST['nom'];
-	if (empty($_POST['modele']))
-		$erreur="Modele non pr&eacute;cis&eacute;";
-	else{
-		$modele=$_POST['modele'];
-$gamme=$_POST['gamme'];
+$nom = param_post('nom');
+if (empty($nom))
+	$erreur=  "Nom non pr&eacute;cis&eacute;";
 
-		if (empty($_POST['equipe']))
-			$erreur="equipe non pr&eacute;cis&eacute;";
-		else{
-			$equipe =$_POST['equipe'];
-			if (empty($_POST['tech']))
-				$erreur="tech non pr&eacute;cis&eacute;";
-			else{
-				$tech =$_POST['tech'];
-				if (empty($_POST['fourn']))
-					$erreur="fournisseur non pr&eacute;cis&eacute;";
-				else{
-					$fourn =$_POST['fourn'];
+$modele = param_post('modele');
+if (empty($modele))
+	$erreur="Modele non pr&eacute;cis&eacute;";
 
-							//variables pouvant etre nulles
-					$achat = $_POST['achat'];
-					$reparation=$_POST['reparation'];
-	$accessoires=$_POST['accessoires'];
-	$inventaire=$_POST['inventaire'];
+$equipe = param_post('equipe');
+if (empty($equipe))
+	$erreur="&Eacute;quipe non pr&eacute;cis&eacute;";
 
-	$notice=$_FILES["notice"]["name"];
-	$notice = str_replace(' ', '_', $notice);
-	$notice = str_replace('é', 'e', $notice);
-	$notice = str_replace('è', 'e', $notice);
-	$notice = str_replace('à', 'a', $notice);
+$tech = param_post('tech');
+if (empty($tech))
+	$erreur = "Tech non pr&eacute;cis&eacute;";
+
+$fourn = param_post('fourn');
+if (empty($fourn))
+	$erreur="Fournisseur non pr&eacute;cis&eacute;";
+
+//variables pouvant etre nulles
+$gamme       = param_post('gamme');
+$achat       = param_post('achat'];
+$reparation  = param_post('reparation'];
+$accessoires = param_post('accessoires'];
+$inventaire  = param_post('inventaire'];
+
+$notice = $_FILES["notice"]["name"];
+$notice = str_replace(' ', '_', $notice);
+$notice = str_replace('é', 'e', $notice);
+$notice = str_replace('è', 'e', $notice);
+$notice = str_replace('à', 'a', $notice);
 
 	$path = "./data";
 	if(!is_dir($path)){	
@@ -79,9 +70,6 @@ $gamme=$_POST['gamme'];
 	}else{
 		echo "Ca n'a pas march&eacute;\n ";
 	}
-	
-
-}}}}}}}
 
 en_tete('R&eacute;sultat modification appareil');
 
@@ -89,17 +77,15 @@ $cat=$_GET['categorie'];
 echo "$cat";
 //recupere la categorie de la page ajout appareil
 
-if (!empty($erreur) ){
-
+if (!empty($erreur)) {
 	//erreur
-
-	echo "<br />erreur :".$erreur;
+	echo "<br />Erreur :".$erreur;
 	echo"<br /><a href=\"equipment-add.php?id=".$id_app ."\" >Suite</a><br />\n";
 
 	pied_page();
 	exit();
 }
-else{
+else {
 ///tout est ok
 //pas d'erreur
 ///on inscrit
@@ -109,19 +95,12 @@ if ($pdo = connect_db()) {
 	//recupere les anciennes caracteristiques
 
 	$sql = 'SELECT * FROM Listing WHERE id = ?';
-	// list($qh,$num) = query_db($querry);
-	// $data = result_db($qh);
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_app));
 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
-/*
-echo $nom." ".$data['nom']."<br />";
-echo $modele." ".$data['modele']."<br />";
-echo $compte." ".$data['compte']."<br />";
-echo $chef." ".$data['chef']."<br />";*/
 
 		//modification app
-$modif=0;
+$modif = 0;
 //on construit la demande
 	$querry = "UPDATE LOW_PRIORITY Listing SET ";
 
@@ -206,16 +185,16 @@ if ($notice!=$listing[0]['notice']){
 		$path_complet =$path."/".$notice;
 		$stmt->execute(array($notice,$path_complet,$listing[0]['id']));
 	
-	}//end if modif
+	} // end if modif
 	else{
-		echo "aucune modification &agrave; faire";
+		echo "Aucune modification &agrave; faire";
 		echo"<br /><br /><a href=\"equipment-list.php\">Suite</a><br /><br />\n";
 		pied_page();
 		exit();
-		}//else end
-	}//end if connect
+		} // else end
+	} // end if connect
 
-//quand on va sur suite, on retourne sur la page de la categorie choisie
+// quand on va sur suite, on retourne sur la page de la categorie choisie
 redirect('equipment-list.php');
 
 pied_page();
