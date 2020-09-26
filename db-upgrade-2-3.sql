@@ -26,4 +26,5 @@ ALTER TABLE `users` CHANGE `email` `email` varchar(50);
 -- Fix global DB version
 --
 
-INSERT INTO version (soft, version) VALUES ('database',  3);
+UPDATE version SET version = 3 WHERE soft = 'database';
+INSERT INTO version (soft, version) VALUES ('datasheet',  1);
