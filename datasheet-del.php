@@ -9,27 +9,23 @@ require_once('module/html-functions.php');
 auth_or_login('equipment-list.php');
 level_or_alert(3, 'Suppression d\'une notice');
 
-$logged_id        = $_SESSION['logged_id'];
+$logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $id_datasheet = $_GET['id'];
 if (empty($_GET['id']))
 	redirect('equipment-list.php');
 
-if(empty($_GET['ok'])) { // On recupere une variable ok qui sert a verifier que la personne est bien sur de supprimer la categorie choisi
-	$valid  = 'no'; // s'il n'y a pas d'id, on met 'no' dans $valid
-} else if ($_GET['ok'] == 'yes'){ // si ok dans l'url est 'yes', on valide la suppression
-    $valid = 'yes';
-} else { // si c'est n'importe quoi d'autre, on ne valide pas la suppression
-	$valid = 'no'; 
-}
+$valid = 'no';
+if (param_get('ok') == 'yes') // si ok dans l'url est 'yes', on valide la suppression
+	$valid = 'yes';
 
 en_tete('Suppression d\'une notice');
 
-if (!isset($valid) || empty($valid) || $valid == 'no') {
-	echo "Sur de supprimer la notice ".$id_datasheet." ?<br />";
-	echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_datasheet."&ok=yes\">OUI</a><br />";
-	echo "<a href=\"".$_SERVER['HTTP_REFERER']."\">NON</a><br />";
+if ($valid == 'no') {
+	echo 'Sur de supprimer la notice '.$id_datasheet.' ?<br>';
+	echo '<a href="datasheet-del.php?id='.$id_datasheet.'&ok=yes">OUI</a><br>';
+	echo '<a href="equipment-list.php">NON</a><br>';
 }
 else {
 	if ($pdo = connect_db()) {
@@ -58,8 +54,8 @@ else {
 			}
 		}
 	}
-	// on retourne a la page d'accueil
-	redirect('equipment-list.php');
+	else // on retourne a la page d'accueil
+		redirect('equipment-list.php');
 }
 ?>
 
