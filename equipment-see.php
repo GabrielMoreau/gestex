@@ -12,22 +12,22 @@ if (empty($_SESSION['logged_user'])) {
 	$log = false;
 	$logged_level = 0;
 } else {
-	$logged_id        = $_SESSION['logged_id'];
-	$logged_user = strtolower($_SESSION['logged_user']);
-	$logged_level     = $_SESSION['logged_level'];
+	$logged_id    = $_SESSION['logged_id'];
+	$logged_user  = strtolower($_SESSION['logged_user']);
+	$logged_level = $_SESSION['logged_level'];
 	$log = true;
 }
 
-$id_app = param_get('id');
-if (empty($id_app))
+$id_equipment = param_get('id');
+if (empty($id_equipment))
 	redirect('equipment-list.php');
 
 if ($pdo = connect_db()) {
-	$appareil_selected = get_equipment_all_by_id($pdo, $id_app);
+	$appareil_selected = get_equipment_all_by_id($pdo, $id_equipment);
 	$responsable = get_user_by_id($pdo, $appareil_selected['responsable']);
-	
-	$datacheet_path = './data/datasheet';
-	$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $id_app);
+
+	$datacheet_path  = get_datasheet_basepath();
+	$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $id_equipment);
 	$datasheet_count = count($datasheet_fetch);
 
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom'].'</b>');
