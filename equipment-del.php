@@ -4,46 +4,40 @@ $web_page = true;
 
 // Authenticate
 require_once('module/auth-functions.php');
+require_once('module/html-functions.php');
 
-if (!auth(3))
-	Header("Location: login.php");
+auth_or_login('equipment-list.php');
+level_or_alert(3, 'Suppression d\'un appareil et de ses notices associ&eacute;es');
 
-$logged_id = $_SESSION['logged_id'];
+$logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-if (empty($_GET['id']))
-	Header("Location: equipment-list.php");
-else
-	$id_app = $_GET['id'];
+$id_equipment = param_get('id');
+if (empty($id_equipment))
+	redirect('equipment-list.php');
 
-
-if(empty($_GET['ok'])) // On recupere une variable ok qui sert a verifier que la personne est bien sur de supprimer la categorie choisi
-	$valid ='no';	// s'il n'y a pas d'id, on met 'no' dans $valid
-else if($_GET['ok']=='yes') // si ok dans l'url est 'yes', on valide la suppression
+$valid = 'no'; 
+if (param_get('ok') == 'yes') // si ok dans l'url est 'yes', on valide la suppression
 	$valid = 'yes';
-else	// si c'est n'importe quoi d'autre, on ne valide pas la suppression
-	$valid = 'no'; 
+	
+en_tete('Suppression d\'un appareil et de ses notices associ&eacute;es');
 
-if (!isset($valid) || empty($valid) || $valid=="no"){
-	echo "Sur de supprimer l'appareil ".$id_app. " ?<br />";
-	echo "<a href=\"".$_SERVER['PHP_SELF']."?id=".$id_app."&ok=yes\">OUI</a><br />";
-	echo "<a href=\"".$_SERVER['HTTP_REFERER']."\">NON</a><br />";
+if ($valid == 'no') {
+	echo 'Sur de supprimer l\'appareil '.$id_equipment.' ?<br>';
+	echo '<a href="equipment-del.php?id='.$id_equipment.'&ok=yes">OUI</a><br>';
+	echo '<a href="equipment-see.php?id='.$id_equipment.'">NON</a><br>';
 }
-else{
-	if ( $pdo = connect_db() ){
-		// on supprime le fournisseur
-		$sql = 'DELETE LOW_PRIORITY FROM Listing WHERE id = ? LIMIT 1';
-		// list($qh,$num) = query_db($querry);
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($id_app));
-		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		if (!$result){ // si ca n'a pas marche
-			echo "<br />erreur dans la suppression de l'appareil : ".$id_app;
-		}else{
-		  	echo "Appareil ".$id_app." supprim&eacute;!<br />";
-		}
+else {
+	if ($pdo = connect_db()) {
+		$result = del_equipment($pdo, $id_equipment);
+		if (!$result)
+			echo "<br />Erreur dans la suppression de l'appareil : ".$id_equipment;
+		else
+		  	echo "Appareil ".$id_equipment." supprim&eacute;!<br />";
 	}
-	//on retourne a la page d'accueil
-	Header("Location: equipment-list.php");
+	else //on retourne a la page d'accueil
+		redirect('equipment-list.php');
 }
 ?>
+
+<?php pied_page() ?>

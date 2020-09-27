@@ -14,50 +14,44 @@ level_or_alert(3, 'Ajout d\'un appareil');
 unset($erreur);
 
 //variables ne pouvant etre nulles
-if (empty($_POST['categorie']))
+$categorie = param_post('categorie');
+if (empty($categorie))
 	$erreur = 'Cat&eacute;gorie non pr&eacute;cis&eacute;';
-else
-	$categorie = $_POST['categorie'];
 
-if (empty($_POST['nom']))
+$nom = param_post('nom');
+if (empty($nom))
 	$erreur = 'Nom de famille non pr&eacute;cis&eacute;';
-else
-	$nom = $_POST['nom'];
 
-if (empty($_POST['modele']))
+$modele = param_post('modele'];
+if (empty($modele))
 	$erreur = 'Mod&egrave;le non pr&eacute;cis&eacute;';
-else
-	$modele = $_POST['modele'];
 
-if (empty($_POST['gamme']))
+$gamme = param_post('gamme');
+if (empty($gamme))
 	$erreur = 'Gamme non pr&eacute;cis&eacute;';
-else
-	$gamme = $_POST['gamme'];
 
-if (empty($_POST['equipe']))
+$equipe = param_post('equipe');
+if (empty($equipe))
 	$erreur = '&Eacute;quipe non pr&eacute;cis&eacute;';
-else
-	$equipe = $_POST['equipe'];
 
-if (empty($_POST['fourn']))
+$fourn = param_post('fourn');
+if (empty($fourn))
 	$erreur = 'Fournisseur non pr&eacute;cis&eacute;';
-else
-	$fourn = $_POST['fourn'];
 
-if (empty($_POST['achat']))
+$achat = param_post('achat');
+if (empty($achat))
 	$erreur = 'Achat non pr&eacute;cis&eacute;';
-else
-	$achat = $_POST['achat'];
 
-if (empty($_POST['tech']))
+$tech = param_post('tech');
+if (empty($tech))
 	$erreur = 'Tech non pr&eacute;cis&eacute;';
-else
-	$tech = $_POST['tech'];
 
 // variables pouvant etre nulles
-$reparation  = $_POST['reparation'];
-$accessoires = $_POST['accessoires'];
-$inventaire  = $_POST['inventaire'];
+$reparation  = param_post('reparation'];
+$accessoires = param_post('accessoires'];
+$inventaire  = param_post('inventaire'];
+$barcode     = param_post('barcode'];
+$loanable    = param_post('loanable'];
 
 $notice = $_FILES["notice"]["name"];
 $notice = str_replace(' ', '_', $notice);
@@ -80,10 +74,7 @@ if (!empty($erreur) ){
 
 // tout est ok
 if ($pdo = connect_db()) {
-	$sql = 'INSERT INTO Listing (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice));
-	$id_app = $pdo->lastInsertId();
+	$id_app = set_equipment_new($pdo, $categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
 
 	$path = './data';
 	if (!is_dir($path)) {
