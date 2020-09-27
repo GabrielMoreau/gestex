@@ -22,15 +22,15 @@ if (empty($categorie))
 
 $nom = param_post('nom');
 if (empty($nom))
-	$erreur=  "Nom non pr&eacute;cis&eacute;";
+	$erreur = "Nom non pr&eacute;cis&eacute;";
 
 $modele = param_post('modele');
 if (empty($modele))
-	$erreur="Modele non pr&eacute;cis&eacute;";
+	$erreur = "Modele non pr&eacute;cis&eacute;";
 
 $equipe = param_post('equipe');
 if (empty($equipe))
-	$erreur="&Eacute;quipe non pr&eacute;cis&eacute;";
+	$erreur = "&Eacute;quipe non pr&eacute;cis&eacute;";
 
 $tech = param_post('tech');
 if (empty($tech))
@@ -38,7 +38,7 @@ if (empty($tech))
 
 $fourn = param_post('fourn');
 if (empty($fourn))
-	$erreur="Fournisseur non pr&eacute;cis&eacute;";
+	$erreur = "Fournisseur non pr&eacute;cis&eacute;";
 
 //variables pouvant etre nulles
 $gamme       = param_post('gamme');
@@ -53,7 +53,7 @@ $notice = str_replace('é', 'e', $notice);
 $notice = str_replace('è', 'e', $notice);
 $notice = str_replace('à', 'a', $notice);
 
-	$path = "./data";
+/*	$path = "./data";
 	if(!is_dir($path)){	
 		mkdir($path,0750);
 	}
@@ -69,7 +69,7 @@ $notice = str_replace('à', 'a', $notice);
 		echo "Ca a march&eacute;\n";
 	}else{
 		echo "Ca n'a pas march&eacute;\n ";
-	}
+	} */
 
 en_tete('R&eacute;sultat modification appareil');
 
