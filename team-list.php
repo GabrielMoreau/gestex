@@ -46,7 +46,7 @@ en_tete('Liste de toutes les &eacute;quipes');
 <?php	//interrogation base de donnees
 if ($pdo = connect_db()) {
 	// recupere la liste de fournisseurs
-	$equipe_fetch = get_team_listall($pdo)
+	$equipe_fetch = get_team_listall($pdo);
 	$num_line = 1;
 	foreach ($equipe_fetch as $data) {
 		// remplit le tableau
