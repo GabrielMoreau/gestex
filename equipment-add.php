@@ -228,6 +228,15 @@ if ($pdo = connect_db()) {
 		</tr>
 
 		<tr>
+			<th>
+				Empruntable (oui / non - non par défaut)
+			</th>
+			<td>
+				<<input type="radio" name="loanable" value="1" <?php if ($mode === 'modifier' && $data['loanable'] == 1) echo 'checked="checked"' ?> >
+			</td>
+		</tr>
+
+		<tr>
 			<td>Les champs avec * sont &agrave;
 			remplir obligatoirement, les autres sont optionnels.
 			</td>
