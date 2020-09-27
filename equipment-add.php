@@ -229,10 +229,10 @@ if ($pdo = connect_db()) {
 
 		<tr>
 			<th>
-				Empruntable (oui / non - non par défaut)
+				Empruntable (oui / non - non par d&eacute;faut)
 			</th>
 			<td>
-				<<input type="checkbox" name="loanable" value="1" <?php if ($mode === 'modifier' && $data['loanable'] == 1) echo 'checked' ?> >
+				<input type="checkbox" name="loanable" value="1" <?php if ($mode === 'modifier' && $data['loanable'] == 1) echo 'checked' ?> >
 			</td>
 		</tr>
 
