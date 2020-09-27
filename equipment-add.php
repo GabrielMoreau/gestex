@@ -223,7 +223,7 @@ if ($pdo = connect_db()) {
 				Code barre (chiffres)
 			</th>
 			<td>
-				<input type="file" name="barcode" value="<?php if ($mode == 'modifier'){echo $equipment['barcode'];} ?>" placeholder="Code barre (chiffres)">
+				<input type="text" name="barcode" size="20" maxlength="20" value="<?php if ($mode == 'modifier'){echo $equipment['barcode'];} ?>" placeholder="Code barre (chiffres)">
 			</td>
 		</tr>
 
@@ -232,7 +232,7 @@ if ($pdo = connect_db()) {
 				Empruntable (oui / non - non par défaut)
 			</th>
 			<td>
-				<<input type="radio" name="loanable" value="1" <?php if ($mode === 'modifier' && $data['loanable'] == 1) echo 'checked="checked"' ?> >
+				<<input type="checkbox" name="loanable" value="1" <?php if ($mode === 'modifier' && $data['loanable'] == 1) echo 'checked' ?> >
 			</td>
 		</tr>
 
