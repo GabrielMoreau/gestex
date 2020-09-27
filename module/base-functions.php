@@ -29,7 +29,7 @@ function param_post_or_get($string, $default = '') {
 // ---------------------------------------------------------------------
 
 function string_to_filename_snake($string) {
-	# $string = strtolower($string);
+	// $string = strtolower($string);
 	$string = str_replace(' ', '_', $string);
 	$string = str_replace('à', 'a', $string);
 	$string = str_replace('â', 'a', $string);
@@ -59,7 +59,7 @@ function string_to_filename_kebab($string) {
 	$string = preg_replace('/[ÔÖôö]/',      'o', $string);
 	$string = preg_replace('/[ÙÛÜùûü]/',    'u', $string);
 	$string = preg_replace('/[Çç]/',        'c', $string);
-	#$string = preg_replace('/[OEoe]/',       'oe', $string);
+	// $string = preg_replace('/[OEoe]/',       'oe', $string);
 	$string = preg_replace('/[^a-z0-9-]/',  '-', $string);
 	$string = preg_replace('/-+/',          '-', $string);
 	return $string;
