@@ -69,6 +69,12 @@ function check_val_in_db($pdo, $table, $col, $value) {
 // Datasheet
 // ---------------------------------------------------------------------
 
+function get_datasheet_basepath {
+	return './data/datasheet';
+}
+
+// ---------------------------------------------------------------------
+
 function get_datasheet_listall_by_equipment($pdo, $id_equipment) {
 	$sql = 'SELECT * FROM datasheet WHERE id_equipment = ?;' ;
 	$stmt = $pdo->prepare($sql);
@@ -85,6 +91,36 @@ function get_datasheet_count_by_equipment($pdo, $id_equipment) {
 	$stmt->execute(array($id_equipment));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch[0]['count'];
+}
+
+// ---------------------------------------------------------------------
+
+function set_datasheet_new($pdo, $equipment_id, $equipment_name, $tmp_file) {
+	if (!preg_match('/\.pdf$/i', $tmp_file))
+		return false;
+
+	$new_datasheet_path = './data/datasheet';
+	if (!is_dir($new_datasheet_path))
+		mkdir($new_datasheet_path, 0755);
+
+	$datasheet_filename_kebab = string_to_filename_kebab($equipment_name);
+
+	$sql1 = 'INSERT INTO datasheet (description, id_equipment) VALUES (?, ?);';
+	$stmt1 = $pdo->prepare($sql1);
+	$stmt1->execute(array($equipment_name, $equipment_id));
+	$id_datasheet = $pdo->lastInsertId();
+
+	$sub_path = $id_datasheet.'-'.random_string(8);
+	$sql2 = 'UPDATE datasheet SET pathname = ? WHERE id = ?;';
+	$stmt2 = $pdo->prepare($sql2);
+	$stmt2->execute(array($sub_path.'/'.$datasheet_filename_kebab.'.pdf', $id_datasheet));
+
+	$new_dir = $new_datasheet_path.'/'.$sub_path;
+	if (!is_dir($new_dir))
+		mkdir($new_dir, 0755);
+	move_uploaded_file($tmp_file, $new_dir.'/'.$datasheet_filename_kebab.'.pdf');
+
+	return $id_datasheet;
 }
 
 // ---------------------------------------------------------------------
