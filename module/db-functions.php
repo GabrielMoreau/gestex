@@ -66,6 +66,8 @@ function check_val_in_db($pdo, $table, $col, $value) {
 }
 
 // ---------------------------------------------------------------------
+// Datasheet
+// ---------------------------------------------------------------------
 
 function get_datasheet_listall_by_equipment($pdo, $id_equipment) {
 	$sql = 'SELECT * FROM datasheet WHERE id_equipment = ?;' ;
@@ -85,6 +87,8 @@ function get_datasheet_count_by_equipment($pdo, $id_equipment) {
 	return $result_fetch[0]['count'];
 }
 
+// ---------------------------------------------------------------------
+// Equipment
 // ---------------------------------------------------------------------
 
 function get_equipment_by_id($pdo, $id) {
@@ -119,6 +123,31 @@ function get_equipment_listshort($pdo) {
 	return $result_fetch;
 }
 
+// ---------------------------------------------------------------------
+
+function set_equipment_new($pdo, $categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable) {
+	$sql = 'INSERT INTO Listing (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice, barcode, loanable)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable));
+	return $pdo->lastInsertId();
+}
+
+// ---------------------------------------------------------------------
+
+function del_equipment($pdo, $id) {
+	$sql = 'DELETE LOW_PRIORITY FROM Listing WHERE id = ? LIMIT 1;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (!$result)
+		return false;
+	else
+		return true;
+}
+
+// ---------------------------------------------------------------------
+// Category
 // ---------------------------------------------------------------------
 
 function get_category_by_id($pdo, $id) {
@@ -167,6 +196,8 @@ function del_category_by_id($pdo, $id) {
 }
 
 // ---------------------------------------------------------------------
+// Loan
+// ---------------------------------------------------------------------
 
 function get_loan_all_by_id_equipment($pdo, $id_equipment) {
 	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
@@ -211,6 +242,8 @@ function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $co
 }
 
 // ---------------------------------------------------------------------
+// Supplier
+// ---------------------------------------------------------------------
 
 function get_supplier_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
@@ -252,6 +285,8 @@ function get_supplier_find($pdo, $find='') {
 	return $supplier_fetch;
 }
 
+// ---------------------------------------------------------------------
+// Team
 // ---------------------------------------------------------------------
 
 function get_team_by_id($pdo, $id) {
@@ -307,6 +342,8 @@ function get_team_with_appareil($pdo) {
 }
 
 // ---------------------------------------------------------------------
+// User
+// ---------------------------------------------------------------------
 
 function get_user_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM users WHERE id = ?;';
@@ -357,6 +394,8 @@ function get_user_listall_by_logged_level($pdo, $logged_level) {
 	return $result_fetch;
 }
 
+// ---------------------------------------------------------------------
+// Version
 // ---------------------------------------------------------------------
 
 function get_version_by_name($pdo, $name) {
