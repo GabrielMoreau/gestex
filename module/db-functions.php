@@ -69,7 +69,7 @@ function check_val_in_db($pdo, $table, $col, $value) {
 // Datasheet
 // ---------------------------------------------------------------------
 
-function get_datasheet_basepath {
+function get_datasheet_basepath() {
 	return './data/datasheet';
 }
 
