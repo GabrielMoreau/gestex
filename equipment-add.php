@@ -9,19 +9,19 @@ require_once('module/html-functions.php');
 auth_or_login('equipment-list.php');
 level_or_alert(3, 'Modification d\'un appareil');
 
-$logged_id        = $_SESSION['logged_id'];
+$logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $cat = '';
 if (!empty($_GET['categorie']))
 	$cat = $_GET['categorie'];
 
-$app_id = '';
+$id_equipment = '';
 if (!empty($_GET['id']))
-	$app_id = $_GET['id'];
+	$id_equipment = $_GET['id'];
 
 if ($pdo = connect_db()) {
-	if (empty($app_id)) {
+	if (empty($id_equipment)) {
 		// nouvel appareil
 		// transmet la valeur de la categorie a la page valid appareil
 		$mode   = 'ajouter';
@@ -35,10 +35,7 @@ if ($pdo = connect_db()) {
 		en_tete('Modifier les caracteristiques d\'un appareil');
 
 		// recupere l'appareil selectionne
-		$sql = 'SELECT * FROM Listing WHERE id = ?;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($app_id));
-		$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$equipment = get_equipment_all_by_id($pdo, $id_equipment);
 	}
 ?>
 
@@ -46,7 +43,7 @@ if ($pdo = connect_db()) {
 <table>
 	<tbody>
 		<form action="<?php echo $action ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
-			<input type="hidden" name="id_app" value="<?php echo $app_id ?>" >
+			<input type="hidden" name="id_app" value="<?php echo $id_equipment ?>" >
 		<tr>
 			<th>
 				Cat&eacute;gorie
@@ -58,7 +55,7 @@ if ($pdo = connect_db()) {
 				$category_fetch = get_category_listshort($pdo);
 				foreach ($category_fetch as $category) {
 					echo '<option value="'.$category['id'].'"';
-					if ($mode == 'modifier' && $category['id'] == $listing[0]['categorie']) {
+					if ($mode == 'modifier' && $category['id'] == $equipment['categorie']) {
 						echo " selected";
 					}
 					if ($mode == 'ajouter' && $category['id'] == $cat) {
@@ -79,7 +76,7 @@ if ($pdo = connect_db()) {
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="30"  value="<?php if ($mode == 'modifier'){ echo $listing[0]['nom']; } ?>" placeholder="Nom *">
+				<input type="text" name="nom" size="30"  value="<?php if ($mode == 'modifier'){ echo $equipment['nom']; } ?>" placeholder="Nom *">
 			</td>
 		</tr>
 
@@ -88,7 +85,7 @@ if ($pdo = connect_db()) {
 				Mod&egrave;le *
 			</th>
 			<td>
-				<input type="text"name="modele" size="30" value="<?php if ($mode == 'modifier'){ echo $listing[0]['modele']; }?>" placeholder="Mod&egrave;le *">
+				<input type="text"name="modele" size="30" value="<?php if ($mode == 'modifier'){ echo $equipment['modele']; }?>" placeholder="Mod&egrave;le *">
 			</td>
 		</tr>
 		<tr>
@@ -96,7 +93,7 @@ if ($pdo = connect_db()) {
 				Gamme *
 			</th>
 			<td>
-				<input type="text" name="gamme" size="10" maxlength="30" value="<?php if ($mode == 'modifier'){ echo $listing[0]['gamme']; }?>" placeholder="Gamme *">
+				<input type="text" name="gamme" size="10" maxlength="30" value="<?php if ($mode == 'modifier'){ echo $equipment['gamme']; }?>" placeholder="Gamme *">
 			</td>
 		</tr>
 
@@ -111,7 +108,7 @@ if ($pdo = connect_db()) {
 				$equipe_fetch = get_team_listshort($pdo);
 				foreach ($equipe_fetch as $chef) {
 					echo '<option value="'.$chef['id'].'"';
-					if ($mode == 'modifier' && $chef['id'] == $listing[0]['equipe']) {
+					if ($mode == 'modifier' && $chef['id'] == $equipment['equipe']) {
 						echo ' selected';
 					}
 					echo '>'.$chef['nom'].'</option>';
@@ -136,7 +133,7 @@ if ($pdo = connect_db()) {
 				$fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				foreach ($fournisseur as $chef) {
 					echo "<option value=\"".$chef['id']."\"";
-					if ($mode == 'modifier' && $chef['id'] == $listing[0]['fournisseur']) {
+					if ($mode == 'modifier' && $chef['id'] == $equipment['fournisseur']) {
 						echo ' selected';
 						}
 					echo '>'.$chef['nom'].'</option>';
@@ -155,7 +152,7 @@ if ($pdo = connect_db()) {
 				<input type="text" name="achat" size="10" maxlength="10" value="
 					<?php
 					if ($mode == 'modifier')
-						echo $listing[0]['achat'];
+						echo $equipment['achat'];
 					else
 						echo date('Y-m-d', time());
 					?>">
@@ -176,7 +173,7 @@ if ($pdo = connect_db()) {
 				$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				foreach ($user as $chef) {
 					echo '<option value="'.$chef['id'].'"';
-					if ($mode == 'modifier' && $chef['id'] == $listing[0]['responsable']) {
+					if ($mode == 'modifier' && $chef['id'] == $equipment['responsable']) {
 						echo ' selected';
 					}
 					echo '>'.$chef['nom'].'</option>';
@@ -192,7 +189,7 @@ if ($pdo = connect_db()) {
 				R&eacute;paration *
 			</th>
 			<td>
-				<input type="text" name="reparation" size="30" maxlength="30" value="<?php if ($mode == 'modifier'){echo $listing[0]['reparation'];} ?>" placeholder="R&eacute;paration *">
+				<input type="text" name="reparation" size="30" maxlength="30" value="<?php if ($mode == 'modifier'){echo $equipment['reparation'];} ?>" placeholder="R&eacute;paration *">
 			</td>
 		</tr>
 		<tr>
@@ -200,7 +197,7 @@ if ($pdo = connect_db()) {
 				Accessoires *
 			</th>
 			<td>
-				<input type="text" name="accessoires" size="30" maxlength="30" value="<?php if ($mode == 'modifier'){echo $listing[0]['accessoires'];} ?>" placeholder="Accessoires *">
+				<input type="text" name="accessoires" size="30" maxlength="30" value="<?php if ($mode == 'modifier'){echo $equipment['accessoires'];} ?>" placeholder="Accessoires *">
 			</td>
 		</tr>
 		<tr>
@@ -208,7 +205,7 @@ if ($pdo = connect_db()) {
 				Inventaire (facultatif)
 			</th>
 			<td>
-				<input type="text" name="inventaire" size="30" maxlength="30" value="<?php if ($mode == 'modifier'){echo $listing[0]['inventaire'];} ?>" placeholder="Inventaire (facultatif)">
+				<input type="text" name="inventaire" size="30" maxlength="30" value="<?php if ($mode == 'modifier'){echo $equipment['inventaire'];} ?>" placeholder="Inventaire (facultatif)">
 			</td>
 		</tr>
 
@@ -217,7 +214,16 @@ if ($pdo = connect_db()) {
 				Notice (facultatif)
 			</th>
 			<td>
-				<input type="file" name="notice" value="<?php if ($mode == 'modifier'){echo $listing[0]['notice'];} ?>" placeholder="Notice (facultatif)">
+				<input type="file" name="notice" value="<?php if ($mode == 'modifier'){echo $equipment['notice'];} ?>" placeholder="Notice (facultatif)">
+			</td>
+		</tr>
+
+		<tr>
+			<th>
+				Code barre (chiffres)
+			</th>
+			<td>
+				<input type="file" name="barcode" value="<?php if ($mode == 'modifier'){echo $equipment['barcode'];} ?>" placeholder="Code barre (chiffres)">
 			</td>
 		</tr>
 
