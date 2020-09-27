@@ -74,31 +74,12 @@ if (!empty($erreur) ){
 
 // tout est ok
 if ($pdo = connect_db()) {
-	$id_app = set_equipment_new($pdo, $categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
-
-	$path = './data';
-	if (!is_dir($path)) {
-		mkdir($path, 0750);
-	}
-	$path = './data/notice';
-	if (!is_dir($path)) {
-		mkdir($path, 0750);
-	}
-	$path = './data/notice/'.$id_app;
-	if (!is_dir($path)) {
-		mkdir($path, 0750);
-	}
-	move_uploaded_file($_FILES['notice']['tmp_name'], $path.'/'.$notice );
-
-	$sql = 'INSERT INTO notice (nom_notice, chemin_notice, id_appareil) VALUES (?, ?, ?);';
-	$stmt = $pdo->prepare($sql);
-	$path_complet = $path."/".$notice;
-	$stmt->execute(array($notice,$path_complet,$id_app));
-
+	$id_equipment = set_equipment_new($pdo, $categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
+	$id_datasheet = set_datasheet_new($pdo, $id_equipment, $nom, $_FILES["notice"]["tmp_name"]);
 } //end if connect
 
 echo '<br />Ajout de '.$nom.' valid&eacute;e';
-echo '<br /><br /><a href="equipment-list.php?highlight='.$id_app.'#item'.$id_app.'">Suite</a><br /><br />';
-
-pied_page();
+echo '<br /><br /><a href="equipment-list.php?highlight='.$id_equipment.'#item'.$id_equipment.'">Suite</a><br /><br />';
 ?>
+
+<?php pied_page() ?>
