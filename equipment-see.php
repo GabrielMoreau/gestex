@@ -126,6 +126,22 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 		<?php if ($datasheet_count > 0) { ?>
 		</tr>
 		<?php } ?>
+		<tr>
+			<th>
+				Code barre
+			</th>
+			<td>
+				<?php echo $appareil_selected['barcode'] ?>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				Empruntable
+			</th>
+			<td>
+				<?php if ($appareil_selected['loanable'] == 1){ echo 'Oui'; } else { echo 'Non'; } ?>
+			</td>
+		</tr>
 	</tbody>
 </table>
 </div>
