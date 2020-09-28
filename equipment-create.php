@@ -22,7 +22,7 @@ $nom = param_post('nom');
 if (empty($nom))
 	$erreur = 'Nom de famille non pr&eacute;cis&eacute;';
 
-$modele = param_post('modele'];
+$modele = param_post('modele');
 if (empty($modele))
 	$erreur = 'Mod&egrave;le non pr&eacute;cis&eacute;';
 
