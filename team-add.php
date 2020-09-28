@@ -47,7 +47,7 @@ else if ($mode == 'modifier') {
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="10" maxlength="10" placeholder="Nom *" value="<?php if( $mode=='modifier'){ echo $team['nom']; } ?>" >
+				<input type="text" name="nom" size="25" maxlength="30" placeholder="Nom *" value="<?php if( $mode=='modifier'){ echo $team['nom']; } ?>" >
 			</td>
 		</tr>
 		<tr>
