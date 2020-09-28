@@ -46,6 +46,8 @@ $achat       = param_post('achat'];
 $reparation  = param_post('reparation'];
 $accessoires = param_post('accessoires'];
 $inventaire  = param_post('inventaire'];
+$barcode     = param_post('barcode'];
+$loanable    = param_post('loanable'];
 
 $notice = $_FILES["notice"]["name"];
 $notice = str_replace(' ', '_', $notice);
@@ -85,11 +87,8 @@ if (!empty($erreur)) {
 	pied_page();
 	exit();
 }
-else {
-///tout est ok
-//pas d'erreur
-///on inscrit
 
+// tout est ok
 if ($pdo = connect_db()) {
 
 	//recupere les anciennes caracteristiques
@@ -99,105 +98,105 @@ if ($pdo = connect_db()) {
 	$stmt->execute(array($id_app));
 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-		//modification app
-$modif = 0;
-//on construit la demande
-	$querry = "UPDATE LOW_PRIORITY Listing SET ";
+	//modification app
+	$modif = 0;
+	//on construit la demande
+	$querry = 'UPDATE LOW_PRIORITY Listing SET ';
 
-if ($categorie!=$listing[0]['categorie']){
-			//modif de la categorie
-			$modif=1;
-			$querry.="categorie='$categorie',";
+	if ($categorie != $listing[0]['categorie']) {
+		//modif de la categorie
+		$modif = 1;
+		$querry .= "categorie='$categorie',";
 	}
 
-		if ($nom!=$listing[0]['nom']){
-			//modif du nom
-			$modif=1;
-			$querry.="nom='$nom',";
-		}
-		if ($modele!=$listing[0]['modele']){
-			//modif du modele
-			$modif=1;
-			$querry.="modele='$modele',";
-		}
+	if ($nom != $listing[0]['nom']) {
+		//modif du nom
+		$modif = 1;
+		$querry .= "nom='$nom',";
+	}
 
-if ($gamme!=$listing[0]['gamme']){
-			//modif de la gamme
-			$modif=1;
-			$querry.="gamme='$gamme',";
-		}
+	if ($modele != $listing[0]['modele']) {
+		//modif du modele
+		$modif = 1;
+		$querry .= "modele='$modele',";
+	}
 
-		if ($tech!=$listing[0]['responsable']){
-			//modif du tech
-			$modif=1;
-			$querry.="responsable='$tech',";
-		}
-		if ($equipe!=$listing[0]['equipe']){
-			//modif de l'equipe
-			$modif=1;
-			$querry.="equipe='$equipe',";
-		}
-		if ($fourn!=$listing[0]['fournisseur']){
-			//modif du fourn
-			$modif=1;
-			$querry.="fournisseur='$fourn',";
-		}
-		if ($achat!=$listing[0]['achat']){
-			//modif de l'achat
-			$modif=1;
-			$querry.="achat='$achat',";
-		}
-		if ($reparation!=$listing[0]['reparation']){
-			//modif de reparation
-			$modif=1;
-			$querry.="reparation='$reparation',";
-		}
-if ($accessoires!=$listing[0]['accessoires']){
-			//modif de accessoires
-			$modif=1;
-			$querry.="accessoires='$accessoires',";
-		}
-if ($inventaire!=$listing[0]['inventaire']){
-			//modif de inventaire
-			$modif=1;
-			$querry.="inventaire='$inventaire',";
-		}
+	if ($gamme != $listing[0]['gamme']) {
+		//modif de la gamme
+		$modif = 1;
+		$querry .= "gamme='$gamme',";
+	}
 
-if ($notice!=$listing[0]['notice']){
-			//modif de notice
-			$modif=1;
-			$querry.="notice='$notice',";
-		}
+	if ($tech != $listing[0]['responsable']) {
+		//modif du tech
+		$modif = 1;
+		$querry .= "responsable='$tech',";
+	}
+	if ($equipe != $listing[0]['equipe']) {
+		//modif de l'equipe
+		$modif = 1;
+		$querry .= "equipe='$equipe',";
+	}
+	if ($fourn != $listing[0]['fournisseur']) {
+		//modif du fourn
+		$modif = 1;
+		$querry .= "fournisseur='$fourn',";
+	}
 
-		// supprime la derniere virgule
-		$querry[strlen($querry)-1]=' ';
-		//ajoute la clause
-		$querry.=" WHERE id='$id_app'";
-	if ($modif!=0){
-			//echo $querry;
-		// $result = mysql_query($querry);
-			//
-			$stmt = $pdo->prepare($querry);
-			$stmt->execute();
-			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$sql = 'INSERT INTO notice (nom_notice,chemin_notice,id_appareil) VALUES (?, ?, ?);';
-		$stmt = $pdo->prepare($sql);
-		$path_complet =$path."/".$notice;
-		$stmt->execute(array($notice,$path_complet,$listing[0]['id']));
-	
+	if ($achat != $listing[0]['achat']) {
+		//modif de l'achat
+		$modif = 1;
+		$querry .= "achat='$achat',";
+	}
+
+	if ($reparation != $listing[0]['reparation']) {
+		//modif de reparation
+		$modif = 1;
+		$querry .= "reparation='$reparation',";
+	}
+
+	if ($accessoires != $listing[0]['accessoires']) {
+		//modif de accessoires
+		$modif = 1;
+		$querry .= "accessoires='$accessoires',";
+	}
+
+	if ($inventaire != $listing[0]['inventaire']) {
+		//modif de inventaire
+		$modif = 1;
+		$querry .= "inventaire='$inventaire',";
+	}
+
+	if ($notice != $listing[0]['notice']) {
+		//modif de notice
+		$modif = 1;
+		$querry .= "notice='$notice',";
+	}
+
+	// supprime la derniere virgule
+	$querry[strlen($querry)-1]=' ';
+	//ajoute la clause
+	$querry.=" WHERE id='$id_app'";
+	if ($modif != 0) {
+		$stmt = $pdo->prepare($querry);
+		$stmt->execute();
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		// $sql = 'INSERT INTO notice (nom_notice,chemin_notice,id_appareil) VALUES (?, ?, ?);';
+		// $stmt = $pdo->prepare($sql);
+		// $path_complet =$path."/".$notice;
+		// $stmt->execute(array($notice,$path_complet,$listing[0]['id']));
 	} // end if modif
-	else{
+	else {
 		echo "Aucune modification &agrave; faire";
-		echo"<br /><br /><a href=\"equipment-list.php\">Suite</a><br /><br />\n";
+		echo "<br /><br /><a href=\"equipment-list.php\">Suite</a><br /><br />\n";
 		pied_page();
 		exit();
-		} // else end
-	} // end if connect
+	} // else end
+} // end if connect
 
 // quand on va sur suite, on retourne sur la page de la categorie choisie
 redirect('equipment-list.php');
-
-pied_page();
-}
-
 ?>
+
+<?php pied_page() ?>

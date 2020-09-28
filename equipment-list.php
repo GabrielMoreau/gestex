@@ -96,16 +96,15 @@ en_tete($title);
 		$sql = 'SELECT * FROM Listing WHERE categorie = ?;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array($cat));
-	}
-	if ($cat == 0 && $eq == 0) {
+	} else {
 		$sql = 'SELECT * FROM Listing;';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array());
 	}
-	$listing =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$equipment_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	$num_line = 1;
-	foreach ($listing as $data) {
+	foreach ($equipment_fetch as $data) {
 		$class = 'impair';
 		if ($num_line % 2)
 			$class = 'pair';
@@ -153,7 +152,7 @@ en_tete($title);
 
 		echo '  <td>';
 		// cherche l'existence de la notice
-		if (get_datasheet_count_by_equipment($pdo, $data['id'])> 0) {
+		if (get_datasheet_count_by_equipment($pdo, $data['id']) > 0) {
 			echo ' <a href ="equipment-see.php?id=', $data['id'],'">'.ICON_SEE_DOC.'</a>';
 		}
 		echo '  </td>'.PHP_EOL;
