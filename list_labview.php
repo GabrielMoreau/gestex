@@ -1,12 +1,13 @@
 <?php
+// list_labview.php
+$web_page = true;
 
 require_once('module/auth-functions.php');
-
-$logged_id = $_SESSION['logged_id'];
-$logged_user = strtolower($_SESSION['logged_user']);
-$logged_level= $_SESSION['logged_level'];
-
 require_once('module/html-functions.php');
+
+$logged_id    = $_SESSION['logged_id'];
+$logged_user  = strtolower($_SESSION['logged_user']);
+$logged_level = $_SESSION['logged_level'];
 
 en_tete('Liste des programmes Labview');
 
@@ -21,10 +22,6 @@ if (empty($tri))
  style="width: 90%; text-align: left; margin-left: auto; margin-right: auto;">
   <tbody>
     <tr>
-	 <td style="vertical-align: top; text-align: center;">
-	<a href="<?php GESTEX_URL_SERVICE ?></a>">Retour &agrave;<br />la page du service</a>
-	<br /></td>
-
  <td style="vertical-align: top; text-align: center;">
 	<a href="add_labview.php">Ajouter<br />une manip Labview</a>
 	<br /></td>
