@@ -36,7 +36,7 @@ else
 	<tbody>
 		<tr>
 			<td style="vertical-align: top; text-align: center;">
-				a href="<?php GESTEX_URL_ENTITY ?>">Retour &agrave;<br />l'intranet</a>
+				a href="<?php GESTEX_ENTITY_URL ?>">Retour &agrave;<br />l'intranet</a>
 				<br />
 			</td>
 			<td style="vertical-align: top; text-align: center;">
