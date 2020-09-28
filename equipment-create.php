@@ -47,11 +47,11 @@ if (empty($tech))
 	$erreur = 'Tech non pr&eacute;cis&eacute;';
 
 // variables pouvant etre nulles
-$reparation  = param_post('reparation'];
-$accessoires = param_post('accessoires'];
-$inventaire  = param_post('inventaire'];
-$barcode     = param_post('barcode'];
-$loanable    = param_post('loanable'];
+$reparation  = param_post('reparation');
+$accessoires = param_post('accessoires');
+$inventaire  = param_post('inventaire');
+$barcode     = param_post('barcode');
+$loanable    = param_post('loanable');
 
 $notice = $_FILES["notice"]["name"];
 $notice = str_replace(' ', '_', $notice);
