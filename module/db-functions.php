@@ -168,7 +168,7 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $gamme, $equipe, $fo
 	$status = $stmt->execute(array($categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable));
 	$err_msg = '';
 	if (!$status)
-		$err_msg$arr = $stmt->errorInfo()[2];
+		$err_msg = $stmt->errorInfo()[2];
 	return array($pdo->lastInsertId(), $err_msg);
 }
 
