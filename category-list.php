@@ -30,7 +30,7 @@ en_tete('Liste des appareils par cat&eacute;gorie');
 			</th>
 			<?php if ($logged_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan="3">
-				<span class="option-right"><a href="category-add.php"><?php echo ICON_ADD_CAT ?></a></span>
+				<span class="option-right"><a href="category-add.php"><?php echo ICON_ADD_CATEGORY ?></a></span>
 			</th>
 			<?php } ?>
 		</tr>
