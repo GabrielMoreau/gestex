@@ -21,7 +21,7 @@ define('ICON_ADD_DOC',       '<span><svg width="1.2em" height="1.2em" fill="curr
 define('ICON_ADD_TASK',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter une tache</title><use xlink:href="images/bootstrap-icons.svg#plus-square"/></svg></span>');
 define('ICON_ADD_TIME',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter du temps</title><use xlink:href="images/bootstrap-icons.svg#clock"/></svg></span>');
 define('ICON_ADD_CAT',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un cat&eacute;gorie</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
-define('ICON_ADD_FOURN',     '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un fournisseur</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
+define('ICON_ADD_SUPPLIER',  '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un fournisseur</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
 define('ICON_ADD_EQUIP',     '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter une &eacute;quipe</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
 define('ICON_ADD_APPAREIL',  '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un appareil</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
 define('ICON_ADD_USER',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un utilisateur</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');

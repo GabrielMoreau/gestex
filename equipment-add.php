@@ -140,7 +140,7 @@ if ($pdo = connect_db()) {
 				} // end foreach
 				?>
 				</select>
-				<span class="option-right"><a href="supplier-add.php?"><?php echo ICON_ADD_FOURN ?></a></span>
+				<span class="option-right"><a href="supplier-add.php?"><?php echo ICON_ADD_SUPPLIER ?></a></span>
 			</td>
 		</tr>
 

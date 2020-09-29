@@ -56,7 +56,7 @@ en_tete('Liste de tous les fournisseurs', $find);
 			<?php } ?>
 			<?php if ($logged_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan=2">
-				<span class="option-right"><a href="supplier-add.php"><?php echo ICON_ADD_FOURN ?></a></span>
+				<span class="option-right"><a href="supplier-add.php"><?php echo ICON_ADD_SUPPLIER ?></a></span>
 			</th>
 			<?php } ?>
 		</tr>
