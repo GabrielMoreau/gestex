@@ -42,12 +42,12 @@ if (empty($fourn))
 
 //variables pouvant etre nulles
 $gamme       = param_post('gamme');
-$achat       = param_post('achat'];
-$reparation  = param_post('reparation'];
-$accessoires = param_post('accessoires'];
-$inventaire  = param_post('inventaire'];
-$barcode     = param_post('barcode'];
-$loanable    = param_post('loanable'];
+$achat       = param_post('achat');
+$reparation  = param_post('reparation');
+$accessoires = param_post('accessoires');
+$inventaire  = param_post('inventaire');
+$barcode     = param_post('barcode');
+$loanable    = param_post('loanable');
 
 $notice = $_FILES["notice"]["name"];
 $notice = str_replace(' ', '_', $notice);
@@ -75,14 +75,15 @@ $notice = str_replace('à', 'a', $notice);
 
 en_tete('R&eacute;sultat modification appareil');
 
-$cat=$_GET['categorie'];
-echo "$cat";
-//recupere la categorie de la page ajout appareil
+// $cat=$_GET['categorie'];
+// echo "$cat";
+// recupere la categorie de la page ajout appareil
+// Ne sers a rien !
 
 if (!empty($erreur)) {
 	//erreur
-	echo "<br />Erreur :".$erreur;
-	echo"<br /><a href=\"equipment-add.php?id=".$id_equipment ."\" >Suite</a><br />\n";
+	echo '<br>Erreur : '.$erreur;
+	echo '<br><a href="equipment-add.php?id='.$id_equipment.'">Suite</a><br>\n';
 
 	pied_page();
 	exit();
