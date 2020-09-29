@@ -9,6 +9,8 @@ require_once('module/html-functions.php');
 auth_or_login('equipment-create.php');
 level_or_alert(3, 'Ajout d\'un appareil');
 
+$logged_level = $_SESSION['logged_level'];
+
 // validation d'un nouvel appareil
 
 unset($erreur);
@@ -77,13 +79,15 @@ if (!empty($erreur) ){
 
 // tout est ok
 if ($pdo = connect_db()) {
-	$id_equipment = set_equipment_new($pdo, $categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
+	list($id_equipment, $err_msg) = set_equipment_new($pdo, $categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
+	if ($err_msg != '' && $logged_level > 3)
+		echo 'Erreur : '. $err_msg.'<br>';
 	if ($notice != '')
 		$id_datasheet = set_datasheet_new($pdo, $id_equipment, $nom, $_FILES["notice"]["tmp_name"]);
 } //end if connect
 
-echo '<br />Ajout de '.$nom.' valid&eacute;e';
-echo '<br /><br /><a href="equipment-list.php?highlight='.$id_equipment.'#item'.$id_equipment.'">Suite</a><br /><br />';
+echo '<br>Ajout de '.$nom.' valid&eacute;e';
+echo '<br><br><a href="equipment-list.php?highlight='.$id_equipment.'#item'.$id_equipment.'">Suite</a><br><br>';
 ?>
 
 <?php pied_page() ?>
