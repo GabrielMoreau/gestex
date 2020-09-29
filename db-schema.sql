@@ -25,9 +25,10 @@ CREATE TABLE `Listing` (
   `notice` varchar(255) DEFAULT NULL,
   `inventaire` varchar(50) DEFAULT NULL,
   `loanable` boolean NOT NULL DEFAULT false,
-  `barcode` int(11) DEFAULT NULL UNIQUE,
+  `barcode` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `nom` (`nom`)
+  INDEX `nom` (`nom`),
+  INDEX `barcode` (`barcode`);
 ) ENGINE=MyISAM AUTO_INCREMENT=342 DEFAULT CHARSET=latin1;
 
 --
