@@ -82,7 +82,7 @@ en_tete($title);
 			if ($log == true && $logged_level == 2)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($log == true && $logged_level >= 3)
-				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="equipment-add.php">'.ICON_ADD_APPAREIL.'</a></span></th>'.PHP_EOL;
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="equipment-add.php">'.ICON_ADD_EQUIPMENT.'</a></span></th>'.PHP_EOL;
 			?>
 		</tr>
 
