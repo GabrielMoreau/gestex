@@ -162,8 +162,8 @@ function get_equipment_listshort($pdo) {
 // ---------------------------------------------------------------------
 
 function set_equipment_new($pdo, $categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable) {
-	$sql = 'INSERT INTO Listing (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice, barcode, loanable)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+	$sql = 'INSERT INTO Listing (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice, barcode, loanable)'
+	$sql .=            ' VALUES (?,         ?,   ?,      ?,     ?,      ?,           ?,     ?,           ?,          ?,           ?,          ?,      ?,       ?);';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable));
 	return $pdo->lastInsertId();

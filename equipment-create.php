@@ -53,11 +53,14 @@ $inventaire  = param_post('inventaire');
 $barcode     = param_post('barcode');
 $loanable    = param_post('loanable');
 
-$notice = $_FILES["notice"]["name"];
-$notice = str_replace(' ', '_', $notice);
-$notice = str_replace('é', 'e', $notice);
-$notice = str_replace('è', 'e', $notice);
-$notice = str_replace('à', 'a', $notice);
+$notice = '';
+if (isset($_FILES["notice"])) {
+	$notice = $_FILES["notice"]["name"];
+	$notice = str_replace(' ', '_', $notice);
+	$notice = str_replace('é', 'e', $notice);
+	$notice = str_replace('è', 'e', $notice);
+	$notice = str_replace('à', 'a', $notice);
+}
 
 en_tete('R&eacute;sultat ajout appareil');
 
@@ -75,7 +78,8 @@ if (!empty($erreur) ){
 // tout est ok
 if ($pdo = connect_db()) {
 	$id_equipment = set_equipment_new($pdo, $categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
-	$id_datasheet = set_datasheet_new($pdo, $id_equipment, $nom, $_FILES["notice"]["tmp_name"]);
+	if ($notice != '')
+		$id_datasheet = set_datasheet_new($pdo, $id_equipment, $nom, $_FILES["notice"]["tmp_name"]);
 } //end if connect
 
 echo '<br />Ajout de '.$nom.' valid&eacute;e';
