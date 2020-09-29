@@ -45,10 +45,9 @@ if ($pdo = connect_db()) {
 	//inscription
 	$sql = 'INSERT INTO fournisseurs (nom, adresse, mail, www, tel, fax, contact, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($nom, $adresse, $mail, $www, $phone, $fax, $contact, $descr));
-	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$status = $stmt->execute(array($nom, $adresse, $mail, $www, $phone, $fax, $contact, $descr));
 	$id_supplier = $pdo->lastInsertId();
-	if (!$result) {
+	if (!$status) {
 		// sql request !ok
 		include_once('include/alert-data.php');
 		exit();
