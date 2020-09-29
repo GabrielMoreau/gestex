@@ -12,26 +12,21 @@ level_or_alert(3, 'Modification d\'un appareil');
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-$cat = '';
-if (!empty($_GET['categorie']))
-	$cat = $_GET['categorie'];
-
-$id_equipment = '';
-if (!empty($_GET['id']))
-	$id_equipment = $_GET['id'];
+$id_category  = param_get('categorie');
+$id_equipment = param_get('id');
 
 if ($pdo = connect_db()) {
 	if (empty($id_equipment)) {
 		// nouvel appareil
 		// transmet la valeur de la categorie a la page valid appareil
 		$mode   = 'ajouter';
-		$action = 'equipment-create.php?categorie='.$cat;
+		$action = 'equipment-create.php?categorie='.$id_category;
 		en_tete('Ajouter un appareil');
 	
 	} else {
 		// modif appareil
 		$mode   = 'modifier';
-		$action = 'equipment-update.php?categorie='.$cat;
+		$action = 'equipment-update.php?categorie='.$id_category;
 		en_tete('Modifier les caracteristiques d\'un appareil');
 
 		// recupere l'appareil selectionne
@@ -58,7 +53,7 @@ if ($pdo = connect_db()) {
 					if ($mode == 'modifier' && $category['id'] == $equipment['categorie']) {
 						echo " selected";
 					}
-					if ($mode == 'ajouter' && $category['id'] == $cat) {
+					if ($mode == 'ajouter' && $category['id'] == $id_category) {
 						echo " selected";
 					}
 
