@@ -39,7 +39,7 @@ en_tete('Liste de toutes les &eacute;quipes');
 			if ($logged_level == 2)
 				echo '<th class="sorttable_nosort"></th>';
 			if ($logged_level >= 3)
-				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="team-add.php">'.ICON_ADD_EQUIP.'</a></span></th>';
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="team-add.php">'.ICON_ADD_TEAM.'</a></span></th>';
 			?>
 		</tr>
 
