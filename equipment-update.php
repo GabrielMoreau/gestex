@@ -174,6 +174,18 @@ if ($pdo = connect_db()) {
 		$querry .= "notice='$notice',";
 	}
 
+	if ($barcode != $listing[0]['barcode']) {
+		//modif de barcode
+		$modif = 1;
+		$querry .= "barcode='$barcode',";
+	}
+
+	if ($loanable != $listing[0]['loanable']) {
+		//modif de loanable
+		$modif = 1;
+		$querry .= "loanable='$loanable',";
+	}
+
 	// supprime la derniere virgule
 	$querry[strlen($querry)-1]=' ';
 	//ajoute la clause
