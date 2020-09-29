@@ -12,8 +12,8 @@ level_or_alert(3, 'Modification d\'une &eacute;quipe');
 //modification d'un appareil
 unset($erreur);
 //variables ne pouvant etre nulles
-$id_app = param_post('id_app');
-if (empty($id_app))
+$id_equipment = param_post('id_equipment');
+if (empty($id_equipment))
 	$erreur = "Id non pr&eacute;cis&eacute;";
 
 $categorie = param_post('categorie');
@@ -63,7 +63,7 @@ $notice = str_replace('à', 'a', $notice);
 	if(!is_dir($path)){	
 		mkdir($path,0750);
 	}
-	$path = "./data/notice/".$id_app;
+	$path = "./data/notice/".$id_equipment;
 	if(!is_dir($path)){	
 		mkdir($path,0750);
 	}
@@ -82,7 +82,7 @@ echo "$cat";
 if (!empty($erreur)) {
 	//erreur
 	echo "<br />Erreur :".$erreur;
-	echo"<br /><a href=\"equipment-add.php?id=".$id_app ."\" >Suite</a><br />\n";
+	echo"<br /><a href=\"equipment-add.php?id=".$id_equipment ."\" >Suite</a><br />\n";
 
 	pied_page();
 	exit();
@@ -95,7 +95,7 @@ if ($pdo = connect_db()) {
 
 	$sql = 'SELECT * FROM Listing WHERE id = ?';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_app));
+	$stmt->execute(array($id_equipment));
 	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	//modification app
@@ -176,7 +176,7 @@ if ($pdo = connect_db()) {
 	// supprime la derniere virgule
 	$querry[strlen($querry)-1]=' ';
 	//ajoute la clause
-	$querry.=" WHERE id='$id_app'";
+	$querry.=" WHERE id='$id_equipment'";
 	if ($modif != 0) {
 		$stmt = $pdo->prepare($querry);
 		$stmt->execute();

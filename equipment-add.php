@@ -38,7 +38,7 @@ if ($pdo = connect_db()) {
 <table>
 	<tbody>
 		<form action="<?php echo $action ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
-			<input type="hidden" name="id_app" value="<?php echo $id_equipment ?>" >
+			<input type="hidden" name="id_equipment" value="<?php echo $id_equipment ?>" >
 		<tr>
 			<th>
 				Cat&eacute;gorie
