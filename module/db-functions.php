@@ -373,7 +373,7 @@ function get_team_listall($pdo) {
 // ---------------------------------------------------------------------
 
 function get_team_with_appareil($pdo) {
-	$sql = 'SELECT id, nom FROM equipe INNER JOIN Listing ON equipe.id = Listing.equipe;';
+	$sql = 'SELECT DISTINCT equipe.id, equipe.nom FROM equipe INNER JOIN Listing ON equipe.id = Listing.equipe ORDER BY equipe.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$team_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);

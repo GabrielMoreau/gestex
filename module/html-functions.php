@@ -111,7 +111,7 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 			<a href="equipment-list.php">Global</a>
 			<?php
 			foreach (get_team_with_appareil($pdo) as $team) {
-				echo '<a href="equipment-list.php?equipe='.$team['id'].'">au service <br />'.$team['nom'].'</a>'.PHP_EOL;
+				echo '<a href="equipment-list.php?equipe='.$team['id'].'">'.$team['nom'].'</a>'.PHP_EOL;
 			}
 			?>
 			<a href="equipment-list.php?equipe=15">au service <br />instrumentation</a>
