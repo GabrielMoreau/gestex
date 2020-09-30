@@ -77,7 +77,7 @@ en_tete($title);
 				Notice
 			</th>
 			<?php
-			if ($log == true && $eq == 15)
+			if ($log == true)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($log == true && $logged_level == 2)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
@@ -157,25 +157,29 @@ en_tete($title);
 		}
 		echo '  </td>'.PHP_EOL;
 
-		$sql = 'SELECT id FROM pret WHERE nom = ?;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($data['id']));
-		$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		if ($log === true && $data['loanable'] == 1) {
+			$sql = 'SELECT id FROM pret WHERE nom = ?;';
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array($data['id']));
+			$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-		if(!empty($pret)){
-			$emprunt = 1;
-		}else{
-			$emprunt = 0;
+			if (!empty($pret))
+				$emprunt = 1;
+			else
+				$emprunt = 0;
+
+			if ($emprunt == 0) {
+				echo '  <td>';
+				echo '    <a href="loan-add.php?id='.$data['id'].'">'.ICON_BOOKING.'</a>';
+				echo '  </td>'.PHP_EOL;
+			} else if ($emprunt == 1) {
+				echo '  <td>';
+				echo '    <a href="loan-del.php?id='.$pret[0]['id'].'">'.ICON_RETURN.'</a>';
+				echo '  </td>'.PHP_EOL;
+			}
 		}
-		if ($log === true && $eq==15 && $emprunt == 0) {
-			echo '  <td>';
-			echo '    <a href="loan-add.php?id='.$data['id'].'">'.ICON_BOOKING.'</a>';
-			echo '  </td>'.PHP_EOL;
-		}else if ($log === true && $eq==15 && $emprunt == 1) {
-			echo '  <td>';
-			echo '    <a href="loan-del.php?id='.$pret[0]['id'].'">'.ICON_RETURN.'</a>';
-			echo '  </td>'.PHP_EOL;
-		}
+		else if ($log === true)
+			echo '  <td></td>'.PHP_EOL;
 
 		if (($log === true && $logged_level >= 2) && ($eq != "15 pret=15")) {
 			echo '  <td>';
