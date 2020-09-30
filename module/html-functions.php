@@ -12,8 +12,8 @@ define('ICON_PERSON_PASWD',  '<span><svg width="1.2em" height="1.2em" fill="curr
 define('ICON_TRASH',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Supprimer</title><use xlink:href="images/bootstrap-icons.svg#trash"/></svg></span>');
 define('ICON_MAIL',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Courriel</title><use xlink:href="images/bootstrap-icons.svg#envelope"/></svg></span>');
 define('ICON_LOGIN',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Se d&eacute;connecter</title><use xlink:href="images/bootstrap-icons.svg#power"/></svg></span>');
-define('ICON_RETURN',        '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Retourner un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
-define('ICON_BOOKING',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunter un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
+define('ICON_RETURN',        '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Retourner un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
+define('ICON_BOOKING',       '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunter un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
 define('ICON_EDIT',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Modifier</title><use xlink:href="images/bootstrap-icons.svg#pen"/></svg></span>');
 define('ICON_SEE_DOC',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Voir le document</title><use xlink:href="images/bootstrap-icons.svg#eye"/></svg></span>');
 define('ICON_URL',           '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Lien web</title><use xlink:href="images/bootstrap-icons.svg#link"/></svg></span>');
