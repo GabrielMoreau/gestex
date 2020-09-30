@@ -30,11 +30,14 @@ define('ICON_MARK_RIGHT',    '<span><svg width="1.2em" height="1.2em" fill="curr
 // ---------------------------------------------------------------------
 
 function en_tete($titre, $find=false) {
-   if (!empty($_SESSION)) {
-	$pdo          = connect_db();
-	$logged_user  = $_SESSION['logged_user'];
-	$actual_theme = $_SESSION['logged_theme'];
-	$user         = get_user_all_by_login($pdo, $logged_user);
+	if (empty($_SESSION['logged_user']))
+		$logged_level = 0;
+	if (!empty($_SESSION)) {
+		$pdo          = connect_db();
+		$logged_user  = $_SESSION['logged_user'];
+		$actual_theme = $_SESSION['logged_theme'];
+		$logged_level = $_SESSION['logged_level'];
+		$user         = get_user_all_by_login($pdo, $logged_user);
 	}
 	else {
 		if (empty($_COOKIE['GestEx-Theme'])) {
@@ -70,19 +73,19 @@ function en_tete($titre, $find=false) {
 
 <?php
 	if (!empty($_SESSION)) {
-		nav_bar($user['prenom'], $user['nom'], $_SESSION['logged_level'], $_SESSION['logged_id'], $find);
+		nav_bar($pdo, $user['prenom'], $user['nom'], $logged_level, $_SESSION['logged_id'], $find);
 	} else {
-		nav_bar('', '', 0, 0, $find);
+		nav_bar($pdo, '', '', 0, 0, $find);
 	}
 }
 
 // ---------------------------------------------------------------------
 
-function nav_bar($prenom, $nom, $level, $logged_id, $find) {
+function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 ?>
 <div class="navbar">
 <ul>
-<?php if (empty($level)) { ?>
+<?php if ($level == 0) { ?>
 	<li><a href="supplier-list.php">Liste des fournisseurs</a></li>
 	<li><a href="user-list.php">Liste des utilisateurs</a></li>
 	<li><a href="team-list.php">Liste des &eacute;quipes</a></li>
@@ -107,10 +110,9 @@ function nav_bar($prenom, $nom, $level, $logged_id, $find) {
 			<a href="category-list.php">Cat&eacute;gories</a>
 			<a href="equipment-list.php">Global</a>
 			<?php
-			// $pdo = connect_db();
-			// foreach (get_team_with_appareil($pdo) as $data) {
-			// 	echo '<a href="equipment-list.php?equipe='.$data['id'].'">au service <br />'.$data['nom'].'</a>'.PHP_EOL;
-			// }
+			foreach (get_team_with_appareil($pdo) as $team) {
+				echo '<a href="equipment-list.php?equipe='.$team['id'].'">au service <br />'.$team['nom'].'</a>'.PHP_EOL;
+			}
 			?>
 			<a href="equipment-list.php?equipe=15">au service <br />instrumentation</a>
 		</div>
