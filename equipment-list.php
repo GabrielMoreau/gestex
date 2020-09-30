@@ -157,7 +157,7 @@ en_tete($title);
 		}
 		echo '  </td>'.PHP_EOL;
 
-		if ($log === true && $data['loanable'] == 1) {
+		if ($log === true && !empty($data['loanable']) && $data['loanable'] == 1) {
 			$sql = 'SELECT id FROM pret WHERE nom = ?;';
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(array($data['id']));
