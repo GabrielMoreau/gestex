@@ -161,11 +161,11 @@ function get_equipment_listshort($pdo) {
 
 // ---------------------------------------------------------------------
 
-function set_equipment_new($pdo, $categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable) {
+function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable) {
 	$sql = 'INSERT INTO Listing (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice, barcode, loanable)';
 	$sql .=            ' VALUES (?,         ?,   ?,      ?,     ?,      ?,           ?,     ?,           ?,          ?,           ?,          ?,      ?,       ?);';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable));
+	$status = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable));
 	$err_msg = '';
 	if (!$status)
 		$err_msg = $stmt->errorInfo()[2];
