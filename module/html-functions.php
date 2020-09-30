@@ -47,10 +47,11 @@ function en_tete($titre, $find=false) {
 	}
 	$css_style = 'pool_project_'.$actual_theme.'.css';
 ?>
-
+<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+	<meta charset="UTF-8">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<link rel="icon" sizes="192x126" href="images/logo-gestex-192.png">
 	<title>GestEx - <?php echo filter_var($titre, FILTER_SANITIZE_STRING) ?></title>
 	<link href="<?php echo $css_style ?>" rel ="stylesheet" type="text/css">
