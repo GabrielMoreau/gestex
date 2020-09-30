@@ -113,6 +113,7 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 		<div class="dropdown-content">
 			<a href="category-list.php"><b>Cat&eacute;gories</b></a>
 			<a href="equipment-list.php"><b>Global</b></a>
+			<a href="equipment-list.php?loanable=yes"><b>Empruntable</b></a>
 			<?php
 			foreach (get_team_with_appareil($pdo) as $team) {
 				echo '<a href="equipment-list.php?equipe='.$team['id'].'">'.$team['nom'].'</a>'.PHP_EOL;
