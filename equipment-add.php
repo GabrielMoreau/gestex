@@ -85,10 +85,10 @@ if ($pdo = connect_db()) {
 		</tr>
 		<tr>
 			<th>
-				Caract&eacute;ristique *
+				Caract&eacute;ristiques (gamme d'usage) *
 			</th>
 			<td>
-				<input type="text" name="gamme" size="30" maxlength="100" value="<?php if ($mode == 'modifier'){ echo $equipment['gamme']; }?>" placeholder="Caract&eacute;ristique *">
+				<input type="text" name="gamme" size="30" maxlength="100" value="<?php if ($mode == 'modifier'){ echo $equipment['gamme']; }?>" placeholder="Caract&eacute;ristiques (gamme d'usage) *">
 			</td>
 		</tr>
 
