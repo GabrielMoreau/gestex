@@ -202,14 +202,14 @@ if ($pdo = connect_db()) {
 	} // end if modif
 	else {
 		echo 'Aucune modification &agrave; faire';
-		echo '<br><br><a href="equipment-see.php?id='.$id_equipment.'">Suite</a><br><br>\n';
+		echo '<br><br><a href="equipment-view.php?id='.$id_equipment.'">Suite</a><br><br>\n';
 		pied_page();
 		exit();
 	} // else end
 } // end if connect
 
 // quand on va sur suite, on retourne sur la page de la categorie choisie
-redirect('equipment-see.php?id='.$id_equipment);
+redirect('equipment-view.php?id='.$id_equipment);
 ?>
 
 <?php pied_page() ?>

@@ -124,7 +124,7 @@ en_tete($title);
 		echo      $data['id'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo '    <a name="item'.$data['id'].'"></a><a href="equipment-see.php?id='.$data['id'].'">'. $data['nom'].'</a>';
+		echo '    <a name="item'.$data['id'].'"></a><a href="equipment-view.php?id='.$data['id'].'">'. $data['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		echo      $data['modele'];
@@ -153,7 +153,7 @@ en_tete($title);
 		echo '  <td>';
 		// cherche l'existence de la notice
 		if (get_datasheet_count_by_equipment($pdo, $data['id']) > 0) {
-			echo ' <a href ="equipment-see.php?id=', $data['id'],'">'.ICON_SEE_DOC.'</a>';
+			echo ' <a href ="equipment-view.php?id=', $data['id'],'">'.ICON_SEE_DOC.'</a>';
 		}
 		echo '  </td>'.PHP_EOL;
 

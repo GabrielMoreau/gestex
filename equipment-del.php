@@ -25,7 +25,7 @@ en_tete('Suppression d\'un appareil et de ses notices associ&eacute;es');
 if ($valid == 'no') {
 	echo 'Sur de supprimer l\'appareil '.$id_equipment.' ?<br>';
 	echo '<a href="equipment-del.php?id='.$id_equipment.'&ok=yes">OUI</a><br>';
-	echo '<a href="equipment-see.php?id='.$id_equipment.'">NON</a><br>';
+	echo '<a href="equipment-view.php?id='.$id_equipment.'">NON</a><br>';
 }
 else {
 	if ($pdo = connect_db()) {
