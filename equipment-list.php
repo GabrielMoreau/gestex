@@ -41,6 +41,8 @@ if (!empty($_GET['equipe'])) {
 	$title .= ' de l\'&eacute;quipe <i>'.$equip_selected['nom'].'</i>';
 }
 
+$loanable_flag = param_get('loanable');
+
 en_tete($title);
 ?>
 
@@ -105,6 +107,8 @@ en_tete($title);
 
 	$num_line = 1;
 	foreach ($equipment_fetch as $data) {
+		if ($loanable_flag == 'yes' && $data['loanable'] != 1)
+			continue;
 		$class = 'impair';
 		if ($num_line % 2)
 			$class = 'pair';
