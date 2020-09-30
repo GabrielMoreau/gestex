@@ -41,7 +41,7 @@ if (empty($fourn))
 	$erreur = "Fournisseur non pr&eacute;cis&eacute;";
 
 //variables pouvant etre nulles
-$gamme       = param_post('gamme');
+$feature     = param_post('gamme');
 $achat       = param_post('achat');
 $reparation  = param_post('reparation');
 $accessoires = param_post('accessoires');
@@ -122,10 +122,10 @@ if ($pdo = connect_db()) {
 		$querry .= "modele='$modele',";
 	}
 
-	if ($gamme != $listing[0]['gamme']) {
+	if ($feature != $listing[0]['gamme']) {
 		//modif de la gamme
 		$modif = 1;
-		$querry .= "gamme='$gamme',";
+		$querry .= "gamme='$feature',";
 	}
 
 	if ($tech != $listing[0]['responsable']) {

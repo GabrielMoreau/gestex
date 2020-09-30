@@ -28,9 +28,9 @@ $modele = param_post('modele');
 if (empty($modele))
 	$erreur = 'Mod&egrave;le non pr&eacute;cis&eacute;';
 
-$gamme = param_post('gamme');
-if (empty($gamme))
-	$erreur = 'Gamme non pr&eacute;cis&eacute;';
+$feature = param_post('gamme');
+if (empty($feature))
+	$erreur = 'Caract&eacute;ristique non pr&eacute;cis&eacute;';
 
 $equipe = param_post('equipe');
 if (empty($equipe))
@@ -79,7 +79,7 @@ if (!empty($erreur) ){
 
 // tout est ok
 if ($pdo = connect_db()) {
-	list($id_equipment, $err_msg) = set_equipment_new($pdo, $categorie, $nom, $modele, $gamme, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
+	list($id_equipment, $err_msg) = set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
 	if ($err_msg != '' && $logged_level > 3)
 		echo 'Erreur : '. $err_msg.'<br>';
 	if ($notice != '')

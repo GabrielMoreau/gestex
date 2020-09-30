@@ -63,7 +63,7 @@ en_tete($title);
 				Mod&egrave;le
 			</th>
 			<th class="sorttable_nosort">
-				Gamme
+				Caract&eacute;ristique
 			</th>
 			<?php if ($eq == 0) { ?>
 			<th>
