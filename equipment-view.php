@@ -42,6 +42,10 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 <div class="form">
 <table>
 	<tbody>
+		<?php
+			if ($logged_level >= 3)
+				echo '<th colspan=2"><span class="option-right"><a href="equipment-add.php?id='.$id_equipment.'">'.ICON_EDIT.'</a></span></th>'.PHP_EOL;
+		?>
 		<tr>
 			<th>
 				Nom
