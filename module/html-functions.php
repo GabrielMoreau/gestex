@@ -123,7 +123,6 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 		<div class="dropdown-content">
 			<a href="add_manip.php">Manip</a>
 			<a href="supplier-add.php">Fournisseur</a>
-			<a href="equipment-list.php?equipe=15 pret=15">Pr&ecirc;t</a>
 			<a href="add_time.php">Temps</a>
 			<a href="add_task.php">Task</a>
 			<a href="add_labviews.php">Labview</a>
