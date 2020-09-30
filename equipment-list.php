@@ -153,7 +153,7 @@ en_tete($title);
 		echo '  <td>';
 		// cherche l'existence de la notice
 		if (get_datasheet_count_by_equipment($pdo, $data['id']) > 0) {
-			echo ' <a href ="equipment-view.php?id=', $data['id'],'">'.ICON_SEE_DOC.'</a>';
+			echo ' <a href ="equipment-view.php?id='.$data['id'].'">'.ICON_SEE_DOC.'</a>';
 		}
 		echo '  </td>'.PHP_EOL;
 
@@ -169,22 +169,22 @@ en_tete($title);
 		}
 		if ($log === true && $eq==15 && $emprunt == 0) {
 			echo '  <td>';
-			echo '    <a href="loan-add.php?id=',$data['id'],'">'.ICON_BOOKING.'</a>';
+			echo '    <a href="loan-add.php?id='.$data['id'].'">'.ICON_BOOKING.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}else if ($log === true && $eq==15 && $emprunt == 1) {
 			echo '  <td>';
-			echo '    <a href="loan-del.php?id=',$pret[0]['id'],'">'.ICON_RETURN.'</a>';
+			echo '    <a href="loan-del.php?id='.$pret[0]['id'].'">'.ICON_RETURN.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 
 		if (($log === true && $logged_level >= 2) && ($eq != "15 pret=15")) {
 			echo '  <td>';
-			echo '    <a href="equipment-add.php?id=',$data['id'],'">'.ICON_EDIT.'</a>';
+			echo '    <a href="equipment-add.php?id='.$data['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}//end if
 		if (($log === true && $logged_level >= 3) && ($eq != "15 pret=15")) {
 			echo '  <td>';
-			echo '    <a href="equipment-del.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
+			echo '    <a href="equipment-del.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 
 		}
