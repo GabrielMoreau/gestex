@@ -30,7 +30,6 @@ define('ICON_MARK_RIGHT',    '<span><svg width="1.2em" height="1.2em" fill="curr
 // ---------------------------------------------------------------------
 
 function en_tete($titre, $find=false) {
-   // <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
    if (!empty($_SESSION)) {
 	$pdo          = connect_db();
 	$logged_user  = $_SESSION['logged_user'];
