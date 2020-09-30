@@ -64,6 +64,14 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 		</tr>
 		<tr>
 			<th>
+				Caract&eacute;ristique
+			</th>
+			<td>
+				<?php echo $appareil_selected['gamme'] ?>
+			</td>
+		</tr>
+		<tr>
+			<th>
 				Achat
 			</th>
 			<td>
