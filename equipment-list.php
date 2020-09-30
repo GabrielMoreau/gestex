@@ -177,12 +177,12 @@ en_tete($title);
 		else if ($log === true)
 			echo '  <td></td>'.PHP_EOL;
 
-		if (($log === true && $logged_level >= 2) && ($eq != "15 pret=15")) {
+		if ($log === true && $logged_level >= 2) {
 			echo '  <td>';
 			echo '    <a href="equipment-add.php?id='.$data['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
-		}//end if
-		if (($log === true && $logged_level >= 3) && ($eq != "15 pret=15")) {
+		}
+		if ($log === true && $logged_level >= 3) {
 			echo '  <td>';
 			echo '    <a href="equipment-del.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
