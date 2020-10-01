@@ -47,7 +47,7 @@ function en_tete($titre, $find=false) {
 		else
 			$actual_theme = $_COOKIE['GestEx-Theme'];
 	}
-	$css_style = 'pool_project_'.$actual_theme.'.css';
+	$css_style = 'theme-'.$actual_theme.'.css';
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,7 +56,7 @@ function en_tete($titre, $find=false) {
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<link rel="icon" sizes="192x126" href="images/logo-gestex-192.png">
 	<title>GestEx - <?php echo filter_var($titre, FILTER_SANITIZE_STRING) ?></title>
-	<link href="<?php echo $css_style ?>" rel ="stylesheet" type="text/css">
+	<link href="styles/<?php echo $css_style ?>" rel ="stylesheet" type="text/css">
 	<script src="sorttable-gestex.js"></script>
 </head>
 <body>
