@@ -33,7 +33,7 @@ if ($valid == 'yes') {
 	//on retourne a la page d'accueil
 	redirect('loan-list.php');
 	
-$pdo = connect_db()
+$pdo = connect_db();
 $loan = get_loan_all_by_id($pdo, $id_loan);
 $equipment = get_equipment_by_id($pdo, $loan['nom']);
 }
