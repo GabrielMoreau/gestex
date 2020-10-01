@@ -32,12 +32,11 @@ if ($valid == 'yes') {
 	}
 	//on retourne a la page d'accueil
 	redirect('loan-list.php');
-	
+	}
+
 $pdo = connect_db();
 $loan = get_loan_all_by_id($pdo, $id_loan);
-$id_equipment = $loan['nom'];
-$equipment = get_equipment_by_id($pdo, $id_equipment);
-}
+$equipment = get_equipment_by_id($pdo, $loan['nom']);
 
 en_tete('Retour d\'un appareil (fin du pr&ecirc;t)');
 ?>
