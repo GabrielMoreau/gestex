@@ -26,28 +26,42 @@ if (empty($date_emprunt))
 $date_retour = param_post('retour');
 $commentaire = param_post('commentaire');
 
+// modify an existing loan
+$id_loan = param_post('id_loan');
+$flag_new = true;
+if (!empty($id_loan))
+	$flag_new = false;
+
 en_tete('R&eacute;sultat demande d\'emprunt');
 
 if (!empty($erreur)) {
 	//erreur
 	echo '<br />Erreur : '.$erreur;
-	echo '<br /><a href="loan-add.php?id='.$id_equipment.'">Suite</a>';
+	if ($flag_new == true)
+		echo '<br /><a href="loan-add.php?id='.$id_equipment.'">Suite</a>';
+	else
+		echo '<br /><a href="loan-add.php?loan='.$id_loan.'">Suite</a>';
 	pied_page();
 	exit();
 }
 
 if ($pdo = connect_db()) {
-	$pret = get_loan_all_by_id_equipment($pdo, $id_equipment);
-	if (!empty($pret)) {
-		echo 'Erreur: l\'appareil est d&eacute;j&agrave; emprunt&eacute;';
-		pied_page();
-		exit();
+	if ($flag_new == true) {
+		$loan = get_loan_all_by_id_equipment($pdo, $id_equipment);
+		if (!empty($loan)) {
+			echo 'Erreur: l\'appareil est d&eacute;j&agrave; emprunt&eacute;';
+			pied_page();
+			exit();
+		}
+
+		// inscription
+		$id_loan = set_loan_new($pdo, $id_equipment, $id_equipe, $date_emprunt, $date_retour, $commentaire);
+		echo 'Ajout du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
 	}
-
-	// inscription
-	$id_loan = set_loan_new($pdo, $id_equipment, $id_equipe, $date_emprunt, $date_retour, $commentaire);
-
-	echo 'Ajout du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
+	else {
+		set_loan_update($pdo, $id_loan, $id_equipment, $id_equipe, $date_emprunt, $date_retour, $commentaire);
+		echo 'Mise &agrave; jour du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
+	}
 	echo '<br /><br /><a href="loan-list.php">Suite</a>';
 } // end if connect
 ?>

@@ -18,50 +18,42 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_user = strtolower($_SESSION['logged_user']);
 }
 
-$id_equipment = param_get('id'); // '' -> nouvel appareil
+$id_equipment = param_get('id'); // -> new
+$id_loan      = param_get('loan'); // -> modify
 
-if (empty($_GET['pret'])) {
-	$mode    = 'ajouter';
-	$action  = 'loan-create.php';
-	$id_pret = '';
+if (empty($id_loan)) {
+	$mode = 'Ajouter';
+	en_tete('Ajouter un pr&ecirc;t');
 } else {
-	$mode    = 'modifier';
-	$action  = 'modiff_pret.php';
-	$id_pret = $_GET['pret'];
+	$mode = 'Modifier';
+	en_tete('Modifier le pr&ecirc;t d\'un appareil');
 }
 
 // transmet la valeur de la categorie a la page valid appareil
 
 if ($pdo = connect_db()) {
-	if ($mode == 'ajouter') {
-		en_tete('Ajouter un pr&ecirc;t');
+
+	if ($mode == 'Modifier') {
+		$loan = get_loan_all_by_id($pdo, $id_loan);
+		$id_equipment = $loan['nom'];
 	}
-	else if ($mode == 'modifier') {
-		$pret = get_loan_all_by_id($pdo, $id_pret);
-		en_tete('Modifier les pr&ecirc;ts d\'un appareil');
-	}
+
+	$equipment = get_equipment_by_id($pdo, $id_equipment);
 ?>
 
 <div class="form">
+<form action="loan-create.php" method="POST" name="inscrForm">
+	<input type="hidden" name="id_equipment" value="<?php echo $id_equipment ?>" >
+	<?php if ($mode == 'Modifier') { ?>
+		<input type="hidden" name="id_loan" value="<?php echo $id_loan ?>" >
+	<?php } ?>
 <table>
 	<tbody>
-		<form action="<?php echo $action ?>" method="POST" name="inscrForm">
-			<input type="hidden" name="id_equipment" value="<?php echo $id_equipment?>" >
 		<tr>
 			<td>Nom de l'appareil
 			</td>
 			<td>
-				<select name="nom">
-				<!-- listing des appareils -->
-				<!--cle nom de l'appareil via l'ID qui est mis dans un champs texte ! -->
-				<?php
-				if ($mode == 'ajouter') {
-					$equipment = get_equipment_by_id($pdo, $id_equipment);
-					echo '<option value="'.$equipment['id'].'">'.$equipment['nom'].'</option>';
-				}
-				?>
-				</select>
-				
+				<b><?php echo $equipment['nom'] ?></b>
 			</td>
 		</tr>
 
@@ -72,13 +64,13 @@ if ($pdo = connect_db()) {
 				<select name="equipe">
 				<?php
 				// recupere la liste des equipes
-				$equipe_fetch = get_team_listshort($pdo);
-				foreach ($equipe_fetch as $equipe) {
-					echo '<option value="'.$equipe['id'].'"';
-					if ($mode == 'modifier' && $equipe['id'] == $pret['equipe']) {
+				$team_fetch = get_team_listshort($pdo);
+				foreach ($team_fetch as $team) {
+					echo '<option value="'.$team['id'].'"';
+					if ($mode == 'Modifier' && $team['id'] == $loan['equipe']) {
 						echo ' selected';
 					}
-					echo '>'.$equipe['nom'].'</option>';
+					echo '>'.$team['nom'].'</option>';
 				} //end foreach
 				?>
 				</select>
@@ -91,8 +83,8 @@ if ($pdo = connect_db()) {
 			</td>
 			<td>
 				<input type="text" name="emprunt" size="10" maxlength="10" value="<?php
-					if ($mode == 'modifier')
-						echo $pret['emprunt'];
+					if ($mode == 'Modifier')
+						echo $loan['emprunt'];
 					else
 						echo date('Y-m-d', time() );
 					?>" >
@@ -104,8 +96,8 @@ if ($pdo = connect_db()) {
 			</td>
 			<td>
 				<input type="text" name="retour" size="10" maxlength="10" value="<?php
-					if ($mode == 'modifier')
-						echo $pret['retour'];
+					if ($mode == 'Modifier')
+						echo $loan['retour'];
 					else
 						echo date('Y-m-d', time() );
 					?>" >
@@ -116,7 +108,7 @@ if ($pdo = connect_db()) {
 			<td>Commentaire
 			</td>
 			<td>
-				<input type="text" name="commentaire" size="30" maxlength="30" value="<?php if($mode=='modifier'){echo $pret['commentaire'];} ?>" >
+				<input type="text" name="commentaire" size="30" maxlength="30" value="<?php if($mode=='Modifier'){echo $loan['commentaire'];} ?>" >
 			</td>
 		</tr>
 
@@ -128,17 +120,16 @@ if ($pdo = connect_db()) {
 				<input type="submit" name="Login" value="<?php echo $mode ?>">
 			</td>
 		</tr>
-		</form>
-
-		<form action="category-list.php"method="POST" name="annulForm">
+	</tbody>
+	<tbody>
 		<tr>
-			<td colspan="2" style="vertical-align: top; text-align: right;">
-				<input type="submit" name="annul" value="Annuler">
+			<td colspan="2" class="button">
+				<input class="cancel" type="submit" name="ok" formaction="equipment-view.php?id=<?php echo $id_equipment ?>" value="Annuler">
 			</td>
 		</tr>
-		</form>
 	</tbody>
 </table>
+</form>
 </div>
 
 <?php } else { echo "probl&egrave;me de connexion a la base de donn&eacute;e"; } ?>

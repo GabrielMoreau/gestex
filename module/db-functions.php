@@ -281,6 +281,14 @@ function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $co
 }
 
 // ---------------------------------------------------------------------
+
+function set_loan_update($pdo, $id_loan, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
+	$sql = 'UPDATE pret SET nom = ?, equipe = ?, emprunt = ?, retour = ?, commentaire = ? WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment, $id_loan));
+}
+
+// ---------------------------------------------------------------------
 // Supplier
 // ---------------------------------------------------------------------
 
