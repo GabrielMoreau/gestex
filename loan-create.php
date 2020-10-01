@@ -38,9 +38,9 @@ if (!empty($erreur)) {
 	//erreur
 	echo '<br />Erreur : '.$erreur;
 	if ($flag_new == true)
-		echo '<br /><a href="loan-add.php?id='.$id_equipment.'">Suite</a>';
+		echo '<br /><a href="loan-add.php?equipment='.$id_equipment.'">Suite</a>';
 	else
-		echo '<br /><a href="loan-add.php?loan='.$id_loan.'">Suite</a>';
+		echo '<br /><a href="loan-add.php?id='.$id_loan.'">Suite</a>';
 	pied_page();
 	exit();
 }

@@ -18,8 +18,8 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_user = strtolower($_SESSION['logged_user']);
 }
 
-$id_equipment = param_get('id'); // -> new
-$id_loan      = param_get('loan'); // -> modify
+$id_equipment = param_get('equipment'); // -> new
+$id_loan      = param_get('id'); // -> modify
 
 if (empty($id_loan)) {
 	$mode = 'Ajouter';

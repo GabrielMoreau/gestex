@@ -175,7 +175,7 @@ en_tete($title);
 			if ($emprunt == 1)
 				echo '    <a href="loan-del.php?id='.$pret[0]['id'].'">'.ICON_RETURN.'</a>';
 			else
-				echo '    <a href="loan-add.php?id='.$data['id'].'">'.ICON_BOOKING.'</a>';
+				echo '    <a href="loan-add.php?equipment='.$data['id'].'">'.ICON_BOOKING.'</a>';
 			echo '  </td>';
 		}
 		else if ($log === true)
