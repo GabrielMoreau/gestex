@@ -85,25 +85,6 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 ?>
 <div class="navbar">
 <ul>
-<?php if ($level == 0) { ?>
-	<li><a href="supplier-list.php">Liste des fournisseurs</a></li>
-	<li><a href="user-list.php">Liste des utilisateurs</a></li>
-	<li><a href="team-list.php">Liste des &eacute;quipes</a></li>
-	<li><a href="loan-list.php">Liste des appareils en pr&ecirc;t</a></li>
-	<li class="dropdown">
-		<a class="dropbtn">Liste des appareils</a>
-		<div class="dropdown-content">
-			<a href="category-list.php">Cat&eacute;gories</a>
-			<a href="equipment-list.php">Global</a>
-			<?php
-			foreach (get_team_with_appareil($pdo) as $team) {
-				echo '<a href="equipment-list.php?equipe='.$team['id'].'">'.$team['nom'].'</a>'.PHP_EOL;
-			}
-			?>
-		</div>
-	</li>  
-	<li class="right"><a href="login.php">Se connecter</a></li>
-	<?php } else { ?>
 	<li><a href="supplier-list.php">Liste des fournisseurs</a></li>
 	<li><a href="user-list.php">Liste des utilisateurs</a></li>
 	<li><a href="team-list.php">Liste des &eacute;quipes</a></li>
@@ -113,7 +94,7 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 		<div class="dropdown-content">
 			<a href="category-list.php"><b>Cat&eacute;gories</b></a>
 			<a href="equipment-list.php"><b>Global</b></a>
-			<a href="equipment-list.php?loanable=yes"><b>Empruntable</b></a>
+			<?php if ($level > 0) { ?><a href="equipment-list.php?loanable=yes"><b>Empruntable</b></a><?php } ?>
 			<?php
 			foreach (get_team_with_appareil($pdo) as $team) {
 				echo '<a href="equipment-list.php?equipe='.$team['id'].'">'.$team['nom'].'</a>'.PHP_EOL;
@@ -122,26 +103,15 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 		</div>
 	</li>
 
-	<?php if ($level == 2) { ?>
+	<?php if ($level >= 2) { ?>
 	<li class="dropdown">
 		<a class="dropbtn">Ajouter</a>
 		<div class="dropdown-content">
-			<a href="add_manip.php">Manip</a>
+			<?php if ($level >= 3) { ?><a href="equipment-add.php">Appareil</a><?php } ?>
+			<?php if ($level >= 3) { ?><a href="category-add.php">Cat&eacute;gorie</a><?php } ?>
+			<?php if ($level >= 3) { ?><a href="team-add.php">&Eacute;quipe</a><?php } ?>
 			<a href="supplier-add.php">Fournisseur</a>
-			<a href="add_time.php">Temps</a>
-			<a href="add_task.php">Task</a>
-			<a href="add_labviews.php">Labview</a>
-		</div>
-	</li>
-	<?php } else if ($level >= 3) { ?>
-	<li class="dropdown">
-		<a class="dropbtn">Ajouter</a>
-		<div class="dropdown-content">
-			<a href="equipment-add.php">Appareil</a>
-			<a href="category-add.php">Cat&eacute;gorie</a>
-			<a href="team-add.php">&Eacute;quipe</a>
-			<a href="supplier-add.php">Fournisseur</a>
-			<a href="user-add.php">Utilisateur</a>
+			<?php if ($level >= 3) { ?><a href="user-add.php">Utilisateur</a><?php } ?>
 		</div>
 	</li>
 	<?php } ?>
@@ -158,11 +128,13 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 			<a href="add_machine.php">Machine</a>
 			<a href="add_manip.php">Manip</a>
 			<a href="list_manip.php">Liste des manips</a>
-
 		</div>
 	</li>
 	<?php } ?>
 
+	<?php if ($level == 0) { ?>
+	<li class="right"><a href="login.php">Se connecter</a></li>
+	<?php } else { ?>
 	<li class="dropdown right">
 		<a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
 		<div class="dropdown-content">
