@@ -16,7 +16,7 @@ $id_loan = param_post_or_get('id');
 if (empty($id_loan) || $_POST['ok'] == 'cancel')
 	redirect('loan-list.php');
 if ($_POST['ok'] == 'edit')
-	redirect('loan-add.php?id'.$id_loan);
+	redirect('loan-add.php?id='.$id_loan);
 
 $valid = 'no';
 if ($_POST['ok'] == 'yes') // si ok dans l'url est 'yes', on valide la suppression
