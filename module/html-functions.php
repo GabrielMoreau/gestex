@@ -57,7 +57,7 @@ function en_tete($titre, $find=false) {
 	<link rel="icon" sizes="192x126" href="images/logo-gestex-192.png">
 	<title>GestEx - <?php echo filter_var($titre, FILTER_SANITIZE_STRING) ?></title>
 	<link href="style/<?php echo $css_style ?>" rel ="stylesheet" type="text/css">
-	<script src="sorttable-gestex.js"></script>
+	<script src="script/sorttable-gestex.js"></script>
 </head>
 <body>
 <div class="header">
