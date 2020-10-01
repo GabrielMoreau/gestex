@@ -38,9 +38,14 @@ en_tete('Ramener un pr&ecirc;t');
 
 <center class="alert">
 <form action="loan-del.php?id=<?php echo $id_pret ?>" method="POST">
-	Voulez-vous supprimer le pr&ecirc;t <?php echo $id_pret ?> ?
-	<button class="red" type="submit" name="ok" value="yes">Oui</button>
-	<button class="green" type="submit" formaction="loan-list.php" value="no">Non</button>
+	Concernant le pr&ecirc;t <?php echo $id_pret ?>, voulez-vous :
+	<ul>
+		<li><button type="submit" formaction="loan-add.php?id<?php echo $id_pret ?>" value="no">Modifier / &Eacute;diter</button> le pr&ecirc;t ?</li>
+		<li>Supprimer le pr&ecirc;t (retour du produit) ?
+			<button class="red" type="submit" name="ok" value="yes">Oui</button>
+			<button class="green" type="submit" formaction="loan-list.php" value="no">Non</button>
+		</li>
+	</ul>
 	<hr>
 	<button type="submit" name="ok" value="cancel">Annuler</button>
 </form>
