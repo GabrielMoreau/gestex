@@ -31,19 +31,23 @@ if ($valid == 'yes') {
 		$stmt->execute(array($id_loan));
 	}
 	//on retourne a la page d'accueil
-	Header("Location: loan-list.php");
+	redirect('loan-list.php');
+	
+$pdo = connect_db()
+$loan = get_loan_all_by_id($pdo, $id_loan);
+$equipment = get_equipment_by_id($pdo, $loan['nom']);
 }
 
-en_tete('Ramener un pr&ecirc;t');
+en_tete('Retour d\'un appareil (fin du pr&ecirc;t)');
 ?>
 
 <center class="alert">
 <form action="loan-del.php" method="POST">
 	<input type="hidden" name="id" value="<?php echo $id_loan ?>" >
-	Concernant le pr&ecirc;t <?php echo $id_loan ?>, voulez-vous :
+	Concernant le pr&ecirc;t <?php echo $id_loan ?> (<?php echo $equipment['nom'] ?>), voulez-vous :
 	<ul>
 		<li>Modifier / &Eacute;diter le pr&ecirc;t ? <button type="submit" name="ok" value="edit"><?php echo ICON_EDIT ?></button></li>
-		<li>Supprimer le pr&ecirc;t (retour du produit) ?
+		<li>Supprimer le pr&ecirc;t (retour de l'appareil) ?
 			<button class="red" type="submit" name="ok" value="yes">Oui</button>
 			<button class="green" type="submit" formaction="loan-list.php" value="no">Non</button>
 		</li>
