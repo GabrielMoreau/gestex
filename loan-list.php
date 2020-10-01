@@ -43,6 +43,7 @@ en_tete('Liste des pr&ecirc;ts');
 			<?php 
 			if ($logged_level >= 3)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
+				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			?>
 		</tr>
 
@@ -86,6 +87,8 @@ if ($pdo = connect_db()) {
 		if ($logged_level >= 3) {
 			echo '  <td>';
 			echo '    <a href="loan-add.php?id=',$data['id'],'">'.ICON_EDIT.'</a>';
+			echo '  </td>'.PHP_EOL;
+			echo '  <td>';
 			echo '    <a href="loan-del.php?id=',$data['id'],'">'.ICON_RETURN.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
