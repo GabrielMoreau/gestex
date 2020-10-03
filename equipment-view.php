@@ -126,11 +126,10 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 			</td>
 			<?php } else { ?>
 				<?php $first = true; foreach ($datasheet_fetch as $datasheet) { ?>
-				<?php if ($first) echo '<tr>' ?>
+				<?php if ($first) {$first = false;} else {echo '</tr>'.PHP_EOL.'<tr>'.PHP_EOL;} ?>
 				<td>
 					<a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top"><?php echo $datasheet['description'] ?></a>
 				</td>
-				<?php if ($first) echo '</tr>'; $first = false; ?>
 				<?php } ?>
 			<?php } ?>
 		</tr>
