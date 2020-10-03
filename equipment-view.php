@@ -30,6 +30,9 @@ if ($pdo = connect_db()) {
 	$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $id_equipment);
 	$datasheet_count = count($datasheet_fetch);
 
+	if ($appareil_selected['barcode'] == 0)
+		$appareil_selected['barcode'] = '';
+
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom'].'</b>');
 ?>
 
