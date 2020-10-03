@@ -29,7 +29,7 @@ en_tete('Liste des appareils par cat&eacute;gorie');
 				Cat&eacute;gorie
 			</th>
 			<?php if ($logged_level >= 3) { ?>
-			<th class="sorttable_nosort" colspan="3">
+			<th class="sorttable_nosort" colspan="2">
 				<span class="option-right"><a href="category-add.php"><?php echo ICON_ADD_CATEGORY ?></a></span>
 			</th>
 			<?php } ?>
@@ -51,6 +51,9 @@ if ($pdo = connect_db()) {
 		echo '    <a href="equipment-list.php?categorie='.$category['id'].'" name="item'.$category['id'].'">'.$category['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		if ($logged_level >= 3) {
+			echo '  <td>';
+			echo '    <a href="category-add.php?id='.$category['id'].'">'.ICON_EDIT.'</a>';
+			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
 			echo '    <a href="category-del.php?id=',$category['id'],'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
