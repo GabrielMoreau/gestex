@@ -203,7 +203,7 @@ if ($pdo = connect_db()) {
 				<?php if ($mode == 'modifier' && $datasheet_count > 0) { ?>
 				<ul>
 					<?php foreach ($datasheet_fetch as $datasheet) { ?>
-					<li><a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top"><?php echo $datasheet['description'] ?></a></li>
+					<li><a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top"><?php echo $datasheet['description'] ?> (<?php echo $datasheet['pathname']?>)</a></li>
 					<?php } ?>
 				</ul>
 				<?php } ?>
