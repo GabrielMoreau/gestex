@@ -117,7 +117,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 		</tr>
 		<?php if ($datasheet_count > 0) { ?>
 		<tr class="datasheet">
-			<th rowspan="<?php echo $datasheet_count ?>">
+			<th>
 				Notice
 			</th>
 			<td>
