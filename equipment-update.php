@@ -97,8 +97,10 @@ if ($pdo = connect_db()) {
 		$err_msg = set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
 		if ($err_msg != '' && $logged_level > 3)
 			echo 'Erreur : '. $err_msg.'<br>';
-		if ($notice != '')
+		if ($notice != '') {
 			$id_datasheet = set_datasheet_new($pdo, $id_equipment, $_FILES["notice"]["name"], $_FILES["notice"]["tmp_name"]);
+			echo "New datasheet ".$id_equipment." number # ".$id_datasheet;
+		}
 	} // end if modif
 	else {
 		echo 'Aucune modification &agrave; faire';
