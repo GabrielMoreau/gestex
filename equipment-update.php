@@ -77,20 +77,20 @@ if ($pdo = connect_db()) {
 
 	//modification app
 	$modif = 0;
-	if (($categorie != $equipment_registered[0]['categorie'])
-		|| ($nom != $equipment_registered[0]['nom'])
-		|| ($modele != $equipment_registered[0]['modele'])
-		|| ($feature != $equipment_registered[0]['gamme'])
-		|| ($tech != $equipment_registered[0]['responsable'])
-		|| ($equipe != $equipment_registered[0]['equipe'])
-		|| ($fourn != $equipment_registered[0]['fournisseur'])
-		|| ($achat != $equipment_registered[0]['achat'])
-		|| ($reparation != $equipment_registered[0]['reparation'])
-		|| ($accessoires != $equipment_registered[0]['accessoires'])
-		|| ($inventaire != $equipment_registered[0]['inventaire'])
-		|| ($notice != $equipment_registered[0]['notice'])
-		|| ($barcode != $equipment_registered[0]['barcode'])
-		|| ($loanable != $equipment_registered[0]['loanable']))
+	if (($categorie != $equipment_registered['categorie'])
+		|| ($nom != $equipment_registered['nom'])
+		|| ($modele != $equipment_registered['modele'])
+		|| ($feature != $equipment_registered['gamme'])
+		|| ($tech != $equipment_registered['responsable'])
+		|| ($equipe != $equipment_registered['equipe'])
+		|| ($fourn != $equipment_registered['fournisseur'])
+		|| ($achat != $equipment_registered['achat'])
+		|| ($reparation != $equipment_registered['reparation'])
+		|| ($accessoires != $equipment_registered['accessoires'])
+		|| ($inventaire != $equipment_registered['inventaire'])
+		|| ($notice != $equipment_registered['notice'])
+		|| ($barcode != $equipment_registered['barcode'])
+		|| ($loanable != $equipment_registered['loanable']))
 		$modif = 1;
 
 	if ($modif != 0) {
