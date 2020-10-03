@@ -31,6 +31,9 @@ if ($pdo = connect_db()) {
 
 		// recupere l'appareil selectionne
 		$equipment = get_equipment_all_by_id($pdo, $id_equipment);
+		$datacheet_path  = get_datasheet_basepath();
+		$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $id_equipment);
+		$datasheet_count = count($datasheet_fetch);
 	}
 ?>
 
@@ -197,6 +200,13 @@ if ($pdo = connect_db()) {
 				Notice (facultatif)
 			</th>
 			<td>
+				<?php if ($mode == 'modifier' && $datasheet_count > 0) { ?>
+				<ul>
+					<?php foreach ($datasheet_fetch as $datasheet) { ?>
+					<li><a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top"><?php echo $datasheet['description'] ?></a></li>
+					<?php } ?>
+				</ul>
+				<?php } ?>
 				<input type="file" name="notice" value="<?php if ($mode == 'modifier'){echo $equipment['notice'];} ?>" placeholder="Notice (facultatif)">
 			</td>
 		</tr>
