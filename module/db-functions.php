@@ -446,7 +446,7 @@ function get_user_listall_by_logged_level($pdo, $logged_level) {
 function get_user_listshort_with_right($pdo, $level_min=1) {
 	$sql = 'SELECT id, nom FROM users WHERE valid = 1 and level >= ?;';
 	$stmt = $pdo->prepare($sql);
-    $stmt->execute(execute(array($level_min));
+    $stmt->execute(array($level_min));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
