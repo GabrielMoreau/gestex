@@ -175,7 +175,7 @@ if ($pdo = connect_db()) {
 				R&eacute;paration
 			</th>
 			<td>
-				<input type="text" name="reparation" size="30" maxlength="30" value="<?php if ($mode == 'modifier'){echo $equipment['reparation'];} ?>" placeholder="R&eacute;paration *">
+				<input type="text" name="reparation" size="30" maxlength="30" value="<?php if ($mode == 'modifier'){echo $equipment['reparation'];} ?>" placeholder="R&eacute;paration">
 			</td>
 		</tr>
 		<tr>
@@ -183,7 +183,7 @@ if ($pdo = connect_db()) {
 				Accessoires
 			</th>
 			<td>
-				<input type="text" name="accessoires" size="30" maxlength="30" value="<?php if ($mode == 'modifier'){echo $equipment['accessoires'];} ?>" placeholder="Accessoires *">
+				<input type="text" name="accessoires" size="30" maxlength="30" value="<?php if ($mode == 'modifier'){echo $equipment['accessoires'];} ?>" placeholder="Accessoires">
 			</td>
 		</tr>
 		<tr>
