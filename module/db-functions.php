@@ -174,6 +174,18 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $
 
 // ---------------------------------------------------------------------
 
+function set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable) {
+	$sql = 'UPDATE Listing SET categorie = ?, nom = ?, modele = ?, gamme = ?, equipe = ?, fournisseur = ?, achat = ?, responsable = ?, reparation = ?, accessoires = ?, inventaire = ?, notice = ?, barcode = ?, loanable = ? WHERE id = ?;)';
+	$stmt = $pdo->prepare($sql);
+	$status = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $id_equipment));
+	$err_msg = '';
+	if (!$status)
+		$err_msg = $stmt->errorInfo()[2];
+	return $err_msg;
+}
+
+// ---------------------------------------------------------------------
+
 function del_equipment($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM Listing WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
