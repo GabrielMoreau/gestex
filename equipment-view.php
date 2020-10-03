@@ -117,20 +117,20 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 		</tr>
 		<?php if ($datasheet_count > 0) { ?>
 		<tr class="datasheet">
-			<th>
+			<th rowspan="<?php echo $datasheet_count ?>">
 				Notice
 			</th>
-			<td>
 				<?php if ($datasheet_count == 1) { ?>
+			<td>
 				<a href="<?php echo $datacheet_path.'/'.$datasheet_fetch[0]['pathname'] ?>" target="_top"><?php echo $datasheet_fetch[0]['description'] ?></a>
-				<?php } else { ?>
-				<ul>
-					<?php foreach ($datasheet_fetch as $datasheet) { ?>
-					<li><a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top"><?php echo $datasheet['description'] ?></a></li>
-					<?php } ?>
-				</ul>
+			</td>
+			<?php } else { ?>
+			<td>
+				<?php foreach ($datasheet_fetch as $datasheet) { ?>
+				<a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top"><?php echo $datasheet['description'] ?></a>
 				<?php } ?>
 			</td>
+			<?php } ?>
 		</tr>
 		<?php } ?>
 		<tr>
