@@ -83,7 +83,7 @@ if ($pdo = connect_db()) {
 	if ($err_msg != '' && $logged_level > 3)
 		echo 'Erreur : '. $err_msg.'<br>';
 	if ($notice != '')
-		$id_datasheet = set_datasheet_new($pdo, $id_equipment, $nom, $_FILES["notice"]["tmp_name"]);
+		$id_datasheet = set_datasheet_new($pdo, $id_equipment, $_FILES["notice"]["name"], $_FILES["notice"]["tmp_name"]);
 } //end if connect
 
 echo '<br>Ajout de '.$nom.' valid&eacute;e';
