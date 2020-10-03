@@ -103,8 +103,8 @@ function set_datasheet_new($pdo, $equipment_id, $datasheet_filename_upload, $tmp
 	if (!is_dir($new_datasheet_path))
 		mkdir($new_datasheet_path, 0755);
 
-	$datasheet_filename_kebab = string_to_filename_kebab($datasheet_filename_upload);
 	$datasheet_filename_no_ext = pathinfo($datasheet_filename_upload, PATHINFO_FILENAME);
+	$datasheet_filename_kebab = string_to_filename_kebab($datasheet_filename_no_ext).'.pdf';
 
 	$sql1 = 'INSERT INTO datasheet (description, id_equipment) VALUES (?, ?);';
 	$stmt1 = $pdo->prepare($sql1);
@@ -114,12 +114,12 @@ function set_datasheet_new($pdo, $equipment_id, $datasheet_filename_upload, $tmp
 	$sub_path = $id_datasheet.'-'.random_string(8);
 	$sql2 = 'UPDATE datasheet SET pathname = ? WHERE id = ?;';
 	$stmt2 = $pdo->prepare($sql2);
-	$stmt2->execute(array($sub_path.'/'.$datasheet_filename_kebab.'.pdf', $id_datasheet));
+	$stmt2->execute(array($sub_path.'/'.$datasheet_filename_kebab, $id_datasheet));
 
 	$new_dir = $new_datasheet_path.'/'.$sub_path;
 	if (!is_dir($new_dir))
 		mkdir($new_dir, 0755);
-	move_uploaded_file($tmp_file, $new_dir.'/'.$datasheet_filename_kebab.'.pdf');
+	move_uploaded_file($tmp_file, $new_dir.'/'.$datasheet_filename_kebab);
 
 	return $id_datasheet;
 }
