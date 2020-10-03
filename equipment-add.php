@@ -100,13 +100,13 @@ if ($pdo = connect_db()) {
 				<select name="equipe">
 				<?php
 				// recupere la liste des equipes
-				$equipe_fetch = get_team_listshort($pdo);
-				foreach ($equipe_fetch as $chef) {
-					echo '<option value="'.$chef['id'].'"';
-					if ($mode == 'modifier' && $chef['id'] == $equipment['equipe']) {
+				$team_fetch = get_team_listshort($pdo);
+				foreach ($team_fetch as $team) {
+					echo '<option value="'.$team['id'].'"';
+					if ($mode == 'modifier' && $team['id'] == $equipment['equipe']) {
 						echo ' selected';
 					}
-					echo '>'.$chef['nom'].'</option>';
+					echo '>'.$team['nom'].'</option>';
 				} // end foreach
 				?>
 				</select>
@@ -122,16 +122,13 @@ if ($pdo = connect_db()) {
 				<select name="fourn">
 				<?php
 				// recupere la liste des fournisseurs
-				$sql = 'SELECT id, nom FROM fournisseurs ORDER BY nom;';
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute();
-				$fournisseur = $stmt->fetchAll(PDO::FETCH_ASSOC);
-				foreach ($fournisseur as $chef) {
-					echo "<option value=\"".$chef['id']."\"";
-					if ($mode == 'modifier' && $chef['id'] == $equipment['fournisseur']) {
+				$supplier_fetch = get_supplier_listshort($pdo);
+				foreach ($supplier_fetch as $supplier) {
+					echo "<option value=\"".$supplier['id']."\"";
+					if ($mode == 'modifier' && $supplier['id'] == $equipment['fournisseur']) {
 						echo ' selected';
 						}
-					echo '>'.$chef['nom'].'</option>';
+					echo '>'.$supplier['nom'].'</option>';
 				} // end foreach
 				?>
 				</select>
@@ -156,16 +153,13 @@ if ($pdo = connect_db()) {
 				<select name="tech">
 				<?php
 				// recupere la liste des tech
-				$sql = 'SELECT id, nom FROM users WHERE level > 1 and valid = 1;';
-				$stmt = $pdo->prepare($sql);
-				$stmt->execute();
-				$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-				foreach ($user as $chef) {
-					echo '<option value="'.$chef['id'].'"';
-					if ($mode == 'modifier' && $chef['id'] == $equipment['responsable']) {
+				$user_fetch = get_user_listshort_with_right($pdo, 1);
+				foreach ($user_fetch as $user) {
+					echo '<option value="'.$user['id'].'"';
+					if ($mode == 'modifier' && $user['id'] == $equipment['responsable']) {
 						echo ' selected';
 					}
-					echo '>'.$chef['nom'].'</option>';
+					echo '>'.$user['nom'].'</option>';
 				} // end foreach
 				?>
 				</select>
