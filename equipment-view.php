@@ -33,20 +33,14 @@ if ($pdo = connect_db()) {
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom'].'</b>');
 ?>
 
-<!-- 
-<label for="element-toggle">Transpose</label>
-<input id="element-toggle" type="checkbox" />
-<div class="catalog" id="toggled-element">
- -->
-
 <div class="form">
 <table>
 	<tbody>
-		<th colspan=2">
+		<th colspan="2">
 			<span class="option-right"><a href="equipment-list.php?categorie=<?php echo $appareil_selected['categorie'] ?>"><?php echo ICON_LIST ?></a></span>
 			<?php
 				if ($logged_level >= 3)
-					echo '<span class="option-right"><a href="equipment-add.php?id='.$id_equipment.'">'.ICON_EDIT.'</a></span>'.PHP_EOL;
+					echo '<span class="option-right"><a href="equipment-add.php?id='.$id_equipment.'">'.ICON_EDIT.'</a>&nbps;</span>'.PHP_EOL;
 			?>
 		</th>
 		<tr>
@@ -127,21 +121,21 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Notice
 			</th>
 			<td>
+				<?php if ($datasheet_count == 1) { ?>
+				<a href="<?php echo $datacheet_path.'/'.$datasheet_fetch[0]['pathname'] ?>" target="_top"><?php echo $datasheet_fetch[0]['description'] ?></a>
+				<?php } else { ?>
 				<ul>
 					<?php foreach ($datasheet_fetch as $datasheet) { ?>
-					<li>
-						<a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top">
-							<?php echo $datasheet['description'] ?>
-						</a>
-					</li>
+					<li><a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top"><?php echo $datasheet['description'] ?></a></li>
 					<?php } ?>
 				</ul>
+				<?php } ?>
 			</td>
 		</tr>
 		<?php } ?>
 		<tr>
 			<th>
-				Code barre <?php echo ICON_BARCODE ?>
+				Code barre &nbps; <?php echo ICON_BARCODE ?>
 			</th>
 			<td>
 				<?php echo $appareil_selected['barcode'] ?>
