@@ -15,6 +15,8 @@ define('ICON_LOGIN',         '<span><svg width="1.2em" height="1.2em" fill="curr
 define('ICON_RETURN',        '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Retourner un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
 define('ICON_BOOKING',       '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunter un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
 define('ICON_EDIT',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Modifier</title><use xlink:href="images/bootstrap-icons.svg#pen"/></svg></span>');
+define('ICON_LIST',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Liste</title><use xlink:href="images/bootstrap-icons.svg#card-list"/></svg></span>');
+define('ICON_BARCODE',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Code barre</title><use xlink:href="images/bootstrap-icons.svg#upc-scan"/></svg></span>');
 define('ICON_SEE_DOC',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Voir le document</title><use xlink:href="images/bootstrap-icons.svg#eye"/></svg></span>');
 define('ICON_URL',           '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Lien web</title><use xlink:href="images/bootstrap-icons.svg#link"/></svg></span>');
 define('ICON_ADD_DOC',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un document</title><use xlink:href="images/bootstrap-icons.svg#paperclip"/></svg></span>');
