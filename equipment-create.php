@@ -84,6 +84,8 @@ if ($pdo = connect_db()) {
 		echo 'Erreur : '. $err_msg.'<br>';
 	if ($notice != '')
 		$id_datasheet = set_datasheet_new($pdo, $id_equipment, $_FILES["notice"]["name"], $_FILES["notice"]["tmp_name"]);
+		if (!$id_datasheet)
+			echo 'Erreur : la notice n\'est pas prise en compte car elle n\'est pas un fichier au format PDF !<br>';
 } //end if connect
 
 echo '<br>Ajout de '.$nom.' valid&eacute;e';

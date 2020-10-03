@@ -95,19 +95,20 @@ function get_datasheet_count_by_equipment($pdo, $id_equipment) {
 
 // ---------------------------------------------------------------------
 
-function set_datasheet_new($pdo, $equipment_id, $equipment_name, $tmp_file) {
-	if (!preg_match('/\.pdf$/i', $tmp_file))
+function set_datasheet_new($pdo, $equipment_id, $datasheet_filename_upload, $tmp_file) {
+	if (!preg_match('/\.pdf$/i', $datasheet_filename_upload))
 		return false;
 
 	$new_datasheet_path = './data/datasheet';
 	if (!is_dir($new_datasheet_path))
 		mkdir($new_datasheet_path, 0755);
 
-	$datasheet_filename_kebab = string_to_filename_kebab($equipment_name);
+	$datasheet_filename_kebab = string_to_filename_kebab($datasheet_filename_upload);
+	$datasheet_filename_no_ext = pathinfo($datasheet_filename_upload, PATHINFO_FILENAME);
 
 	$sql1 = 'INSERT INTO datasheet (description, id_equipment) VALUES (?, ?);';
 	$stmt1 = $pdo->prepare($sql1);
-	$stmt1->execute(array($equipment_name, $equipment_id));
+	$stmt1->execute(array($datasheet_filename_no_ext, $equipment_id));
 	$id_datasheet = $pdo->lastInsertId();
 
 	$sub_path = $id_datasheet.'-'.random_string(8);
