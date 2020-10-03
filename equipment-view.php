@@ -40,7 +40,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 			<span class="option-right"><a href="equipment-list.php?categorie=<?php echo $appareil_selected['categorie'] ?>"><?php echo ICON_LIST ?></a></span>
 			<?php
 				if ($logged_level >= 3)
-					echo '<span class="option-right"><a href="equipment-add.php?id='.$id_equipment.'">'.ICON_EDIT.'</a>&nbps;</span>'.PHP_EOL;
+					echo '<span class="option-right"><a href="equipment-add.php?id='.$id_equipment.'">'.ICON_EDIT.'</a>&nbsp;</span>'.PHP_EOL;
 			?>
 		</th>
 		<tr>
@@ -135,7 +135,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 		<?php } ?>
 		<tr>
 			<th>
-				Code barre &nbps; <?php echo ICON_BARCODE ?>
+				Code barre &nbsp; <?php echo ICON_BARCODE ?>
 			</th>
 			<td>
 				<?php echo $appareil_selected['barcode'] ?>
