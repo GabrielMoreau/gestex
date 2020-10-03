@@ -94,7 +94,7 @@ if ($pdo = connect_db()) {
 		$modif = 1;
 
 	if ($modif != 0) {
-		$err_msg = set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable)
+		$err_msg = set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
 		if ($err_msg != '' && $logged_level > 3)
 			echo 'Erreur : '. $err_msg.'<br>';
 		if ($notice != '')
