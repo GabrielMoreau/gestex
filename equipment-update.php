@@ -49,36 +49,16 @@ $inventaire  = param_post('inventaire');
 $barcode     = param_post('barcode');
 $loanable    = param_post('loanable');
 
-$notice = $_FILES["notice"]["name"];
-$notice = str_replace(' ', '_', $notice);
-$notice = str_replace('é', 'e', $notice);
-$notice = str_replace('è', 'e', $notice);
-$notice = str_replace('à', 'a', $notice);
-
-/*	$path = "./data";
-	if(!is_dir($path)){	
-		mkdir($path,0750);
-	}
-	$path = "./data/notice";
-	if(!is_dir($path)){	
-		mkdir($path,0750);
-	}
-	$path = "./data/notice/".$id_equipment;
-	if(!is_dir($path)){	
-		mkdir($path,0750);
-	}
-	if(move_uploaded_file($_FILES["notice"]["tmp_name"], $path."/".$notice )){
-		echo "Ca a march&eacute;\n";
-	}else{
-		echo "Ca n'a pas march&eacute;\n ";
-	} */
+$notice = '';
+if (isset($_FILES["notice"])) {
+	$notice = $_FILES["notice"]["name"];
+	$notice = str_replace(' ', '_', $notice);
+	$notice = str_replace('é', 'e', $notice);
+	$notice = str_replace('è', 'e', $notice);
+	$notice = str_replace('à', 'a', $notice);
+}
 
 en_tete('R&eacute;sultat modification appareil');
-
-// $cat=$_GET['categorie'];
-// echo "$cat";
-// recupere la categorie de la page ajout appareil
-// Ne sers a rien !
 
 if (!empty($erreur)) {
 	//erreur
@@ -93,112 +73,32 @@ if (!empty($erreur)) {
 if ($pdo = connect_db()) {
 
 	//recupere les anciennes caracteristiques
-
-	$sql = 'SELECT * FROM Listing WHERE id = ?';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment));
-	$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$equipment_registered = get_equipment_all_by_id($pdo, $id_equipment);
 
 	//modification app
 	$modif = 0;
-	//on construit la demande
-	$querry = 'UPDATE LOW_PRIORITY Listing SET ';
+	if (($categorie != $equipment_registered[0]['categorie'])
+		|| ($nom != $equipment_registered[0]['nom'])
+		|| ($modele != $equipment_registered[0]['modele'])
+		|| ($feature != $equipment_registered[0]['gamme'])
+		|| ($tech != $equipment_registered[0]['responsable'])
+		|| ($equipe != $equipment_registered[0]['equipe'])
+		|| ($fourn != $equipment_registered[0]['fournisseur'])
+		|| ($achat != $equipment_registered[0]['achat'])
+		|| ($reparation != $equipment_registered[0]['reparation'])
+		|| ($accessoires != $equipment_registered[0]['accessoires'])
+		|| ($inventaire != $equipment_registered[0]['inventaire'])
+		|| ($notice != $equipment_registered[0]['notice'])
+		|| ($barcode != $equipment_registered[0]['barcode'])
+		|| ($loanable != $equipment_registered[0]['loanable']))
+		$modif = 1;
 
-	if ($categorie != $listing[0]['categorie']) {
-		//modif de la categorie
-		$modif = 1;
-		$querry .= "categorie='$categorie',";
-	}
-
-	if ($nom != $listing[0]['nom']) {
-		//modif du nom
-		$modif = 1;
-		$querry .= "nom='$nom',";
-	}
-
-	if ($modele != $listing[0]['modele']) {
-		//modif du modele
-		$modif = 1;
-		$querry .= "modele='$modele',";
-	}
-
-	if ($feature != $listing[0]['gamme']) {
-		//modif de la gamme
-		$modif = 1;
-		$querry .= "gamme='$feature',";
-	}
-
-	if ($tech != $listing[0]['responsable']) {
-		//modif du tech
-		$modif = 1;
-		$querry .= "responsable='$tech',";
-	}
-	if ($equipe != $listing[0]['equipe']) {
-		//modif de l'equipe
-		$modif = 1;
-		$querry .= "equipe='$equipe',";
-	}
-	if ($fourn != $listing[0]['fournisseur']) {
-		//modif du fourn
-		$modif = 1;
-		$querry .= "fournisseur='$fourn',";
-	}
-
-	if ($achat != $listing[0]['achat']) {
-		//modif de l'achat
-		$modif = 1;
-		$querry .= "achat='$achat',";
-	}
-
-	if ($reparation != $listing[0]['reparation']) {
-		//modif de reparation
-		$modif = 1;
-		$querry .= "reparation='$reparation',";
-	}
-
-	if ($accessoires != $listing[0]['accessoires']) {
-		//modif de accessoires
-		$modif = 1;
-		$querry .= "accessoires='$accessoires',";
-	}
-
-	if ($inventaire != $listing[0]['inventaire']) {
-		//modif de inventaire
-		$modif = 1;
-		$querry .= "inventaire='$inventaire',";
-	}
-
-	if ($notice != $listing[0]['notice']) {
-		//modif de notice
-		$modif = 1;
-		$querry .= "notice='$notice',";
-	}
-
-	if ($barcode != $listing[0]['barcode']) {
-		//modif de barcode
-		$modif = 1;
-		$querry .= "barcode='$barcode',";
-	}
-
-	if ($loanable != $listing[0]['loanable']) {
-		//modif de loanable
-		$modif = 1;
-		$querry .= "loanable='$loanable',";
-	}
-
-	// supprime la derniere virgule
-	$querry[strlen($querry)-1]=' ';
-	//ajoute la clause
-	$querry.=" WHERE id='$id_equipment'";
 	if ($modif != 0) {
-		$stmt = $pdo->prepare($querry);
-		$stmt->execute();
-		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-		// $sql = 'INSERT INTO notice (nom_notice,chemin_notice,id_appareil) VALUES (?, ?, ?);';
-		// $stmt = $pdo->prepare($sql);
-		// $path_complet =$path."/".$notice;
-		// $stmt->execute(array($notice,$path_complet,$listing[0]['id']));
+		$err_msg = set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable)
+		if ($err_msg != '' && $logged_level > 3)
+			echo 'Erreur : '. $err_msg.'<br>';
+		if ($notice != '')
+			$id_datasheet = set_datasheet_new($pdo, $id_equipment, $nom, $_FILES["notice"]["tmp_name"]);
 	} // end if modif
 	else {
 		echo 'Aucune modification &agrave; faire';
