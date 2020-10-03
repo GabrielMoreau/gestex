@@ -125,11 +125,11 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				<a href="<?php echo $datacheet_path.'/'.$datasheet_fetch[0]['pathname'] ?>" target="_top"><?php echo $datasheet_fetch[0]['description'] ?></a>
 			</td>
 			<?php } else { ?>
-			<td>
 				<?php foreach ($datasheet_fetch as $datasheet) { ?>
-				<a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top"><?php echo $datasheet['description'] ?></a>
+				<td>
+					<a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top"><?php echo $datasheet['description'] ?></a>
+				</td>
 				<?php } ?>
-			</td>
 			<?php } ?>
 		</tr>
 		<?php } ?>
