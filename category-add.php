@@ -7,28 +7,30 @@ require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
 auth_or_login('category-list.php');
-level_or_alert(3, 'Modification d\'une &eacute;quipe');
+level_or_alert(3, 'Modification d\'une cat&eacute;gorie');
 
-$logged_id        = $_SESSION['logged_id'];
+$logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-if (empty($_GET['id'])){
+$id_category = param_get('id'); // -> modify
+if (empty($id_category)){
 	//->nouvelle categorie
-	$mode   = 'ajouter';
-	$action = 'category-create.php';
-	$cat_id = '';
+	$mode  = 'Ajouter';
+	$title = 'Ajouter une cat&eacute;gorie';
 }
-else
-	$cat_id = $_GET['id'];
+else {
+	$mode  = 'Modifier';
+	$title = 'Modifier une cat&eacute;gorie';
+	$pdo   = connect_db();
+	$category = get_category_by_id($pdo, $id_category);
+}
 
-if ($pdo = connect_db()) {
-	if ($mode=="ajouter")
-		en_tete('Ajouter une cat&eacute;gorie');
-}
+en_tete($title);
 ?>
 
 <div class="form">
-<form action="<?php echo $action ?>" method="POST" name="inscrForm">
+<form action="category-create.php" method="POST" name="inscrForm">
+	<input type="hidden" name="id_category" value="<?php echo $id_category ?>" >
 <table>
 	<tbody>
 		<tr>
@@ -36,7 +38,7 @@ if ($pdo = connect_db()) {
 				Cat&eacute;gorie * (en minuscule uniquement)
 			</th>
 			<td>
-				<input type="text" name="categorie" size="30" value="" placeholder="Cat&eacute;gorie *">
+				<input type="text" name="categorie" size="30" value="<?php if($mode=='Modifier'){echo $category['nom'];} ?>" placeholder="Cat&eacute;gorie *">
 			</td>
 		</tr>
 

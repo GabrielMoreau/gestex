@@ -239,6 +239,16 @@ function set_category_new($pdo, $name) {
 	return $pdo->lastInsertId();
 }
 
+// ---------------------------------------------------------------------
+
+function set_category_update($pdo, $id_category, $name) {
+	$sql = 'UPDATE categorie SET nom = ? WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($name, $id_category));
+}
+
+// ---------------------------------------------------------------------
+
 function del_category_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM categorie WHERE id = ? LIMIT 1';
 	$stmt = $pdo->prepare($sql);
