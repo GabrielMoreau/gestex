@@ -12,13 +12,13 @@ level_or_alert(3, 'Ajout d\'une cat&eacute;gorie');
 
 unset($erreur);
 
-$id_category = param_post('id'); // -> modify
+$id_category = param_post('id_category'); // -> modify
 $flag_new = true;
 if (!empty($id_category))
 	$flag_new = false;
 
 //variables ne pouvant etre nulles
-$categorie_name = strtolower(param_post('categorie'));
+$categorie_name = strtolower(param_post('categorie_name'));
 if (empty($categorie_name))
 	$erreur = 'Cat&eacute;gorie non pr&eacute;cis&eacute;e';
 
