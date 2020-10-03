@@ -42,10 +42,13 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 <div class="form">
 <table>
 	<tbody>
-		<?php
-			if ($logged_level >= 3)
-				echo '<th colspan=2"><span class="option-right"><a href="equipment-add.php?id='.$id_equipment.'">'.ICON_EDIT.'</a></span></th>'.PHP_EOL;
-		?>
+		<th colspan=2">
+			<span class="option-right"><a href="equipment-list.php?categorie=<?php echo $appareil_selected['categorie'] ?>"><?php echo ICON_LIST ?></a></span>
+			<?php
+				if ($logged_level >= 3)
+					echo '<span class="option-right"><a href="equipment-add.php?id='.$id_equipment.'">'.ICON_EDIT.'</a></span>'.PHP_EOL;
+			?>
+		</th>
 		<tr>
 			<th>
 				Nom
@@ -123,24 +126,22 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 			<th rowspan="<?php echo $datasheet_count ?>">
 				Notice
 			</th>
-		<?php } ?>
-		<?php
-		foreach ($datasheet_fetch as $datasheet) {
-			#if (!is_file($dossier_proj.'/'.$datasheet['pathname']))
-			#	continue;
-			?>
 			<td>
-				<a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top">
-					<?php echo $datasheet['description'] ?>
-				</a>
+				<ul>
+					<?php foreach ($datasheet_fetch as $datasheet) { ?>
+					<li>
+						<a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top">
+							<?php echo $datasheet['description'] ?>
+						</a>
+					</li>
+					<?php } ?>
+				</ul>
 			</td>
-		<?php } ?>
-		<?php if ($datasheet_count > 0) { ?>
 		</tr>
 		<?php } ?>
 		<tr>
 			<th>
-				Code barre
+				Code barre <?php echo ICON_BARCODE ?>
 			</th>
 			<td>
 				<?php echo $appareil_selected['barcode'] ?>
