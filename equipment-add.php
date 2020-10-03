@@ -38,10 +38,10 @@ if ($pdo = connect_db()) {
 ?>
 
 <div class="form">
+<form action="<?php echo $action ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
+	<input type="hidden" name="id_equipment" value="<?php echo $id_equipment ?>" >
 <table>
 	<tbody>
-		<form action="<?php echo $action ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
-			<input type="hidden" name="id_equipment" value="<?php echo $id_equipment ?>" >
 		<tr>
 			<th>
 				Cat&eacute;gorie
@@ -237,18 +237,17 @@ if ($pdo = connect_db()) {
 				<input type="submit" name="Login" value="<?php echo $mode ?>">
 			</td>
 		</tr>
-		</form>
 	</tbody>
 	<tbody>
-		<form action="equipment-list.php"method="POST" name="annulForm">
 		<tr>
 			<td colspan="2" class="button">
-				<input type="submit" name="annul" value="Annuler">
+				<input class="cancel" type="submit" name="ok" formaction="equipment-list.php" value="Annuler">
 			</td>
 		</tr>
 		</form>
 	</tbody>
 </table>
+</form>
 </div>
 
 <?php } else { redirect('equipment-list.php'); } ?>
