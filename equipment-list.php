@@ -151,18 +151,11 @@ en_tete($title);
 		echo '  </td>'.PHP_EOL;
 
 		if ($log === true && $equipment_item['loanable'] == 1) {
-			$sql = 'SELECT id FROM pret WHERE nom = ?;';
-			$stmt = $pdo->prepare($sql);
-			$stmt->execute(array($equipment_item['id']));
-			$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-			$emprunt = 0;
-			if (!empty($pret))
-				$emprunt = 1;
+			$loan = get_loan_short_by_id_equipment($pdo, $equipment_item['id']);
 
 			echo '  <td>';
-			if ($emprunt == 1)
-				echo '    <a href="loan-del.php?id='.$pret[0]['id'].'">'.ICON_RETURN.'</a>';
+			if ($loan)
+				echo '    <a href="loan-del.php?id='.$loan['id'].'">'.ICON_RETURN.'</a>';
 			else
 				echo '    <a href="loan-add.php?equipment='.$equipment_item['id'].'">'.ICON_BOOKING.'</a>';
 			echo '  </td>';
