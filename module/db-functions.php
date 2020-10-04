@@ -500,11 +500,11 @@ function get_user_all_by_login($pdo, $login) {
 
 function get_user_listall_by_logged_level($pdo, $logged_level) {
 	if ($logged_level > 3)       // lorsqu'on est haut place, on voit tout le monde
-		$sql = 'SELECT * FROM users;';
+		$sql = 'SELECT * FROM users ORDER BY nom, prenom;';
 	else if ($logged_level == 3) // losrqu'on est de niveau 3, on voit tout le monde sauf les users de plus haut level
-		$sql = 'SELECT * FROM users WHERE level < 4;';
+		$sql = 'SELECT * FROM users WHERE level < 4 ORDER BY nom, prenom;';
 	else                         // lorsqu'on est < 3, on voit tout le monde sauf le suser de level > 3 et les users non valides
-		$sql = 'SELECT * FROM users WHERE valid = 1 and level < 3;';
+		$sql = 'SELECT * FROM users WHERE valid = 1 and level < 3 ORDER BY nom, prenom;';
 	$stmt = $pdo->prepare($sql);
     $stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -514,7 +514,7 @@ function get_user_listall_by_logged_level($pdo, $logged_level) {
 // ---------------------------------------------------------------------
 
 function get_user_listshort_with_right($pdo, $level_min=1) {
-	$sql = 'SELECT id, nom FROM users WHERE valid = 1 and level >= ?;';
+	$sql = 'SELECT id, nom FROM users WHERE valid = 1 and level >= ? ORDER BY nom, prenom;';
 	$stmt = $pdo->prepare($sql);
     $stmt->execute(array($level_min));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
