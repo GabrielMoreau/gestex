@@ -26,19 +26,19 @@ if (!$pdo = connect_db()) {
 }
 
 // recupere la categorie
-$cat = 0;
+$id_category = 0;
 if (!empty($_GET['categorie'])) {
-	$cat = $_GET['categorie'];
-	$categorie_selected = get_category_by_id($pdo, $cat);
-	$title .= ' de la cat&eacute;gorie <i>'.$categorie_selected['nom'].'</i>';
+	$id_category = $_GET['categorie'];
+	$category_selected = get_category_by_id($pdo, $id_category);
+	$title .= ' de la cat&eacute;gorie <i>'.$category_selected['nom'].'</i>';
 }
 
 // recupere l'equipe
-$eq = 0;
+$id_team = 0;
 if (!empty($_GET['equipe'])) {
-	$eq = $_GET['equipe'];
-	$equip_selected = get_team_by_id($pdo, $eq);
-	$title .= ' de l\'&eacute;quipe <i>'.$equip_selected['nom'].'</i>';
+	$id_team = $_GET['equipe'];
+	$team_selected = get_team_by_id($pdo, $id_team);
+	$title .= ' de l\'&eacute;quipe <i>'.$team_selected['nom'].'</i>';
 }
 
 $loanable_flag = param_get('loanable');
@@ -50,7 +50,7 @@ en_tete($title);
 <table class="sortable">
 	<tbody>
 		<tr>
-			<?php if ($cat == 0) { ?>
+			<?php if ($id_category == 0) { ?>
 			<th>
 				Cat&eacute;gorie
 			</th>
@@ -67,7 +67,7 @@ en_tete($title);
 			<th class="sorttable_nosort">
 				Caract&eacute;ristiques
 			</th>
-			<?php if ($eq == 0) { ?>
+			<?php if ($id_team == 0) { ?>
 			<th>
 				&Eacute;quipe
 			</th>
@@ -90,20 +90,13 @@ en_tete($title);
 
 <?php
 	// recupere la liste de appareils
-	if ($cat == 0 && $eq != 0) {
-		$sql = 'SELECT * FROM Listing WHERE equipe = ?;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($eq));
-	} else if ($eq == 0 && $cat != 0) {
-		$sql = 'SELECT * FROM Listing WHERE categorie = ?;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($cat));
+	if ($id_category == 0 && $id_team != 0) {
+		$equipment_fetch =  get_equipment_listall_by_team($pdo, $id_team);
+	} else if ($id_team == 0 && $id_category != 0) {
+		$equipment_fetch =  get_equipment_listall_by_category($pdo, $id_category);
 	} else {
-		$sql = 'SELECT * FROM Listing;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array());
+		$equipment_fetch =  get_equipment_listall($pdo);
 	}
-	$equipment_fetch =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	$num_line = 1;
 	foreach ($equipment_fetch as $data) {
@@ -117,10 +110,10 @@ en_tete($title);
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 
-		if ($cat == 0) {
+		if ($id_category == 0) {
 			echo '  <td>';
-			$categorie = get_category_by_id($pdo, $data['categorie']);
-			echo      $categorie['nom'];
+			$category = get_category_by_id($pdo, $data['categorie']);
+			echo      $category['nom'];
 			echo '  </td>'.PHP_EOL;
 		}
 
@@ -137,7 +130,7 @@ en_tete($title);
 		echo      $data['gamme'];
 		echo '  </td>'.PHP_EOL;
 
-		if ($eq == 0) {
+		if ($id_team == 0) {
 			echo '  <td>';
 			// recupere le nom d'equipe
 			$team =  get_team_by_id($pdo, $data['equipe']);
