@@ -113,7 +113,7 @@ en_tete($title);
 			echo '  <td>';
 			// $category = get_category_by_id($pdo, $equipment_item['categorie']);
 			// echo      $category['nom'];
-			echo      '<a href="equipment-list.php?category='.$equipment_item['categorie'].'">'.$equipment_item['category_name'].'</a>'; // inner join
+			echo      '<a href="equipment-list.php?categorie='.$equipment_item['categorie'].'">'.$equipment_item['category_name'].'</a>'; // inner join
 			echo '  </td>'.PHP_EOL;
 		}
 
@@ -134,7 +134,7 @@ en_tete($title);
 			echo '  <td>';
 			// recupere le nom d'equipe
 			$team = get_team_by_id($pdo, $equipment_item['equipe']);
-			echo      '<a href="equipment-list.php?team='.$equipment_item['equipe'].'">'.$team['nom'].'</a>';
+			echo      '<a href="equipment-list.php?equipe='.$equipment_item['equipe'].'">'.$team['nom'].'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 
