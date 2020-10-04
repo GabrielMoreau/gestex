@@ -140,11 +140,8 @@ en_tete($title);
 
 		echo '  <td>';
 		// recupere le nom du fournisseur
-		$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($data['fournisseur']));
-		$fournisseur =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-		if(!empty($fournisseur)) { echo $fournisseur[0]['nom'];}
+		$supplier = get_supplier_by_id($pdo, $data['fournisseur']);
+		if ($supplier) {echo $supplier['nom'];}
 		echo '  </td>'.PHP_EOL;
 
 		echo '  <td>';
