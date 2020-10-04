@@ -153,7 +153,8 @@ function get_equipment_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 function get_equipment_listall($pdo) {
-	$sql = 'SELECT * FROM Listing ORDER BY categorie, nom;';
+	// $sql = 'SELECT * FROM Listing ORDER BY categorie, nom;';
+	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM Listing AS e INNER JOIN categorie AS c ON e.categorie = c.id ORDER BY c.nom, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -163,7 +164,8 @@ function get_equipment_listall($pdo) {
 // ---------------------------------------------------------------------
 
 function get_equipment_listall_by_team($pdo, $id_team) {
-	$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY categorie, nom;';
+	//$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY categorie, nom;';
+	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM Listing AS e INNER JOIN categorie AS c ON e.categorie = c.id WHERE e.equipe = ? ORDER BY c.nom, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_team));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -173,7 +175,7 @@ function get_equipment_listall_by_team($pdo, $id_team) {
 // ---------------------------------------------------------------------
 
 function get_equipment_listall_by_category($pdo, $id_category) {
-	$sql = 'SELECT * FROM Listing WHERE categorie = ? ORDER BY categorie, nom;';
+	$sql = 'SELECT * FROM Listing WHERE categorie = ? ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_category));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);

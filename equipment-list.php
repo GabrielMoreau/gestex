@@ -111,8 +111,9 @@ en_tete($title);
 
 		if ($id_category == 0) {
 			echo '  <td>';
-			$category = get_category_by_id($pdo, $equipment_item['categorie']);
-			echo      $category['nom'];
+			// $category = get_category_by_id($pdo, $equipment_item['categorie']);
+			// echo      $category['nom'];
+			echo      $equipment_item['category_name']; // inner join
 			echo '  </td>'.PHP_EOL;
 		}
 
