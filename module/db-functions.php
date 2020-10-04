@@ -153,7 +153,7 @@ function get_equipment_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 function get_equipment_listall($pdo) {
-	$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY categorie, nom;';
+	$sql = 'SELECT * FROM Listing ORDER BY categorie, nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
