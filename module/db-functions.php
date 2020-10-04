@@ -349,8 +349,10 @@ function get_supplier_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
-	$supplier_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $supplier_fetch[0];
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch[0];
+	return false;
 }
 
 // ---------------------------------------------------------------------
