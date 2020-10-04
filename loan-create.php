@@ -47,7 +47,7 @@ if (!empty($erreur)) {
 
 if ($pdo = connect_db()) {
 	if ($flag_new == true) {
-		$loan = get_loan_all_by_id_equipment($pdo, $id_equipment);
+		$loan = get_loan_short_by_id_equipment($pdo, $id_equipment);
 		if (!empty($loan)) {
 			echo 'Erreur: l\'appareil est d&eacute;j&agrave; emprunt&eacute;';
 			pied_page();
