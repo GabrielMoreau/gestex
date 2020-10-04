@@ -82,7 +82,7 @@ if ($pdo = connect_db()) {
 				Nom de famille *
 			</th>
 			<td>
-				<input type="text" name="nom" size="25" maxlength="25" value="<?php if ($mode == 'modifier') echo $data['nom'] ?>" placeholder="Nom de famille *">
+				<input type="text" name="nom" size="30" maxlength="30" value="<?php if ($mode == 'modifier') echo $data['nom'] ?>" placeholder="Nom de famille *">
 			</td>
 		</tr>
 		<tr>
@@ -90,7 +90,7 @@ if ($pdo = connect_db()) {
 				Pr&eacute;nom
 			</th>
 			<td>
-				<input type="text" name="prenom" size="25" maxlength="25" value="<?php if ($mode == 'modifier') echo $data['prenom'] ?>" placeholder="Pr&eacute;nom">
+				<input type="text" name="prenom" size="30" maxlength="30" value="<?php if ($mode == 'modifier') echo $data['prenom'] ?>" placeholder="Pr&eacute;nom">
 			</td>
 		</tr>
 		<tr>
@@ -98,7 +98,7 @@ if ($pdo = connect_db()) {
 				Adresse courriel *
 			</th>
 			<td>
-				<input type="text" name="addr_mail" size="25" maxlength="50" value="<?php if ($mode == 'modifier') echo $data['email'] ?>" placeholder="Adresse courriel *">
+				<input type="text" name="addr_mail" size="30" maxlength="50" value="<?php if ($mode == 'modifier') echo $data['email'] ?>" placeholder="Adresse courriel *">
 			</td>
 		</tr>
 		<tr>
