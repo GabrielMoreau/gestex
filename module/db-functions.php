@@ -153,7 +153,7 @@ function get_equipment_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 function get_equipment_listall($pdo) {
-	$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY nom;';
+	$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY categorie, nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -163,7 +163,7 @@ function get_equipment_listall($pdo) {
 // ---------------------------------------------------------------------
 
 function get_equipment_listall_by_team($pdo, $id_team) {
-	$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY nom;';
+	$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY categorie, nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_team));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -173,7 +173,7 @@ function get_equipment_listall_by_team($pdo, $id_team) {
 // ---------------------------------------------------------------------
 
 function get_equipment_listall_by_category($pdo, $id_category) {
-	$sql = 'SELECT * FROM Listing WHERE categorie = ? ORDER BY nom;';
+	$sql = 'SELECT * FROM Listing WHERE categorie = ? ORDER BY categorie, nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_category));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -183,7 +183,7 @@ function get_equipment_listall_by_category($pdo, $id_category) {
 // ---------------------------------------------------------------------
 
 function get_equipment_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM Listing ORDER BY nom;';
+	$sql = 'SELECT id, nom FROM Listing ORDER BY categorie, nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -291,9 +291,21 @@ function del_category_by_id($pdo, $id) {
 // Loan
 // ---------------------------------------------------------------------
 
-function get_loan_all_by_id_equipment($pdo, $id_equipment) {
+function get_loan_all_by_id($pdo, $id) {
+	$sql = 'SELECT * FROM pret WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch[0];
+	return false;
+}
+
+// ---------------------------------------------------------------------
+
+function get_loan_short_by_id_equipment($pdo, $id_equipment) {
 	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
-	$sql = 'SELECT * FROM pret WHERE nom = ?;';
+	$sql = 'SELECT id FROM pret WHERE nom = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_equipment));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -304,10 +316,11 @@ function get_loan_all_by_id_equipment($pdo, $id_equipment) {
 
 // ---------------------------------------------------------------------
 
-function get_loan_all_by_id($pdo, $id) {
-	$sql = 'SELECT * FROM pret WHERE id = ?;';
+function get_loan_all_by_id_equipment($pdo, $id_equipment) {
+	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
+	$sql = 'SELECT * FROM pret WHERE nom = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
+	$stmt->execute(array($id_equipment));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch[0];
