@@ -90,71 +90,70 @@ en_tete($title);
 
 <?php
 	// recupere la liste de appareils
-	if ($id_category == 0 && $id_team != 0) {
+	if ($id_category == 0 && $id_team != 0)
 		$equipment_fetch =  get_equipment_listall_by_team($pdo, $id_team);
-	} else if ($id_team == 0 && $id_category != 0) {
-		$equipment_fetch =  get_equipment_listall_by_category($pdo, $id_category);
-	} else {
-		$equipment_fetch =  get_equipment_listall($pdo);
-	}
+	else if ($id_category != 0 && $id_team == 0)
+		$equipment_fetch = get_equipment_listall_by_category($pdo, $id_category);
+	else
+		$equipment_fetch = get_equipment_listall($pdo);
 
 	$num_line = 1;
-	foreach ($equipment_fetch as $data) {
-		if ($loanable_flag == 'yes' && $data['loanable'] != 1)
+	foreach ($equipment_fetch as $equipment_item) {
+		if ($loanable_flag == 'yes' && $equipment_item['loanable'] != 1)
 			continue;
 		$class = 'impair';
 		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
-		if ($data['id'] == $id_highlight)
+		if ($equipment_item['id'] == $id_highlight)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 
 		if ($id_category == 0) {
 			echo '  <td>';
-			$category = get_category_by_id($pdo, $data['categorie']);
+			$category = get_category_by_id($pdo, $equipment_item['categorie']);
 			echo      $category['nom'];
 			echo '  </td>'.PHP_EOL;
 		}
 
 		echo '  <td>';
-		echo      $data['id'];
+		echo      $equipment_item['id'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo '    <a name="item'.$data['id'].'"></a><a href="equipment-view.php?id='.$data['id'].'">'. $data['nom'].'</a>';
+		echo '    <a name="item'.$equipment_item['id'].'"></a><a href="equipment-view.php?id='.$equipment_item['id'].'">'. $equipment_item['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo      $data['modele'];
+		echo      $equipment_item['modele'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo      $data['gamme'];
+		echo      $equipment_item['gamme'];
 		echo '  </td>'.PHP_EOL;
 
 		if ($id_team == 0) {
 			echo '  <td>';
 			// recupere le nom d'equipe
-			$team =  get_team_by_id($pdo, $data['equipe']);
+			$team =  get_team_by_id($pdo, $equipment_item['equipe']);
 			echo      $team['nom'];
 			echo '  </td>'.PHP_EOL;
 		}
 
 		echo '  <td>';
 		// recupere le nom du fournisseur
-		$supplier = get_supplier_by_id($pdo, $data['fournisseur']);
+		$supplier = get_supplier_by_id($pdo, $equipment_item['fournisseur']);
 		if ($supplier) {echo $supplier['nom'];}
 		echo '  </td>'.PHP_EOL;
 
 		echo '  <td>';
 		// cherche l'existence de la notice
-		if (get_datasheet_count_by_equipment($pdo, $data['id']) > 0) {
-			echo ' <a href ="equipment-view.php?id='.$data['id'].'">'.ICON_SEE_DOC.'</a>';
+		if (get_datasheet_count_by_equipment($pdo, $equipment_item['id']) > 0) {
+			echo ' <a href ="equipment-view.php?id='.$equipment_item['id'].'">'.ICON_SEE_DOC.'</a>';
 		}
 		echo '  </td>'.PHP_EOL;
 
-		if ($log === true && $data['loanable'] == 1) {
+		if ($log === true && $equipment_item['loanable'] == 1) {
 			$sql = 'SELECT id FROM pret WHERE nom = ?;';
 			$stmt = $pdo->prepare($sql);
-			$stmt->execute(array($data['id']));
+			$stmt->execute(array($equipment_item['id']));
 			$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 			$emprunt = 0;
@@ -165,7 +164,7 @@ en_tete($title);
 			if ($emprunt == 1)
 				echo '    <a href="loan-del.php?id='.$pret[0]['id'].'">'.ICON_RETURN.'</a>';
 			else
-				echo '    <a href="loan-add.php?equipment='.$data['id'].'">'.ICON_BOOKING.'</a>';
+				echo '    <a href="loan-add.php?equipment='.$equipment_item['id'].'">'.ICON_BOOKING.'</a>';
 			echo '  </td>';
 		}
 		else if ($log === true)
@@ -173,12 +172,12 @@ en_tete($title);
 
 		if ($log === true && $logged_level >= 2) {
 			echo '  <td>';
-			echo '    <a href="equipment-add.php?id='.$data['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="equipment-add.php?id='.$equipment_item['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 		if ($log === true && $logged_level >= 3) {
 			echo '  <td>';
-			echo '    <a href="equipment-del.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
+			echo '    <a href="equipment-del.php?id='.$equipment_item['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 
 		}
