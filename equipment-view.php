@@ -24,7 +24,7 @@ if (empty($id_equipment))
 
 if ($pdo = connect_db()) {
 	$equipment_selected = get_equipment_all_by_id($pdo, $id_equipment);
-	$responsable = get_user_by_id($pdo, $equipment_selected['responsable']);
+	$responsible = get_user_by_id($pdo, $equipment_selected['responsable']);
 	$team        = get_team_by_id($pdo, $equipment_selected['equipe']);
 	$supplier    = get_supplier_by_id($pdo, $equipment_selected['fournisseur']);
 	$category    = get_category_by_id($pdo, $equipment_selected['categorie']);
@@ -103,7 +103,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				Responsable
 			</th>
 			<td>
-				<a href="user-list.php?highlight=<?php echo $equipment_selected['responsable'] ?>#item<?php echo $equipment_selected['responsable'] ?>"><?php echo $responsable['nom'].' '.$responsable['prenom'] ?></a>
+				<a href="user-list.php?highlight=<?php echo $equipment_selected['responsable'] ?>#item<?php echo $equipment_selected['responsable'] ?>"><?php echo $responsible['nom'].' '.$responsible['prenom'] ?></a>
 			</td>
 		</tr>
 
