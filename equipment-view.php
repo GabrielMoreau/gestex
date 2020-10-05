@@ -9,13 +9,11 @@ require_once('module/base-functions.php');
 
 session_start();
 if (empty($_SESSION['logged_user'])) {
-	$log = false;
 	$logged_level = 0;
 } else {
 	$logged_id    = $_SESSION['logged_id'];
 	$logged_user  = strtolower($_SESSION['logged_user']);
 	$logged_level = $_SESSION['logged_level'];
-	$log = true;
 }
 
 $id_equipment = param_get('id');

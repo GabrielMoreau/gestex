@@ -9,13 +9,11 @@ require_once('module/base-functions.php');
 
 session_start();
 if (empty($_SESSION['logged_user'])) {
-	$log          = false;
 	$logged_level = 0;
 } else {
 	$logged_id    = $_SESSION['logged_id'];
 	$logged_user  = strtolower($_SESSION['logged_user']);
 	$logged_level = $_SESSION['logged_level'];
-	$log          = true;
 }
 
 $id_highlight = param_get('highlight', 0);
@@ -82,9 +80,9 @@ en_tete($title);
 			<th class="sorttable_nosort">
 			</th>
 			<?php
-			if ($log == true && $logged_level == 2)
+			if ($logged_level == 2)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
-			if ($log == true && $logged_level >= 3)
+			if ($logged_level >= 3)
 				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="equipment-add.php">'.ICON_ADD_EQUIPMENT.'</a></span></th>'.PHP_EOL;
 			?>
 		</tr>
@@ -171,12 +169,12 @@ en_tete($title);
 		else
 			echo '  <td></td>'.PHP_EOL;
 
-		if ($log === true && $logged_level >= 2) {
+		if ($logged_level >= 2) {
 			echo '  <td>';
 			echo '    <a href="equipment-add.php?id='.$equipment_item['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
-		if ($log === true && $logged_level >= 3) {
+		if ($logged_level >= 3) {
 			echo '  <td>';
 			echo '    <a href="equipment-del.php?id='.$equipment_item['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
