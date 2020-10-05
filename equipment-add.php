@@ -22,7 +22,7 @@ if ($pdo = connect_db()) {
 		$mode   = 'Ajouter';
 		$action = 'equipment-create.php?categorie='.$id_category;
 		en_tete('Ajouter un appareil');
-	
+		$team_chief_id = 0;
 	} else {
 		// modif appareil
 		$mode   = 'Modifier';
@@ -34,6 +34,7 @@ if ($pdo = connect_db()) {
 		$datacheet_path  = get_datasheet_basepath();
 		$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $id_equipment);
 		$datasheet_count = count($datasheet_fetch);
+		$team_chief_id = $equipment['responsable'];
 	}
 ?>
 
@@ -156,10 +157,10 @@ if ($pdo = connect_db()) {
 				<select name="tech">
 				<?php
 				// recupere la liste des tech
-				$user_fetch = get_user_listshort_with_right($pdo, 1);
+				$user_fetch = get_user_listshort_with_right($pdo, 1, $team_chief_id);
 				foreach ($user_fetch as $user) {
 					echo '<option value="'.$user['id'].'"';
-					if ($mode == 'Modifier' && $user['id'] == $equipment['responsable']) {
+					if ($mode == 'Modifier' && $user['id'] == $team_chief_id) {
 						echo ' selected';
 					}
 					echo '>'.$user['nom'].' '.$user['prenom'].'</option>';
