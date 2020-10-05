@@ -23,27 +23,27 @@ if (empty($id_equipment))
 	redirect('equipment-list.php');
 
 if ($pdo = connect_db()) {
-	$appareil_selected = get_equipment_all_by_id($pdo, $id_equipment);
-	$responsable = get_user_by_id($pdo, $appareil_selected['responsable']);
-	$supplier    = get_supplier_by_id($pdo, $appareil_selected['fournisseur']);
-	$category    = get_category_by_id($pdo, $appareil_selected['categorie']);
-	$team        = get_team_by_id($pdo, $appareil_selected['equipe']);
+	$equipment_selected = get_equipment_all_by_id($pdo, $id_equipment);
+	$responsable = get_user_by_id($pdo, $equipment_selected['responsable']);
+	$team        = get_team_by_id($pdo, $equipment_selected['equipe']);
+	$supplier    = get_supplier_by_id($pdo, $equipment_selected['fournisseur']);
+	$category    = get_category_by_id($pdo, $equipment_selected['categorie']);
 
 	$datacheet_path  = get_datasheet_basepath();
 	$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $id_equipment);
 	$datasheet_count = count($datasheet_fetch);
 
-	if ($appareil_selected['barcode'] == 0)
-		$appareil_selected['barcode'] = '';
+	if ($equipment_selected['barcode'] == 0)
+		$equipment_selected['barcode'] = '';
 
-en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom'].'</b>');
+en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'].'</b>');
 ?>
 
 <div class="form">
 <table>
 	<tbody>
 		<th colspan="2">
-			<span class="option-right"><a href="equipment-list.php?categorie=<?php echo $appareil_selected['categorie'] ?>"><?php echo ICON_LIST ?></a></span>
+			<span class="option-right"><a href="equipment-list.php?categorie=<?php echo $equipment_selected['categorie'] ?>"><?php echo ICON_LIST ?></a></span>
 			<?php
 				if ($logged_level >= 3)
 					echo '<span class="option-right"><a href="equipment-add.php?id='.$id_equipment.'">'.ICON_EDIT.'</a>&nbsp;</span>'.PHP_EOL;
@@ -54,7 +54,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Nom
 			</th>
 			<td>
-				<?php echo $appareil_selected['nom'] ?>
+				<?php echo $equipment_selected['nom'] ?>
 			</td>
 		</tr>
 		<tr>
@@ -62,7 +62,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Mod&egrave;le
 			</th>
 			<td>
-				<?php echo $appareil_selected['modele'] ?>
+				<?php echo $equipment_selected['modele'] ?>
 			</td>
 		</tr>
 		<tr>
@@ -70,7 +70,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Caract&eacute;ristiques
 			</th>
 			<td>
-				<?php echo $appareil_selected['gamme'] ?>
+				<?php echo $equipment_selected['gamme'] ?>
 			</td>
 		</tr>
 		<tr>
@@ -78,7 +78,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Achat
 			</th>
 			<td>
-				<?php echo $appareil_selected['achat'] ?>
+				<?php echo $equipment_selected['achat'] ?>
 			</td>
 		</tr>
 		<tr>
@@ -86,7 +86,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Accessoires
 			</th>
 			<td>
-				<?php echo $appareil_selected['accessoires'] ?>
+				<?php echo $equipment_selected['accessoires'] ?>
 			</td>
 		</tr>
 		<tr>
@@ -94,7 +94,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				R&eacute;paration / &Eacute;talonnages
 			</th>
 			<td>
-				<?php echo $appareil_selected['reparation'] ?>
+				<?php echo $equipment_selected['reparation'] ?>
 			</td>
 		</tr>
 
@@ -103,7 +103,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Responsable
 			</th>
 			<td>
-				<a href="user-list.php?highlight=<?php echo $appareil_selected['responsable'] ?>#item<?php echo $appareil_selected['responsable'] ?>"><?php echo $responsable['nom'].' '.$responsable['prenom'] ?></a>
+				<a href="user-list.php?highlight=<?php echo $equipment_selected['responsable'] ?>#item<?php echo $equipment_selected['responsable'] ?>"><?php echo $responsable['nom'].' '.$responsable['prenom'] ?></a>
 			</td>
 		</tr>
 
@@ -112,7 +112,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				&Eacute;quipe
 			</th>
 			<td>
-				<a href="equipment-list.php?equipe=<?php echo $appareil_selected['equipe'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $team['nom'] ?></a>
+				<a href="equipment-list.php?equipe=<?php echo $equipment_selected['equipe'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $team['nom'] ?></a>
 			</td>
 		</tr>
 
@@ -121,7 +121,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Cat&eacute;gorie
 			</th>
 			<td>
-				<a href="equipment-list.php?categorie=<?php echo $appareil_selected['categorie'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $category['nom'] ?></a>
+				<a href="equipment-list.php?categorie=<?php echo $equipment_selected['categorie'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $category['nom'] ?></a>
 			</td>
 		</tr>
 
@@ -130,7 +130,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Fournisseur
 			</th>
 			<td>
-				<a href="supplier-list.php?highlight=<?php echo $appareil_selected['fournisseur'] ?>#item<?php echo $appareil_selected['fournisseur'] ?>"><?php echo $supplier['nom'] ?></a>
+				<a href="supplier-list.php?highlight=<?php echo $equipment_selected['fournisseur'] ?>#item<?php echo $equipment_selected['fournisseur'] ?>"><?php echo $supplier['nom'] ?></a>
 			</td>
 		</tr>
 
@@ -139,7 +139,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Num&eacute;ro d'instrument
 			</th>
 			<td>
-				<?php echo $appareil_selected['id'] ?>
+				<?php echo $equipment_selected['id'] ?>
 			</td>
 		</tr>
 		<tr>
@@ -147,7 +147,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Inventaire
 			</th>
 			<td>
-				<?php echo $appareil_selected['inventaire'] ?>
+				<?php echo $equipment_selected['inventaire'] ?>
 			</td>
 		</tr>
 		<?php if ($datasheet_count > 0) { ?>
@@ -174,7 +174,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Code barre &nbsp; <?php echo ICON_BARCODE ?>
 			</th>
 			<td>
-				<?php echo $appareil_selected['barcode'] ?>
+				<?php echo $equipment_selected['barcode'] ?>
 			</td>
 		</tr>
 		<tr>
@@ -182,7 +182,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Empruntable
 			</th>
 			<td>
-				<?php if ($appareil_selected['loanable'] == 1){ echo 'Oui'; } else { echo 'Non'; } ?>
+				<?php if ($equipment_selected['loanable'] == 1){ echo 'Oui'; } else { echo 'Non'; } ?>
 			</td>
 		</tr>
 	</tbody>
