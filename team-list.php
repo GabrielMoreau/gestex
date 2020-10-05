@@ -71,13 +71,10 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 
 		// recupere le nom de chef d'equipe
-		$sql = 'SELECT id, nom FROM users WHERE id = ?';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($data['chef']));
-		$chef = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$chef = get_user_by_id($pdo, $data['chef']);
 		echo '  <td style="vertical-align: top;">';
-		if(!empty($chef)){
-			 echo      $chef[0]['nom'];
+		if ($chef) {
+			 echo $chef['nom'].' '.$chef['prenom'];
 		}
 		echo '  </td>'.PHP_EOL;
 
