@@ -62,13 +62,13 @@ if ($pdo = connect_db()) {
 		// recupere le nom de l'appareil via l'ID qui est mis dans un champs texte !
 		$appareil_selected = get_equipment_by_id($pdo, $data['nom']);
 		echo '  <td>';
-		echo      $appareil_selected['nom'];
+		echo '    <a href="equipment-view.php?id='.$data['nom'].'">'.$appareil_selected['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 
 		// recupere le nom d'equipe
 		$equip_selected = get_team_by_id($pdo, $data['equipe']);
 		echo '  <td>';
-		echo      $equip_selected['nom'];
+		echo '    <a href="equipment-list.php?equipe='.$data['equipe'].'">'.$equip_selected['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 
 		echo '  <td>';
