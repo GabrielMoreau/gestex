@@ -194,7 +194,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 						echo ICON_RETURN;
 						if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-add.php?id=',$loan['id'],'">'.ICON_EDIT.'</a>&nbsp;';}
 						echo '</span>'.PHP_EOL;
-						echo '<br>'.$loan['emprunt'].' &#8594; '.$loan['retour'].PHP_EOL;
+						echo '<br>'.$loan['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan['retour'].PHP_EOL;
 						echo '<br>'.$loan['commentaire'].PHP_EOL;
 					} else {
 						echo 'Oui'.'<span class="option-right">';
