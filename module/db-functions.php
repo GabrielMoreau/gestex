@@ -464,7 +464,7 @@ function get_team_with_appareil($pdo) {
 // ---------------------------------------------------------------------
 
 function get_user_by_id($pdo, $id) {
-	$sql = 'SELECT id, nom FROM users WHERE id = ?;';
+	$sql = 'SELECT id, nom, prenom FROM users WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
