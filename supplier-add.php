@@ -34,7 +34,7 @@ if ($mode == 'Ajouter') {
 else if ($mode == 'Modifier') {
 	en_tete('Modifier les coordonn&eacute;es d\'un fournisseur');
 	// recupere le fournisseur selectionne
-	$supplier = get_supplier_all_by_id($pdo, $id_supplier));
+	$supplier = get_supplier_all_by_id($pdo, $id_supplier);
 }
 else
 	redirect('supplier-list.php');

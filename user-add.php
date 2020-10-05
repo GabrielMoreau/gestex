@@ -26,7 +26,7 @@ if (empty($_GET['id'])) {
 }
 
 if ($pdo = connect_db()) {
-	if ($mode == 'Ajouter'){
+	if ($mode == 'Ajouter') {
 		en_tete('Inscrire un utilisateur');
 	} else if ($mode == 'Modifier') {
 		en_tete('Modifier mon profil');
