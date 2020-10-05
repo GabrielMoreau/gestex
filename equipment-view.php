@@ -44,7 +44,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 <table>
 	<tbody>
 		<th colspan="2">
-			<span class="option-right"><a href="equipment-list.php?categorie=<?php echo $equipment_selected['categorie'] ?>"><?php echo ICON_LIST ?></a></span>
+			<span class="option-right"><a href="equipment-list.php?categorie=<?php echo $equipment_selected['categorie'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo ICON_LIST ?></a></span>
 			<?php
 				if ($logged_level >= 3) {
 					echo '<span class="option-right"><a href="equipment-del.php?id='.$id_equipment.'">'.ICON_TRASH.'</a>&nbsp;</span>'.PHP_EOL;
