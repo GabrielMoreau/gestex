@@ -186,7 +186,6 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 			</th>
 			<td>
 				<?php if ($equipment_selected['loanable'] == 1) {
-					echo 'Oui';
 					if ($loan) {
 						echo 'En pr&ecirc;t';
 						if ($logged_level >= 3) {echo ' <a href="loan-del.php?id='.$loan['id'].'">';}
