@@ -52,7 +52,7 @@ if ($pdo = connect_db()) {
 	$loan_fetch = get_loan_listall($pdo);
 
 	$num_line = 1;
-	foreach ($loan_fetch as $data) {
+	foreach ($loan_fetch as $data_current) {
 		if ($num_line % 2)
 			echo '<tr class="impair">'.PHP_EOL;
 		else
@@ -60,36 +60,36 @@ if ($pdo = connect_db()) {
 		$num_line++;
 
 		// recupere le nom de l'appareil via l'ID qui est mis dans un champs texte !
-		$appareil_selected = get_equipment_by_id($pdo, $data['nom']);
+		// $appareil_selected = get_equipment_by_id($pdo, $data_current['nom']);
 		echo '  <td>';
-		echo '    <a href="equipment-view.php?id='.$data['nom'].'">'.$appareil_selected['nom'].'</a>';
+		echo '    <a href="equipment-view.php?id='.$data_current['nom'].'">'.$data_current['equipment_name'].'</a>';
 		echo '  </td>'.PHP_EOL;
 
 		// recupere le nom d'equipe
-		$equip_selected = get_team_by_id($pdo, $data['equipe']);
+		$team_selected = get_team_by_id($pdo, $data_current['equipe']);
 		echo '  <td>';
-		echo '    <a href="equipment-list.php?equipe='.$data['equipe'].'">'.$equip_selected['nom'].'</a>';
+		echo '    <a href="equipment-list.php?equipe='.$data_current['equipe'].'">'.$team_selected['nom'].'</a>';
 		echo '  </td>'.PHP_EOL;
 
 		echo '  <td>';
-		echo      $data['emprunt'];
+		echo      $data_current['emprunt'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo      $data['retour'];
+		echo      $data_current['retour'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo      $data['commentaire'];
+		echo      $data_current['commentaire'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo      $data['nom'];
+		echo      $data_current['nom'];
 		echo '  </td>'.PHP_EOL;
 
 		if ($logged_level >= 3) {
 			echo '  <td>';
-			echo '    <a href="loan-add.php?id=',$data['id'],'">'.ICON_EDIT.'</a>';
+			echo '    <a href="loan-add.php?id=',$data_current['id'],'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
-			echo '    <a href="loan-del.php?id=',$data['id'],'">'.ICON_RETURN.'</a>';
+			echo '    <a href="loan-del.php?id=',$data_current['id'],'">'.ICON_RETURN.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 
