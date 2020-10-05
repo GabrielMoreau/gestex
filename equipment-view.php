@@ -112,7 +112,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				&Eacute;quipe
 			</th>
 			<td>
-				<a href="equipment-list.php?team=<?php echo $appareil_selected['equipe'] ?>"><?php echo $team['nom'] ?></a>
+				<a href="equipment-list.php?equipe=<?php echo $appareil_selected['equipe'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $team['nom'] ?></a>
 			</td>
 		</tr>
 
@@ -121,7 +121,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				Cat&eacute;gorie
 			</th>
 			<td>
-				<a href="equipment-list.php?categorie=<?php echo $appareil_selected['categorie'] ?>"><?php echo $category['nom'] ?></a>
+				<a href="equipment-list.php?categorie=<?php echo $appareil_selected['categorie'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $category['nom'] ?></a>
 			</td>
 		</tr>
 
