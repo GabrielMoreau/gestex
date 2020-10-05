@@ -49,43 +49,42 @@ en_tete('Liste de toutes les &eacute;quipes');
 <?php	//interrogation base de donnees
 if ($pdo = connect_db()) {
 	// recupere la liste de fournisseurs
-	$equipe_fetch = get_team_listall($pdo);
+	$team_fetch = get_team_listall($pdo);
 	$num_line = 1;
-	foreach ($equipe_fetch as $data) {
+	foreach ($team_fetch as $team_current) {
 		// remplit le tableau
 		$class = 'impair';
 		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
-		if ($data['id'] == $id_highlight)
+		if ($team_current['id'] == $id_highlight)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		echo '    <a name="item'.$data['id'].'"></a>'.$data['nom'];
+		echo '    <a name="item'.$team_current['id'].'"></a>'.$team_current['nom'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		echo      $data['descr'];
+		echo      $team_current['descr'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		echo      $data['compte'];
+		echo      $team_current['compte'];
 		echo '  </td>'.PHP_EOL;
 
 		// recupere le nom de chef d'equipe
-		$chef = get_user_by_id($pdo, $data['chef']);
+		$chef = get_user_by_id($pdo, $team_current['chef']);
 		echo '  <td style="vertical-align: top;">';
-		if ($chef) {
+		if ($chef)
 			 echo $chef['nom'].' '.$chef['prenom'];
-		}
 		echo '  </td>'.PHP_EOL;
 
 		if ($logged_level >= 2) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="team-add.php?id='.$data['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="team-add.php?id='.$team_current['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($logged_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="team-del.php?id='.$data['id'].'">'.ICON_TRASH.'</a>';
+			echo '    <a href="team-del.php?id='.$team_current['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		echo '</tr>'.PHP_EOL;
