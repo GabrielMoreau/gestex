@@ -52,44 +52,35 @@ if (!empty($erreur)) {
 if ($pdo = connect_db()) {
 
 	//recupere les anciennes caracteristiques
-	$supplier = get_supplier_all_by_id($pdo, $id_supplier);
+	$supplier_registered = get_supplier_all_by_id($pdo, $id_supplier);
 
 	//modification fournisseur
-	//on construit la demande
-	$querry = "UPDATE LOW_PRIORITY fournisseurs SET ";
-	if ($nom != $supplier['nom'])
-		//modif du nom
-		$querry.= "nom='$nom',";
-	if ($adresse != $supplier['adresse'])
-		//modif de l' adresse
-		$querry .= "adresse='$adresse',";
-	if ($tel != $supplier['tel'])
-		//modif du tel
-		$querry.="tel='$tel',";
-	if ($fax != $supplier['fax'])
-		//modif du fax
-		$querry.="fax='$fax',";
-	if ($mail != $supplier['mail'])
-		//modif du mail
-		$querry.="mail='$mail',";
-	if ($www != $supplier['www'])
-		//modif de l'url
-		$querry .= "www='$www',";
-	if ($contact != $supplier['contact'])
-		//modif des contacts
-		$querry .= "contact='$contact',";
-	if ($descr != $supplier['descr'])
-		//modif de la descr
-		$querry .= "descr='$descr',";
-		// supprime la derniere virgule
-		$querry[strlen($querry)-1]=' ';
-		//ajoute la clause
-		$querry .= " WHERE id = '$id_supplier'";
+	$modif = 0;
+	if (($nom != $supplier_registered['nom'])
+		|| ($adresse != $supplier_registered['adresse'])
+		|| ($tel != $supplier_registered['tel'])
+		|| ($fax != $supplier_registered['fax'])
+		|| ($mail != $supplier_registered['mail'])
+		|| ($www != $supplier_registered['www'])
+		|| ($contact != $supplier_registered['contact'])
+		|| ($descr != $supplier_registered['descr']))
+		$modif = 1;
 
-	if ($logged_level >= 3)
-		$stmt = $pdo->prepare($querry);
-		$stmt->execute();
-
+	if ($modif != 0) {
+		$err_msg = set_supplier_update($pdo, $id_supplier, $nom, $adresse, $tel, $fax, $mail, $www, $contact, $descr)
+		if ($err_msg != '' && $logged_level > 3) {
+			echo 'Erreur : '. $err_msg.'<br>';
+			echo '<br><br><a href="supplier-list.php?highlight='.$id_supplier.'#item'.$id_supplier.'">Suite</a><br><br>\n';
+			pied_page();
+			exit();
+		}
+	} // end if modif
+	else {
+		echo 'Aucune modification &agrave; faire';
+		echo '<br><br><a href="supplier-list.php?highlight='.$id_supplier.'#item'.$id_supplier.'">Suite</a><br><br>\n';
+		pied_page();
+		exit();
+	}
 } // end if connect
 
 redirect('supplier-list.php?highlight='.$id_supplier.'#item'.$id_supplier);

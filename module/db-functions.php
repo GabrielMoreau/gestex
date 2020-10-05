@@ -416,6 +416,18 @@ function get_supplier_find($pdo, $find='') {
 }
 
 // ---------------------------------------------------------------------
+
+function set_supplier_update($pdo, $id_supplier, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
+	$sql = 'UPDATE LOW_PRIORITY fournisseurs  SET nom = ?, adresse = ?, tel = ?, fax = ?, mail = ?, www = ?, contact = ?, descr = ? WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$status = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description, $id_supplier));
+	$err_msg = '';
+	if (!$status)
+		$err_msg = $stmt->errorInfo()[2];
+	return $err_msg;
+}
+
+// ---------------------------------------------------------------------
 // Team
 // ---------------------------------------------------------------------
 
