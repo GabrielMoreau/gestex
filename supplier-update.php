@@ -67,7 +67,7 @@ if ($pdo = connect_db()) {
 		$modif = 1;
 
 	if ($modif != 0) {
-		$err_msg = set_supplier_update($pdo, $id_supplier, $nom, $adresse, $tel, $fax, $mail, $www, $contact, $descr)
+		$err_msg = set_supplier_update($pdo, $id_supplier, $nom, $adresse, $tel, $fax, $mail, $www, $contact, $descr);
 		if ($err_msg != '' && $logged_level > 3) {
 			echo 'Erreur : '. $err_msg.'<br>';
 			echo '<br><br><a href="supplier-list.php?highlight='.$id_supplier.'#item'.$id_supplier.'">Suite</a><br><br>\n';
