@@ -10,6 +10,7 @@ require_once('module/base-functions.php');
 session_start();
 if (empty($_SESSION['logged_user'])) {
 	$log          = false;
+	$logged_level = 0;
 } else {
 	$logged_id    = $_SESSION['logged_id'];
 	$logged_user  = strtolower($_SESSION['logged_user']);
@@ -78,9 +79,9 @@ en_tete($title);
 			<th class="sorttable_nosort">
 				Notice
 			</th>
+			<th class="sorttable_nosort">
+			</th>
 			<?php
-			if ($log == true)
-				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($log == true && $logged_level == 2)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($log == true && $logged_level >= 3)
@@ -151,17 +152,21 @@ en_tete($title);
 		}
 		echo '  </td>'.PHP_EOL;
 
-		if ($log === true && $equipment_item['loanable'] == 1) {
+		if ($equipment_item['loanable'] == 1) {
 			$loan = get_loan_short_by_id_equipment($pdo, $equipment_item['id']);
 
 			echo '  <td>';
 			if ($loan)
-				echo '    <a href="loan-del.php?id='.$loan['id'].'">'.ICON_RETURN.'</a>';
+				if ($logged_level >= 3) echo '    <a href="loan-del.php?id='.$loan['id'].'">';
+				echo ICON_RETURN;
+				if ($logged_level >= 3) echo '</a>';
 			else
-				echo '    <a href="loan-add.php?equipment='.$equipment_item['id'].'">'.ICON_BOOKING.'</a>';
+				if ($logged_level >= 3) echo '    <a href="loan-add.php?equipment='.$equipment_item['id'].'">';
+				echo ICON_BOOKING;
+				if ($logged_level >= 3) echo '</a>';
 			echo '  </td>';
 		}
-		else if ($log === true)
+		else
 			echo '  <td></td>'.PHP_EOL;
 
 		if ($log === true && $logged_level >= 2) {
