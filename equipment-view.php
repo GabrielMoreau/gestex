@@ -187,15 +187,15 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 			<td>
 				<?php if ($equipment_selected['loanable'] == 1) {
 					if ($loan) {
-						echo 'Oui, en pr&ecirc;t &nbsp;';
-						if ($logged_level >= 3) {echo ' <a href="loan-del.php?id='.$loan['id'].'">';}
+						echo 'Oui, en pr&ecirc;t &#8594; '.$loan['retour'];
+						if ($logged_level >= 3) {echo ' <span class="option-right"><a href="loan-del.php?id='.$loan['id'].'">';}
 						echo ICON_RETURN;
-						if ($logged_level >= 3) {echo '</a>';}
+						if ($logged_level >= 3) {echo '</a></span>';}
 					} else {
 						echo 'Oui &nbsp;';
-						if ($logged_level >= 3) {echo ' <a href="loan-add.php?equipment='.$equipment_selected['id'].'">';}
+						if ($logged_level >= 3) {echo ' <span class="option-right"><a href="loan-add.php?equipment='.$equipment_selected['id'].'">';}
 						echo ICON_BOOKING;
-						if ($logged_level >= 3) {echo '</a>';}
+						if ($logged_level >= 3) {echo '</a></span>';}
 					}
 				} else { echo 'Non'; } ?>
 			</td>
