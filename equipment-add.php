@@ -225,7 +225,7 @@ if ($pdo = connect_db()) {
 				Empruntable (oui / non - non par d&eacute;faut)
 			</th>
 			<td>
-				<input type="checkbox" name="loanable" value="1" <?php if ($mode === 'Modifier' && $equipment['loanable'] == 1) echo 'checked' ?> >
+				<input type="checkbox" name="loanable" value="1" <?php if ($mode == 'Modifier' && $equipment['loanable'] == 1) echo 'checked' ?> >
 			</td>
 		</tr>
 
@@ -241,7 +241,11 @@ if ($pdo = connect_db()) {
 	<tbody>
 		<tr>
 			<td colspan="2" class="button">
+				<?php if ($mode == 'Modifier') { ?>
+				<input class="cancel" type="submit" name="ok" formaction="equipment-view.php?id=<?php echo $id_equipment ?>" value="Annuler">
+				<?php } else { ?>
 				<input class="cancel" type="submit" name="ok" formaction="equipment-list.php" value="Annuler">
+				<?php } ?>
 			</td>
 		</tr>
 		</form>
