@@ -25,6 +25,9 @@ if (empty($id_equipment))
 if ($pdo = connect_db()) {
 	$appareil_selected = get_equipment_all_by_id($pdo, $id_equipment);
 	$responsable = get_user_by_id($pdo, $appareil_selected['responsable']);
+	$supplier    = get_supplier_by_id($pdo, $appareil_selected['fournisseur']);
+	$category    = get_category_by_id($pdo, $appareil_selected['categorie']);
+	$team        = get_team_by_id($pdo, $appareil_selected['equipe']);
 
 	$datacheet_path  = get_datasheet_basepath();
 	$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $id_equipment);
@@ -94,14 +97,43 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$appareil_selected['nom']
 				<?php echo $appareil_selected['reparation'] ?>
 			</td>
 		</tr>
+
 		<tr>
 			<th>
 				Responsable
 			</th>
 			<td>
-				<a href="user-list.php?item<?php echo $appareil_selected['responsable'] ?>"><?php echo $responsable['nom'] ?></a>
+				<a href="user-list.php?highlight=<?php echo $appareil_selected['responsable'] ?>#item<?php echo $appareil_selected['responsable'] ?>"><?php echo $responsable['nom'].' '.$responsable['prenom'] ?></a>
 			</td>
 		</tr>
+
+		<tr>
+			<th>
+				&Eacute;quipe
+			</th>
+			<td>
+				<a href="equipment-list.php?team=<?php echo $appareil_selected['equipe'] ?>"><?php echo $team['nom'] ?></a>
+			</td>
+		</tr>
+
+		<tr>
+			<th>
+				Cat&eacute;gorie
+			</th>
+			<td>
+				<a href="equipment-list.php?categorie=<?php echo $appareil_selected['categorie'] ?>"><?php echo $category['nom'] ?></a>
+			</td>
+		</tr>
+
+		<tr>
+			<th>
+				Fournisseur
+			</th>
+			<td>
+				<a href="supplier-list.php?highlight=<?php echo $appareil_selected['fournisseur'] ?>#item<?php echo $appareil_selected['fournisseur'] ?>"><?php echo $supplier['nom'] ?></a>
+			</td>
+		</tr>
+
 		<tr>
 			<th>
 				Num&eacute;ro d'instrument
