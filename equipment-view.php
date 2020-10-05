@@ -37,7 +37,7 @@ if ($pdo = connect_db()) {
 		$equipment_selected['barcode'] = '';
 
 	if ($equipment_selected['loanable'] == 1)
-		$loan = get_loan_short_by_id_equipment($pdo, $id_equipment);
+		$loan = get_loan_all_by_id_equipment($pdo, $id_equipment);
 
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'].'</b>');
 ?>
