@@ -15,23 +15,23 @@ $logged_user = strtolower($_SESSION['logged_user']);
 if (empty($_GET['id'])) {
 	//on vient depuis index.html
 	//->nouvelle inscription
-	$mode   = 'ajouter';
+	$mode   = 'Ajouter';
 	$action = 'supplier-create.php';
 }
 else {
 	//on vient depuis list_manip.php
 	//->modif coordonnees
 	$fourn_id = $_GET['id'];
-	$mode     = 'modifier';
+	$mode     = 'Modifier';
 	$action   = 'supplier-update.php';
 }
 
 if ($pdo = connect_db()) {
 
-if ($mode == 'ajouter') {
+if ($mode == 'Ajouter') {
 	en_tete('Ajouter un fournisseur');
 }
-else if ($mode == 'modifier') {
+else if ($mode == 'Modifier') {
 	en_tete('Modifier les coordonn&eacute;es d\'un fournisseur');
 	// recupere le fournisseur selectionne
 	$sql = 'SELECT * FROM fournisseurs WHERE id = ?;';
@@ -50,13 +50,13 @@ else
 <table>
 	<tbody>
 		<form action="<?php echo $action ?>" method="POST" name="inscrForm">
-			<input type="hidden" name="id_fourn" value="<?php if ($mode == 'modifier'){ echo $fourn_id; } ?>">
+			<input type="hidden" name="id_fourn" value="<?php if ($mode == 'Modifier'){ echo $fourn_id; } ?>">
 		<tr>
 			<th>
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="50" maxlength="50" value="<?php if ($mode == 'modifier'){ echo $fournisseur[0]['nom']; } ?>" placeholder="Nom *">
+				<input type="text" name="nom" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo $fournisseur[0]['nom']; } ?>" placeholder="Nom *">
 			</td>
 		</tr>
 		<tr>
@@ -64,7 +64,7 @@ else
 				Adresse
 			</th>
 			<td>
-				<input type="text" name="adresse" size="50" maxlength="50" value="<?php if ($mode == 'modifier'){ echo $fournisseur[0]['adresse']; } ?>" placeholder="Adresse">
+				<input type="text" name="adresse" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo $fournisseur[0]['adresse']; } ?>" placeholder="Adresse">
 			</td>
 		</tr>
 		<tr>
@@ -72,7 +72,7 @@ else
 				Adresse courriel *
 			</th>
 			<td>
-				<input type="text" name="addr_mail" size="50" maxlength="50" value="<?php if ($mode == 'modifier'){ echo $fournisseur[0]['mail']; } ?>" placeholder="Adresse courriel *">
+				<input type="text" name="addr_mail" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo $fournisseur[0]['mail']; } ?>" placeholder="Adresse courriel *">
 			</td>
 		</tr>
 		<tr>
@@ -80,7 +80,7 @@ else
 				T&eacute;l&eacute;phone
 			</th>
 			<td>
-				<input type="text" name="phone" size="15" maxlength="15" value="<?php if ($mode =='modifier'){ echo $fournisseur[0]['tel']; } ?>" placeholder="T&eacute;l&eacute;phone">
+				<input type="text" name="phone" size="15" maxlength="15" value="<?php if ($mode =='Modifier'){ echo $fournisseur[0]['tel']; } ?>" placeholder="T&eacute;l&eacute;phone">
 			</td>
 		</tr>
 		<tr>
@@ -88,7 +88,7 @@ else
 				Fax
 			</th>
 			<td>
-				<input type="text" name="fax" size="15" maxlength="15" value="<?php if ($mode == 'modifier'){ echo $fournisseur[0]['fax']; } ?>" placeholder="Fax">
+				<input type="text" name="fax" size="15" maxlength="15" value="<?php if ($mode == 'Modifier'){ echo $fournisseur[0]['fax']; } ?>" placeholder="Fax">
 			</td>
 		</tr>
 		<tr>
@@ -96,14 +96,14 @@ else
 				URL
 			</th>
 			<td>
-				<input type="text" name="www" size="50" maxlength="50" value="<?php if ($mode == 'modifier'){ echo $fournisseur[0]['www']; } ?>" placeholder="URL">
+				<input type="text" name="www" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo $fournisseur[0]['www']; } ?>" placeholder="URL">
 			</td>
 		</tr>
 		<tr>
 			<th>Contact(s) - nom, fonction, telephone...
 			</th>
 			<td>
-				<textarea name="contact" cols="50" rows="5" placeholder="Contact(s) - nom, fonction, t&eacute;l&eacute;phone..."><?php if ($mode == 'modifier'){ echo $fournisseur[0]['contact']; } ?></textarea>
+				<textarea name="contact" cols="50" rows="5" placeholder="Contact(s) - nom, fonction, t&eacute;l&eacute;phone..."><?php if ($mode == 'Modifier'){ echo $fournisseur[0]['contact']; } ?></textarea>
 			</td>
 		</tr>
 		<tr>
@@ -111,7 +111,7 @@ else
 			Utiliser des mots stanadards (capteur, moteur, profil&eacute;...)
 			</th>
 			<td>
-				<textarea name="descr" cols="50" rows="5" placeholder="Description pour faciliter la recherche de fournisseurs. Utiliser des mots stanadards (capteur, moteur, profil&eacute;...)"><?php if ($mode == 'modifier'){ echo $fournisseur[0]['descr']; } ?></textarea>
+				<textarea name="descr" cols="50" rows="5" placeholder="Description pour faciliter la recherche de fournisseurs. Utiliser des mots stanadards (capteur, moteur, profil&eacute;...)"><?php if ($mode == 'Modifier'){ echo $fournisseur[0]['descr']; } ?></textarea>
 			</td>
 		</tr>
 

@@ -14,22 +14,22 @@ $logged_user = strtolower($_SESSION['logged_user']);
 
 if (empty( $_GET['id'])) {
 	//->nouvelle inscription
-	$mode   = 'ajouter';
+	$mode   = 'Ajouter';
 	$action = 'team-create.php';
 }
 else {
 	//->modif coordonnees
 	$equip_id = $_GET['id'];
-	$mode     = 'modifier';
+	$mode     = 'Modifier';
 	$action   = 'team-update.php';
 }
 
 if ($pdo = connect_db()) {
 
-if ($mode == 'ajouter'){
+if ($mode == 'Ajouter'){
 	en_tete('Ajouter une &eacute;quipe');
 }
-else if ($mode == 'modifier') {
+else if ($mode == 'Modifier') {
 	en_tete('Modifier les coordonn&eacute;es d\'une &eacute;quipe');
 
 	// recupere le fournisseur selectionne
@@ -41,13 +41,13 @@ else if ($mode == 'modifier') {
 <table>
 	<tbody>
 		<form action="<?php echo $action ?>" method="POST" name="inscrForm">
-		<input type="hidden" name="id_equip" value="<?php if( $mode=='modifier'){ echo $equip_id; }?>" >
+		<input type="hidden" name="id_equip" value="<?php if( $mode=='Modifier'){ echo $equip_id; }?>" >
 		<tr>
 			<th>
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="25" maxlength="30" placeholder="Nom *" value="<?php if( $mode=='modifier'){ echo $team['nom']; } ?>" >
+				<input type="text" name="nom" size="25" maxlength="30" placeholder="Nom *" value="<?php if( $mode=='Modifier'){ echo $team['nom']; } ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -55,7 +55,7 @@ else if ($mode == 'modifier') {
 				Description
 			</th>
 			<td>
-				<input type="text" name="descr" size="25" maxlength="255" placeholder="Description" value="<?php if( $mode=='modifier'){ echo $team['descr']; } ?>" >
+				<input type="text" name="descr" size="25" maxlength="255" placeholder="Description" value="<?php if( $mode=='Modifier'){ echo $team['descr']; } ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -63,7 +63,7 @@ else if ($mode == 'modifier') {
 				Compte *
 			</th>
 			<td>
-				<input type="text" name="compte" size="5" maxlength="5" placeholder="Compte *" value="<?php if( $mode=='modifier'){ echo $team['compte']; } ?>" >
+				<input type="text" name="compte" size="5" maxlength="5" placeholder="Compte *" value="<?php if( $mode=='Modifier'){ echo $team['compte']; } ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -71,7 +71,7 @@ else if ($mode == 'modifier') {
 				Chef d'&eacute;quipe<br />
 			</th>
 			<td>
-			<?php // if( $mode=='modifier'){ echo $team['chef']; } ?>
+			<?php // if( $mode=='Modifier'){ echo $team['chef']; } ?>
 				<select name="chef">
 				<?php
 				// recupere laliste des chercheurs
