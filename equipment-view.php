@@ -36,6 +36,9 @@ if ($pdo = connect_db()) {
 	if ($equipment_selected['barcode'] == 0)
 		$equipment_selected['barcode'] = '';
 
+	if ($equipment_selected['loanable'] == 1)
+		$loan = get_loan_short_by_id_equipment($pdo, $id_equipment);
+
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'].'</b>');
 ?>
 
@@ -182,7 +185,20 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				Empruntable
 			</th>
 			<td>
-				<?php if ($equipment_selected['loanable'] == 1){ echo 'Oui'; } else { echo 'Non'; } ?>
+				<?php if ($equipment_selected['loanable'] == 1) {
+					echo 'Oui';
+					if ($loan) {
+						if ($logged_level >= 3) echo ' <a href="loan-del.php?id='.$loan['id'].'">';
+						echo ICON_RETURN;
+						if ($logged_level >= 3) echo '</a>';
+					}
+					else {
+						if ($logged_level >= 3) echo ' <a href="loan-add.php?equipment='.$equipment_item['id'].'">';
+						echo ICON_BOOKING;
+						if ($logged_level >= 3) echo '</a>';
+					}
+				} ?>
+				<? else { echo 'Non'; } ?>
 			</td>
 		</tr>
 	</tbody>
