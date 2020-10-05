@@ -332,7 +332,8 @@ function get_loan_all_by_id_equipment($pdo, $id_equipment) {
 // ---------------------------------------------------------------------
 
 function get_loan_listall($pdo) {
-	$sql = 'SELECT * FROM pret;';
+	//$sql = 'SELECT * FROM pret;';
+	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id ORDER BY e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
