@@ -162,7 +162,7 @@ if ($pdo = connect_db()) {
 					if ($mode == 'Modifier' && $user['id'] == $equipment['responsable']) {
 						echo ' selected';
 					}
-					echo '>'.$user['nom'].'</option>';
+					echo '>'.$user['nom'].' '.$user['prenom'].'</option>';
 				} // end foreach
 				?>
 				</select>
