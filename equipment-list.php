@@ -156,14 +156,16 @@ en_tete($title);
 			$loan = get_loan_short_by_id_equipment($pdo, $equipment_item['id']);
 
 			echo '  <td>';
-			if ($loan)
-				if ($logged_level >= 3) echo '    <a href="loan-del.php?id='.$loan['id'].'">';
+			if ($loan) {
+				if ($logged_level >= 3) {echo '    <a href="loan-del.php?id='.$loan['id'].'">';}
 				echo ICON_RETURN;
-				if ($logged_level >= 3) echo '</a>';
-			else
-				if ($logged_level >= 3) echo '    <a href="loan-add.php?equipment='.$equipment_item['id'].'">';
+				if ($logged_level >= 3) {echo '</a>';}
+			}
+			else {
+				if ($logged_level >= 3) {echo '    <a href="loan-add.php?equipment='.$equipment_item['id'].'">';}
 				echo ICON_BOOKING;
-				if ($logged_level >= 3) echo '</a>';
+				if ($logged_level >= 3) {echo '</a>';}
+			}
 			echo '  </td>';
 		}
 		else
