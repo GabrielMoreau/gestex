@@ -514,10 +514,10 @@ function get_user_listall_by_logged_level($pdo, $logged_level) {
 
 // ---------------------------------------------------------------------
 
-function get_user_listshort_with_right($pdo, $level_min=1) {
-	$sql = 'SELECT id, nom FROM users WHERE valid = 1 and level >= ? ORDER BY nom, prenom;';
+function get_user_listshort_with_right($pdo, $level_min=1, $id_bonus=0) {
+	$sql = 'SELECT id, nom, prenom FROM users WHERE (valid = 1 and level >= ?) or id = ? ORDER BY nom, prenom;';
 	$stmt = $pdo->prepare($sql);
-    $stmt->execute(array($level_min));
+    $stmt->execute(array($level_min, $id_bonus));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
