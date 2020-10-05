@@ -48,8 +48,10 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 		<th colspan="2">
 			<span class="option-right"><a href="equipment-list.php?categorie=<?php echo $equipment_selected['categorie'] ?>"><?php echo ICON_LIST ?></a></span>
 			<?php
-				if ($logged_level >= 3)
+				if ($logged_level >= 3) {
+					echo '<span class="option-right"><a href="equipment-del.php?id='.$id_equipment.'">'.ICON_TRASH.'</a>&nbsp;</span>'.PHP_EOL;
 					echo '<span class="option-right"><a href="equipment-add.php?id='.$id_equipment.'">'.ICON_EDIT.'</a>&nbsp;</span>'.PHP_EOL;
+				}
 			?>
 		</th>
 		<tr>
@@ -191,19 +193,17 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 						if ($logged_level >= 3) {echo '<a href="loan-del.php?id='.$loan['id'].'">';}
 						echo ICON_RETURN;
 						if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-add.php?id=',$loan['id'],'">'.ICON_EDIT.'</a>&nbsp;';}
-						echo '</span>';
-						echo '<ul>';
-						echo '<li>'.$loan['emprunt'].' &#8594; '.$loan['retour'].'</li>';
-						echo '<li>'.$loan['commentaire'].'</li>';
-						echo '</ul>';
+						echo '</span>'.PHP_EOL;
+						echo '<br>'.$loan['emprunt'].' &#8594; '.$loan['retour'].PHP_EOL;
+						echo '<br>'.$loan['commentaire'].PHP_EOL;
 					} else {
 						echo 'Oui'.'<span class="option-right">';
 						if ($logged_level >= 3) {echo '<a href="loan-add.php?equipment='.$equipment_selected['id'].'">';}
 						echo ICON_BOOKING;
 						if ($logged_level >= 3) {echo '</a>';}
-						echo '</span>';
+						echo '</span>'.PHP_EOL;
 					}
-				} else { echo 'Non'; } ?>
+				} else { echo 'Non'.PHP_EOL; } ?>
 			</td>
 		</tr>
 	</tbody>
