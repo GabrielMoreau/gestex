@@ -342,6 +342,16 @@ function get_loan_listall($pdo) {
 
 // ---------------------------------------------------------------------
 
+function get_loan_find($pdo, $find) {
+	$sql = 'SELECT * FROM pret WHERE commentaire RLIKE ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($find));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch;
+}
+
+// ---------------------------------------------------------------------
+
 function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
 	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);

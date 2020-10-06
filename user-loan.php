@@ -17,10 +17,7 @@ en_tete('Liste de vos emprunts');
 
 if ($pdo = connect_db()) {
 	$user = get_user_all_by_id($pdo, $logged_id);
-	$sql = 'SELECT * FROM pret WHERE commentaire RLIKE ?;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($user['nom']));
-	$loan_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$loan_fetch = get_loan_find($pdo, $user['nom']);
 }
 ?>
 
