@@ -14,18 +14,13 @@ $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
 en_tete('Liste de vos emprunts');
-//recuper la methode de tri
-if (empty($_GET['tri']))
-	$tri ="id";
-else
-	$tri = $_GET['tri'];
 
 if ($pdo = connect_db()) {
 	$user = get_user_all_by_id($pdo, $logged_id);
 	$sql = 'SELECT * FROM pret WHERE commentaire RLIKE ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($user['nom']));
-	$pret = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$loan_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -53,43 +48,40 @@ if ($pdo = connect_db()) {
 			</th>
 		</tr>
 		<?php
-		foreach ($pret as $data) {
+		foreach ($loan_fetch as $loan_current) {
 			if ($num_line % 2)
 				echo '<tr class="pair">'.PHP_EOL;
 			else
 				echo '<tr class="impair">'.PHP_EOL;
 			$num_line++;
 
-			$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
-			$stmt = $pdo->prepare($sql);
-			$stmt->execute(array($data['nom']));
-			$listing = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$equipment = get_equipment_by_id($pdo, $loan_current['nom']);
 			echo '  <td>';
-			echo      $listing[0]['nom'];
+			echo      $equipment['nom'];
 			echo '  </td>'.PHP_EOL;
 
 			// recupere le nom d'equipe
-			$team = get_team_by_id($pdo, $data['equipe']);
+			$team = get_team_by_id($pdo, $loan_current['equipe']);
 			echo '  <td>';
 			echo      $team['nom'];
 			echo '  </td>'.PHP_EOL;
 
 			echo '  <td>';
-			echo      $data['emprunt'];
+			echo      $loan_current['emprunt'];
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
-			echo    $data['retour'];
+			echo    $loan_current['retour'];
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
-			echo      $data['commentaire'];
+			echo      $loan_current['commentaire'];
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
-			echo      $data['nom'];
+			echo      $loan_current['nom'];
 			echo '  </td>'.PHP_EOL;
 
 			if ($logged_level >= 3)  {
 				echo '  <td>';
-				echo '    <a href="loan-del.php?id=',$data['id'],'">'.ICON_TRASH.'</a>';
+				echo '    <a href="loan-del.php?id=',$loan_current['id'],'">'.ICON_TRASH.'</a>';
 				echo '  </td>'.PHP_EOL;
 			}
 
