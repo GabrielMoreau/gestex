@@ -1,18 +1,17 @@
 <?php
 // user-loan.php
+$web_page = true;
+
 // Authenticate
-
 require_once('module/auth-functions.php');
+require_once('module/html-functions.php');
 
-//require_once('module/db-functions.php');
-if (!auth(1))
-	Header("Location: login.php");
+auth_or_login('user-list.php');
+level_or_alert(1, 'Pr&ecirc;t d\'un utilisateur');
 
 $logged_id    = $_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
-
-require_once('module/html-functions.php');
 
 en_tete('Liste de vos emprunts');
 //recuper la methode de tri
