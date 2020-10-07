@@ -4,6 +4,7 @@ $web_page = true;
 
 // Module
 require_once('module/db-functions.php');
+require_once('module/html-functions.php');
 
 en_tete('Initialisation de la base de donn&eacute;e');
 
