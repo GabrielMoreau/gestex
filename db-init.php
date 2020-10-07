@@ -1,31 +1,24 @@
 <?php
 require_once('module/db-functions.php');
 
-if ( $connex = connect_db() ){
-		//inscription
-	$table = "equipe";
-		$result = mysql_query("INSERT INTO $table ".
-			"(nom,descr,compte, chef)".
-			" VALUES ('pool_G', 'equipe technique batG', '0', '1')");
-			//
- 		if (!$result){
-			//inscription !ok
-			$erreur = mysql_error();
-		echo "<br />erreur :".$erreur;
+if ($pdo = connect_db()) {
+	$team_count = get_team_count($pdo);
+	$user_count = get_user_count($pdo);
+
+	if ($team_count == 0 && $user_count == 0) {
+	//inscription
+	$err_msg = '';
+	list($id_team, $err_msg) = set_team_new($pdo, 'srv-system', 'service systeme', '0', '1');
+	if ($err_msg != '')
+		echo '<br/>Erreur &eacute;quipe : '.$err_msg;
+
+	$mot_crypte = md5('chief!');
+	$err_msg = '';
+	list($id_user, $err_msg) = set_user_new($pdo, 'Admin', 'Sys', 'sysadmin', $mot_crypte, 'sysadmin@example.com', 4, '', $id_team, '');
+	if ($err_msg != '')
+		echo '<br/>Erreur utilisateur : '.$err_msg;
+	} else
+		echo '<br>Info : la base de donn&eacute;e est d&eacute;j&agrave; initialis&eacute;e';
 	}
-
-		$mot_crypte = md5('lemans4!');
-	$table = "users";
-		$result = mysql_query("INSERT INTO $table ".
-			"(nom,prenom,loggin,password,level, email,equipe, tel)".
-			" VALUES ('Carecchio', 'Pierre', 'carecchi', '$mot_crypte', '3', 'Pierre.Carecchio@hmg.inpg.fr', '', '25134')");
-			//
- 		if (!$result){
-			//inscription !ok
-			$erreur = mysql_error();
-		echo "<br />erreur :".$erreur;
-		}
-
-	}//end if connect
 
 ?>
