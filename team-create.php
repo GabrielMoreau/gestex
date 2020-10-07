@@ -45,16 +45,11 @@ if (!empty($erreur)) {
 
 
 if ($pdo = connect_db()) {
-	//inscription
-	// $table = "equipe";
-	$sql = 'INSERT INTO equipe (nom, descr, compte, chef) VALUES (?,  ?, ?, ?);';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($nom, $descr, $compte, $chef));
-	$id_equip = $pdo->lastInsertId();
+	list($id_team, $err_msg) = set_team_new($pdo, $nom, $descr, $compte, $chef);
 
 	echo 'Ajout de '.$nom.' valid&eacute;<br />';
-	echo '<br /><br /><a href="team-list.php?highlight='.$id_equip.'#item'.$id_equip.'">Suite</a><br /><br />';
-	} //end if connect
-
-pied_page();
+	echo '<br><br><a href="team-list.php?highlight='.$id_team.'#item'.$id_team.'">Suite</a><br><br>';
+}
 ?>
+
+<?php pied_page() ?>
