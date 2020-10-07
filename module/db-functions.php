@@ -499,8 +499,11 @@ function get_team_with_appareil($pdo) {
 function set_team_new($pdo, $name, $description, $account, $manager) {
 	$sql = 'INSERT INTO equipe (nom, descr, compte, chef) VALUES (?,  ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($name, $description, $account, $manager));
-	return $pdo->lastInsertId();
+	$status = $stmt->execute(array($name, $description, $account, $manager));
+	$err_msg = '';
+	if (!$status)
+		$err_msg = $stmt->errorInfo()[2];
+	return array($pdo->lastInsertId(), $err_msg);
 }
 
 // ---------------------------------------------------------------------
