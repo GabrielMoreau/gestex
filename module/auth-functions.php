@@ -1,5 +1,6 @@
-<?php
+<?php if (!$web_page) exit() ?>
 
+<?php
 require_once('db-functions.php');
 require_once('base-functions.php');
 
