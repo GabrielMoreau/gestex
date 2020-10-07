@@ -496,6 +496,16 @@ function get_team_with_appareil($pdo) {
 
 // ---------------------------------------------------------------------
 
+function get_team_count($pdo) {
+	$sql = 'SELECT COUNT(*) as count FROM equipe;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch[0]['count'];
+}
+
+// ---------------------------------------------------------------------
+
 function set_team_new($pdo, $name, $description, $account, $manager) {
 	$sql = 'INSERT INTO equipe (nom, descr, compte, chef) VALUES (?,  ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
@@ -567,6 +577,28 @@ function get_user_listshort_with_right($pdo, $level_min=1, $id_bonus=0) {
     $stmt->execute(array($level_min, $id_bonus));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
+}
+
+// ---------------------------------------------------------------------
+
+function get_user_count($pdo) {
+	$sql = 'SELECT COUNT(*) as count FROM users;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch[0]['count'];
+}
+
+// ---------------------------------------------------------------------
+
+function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme) {
+	$sql = 'INSERT INTO users (nom, prenom, loggin, password, email, level, tel, equipe, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
+	$stmt = $pdo->prepare($sql);
+	$status = $stmt->execute(array($familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme));
+	$err_msg = '';
+	if (!$status)
+		$err_msg = $stmt->errorInfo()[2];
+	return array($pdo->lastInsertId(), $err_msg);
 }
 
 // ---------------------------------------------------------------------
