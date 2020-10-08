@@ -6,8 +6,8 @@ $web_page = true;
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
-if (!auth(3))
-	Header("Location: loan-list.php");
+auth_or_login('loan-list.php');
+level_or_alert(3, 'Suppression d\'un pr&ecirc;t');
 
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
@@ -19,7 +19,7 @@ if ($_POST['ok'] == 'edit')
 	redirect('loan-add.php?id='.$id_loan);
 
 $valid = 'no';
-if ($_POST['ok'] == 'yes') // si ok dans l'url est 'yes', on valide la suppression
+if ($param_post['ok'] == 'yes') // si ok dans l'url est 'yes', on valide la suppression
 	$valid = 'yes';
 
 if ($valid == 'yes') {
