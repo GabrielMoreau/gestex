@@ -2,9 +2,11 @@
 // loan-create.php
 $web_page = true;
 
+require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
-require_once('module/db-functions.php');
-require_once('module/base-functions.php');
+
+auth_or_login('loan-list.php');
+level_or_alert(3, 'Modification d\'un pr&ecirc;t');
 
 //validation d'un pret
 unset($erreur);
