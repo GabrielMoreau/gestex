@@ -13,14 +13,13 @@ $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $id_loan = param_post_or_get('id');
-if (empty($id_loan) || $_POST['ok'] == 'cancel')
-	redirect('loan-list.php');
-if ($_POST['ok'] == 'edit')
-	redirect('loan-add.php?id='.$id_loan);
+$valid   = param_post('ok', 'no');
 
-$valid = 'no';
-if ($param_post['ok'] == 'yes') // si ok dans l'url est 'yes', on valide la suppression
-	$valid = 'yes';
+if (empty($id_loan) || $valid == 'cancel')
+	redirect('loan-list.php');
+
+if ($valid == 'edit')
+	redirect('loan-add.php?id='.$id_loan);
 
 if ($valid == 'yes') {
 	if ($pdo = connect_db()) {
