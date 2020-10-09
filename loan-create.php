@@ -34,25 +34,27 @@ $flag_new = true;
 if (!empty($id_loan))
 	$flag_new = false;
 
-en_tete('R&eacute;sultat demande d\'emprunt');
-
 if (!empty($erreur)) {
 	//erreur
-	echo '<br />Erreur : '.$erreur;
+	$title        = 'Erreur sur l\'emprunt';
+	$action       = 'loan-add.php?id='.$id_loan;
 	if ($flag_new == true)
-		echo '<br /><a href="loan-add.php?equipment='.$id_equipment.'">Suite</a>';
-	else
-		echo '<br /><a href="loan-add.php?id='.$id_loan.'">Suite</a>';
-	pied_page();
+		$action   = 'loan-add.php?equipment='.$id_equipment;
+	$message_text = $erreur;
+	include_once('include/warning-box.php');
 	exit();
 }
+
+en_tete('R&eacute;sultat demande d\'emprunt');
 
 if ($pdo = connect_db()) {
 	if ($flag_new == true) {
 		$loan = get_loan_short_by_id_equipment($pdo, $id_equipment);
 		if (!empty($loan)) {
-			echo 'Erreur: l\'appareil est d&eacute;j&agrave; emprunt&eacute;';
-			pied_page();
+			$title        = 'Erreur sur l\'emprunt';
+			$action       = 'equipment-view.php?id='.$id_equipment;
+			$message_text = 'L\'appareil est d&eacute;j&agrave; emprunt&eacute;';
+			include_once('include/warning-box.php');
 			exit();
 		}
 
