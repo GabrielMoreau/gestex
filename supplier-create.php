@@ -2,13 +2,16 @@
 // supplier-create.php
 $web_page = true;
 
-// Authenticate
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 require_once('module/base-functions.php');
 
+// Authenticate
 auth_or_login('supplier-create.php');
 level_or_alert(3, 'Ajout d\'un fournisseur');
+
+// creation d'un fournisseur
 
 unset($erreur);
 
@@ -41,12 +44,9 @@ if (!empty($erreur)) {
 $pdo = connect_db_or_alert();
 
 //inscription
-$sql = 'INSERT INTO fournisseurs (nom, adresse, mail, www, tel, fax, contact, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-$stmt = $pdo->prepare($sql);
-$status = $stmt->execute(array($nom, $adresse, $mail, $www, $phone, $fax, $contact, $descr));
-$id_supplier = $pdo->lastInsertId();
-if (!$status) {
-	// sql request !ok
+list($id_supplier, $err_msg) = set_supplier_new($pdo, $nom, $adresse, $tel, $fax, $mail, $www, $contact, $descr);
+if ($err_msg != '') {
+	$message_alert = ($logged_level > 3 ? $err_msg : '');
 	include_once('include/alert-data.php');
 	exit();
 }
