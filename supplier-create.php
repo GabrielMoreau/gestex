@@ -53,7 +53,7 @@ if ($err_msg != '') {
 }
 
 $title        = 'R&eacute;sultat ajout fournisseur';
-$action       = 'supplier-list.php';
+$action       = 'supplier-list.php?highlight='.$id_supplier;
 $highlight    = $id_supplier;
 $message_text = 'Ajout du fournisseur '.$nom.' valid&eacute;';
 include_once('include/message-box.php');
