@@ -91,7 +91,7 @@ else
 				URL
 			</th>
 			<td>
-				<input type="text" name="www" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo $supplier['www']; } ?>" placeholder="URL">
+				<input type="text" name="www" size="50" maxlength="60" value="<?php if ($mode == 'Modifier'){ echo $supplier['www']; } ?>" placeholder="URL">
 			</td>
 		</tr>
 		<tr>
