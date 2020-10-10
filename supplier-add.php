@@ -51,7 +51,7 @@ else
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo $supplier['nom']; } ?>" placeholder="Nom *">
+				<input type="text" name="nom" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo param_post('nom', $supplier['nom']); } ?>" placeholder="Nom *">
 			</td>
 		</tr>
 		<tr>
@@ -59,7 +59,7 @@ else
 				Adresse
 			</th>
 			<td>
-				<input type="text" name="adresse" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo $supplier['adresse']; } ?>" placeholder="Adresse">
+				<input type="text" name="adresse" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo param_post('adresse', $supplier['adresse']); } ?>" placeholder="Adresse">
 			</td>
 		</tr>
 		<tr>
@@ -67,7 +67,7 @@ else
 				Adresse courriel *
 			</th>
 			<td>
-				<input type="text" name="addr_mail" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo $supplier['mail']; } ?>" placeholder="Adresse courriel *">
+				<input type="text" name="addr_mail" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo param_post('mail', $supplier['mail']); } ?>" placeholder="Adresse courriel *">
 			</td>
 		</tr>
 		<tr>
@@ -75,7 +75,7 @@ else
 				T&eacute;l&eacute;phone
 			</th>
 			<td>
-				<input type="text" name="phone" size="15" maxlength="15" value="<?php if ($mode =='Modifier'){ echo $supplier['tel']; } ?>" placeholder="T&eacute;l&eacute;phone">
+				<input type="text" name="phone" size="15" maxlength="15" value="<?php if ($mode =='Modifier'){ echo param_post('tel', $supplier['tel']); } ?>" placeholder="T&eacute;l&eacute;phone">
 			</td>
 		</tr>
 		<tr>
@@ -83,7 +83,7 @@ else
 				Fax
 			</th>
 			<td>
-				<input type="text" name="fax" size="15" maxlength="15" value="<?php if ($mode == 'Modifier'){ echo $supplier['fax']; } ?>" placeholder="Fax">
+				<input type="text" name="fax" size="15" maxlength="15" value="<?php if ($mode == 'Modifier'){ echo param_post('fax', $supplier['fax']); } ?>" placeholder="Fax">
 			</td>
 		</tr>
 		<tr>
@@ -91,14 +91,14 @@ else
 				URL
 			</th>
 			<td>
-				<input type="text" name="www" size="50" maxlength="60" value="<?php if ($mode == 'Modifier'){ echo $supplier['www']; } ?>" placeholder="URL">
+				<input type="text" name="www" size="50" maxlength="60" value="<?php if ($mode == 'Modifier'){ echo param_post('www', $supplier['www']); } ?>" placeholder="URL">
 			</td>
 		</tr>
 		<tr>
 			<th>Contact(s) - nom, fonction, telephone...
 			</th>
 			<td>
-				<textarea name="contact" cols="50" rows="5" placeholder="Contact(s) - nom, fonction, t&eacute;l&eacute;phone..."><?php if ($mode == 'Modifier'){ echo $supplier['contact']; } ?></textarea>
+				<textarea name="contact" cols="50" rows="5" placeholder="Contact(s) - nom, fonction, t&eacute;l&eacute;phone..."><?php if ($mode == 'Modifier'){ echo param_post('contact', $supplier['contact']); } ?></textarea>
 			</td>
 		</tr>
 		<tr>
@@ -106,7 +106,7 @@ else
 			Utiliser des mots stanadards (capteur, moteur, profil&eacute;...)
 			</th>
 			<td>
-				<textarea name="descr" cols="50" rows="5" placeholder="Description pour faciliter la recherche de fournisseurs. Utiliser des mots standards (capteur, moteur, profil&eacute;...)"><?php if ($mode == 'Modifier'){ echo $supplier['descr']; } ?></textarea>
+				<textarea name="descr" cols="50" rows="5" placeholder="Description pour faciliter la recherche de fournisseurs. Utiliser des mots standards (capteur, moteur, profil&eacute;...)"><?php if ($mode == 'Modifier'){ echo param_post('descr', $supplier['descr']); } ?></textarea>
 			</td>
 		</tr>
 

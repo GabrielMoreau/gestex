@@ -28,7 +28,7 @@ if (empty($nom))
 
 $adresse = param_post('adresse');
 if (empty($adresse))
-	$erreur = 'Adresse non pr&eacute;cis&eacute;';
+	$erreur = 'Adresse non pr&eacute;cis&eacute;e';
 
 // variables pouvant etre nulles
 $tel     = param_post('phone');
@@ -40,10 +40,10 @@ $descr   = param_post('descr');
 
 if (!empty($erreur)) {
 	//erreur
-	$title        = 'Erreur fournisseur';
-	$action       = 'supplier-list.php?highlight='.$id_supplier;
-	$highlight    = $id_supplier;
-	$message_text = $erreur;
+	$title         = 'Erreur fournisseur';
+	$action        = 'supplier-add.php?id='.$id_supplier;
+	$highlight     = $id_supplier;
+	$message_text  = $erreur;
 	$transmit_post = true;
 	include_once('include/warning-box.php');
 	exit();
