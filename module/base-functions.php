@@ -30,6 +30,12 @@ function param_post_or_get($string, $default = '') {
 
 // ---------------------------------------------------------------------
 
+function param_post_key($string, $var = (object)[]) {
+	return param_post($string, empty($var[$string]) ? '' : $var[$string]);
+}
+
+// ---------------------------------------------------------------------
+
 function string_to_filename_snake($string) {
 	// $string = strtolower($string);
 	$string = str_replace(' ', '_', $string);
