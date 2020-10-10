@@ -56,18 +56,18 @@ else
 		</tr>
 		<tr>
 			<th>
-				Adresse
+				Adresse *
 			</th>
 			<td>
-				<input type="text" name="adresse" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo param_post('adresse', $supplier['adresse']); } ?>" placeholder="Adresse">
+				<input type="text" name="adresse" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo param_post('adresse', $supplier['adresse']); } ?>" placeholder="Adresse *">
 			</td>
 		</tr>
 		<tr>
 			<th>
-				Adresse courriel *
+				Adresse courriel
 			</th>
 			<td>
-				<input type="text" name="addr_mail" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo param_post('mail', $supplier['mail']); } ?>" placeholder="Adresse courriel *">
+				<input type="text" name="addr_mail" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo param_post('mail', $supplier['mail']); } ?>" placeholder="Adresse courriel">
 			</td>
 		</tr>
 		<tr>
