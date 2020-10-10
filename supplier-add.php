@@ -123,7 +123,7 @@ else
 	<tbody>
 		<tr >
 			<td colspan="2" class="button">
-				<input class="cancel" type="submit" name="ok" formaction=="supplier-list.php<?php if ($mode == 'Modifier'){ echo '?highlight='.$id_supplier.'#item'.$id_supplier; } ?>" value="Annuler">
+				<input class="cancel" type="submit" name="ok" formaction="supplier-list.php<?php if ($mode == 'Modifier'){ echo '?highlight='.$id_supplier.'#item'.$id_supplier; } ?>" value="Annuler">
 			</td>
 		</tr>
 		</form>
