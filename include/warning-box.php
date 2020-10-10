@@ -4,12 +4,16 @@
 // $title
 // $action
 // $message_text
+// $transmit_post
 ?>
 
 <?php en_tete($title) ?>
 
 <center class="box-warn">
 <form action="<?=$action?>" method="POST">
+	<?php if ($transmit_post) { foreach ($_POST as $key => $value) { ?>
+		<input type="hidden" name="<?=$key?>" value="<?=$value?>">
+	<?php } } ?>
 	<?=$message_text?>
 	<hr>
 	<button type="submit" name="ok" value="next">Suite</button>

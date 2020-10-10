@@ -44,6 +44,7 @@ if (!empty($erreur)) {
 	$action       = 'supplier-list.php?highlight='.$id_supplier;
 	$highlight    = $id_supplier;
 	$message_text = $erreur;
+	$transmit_post = true;
 	include_once('include/warning-box.php');
 	exit();
 }
