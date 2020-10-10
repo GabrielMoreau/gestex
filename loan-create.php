@@ -45,30 +45,30 @@ if (!empty($erreur)) {
 	exit();
 }
 
-if ($pdo = connect_db()) {
-	if ($flag_new == true) {
-		$loan = get_loan_short_by_id_equipment($pdo, $id_equipment);
-		if (!empty($loan)) {
-			$title        = 'Erreur concernant un emprunt';
-			$action       = 'equipment-view.php?id='.$id_equipment;
-			$message_text = 'L\'appareil est d&eacute;j&agrave; emprunt&eacute;';
-			include_once('include/warning-box.php');
-			exit();
-		}
+$pdo = connect_db_or_alert();
 
-		// inscription
-		$id_loan = set_loan_new($pdo, $id_equipment, $id_equipe, $date_emprunt, $date_retour, $commentaire);
-		$message_text = 'Ajout du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
-	}
-	else {
-		set_loan_update($pdo, $id_loan, $id_equipment, $id_equipe, $date_emprunt, $date_retour, $commentaire);
-		$message_text = 'Mise &agrave; jour du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
+if ($flag_new == true) {
+	$loan = get_loan_short_by_id_equipment($pdo, $id_equipment);
+	if (!empty($loan)) {
+		$title        = 'Erreur concernant un nouvel emprunt';
+		$action       = 'equipment-view.php?id='.$id_equipment;
+		$message_text = 'L\'appareil est d&eacute;j&agrave; emprunt&eacute;';
+		include_once('include/warning-box.php');
+		exit();
 	}
 
-	$title     = 'R&eacute;sultat demande d\'emprunt';
-	$action    = 'loan-list.php?id='.$id_loan;
-	$highlight = $id_loan;
-	include_once('include/message-box.php');
-	exit();
-} // end if connect
+	// inscription
+	$id_loan = set_loan_new($pdo, $id_equipment, $id_equipe, $date_emprunt, $date_retour, $commentaire);
+	$message_text = 'Ajout du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
+}
+else {
+	set_loan_update($pdo, $id_loan, $id_equipment, $id_equipe, $date_emprunt, $date_retour, $commentaire);
+	$message_text = 'Mise &agrave; jour du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
+}
+
+$title     = 'R&eacute;sultat demande d\'emprunt';
+$action    = 'equipement.view?id='.$id_equipment;
+$highlight = '';
+include_once('include/message-box.php');
+exit();
 ?>
