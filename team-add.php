@@ -2,41 +2,40 @@
 // team-add.php
 $web_page = true;
 
-// Authenticate
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
+// Authenticate
 auth_or_login('team-list.php');
 level_or_alert(3, 'Modification d\'une &eacute;quipe');
 
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-if (empty( $_GET['id'])) {
+$team_id = $param_post_or_get('id', 0);
+if ($team_id == 0) {
 	//->nouvelle inscription
 	$mode   = 'Ajouter';
 	$action = 'team-create.php';
 }
 else {
 	//->modif coordonnees
-	$equip_id = $_GET['id'];
-	$mode     = 'Modifier';
-	$action   = 'team-update.php';
+	$mode    = 'Modifier';
+	$action  = 'team-update.php';
 }
 
-if ($pdo = connect_db()) {
+$pdo = connect_db_or_alert();
 
 $team_chief_id = 0;
 
-if ($mode == 'Ajouter'){
+if ($mode == 'Ajouter')
 	en_tete('Ajouter une &eacute;quipe');
-}
 else if ($mode == 'Modifier') {
 	en_tete('Modifier les coordonn&eacute;es d\'une &eacute;quipe');
-
 	// recupere le fournisseur selectionne
-	$team = get_team_all_by_id($pdo, $equip_id);
-	$team_chief_id = $team['chef'];
+	$team_selected = get_team_all_by_id($pdo, $team_id);
+	$team_chief_id = $team_selected['chef'];
 }
 ?>
 
@@ -44,13 +43,13 @@ else if ($mode == 'Modifier') {
 <table>
 	<tbody>
 		<form action="<?php echo $action ?>" method="POST" name="inscrForm">
-		<input type="hidden" name="id_equip" value="<?php if( $mode=='Modifier'){ echo $equip_id; }?>" >
+		<input type="hidden" name="id_equip" value="<?php if( $mode=='Modifier'){ echo $team_id; }?>" >
 		<tr>
 			<th>
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="25" maxlength="30" placeholder="Nom *" value="<?php if ($mode == 'Modifier'){ echo $team['nom']; } ?>" >
+				<input type="text" name="nom" size="25" maxlength="30" placeholder="Nom *" value="<?php if ($mode == 'Modifier'){ echo $team_selected['nom']; } ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -58,7 +57,7 @@ else if ($mode == 'Modifier') {
 				Description
 			</th>
 			<td>
-				<input type="text" name="descr" size="25" maxlength="255" placeholder="Description" value="<?php if ($mode == 'Modifier'){ echo $team['descr']; } ?>" >
+				<input type="text" name="descr" size="25" maxlength="255" placeholder="Description" value="<?php if ($mode == 'Modifier'){ echo $team_selected['descr']; } ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -66,7 +65,7 @@ else if ($mode == 'Modifier') {
 				Compte *
 			</th>
 			<td>
-				<input type="text" name="compte" size="5" maxlength="5" placeholder="Compte *" value="<?php if ($mode == 'Modifier'){ echo $team['compte']; } ?>" >
+				<input type="text" name="compte" size="5" maxlength="5" placeholder="Compte *" value="<?php if ($mode == 'Modifier'){ echo $team_selected['compte']; } ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -74,7 +73,7 @@ else if ($mode == 'Modifier') {
 				Chef d'&eacute;quipe<br />
 			</th>
 			<td>
-			<?php // if( $mode=='Modifier'){ echo $team['chef']; } ?>
+			<?php // if( $mode=='Modifier'){ echo $team_selected['chef']; } ?>
 				<select name="chef">
 				<?php
 				// recupere laliste des chercheurs
@@ -118,7 +117,5 @@ else if ($mode == 'Modifier') {
 	</tbody>
 </table>
 </div>
-
-<?php } else { Header("Location: list_manip.php"); exit(); } ?>
 
 <?php pied_page() ?>
