@@ -26,7 +26,7 @@ else {
 	$action   = 'supplier-update.php';
 }
 
-$pdo = connect_db_or_alert());
+$pdo = connect_db_or_alert();
 
 $supplier = (object)[];
 if ($mode == 'Ajouter') {
@@ -59,7 +59,7 @@ else
 				Adresse *
 			</th>
 			<td>
-				<input type="text" name="adresse" size="50" maxlength="50" value="<?=param_post_key('adresse', $supplier)?>" placeholder="Adresse *">
+				<input type="text" name="adresse" size="50" maxlength="50" value="<?php echo param_post_key('adresse', $supplier) ?>" placeholder="Adresse *">
 			</td>
 		</tr>
 		<tr>
