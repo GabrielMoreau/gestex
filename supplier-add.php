@@ -26,8 +26,9 @@ else {
 	$action   = 'supplier-update.php';
 }
 
-if ($pdo = connect_db()) {
+$pdo = connect_db_or_alert());
 
+$supplier = (object)[];
 if ($mode == 'Ajouter') {
 	en_tete('Ajouter un fournisseur');
 }
@@ -38,7 +39,6 @@ else if ($mode == 'Modifier') {
 }
 else
 	redirect('supplier-list.php');
-}
 ?>
 
 <div class="form">
@@ -59,7 +59,7 @@ else
 				Adresse *
 			</th>
 			<td>
-				<input type="text" name="adresse" size="50" maxlength="50" value="<?php if ($mode == 'Modifier'){ echo param_post('adresse', $supplier['adresse']); } ?>" placeholder="Adresse *">
+				<input type="text" name="adresse" size="50" maxlength="50" value="<?=param_post_key('adresse', $supplier)?>" placeholder="Adresse *">
 			</td>
 		</tr>
 		<tr>
