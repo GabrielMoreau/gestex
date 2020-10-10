@@ -48,8 +48,6 @@ if (!empty($erreur)) {
 	exit();
 }
 
-en_tete('R&eacute;sultat modification');
-
 $pdo = connect_db_or_alert();
 
 // recupere les anciennes caracteristiques
@@ -69,10 +67,10 @@ if (   ($nom     != $supplier_registered['nom'])
 if ($modif != 0) {
 	$err_msg = set_supplier_update($pdo, $id_supplier, $nom, $adresse, $tel, $fax, $mail, $www, $contact, $descr);
 	if ($err_msg != '') {
-		$title       = 'Erreur fournisseur';
-		$action      = 'supplier-list.php?highlight='.$id_supplier;
-		$highlight   = $id_supplier;
-		$message_txt = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise &agrave; jour de la fiche fournisseur');
+		$title        = 'Erreur fournisseur';
+		$action       = 'supplier-list.php?highlight='.$id_supplier;
+		$highlight    = $id_supplier;
+		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise &agrave; jour de la fiche fournisseur');
 		include_once('include/message-box.php');
 		exit();
 	}
@@ -80,10 +78,10 @@ if ($modif != 0) {
 	redirect('supplier-list.php?highlight='.$id_supplier.'#item'.$id_supplier);
 }
 
-$title       = 'Modification fournisseur';
-$action      = 'supplier-list.php?highlight='.$id_supplier;
-$highlight   = $id_supplier;
-$message_txt = 'Aucune modification &agrave; faire';
+$title        = 'Modification fournisseur';
+$action       = 'supplier-list.php?highlight='.$id_supplier;
+$highlight    = $id_supplier;
+$message_text = 'Aucune modification &agrave; faire';
 include_once('include/message-box.php');
 exit();
 
