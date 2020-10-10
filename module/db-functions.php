@@ -21,6 +21,16 @@ function connect_db() {
 
 // ---------------------------------------------------------------------
 
+function connect_db_or_alert() {
+	if ($pdo = connect_db())
+		return $pdo;
+
+	include_once('include/alert-db.php');
+	exit();
+}
+
+// ---------------------------------------------------------------------
+
 function query_db($statement) {
 	$result   = mysql_query($statement) or die("<pre>\n\nCan't perform query: " . mysql_error() . " \n\n$statement\n\n</pre>");
 	$num_rows = numrows_db($result);
