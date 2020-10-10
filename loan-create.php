@@ -45,13 +45,11 @@ if (!empty($erreur)) {
 	exit();
 }
 
-en_tete('R&eacute;sultat demande d\'emprunt');
-
 if ($pdo = connect_db()) {
 	if ($flag_new == true) {
 		$loan = get_loan_short_by_id_equipment($pdo, $id_equipment);
 		if (!empty($loan)) {
-			$title        = 'Erreur sur l\'emprunt';
+			$title        = 'Erreur concernant un emprunt';
 			$action       = 'equipment-view.php?id='.$id_equipment;
 			$message_text = 'L\'appareil est d&eacute;j&agrave; emprunt&eacute;';
 			include_once('include/warning-box.php');
@@ -60,14 +58,17 @@ if ($pdo = connect_db()) {
 
 		// inscription
 		$id_loan = set_loan_new($pdo, $id_equipment, $id_equipe, $date_emprunt, $date_retour, $commentaire);
-		echo 'Ajout du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
+		$message_text = 'Ajout du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
 	}
 	else {
 		set_loan_update($pdo, $id_loan, $id_equipment, $id_equipe, $date_emprunt, $date_retour, $commentaire);
-		echo 'Mise &agrave; jour du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
+		$message_text = 'Mise &agrave; jour du pr&ecirc;t sur l\'appareil '.$id_equipment.' valid&eacute;<br />';
 	}
-	echo '<br /><br /><a href="loan-list.php">Suite</a>';
+
+	$title     = 'R&eacute;sultat demande d\'emprunt';
+	$action    = 'loan-list.php?id='.$id_loan;
+	$highlight = $id_loan;
+	include_once('include/message-box.php');
+	exit();
 } // end if connect
 ?>
-
-<?php pied_page() ?>
