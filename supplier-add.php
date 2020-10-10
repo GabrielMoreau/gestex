@@ -28,7 +28,7 @@ else {
 
 $pdo = connect_db_or_alert();
 
-$supplier = (object)[];
+$supplier = [];
 if ($mode == 'Ajouter') {
 	en_tete('Ajouter un fournisseur');
 }
