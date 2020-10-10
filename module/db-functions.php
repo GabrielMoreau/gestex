@@ -438,6 +438,18 @@ function get_supplier_find($pdo, $find='') {
 
 // ---------------------------------------------------------------------
 
+function set_supplier_new($pdo, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
+	$sql = 'INSERT INTO fournisseurs (nom, adresse, mail, www, tel, fax, contact, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+	$stmt = $pdo->prepare($sql);
+	$status = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description));
+	$err_msg = '';
+	if (!$status)
+		$err_msg = $stmt->errorInfo()[2];
+	return array($pdo->lastInsertId(), $err_msg);
+}
+
+// ---------------------------------------------------------------------
+
 function set_supplier_update($pdo, $id_supplier, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
 	$sql = 'UPDATE LOW_PRIORITY fournisseurs  SET nom = ?, adresse = ?, tel = ?, fax = ?, mail = ?, www = ?, contact = ?, descr = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
