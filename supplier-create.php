@@ -10,10 +10,7 @@ require_once('module/base-functions.php');
 auth_or_login('supplier-create.php');
 level_or_alert(3, 'Ajout d\'un fournisseur');
 
-//validation d'un nouveau fournisseur
-
 unset($erreur);
-unset($nom);
 
 //variables ne pouvant etre nulles
 $nom = param_post('nom');
@@ -41,23 +38,23 @@ if (!empty($erreur)) {
 	exit();
 }
 
-if ($pdo = connect_db()) {
-	//inscription
-	$sql = 'INSERT INTO fournisseurs (nom, adresse, mail, www, tel, fax, contact, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($nom, $adresse, $mail, $www, $phone, $fax, $contact, $descr));
-	$id_supplier = $pdo->lastInsertId();
-	if (!$status) {
-		// sql request !ok
-		include_once('include/alert-data.php');
-		exit();
-	}
+$pdo = connect_db_or_alert();
 
-	$title        = 'R&eacute;sultat ajout fournisseur';
-	$action       = 'supplier-list.php';
-	$highlight    = $id_supplier;
-	$message_text = 'Ajout du fournisseur '.$nom.' valid&eacute;';
-	include_once('include/message-box.php');
+//inscription
+$sql = 'INSERT INTO fournisseurs (nom, adresse, mail, www, tel, fax, contact, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+$stmt = $pdo->prepare($sql);
+$status = $stmt->execute(array($nom, $adresse, $mail, $www, $phone, $fax, $contact, $descr));
+$id_supplier = $pdo->lastInsertId();
+if (!$status) {
+	// sql request !ok
+	include_once('include/alert-data.php');
 	exit();
-	} //end if connect
+}
+
+$title        = 'R&eacute;sultat ajout fournisseur';
+$action       = 'supplier-list.php';
+$highlight    = $id_supplier;
+$message_text = 'Ajout du fournisseur '.$nom.' valid&eacute;';
+include_once('include/message-box.php');
+exit();
 ?>

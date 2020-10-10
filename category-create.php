@@ -22,7 +22,7 @@ $categorie_name = strtolower(param_post('categorie_name'));
 if (empty($categorie_name))
 	$erreur = 'Cat&eacute;gorie non pr&eacute;cis&eacute;e';
 
-$pdo = connect_db();
+$pdo = connect_db_or_alert();
 
 if (check_category_by_name($pdo, $categorie_name))
 	$erreur = 'La cat&eacute;gorie <i>'.$categorie_name.'</i> existe d&eacute;j&agrave;';
