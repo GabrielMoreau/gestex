@@ -67,7 +67,7 @@ else {
 }
 
 $title     = 'R&eacute;sultat demande d\'emprunt';
-$action    = 'equipement.view?id='.$id_equipment;
+$action    = 'equipment-view.php?id='.$id_equipment;
 $highlight = '';
 include_once('include/message-box.php');
 exit();
