@@ -2,17 +2,19 @@
 // supplier-add.php
 $web_page = true;
 
-// Authenticate
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
+// Authenticate
 auth_or_login('supplier-list.php');
 level_or_alert(2, 'Modification d\'une &eacute;quipe');
 
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-if (empty($_GET['id'])) {
+$supplier_id = param_post_or_get('id', 0);
+if ($supplier_id == 0) {
 	//on vient depuis index.html
 	//->nouvelle inscription
 	$mode   = 'Ajouter';
@@ -21,29 +23,26 @@ if (empty($_GET['id'])) {
 else {
 	//on vient depuis list_manip.php
 	//->modif coordonnees
-	$id_supplier = $_GET['id'];
 	$mode     = 'Modifier';
 	$action   = 'supplier-update.php';
 }
 
 $pdo = connect_db_or_alert();
 
-$supplier = [];
+$supplier_selected = [];
 if ($mode == 'Ajouter') {
 	en_tete('Ajouter un fournisseur');
 }
 else if ($mode == 'Modifier') {
 	en_tete('Modifier les coordonn&eacute;es d\'un fournisseur');
 	// recupere le fournisseur selectionne
-	$supplier = get_supplier_all_by_id($pdo, $id_supplier);
+	$supplier_selected = get_supplier_all_by_id($pdo, $supplier_id);
 }
-else
-	redirect('supplier-list.php');
 ?>
 
 <div class="form">
 <form action="<?php echo $action ?>" method="POST" name="inscrForm">
-	<input type="hidden" name="id_fourn" value="<?php if ($mode == 'Modifier'){ echo $id_supplier; } ?>">
+	<input type="hidden" name="id_fourn" value="<?php if ($mode == 'Modifier'){ echo $supplier_id; } ?>">
 <table>
 	<tbody>
 		<tr>
@@ -51,7 +50,7 @@ else
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="50" maxlength="50" value="<?= param_post_key('nom', $supplier) ?>" placeholder="Nom *">
+				<input type="text" name="nom" size="50" maxlength="50" value="<?= param_post_key('nom', $supplier_selected) ?>" placeholder="Nom *">
 			</td>
 		</tr>
 		<tr>
@@ -59,7 +58,7 @@ else
 				Adresse *
 			</th>
 			<td>
-				<input type="text" name="adresse" size="50" maxlength="50" value="<?= param_post_key('adresse', $supplier) ?>" placeholder="Adresse *">
+				<input type="text" name="adresse" size="50" maxlength="50" value="<?= param_post_key('adresse', $supplier_selected) ?>" placeholder="Adresse *">
 			</td>
 		</tr>
 		<tr>
@@ -67,7 +66,7 @@ else
 				Adresse courriel
 			</th>
 			<td>
-				<input type="text" name="addr_mail" size="50" maxlength="50" value="<?= param_post_key('mail', $supplier) ?>" placeholder="Adresse courriel">
+				<input type="text" name="addr_mail" size="50" maxlength="50" value="<?= param_post_key('mail', $supplier_selected) ?>" placeholder="Adresse courriel">
 			</td>
 		</tr>
 		<tr>
@@ -75,7 +74,7 @@ else
 				T&eacute;l&eacute;phone
 			</th>
 			<td>
-				<input type="text" name="phone" size="15" maxlength="15" value="<?= param_post_key('tel', $supplier) ?>" placeholder="T&eacute;l&eacute;phone">
+				<input type="text" name="phone" size="15" maxlength="15" value="<?= param_post_key('tel', $supplier_selected) ?>" placeholder="T&eacute;l&eacute;phone">
 			</td>
 		</tr>
 		<tr>
@@ -83,7 +82,7 @@ else
 				Fax
 			</th>
 			<td>
-				<input type="text" name="fax" size="15" maxlength="15" value="<?= param_post_key('fax', $supplier) ?>" placeholder="Fax">
+				<input type="text" name="fax" size="15" maxlength="15" value="<?= param_post_key('fax', $supplier_selected) ?>" placeholder="Fax">
 			</td>
 		</tr>
 		<tr>
@@ -91,14 +90,14 @@ else
 				URL
 			</th>
 			<td>
-				<input type="text" name="www" size="50" maxlength="60" value="<?= param_post_key('www', $supplier) ?>" placeholder="URL">
+				<input type="text" name="www" size="50" maxlength="60" value="<?= param_post_key('www', $supplier_selected) ?>" placeholder="URL">
 			</td>
 		</tr>
 		<tr>
 			<th>Contact(s) - nom, fonction, telephone...
 			</th>
 			<td>
-				<textarea name="contact" cols="50" rows="5" placeholder="Contact(s) - nom, fonction, t&eacute;l&eacute;phone..."><?= param_post_key('contact', $supplier) ?></textarea>
+				<textarea name="contact" cols="50" rows="5" placeholder="Contact(s) - nom, fonction, t&eacute;l&eacute;phone..."><?= param_post_key('contact', $supplier_selected) ?></textarea>
 			</td>
 		</tr>
 		<tr>
@@ -106,7 +105,7 @@ else
 			Utiliser des mots stanadards (capteur, moteur, profil&eacute;...)
 			</th>
 			<td>
-				<textarea name="descr" cols="50" rows="5" placeholder="Description pour faciliter la recherche de fournisseurs. Utiliser des mots standards (capteur, moteur, profil&eacute;...)"><?= param_post_key('descr', $supplier) ?></textarea>
+				<textarea name="descr" cols="50" rows="5" placeholder="Description pour faciliter la recherche de fournisseurs. Utiliser des mots standards (capteur, moteur, profil&eacute;...)"><?= param_post_key('descr', $supplier_selected) ?></textarea>
 			</td>
 		</tr>
 
@@ -123,7 +122,7 @@ else
 	<tbody>
 		<tr >
 			<td colspan="2" class="button">
-				<input class="cancel" type="submit" name="ok" formaction="supplier-list.php<?php if ($mode == 'Modifier'){ echo '?highlight='.$id_supplier.'#item'.$id_supplier; } ?>" value="Annuler">
+				<input class="cancel" type="submit" name="ok" formaction="supplier-list.php<?php if ($mode == 'Modifier'){ echo '?highlight='.$supplier_id.'#item'.$supplier_id; } ?>" value="Annuler">
 			</td>
 		</tr>
 		</form>
