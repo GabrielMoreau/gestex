@@ -70,46 +70,45 @@ if (!empty($erreur)) {
 }
 
 // tout est ok
-if ($pdo = connect_db()) {
+$pdo = connect_db_or_alert();
 
-	//recupere les anciennes caracteristiques
-	$equipment_registered = get_equipment_all_by_id($pdo, $id_equipment);
+//recupere les anciennes caracteristiques
+$equipment_selected = get_equipment_all_by_id($pdo, $id_equipment);
 
-	//modification app
-	$modif = 0;
-	if (($categorie != $equipment_registered['categorie'])
-		|| ($nom != $equipment_registered['nom'])
-		|| ($modele != $equipment_registered['modele'])
-		|| ($feature != $equipment_registered['gamme'])
-		|| ($tech != $equipment_registered['responsable'])
-		|| ($equipe != $equipment_registered['equipe'])
-		|| ($fourn != $equipment_registered['fournisseur'])
-		|| ($achat != $equipment_registered['achat'])
-		|| ($reparation != $equipment_registered['reparation'])
-		|| ($accessoires != $equipment_registered['accessoires'])
-		|| ($inventaire != $equipment_registered['inventaire'])
-		|| ($notice != $equipment_registered['notice'])
-		|| ($barcode != $equipment_registered['barcode'])
-		|| ($loanable != $equipment_registered['loanable']))
-		$modif = 1;
+//modification app
+$modif = 0;
+if (   ($categorie   != $equipment_selected['categorie'])
+	|| ($nom         != $equipment_selected['nom'])
+	|| ($modele      != $equipment_selected['modele'])
+	|| ($feature     != $equipment_selected['gamme'])
+	|| ($tech        != $equipment_selected['responsable'])
+	|| ($equipe      != $equipment_selected['equipe'])
+	|| ($fourn       != $equipment_selected['fournisseur'])
+	|| ($achat       != $equipment_selected['achat'])
+	|| ($reparation  != $equipment_selected['reparation'])
+	|| ($accessoires != $equipment_selected['accessoires'])
+	|| ($inventaire  != $equipment_selected['inventaire'])
+	|| ($notice      != $equipment_selected['notice'])
+	|| ($barcode     != $equipment_selected['barcode'])
+	|| ($loanable    != $equipment_selected['loanable']))
+	$modif = 1;
 
-	if ($modif != 0) {
-		$err_msg = set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
-		if ($err_msg != '' && $logged_level > 3)
-			echo 'Erreur : '. $err_msg.'<br>';
-		if ($notice != '') {
-			$id_datasheet = set_datasheet_new($pdo, $id_equipment, $_FILES["notice"]["name"], $_FILES["notice"]["tmp_name"]);
-			if (!$id_datasheet)
-				echo 'Erreur : la notice n\'est pas prise en compte car elle n\'est pas un fichier au format PDF !<br>';
-		}
-	} // end if modif
-	else {
-		echo 'Aucune modification &agrave; faire';
-		echo '<br><br><a href="equipment-view.php?id='.$id_equipment.'">Suite</a><br><br>\n';
-		pied_page();
-		exit();
-	} // else end
-} // end if connect
+if ($modif != 0) {
+	$err_msg = set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
+	if ($err_msg != '' && $logged_level > 3)
+		echo 'Erreur : '. $err_msg.'<br>';
+	if ($notice != '') {
+		$id_datasheet = set_datasheet_new($pdo, $id_equipment, $_FILES["notice"]["name"], $_FILES["notice"]["tmp_name"]);
+		if (!$id_datasheet)
+			echo 'Erreur : la notice n\'est pas prise en compte car elle n\'est pas un fichier au format PDF !<br>';
+	}
+} // end if modif
+else {
+	echo 'Aucune modification &agrave; faire';
+	echo '<br><br><a href="equipment-view.php?id='.$id_equipment.'">Suite</a><br><br>\n';
+	pied_page();
+	exit();
+} // else end
 
 // quand on va sur suite, on retourne sur la page de la categorie choisie
 redirect('equipment-view.php?id='.$id_equipment);
