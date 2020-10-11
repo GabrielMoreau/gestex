@@ -41,10 +41,10 @@ else if ($mode == 'Modifier') {
 ?>
 
 <div class="form">
+<form action="<?php echo $action ?>" method="POST" name="inscrForm">
+	<input type="hidden" name="id_equip" value="<?php if( $mode=='Modifier'){ echo $team_id; }?>" >
 <table>
 	<tbody>
-		<form action="<?php echo $action ?>" method="POST" name="inscrForm">
-		<input type="hidden" name="id_equip" value="<?php if( $mode=='Modifier'){ echo $team_id; }?>" >
 		<tr>
 			<th>
 				Nom *
@@ -97,18 +97,16 @@ else if ($mode == 'Modifier') {
 				<input type="submit" name="Login" value="<?php echo $mode ?>">
 			</td>
 		</tr>
-		</form>
 	</tbody>
 	<tbody>
-		<form action="team-list.php" method="POST" name="annulForm">
 		<tr>
 			<td colspan="2" class="button">
-				<input type="submit" name="annul" value="Annuler">
+				<input class="cancel" type="submit" name="ok" formaction="team-list.php<?php if ($mode == 'Modifier'){ echo '?highlight='.$team_id.'#item'.$team_id; } ?>" value="Annuler">
 			</td>
 		</tr>
-		</form>
 	</tbody>
 </table>
+</form>
 </div>
 
 <?php pied_page() ?>
