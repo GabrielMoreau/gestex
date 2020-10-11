@@ -30,8 +30,6 @@ if (empty($nom))
 if (empty($compte))
 	$erreur = 'Compte non pr&eacute;cis&eacute;';
 
-en_tete('R&eacute;sultat modification');
-
 if (!empty($erreur)) {
 	//erreur
 	$title         = 'Erreur &eacute;quipe';
@@ -57,22 +55,22 @@ if (   ($nom    != $team_selected['nom'])
 	$modif = 1;
 
 if ($modif != 0) {
-	$err_msg = set_team_update($pdo, $id_team, $nom, $descr, $compte, $chef) 
+	$err_msg = set_team_update($pdo, $team_id, $nom, $descr, $compte, $chef) 
 	if ($err_msg != '') {
 		$title        = 'Erreur &eacute;quipe';
-		$action       = 'team-list.php?highlight='.$id_team;
-		$highlight    = $id_team;
+		$action       = 'team-list.php?highlight='.$team_id;
+		$highlight    = $team_id;
 		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise &agrave; jour de l\'&eacute;quipe');
 		include_once('include/message-box.php');
 		exit();
 	}
 
-	redirect('team-list.php?highlight='.$id_team.'#item'.$id_team);
+	redirect('team-list.php?highlight='.$team_id.'#item'.$team_id);
 }
 
 $title        = 'Modification &eacute;quipe';
-$action       = 'team-list.php?highlight='.$id_team;
-$highlight    = $id_team;
+$action       = 'team-list.php?highlight='.$team_id;
+$highlight    = $team_id;
 $message_text = 'Aucune modification &agrave; faire';
 include_once('include/message-box.php');
 exit();
