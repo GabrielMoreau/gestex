@@ -55,7 +55,7 @@ if (   ($nom    != $team_selected['nom'])
 	$modif = 1;
 
 if ($modif != 0) {
-	$err_msg = set_team_update($pdo, $team_id, $nom, $descr, $compte, $chef) 
+	$err_msg = set_team_update($pdo, $team_id, $nom, $descr, $compte, $chef);
 	if ($err_msg != '') {
 		$title        = 'Erreur &eacute;quipe';
 		$action       = 'team-list.php?highlight='.$team_id;
