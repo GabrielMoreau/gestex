@@ -13,7 +13,7 @@ level_or_alert(3, 'Modification d\'une &eacute;quipe');
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-$team_id = $param_post_or_get('id', 0);
+$team_id = param_post_or_get('id', 0);
 if ($team_id == 0) {
 	//->nouvelle inscription
 	$mode   = 'Ajouter';
@@ -29,6 +29,7 @@ $pdo = connect_db_or_alert();
 
 $team_chief_id = 0;
 
+$team_selected = [];
 if ($mode == 'Ajouter')
 	en_tete('Ajouter une &eacute;quipe');
 else if ($mode == 'Modifier') {
@@ -49,7 +50,7 @@ else if ($mode == 'Modifier') {
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="25" maxlength="30" placeholder="Nom *" value="<?php if ($mode == 'Modifier'){ echo $team_selected['nom']; } ?>" >
+				<input type="text" name="nom" size="25" maxlength="30" placeholder="Nom *" value="<?= param_post_key('nom', $team_selected) ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -57,7 +58,7 @@ else if ($mode == 'Modifier') {
 				Description
 			</th>
 			<td>
-				<input type="text" name="descr" size="25" maxlength="255" placeholder="Description" value="<?php if ($mode == 'Modifier'){ echo $team_selected['descr']; } ?>" >
+				<input type="text" name="descr" size="25" maxlength="255" placeholder="Description" value="<?= param_post_key('descr', $team_selected) ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -65,7 +66,7 @@ else if ($mode == 'Modifier') {
 				Compte *
 			</th>
 			<td>
-				<input type="text" name="compte" size="5" maxlength="5" placeholder="Compte *" value="<?php if ($mode == 'Modifier'){ echo $team_selected['compte']; } ?>" >
+				<input type="text" name="compte" size="5" maxlength="5" placeholder="Compte *" value="<?= param_post_key('compte', $team_selected) ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -73,17 +74,9 @@ else if ($mode == 'Modifier') {
 				Chef d'&eacute;quipe<br />
 			</th>
 			<td>
-			<?php // if( $mode=='Modifier'){ echo $team_selected['chef']; } ?>
 				<select name="chef">
 				<?php
-				// recupere laliste des chercheurs
-				// $sql = 'SELECT id, nom, prenom FROM users WHERE level >= 1 and valid = 1;';
-				// $stmt = $pdo->prepare($sql);
-				// $stmt->execute();
-				// $user_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				$user_fetch = get_user_listshort_with_right($pdo, 1, $team_chief_id);
-				// list($qheq,$numeq) = query_db($querry);
-				// 	while ($chef = result_db($qheq)){
 				foreach ($user_fetch as $chef) {
 					echo '<option value="'.$chef['id'].'"';
 					if ($mode == 'Modifier' && $chef['id'] == $team_chief_id) {
