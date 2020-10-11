@@ -17,14 +17,16 @@ $logged_level = $_SESSION['logged_level'];
 
 unset($erreur);
 
-$team_id = param_post('id_equip', 0);
+$team_id = param_post('id_equip', 0); // -> modify
+$flag_new = true;
+if ($team_id > 0)
+	$flag_new = false;
+
 $nom     = param_post('nom');
 $compte  = param_post('compte');
 $chef    = param_post('chef');
 $descr   = param_post('descr');
 // variables ne pouvant etre nulles
-if ($team_id == 0)
-	$erreur = 'Id non pr&eacute;cis&eacute;';
 if (empty($nom))
 	$erreur = 'Nom d\'&eacute;quipe non pr&eacute;cis&eacute;';
 if (empty($compte))
@@ -43,6 +45,25 @@ if (!empty($erreur)) {
 
 $pdo = connect_db_or_alert();
 
+if ($flag_new) { // new
+	list($team_id, $err_msg) = set_team_new($pdo, $nom, $descr, $compte, $chef);
+	if ($err_msg != '') {
+		$title        = 'Erreur &eacute;quipe';
+		$action       = 'team-list.php';
+		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la cr&eacute;ation de l\'&eacute;quipe');
+		include_once('include/message-box.php');
+		exit();
+	}
+
+	$title        = 'Ajout &eacute;quipe';
+	$action       = 'team-list.php?highlight='.$team_id;
+	$highlight    = $team_id;
+	$message_text = 'Ajout de l\'&eacute;quipe '.$nom.' valid&eacute;e';
+	include_once('include/message-box.php');
+	exit();
+}
+
+// modify
 // recupere les anciennes caracteristiques
 $team_selected = get_team_all_by_id($pdo, $team_id);
 
