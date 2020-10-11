@@ -539,6 +539,18 @@ function set_team_new($pdo, $name, $description, $account, $manager) {
 }
 
 // ---------------------------------------------------------------------
+
+function set_team_update($pdo, $id_team, $name, $description, $account, $manager) {
+	$sql = 'UPDATE LOW_PRIORITY equipe SET nom = ?, descr = ?, compte = ?, chef = ? WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$status = $stmt->execute(array($name, $description, $account, $manager, $id_team));
+	$err_msg = '';
+	if (!$status)
+		$err_msg = $stmt->errorInfo()[2];
+	return $err_msg;
+}
+
+// ---------------------------------------------------------------------
 // User
 // ---------------------------------------------------------------------
 
