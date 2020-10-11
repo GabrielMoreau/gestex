@@ -2,20 +2,17 @@
 // loan-add.php
 $web_page = true;
 
-// Authenticate
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 require_once('module/base-functions.php');
 
-//if (!auth(3))
-	//Header("Location: login.php");
-session_start();
-if (empty($_SESSION['logged_user']))
-	$logged_level = 0;
-else {
-	$logged_id   = $_SESSION['logged_id'];
-	$logged_user = strtolower($_SESSION['logged_user']);
-}
+// Authenticate
+auth_or_login('loan-list.php');
+level_or_alert(3, 'Ajout ou modification d\'un pr&ecirc;t');
+
+$logged_id   = $_SESSION['logged_id'];
+$logged_user = strtolower($_SESSION['logged_user']);
 
 $equipment_id = param_get('equipment'); // -> new
 $loan_id      = param_get('id', 0);     // -> modify
