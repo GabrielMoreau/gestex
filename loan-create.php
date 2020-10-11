@@ -2,36 +2,34 @@
 // loan-create.php
 $web_page = true;
 
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
+// Authenticate
 auth_or_login('loan-list.php');
-level_or_alert(3, 'Modification d\'un pr&ecirc;t');
+level_or_alert(3, 'Ajout ou modification d\'un pr&ecirc;t');
 
 //validation d'un pret
 unset($erreur);
 
 //variables ne pouvant etre nulles
+$id_loan      = param_post('id_loan', 0); // modify
 $id_equipment = param_post('id_equipment');
+$id_equipe    = param_post('equipe');
+$date_emprunt = param_post('emprunt');
+$date_retour  = param_post('retour');
+$commentaire  = param_post('commentaire');
+//variables ne pouvant etre nulles
 if (empty($id_equipment))
 	$erreur = 'Nom de l\'appareil non pr&eacute;cis&eacute;';
-
-$id_equipe = param_post('equipe');
 if (empty($id_equipe))
 	$erreur = '&Eacute;quipe non pr&eacute;cis&eacute;';
-
-$date_emprunt = param_post('emprunt');
 if (empty($date_emprunt))
 	$erreur = 'Date d\'emprunt non pr&eacute;cis&eacute;';
 
-//variables pouvant etre nulles
-$date_retour = param_post('retour');
-$commentaire = param_post('commentaire');
-
-// modify an existing loan
-$id_loan = param_post('id_loan');
 $flag_new = true;
-if (!empty($id_loan))
+if ($id_loan > 0)
 	$flag_new = false;
 
 if (!empty($erreur)) {
@@ -41,6 +39,7 @@ if (!empty($erreur)) {
 	if ($flag_new == true)
 		$action   = 'loan-add.php?equipment='.$id_equipment;
 	$message_text = $erreur;
+	$transmit_post = true;
 	include_once('include/warning-box.php');
 	exit();
 }
