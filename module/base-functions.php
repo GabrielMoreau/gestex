@@ -30,8 +30,8 @@ function param_post_or_get($string, $default = '') {
 
 // ---------------------------------------------------------------------
 
-function param_post_key($string, $var = []) {
-	return param_post($string, empty($var[$string]) ? '' : $var[$string]);
+function param_post_key($string, $var = [], $default = '') {
+	return param_post($string, empty($var[$string]) ? $default : $var[$string]);
 }
 
 // ---------------------------------------------------------------------
