@@ -379,6 +379,19 @@ function set_loan_update($pdo, $id_loan, $id_equipment, $id_team, $date_begin, $
 }
 
 // ---------------------------------------------------------------------
+
+function del_loan($pdo, $id) {
+	$sql = 'DELETE LOW_PRIORITY FROM pret WHERE id = ? LIMIT 1;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (!$result)
+		return false;
+	else
+		return true;
+}
+
+// ---------------------------------------------------------------------
 // Supplier
 // ---------------------------------------------------------------------
 
