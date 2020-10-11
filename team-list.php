@@ -42,7 +42,7 @@ en_tete('Liste de toutes les &eacute;quipes');
 			if ($logged_level == 2)
 				echo '<th class="sorttable_nosort"></th>';
 			if ($logged_level >= 3)
-				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="team-add.php">'.ICON_ADD_TEAM.'</a></span></th>';
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="team-edit.php">'.ICON_ADD_TEAM.'</a></span></th>';
 			?>
 		</tr>
 
@@ -79,7 +79,7 @@ if ($pdo = connect_db()) {
 
 		if ($logged_level >= 2) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="team-add.php?id='.$team_current['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="team-edit.php?id='.$team_current['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($logged_level >= 3) {

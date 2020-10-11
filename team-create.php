@@ -30,7 +30,7 @@ if (empty($compte))
 if (!empty($erreur)) {
 	//erreur
 	$title         = 'Erreur &eacute;quipe';
-	$action        = 'team-add.php';
+	$action        = 'team-edit.php';
 	$highlight     = $team_id;
 	$message_text  = $erreur;
 	$transmit_post = true;

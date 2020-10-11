@@ -114,7 +114,7 @@ if ($pdo = connect_db()) {
 				} // end foreach
 				?>
 				</select>
-				<span class="option-right"><a href="team-add.php?"><?php echo ICON_ADD_TEAM ?></a></span>
+				<span class="option-right"><a href="team-edit.php?"><?php echo ICON_ADD_TEAM ?></a></span>
 			</td>
 		</tr>
 
