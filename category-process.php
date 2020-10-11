@@ -1,5 +1,5 @@
 <?php
-// category-create.php
+// category-process.php
 $web_page = true;
 
 // Authenticate
@@ -7,7 +7,7 @@ require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 require_once('module/base-functions.php');
 
-auth_or_login('category-create.php');
+auth_or_login('category-process.php');
 level_or_alert(3, 'Ajout d\'une cat&eacute;gorie');
 
 unset($erreur);

@@ -1,5 +1,5 @@
 <?php
-// category-add.php
+// category-edit.php
 $web_page = true;
 
 // Authenticate
@@ -29,7 +29,7 @@ en_tete($title);
 ?>
 
 <div class="form">
-<form action="category-create.php" method="POST" name="inscrForm">
+<form action="category-process.php" method="POST" name="inscrForm">
 	<input type="hidden" name="id_category" value="<?php echo $id_category ?>" >
 <table>
 	<tbody>

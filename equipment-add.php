@@ -66,7 +66,7 @@ if ($pdo = connect_db()) {
 				} // end foreach
 				?>
 				</select>
-				<span class="option-right"><a href="category-add.php?"><?php echo ICON_ADD_CATEGORY ?></a></span>
+				<span class="option-right"><a href="category-edit.php?"><?php echo ICON_ADD_CATEGORY ?></a></span>
 			</td>
 		</tr>
 

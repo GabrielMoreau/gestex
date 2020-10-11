@@ -112,7 +112,7 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 		<a class="dropbtn">Ajouter</a>
 		<div class="dropdown-content">
 			<?php if ($level >= 3) { ?><a href="equipment-add.php">Appareil</a><?php } ?>
-			<?php if ($level >= 3) { ?><a href="category-add.php">Cat&eacute;gorie</a><?php } ?>
+			<?php if ($level >= 3) { ?><a href="category-edit.php">Cat&eacute;gorie</a><?php } ?>
 			<?php if ($level >= 3) { ?><a href="team-edit.php">&Eacute;quipe</a><?php } ?>
 			<a href="supplier-add.php">Fournisseur</a>
 			<?php if ($level >= 3) { ?><a href="user-add.php">Utilisateur</a><?php } ?>
