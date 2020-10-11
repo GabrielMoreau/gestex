@@ -17,32 +17,28 @@ $logged_level = $_SESSION['logged_level'];
 
 unset($erreur);
 
+$supplier_id = param_post('id_fourn');
+$nom         = param_post('nom');
+$adresse     = param_post('adresse');
+$tel         = param_post('phone');
+$fax         = param_post('fax');
+$mail        = param_post('addr_mail');
+$www         = param_post('www');
+$contact     = param_post('contact');
+$descr       = param_post('descr');
 // variables ne pouvant pas etre nulles
-$id_supplier = param_post('id_fourn');
-if (empty($id_supplier))
+if (empty($supplier_id))
 	$erreur = 'Id non pr&eacute;cis&eacute;';
-
-$nom = param_post('nom');
 if (empty($nom))
 	$erreur = 'Nom non pr&eacute;cis&eacute;';
-
-$adresse = param_post('adresse');
 if (empty($adresse))
 	$erreur = 'Adresse non pr&eacute;cis&eacute;e';
-
-// variables pouvant etre nulles
-$tel     = param_post('phone');
-$fax     = param_post('fax');
-$mail    = param_post('addr_mail');
-$www     = param_post('www');
-$contact = param_post('contact');
-$descr   = param_post('descr');
 
 if (!empty($erreur)) {
 	//erreur
 	$title         = 'Erreur fournisseur';
-	$action        = 'supplier-add.php?id='.$id_supplier;
-	$highlight     = $id_supplier;
+	$action        = 'supplier-add.php?id='.$supplier_id;
+	$highlight     = $supplier_id;
 	$message_text  = $erreur;
 	$transmit_post = true;
 	include_once('include/warning-box.php');
@@ -52,7 +48,7 @@ if (!empty($erreur)) {
 $pdo = connect_db_or_alert();
 
 // recupere les anciennes caracteristiques
-$supplier_registered = get_supplier_all_by_id($pdo, $id_supplier);
+$supplier_registered = get_supplier_all_by_id($pdo, $supplier_id);
 
 $modif = 0;
 if (   ($nom     != $supplier_registered['nom'])
@@ -66,24 +62,23 @@ if (   ($nom     != $supplier_registered['nom'])
 	$modif = 1;
 
 if ($modif != 0) {
-	$err_msg = set_supplier_update($pdo, $id_supplier, $nom, $adresse, $tel, $fax, $mail, $www, $contact, $descr);
+	$err_msg = set_supplier_update($pdo, $supplier_id, $nom, $adresse, $tel, $fax, $mail, $www, $contact, $descr);
 	if ($err_msg != '') {
 		$title        = 'Erreur fournisseur';
-		$action       = 'supplier-list.php?highlight='.$id_supplier;
-		$highlight    = $id_supplier;
+		$action       = 'supplier-list.php?highlight='.$supplier_id;
+		$highlight    = $supplier_id;
 		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise &agrave; jour de la fiche fournisseur');
 		include_once('include/message-box.php');
 		exit();
 	}
 
-	redirect('supplier-list.php?highlight='.$id_supplier.'#item'.$id_supplier);
+	redirect('supplier-list.php?highlight='.$supplier_id.'#item'.$supplier_id);
 }
 
 $title        = 'Modification fournisseur';
-$action       = 'supplier-list.php?highlight='.$id_supplier;
-$highlight    = $id_supplier;
+$action       = 'supplier-list.php?highlight='.$supplier_id;
+$highlight    = $supplier_id;
 $message_text = 'Aucune modification &agrave; faire';
 include_once('include/message-box.php');
 exit();
-
 ?>
