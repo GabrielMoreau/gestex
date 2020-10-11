@@ -2,54 +2,57 @@
 // team-create.php
 $web_page = true;
 
-// Authenticate
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
+// Authenticate
 auth_or_login('team-del.php');
 level_or_alert(3, 'Suppression d\'une &eacute;quipe');
 
-//validation d'une nouvelle equipe
+$logged_user  = strtolower($_SESSION['logged_user']);
+$logged_level = $_SESSION['logged_level'];
+
+// validation d'une nouvelle equipe
 
 unset($erreur);
-unset($loggin);
-unset($password);
-unset($password2);
-unset($nom);
 
-//variables ne pouvant etre nulles
-
-if (empty($_POST['nom']))
+$nom     = param_post('nom');
+$compte  = param_post('compte');
+$chef    = param_post('chef');
+$descr   = param_post('descr');
+// variables ne pouvant etre nulles
+if (empty($nom))
 	$erreur = 'Nom d\'&eacute;quipe non pr&eacute;cis&eacute;';
-else {
-	$nom = $_POST['nom'];
-	if (empty($_POST['compte']))
-		$erreur = 'Compte non pr&eacute;cis&eacute;';
-	else {
-		$compte = $_POST['compte'];
-		$descr = $_POST['descr'];
-		//variables pouvant etre nulles
-		$chef = $_POST['chef'];
-	}
-}
-
-en_tete('R&eacute;sultat inscription');
+if (empty($compte))
+	$erreur = 'Compte non pr&eacute;cis&eacute;';
 
 if (!empty($erreur)) {
 	//erreur
-	echo '<br />Erreur : '.$erreur;
-	echo '<br /><a href="team-add.php">Suite</a><br />'.PHP_EOL;
-	pied_page();
+	$title         = 'Erreur &eacute;quipe';
+	$action        = 'team-add.php';
+	$highlight     = $team_id;
+	$message_text  = $erreur;
+	$transmit_post = true;
+	include_once('include/warning-box.php');
 	exit();
 }
 
+$pdo = connect_db_or_alert();
 
-if ($pdo = connect_db()) {
-	list($id_team, $err_msg) = set_team_new($pdo, $nom, $descr, $compte, $chef);
-
-	echo 'Ajout de '.$nom.' valid&eacute;<br />';
-	echo '<br><br><a href="team-list.php?highlight='.$id_team.'#item'.$id_team.'">Suite</a><br><br>';
+list($team_id, $err_msg) = set_team_new($pdo, $nom, $descr, $compte, $chef);
+if ($err_msg != '') {
+	$title        = 'Erreur &eacute;quipe';
+	$action       = 'team-list.php';
+	$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la cr&eacute;ation de l\'&eacute;quipe');
+	include_once('include/message-box.php');
+	exit();
 }
-?>
 
-<?php pied_page() ?>
+$title        = 'Ajout &eacute;quipe';
+$action       = 'team-list.php?highlight='.$team_id;
+$highlight    = $team_id;
+$message_text = 'Ajout de l\'&eacute;quipe '.$nom.' valid&eacute;e';
+include_once('include/message-box.php');
+exit();
+?>
