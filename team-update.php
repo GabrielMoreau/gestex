@@ -13,6 +13,8 @@ level_or_alert(3, 'Modification d\'une &eacute;quipe');
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
+// modification d'une equipe
+
 unset($erreur);
 
 $team_id = param_post('id_equip', 0);
@@ -20,7 +22,7 @@ $nom     = param_post('nom');
 $compte  = param_post('compte');
 $chef    = param_post('chef');
 $descr   = param_post('descr');
-//variables ne pouvant etre nulles
+// variables ne pouvant etre nulles
 if ($team_id == 0)
 	$erreur = 'Id non pr&eacute;cis&eacute;';
 if (empty($nom))
@@ -30,64 +32,48 @@ if (empty($compte))
 
 en_tete('R&eacute;sultat modification');
 
-if (!empty($erreur) ){
+if (!empty($erreur)) {
 	//erreur
-	echo '<br />Erreur : '.$erreur;
-	echo '<br /><a href="team-add.php?id='.$team_id.'">Suite</a><br />'.PHP_EOL;
-	pied_page();
+	$title         = 'Erreur &eacute;quipe';
+	$action        = 'team-add.php?id='.$team_id;
+	$highlight     = $team_id;
+	$message_text  = $erreur;
+	$transmit_post = true;
+	include_once('include/warning-box.php');
 	exit();
 }
 
 $pdo = connect_db_or_alert();
 
-//recupere les anciennes caracteristiques
+// recupere les anciennes caracteristiques
 $team_selected = get_team_all_by_id($pdo, $team_id);
 
-echo $nom." ".$team_selected['nom']."<br />";
-echo $descr." ".$team_selected['descr']."<br />";
-echo $compte." ".$team_selected['compte']."<br />";
-echo $chef." ".$team_selected['chef']."<br />";
-
-//modification equip
+// modification equipe
 $modif = 0;
-//on construit la demande
-$querry = 'UPDATE LOW_PRIORITY equipe SET ';
-	if ($nom != $team_selected['nom']){
-		//modif du nom
-		$modif = 1;
-		$querry .= "nom='$nom',";
-	}
-	if ($descr != $team_selected['descr']){
-		//modif de la descr
-		$modif = 1;
-		$querry .= "descr='$descr',";
-	}
-	if ($compte != $team_selected['compte']){
-		//modif du compte
-		$modif = 1;
-		$querry .= "compte='$compte',";
-	}
-	if ($chef != $team_selected['chef']){
-		//modif du chef
-		$modif = 1;
-		$querry .= "chef='$chef',";
-	}
-	// supprime la derniere virgule
-	$querry[strlen($querry)-1] = ' ';
-	//ajoute la clause
-	$querry .= " WHERE id='$team_id'";
-if ($modif != 0){
-	if ($logged_level >= 3)
-		$stmt = $pdo->prepare($querry);
-		$stmt->execute();
-		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-}//end if modif
-else {
-	echo 'Aucune modif a faire';
-	echo '<br /><br /><a href="team-list.php?highlight='.$team_id.'#item'.$team_id.'">Suite</a><br /><br />';
-	pied_page();
-	exit();
-	} // else end
+if (   ($nom    != $team_selected['nom'])
+	|| ($descr  != $team_selected['descr'])
+	|| ($compte != $team_selected['compte'])
+	|| ($chef   != $team_selected['chef']))
+	$modif = 1;
 
-redirect('team-list.php?highlight='.$team_id.'#item'.$team_id);
+if ($modif != 0) {
+	$err_msg = set_team_update($pdo, $id_team, $nom, $descr, $compte, $chef) 
+	if ($err_msg != '') {
+		$title        = 'Erreur &eacute;quipe';
+		$action       = 'team-list.php?highlight='.$id_team;
+		$highlight    = $id_team;
+		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise &agrave; jour de l\'&eacute;quipe');
+		include_once('include/message-box.php');
+		exit();
+	}
+
+	redirect('team-list.php?highlight='.$id_team.'#item'.$id_team);
+}
+
+$title        = 'Modification &eacute;quipe';
+$action       = 'team-list.php?highlight='.$id_team;
+$highlight    = $id_team;
+$message_text = 'Aucune modification &agrave; faire';
+include_once('include/message-box.php');
+exit();
 ?>
