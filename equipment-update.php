@@ -76,7 +76,7 @@ $pdo = connect_db_or_alert();
 $equipment_selected = get_equipment_all_by_id($pdo, $id_equipment);
 
 //modification app
-$modif = 0;
+$modif = false;
 if (   ($categorie   != $equipment_selected['categorie'])
 	|| ($nom         != $equipment_selected['nom'])
 	|| ($modele      != $equipment_selected['modele'])
@@ -91,9 +91,9 @@ if (   ($categorie   != $equipment_selected['categorie'])
 	|| ($notice      != $equipment_selected['notice'])
 	|| ($barcode     != $equipment_selected['barcode'])
 	|| ($loanable    != $equipment_selected['loanable']))
-	$modif = 1;
+	$modif = true;
 
-if ($modif != 0) {
+if ($modif) {
 	$err_msg = set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable);
 	if ($err_msg != '' && $logged_level > 3)
 		echo 'Erreur : '. $err_msg.'<br>';

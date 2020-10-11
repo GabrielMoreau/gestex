@@ -50,7 +50,7 @@ $pdo = connect_db_or_alert();
 // recupere les anciennes caracteristiques
 $supplier_selected = get_supplier_all_by_id($pdo, $supplier_id);
 
-$modif = 0;
+$modif = false;
 if (   ($nom     != $supplier_selected['nom'])
 	|| ($adresse != $supplier_selected['adresse'])
 	|| ($tel     != $supplier_selected['tel'])
@@ -59,9 +59,9 @@ if (   ($nom     != $supplier_selected['nom'])
 	|| ($www     != $supplier_selected['www'])
 	|| ($contact != $supplier_selected['contact'])
 	|| ($descr   != $supplier_selected['descr']))
-	$modif = 1;
+	$modif = true;
 
-if ($modif != 0) {
+if ($modif) {
 	$err_msg = set_supplier_update($pdo, $supplier_id, $nom, $adresse, $tel, $fax, $mail, $www, $contact, $descr);
 	if ($err_msg != '') {
 		$title        = 'Erreur fournisseur';

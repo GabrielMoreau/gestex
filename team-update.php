@@ -46,15 +46,14 @@ $pdo = connect_db_or_alert();
 // recupere les anciennes caracteristiques
 $team_selected = get_team_all_by_id($pdo, $team_id);
 
-// modification equipe
-$modif = 0;
+$modif = false;
 if (   ($nom    != $team_selected['nom'])
 	|| ($descr  != $team_selected['descr'])
 	|| ($compte != $team_selected['compte'])
 	|| ($chef   != $team_selected['chef']))
-	$modif = 1;
+	$modif = true;
 
-if ($modif != 0) {
+if ($modif) {
 	$err_msg = set_team_update($pdo, $team_id, $nom, $descr, $compte, $chef);
 	if ($err_msg != '') {
 		$title        = 'Erreur &eacute;quipe';
