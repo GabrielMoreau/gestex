@@ -198,7 +198,7 @@ if ($pdo = connect_db()) {
 
 		<tr>
 			<th>
-				Notice (facultatif)
+				Notice (facultatif) &nbsp; <?php echo ICON_SEE_DOC ?>
 			</th>
 			<td>
 				<?php if ($mode == 'Modifier' && $datasheet_count > 0) { ?>
@@ -214,7 +214,7 @@ if ($pdo = connect_db()) {
 
 		<tr>
 			<th>
-				Code barre (chiffres)
+				Code barre (chiffres) &nbsp; <?php echo ICON_BARCODE ?>
 			</th>
 			<td>
 				<input type="text" name="barcode" size="20" maxlength="20" value="<?php if ($mode == 'Modifier'){echo $equipment['barcode'];} ?>" placeholder="Code barre (chiffres)">
