@@ -156,7 +156,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 		<?php if ($datasheet_count > 0) { ?>
 		<tr class="datasheet">
 			<th rowspan="<?php echo $datasheet_count ?>">
-				Notice
+				Notice &nbsp; <?php echo ICON_SEE_DOC ?>
 			</th>
 				<?php if ($datasheet_count == 1) { ?>
 			<td>
