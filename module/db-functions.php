@@ -233,12 +233,8 @@ function set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $f
 function del_equipment($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM Listing WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
-	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	if (!$result)
-		return false;
-	else
-		return true;
+	$status = $stmt->execute(array($id));
+	return $status;
 }
 
 // ---------------------------------------------------------------------
@@ -295,9 +291,8 @@ function set_category_update($pdo, $id_category, $name) {
 function del_category_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM categorie WHERE id = ? LIMIT 1';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id));
-	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $result_fetch ? true : false;
+	$status = $stmt->execute(array($id));
+	return $status;
 }
 
 // ---------------------------------------------------------------------
