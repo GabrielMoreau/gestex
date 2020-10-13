@@ -29,6 +29,7 @@ if ($loan_id == 0) {
 
 $pdo = connect_db_or_alert();
 
+$loan_selected = [];
 if ($mode == 'Modifier') {
 	$loan_selected = get_loan_all_by_id($pdo, $loan_id);
 	$equipment_id = $loan_selected['nom'];
