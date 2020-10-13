@@ -51,7 +51,7 @@ $loanable    = param_post('loanable');
 
 $notice = '';
 if (isset($_FILES["notice"])) {
-	$notice = $_FILES["notice"]["name"];
+	$notice = $_FILES['notice']['name'];
 	$notice = str_replace(' ', '_', $notice);
 	$notice = str_replace('é', 'e', $notice);
 	$notice = str_replace('è', 'e', $notice);
@@ -98,7 +98,7 @@ if ($modif) {
 	if ($err_msg != '' && $logged_level > 3)
 		echo 'Erreur : '. $err_msg.'<br>';
 	if ($notice != '') {
-		$id_datasheet = set_datasheet_new($pdo, $id_equipment, $_FILES["notice"]["name"], $_FILES["notice"]["tmp_name"]);
+		$id_datasheet = set_datasheet_new($pdo, $id_equipment, 'notice');
 		if (!$id_datasheet)
 			echo 'Erreur : la notice n\'est pas prise en compte car elle n\'est pas un fichier au format PDF !<br>';
 	}

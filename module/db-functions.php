@@ -118,9 +118,30 @@ function get_datasheet_count_by_equipment($pdo, $id_equipment) {
 
 // ---------------------------------------------------------------------
 
-function set_datasheet_new($pdo, $equipment_id, $datasheet_filename_upload, $tmp_file) {
-	if (!preg_match('/\.pdf$/i', $datasheet_filename_upload))
+function set_datasheet_new($pdo, $equipment_id, $file_field_name) {
+	$datasheet_filename_upload = $_FILES[$file_field_name]['name'];
+	$datasheet_tmp_file        = $_FILES[$file_field_name]['tmp_name'];
+	$datasheet_io_error        = $_FILES[$file_field_name]['error'];
+
+	$file_upload_errors = array(
+		0 => 'There is no error, the file uploaded with success',
+		1 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+		2 => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
+		3 => 'The uploaded file was only partially uploaded',
+		4 => 'No file was uploaded',
+		6 => 'Missing a temporary folder',
+		7 => 'Failed to write file to disk.',
+		8 => 'A PHP extension stopped the file upload.',
+	);
+	if (!is_uploaded_file($datasheet_tmp_file) or $datasheet_io_error > 0) {
+		error_log('Error: not uploaded datasheet file - '.$datasheet_filename_upload.' - '.$file_upload_errors[$datasheet_io_error]);
 		return false;
+	}
+
+	if (!preg_match('/\.pdf$/i', $datasheet_filename_upload)) {
+		error_log('Error: datasheet file not a pdf - '.$datasheet_filename_upload);
+		return false;
+	}
 
 	$new_datasheet_path = './data/datasheet';
 	if (!is_dir($new_datasheet_path))
@@ -142,8 +163,10 @@ function set_datasheet_new($pdo, $equipment_id, $datasheet_filename_upload, $tmp
 	$new_dir = $new_datasheet_path.'/'.$sub_path;
 	if (!is_dir($new_dir))
 		mkdir($new_dir, 0755);
-	$status = move_uploaded_file($tmp_file, $new_dir.'/'.$datasheet_filename_kebab);
+
+	$status = move_uploaded_file($datasheet_tmp_file, $new_dir.'/'.$datasheet_filename_kebab);
 	if (!$status) {
+		error_log('Error: not move datasheet file '.$datasheet_filename_upload.' to '.$datasheet_filename_kebab);
 		del_datasheet($pdo, $id_datasheet);
 		return false;
 	}
