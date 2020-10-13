@@ -130,7 +130,9 @@ function set_datasheet_new($pdo, $equipment_id, $datasheet_filename_upload, $tmp
 	$new_dir = $new_datasheet_path.'/'.$sub_path;
 	if (!is_dir($new_dir))
 		mkdir($new_dir, 0755);
-	move_uploaded_file($tmp_file, $new_dir.'/'.$datasheet_filename_kebab);
+	$status = move_uploaded_file($tmp_file, $new_dir.'/'.$datasheet_filename_kebab);
+	if (!$status)
+		echo 'Erreur dans la creation de la notice';
 
 	return $id_datasheet;
 }
