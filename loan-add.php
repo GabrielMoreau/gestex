@@ -92,7 +92,7 @@ $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 		</tr>
 
 		<tr>
-			<td>Commentaire
+			<td>Commentaire (Nom de l'emprunteur)
 			</td>
 			<td>
 				<input type="text" name="commentaire" size="30" maxlength="30" value="<?= param_post_key('commentaire', $loan_selected) ?>" >
