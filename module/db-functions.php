@@ -86,6 +86,18 @@ function get_datasheet_basepath() {
 
 // ---------------------------------------------------------------------
 
+function get_datasheet_all_by_id($pdo, $id) {
+	$sql = 'SELECT * FROM datasheet WHERE id = ?;' ;
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch[0];
+	return false;
+}
+
+// ---------------------------------------------------------------------
+
 function get_datasheet_listall_by_equipment($pdo, $id_equipment) {
 	$sql = 'SELECT * FROM datasheet WHERE id_equipment = ?;' ;
 	$stmt = $pdo->prepare($sql);
@@ -131,10 +143,33 @@ function set_datasheet_new($pdo, $equipment_id, $datasheet_filename_upload, $tmp
 	if (!is_dir($new_dir))
 		mkdir($new_dir, 0755);
 	$status = move_uploaded_file($tmp_file, $new_dir.'/'.$datasheet_filename_kebab);
-	if (!$status)
-		echo 'Erreur dans la creation de la notice';
+	if (!$status) {
+		del_datasheet($pdo, $id_datasheet);
+		return false;
+	}
 
 	return $id_datasheet;
+}
+
+// ---------------------------------------------------------------------
+
+function del_datasheet($pdo, $id) {
+	$datasheet_selected = get_datasheet_all_by_id($pdo, $id);
+
+	$datasheet_basepath = get_datasheet_basepath();
+	$datasheet_pathname = $datasheet_selected['pathname'];
+	$datasheet_dirname  = pathinfo($datasheet_pathname, PATHINFO_DIRNAME);
+
+	if (is_file($datasheet_basepath.'/'.$datasheet_pathname))
+		$status = unlink($datasheet_basepath.'/'.$datasheet_pathname);
+
+	if (!empty($datasheet_dirname) and is_dir($datasheet_basepath.'/'.$datasheet_dirname))
+		$status = rmdir($datasheet_basepath.'/'.$datasheet_dirname);
+
+	$sql = 'DELETE LOW_PRIORITY FROM datasheet WHERE id = ? LIMIT 1;';
+	$stmt = $pdo->prepare($sql);
+	$status = $stmt->execute(array($id));
+	return $status;
 }
 
 // ---------------------------------------------------------------------
