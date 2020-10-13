@@ -161,12 +161,14 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				<?php if ($datasheet_count == 1) { ?>
 			<td>
 				<a href="<?php echo $datacheet_path.'/'.$datasheet_fetch[0]['pathname'] ?>" target="_top"><?php echo $datasheet_fetch[0]['description'] ?></a>
+				<?php if ($logged_level >= 3) {echo '<span class="option-right"><a href="datasheet-del.php?id='.$datasheet_fetch[0]['id'].'">'.ICON_TRASH.'</a></span>';} ?>
 			</td>
 			<?php } else { ?>
-				<?php $first = true; foreach ($datasheet_fetch as $datasheet) { ?>
+				<?php $first = true; foreach ($datasheet_fetch as $datasheet_current) { ?>
 				<?php if ($first) {$first = false;} else {echo '</tr>'.PHP_EOL.'<tr>'.PHP_EOL;} ?>
 				<td>
-					<a href="<?php echo $datacheet_path.'/'.$datasheet['pathname'] ?>" target="_top"><?php echo $datasheet['description'] ?></a>
+					<a href="<?php echo $datacheet_path.'/'.$datasheet_current['pathname'] ?>" target="_top"><?php echo $datasheet_current['description'] ?></a>
+					<?php if ($logged_level >= 3) {echo '<span class="option-right"><a href="datasheet-del.php?id='.$datasheet_current['id'].'">'.ICON_TRASH.'</a></span>';} ?>
 				</td>
 				<?php } ?>
 			<?php } ?>
@@ -190,7 +192,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 						echo 'Oui, en pr&ecirc;t <span class="option-right">';
 						if ($logged_level >= 3) {echo '<a href="loan-del.php?id='.$loan['id'].'">';}
 						echo ICON_RETURN;
-						if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-add.php?id=',$loan['id'],'">'.ICON_EDIT.'</a>&nbsp;';}
+						if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-add.php?id='.$loan['id'].'">'.ICON_EDIT.'</a>&nbsp;';}
 						echo '</span>'.PHP_EOL;
 						echo '<br>'.$loan['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan['retour'].PHP_EOL;
 						echo '<br>'.$loan['commentaire'].PHP_EOL;
