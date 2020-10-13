@@ -2,10 +2,11 @@
 // team-del.php
 $web_page = true;
 
-// Authenticate
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
+// Authenticate
 auth_or_login('team-del.php');
 level_or_alert(3, 'Suppression d\'une &eacute;quipe');
 
@@ -35,7 +36,7 @@ if ($valid == 'yes') {
 	redirect('team-list.php');
 }
 
-en_tete('Suppression &eacute;quipe');
+en_tete('Suppression d\'une &eacute;quipe');
 ?>
 
 <center class="alert">
