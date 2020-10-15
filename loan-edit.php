@@ -39,7 +39,7 @@ $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 ?>
 
 <div class="form">
-<form action="loan-create.php" method="POST" name="inscrForm">
+<form action="loan-process.php" method="POST" name="inscrForm">
 	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
 	<?php if ($mode == 'Modifier') { ?>
 		<input type="hidden" name="id_loan" value="<?php echo $loan_id ?>" >
