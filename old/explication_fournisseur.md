@@ -1,5 +1,5 @@
 # Explication fournisseur
-## `supplier-add.php`   (user lvl >=2) (formulaire du fournisseur)
+## `supplier-edit.php`   (user lvl >=2) (formulaire du fournisseur)
 1. un formulaire avec ajouter ou modifier suivant si on met un id de fournisseur ou non
 2. Si modification (id fournisseur existant) --> supplier-update.php
    Si ajout (id fournisseur null ou non existant) --> supplier-create.php

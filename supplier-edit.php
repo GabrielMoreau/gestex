@@ -1,5 +1,5 @@
 <?php
-// supplier-add.php
+// supplier-edit.php
 $web_page = true;
 
 // Module

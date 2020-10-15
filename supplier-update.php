@@ -37,7 +37,7 @@ if (empty($adresse))
 if (!empty($erreur)) {
 	//erreur
 	$title         = 'Erreur fournisseur';
-	$action        = 'supplier-add.php?id='.$supplier_id;
+	$action        = 'supplier-edit.php?id='.$supplier_id;
 	$highlight     = $supplier_id;
 	$message_text  = $erreur;
 	$transmit_post = true;

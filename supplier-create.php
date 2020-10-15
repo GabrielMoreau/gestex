@@ -35,7 +35,7 @@ $descr   = param_post('descr');
 if (!empty($erreur)) {
 	//erreur
 	$title         = 'Erreur';
-	$action        = 'supplier-add.php';
+	$action        = 'supplier-edit.php';
 	$message_text  =  $erreur;
 	$transmit_post = true;
 	include_once('include/warning-box.php');

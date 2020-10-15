@@ -56,7 +56,7 @@ en_tete('Liste de tous les fournisseurs', $find);
 			<?php } ?>
 			<?php if ($logged_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan=2">
-				<span class="option-right"><a href="supplier-add.php"><?php echo ICON_ADD_SUPPLIER ?></a></span>
+				<span class="option-right"><a href="supplier-edit.php"><?php echo ICON_ADD_SUPPLIER ?></a></span>
 			</th>
 			<?php } ?>
 		</tr>
@@ -91,7 +91,7 @@ if ($pdo = connect_db()) {
 		echo '  <td>'.$fournisseur['descr'].'</td>'.PHP_EOL;
 		if ($logged_level >= 2) {
 			echo '  </td><td>';
-			echo '    <a href="supplier-add.php?id='.$fournisseur['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="supplier-edit.php?id='.$fournisseur['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($logged_level >= 3) {
