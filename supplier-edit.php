@@ -14,18 +14,9 @@ $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $supplier_id = param_post_or_get('id', 0);
-if ($supplier_id == 0) {
-	//on vient depuis index.html
-	//->nouvelle inscription
+$mode = 'Modifier';
+if ($supplier_id == 0) // new
 	$mode   = 'Ajouter';
-	$action = 'supplier-create.php';
-}
-else {
-	//on vient depuis list_manip.php
-	//->modif coordonnees
-	$mode     = 'Modifier';
-	$action   = 'supplier-update.php';
-}
 
 $pdo = connect_db_or_alert();
 
@@ -41,7 +32,7 @@ else if ($mode == 'Modifier') {
 ?>
 
 <div class="form">
-<form action="<?php echo $action ?>" method="POST" name="inscrForm">
+<form action="supplier-process.php" method="POST" name="inscrForm">
 	<input type="hidden" name="id_fourn" value="<?php if ($mode == 'Modifier'){ echo $supplier_id; } ?>">
 <table>
 	<tbody>

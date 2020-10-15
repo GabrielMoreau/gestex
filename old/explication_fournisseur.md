@@ -2,7 +2,7 @@
 ## `supplier-edit.php`   (user lvl >=2) (formulaire du fournisseur)
 1. un formulaire avec ajouter ou modifier suivant si on met un id de fournisseur ou non
 2. Si modification (id fournisseur existant) --> supplier-update.php
-   Si ajout (id fournisseur null ou non existant) --> supplier-create.php
+   Si ajout (id fournisseur null ou non existant) --> supplier-process.php
 
 ## `supplier-update.php` user lvl >=2 ou 3 ??) (commande sql pour modifier un fournisseur)
 1. vérification (il y a bien un nom et une adresse ) + récupération des champs du formulaire
@@ -10,7 +10,7 @@
 --> si user lvl >=3 on affiche la commande sql et on l'éxécute
  ( pb ? au début du document on demande un user >=2 et pour éxécuter >=3 ???)
 
-## `supplier-create.php` (pas de lvl demandé) (pour ajouter un fournisseur à la bdd)
+## `supplier-process.php` (pas de lvl demandé) (pour ajouter un fournisseur à la bdd)
 1. vérification (il y a bien un nom et une adresse ) + récupération des champs du formulaire
 2. connexion à la bdd + éxécution de la commande sql qui ajoute un fournisseur à la bdd
  (pb ? pas de gestion des lvl du user ?)

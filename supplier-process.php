@@ -1,5 +1,5 @@
 <?php
-// supplier-create.php
+// supplier-process.php
 $web_page = true;
 
 // Module
@@ -7,7 +7,7 @@ require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
 // Authenticate
-auth_or_login('supplier-create.php');
+auth_or_login('supplier-process.php');
 level_or_alert(3, 'Ajout / Modificationd\'un fournisseur');
 
 $logged_user  = strtolower($_SESSION['logged_user']);
