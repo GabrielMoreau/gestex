@@ -64,7 +64,7 @@ if ($pdo = connect_db()) {
 	if (!empty($erreur)) {
 		//erreur
 		echo '<br /><b>Erreur de saisie : </b>'.$erreur;
-		echo '<br /><center><a href="user-add.php?'.$loggin.'">Suite</a></center><br />';
+		echo '<br /><center><a href="user-edit.php?'.$loggin.'">Suite</a></center><br />';
 	}
 	else {
 		/// tout est ok

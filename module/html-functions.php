@@ -115,7 +115,7 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 			<?php if ($level >= 3) { ?><a href="category-edit.php">Cat&eacute;gorie</a><?php } ?>
 			<?php if ($level >= 3) { ?><a href="team-edit.php">&Eacute;quipe</a><?php } ?>
 			<a href="supplier-edit.php">Fournisseur</a>
-			<?php if ($level >= 3) { ?><a href="user-add.php">Utilisateur</a><?php } ?>
+			<?php if ($level >= 3) { ?><a href="user-edit.php">Utilisateur</a><?php } ?>
 		</div>
 	</li>
 	<?php } ?>
@@ -143,7 +143,7 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 		<a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
 		<div class="dropdown-content">
 			<a href="logout.php"><?php echo ICON_LOGIN;?> Se d&eacute;connecter</a>
-			<a href="user-add.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>
+			<a href="user-edit.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>
 			<a href="user-changepwd.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PASWD;?> Changer le<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a>
 			<a href="user-loan.php?id=<?php echo $logged_id ?>"><?php echo ICON_BOOKING;?> Mes emprunts</a>
 		</div>

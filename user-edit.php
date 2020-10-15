@@ -1,5 +1,5 @@
 <?php
-// user-add.php
+// user-edit.php
 $web_page = true;
 
 // Authenticate

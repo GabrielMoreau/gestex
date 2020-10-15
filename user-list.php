@@ -44,7 +44,7 @@ en_tete('Liste de tous les utilisateurs');
 			</th>
 			<?php if ($logged_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan="3">
-				<span class="option-right"><a href="user-add.php?"><?php echo ICON_ADD_USER ?></a></span>
+				<span class="option-right"><a href="user-edit.php?"><?php echo ICON_ADD_USER ?></a></span>
 			</th>
 			<?php } ?>
 		</tr>
@@ -73,7 +73,7 @@ if ($pdo = connect_db()) {
 		echo '  <td>';
 		// l'utilisateur a la possiblite de modifier ses coordonnees
 		if ($logged_id == $data['id'] || $logged_level >= 3)
-			echo '    <a href="user-add.php?id='.$data['id'].'">'.$data['nom'].'</a>';
+			echo '    <a href="user-edit.php?id='.$data['id'].'">'.$data['nom'].'</a>';
 		else
 			echo      $data['nom'];
 
@@ -94,7 +94,7 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 		if ($logged_level >= 3) {
 			echo '  <td>';
-			echo '    <a href="user-add.php?id='.$data['id'].'">';
+			echo '    <a href="user-edit.php?id='.$data['id'].'">';
 			echo        ICON_PERSON_PROFIL;
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
