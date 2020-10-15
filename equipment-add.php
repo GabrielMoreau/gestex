@@ -145,7 +145,7 @@ if ($pdo = connect_db()) {
 				Date achat * (<i>format YYYY-MM-DD</i>)
 			</th>
 			<td>
-				<input type="text" name="achat" size="10" maxlength="10" value="<?php if ($mode == 'Modifier') { echo $equipment['achat']; } else { echo date('Y-m-d', time()); } ?>">
+				<input type="date" name="achat" size="10" maxlength="10" value="<?php if ($mode == 'Modifier') { echo $equipment['achat']; } else { echo date('Y-m-d', time()); } ?>">
 			</td>
 		</tr>
 

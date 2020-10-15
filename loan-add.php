@@ -79,7 +79,7 @@ $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 			<td>Date demande pr&ecirc;t * (<i>format YYYY-MM-DD</i>)
 			</td>
 			<td>
-				<input type="text" name="emprunt" size="10" maxlength="10" value="<?= param_post_key('emprunt', $loan_selected, date('Y-m-d', time())) ?>"
+				<input type="date" name="emprunt" size="10" maxlength="10" value="<?= param_post_key('emprunt', $loan_selected, date('Y-m-d', time())) ?>"
 			</td>
 		</tr>
 
@@ -87,7 +87,7 @@ $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 			<td>Date de retour estim&eacute;e * (<i>format YYYY-MM-DD</i>)
 			</td>
 			<td>
-				<input type="text" name="retour" size="10" maxlength="10" value="<?= param_post_key('retour', $loan_selected, date('Y-m-d', time())) ?>" >
+				<input type="date" name="retour" size="10" maxlength="10" value="<?= param_post_key('retour', $loan_selected, date('Y-m-d', time())) ?>" >
 			</td>
 		</tr>
 
