@@ -33,7 +33,7 @@ else if ($mode == 'Modifier') {
 
 <div class="form">
 <form action="supplier-process.php" method="POST" name="inscrForm">
-	<input type="hidden" name="id_fourn" value="<?php if ($mode == 'Modifier'){ echo $supplier_id; } ?>">
+	<input type="hidden" name="id" value="<?php if ($mode == 'Modifier'){ echo $supplier_id; } ?>">
 <table>
 	<tbody>
 		<tr>
