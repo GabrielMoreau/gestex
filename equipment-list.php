@@ -160,7 +160,7 @@ en_tete($title);
 				if ($logged_level >= 3) {echo '</a>';}
 			}
 			else {
-				if ($logged_level >= 3) {echo '    <a href="loan-add.php?equipment='.$equipment_item['id'].'">';}
+				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'">';}
 				echo ICON_BOOKING;
 				if ($logged_level >= 3) {echo '</a>';}
 			}

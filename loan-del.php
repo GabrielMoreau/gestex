@@ -19,7 +19,7 @@ if ($loan_id == 0 || $valid == 'cancel')
 	redirect('loan-list.php');
 
 if ($valid == 'edit')
-	redirect('loan-add.php?id='.$loan_id);
+	redirect('loan-edit.php?id='.$loan_id);
 
 $pdo = connect_db_or_alert();
 

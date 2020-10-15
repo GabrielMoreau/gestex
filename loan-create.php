@@ -35,9 +35,9 @@ if ($loan_id > 0)
 if (!empty($erreur)) {
 	//erreur
 	$title         = 'Erreur sur l\'emprunt';
-	$action        = 'loan-add.php?id='.$loan_id;
+	$action        = 'loan-edit.php?id='.$loan_id;
 	if ($flag_new == true)
-		$action    = 'loan-add.php?equipment='.$equipment_id;
+		$action    = 'loan-edit.php?equipment='.$equipment_id;
 	$message_text  = $erreur;
 	$transmit_post = true;
 	include_once('include/warning-box.php');

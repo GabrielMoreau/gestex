@@ -192,13 +192,13 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 						echo 'Oui, en pr&ecirc;t <span class="option-right">';
 						if ($logged_level >= 3) {echo '<a href="loan-del.php?id='.$loan['id'].'">';}
 						echo ICON_RETURN;
-						if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-add.php?id='.$loan['id'].'">'.ICON_EDIT.'</a>&nbsp;';}
+						if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan['id'].'">'.ICON_EDIT.'</a>&nbsp;';}
 						echo '</span>'.PHP_EOL;
 						echo '<br>'.$loan['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan['retour'].PHP_EOL;
 						echo '<br>'.$loan['commentaire'].PHP_EOL;
 					} else {
 						echo 'Oui'.'<span class="option-right">';
-						if ($logged_level >= 3) {echo '<a href="loan-add.php?equipment='.$equipment_selected['id'].'">';}
+						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'">';}
 						echo ICON_BOOKING;
 						if ($logged_level >= 3) {echo '</a>';}
 						echo '</span>'.PHP_EOL;

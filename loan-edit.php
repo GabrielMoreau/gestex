@@ -1,5 +1,5 @@
 <?php
-// loan-add.php
+// loan-edit.php
 $web_page = true;
 
 // Module

@@ -86,7 +86,7 @@ if ($pdo = connect_db()) {
 
 		if ($logged_level >= 3) {
 			echo '  <td>';
-			echo '    <a href="loan-add.php?id=',$data_current['id'],'">'.ICON_EDIT.'</a>';
+			echo '    <a href="loan-edit.php?id=',$data_current['id'],'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
 			echo '    <a href="loan-del.php?id=',$data_current['id'],'">'.ICON_RETURN.'</a>';
