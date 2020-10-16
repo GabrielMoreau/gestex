@@ -23,26 +23,23 @@ $pdo = connect_db_or_alert();
 $equipment_selected = [];
 $datasheet_path     = get_datasheet_basepath();
 $datasheet_count    = 0;
-$team_chief_id      = 0;
 if ($mode == 'Ajouter') {
-	$action = 'equipment-process.php?categorie='.$category_id;
+	en_tete('Ajouter un appareil');
 }
 else if ($mode == 'Modifier') {
-	$action = 'equipment-process.php?categorie='.$category_id;
-	en_tete('Modifier les caracteristiques d\'un appareil');
-
+	en_tete('Modifier un appareil');
 	// recupere l'appareil selectionne
 	$equipment_selected = get_equipment_all_by_id($pdo, $equipment_id);
 	$datasheet_fetch    = get_datasheet_listall_by_equipment($pdo, $equipment_id);
 	$datasheet_count    = count($datasheet_fetch);
-	$team_chief_id      = $equipment_selected['responsable'];
 }
+
+$team_chief_id = param_post_key('responsable', $equipment_selected, 0);
 ?>
 
 <div class="form">
-<form action="<?php echo $action ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
+<form action="equipment-process.php?categorie=<?php echo $category_id ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
 	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
-	<input type="hidden" name="id_category"  value="<?php echo $category_id  ?>" >
 <table>
 	<tbody>
 		<tr>
@@ -56,10 +53,7 @@ else if ($mode == 'Modifier') {
 				$category_fetch = get_category_listshort($pdo);
 				foreach ($category_fetch as $category_current) {
 					echo '<option value="'.$category_current['id'].'"';
-					if ($mode == 'Modifier' && $category_current['id'] == $equipment_selected['categorie']) {
-						echo " selected";
-					}
-					if ($mode == 'Ajouter' && $category_current['id'] == $category_id) {
+					if ($category_current['id'] == param_post_key('categorie', $equipment_selected, $category_id)) {
 						echo " selected";
 					}
 
@@ -77,7 +71,7 @@ else if ($mode == 'Modifier') {
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="30"  value="<?php param_post_key('nom', $equipment_selected) ?>" placeholder="Nom *">
+				<input type="text" name="nom" size="30"  value="<?= param_post_key('nom', $equipment_selected) ?>" placeholder="Nom *">
 			</td>
 		</tr>
 
@@ -86,7 +80,7 @@ else if ($mode == 'Modifier') {
 				Mod&egrave;le *
 			</th>
 			<td>
-				<input type="text"name="modele" size="30" value="<?php param_post_key('modele', $equipment_selected) ?>" placeholder="Mod&egrave;le *">
+				<input type="text"name="modele" size="30" value="<?= param_post_key('modele', $equipment_selected) ?>" placeholder="Mod&egrave;le *">
 			</td>
 		</tr>
 		<tr>
@@ -94,7 +88,7 @@ else if ($mode == 'Modifier') {
 				Caract&eacute;ristiques (gamme d'usage) *
 			</th>
 			<td>
-				<input type="text" name="gamme" size="30" maxlength="100" value="<?php param_post_key('gamme', $equipment_selected) ?>" placeholder="Caract&eacute;ristiques (gamme d'usage) *">
+				<input type="text" name="gamme" size="30" maxlength="100" value="<?= param_post_key('gamme', $equipment_selected) ?>" placeholder="Caract&eacute;ristiques (gamme d'usage) *">
 			</td>
 		</tr>
 
@@ -107,12 +101,12 @@ else if ($mode == 'Modifier') {
 				<?php
 				// recupere la liste des equipes
 				$team_fetch = get_team_listshort($pdo);
-				foreach ($team_fetch as $team) {
-					echo '<option value="'.$team['id'].'"';
-					if ($mode == 'Modifier' && $team['id'] == $equipment_selected['equipe']) {
+				foreach ($team_fetch as $team_current) {
+					echo '<option value="'.$team_current['id'].'"';
+					if ($team_current['id'] == param_post_key('equipe', $equipment_selected, 0)) {
 						echo ' selected';
 					}
-					echo '>'.$team['nom'].'</option>';
+					echo '>'.$team_current['nom'].'</option>';
 				} // end foreach
 				?>
 				</select>
@@ -129,12 +123,12 @@ else if ($mode == 'Modifier') {
 				<?php
 				// recupere la liste des fournisseurs
 				$supplier_fetch = get_supplier_listshort($pdo);
-				foreach ($supplier_fetch as $supplier) {
-					echo "<option value=\"".$supplier['id']."\"";
-					if ($mode == 'Modifier' && $supplier['id'] == $equipment_selected['fournisseur']) {
+				foreach ($supplier_fetch as $supplier_current) {
+					echo "<option value=\"".$supplier_current['id']."\"";
+					if ($supplier_current['id'] == param_post_key('fournisseur', $equipment_selected, 0)) {
 						echo ' selected';
 						}
-					echo '>'.$supplier['nom'].'</option>';
+					echo '>'.$supplier_current['nom'].'</option>';
 				} // end foreach
 				?>
 				</select>
@@ -147,7 +141,7 @@ else if ($mode == 'Modifier') {
 				Date achat * (<i>format YYYY-MM-DD</i>)
 			</th>
 			<td>
-				<input type="date" name="achat" size="10" maxlength="10" value="<?php if ($mode == 'Modifier') { echo $equipment_selected['achat']; } else { echo date('Y-m-d', time()); } ?>">
+				<input type="date" name="achat" size="10" maxlength="10" value="<?= param_post_key('achat', $equipment_selected, date('Y-m-d', time())) ?>">
 			</td>
 		</tr>
 
@@ -161,11 +155,11 @@ else if ($mode == 'Modifier') {
 				// recupere la liste des tech
 				$user_fetch = get_user_listshort_with_right($pdo, 1, $team_chief_id);
 				foreach ($user_fetch as $user) {
-					echo '<option value="'.$user['id'].'"';
-					if ($mode == 'Modifier' && $user['id'] == $team_chief_id) {
+					echo '<option value="'.$user_current['id'].'"';
+					if ($mode == 'Modifier' && $user_current['id'] == $team_chief_id) {
 						echo ' selected';
 					}
-					echo '>'.$user['nom'].' '.$user['prenom'].'</option>';
+					echo '>'.$user_current['nom'].' '.$user_current['prenom'].'</option>';
 				} // end foreach
 				?>
 				</select>
@@ -178,7 +172,7 @@ else if ($mode == 'Modifier') {
 				R&eacute;paration
 			</th>
 			<td>
-				<input type="text" name="reparation" size="30" maxlength="30" value="<?php param_post_key('reparation', $equipment_selected) ?>" placeholder="R&eacute;paration">
+				<input type="text" name="reparation" size="30" maxlength="30" value="<?= param_post_key('reparation', $equipment_selected) ?>" placeholder="R&eacute;paration">
 			</td>
 		</tr>
 		<tr>
@@ -186,7 +180,7 @@ else if ($mode == 'Modifier') {
 				Accessoires
 			</th>
 			<td>
-				<input type="text" name="accessoires" size="30" maxlength="30" value="<?php param_post_key('accessoires', $equipment_selected) ?>" placeholder="Accessoires">
+				<input type="text" name="accessoires" size="30" maxlength="30" value="<?= param_post_key('accessoires', $equipment_selected) ?>" placeholder="Accessoires">
 			</td>
 		</tr>
 		<tr>
@@ -194,7 +188,7 @@ else if ($mode == 'Modifier') {
 				Inventaire (facultatif)
 			</th>
 			<td>
-				<input type="text" name="inventaire" size="30" maxlength="30" value="<?php param_post_key('inventaire', $equipment_selected) ?>" placeholder="Inventaire (facultatif)">
+				<input type="text" name="inventaire" size="30" maxlength="30" value="<?= param_post_key('inventaire', $equipment_selected) ?>" placeholder="Inventaire (facultatif)">
 			</td>
 		</tr>
 
@@ -205,12 +199,12 @@ else if ($mode == 'Modifier') {
 			<td>
 				<?php if ($mode == 'Modifier' && $datasheet_count > 0) { ?>
 				<ul>
-					<?php foreach ($datasheet_fetch as $datasheet) { ?>
-					<li><a href="<?php echo $datasheet_path.'/'.$datasheet['pathname'] ?>" target="_top"><?php echo $datasheet['description'] ?> (<?php echo $datasheet['pathname']?>)</a></li>
+					<?php foreach ($datasheet_fetch as $datasheet_current) { ?>
+					<li><a href="<?php echo $datasheet_path.'/'.$datasheet_current['pathname'] ?>" target="_top"><?php echo $datasheet_current['description'] ?> (<?php echo $datasheet_current['pathname']?>)</a></li>
 					<?php } ?>
 				</ul>
 				<?php } ?>
-				<input type="file" name="notice" value="<?php param_post_key('notice', $equipment_selected) ?>" placeholder="Notice (facultatif)">
+				<input type="file" name="notice" value="<?= param_post_key('notice', $equipment_selected) ?>" placeholder="Notice (facultatif)">
 			</td>
 		</tr>
 
@@ -219,7 +213,7 @@ else if ($mode == 'Modifier') {
 				Code barre (chiffres) &nbsp; <?php echo ICON_BARCODE ?>
 			</th>
 			<td>
-				<input type="text" name="barcode" size="20" maxlength="20" value="<?php param_post_key('barcode', $equipment_selected) ?>" placeholder="Code barre (chiffres)">
+				<input type="text" name="barcode" size="20" maxlength="20" value="<?= param_post_key('barcode', $equipment_selected) ?>" placeholder="Code barre (chiffres)">
 			</td>
 		</tr>
 
@@ -228,7 +222,7 @@ else if ($mode == 'Modifier') {
 				Empruntable (oui / non - non par d&eacute;faut)
 			</th>
 			<td>
-				<input type="checkbox" name="loanable" value="1" <?php if ($mode == 'Modifier' && $equipment_selected['loanable'] == 1) echo 'checked' ?> >
+				<input type="checkbox" name="loanable" value="1" <?php if (param_post_key('loanable', $equipment_selected, 0) == 1) echo 'checked' ?> >
 			</td>
 		</tr>
 
