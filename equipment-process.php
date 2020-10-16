@@ -1,5 +1,5 @@
 <?php
-// equipment-create.php
+// equipment-process.php
 $web_page = true;
 
 // Module

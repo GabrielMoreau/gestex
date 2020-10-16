@@ -20,13 +20,13 @@ if ($pdo = connect_db()) {
 		// nouvel appareil
 		// transmet la valeur de la categorie a la page valid appareil
 		$mode   = 'Ajouter';
-		$action = 'equipment-create.php?categorie='.$id_category;
+		$action = 'equipment-process.php?categorie='.$id_category;
 		en_tete('Ajouter un appareil');
 		$team_chief_id = 0;
 	} else {
 		// modif appareil
 		$mode   = 'Modifier';
-		$action = 'equipment-update.php?categorie='.$id_category;
+		$action = 'equipment-process.php?categorie='.$id_category;
 		en_tete('Modifier les caracteristiques d\'un appareil');
 
 		// recupere l'appareil selectionne
