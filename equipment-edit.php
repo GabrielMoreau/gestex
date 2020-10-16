@@ -12,7 +12,7 @@ level_or_alert(3, 'Modification d\'un appareil');
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-$category_id  = param_get('categorie');
+$category_id  = param_post_or_get('categorie');
 $equipment_id = param_post_or_get('id', 0);
 $mode = 'Modifier';
 if ($equipment_id == 0) // new
@@ -42,6 +42,7 @@ else if ($mode == 'Modifier') {
 <div class="form">
 <form action="<?php echo $action ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
 	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
+	<input type="hidden" name="id_category"  value="<?php echo $category_id  ?>" >
 <table>
 	<tbody>
 		<tr>
@@ -76,7 +77,7 @@ else if ($mode == 'Modifier') {
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="30"  value="<?php if ($mode == 'Modifier'){ echo $equipment_selected['nom']; } ?>" placeholder="Nom *">
+				<input type="text" name="nom" size="30"  value="<?php param_post_key('nom', $equipment_selected) ?>" placeholder="Nom *">
 			</td>
 		</tr>
 
@@ -85,7 +86,7 @@ else if ($mode == 'Modifier') {
 				Mod&egrave;le *
 			</th>
 			<td>
-				<input type="text"name="modele" size="30" value="<?php if ($mode == 'Modifier'){ echo $equipment_selected['modele']; }?>" placeholder="Mod&egrave;le *">
+				<input type="text"name="modele" size="30" value="<?php param_post_key('modele', $equipment_selected) ?>" placeholder="Mod&egrave;le *">
 			</td>
 		</tr>
 		<tr>
@@ -93,7 +94,7 @@ else if ($mode == 'Modifier') {
 				Caract&eacute;ristiques (gamme d'usage) *
 			</th>
 			<td>
-				<input type="text" name="gamme" size="30" maxlength="100" value="<?php if ($mode == 'Modifier'){ echo $equipment_selected['gamme']; }?>" placeholder="Caract&eacute;ristiques (gamme d'usage) *">
+				<input type="text" name="gamme" size="30" maxlength="100" value="<?php param_post_key('gamme', $equipment_selected) ?>" placeholder="Caract&eacute;ristiques (gamme d'usage) *">
 			</td>
 		</tr>
 
@@ -177,7 +178,7 @@ else if ($mode == 'Modifier') {
 				R&eacute;paration
 			</th>
 			<td>
-				<input type="text" name="reparation" size="30" maxlength="30" value="<?php if ($mode == 'Modifier'){echo $equipment_selected['reparation'];} ?>" placeholder="R&eacute;paration">
+				<input type="text" name="reparation" size="30" maxlength="30" value="<?php param_post_key('reparation', $equipment_selected) ?>" placeholder="R&eacute;paration">
 			</td>
 		</tr>
 		<tr>
@@ -185,7 +186,7 @@ else if ($mode == 'Modifier') {
 				Accessoires
 			</th>
 			<td>
-				<input type="text" name="accessoires" size="30" maxlength="30" value="<?php if ($mode == 'Modifier'){echo $equipment_selected['accessoires'];} ?>" placeholder="Accessoires">
+				<input type="text" name="accessoires" size="30" maxlength="30" value="<?php param_post_key('accessoires', $equipment_selected) ?>" placeholder="Accessoires">
 			</td>
 		</tr>
 		<tr>
@@ -193,7 +194,7 @@ else if ($mode == 'Modifier') {
 				Inventaire (facultatif)
 			</th>
 			<td>
-				<input type="text" name="inventaire" size="30" maxlength="30" value="<?php if ($mode == 'Modifier'){echo $equipment_selected['inventaire'];} ?>" placeholder="Inventaire (facultatif)">
+				<input type="text" name="inventaire" size="30" maxlength="30" value="<?php param_post_key('inventaire', $equipment_selected) ?>" placeholder="Inventaire (facultatif)">
 			</td>
 		</tr>
 
@@ -209,7 +210,7 @@ else if ($mode == 'Modifier') {
 					<?php } ?>
 				</ul>
 				<?php } ?>
-				<input type="file" name="notice" value="<?php if ($mode == 'Modifier'){echo $equipment_selected['notice'];} ?>" placeholder="Notice (facultatif)">
+				<input type="file" name="notice" value="<?php param_post_key('notice', $equipment_selected) ?>" placeholder="Notice (facultatif)">
 			</td>
 		</tr>
 
@@ -218,7 +219,7 @@ else if ($mode == 'Modifier') {
 				Code barre (chiffres) &nbsp; <?php echo ICON_BARCODE ?>
 			</th>
 			<td>
-				<input type="text" name="barcode" size="20" maxlength="20" value="<?php if ($mode == 'Modifier'){echo $equipment_selected['barcode'];} ?>" placeholder="Code barre (chiffres)">
+				<input type="text" name="barcode" size="20" maxlength="20" value="<?php param_post_key('barcode', $equipment_selected) ?>" placeholder="Code barre (chiffres)">
 			</td>
 		</tr>
 
