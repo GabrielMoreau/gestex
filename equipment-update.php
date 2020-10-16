@@ -63,7 +63,7 @@ en_tete('R&eacute;sultat modification appareil');
 if (!empty($erreur)) {
 	//erreur
 	echo '<br>Erreur : '.$erreur;
-	echo '<br><a href="equipment-add.php?id='.$id_equipment.'">Suite</a><br>\n';
+	echo '<br><a href="equipment-edit.php?id='.$id_equipment.'">Suite</a><br>\n';
 
 	pied_page();
 	exit();

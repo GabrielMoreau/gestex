@@ -72,7 +72,7 @@ $cat = $_GET['categorie'];
 if (!empty($erreur) ){
 	//erreur
 	echo '<br />Erreur : '.$erreur;
-	echo '<br /><a href="equipment-add.php">Suite</a><br />';
+	echo '<br /><a href="equipment-edit.php">Suite</a><br />';
 	pied_page();
 	exit();
 }

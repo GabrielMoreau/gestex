@@ -1,5 +1,5 @@
 <?php
-// equipment-add.php
+// equipment-edit.php
 $web_page = true;
 
 // Authenticate

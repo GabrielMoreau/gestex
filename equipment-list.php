@@ -83,7 +83,7 @@ en_tete($title);
 			if ($logged_level == 2)
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($logged_level >= 3)
-				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="equipment-add.php">'.ICON_ADD_EQUIPMENT.'</a></span></th>'.PHP_EOL;
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="equipment-edit.php">'.ICON_ADD_EQUIPMENT.'</a></span></th>'.PHP_EOL;
 			?>
 		</tr>
 
@@ -171,7 +171,7 @@ en_tete($title);
 
 		if ($logged_level >= 2) {
 			echo '  <td>';
-			echo '    <a href="equipment-add.php?id='.$equipment_item['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="equipment-edit.php?id='.$equipment_item['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 		if ($logged_level >= 3) {
