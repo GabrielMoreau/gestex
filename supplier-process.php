@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('supplier-process.php');
-level_or_alert(3, 'Ajout / Modificationd\'un fournisseur');
+level_or_alert(3, 'Ajout / Modification d\'un fournisseur');
 
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
