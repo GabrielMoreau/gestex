@@ -38,6 +38,8 @@ if ($valid == 'yes') {
 
 $team_name = get_team_by_id($pdo, $team_id)['nom'];
 
-// $team_id $team_name
+// $team_id
+// $team_name
 include_once('include/category-del.php');
+exit();
 ?>
