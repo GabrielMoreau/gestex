@@ -2,10 +2,11 @@
 // loan-del.php
 $web_page = true;
 
-// Authenticate
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
+// Authenticate
 auth_or_login('loan-list.php');
 level_or_alert(3, 'Suppression d\'un pr&ecirc;t');
 
@@ -32,26 +33,11 @@ if ($valid == 'yes') {
 	exit;
 	}
 
-$loan_selected      = get_loan_all_by_id($pdo, $loan_id);
-$equipment_selected = get_equipment_by_id($pdo, $loan_selected['nom']);
+$loan_selected  = get_loan_all_by_id($pdo, $loan_id);
+$equipment_name = get_equipment_by_id($pdo, $loan_selected['nom'])['nom'];
 
-en_tete('Retour d\'un appareil (fin du pr&ecirc;t)');
+// $loan_id
+// $equipment_name
+include_once('include/loan-del.php');
+exit();
 ?>
-
-<center class="alert">
-<form action="loan-del.php" method="POST">
-	<input type="hidden" name="id" value="<?php echo $loan_id ?>" >
-	Concernant le pr&ecirc;t <?php echo $loan_id ?> (<?php echo $equipment_selected['nom'] ?>), voulez-vous :
-	<ul>
-		<li>Modifier / &Eacute;diter le pr&ecirc;t ? <button type="submit" name="ok" value="edit"><?php echo ICON_EDIT ?></button></li>
-		<li>Supprimer le pr&ecirc;t (retour de l'appareil) ?
-			<button class="red" type="submit" name="ok" value="yes">Oui</button>
-			<button class="green" type="submit" formaction="loan-list.php" value="no">Non</button>
-		</li>
-	</ul>
-	<hr>
-	<button type="submit" name="ok" value="cancel">Annuler</button>
-</form>
-</center>
-
-<?php pied_page() ?>
