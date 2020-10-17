@@ -615,6 +615,15 @@ function set_team_update($pdo, $id_team, $name, $description, $account, $manager
 }
 
 // ---------------------------------------------------------------------
+
+function del_team_by_id($pdo, $id) {
+	$sql = 'DELETE LOW_PRIORITY FROM equipe WHERE id = ? LIMIT 1';
+	$stmt = $pdo->prepare($sql);
+	$status = $stmt->execute(array($id));
+	return $status;
+}
+
+// ---------------------------------------------------------------------
 // User
 // ---------------------------------------------------------------------
 

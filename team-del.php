@@ -10,36 +10,27 @@ require_once('module/html-functions.php');
 auth_or_login('team-del.php');
 level_or_alert(3, 'Suppression d\'une &eacute;quipe');
 
-$logged_id        = $_SESSION['logged_id'];
-$logged_user = strtolower($_SESSION['logged_user']);
+$team_id = param_post_or_get('id', 0);
+$valid   = param_post('ok', 'no');
 
-$team_id = $_POST['id'];
-if (empty($team_id))
-	$team_id = $_GET['id'];
-if (empty($team_id) || $_POST['ok'] == 'cancel')
+if ($team_id == 0 || $valid == 'cancel')
 	redirect('team-list.php');
 
-$valid = 'no';
-if ($_POST['ok'] == 'yes') // si ok dans l'url est 'yes', on valide la suppression
-	$valid = 'yes';
+$pdo = connect_db_or_alert();
+$team_name = get_team_by_id($pdo, $team_id)['nom'];
 
 if ($valid == 'yes') {
-	if ( $pdo = connect_db() ){
-		// on supprime l'equipe
-		$sql = 'DELETE LOW_PRIORITY FROM equipe WHERE id = ? LIMIT 1';
-		//  $result = mysql_query($querry);
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($team_id));
-		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	}
-	//on retourne a la page precedente
+	$flag = del_category_by_id($pdo, $team_id);
+	if ($flag) // ca a marche
+		redirect('team-list.php');
 	redirect('team-list.php');
+	$message_alert = 'Erreur dans la suppression de l\'&eacute;quipe : '.$team_name.' (#'.$team_id.')';
+	include_once('include/alert-data.php');
+	exit();
 }
-
-$team_name = get_team_by_id($pdo, $team_id)['nom'];
 
 // $team_id
 // $team_name
-include_once('include/category-del.php');
+include_once('include/team-del.php');
 exit();
 ?>
