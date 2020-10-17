@@ -14,7 +14,7 @@ $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
 $user_id = param_post_or_get('id', 0);
-if ($user_id == 0)) {
+if ($user_id == 0) {
 	//->nouvelle inscription
 	$mode       = 'Ajouter';
 	$action     = 'user-create.php';
@@ -182,6 +182,14 @@ if ($mode == 'Ajouter') {
 				<input type="submit" name="Login" value="<?php echo $mode ?>" >
 			</td>
 		</tr>
+	</tbody>
+	<tbody>
+		<tr >
+			<td colspan="2" class="button">
+				<input class="cancel" type="submit" name="ok" formaction="user-list.php<?php if ($mode == 'Modifier'){ echo '?highlight='.$user_id.'#item'.$user_id; } ?>" value="Annuler">
+			</td>
+		</tr>
+		</form>
 	</tbody>
 </table>
 </form>	
