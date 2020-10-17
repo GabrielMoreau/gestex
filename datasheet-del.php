@@ -39,20 +39,13 @@ if ($valid == 'yes') {
 	exit();
 	}
 
-$equipment_selected = get_equipment_by_id($pdo, $datasheet_selected['id_equipment']);
+$datasheet_pathname = $datasheet_selected['pathname'];
+$equipment_name     = get_equipment_by_id($pdo, $equipment_id )['nom'];
 
-en_tete('Suppression d\'une notice');
+// $datasheet_id
+// $datasheet_pathname
+// $equipment_id
+// $equipment_name
+include_once('include/datasheet-del.php');
+exit();
 ?>
-
-<center class="alert">
-<form action="datasheet-del.php" method="POST">
-	<input type="hidden" name="id" value="<?php echo $datasheet_id ?>" >
-	Voulez-vous supprimer la notice <b><?php echo $datasheet_selected['pathname'] ?></b> (<?php echo $equipment_selected['nom'] ?>) ?
-	<button class="red" type="submit" name="ok" value="yes">Oui</button>
-	<button class="green" type="submit" formaction="equipment-view.php?id=<?php echo $equipment_id ?>" value="no">Non</button>
-	<hr>
-	<button type="submit" name="ok" value="cancel">Annuler</button>
-</form>
-</center>
-
-<?php pied_page() ?>
