@@ -35,19 +35,9 @@ if ($valid == 'yes') {
 	//on retourne a la page precedente
 	redirect('team-list.php');
 }
+
+$team_name = get_team_by_id($pdo, $team_id)['nom'];
+
+// $team_id $team_name
+include_once('include/category-del.php');
 ?>
-
-<?php en_tete('Suppression d\'une &eacute;quipe'); ?>
-
-<center class="alert">
-<form action="team-del.php" method="POST">
-	<input type="hidden" name="id" value="<?php echo $team_id ?>">
-	Voulez-vous supprimer l'&eacute;quipe <?php echo $team_id ?> ?
-	<button class="red" type="submit" name="ok" value="yes">Oui</button>
-	<button class="green" type="submit" formaction="team-list.php" value="no">Non</button>
-	<hr>
-	<button type="submit" name="ok" value="cancel">Annuler</button>
-</form>
-</center>
-
-<?php pied_page() ?>
