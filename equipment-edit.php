@@ -17,7 +17,7 @@ $equipment_id = param_post_or_get('id', 0);
 $mode = 'Modifier';
 if ($equipment_id == 0) // new
 	$mode   = 'Ajouter';
-	
+
 $pdo = connect_db_or_alert();
 
 $equipment_selected = [];
@@ -154,7 +154,7 @@ $team_chief_id = param_post_key('responsable', $equipment_selected, 0);
 				<?php
 				// recupere la liste des tech
 				$user_fetch = get_user_listshort_with_right($pdo, 1, $team_chief_id);
-				foreach ($user_fetch as $user) {
+				foreach ($user_fetch as $user_current) {
 					echo '<option value="'.$user_current['id'].'"';
 					if ($mode == 'Modifier' && $user_current['id'] == $team_chief_id) {
 						echo ' selected';
