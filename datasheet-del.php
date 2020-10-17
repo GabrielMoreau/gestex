@@ -36,7 +36,7 @@ if ($valid == 'yes') {
 		redirect('equipment-view.php?id='.$equipment_id);
 	$message_alert = 'Erreur dans la suppression de la notice : '.$datasheet_id;
 	include_once('include/alert-data.php');
-	exit;
+	exit();
 	}
 
 $equipment_selected = get_equipment_by_id($pdo, $datasheet_selected['id_equipment']);

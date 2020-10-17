@@ -30,7 +30,7 @@ if ($valid == 'yes') {
 		redirect('loan-list.php');
 	$message_alert = 'Erreur dans la suppression du pr&ecirc;t : '.$loan_id;
 	include_once('include/alert-data.php');
-	exit;
+	exit();
 	}
 
 $loan_selected  = get_loan_all_by_id($pdo, $loan_id);
