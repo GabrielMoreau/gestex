@@ -16,7 +16,7 @@ $valid       = param_post('ok', 'no');
 if (empty($category_id) || $valid == 'cancel')
 	redirect('category-list.php');
 
-$pdo = connect_db();
+$pdo = connect_db_or_alert();
 $category_name = get_category_by_id($pdo, $category_id)['nom'];
 
 if ($valid == 'yes') {
@@ -30,7 +30,6 @@ if ($valid == 'yes') {
 	include_once('include/alert-data.php');
 	exit;
 	}
-
 
 // $category_id $category_name
 include_once('include/category-del.php');
