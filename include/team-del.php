@@ -1,11 +1,11 @@
 <?php if (!$web_page) exit() ?>
 
 <?php
-// $team_name
 // $team_id
+// $team_name
 ?>
 
-<?php en_tete('Suppression d\'une &eacute;quipe <i>'.$team_name.'</i>'); ?>
+<?php en_tete('Suppression de l\'&eacute;quipe <i>'.$team_name.'</i>'); ?>
 
 <center class="box-alert">
 <form action="team-del.php" method="POST">
