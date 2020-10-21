@@ -167,7 +167,7 @@ function set_datasheet_new($pdo, $equipment_id, $file_field_name) {
 	$status = move_uploaded_file($datasheet_tmp_file, $new_dir.'/'.$datasheet_filename_kebab);
 	if (!$status) {
 		error_log('Error: not move datasheet file '.$datasheet_filename_upload.' to '.$datasheet_filename_kebab);
-		del_datasheet($pdo, $id_datasheet);
+		del_datasheet_by_id($pdo, $id_datasheet);
 		return false;
 	}
 
@@ -176,7 +176,7 @@ function set_datasheet_new($pdo, $equipment_id, $file_field_name) {
 
 // ---------------------------------------------------------------------
 
-function del_datasheet($pdo, $id) {
+function del_datasheet_by_id($pdo, $id) {
 	$datasheet_selected = get_datasheet_all_by_id($pdo, $id);
 
 	$datasheet_basepath = get_datasheet_basepath();
@@ -435,7 +435,7 @@ function set_loan_update($pdo, $id_loan, $id_equipment, $id_team, $date_begin, $
 
 // ---------------------------------------------------------------------
 
-function del_loan($pdo, $id) {
+function del_loan_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM pret WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
 	$status = $stmt->execute(array($id));
