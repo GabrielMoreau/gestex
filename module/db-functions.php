@@ -525,6 +525,15 @@ function set_supplier_update($pdo, $id_supplier, $name, $address, $tel, $fax, $e
 }
 
 // ---------------------------------------------------------------------
+
+function del_supplier_by_id($pdo, $id) {
+	$sql = 'DELETE LOW_PRIORITY FROM fournisseurs WHERE id = ? LIMIT 1;';
+	$stmt = $pdo->prepare($sql);
+	$status = $stmt->execute(array($id));
+	return $status;
+}
+
+// ---------------------------------------------------------------------
 // Team
 // ---------------------------------------------------------------------
 
