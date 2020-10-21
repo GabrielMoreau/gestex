@@ -10,9 +10,6 @@ require_once('module/html-functions.php');
 auth_or_login('team-del.php');
 level_or_alert(3, 'Changer l\'&eacute;tat d\'un utilisateur');
 
-$logged_id   = $_SESSION['logged_id'];
-$logged_user = strtolower($_SESSION['logged_user']);
-
 $user_id     = param_post_or_get('id');
 $valid       = param_post('ok', 'no');
 $user_status = param_post_or_get('status');

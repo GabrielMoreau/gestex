@@ -10,9 +10,6 @@ require_once('module/html-functions.php');
 auth_or_login('loan-list.php');
 level_or_alert(3, 'Suppression d\'un pr&ecirc;t');
 
-$logged_id   = $_SESSION['logged_id'];
-$logged_user = strtolower($_SESSION['logged_user']);
-
 $loan_id = param_post_or_get('id', 0);
 $valid   = param_post('ok', 'no');
 
