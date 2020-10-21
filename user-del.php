@@ -10,11 +10,11 @@ require_once('module/html-functions.php');
 auth_or_login('team-del.php');
 level_or_alert(3, 'Changer l\'&eacute;tat d\'un utilisateur');
 
-$user_id     = param_post_or_get('id');
+$user_id     = param_post_or_get('id', 0);
 $valid       = param_post('ok', 'no');
 $user_status = param_post_or_get('status');
 
-if (empty($user_id) || $valid == 'cancel')
+if ($user_id == 0 || $valid == 'cancel')
 	redirect('user-list.php');
 
 $pdo = connect_db_or_alert();
