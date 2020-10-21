@@ -18,22 +18,23 @@ if (empty($user_id) || $valid == 'cancel')
 	redirect('user-list.php');
 
 $pdo = connect_db_or_alert();
+$user_selected = get_user_by_id($pdo, $user_id);
+$user_fullname = $user_selected['prenom'].' '.$user_selected['nom'];
 
 if ($valid == 'yes') {
 	// on change le status de cet user
 	if ($user_status == 0 || $user_status == 1) {
-		$sql = 'UPDATE users SET valid = ? WHERE id = ?;';
-		// 1 -> 0 and 0 -> 1 (modulo)
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array((($user_status + 1) % 2), $user_id));
+		$iostat = set_user_status_by_id($pdo, $user_id, (($user_status + 1) % 2));
+		if ($iostat) // ca a marche
+			redirect('user-list.php?highlight='.$user_id.'#item'.$user_id);
+		$message_alert = 'Erreur dans le changement de status de l\'utilisateur : '.$user_fullname.' (#'.$user_id.')';
+		include_once('include/alert-data.php');
+		exit();
 	}
 
 	//on retourne a la page precedente
 	redirect('user-list.php?highlight='.$user_id.'#item'.$user_id);
 }
-
-$user_selected = get_user_by_id($pdo, $user_id);
-$user_fullname = $user_selected['prenom'].' '.$user_selected['nom'];
 
 // $user_id
 // $user_status
