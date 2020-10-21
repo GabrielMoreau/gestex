@@ -23,7 +23,6 @@ if ($valid == 'yes') {
 	$flag = del_category_by_id($pdo, $team_id);
 	if ($flag) // ca a marche
 		redirect('team-list.php');
-	redirect('team-list.php');
 	$message_alert = 'Erreur dans la suppression de l\'&eacute;quipe : '.$team_name.' (#'.$team_id.')';
 	include_once('include/alert-data.php');
 	exit();
