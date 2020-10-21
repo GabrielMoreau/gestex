@@ -1,8 +1,8 @@
 <?php if (!$web_page) exit() ?>
 
 <?php
-// $category_name
 // $category_id
+// $category_name
 ?>
 
 <?php en_tete('Suppression de la cat&eacute;gorie <i>'.$category_name.'</i>') ?>
