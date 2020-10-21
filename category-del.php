@@ -23,7 +23,6 @@ if ($valid == 'yes') {
 	$flag = del_category_by_id($pdo, $category_id);
 	if ($flag) // ca a marche
 		redirect('category-list.php');
-	redirect('category-list.php');
 	$message_alert = 'Erreur dans la suppression de la cat&eacute;gorie : '.$category_name.' (#'.$category_id.')';
 	include_once('include/alert-data.php');
 	exit();
