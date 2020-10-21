@@ -290,7 +290,7 @@ function set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $f
 
 // ---------------------------------------------------------------------
 
-function del_equipment($pdo, $id) {
+function del_equipment_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM Listing WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
 	$status = $stmt->execute(array($id));
