@@ -2,10 +2,11 @@
 // user-create.php
 $web_page = true;
 
-// Authenticate
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
+// Authenticate
 auth_or_login('user-create.php');
 level_or_alert(3, 'Validation d\'un utilisateur');
 
@@ -55,34 +56,31 @@ $equipe = $_POST['equipe'];
 
 en_tete('R&eacute;sultat inscription');
 
-if ($pdo = connect_db()) {
-	if (check_val_in_db($pdo, 'users', 'loggin', $loggin)) {
-		// nom existant deja dans db
-		$erreur = 'L\'identifiant <i>'.$loggin.'</i> est d&eacute;j&agrave; utilis&eacute; dans la base de donn&eacute;es';
-	}
+$pdo = connect_db_or_alert();
 
-	if (!empty($erreur)) {
-		//erreur
-		echo '<br /><b>Erreur de saisie : </b>'.$erreur;
-		echo '<br /><center><a href="user-edit.php?'.$loggin.'">Suite</a></center><br />';
-	}
-	else {
-		/// tout est ok
-		$mot_crypte = md5($password);
-		$sql = 'INSERT INTO users (nom, prenom, loggin, password, email, level, tel, equipe, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array($nom, $prenom, $loggin, $mot_crypte, $mail, $level, $phone, $equipe, $theme));
-		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if (check_val_in_db($pdo, 'users', 'loggin', $loggin)) {
+	// nom existant deja dans db
+	$erreur = 'L\'identifiant <i>'.$loggin.'</i> est d&eacute;j&agrave; utilis&eacute; dans la base de donn&eacute;es';
+}
 
-		// inscription enregistree mais pas encore validee !
-		// envoi d'un courriel a l'admin
-		$texte = 'Inscription de '.$prenom.' '.$nom;
-		mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
+if (!empty($erreur)) {
+	//erreur
+	echo '<br /><b>Erreur de saisie : </b>'.$erreur;
+	echo '<br /><center><a href="user-edit.php?'.$loggin.'">Suite</a></center><br />';
+}
+else {
+	/// tout est ok
+	$mot_crypte = md5($password);
+	list($user_id, $err_msg) = set_user_new($pdo, $nom, $prenom, $loggin, $mot_crypte, $mail, $level, $phone, $equipe, $theme);
 
-		echo 'Ajout de '.$prenom.' '.$nom.' valid&eacute;<br />';
-		echo '<br /><center><a href="user-list.php">Suite</a></center><br /><br />';
-	} // else end
-} // end if connect
+	// inscription enregistree mais pas encore validee !
+	// envoi d'un courriel a l'admin
+	$texte = 'Inscription de '.$prenom.' '.$nom;
+	mail(GESTEX_ADMIN_MAIL, "[GestEx] ajout utilisateur - ".$nom." ".$prenom, $texte);
+
+	echo 'Ajout de '.$prenom.' '.$nom.' valid&eacute;<br />';
+	echo '<br /><center><a href="user-list.php">Suite</a></center><br /><br />';
+} // else end
 
 pied_page();
 ?>
