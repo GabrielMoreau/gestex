@@ -719,6 +719,15 @@ function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, 
 
 // ---------------------------------------------------------------------
 
+function set_user_password_by_id($pdo, $user_id, $user_password) {
+	$sql = 'UPDATE users SET password = ? WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$status = $stmt->execute(array($user_password, $user_id));
+	return $status;
+}
+
+// ---------------------------------------------------------------------
+
 function set_user_status_by_id($pdo, $user_id, $user_status) {
 	$sql = 'UPDATE users SET valid = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
