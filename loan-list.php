@@ -2,10 +2,11 @@
 // loan-list.php
 $web_page = true;
 
-// Authenticate
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
+// Authenticate
 session_start();
 if (empty($_SESSION['logged_user'])) {
 	$logged_level = 0;
@@ -40,63 +41,60 @@ en_tete('Liste des pr&ecirc;ts');
 			<th>
 				Num&eacute;ro de l'appareil
 			</th>
-			<?php 
-			if ($logged_level >= 3)
-				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
-				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
-			?>
+			<?php if ($logged_level >= 3) { ?>
+			<th class="sorttable_nosort"></th>
+			<th class="sorttable_nosort"></th>
+			<?php } ?>
 		</tr>
 
 <?php
-if ($pdo = connect_db()) {
-	$loan_fetch = get_loan_listall($pdo);
+$pdo = connect_db_or_alert();
+$loan_fetch = get_loan_listall($pdo);
 
-	$num_line = 1;
-	foreach ($loan_fetch as $data_current) {
-		if ($num_line % 2)
-			echo '<tr class="impair">'.PHP_EOL;
-		else
-			echo '<tr class="pair">'.PHP_EOL;
-		$num_line++;
+$num_line = 1;
+foreach ($loan_fetch as $loan_current) {
+	if ($num_line % 2)
+		echo '<tr class="impair">'.PHP_EOL;
+	else
+		echo '<tr class="pair">'.PHP_EOL;
+	$num_line++;
 
-		// recupere le nom de l'appareil via l'ID qui est mis dans un champs texte !
-		// $appareil_selected = get_equipment_by_id($pdo, $data_current['nom']);
+	// recupere le nom de l'appareil via l'ID qui est mis dans un champs texte !
+	// $appareil_selected = get_equipment_by_id($pdo, $loan_current['nom']);
+	echo '  <td>';
+	echo '    <a href="equipment-view.php?id='.$loan_current['nom'].'">'.$loan_current['equipment_name'].'</a>';
+	echo '  </td>'.PHP_EOL;
+
+	// recupere le nom d'equipe
+	$team_selected = get_team_by_id($pdo, $loan_current['equipe']);
+	echo '  <td>';
+	echo '    <a href="equipment-list.php?equipe='.$loan_current['equipe'].'">'.$team_selected['nom'].'</a>';
+	echo '  </td>'.PHP_EOL;
+
+	echo '  <td>';
+	echo      $loan_current['emprunt'];
+	echo '  </td>'.PHP_EOL;
+	echo '  <td>';
+	echo      $loan_current['retour'];
+	echo '  </td>'.PHP_EOL;
+	echo '  <td>';
+	echo      $loan_current['commentaire'];
+	echo '  </td>'.PHP_EOL;
+	echo '  <td>';
+	echo      $loan_current['nom'];
+	echo '  </td>'.PHP_EOL;
+
+	if ($logged_level >= 3) {
 		echo '  <td>';
-		echo '    <a href="equipment-view.php?id='.$data_current['nom'].'">'.$data_current['equipment_name'].'</a>';
-		echo '  </td>'.PHP_EOL;
-
-		// recupere le nom d'equipe
-		$team_selected = get_team_by_id($pdo, $data_current['equipe']);
-		echo '  <td>';
-		echo '    <a href="equipment-list.php?equipe='.$data_current['equipe'].'">'.$team_selected['nom'].'</a>';
-		echo '  </td>'.PHP_EOL;
-
-		echo '  <td>';
-		echo      $data_current['emprunt'];
+		echo '    <a href="loan-edit.php?id=',$loan_current['id'],'">'.ICON_EDIT.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo      $data_current['retour'];
+		echo '    <a href="loan-del.php?id=',$loan_current['id'],'">'.ICON_RETURN.'</a>';
 		echo '  </td>'.PHP_EOL;
-		echo '  <td>';
-		echo      $data_current['commentaire'];
-		echo '  </td>'.PHP_EOL;
-		echo '  <td>';
-		echo      $data_current['nom'];
-		echo '  </td>'.PHP_EOL;
+	}
 
-		if ($logged_level >= 3) {
-			echo '  <td>';
-			echo '    <a href="loan-edit.php?id=',$data_current['id'],'">'.ICON_EDIT.'</a>';
-			echo '  </td>'.PHP_EOL;
-			echo '  <td>';
-			echo '    <a href="loan-del.php?id=',$data_current['id'],'">'.ICON_RETURN.'</a>';
-			echo '  </td>'.PHP_EOL;
-		}
-
-		echo '</tr>'.PHP_EOL;
-	} // end foreach
-} // end if
-
+	echo '</tr>'.PHP_EOL;
+} // end foreach
 ?>
 	</tbody>
 </table>
