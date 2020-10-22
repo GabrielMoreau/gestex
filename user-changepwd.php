@@ -2,10 +2,11 @@
 // user-changepwd.php
 $web_page = true;
 
-// Authenticate
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
+// Authenticate
 auth_or_login('index.php');
 level_or_alert(1, 'Modification du mot de passe');
 
