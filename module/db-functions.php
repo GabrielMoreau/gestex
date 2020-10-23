@@ -736,6 +736,18 @@ function set_user_status_by_id($pdo, $user_id, $user_status) {
 }
 
 // ---------------------------------------------------------------------
+
+function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme) {
+	$sql = 'UPDATE LOW_PRIORITY users SET nom = ?, prenom = ?, email = ?, level = ?, tel= ?, equipe = ?, theme = ? WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$status = $stmt->execute(array($familyname, $firstname, $email, $level, $tel, $team_id, $theme));
+	$err_msg = '';
+	if (!$status)
+		$err_msg = $stmt->errorInfo()[2];
+	return $err_msg;
+}
+
+// ---------------------------------------------------------------------
 // Version
 // ---------------------------------------------------------------------
 
