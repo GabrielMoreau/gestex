@@ -54,7 +54,7 @@ if ($mode == 'Ajouter') {
 				Identifiant (login)
 			</th>
 			<td>
-				<b><?php echo $user_selected['loggin'] ?></b>
+				<b><?= param_post_key('loggin', $user_selected) ?></b>
 			</td>
 			<?php } ?>
 		</tr>
@@ -83,7 +83,7 @@ if ($mode == 'Ajouter') {
 				Nom de famille *
 			</th>
 			<td>
-				<input type="text" name="nom" size="30" maxlength="30" value="<?php if ($mode == 'Modifier') echo $user_selected['nom'] ?>" placeholder="Nom de famille *">
+				<input type="text" name="nom" size="30" maxlength="30" value="<?= param_post_key('nom', $user_selected) ?>" placeholder="Nom de famille *">
 			</td>
 		</tr>
 		<tr>
@@ -91,7 +91,7 @@ if ($mode == 'Ajouter') {
 				Pr&eacute;nom
 			</th>
 			<td>
-				<input type="text" name="prenom" size="30" maxlength="30" value="<?php if ($mode == 'Modifier') echo $user_selected['prenom'] ?>" placeholder="Pr&eacute;nom">
+				<input type="text" name="prenom" size="30" maxlength="30" value="<?= param_post_key('prenom', $user_selected) ?>" placeholder="Pr&eacute;nom">
 			</td>
 		</tr>
 		<tr>
@@ -99,7 +99,7 @@ if ($mode == 'Ajouter') {
 				Adresse courriel *
 			</th>
 			<td>
-				<input type="text" name="addr_mail" size="30" maxlength="50" value="<?php if ($mode == 'Modifier') echo $user_selected['email'] ?>" placeholder="Adresse courriel *">
+				<input type="text" name="addr_mail" size="30" maxlength="50" value="<?= param_post_key('email', $user_selected) ?>" placeholder="Adresse courriel *">
 			</td>
 		</tr>
 		<tr>
@@ -107,7 +107,7 @@ if ($mode == 'Ajouter') {
 				T&eacute;l&eacute;phone
 			</th>
 			<td>
-				<input type="text" name="phone" size="10" maxlength="10" value="<?php if ($mode=='Modifier') echo $user_selected['tel'] ?>" placeholder="T&eacute;l&eacute;phone">
+				<input type="text" name="phone" size="10" maxlength="10" value="<?= param_post_key('tel', $user_selected) ?>" placeholder="T&eacute;l&eacute;phone">
 			</td>
 		</tr>
 		<tr>
