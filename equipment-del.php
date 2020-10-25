@@ -20,8 +20,8 @@ $pdo = connect_db_or_alert();
 $equipment_name = get_equipment_by_id($pdo, $equipment_id)['nom'];
 
 if ($valid == 'yes') {
-	$flag = del_equipment_by_id($pdo, $equipment_id);
-	if ($flag) // ca a marche
+	$iostat = del_equipment_by_id($pdo, $equipment_id);
+	if ($iostat) // ca a marche
 		redirect('equipment-list.php');
 	$message_alert = 'Erreur dans la suppression d\'un appareil et des notices associ&eacute;es : '.$equipment_name.' (#'.$equipment_id.')';
 	include_once('include/alert-data.php');

@@ -22,8 +22,8 @@ if ($valid == 'edit')
 $pdo = connect_db_or_alert();
 
 if ($valid == 'yes') {
-	$flag = del_loan_by_id($pdo, $loan_id);
-	if ($flag) // ca a marche
+	$iostat = del_loan_by_id($pdo, $loan_id);
+	if ($iostat) // ca a marche
 		redirect('loan-list.php');
 	$message_alert = 'Erreur dans la suppression du pr&ecirc;t : '.$loan_id;
 	include_once('include/alert-data.php');

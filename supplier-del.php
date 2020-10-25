@@ -20,8 +20,8 @@ $pdo = connect_db_or_alert();
 $supplier_name = get_supplier_by_id($pdo, $supplier_id)['nom'];
 
 if ($valid == 'yes') {
-	$flag = del_supplier_by_id($pdo, $supplier_id);
-	if ($flag) // ca a marche
+	$iostat = del_supplier_by_id($pdo, $supplier_id);
+	if ($iostat) // ca a marche
 		redirect('supplier-list.php');
 	$message_alert = 'Erreur dans la suppression du fournisseur : '.$supplier_name.' (#'.$supplier_id.')';
 	include_once('include/alert-data.php');
