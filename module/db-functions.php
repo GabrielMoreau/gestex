@@ -130,8 +130,8 @@ function set_category_update($pdo, $id_category, $name) {
 function del_category_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM categorie WHERE id = ? LIMIT 1';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($id));
-	return $status;
+	$iostat = $stmt->execute(array($id));
+	return $iostat;
 }
 
 // ---------------------------------------------------------------------
@@ -222,8 +222,8 @@ function set_datasheet_new($pdo, $equipment_id, $file_field_name) {
 	if (!is_dir($new_dir))
 		mkdir($new_dir, 0755);
 
-	$status = move_uploaded_file($datasheet_tmp_file, $new_dir.'/'.$datasheet_filename_kebab);
-	if (!$status) {
+	$iostat = move_uploaded_file($datasheet_tmp_file, $new_dir.'/'.$datasheet_filename_kebab);
+	if (!$iostat) {
 		error_log('Error: not move datasheet file '.$datasheet_filename_upload.' to '.$datasheet_filename_kebab);
 		del_datasheet_by_id($pdo, $id_datasheet);
 		return false;
@@ -242,15 +242,15 @@ function del_datasheet_by_id($pdo, $id) {
 	$datasheet_dirname  = pathinfo($datasheet_pathname, PATHINFO_DIRNAME);
 
 	if (is_file($datasheet_basepath.'/'.$datasheet_pathname))
-		$status = unlink($datasheet_basepath.'/'.$datasheet_pathname);
+		$iostat = unlink($datasheet_basepath.'/'.$datasheet_pathname);
 
 	if (!empty($datasheet_dirname) and is_dir($datasheet_basepath.'/'.$datasheet_dirname))
-		$status = rmdir($datasheet_basepath.'/'.$datasheet_dirname);
+		$iostat = rmdir($datasheet_basepath.'/'.$datasheet_dirname);
 
 	$sql = 'DELETE LOW_PRIORITY FROM datasheet WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($id));
-	return $status;
+	$iostat = $stmt->execute(array($id));
+	return $iostat;
 }
 
 // ---------------------------------------------------------------------
@@ -327,9 +327,9 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $
 	$sql = 'INSERT INTO Listing (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice, barcode, loanable)';
 	$sql .=            ' VALUES (?,         ?,   ?,      ?,     ?,      ?,           ?,     ?,           ?,          ?,           ?,          ?,      ?,       ?);';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable));
+	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable));
 	$err_msg = '';
-	if (!$status)
+	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
 	return array($pdo->lastInsertId(), $err_msg);
 }
@@ -339,9 +339,9 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $
 function set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable) {
 	$sql = 'UPDATE Listing SET categorie = ?, nom = ?, modele = ?, gamme = ?, equipe = ?, fournisseur = ?, achat = ?, responsable = ?, reparation = ?, accessoires = ?, inventaire = ?, notice = ?, barcode = ?, loanable = ? WHERE id = ?;)';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $id_equipment));
+	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $id_equipment));
 	$err_msg = '';
-	if (!$status)
+	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
 	return $err_msg;
 }
@@ -351,8 +351,8 @@ function set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $f
 function del_equipment_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM Listing WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($id));
-	return $status;
+	$iostat = $stmt->execute(array($id));
+	return $iostat;
 }
 
 // ---------------------------------------------------------------------
@@ -438,8 +438,8 @@ function set_loan_update($pdo, $id_loan, $id_equipment, $id_team, $date_begin, $
 function del_loan_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM pret WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($id));
-	return $status;
+	$iostat = $stmt->execute(array($id));
+	return $iostat;
 }
 
 // ---------------------------------------------------------------------
@@ -505,9 +505,9 @@ function get_supplier_find($pdo, $find='') {
 function set_supplier_new($pdo, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
 	$sql = 'INSERT INTO fournisseurs (nom, adresse, mail, www, tel, fax, contact, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description));
+	$iostat = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description));
 	$err_msg = '';
-	if (!$status)
+	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
 	return array($pdo->lastInsertId(), $err_msg);
 }
@@ -517,9 +517,9 @@ function set_supplier_new($pdo, $name, $address, $tel, $fax, $email, $www, $cont
 function set_supplier_update($pdo, $id_supplier, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
 	$sql = 'UPDATE LOW_PRIORITY fournisseurs  SET nom = ?, adresse = ?, tel = ?, fax = ?, mail = ?, www = ?, contact = ?, descr = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description, $id_supplier));
+	$iostat = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description, $id_supplier));
 	$err_msg = '';
-	if (!$status)
+	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
 	return $err_msg;
 }
@@ -529,8 +529,8 @@ function set_supplier_update($pdo, $id_supplier, $name, $address, $tel, $fax, $e
 function del_supplier_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM fournisseurs WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($id));
-	return $status;
+	$iostat = $stmt->execute(array($id));
+	return $iostat;
 }
 
 // ---------------------------------------------------------------------
@@ -604,9 +604,9 @@ function get_team_count($pdo) {
 function set_team_new($pdo, $name, $description, $account, $manager) {
 	$sql = 'INSERT INTO equipe (nom, descr, compte, chef) VALUES (?,  ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($name, $description, $account, $manager));
+	$iostat = $stmt->execute(array($name, $description, $account, $manager));
 	$err_msg = '';
-	if (!$status)
+	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
 	return array($pdo->lastInsertId(), $err_msg);
 }
@@ -616,9 +616,9 @@ function set_team_new($pdo, $name, $description, $account, $manager) {
 function set_team_update($pdo, $id_team, $name, $description, $account, $manager) {
 	$sql = 'UPDATE LOW_PRIORITY equipe SET nom = ?, descr = ?, compte = ?, chef = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($name, $description, $account, $manager, $id_team));
+	$iostat = $stmt->execute(array($name, $description, $account, $manager, $id_team));
 	$err_msg = '';
-	if (!$status)
+	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
 	return $err_msg;
 }
@@ -628,8 +628,8 @@ function set_team_update($pdo, $id_team, $name, $description, $account, $manager
 function del_team_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM equipe WHERE id = ? LIMIT 1';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($id));
-	return $status;
+	$iostat = $stmt->execute(array($id));
+	return $iostat;
 }
 
 // ---------------------------------------------------------------------
@@ -710,9 +710,9 @@ function get_user_count($pdo) {
 function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme) {
 	$sql = 'INSERT INTO users (nom, prenom, loggin, password, email, level, tel, equipe, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme));
+	$iostat = $stmt->execute(array($familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme));
 	$err_msg = '';
-	if (!$status)
+	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
 	return array($pdo->lastInsertId(), $err_msg);
 }
@@ -722,8 +722,8 @@ function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, 
 function set_user_password_by_id($pdo, $user_id, $user_password) {
 	$sql = 'UPDATE users SET password = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($user_password, $user_id));
-	return $status;
+	$iostat = $stmt->execute(array($user_password, $user_id));
+	return $iostat;
 }
 
 // ---------------------------------------------------------------------
@@ -731,8 +731,8 @@ function set_user_password_by_id($pdo, $user_id, $user_password) {
 function set_user_status_by_id($pdo, $user_id, $user_status) {
 	$sql = 'UPDATE users SET valid = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($user_status, $user_id));
-	return $status;
+	$iostat = $stmt->execute(array($user_status, $user_id));
+	return $iostat;
 }
 
 // ---------------------------------------------------------------------
@@ -740,9 +740,9 @@ function set_user_status_by_id($pdo, $user_id, $user_status) {
 function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme) {
 	$sql = 'UPDATE LOW_PRIORITY users SET nom = ?, prenom = ?, email = ?, level = ?, tel= ?, equipe = ?, theme = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$status = $stmt->execute(array($familyname, $firstname, $email, $level, $tel, $team_id, $theme));
+	$iostat = $stmt->execute(array($familyname, $firstname, $email, $level, $tel, $team_id, $theme));
 	$err_msg = '';
-	if (!$status)
+	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
 	return $err_msg;
 }
