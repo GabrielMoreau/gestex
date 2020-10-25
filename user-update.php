@@ -8,14 +8,13 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('user-list.php');
-level_or_alert(1, 'Mise &agrave; jour d\'un utilisateur');
+level_or_alert(1, 'Modification des utilisateurs');
 
 $logged_id    = $_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
 // modification d'un utilisateur
-unset($erreur);
 
 $user_id = param_post('user2ch_id'); // *
 $nom     = param_post('nom');        // *

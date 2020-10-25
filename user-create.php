@@ -7,10 +7,14 @@ require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
 // Authenticate
-auth_or_login('user-create.php');
-level_or_alert(3, 'Validation d\'un utilisateur');
+auth_or_login('user-list.php');
+level_or_alert(1, 'Modification des utilisateurs');
 
-//validation d'un nouvel utilisateur
+$logged_id    = $_SESSION['logged_id'];
+$logged_user  = strtolower($_SESSION['logged_user']);
+$logged_level = $_SESSION['logged_level'];
+
+// validation et modification d'un nouvel utilisateur
 
 $user_id   = param_post('id', 0); // -> modify
 $flag_new = true;
@@ -62,6 +66,8 @@ if (!empty($erreur)) {
 }
 
 if ($flag_new) { // new
+	level_or_alert(3, 'Validation d\'un nouvel utilisateur');
+
 	$mot_crypte = md5($password);
 	list($user_id, $err_msg) = set_user_new($pdo, $nom, $prenom, $loggin, $mot_crypte, $mail, $level, $phone, $equipe, $theme);
 
