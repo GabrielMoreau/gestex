@@ -53,13 +53,13 @@ if (!empty($erreur)) {
 
 $pdo = connect_db_or_alert();
 
+// modify
+// recupere les anciennes caracteristiques
 $user_selected = get_user_all_by_id($pdo, $user_id);
 
 if ($level != $user_selected['level'] && $logged_level < 3)
 	$level = $user_selected['level'];
 
-//modif inscription
-//on construit la demande
 $modif = false;
 if (   ($nom    != $user_selected['nom'])
 	|| ($prenom != $user_selected['prenom'])

@@ -95,4 +95,48 @@ if ($flag_new) { // new
 	include_once('include/message-box.php');
 	exit();
 }
+
+// modify
+// recupere les anciennes caracteristiques
+$user_selected = get_user_all_by_id($pdo, $user_id);
+
+if ($level != $user_selected['level'] && $logged_level < 3)
+	$level = $user_selected['level'];
+
+$modif = false;
+if (   ($nom    != $user_selected['nom'])
+	|| ($prenom != $user_selected['prenom'])
+	|| ($mail   != $user_selected['mail'])
+	|| ($level  != $user_selected['level'])
+	|| ($phone  != $user_selected['tel'])
+	|| ($equipe != $user_selected['equipe'])
+	|| ($theme  != $user_selected['theme']))
+	$modif = true;
+
+if ($modif) {
+	$err_msg = set_user_update($pdo, $user_id, $nom, $prenom, $mail, $level, $phone, $equipe, $theme) {
+	if ($err_msg != '') {
+		$title        = 'Erreur utilisateur';
+		$action       = 'user-list.php?highlight='.$user_id;
+		$highlight    = $user_id;
+		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise &agrave; jour de l\'utilisateur');
+		include_once('include/message-box.php');
+		exit();
+	}
+
+	redirect('user-list.php?highlight='.$user_id.'#item'.$user_id);
+}
+
+
+if ($user_id == $logged_id)
+	$_SESSION['logged_theme'] = theme($theme);
+
+if ($logged_level >= 3 && $valid == 1) {
+	//validation d'un user acceptee
+	//envoi d'un mail a cet user
+	//$texte = $prenom.' '.$nom.' votre inscription au systeme GestEx &agrave; &eacute;t&eacute; accept&eacute;e !';
+	// mail($mail, "[GestEx] inscription accept&eacute;e - ".$nom." ".$prenom, $texte);
+}
+
+redirect('user-list.php?highlight='.$user_id.'#item'.$user_id);
 ?>
