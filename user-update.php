@@ -16,14 +16,18 @@ $logged_level = $_SESSION['logged_level'];
 
 // modification d'un utilisateur
 
-$user_id = param_post('user2ch_id'); // *
+$user_id  = param_post('id', 0); // -> modify
+$flag_new = true;
+if ($user_id > 0)
+	$flag_new = false;
+
 $nom     = param_post('nom');        // *
+$level   = param_post('level');      // *
+$theme   = param_post('theme');      // *
 $mail    = param_post('addr_mail');  // *
 $prenom  = param_post('prenom');
 $phone   = param_post('phone');
 $equipe  = param_post('equipe');
-$level   = param_post('level');
-$theme   = param_post('theme');
 
 if (empty($user_id))
 	$erreur = 'Identifiant utilisateur non pr&eacute;cis&eacute;';
@@ -31,12 +35,18 @@ if (empty($nom))
 	$erreur = 'Nom de famille non pr&eacute;cis&eacute;';
 if (empty($mail))
 	$erreur = 'Adresse de courriel non pr&eacute;cis&eacute;';
+if (empty($level))
+	$erreur = 'Qualit&eacute; non pr&eacute;cis&eacute;';
+if (empty($theme))
+	$erreur = 'Th&egrave;me non pr&eacute;cis&eacute;';
 
 if (!empty($erreur)) {
-	//erreur
-	$title        = 'Erreur';
-	$action       = 'user-list.php';
-	$message_text = $erreur;
+	// erreur
+	$title         = 'Erreur utilisateur';
+	$action        = 'user-edit.php?id='.$user_id;
+	$highlight     = $user_id;
+	$message_text  = $erreur;
+	$transmit_post = true;
 	include_once('include/warning-box.php');
 	exit();
 }

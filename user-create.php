@@ -16,40 +16,44 @@ $logged_level = $_SESSION['logged_level'];
 
 // validation et modification d'un nouvel utilisateur
 
-$user_id   = param_post('id', 0); // -> modify
+$user_id  = param_post('id', 0); // -> modify
 $flag_new = true;
 if ($user_id > 0)
 	$flag_new = false;
 
-$loggin    = param_post('loggin');    // *
-$password  = param_post('password');  // *
-$password2 = param_post('password2'); // *
+$loggin    = param_post('loggin');    // * new only
+$password  = param_post('password');  // * new only
+$password2 = param_post('password2'); // * new only
 $nom       = param_post('nom');       // *
 $level     = param_post('level');     // *
 $theme     = param_post('theme');     // *
-$mail      = param_post('addr_mail');
+$mail      = param_post('addr_mail'); // *
 $prenom    = param_post('prenom');
 $phone     = param_post('phone');
 $equipe    = param_post('equipe');
 
-if (empty($loggin))
-	$erreur = 'Identifiant (login) non pr&eacute;cis&eacute;';
-if (empty($password))
-	$erreur = 'Password non pr&eacute;cis&eacute;';
-if (empty($password2))
-	$erreur = 'Confirmation de password non pr&eacute;cis&eacute;';
-if ($password != $password2)
-	$erreur = 'Les passwords diff&egrave;rent';
 if (empty($nom))
 	$erreur = 'Nom de famille non pr&eacute;cis&eacute;';
+if (empty($mail))
+	$erreur = 'Adresse de courriel non pr&eacute;cis&eacute;';
 if (empty($level))
 	$erreur = 'Qualit&eacute; non pr&eacute;cis&eacute;';
 if (empty($theme))
 	$erreur = 'Th&egrave;me non pr&eacute;cis&eacute;';
+if ($flag_new) {
+	if (empty($loggin))
+		$erreur = 'Identifiant (login) non pr&eacute;cis&eacute;';
+	if (empty($password))
+		$erreur = 'Password non pr&eacute;cis&eacute;';
+	if (empty($password2))
+		$erreur = 'Confirmation de password non pr&eacute;cis&eacute;';
+	if ($password != $password2)
+		$erreur = 'Les passwords diff&egrave;rent';
+}
 
 $pdo = connect_db_or_alert();
 
-if (check_val_in_db($pdo, 'users', 'loggin', $loggin)) {
+if ($flag_new and check_val_in_db($pdo, 'users', 'loggin', $loggin)) {
 	// nom existant deja dans db
 	$erreur = 'L\'identifiant <i>'.$loggin.'</i> est d&eacute;j&agrave; utilis&eacute; dans la base de donn&eacute;es';
 }
