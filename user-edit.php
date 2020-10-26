@@ -38,7 +38,7 @@ if ($mode == 'Ajouter') {
 
 <div class="form">
 <form action="<?php echo $action ?>" method="POST"  class="form" name="inscrForm">
-	<input type="hidden" name="user2ch_id"  value="<?php echo $user_id ?>">
+	<input type="hidden" name="id"  value="<?php echo $user_id ?>">
 <table>
 	<tbody>
 		<tr>
