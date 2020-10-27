@@ -29,7 +29,7 @@ $level     = param_post('level');     // *
 $theme     = param_post('theme');     // *
 $mail      = param_post('addr_mail'); // *
 $prenom    = param_post('prenom');
-$phone     = param_post('phone');
+$phone     = param_post('tel');
 $equipe    = param_post('equipe');
 
 if (empty($nom))

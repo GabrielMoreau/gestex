@@ -101,7 +101,7 @@ if ($mode == 'Ajouter') {
 				T&eacute;l&eacute;phone
 			</th>
 			<td>
-				<input type="text" name="phone" size="10" maxlength="10" value="<?= param_post_key('tel', $user_selected) ?>" placeholder="T&eacute;l&eacute;phone">
+				<input type="text" name="tel" size="10" maxlength="10" value="<?= param_post_key('tel', $user_selected) ?>" placeholder="T&eacute;l&eacute;phone">
 			</td>
 		</tr>
 		<tr>
