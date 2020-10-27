@@ -117,12 +117,11 @@ if ($mode == 'Ajouter') {
 					foreach ($team_fetch as $team_current) {
 						echo '<option value="'.$team_current['id'].'"';
 						// selectionne la bonne equipe
-						if($mode == 'Modifier'){
-							if ($team_current['id'] == $user_selected['equipe'])
-								echo ' selected';
-						}
+						if ($team_current['id'] == param_post_key('equipe', $user_selected, 0))
+							echo ' selected';
 						echo '>'.$team_current['nom'].'</option>';
-					} // end foreach ?>
+					} // end foreach
+					?>
 				</select>
 				<span class="option-right"><a href="team-edit.php"><?php echo ICON_ADD_TEAM ?></a></span>
 			</td>
