@@ -2,10 +2,11 @@
 // user-edit.php
 $web_page = true;
 
-// Authenticate
+// Module
 require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
+// Authenticate
 auth_or_login('user-list.php');
 level_or_alert(3, 'Modification d\'un utilisateur');
 
