@@ -91,7 +91,7 @@ if ($flag_new) { // new
 	$title        = 'Ajout utilisateur';
 	$action       = 'user-list.php?highlight='.$user_id;
 	$highlight    = $user_id;
-	$message_text = 'Ajout de l\'utilisateur '.$nom.' '.$prenom' valid&eacute;e';
+	$message_text = 'Ajout de l\'utilisateur '.$nom.' '.$prenom.' valid&eacute;e';
 	include_once('include/message-box.php');
 	exit();
 }
