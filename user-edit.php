@@ -132,17 +132,17 @@ if ($mode == 'Ajouter') {
 			</th>
 			<td>
 				<?php  if ($logged_level >= 3 || !isset($logged_level)) { // admin loggue ou premiere inscription: modif possible ?>
-				<input type="radio" name="level" value="0" <?php if ($mode === 'Modifier' && $user_selected['level'] == 0) echo 'checked="checked"' ?> >&Eacute;tudiant<br>
-				<input type="radio" name="level" value="1" <?php if ($mode === 'Modifier' && $user_selected['level'] == 1) echo 'checked="checked"' ?> >Chercheur<br>
-				<input type="radio" name="level" value="2" <?php if ($mode === 'Modifier' && $user_selected['level'] == 2) echo 'checked="checked"' ?> >ITA<br>
+				<input type="radio" name="level" value="0" <?php if (param_post_key('level', $user_selected, 0) == 0) echo 'checked="checked"' ?> >&Eacute;tudiant<br>
+				<input type="radio" name="level" value="1" <?php if (param_post_key('level', $user_selected, 0) == 1) echo 'checked="checked"' ?> >Chercheur<br>
+				<input type="radio" name="level" value="2" <?php if (param_post_key('level', $user_selected, 0) == 2) echo 'checked="checked"' ?> >ITA<br>
 				<?php } ?>
 				
 				<?php if (isset($logged_level) && $logged_level >= 3) { ?>
-				<input type="radio" name="level" value="3" <?php if ($mode === 'Modifier' && $user_selected['level'] == 3) echo 'checked="checked"' ?> >Admin<br>
+				<input type="radio" name="level" value="3" <?php if ((param_post_key('level', $user_selected, 0) == 3) echo 'checked="checked"' ?> >Admin<br>
 				<?php } ?>
 
 				<?php if (isset($logged_level) && $logged_level >= 4) { ?>
-				<input type="radio" name="level" value="4" <?php if ($mode === 'Modifier' && $user_selected['level'] == 4) echo 'checked="checked"' ?> >SuperAdmin<br>
+				<input type="radio" name="level" value="4" <?php if ((param_post_key('level', $user_selected, 0) == 4) echo 'checked="checked"' ?> >SuperAdmin<br>
 				<?php } ?>
 				
 				<?php if (isset($logged_level) && ($logged_level < 3)) { // consultation seulement
@@ -161,10 +161,10 @@ if ($mode == 'Ajouter') {
 				Th&egrave;me
 			</th>
 			<td>
-				<input type="radio" name="theme" value="random" <?php if ($mode === 'Modifier' && $user_selected['theme'] == 'random') echo 'checked' ?> >Al&eacute;atoire<br>
-				<input type="radio" name="theme" value="clair" <?php if ($mode === 'Modifier' && $user_selected['theme'] == 'clair') echo 'checked' ?> >Clair<br>
-				<input type="radio" name="theme" value="sombre" <?php if ($mode === 'Modifier' && $user_selected['theme'] == 'sombre') echo 'checked' ?>>Sombre<br>
-				<input type="radio" name="theme" value="solarizeddark" <?php if ($mode === 'Modifier' && $user_selected['theme'] == 'solarizeddark') echo 'checked' ?>>Solarized-Dark<br>
+				<input type="radio" name="theme" value="random" <?php if (param_post_key('theme', $user_selected) == 'random') echo 'checked' ?> >Al&eacute;atoire<br>
+				<input type="radio" name="theme" value="clair" <?php if (param_post_key('theme', $user_selected) == 'clair') echo 'checked' ?> >Clair<br>
+				<input type="radio" name="theme" value="sombre" <?php if (param_post_key('theme', $user_selected) == 'sombre') echo 'checked' ?>>Sombre<br>
+				<input type="radio" name="theme" value="solarizeddark" <?php if (param_post_key('theme', $user_selected) == 'solarizeddark') echo 'checked' ?>>Solarized-Dark<br>
 			</td>
 		</tr>
 		<tr>
