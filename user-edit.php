@@ -138,11 +138,11 @@ if ($mode == 'Ajouter') {
 				<?php } ?>
 				
 				<?php if (isset($logged_level) && $logged_level >= 3) { ?>
-				<input type="radio" name="level" value="3" <?php if ((param_post_key('level', $user_selected, 0) == 3) echo 'checked="checked"' ?> >Admin<br>
+				<input type="radio" name="level" value="3" <?php if (param_post_key('level', $user_selected, 0) == 3) echo 'checked="checked"' ?> >Admin<br>
 				<?php } ?>
 
 				<?php if (isset($logged_level) && $logged_level >= 4) { ?>
-				<input type="radio" name="level" value="4" <?php if ((param_post_key('level', $user_selected, 0) == 4) echo 'checked="checked"' ?> >SuperAdmin<br>
+				<input type="radio" name="level" value="4" <?php if (param_post_key('level', $user_selected, 0) == 4) echo 'checked="checked"' ?> >SuperAdmin<br>
 				<?php } ?>
 				
 				<?php if (isset($logged_level) && ($logged_level < 3)) { // consultation seulement
