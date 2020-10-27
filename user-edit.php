@@ -93,7 +93,7 @@ if ($mode == 'Ajouter') {
 				Adresse courriel *
 			</th>
 			<td>
-				<input type="text" name="addr_mail" size="30" maxlength="50" value="<?= param_post_key('email', $user_selected) ?>" placeholder="Adresse courriel *">
+				<input type="text" name="email" size="30" maxlength="50" value="<?= param_post_key('email', $user_selected) ?>" placeholder="Adresse courriel *">
 			</td>
 		</tr>
 		<tr>
