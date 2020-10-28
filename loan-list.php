@@ -27,7 +27,7 @@ en_tete('Liste des pr&ecirc;ts');
 				Nom
 			</th>
 			<th>
-				&Eacute;quipe
+				&Eacute;quipe redevable
 			</th>
 			<th>
 				Date

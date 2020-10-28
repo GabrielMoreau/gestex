@@ -55,7 +55,7 @@ $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 		</tr>
 
 		<tr>
-			<td>&Eacute;quipe *
+			<td>&Eacute;quipe redevable *
 			</td>
 			<td>
 				<select name="equipe">
