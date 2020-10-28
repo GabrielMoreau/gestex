@@ -417,6 +417,16 @@ function get_loan_listall_by_team($pdo, $id_team) {
 
 // ---------------------------------------------------------------------
 
+function get_loan_count_by_team($pdo, $id_team) {
+	$sql = 'SELECT COUNT(*) as count FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id WHERE e.equipe = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_team));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch[0]['count'];
+}
+
+// ---------------------------------------------------------------------
+
 function get_loan_find($pdo, $find) {
 	$sql = 'SELECT * FROM pret WHERE commentaire RLIKE ?;';
 	$stmt = $pdo->prepare($sql);
