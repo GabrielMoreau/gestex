@@ -18,13 +18,16 @@ if (empty($_SESSION['logged_user'])) {
 
 $title = 'Liste des pr&ecirc;ts';
 
+$pdo = connect_db_or_alert();
+
 $team_id = param_get('equipe', 0);
 if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
-	$title .= ' de l\'&eacute;quipe <i>'.$team_selected['nom'].'</i>';
+	$title        .= ' de l\'&eacute;quipe <i>'.$team_selected['nom'].'</i>';
+	$loan_fetch = get_loan_listall_by_team($pdo, $team_id);
 }
-
-$pdo = connect_db_or_alert();
+else
+	$loan_fetch = get_loan_listall($pdo);
 ?>
 
 <?php en_tete($title) ?>
@@ -58,11 +61,6 @@ $pdo = connect_db_or_alert();
 		</tr>
 
 <?php
-if ($team_id > 0)
-	$loan_fetch = get_loan_listall_by_team($pdo, $team_id);
-else
-	$loan_fetch = get_loan_listall($pdo);
-
 $num_line = 1;
 foreach ($loan_fetch as $loan_current) {
 	if ($num_line % 2)
