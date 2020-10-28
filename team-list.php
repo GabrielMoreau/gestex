@@ -37,8 +37,7 @@ en_tete('Liste de toutes les &eacute;quipes');
 			<th>
 				Chef d'&eacute;quipe
 			</th>
-			<th>
-			</th>
+			<th class="sorttable_nosort"></th>
 
 			<?php
 			if ($logged_level == 2)
