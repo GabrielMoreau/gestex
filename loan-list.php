@@ -16,8 +16,18 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-en_tete('Liste des pr&ecirc;ts');
+$title = 'Liste des pr&ecirc;ts';
+
+$team_id = param_get('equipe', 0);
+if ($team_id > 0) {
+	$team_selected = get_team_by_id($pdo, $team_id);
+	$title .= ' de l\'&eacute;quipe <i>'.$team_selected['nom'].'</i>';
+}
+
+$pdo = connect_db_or_alert();
 ?>
+
+<?php en_tete($title) ?>
 
 <div class="catalog">
 <table class="sortable">
@@ -48,8 +58,10 @@ en_tete('Liste des pr&ecirc;ts');
 		</tr>
 
 <?php
-$pdo = connect_db_or_alert();
-$loan_fetch = get_loan_listall($pdo);
+if ($team_id > 0)
+	$loan_fetch = get_loan_listall_by_team($pdo, $team_id);
+else
+	$loan_fetch = get_loan_listall($pdo);
 
 $num_line = 1;
 foreach ($loan_fetch as $loan_current) {

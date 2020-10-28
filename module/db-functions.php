@@ -405,6 +405,15 @@ function get_loan_listall($pdo) {
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
+// ---------------------------------------------------------------------
+
+function get_loan_listall_by_team($pdo, $id_team) {
+	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id WHERE e.equipe = ? ORDER BY l.retour DESC, l.emprunt DESC, e.nom;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_team));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch;
+}
 
 // ---------------------------------------------------------------------
 
