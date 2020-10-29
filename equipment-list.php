@@ -16,9 +16,12 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$id_highlight = param_post_or_get('highlight', 0);
+$id_highlight  = param_post_or_get('highlight', 0);
+$loanable_flag = param_get('loanable');
 
 $title = 'Liste des appareils';
+if ($loanable_flag == 'yes')
+	$title .= ' empruntables';
 
 $pdo = connect_db_or_alert();
 
@@ -35,8 +38,6 @@ if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
 	$title .= ' de l\'&eacute;quipe <i>'.$team_selected['nom'].'</i>';
 }
-
-$loanable_flag = param_get('loanable');
 ?>
 
 <?php en_tete($title) ?>
