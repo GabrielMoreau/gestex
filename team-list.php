@@ -38,6 +38,7 @@ en_tete('Liste de toutes les &eacute;quipes');
 				Chef d'&eacute;quipe
 			</th>
 			<th class="sorttable_nosort"></th>
+			<th class="sorttable_nosort"></th>
 
 			<?php
 			if ($logged_level == 2)
@@ -81,6 +82,11 @@ if ($pdo = connect_db()) {
 		echo '  <td>';
 		if (get_loan_count_by_team($pdo, $team_current['id']) > 0)
 			echo '<a href="loan-list.php?equipe='.$team_current['id'].'">'.ICON_RETURN.'</a>';
+		echo '  </td>'.PHP_EOL;
+
+		echo '  <td>';
+		if (get_equipment_count_loanable_by_team($pdo, $team_current['id']) > 0)
+			echo '<a href="equipment-list.php?loanable=yes&equipe='.$team_current['id'].'">'.ICON_BOOKING.'</a>';
 		echo '  </td>'.PHP_EOL;
 
 		if ($logged_level >= 2) {
