@@ -303,6 +303,16 @@ function get_equipment_listall_by_team($pdo, $id_team) {
 
 // ---------------------------------------------------------------------
 
+function get_equipment_count_loanable_by_team($pdo, $id_team) {
+	$sql = 'SELECT COUNT(*) as count FROM Listing AS e WHERE e.loanable = 1 and e.equipe = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_team));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch[0]['count'];
+}
+
+// ---------------------------------------------------------------------
+
 function get_equipment_listall_by_category($pdo, $id_category) {
 	$sql = 'SELECT * FROM Listing WHERE categorie = ? ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
