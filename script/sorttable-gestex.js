@@ -274,10 +274,12 @@ row_array[j][1].className = color;
     return aa-bb;
   },
   sort_alpha: function(a,b) {
+    /* gabriel
     if (a[0]==b[0]) return 0;
     if (a[0]<b[0]) return -1;
-    return 1;
-  },
+    return 1; */
+    return a[0].localeCompare(b[0]);
+  }
   sort_ddmm: function(a,b) {
     mtch = a[0].match(sorttable.DATE_RE);
     y = mtch[3]; m = mtch[2]; d = mtch[1];
