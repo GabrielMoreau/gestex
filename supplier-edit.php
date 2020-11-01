@@ -54,7 +54,7 @@ else if ($mode == 'Modifier') {
 		</tr>
 		<tr>
 			<th>
-				Adresse courriel
+				Adresse courriel <?=ICON_MAIL?>
 			</th>
 			<td>
 				<input type="email" name="addr_mail" size="50" maxlength="50" value="<?= param_post_key('mail', $supplier_selected) ?>" placeholder="Adresse courriel">
@@ -62,7 +62,7 @@ else if ($mode == 'Modifier') {
 		</tr>
 		<tr>
 			<th>
-				T&eacute;l&eacute;phone
+				T&eacute;l&eacute;phone <?=ICON_PHONE?>
 			</th>
 			<td>
 				<input type="tel" name="phone" size="15" maxlength="15" value="<?= param_post_key('tel', $supplier_selected) ?>" placeholder="T&eacute;l&eacute;phone">
@@ -85,7 +85,7 @@ else if ($mode == 'Modifier') {
 			</td>
 		</tr>
 		<tr>
-			<th>Contact(s) - nom, fonction, telephone...
+			<th>Contact(s) - nom, fonction, t&eacute;l&eacute;phone...
 			</th>
 			<td>
 				<textarea name="contact" cols="50" rows="5" placeholder="Contact(s) - nom, fonction, t&eacute;l&eacute;phone..."><?= param_post_key('contact', $supplier_selected) ?></textarea>
