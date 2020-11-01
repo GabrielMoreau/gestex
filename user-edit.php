@@ -94,7 +94,7 @@ if ($mode == 'Ajouter') {
 				Adresse courriel *
 			</th>
 			<td>
-				<input type="text" name="email" size="30" maxlength="50" value="<?= param_post_key('email', $user_selected) ?>" placeholder="Adresse courriel *">
+				<input type="email" name="email" size="50" maxlength="50" value="<?= param_post_key('email', $user_selected) ?>" placeholder="Adresse courriel *">
 			</td>
 		</tr>
 		<tr>
@@ -102,7 +102,7 @@ if ($mode == 'Ajouter') {
 				T&eacute;l&eacute;phone
 			</th>
 			<td>
-				<input type="text" name="tel" size="10" maxlength="10" value="<?= param_post_key('tel', $user_selected) ?>" placeholder="T&eacute;l&eacute;phone">
+				<input type="tel" name="tel" size="15" maxlength="15" value="<?= param_post_key('tel', $user_selected) ?>" placeholder="T&eacute;l&eacute;phone">
 			</td>
 		</tr>
 		<tr>

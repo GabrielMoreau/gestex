@@ -57,7 +57,7 @@ else if ($mode == 'Modifier') {
 				Adresse courriel
 			</th>
 			<td>
-				<input type="text" name="addr_mail" size="50" maxlength="50" value="<?= param_post_key('mail', $supplier_selected) ?>" placeholder="Adresse courriel">
+				<input type="email" name="addr_mail" size="50" maxlength="50" value="<?= param_post_key('mail', $supplier_selected) ?>" placeholder="Adresse courriel">
 			</td>
 		</tr>
 		<tr>
@@ -65,7 +65,7 @@ else if ($mode == 'Modifier') {
 				T&eacute;l&eacute;phone
 			</th>
 			<td>
-				<input type="text" name="phone" size="15" maxlength="15" value="<?= param_post_key('tel', $supplier_selected) ?>" placeholder="T&eacute;l&eacute;phone">
+				<input type="tel" name="phone" size="15" maxlength="15" value="<?= param_post_key('tel', $supplier_selected) ?>" placeholder="T&eacute;l&eacute;phone">
 			</td>
 		</tr>
 		<tr>
@@ -73,7 +73,7 @@ else if ($mode == 'Modifier') {
 				Fax
 			</th>
 			<td>
-				<input type="text" name="fax" size="15" maxlength="15" value="<?= param_post_key('fax', $supplier_selected) ?>" placeholder="Fax">
+				<input type="tel" name="fax" size="15" maxlength="15" value="<?= param_post_key('fax', $supplier_selected) ?>" placeholder="Fax">
 			</td>
 		</tr>
 		<tr>
