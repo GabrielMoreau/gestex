@@ -46,7 +46,7 @@ else if ($mode == 'Modifier') {
 		</tr>
 		<tr>
 			<th>
-				Adresse *
+				Adresse <?=ICON_HOUSE?> *
 			</th>
 			<td>
 				<input type="text" name="adresse" size="50" maxlength="50" value="<?= param_post_key('adresse', $supplier_selected) ?>" placeholder="Adresse *">

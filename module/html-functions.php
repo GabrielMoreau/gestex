@@ -13,6 +13,7 @@ define('ICON_PERSON_PASWD',  '<span><svg width="1.2em" height="1.2em" fill="curr
 define('ICON_TRASH',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Supprimer</title><use xlink:href="images/bootstrap-icons.svg#trash"/></svg></span>');
 define('ICON_MAIL',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Courriel</title><use xlink:href="images/bootstrap-icons.svg#envelope"/></svg></span>');
 define('ICON_PHONE',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>T&eacute;l&eacute;phone</title><use xlink:href="images/bootstrap-icons.svg#telephone-plus"/></svg></span>');
+define('ICON_HOUSE',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>T&eacute;l&eacute;phone</title><use xlink:href="images/bootstrap-icons.svg#house"/></svg></span>');
 define('ICON_LOGIN',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Se d&eacute;connecter</title><use xlink:href="images/bootstrap-icons.svg#power"/></svg></span>');
 define('ICON_RETURN',        '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Rendre / Retour d\'un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
 define('ICON_BOOKING',       '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunter un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
