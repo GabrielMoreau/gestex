@@ -4,6 +4,10 @@
 
 // ---------------------------------------------------------------------
 
+define('GESTEX_VERSION', '1.1.0');
+
+// ---------------------------------------------------------------------
+
 function param_post($string, $default = '') {
 	if (!empty($_POST[$string]))
 		return filter_var($_POST[$string], FILTER_SANITIZE_STRING);
