@@ -4,4 +4,4 @@
 all:
 
 pkg:
-	./make-pakage-debian
+	./make-package-debian
