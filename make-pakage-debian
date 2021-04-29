@@ -1,0 +1,68 @@
+#!/bin/bash
+#
+# 2021/04/27 Gabriel Moreau <Gabriel.Moreau@univ-grenoble-alpes.fr>
+
+trap '[ -n "${tmp_folder}" -a -d "${tmp_folder}" ] && rm -rf "${tmp_folder}"' QUIT
+
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin
+export LANG=C
+
+tmp_folder=$(mktemp --directory /tmp/gestex-XXXXXX)
+[ -n "${tmp_folder}" -a -d "${tmp_folder}" ] || exit 1
+
+PKG_NAME='gestex'
+CODE_VERSION=$(grep GESTEX_VERSION module/base-functions.php | cut -f 4 -d "'") # '
+PKG_VERSION=1
+
+mkdir -p ${tmp_folder}/etc/apache2/conf-available
+mkdir -p ${tmp_folder}/etc/gestex
+mkdir -p ${tmp_folder}/usr/share/doc/gestex
+mkdir -p ${tmp_folder}/usr/share/gestex
+rsync -a *.php images include module script style  ${tmp_folder}/usr/share/gestex/
+rsync -a AUTHORS.md README.md LICENSE              ${tmp_folder}/usr/share/doc/gestex/
+chmod -R a+rX,go-w   ${tmp_folder}/usr
+chmod -R a+rX,go-w   ${tmp_folder}/etc
+
+# Control file
+cat <<END > ${tmp_folder}/control
+Package: ${PKG_NAME}
+Version: ${CODE_VERSION}-${PKG_VERSION}
+Section: web
+Tag: implemented-in::php, interface::commandline, role::program
+Priority: optional
+Depends: libapache2-mod-php | php-cgi | php-fpm | php, php-mysql
+Recommends: php-mysql, apache2 | httpd
+Suggests: default-mysql-server | virtual-mysql-server
+Architecture: all
+Installed-Size: $(du -ks ${tmp_folder}|cut -f 1)
+Maintainer: Gabriel Moreau <Gabriel.Moreau@univ-grenoble-alpes.fr>
+Description: gestex manages the experiments and scientific materials
+ GestEx is an acronym for Gestion Experimentation.
+Homepage: https://gricad-gitlab.univ-grenoble-alpes.fr/legi/soft/gestex
+END
+
+# Data archive
+rm -f ${tmp_folder}/data.tar.gz
+(cd ${tmp_folder}; tar --owner root --group root -czf data.tar.gz ./usr ./etc)
+
+# Control archive
+rm -f ${tmp_folder}/control.tar.gz
+(cd ${tmp_folder}; tar --owner root --group root -czf control.tar.gz control)
+
+# Format deb package
+echo 2.0 > ${tmp_folder}/debian-binary
+
+# Create package (control before data)
+ar -r ${PKG_NAME}_${CODE_VERSION}-${PKG_VERSION}_all.deb ${tmp_folder}/debian-binary ${tmp_folder}/control.tar.gz ${tmp_folder}/data.tar.gz
+      
+# Clean
+rm -rf ${tmp_folder}
+
+here=$(pwd)
+# Prepare reprepro upload
+echo "# Prepare reprepro upload"
+for dist in buster wheezy jessie stretch
+do
+echo "( cd /srv/www/debian/ ; reprepro includedeb ${dist} ${here}/${PKG_NAME}_${CODE_VERSION}-${PKG_VERSION}_all.deb )"
+done
+echo "( cd /srv/www/debian/ ; reprepro dumpreferences ) | grep -i gestex"
