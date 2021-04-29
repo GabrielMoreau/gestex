@@ -10,7 +10,7 @@ export LANG=C
 tmp_folder=$(mktemp --directory /tmp/gestex-XXXXXX)
 [ -n "${tmp_folder}" -a -d "${tmp_folder}" ] || exit 1
 
-PKG_NAME='gestex'
+PKG_NAME=gestex
 CODE_VERSION=$(grep GESTEX_VERSION module/base-functions.php | cut -f 4 -d "'") # '
 PKG_VERSION=1
 
