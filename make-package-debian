@@ -12,7 +12,7 @@ tmp_folder=$(mktemp --directory /tmp/gestex-XXXXXX)
 
 PKG_NAME=gestex
 CODE_VERSION=$(grep GESTEX_VERSION module/base-functions.php | cut -f 4 -d "'") # '
-PKG_VERSION=1
+PKG_VERSION=2
 
 mkdir -p ${tmp_folder}/etc/apache2/conf-available
 mkdir -p ${tmp_folder}/etc/gestex
@@ -30,8 +30,8 @@ Version: ${CODE_VERSION}-${PKG_VERSION}
 Section: web
 Tag: implemented-in::php, interface::commandline, role::program
 Priority: optional
-Depends: libapache2-mod-php | php-cgi | php-fpm | php, php-mysql
-Recommends: php-mysql, apache2 | httpd
+Depends: libapache2-mod-php | php-cgi | php-fpm | libapache2-mod-php5, php | php5, php-mysql | php5-mysql
+Recommends: php-mysql | php5-mysql, apache2 | httpd
 Suggests: default-mysql-server | virtual-mysql-server
 Architecture: all
 Installed-Size: $(du -ks ${tmp_folder}|cut -f 1)
