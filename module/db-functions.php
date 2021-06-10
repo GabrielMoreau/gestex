@@ -63,9 +63,9 @@ function last_id_db() {
 function check_val_in_db($pdo, $table, $col, $value) {
 	//teste l'existence de $value dans le champ $col de la table $table
 	//echo "check in:".$table.":".$col." for ".$value."<br />";
-	$sql = 'SELECT * FROM ? WHERE ? = ?;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($table, $col, $value));
+	//$sql = 'SELECT * FROM ? WHERE ? = ?;';
+	$stmt = $pdo->prepare("SELECT * FROM $table WHERE $col = '$value'");
+	$stmt->execute();
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	///echo "check_val:".numrows_db($reponse)."<br />";
