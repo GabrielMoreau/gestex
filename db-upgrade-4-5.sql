@@ -3,3 +3,15 @@
 -- AUTHOR : RISTICH Estéban	
 --
 
+--
+-- Upgrade table
+--
+
+ALTER TABLE `listing` MODIFY COLUMN `loanable` BOOLEAN NOT NULL DEFAULT FALSE;
+
+--
+-- Fix global DB version
+--
+
+UPDATE version SET version = 5 WHERE soft = 'database';
+
