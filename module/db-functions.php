@@ -447,6 +447,16 @@ function get_loan_find($pdo, $find) {
 
 // ---------------------------------------------------------------------
 
+function get_loan_interval_by_id($pdo, $id_equipment) {
+	$sql = 'SELECT emprunt, retour FROM pret WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equipment));
+	$result_fetch = $stmt->fetcAll(PDO::FETCH_ASSOC);
+	return $result_fetch;
+}
+
+// ---------------------------------------------------------------------
+
 function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
 	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
@@ -470,6 +480,7 @@ function del_loan_by_id($pdo, $id) {
 	$iostat = $stmt->execute(array($id));
 	return $iostat;
 }
+
 
 // ---------------------------------------------------------------------
 // Supplier
