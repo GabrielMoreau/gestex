@@ -451,7 +451,7 @@ function get_loan_interval_by_id($pdo, $id_equipment) {
 	$sql = 'SELECT emprunt, retour FROM pret WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_equipment));
-	$result_fetch = $stmt->fetcAll(PDO::FETCH_ASSOC);
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
 
