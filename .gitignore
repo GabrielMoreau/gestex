@@ -2,3 +2,5 @@
 *.zip
 *.bak
 connect.php
+Gestex Prod Simulation.session.sql
+.vscode/
