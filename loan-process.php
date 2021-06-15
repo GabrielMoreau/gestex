@@ -79,6 +79,20 @@ if ($param_mode == 'booking') {
 		include_once('include/warning-box.php');
 		exit();
 	}
+	// TEST //
+
+	$loan_dates = get_loan_interval_by_id($pdo, $equipment_id);
+
+	$emprunt = new DateTime($loan_dates['emprunt']);
+	$retour = new DateTime($loan_dates['retour']);
+
+	$intervalle = $emprunt->diff($retour);
+	if (($emprunt <= $date_emprunt ) && ($date_emprunt <= $retour)) {
+		echo "emprunt impossible sur l'intervalle demandé";
+	}
+
+
+	// TEST //
 
 	// TEST //
 
