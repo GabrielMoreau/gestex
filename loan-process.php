@@ -55,6 +55,20 @@ if ($flag_new == true) {
 		include_once('include/warning-box.php');
 		exit();
 	}
+	// TEST //
+
+	$loan_dates = get_loan_interval_by_id($pdo, $equipment_id);
+
+	$emprunt = new DateTime($loan_dates['emprunt']);
+	$retour = new DateTime($loan_dates['retour']);
+
+	$intervalle = $emprunt->diff($retour);
+	if (($emprunt <= $date_emprunt ) && ($date_emprunt <= $retour)) {
+		echo "emprunt impossible sur l'intervalle demandé";
+	}
+
+
+	// TEST //
 
 	// inscription
 	$loan_id = set_loan_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
