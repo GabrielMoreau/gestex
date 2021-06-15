@@ -308,6 +308,10 @@ span.check-bad {
 	color: var(--color-bad);
 }
 
+span.check-warn {
+	color: var(--color-alert)
+}
+
 span.option-right {
 	float: right;
 	margin-right: 2px;
