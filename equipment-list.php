@@ -169,10 +169,6 @@ if ($team_id > 0) {
 				if ($logged_level >= 3) {echo '</a>';}
 				echo '  </td>';
 			}
-			echo '  </td>';
-			echo '	<td>';
-			echo '		<a href="loan-edit.php?equipment='.$equipment_item['id'].'">'.ICON_BOOKING_AFTER.'</a>';
-			echo '  </td>'.PHP_EOL;
 		}
 		else
 			echo '  <td></td>'.PHP_EOL;
