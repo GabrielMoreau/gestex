@@ -69,8 +69,6 @@ foreach ($loan_fetch as $loan_current) {
 		echo '<tr class="pair">'.PHP_EOL;
 	$num_line++;
 
-	echo '<h1>' . $loan_current["equipment_name"]. '</h1>';
-
 	// recupere le nom de l'appareil via l'ID qui est mis dans un champs texte !
 	// $appareil_selected = get_equipment_by_id($pdo, $loan_current['nom']);
 	echo '  <td>';
