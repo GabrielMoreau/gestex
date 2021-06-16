@@ -460,9 +460,9 @@ function get_loan_find($pdo, $find) {
 // ---------------------------------------------------------------------
 
 function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
-	$sql = 'SELECT * FROM pret WHERE nom = ? AND (`emprunt` < ? AND `retour` > ?) OR (`emprunt` < ? AND `retour` > ?);';
+	$sql = 'SELECT * FROM pret WHERE (`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment, $from, $from, $to, $to));
+	$stmt->execute(array($from, $from, $id_equipment));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
