@@ -57,6 +57,7 @@ else
 			<?php if ($logged_level >= 3) { ?>
 			<th class="sorttable_nosort"></th>
 			<th class="sorttable_nosort"></th>
+			<th class="sorttable_nosort"></th>
 			<?php } ?>
 		</tr>
 
