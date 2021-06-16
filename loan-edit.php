@@ -52,9 +52,12 @@ if ($mode == 'Modifier') {
 $num_line = 0;
 $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id']);
+<<<<<<< HEAD
 
 
 if ($equipment_loans != false && $mode == 'Reserver apres') {
+=======
+>>>>>>> 5da884c... Update loan-edit.php
 ?>
 <div class="catalog" style="margin-bottom: 2rem">
 <table>
@@ -118,7 +121,72 @@ if ($equipment_loans != false && $mode == 'Reserver apres') {
 
 
 
+<<<<<<< HEAD
 <div class="form" style="margin-bottom: 2rem">
+=======
+<div class="catalog">
+<table>
+	<tbody>
+		<tr>
+			<th>
+				ID
+			</th>
+			<th>
+				Emprunteur
+			</th>
+			<th>
+                Equipe Redevable
+			</th>
+			<th>
+				Emprunt le
+			</th>
+			<th>
+				Retour le
+			</th>
+		</tr>
+        <?php
+            foreach ($equipment_loans as $current_loan) {
+
+                if ($num_line % 2)
+				    echo '<tr class="pair">'.PHP_EOL;
+			    else
+				    echo '<tr class="impair">'.PHP_EOL;
+			    $num_line++;
+                $current_team = get_team_by_id($pdo, $current_loan["equipe"]);
+
+                echo '  <td>';
+                echo      $current_loan['id'];
+                echo '  </td>'.PHP_EOL;
+
+                echo '  <td>';
+                echo      $current_loan['commentaire'];
+                echo '  </td>'.PHP_EOL;
+
+                echo '  <td>';
+                echo      $current_team['nom'];
+                echo '  </td>'.PHP_EOL;
+
+                echo '  <td>';
+                echo      $current_loan['emprunt'];
+                echo '  </td>'.PHP_EOL;
+
+                echo '  <td>';
+                echo      $current_loan['retour'];
+                echo '  </td>'.PHP_EOL;
+
+                echo '</tr>' . PHP_EOL;
+            }
+        ?>
+	</tbody>
+</table>
+</div>
+
+
+
+
+
+<div class="form">
+>>>>>>> 5da884c... Update loan-edit.php
 <form action="loan-process.php" method="POST" name="inscrForm">
 	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
 	<?php if ($mode == 'Modifier' || $mode == 'Reserver apres') { ?>
