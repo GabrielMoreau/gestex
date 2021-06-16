@@ -98,7 +98,7 @@ foreach ($loan_fetch as $loan_current) {
 
 	if ($logged_level >= 3) {
 		echo '  <td>';
-		echo '	  <a href="loan-edit.php?equipment=',$loan_current['id'],'">'.ICON_BOOKING_AFTER.'</a>';
+		echo '	  <a href="loan-edit.php?equipment=',$loan_current['nom'],'">'.ICON_BOOKING_AFTER.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		echo '    <a href="loan-edit.php?id=',$loan_current['id'],'">'.ICON_EDIT.'</a>';
