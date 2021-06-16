@@ -15,13 +15,13 @@ $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $equipment_id = param_get('equipment'); // -> new
-$loan_id      = param_get('id', 0);     // -> modify
+$loan_id      = param_get('id');     // -> modify
 
 if ($loan_id == 0) {
 	$mode = 'Ajouter';
 	en_tete('Ajouter un pr&ecirc;t');
 } else if (!empty($equipment_id) && $equipment_id != 0 && $equipment_id != NULL){
-	$mode = 'ReserverApres';
+	$mode = 'Reserver apres';
 	en_tete('Reserver plus tard');
 } else {
 	$mode = 'Modifier';
@@ -40,9 +40,11 @@ if ($mode == 'Modifier') {
 $num_line = 0;
 $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id']);
-?>
 
-<div class="catalog">
+
+if ($equipment_loans != false) {
+?>
+<div class="catalog" style="margin-bottom: 2rem">
 <table>
 	<tbody>
 		<tr>
@@ -98,15 +100,16 @@ $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id'
 	</tbody>
 </table>
 </div>
+<?php }?>
 
 
 
 
 
-<div class="form">
+<div class="form" style="margin-bottom: 2rem">
 <form action="loan-process.php" method="POST" name="inscrForm">
 	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
-	<?php if ($mode == 'Modifier') { ?>
+	<?php if ($mode == 'Modifier' || $mode == 'ReserverApres') { ?>
 		<input type="hidden" name="id_loan" value="<?php echo $loan_id ?>" >
 	<?php } ?>
 <table>
