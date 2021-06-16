@@ -69,6 +69,8 @@ foreach ($loan_fetch as $loan_current) {
 		echo '<tr class="pair">'.PHP_EOL;
 	$num_line++;
 
+	echo '<h1>' . $loan_current["equipment_name"]. '</h1>';
+
 	// recupere le nom de l'appareil via l'ID qui est mis dans un champs texte !
 	// $appareil_selected = get_equipment_by_id($pdo, $loan_current['nom']);
 	echo '  <td>';
@@ -96,7 +98,7 @@ foreach ($loan_fetch as $loan_current) {
 
 	if ($logged_level >= 3) {
 		echo '  <td>';
-		echo '	  <a href="loan-edit.php?id=',$loan_current['id'],'">'.ICON_BOOKING_AFTER.'</a>';
+		echo '	  <a href="loan-edit.php?equipment=',$loan_current['id'],'">'.ICON_BOOKING_AFTER.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		echo '    <a href="loan-edit.php?id=',$loan_current['id'],'">'.ICON_EDIT.'</a>';
