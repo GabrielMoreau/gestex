@@ -20,6 +20,9 @@ $loan_id      = param_get('id', 0);     // -> modify
 if ($loan_id == 0) {
 	$mode = 'Ajouter';
 	en_tete('Ajouter un pr&ecirc;t');
+} else if (!empty($equipment_id) && $equipment_id != 0 && $equipment_id != NULL){
+	$mode = 'ReserverApres';
+	en_tete('Reserver plus tard');
 } else {
 	$mode = 'Modifier';
 	en_tete('Modifier le pr&ecirc;t d\'un appareil');
@@ -34,9 +37,71 @@ if ($mode == 'Modifier') {
 	$loan_selected = get_loan_all_by_id($pdo, $loan_id);
 	$equipment_id = $loan_selected['nom'];
 }
-
+$num_line = 0;
 $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
+$equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id']);
 ?>
+
+<div class="catalog">
+<table>
+	<tbody>
+		<tr>
+			<th>
+				ID
+			</th>
+			<th>
+				Emprunteur
+			</th>
+			<th>
+                Equipe Redevable
+			</th>
+			<th>
+				Emprunt le
+			</th>
+			<th>
+				Retour le
+			</th>
+		</tr>
+        <?php
+            foreach ($equipment_loans as $current_loan) {
+
+                if ($num_line % 2)
+				    echo '<tr class="pair">'.PHP_EOL;
+			    else
+				    echo '<tr class="impair">'.PHP_EOL;
+			    $num_line++;
+                $current_team = get_team_by_id($pdo, $current_loan["equipe"]);
+
+                echo '  <td>';
+                echo      $current_loan['id'];
+                echo '  </td>'.PHP_EOL;
+
+                echo '  <td>';
+                echo      $current_loan['commentaire'];
+                echo '  </td>'.PHP_EOL;
+
+                echo '  <td>';
+                echo      $current_team['nom'];
+                echo '  </td>'.PHP_EOL;
+
+                echo '  <td>';
+                echo      $current_loan['emprunt'];
+                echo '  </td>'.PHP_EOL;
+
+                echo '  <td>';
+                echo      $current_loan['retour'];
+                echo '  </td>'.PHP_EOL;
+
+                echo '</tr>' . PHP_EOL;
+            }
+        ?>
+	</tbody>
+</table>
+</div>
+
+
+
+
 
 <div class="form">
 <form action="loan-process.php" method="POST" name="inscrForm">
