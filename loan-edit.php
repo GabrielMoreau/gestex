@@ -172,7 +172,7 @@ if ($equipment_loans != false && $mode == 'Reserver apres') {
 </div>
 
 
-<div class="form">
+<div class="form" style="margin-bottom: 2rem">
 <form action="loan-process.php" method="POST" name="inscrForm">
 	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
 	<?php if ($mode == 'Modifier' || $mode == 'Reserver apres') { ?>
