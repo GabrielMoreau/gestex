@@ -52,12 +52,8 @@ if ($mode == 'Modifier') {
 $num_line = 0;
 $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id']);
-<<<<<<< HEAD
-
 
 if ($equipment_loans != false && $mode == 'Reserver apres') {
-=======
->>>>>>> 5da884c... Update loan-edit.php
 ?>
 <div class="catalog" style="margin-bottom: 2rem">
 <table>
@@ -117,13 +113,7 @@ if ($equipment_loans != false && $mode == 'Reserver apres') {
 </div>
 <?php }?>
 
-
-
-
-
-<<<<<<< HEAD
 <div class="form" style="margin-bottom: 2rem">
-=======
 <div class="catalog">
 <table>
 	<tbody>
@@ -182,11 +172,7 @@ if ($equipment_loans != false && $mode == 'Reserver apres') {
 </div>
 
 
-
-
-
 <div class="form">
->>>>>>> 5da884c... Update loan-edit.php
 <form action="loan-process.php" method="POST" name="inscrForm">
 	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
 	<?php if ($mode == 'Modifier' || $mode == 'Reserver apres') { ?>
