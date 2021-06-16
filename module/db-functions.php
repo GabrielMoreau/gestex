@@ -379,6 +379,16 @@ function get_loan_all_by_id($pdo, $id) {
 	return false;
 }
 
+function get_all_reservations_equipment($pdo, $id_equipment) {
+	$sql = 'SELECT * FROM pret WHERE nom = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equipment));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch;
+	return false;
+}
+
 // ---------------------------------------------------------------------
 
 function get_loan_short_by_id_equipment($pdo, $id_equipment) {
@@ -424,6 +434,8 @@ function get_loan_listall_by_team($pdo, $id_team) {
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
+
+// ---------------------------------------------------------------------
 
 // ---------------------------------------------------------------------
 
