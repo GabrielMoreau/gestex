@@ -47,26 +47,34 @@ if (!empty($erreur)) {
 $pdo = connect_db_or_alert();
 
 if ($flag_new == true) {
-	$loan = get_loan_short_by_id_equipment($pdo, $equipment_id);
-	if (!empty($loan)) {
+/* 	$loan = get_loan_short_by_id_equipment($pdo, $equipment_id);
+	if (empty($loan)) {
 		$title        = 'Erreur concernant un nouvel emprunt';
 		$action       = 'equipment-view.php?id='.$equipment_id;
 		$message_text = 'L\'appareil est d&eacute;j&agrave; emprunt&eacute;';
 		include_once('include/warning-box.php');
 		exit();
-	}
+	} */
 	// TEST //
 
-	$loan_dates = get_loan_interval_by_id($pdo, $equipment_id);
 
-	$emprunt = new DateTime($loan_dates['emprunt']);
+	$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
+
+/* 	$emprunt = new DateTime($loan_dates['emprunt']);
 	$retour = new DateTime($loan_dates['retour']);
 
 	$intervalle = $emprunt->diff($retour);
 	if (($emprunt <= $date_emprunt ) && ($date_emprunt <= $retour)) {
 		echo "emprunt impossible sur l'intervalle demandé";
-	}
+	} */
 
+	if (!empty($loan_dates) || $loan_dates != false) {
+		$title        = 'Impossible d\'emprunter sur la même plage qu\'une autre réservation';
+		$action       = 'equipment-view.php?id='.$equipment_id;
+		$message_text = 'Impossible d\'emprunter sur la même plage qu\'une autre réservation';
+		include_once('include/warning-box.php');
+		exit();
+	}
 
 	// TEST //
 
