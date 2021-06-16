@@ -411,7 +411,7 @@ function get_loan_all_by_id_equipment($pdo, $id_equipment) {
 	$stmt->execute(array($id_equipment));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
-		return $result_fetch[0];
+		return $result_fetch;
 	return false;
 }
 
@@ -459,12 +459,14 @@ function get_loan_find($pdo, $find) {
 
 // ---------------------------------------------------------------------
 
-function get_loan_interval_by_id($pdo, $id_equipment) {
-	$sql = 'SELECT emprunt, retour FROM pret WHERE id = ?;';
+function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
+	$sql = 'SELECT * FROM pret WHERE nom = ? AND (`emprunt` < ? AND `retour` > ?) OR (`emprunt` < ? AND `retour` > ?);';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment));
+	$stmt->execute(array($id_equipment, $from, $from, $to, $to));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $result_fetch;
+	if (count($result_fetch) > 0)
+		return $result_fetch;
+	return false;
 }
 
 // ---------------------------------------------------------------------
