@@ -159,12 +159,12 @@ if ($team_id > 0) {
 				echo '  </td>';
 
 				echo '	<td>';
-				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'">';}
+				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=booking-after">';}
 				echo ICON_BOOKING_AFTER;
 				if ($logged_level >= 3) {echo '</a>';}
 				echo '	</td>';
 			} else {
-				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'">';}
+				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=booking">';}
 				echo ICON_BOOKING;
 				if ($logged_level >= 3) {echo '</a>';}
 				echo '  </td>';
