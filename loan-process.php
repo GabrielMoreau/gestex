@@ -75,6 +75,7 @@ if ($param_mode == 'booking') {
 		$title        = 'Impossible d\'emprunter sur la même plage qu\'une autre réservation';
 		$action       = 'equipment-view.php?id='.$equipment_id;
 		$message_text = 'Impossible d\'emprunter sur la même plage qu\'une autre réservation';
+		// $transmit_post = true;
 		include_once('include/warning-box.php');
 		exit();
 	}
