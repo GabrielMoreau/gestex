@@ -16,8 +16,9 @@ $logged_user = strtolower($_SESSION['logged_user']);
 
 $equipment_id = param_get('equipment'); // -> new
 $loan_id      = param_get('id');     // -> modify
+$param_mode	  = param_get('mode', 'booking');
 
-if ($loan_id == 0) {
+/* if ($loan_id == 0) {
 	$mode = 'Ajouter';
 	en_tete('Ajouter un pr&ecirc;t');
 } else if (!empty($equipment_id) && $equipment_id != 0 && $equipment_id != NULL){
@@ -25,7 +26,18 @@ if ($loan_id == 0) {
 	en_tete('Reserver plus tard');
 } else {
 	$mode = 'Modifier';
-	en_tete('Modifier le pr&ecirc;t d\'un appareil');
+	en_tete('Modifier le pr&ecirc;t d\'un appareil'); 
+}*/
+
+if ($param_mode == 'booking') {
+	$mode = 'Ajouter';
+	en_tete('Ajouter un pr&ecirc;t');
+} else if ($param_mode == 'booking-after'){
+	$mode = 'Reserver apres';
+	en_tete('Reserver plus tard');
+} else {
+	$mode = 'Modifier';
+	en_tete('Modifier le pr&ecirc;t d\'un appareil'); 
 }
 
 // transmet la valeur de la categorie a la page valid appareil
@@ -42,7 +54,7 @@ $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id']);
 
 
-if ($equipment_loans != false) {
+if ($equipment_loans != false && $mode == 'Reserver apres') {
 ?>
 <div class="catalog" style="margin-bottom: 2rem">
 <table>
@@ -109,7 +121,7 @@ if ($equipment_loans != false) {
 <div class="form" style="margin-bottom: 2rem">
 <form action="loan-process.php" method="POST" name="inscrForm">
 	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
-	<?php if ($mode == 'Modifier' || $mode == 'ReserverApres') { ?>
+	<?php if ($mode == 'Modifier' || $mode == 'Reserver apres') { ?>
 		<input type="hidden" name="id_loan" value="<?php echo $loan_id ?>" >
 	<?php } ?>
 <table>
