@@ -20,6 +20,9 @@ $team_id      = param_post('equipe');
 $date_emprunt = param_post('emprunt');
 $date_retour  = param_post('retour');
 $commentaire  = param_post('commentaire');
+
+$param_mode	  = param_post('mode', 'booking'); // booking, booking-after, edit
+
 //variables ne pouvant etre nulles
 if (empty($equipment_id))
 	$erreur = 'Nom de l\'appareil non pr&eacute;cis&eacute;';
@@ -28,16 +31,16 @@ if (empty($team_id))
 if (empty($date_emprunt))
 	$erreur = 'Date d\'emprunt non pr&eacute;cis&eacute;';
 
-$flag_new = true;
+/* $flag_new = true;
 if ($loan_id > 0)
-	$flag_new = false;
+	$flag_new = false; */
 
 if (!empty($erreur)) {
 	//erreur
 	$title         = 'Erreur sur l\'emprunt';
-	$action        = 'loan-edit.php?id='.$loan_id;
-	if ($flag_new == true)
-		$action    = 'loan-edit.php?equipment='.$equipment_id;
+	$action        = 'loan-edit.php?id='.$loan_id.'mode=edit';
+	if ($param_mode == 'booking')
+		$action    = 'loan-edit.php?equipment='.$equipment_id.'&mode='.$param_mode;
 	$message_text  = $erreur;
 	$transmit_post = true;
 	include_once('include/warning-box.php');
@@ -46,7 +49,7 @@ if (!empty($erreur)) {
 
 $pdo = connect_db_or_alert();
 
-if ($flag_new == true) {
+if ($param_mode == 'booking') {
 /* 	$loan = get_loan_short_by_id_equipment($pdo, $equipment_id);
 	if (empty($loan)) {
 		$title        = 'Erreur concernant un nouvel emprunt';
