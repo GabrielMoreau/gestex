@@ -5,3 +5,4 @@ connect.php
 Gestex Prod Simulation.session.sql
 .vscode/
 test.php
+db-schema-prod-dumpall.sql
