@@ -2,3 +2,5 @@
 *.zip
 *.bak
 connect.php
+test.php
+.vscode/
