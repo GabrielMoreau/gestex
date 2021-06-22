@@ -9,12 +9,10 @@
 exit(); // Comment this line
 
 // Informations de connexions a la base mySQL
-
 define('GESTEX_DB_USER',     "gestex-service");
 define('GESTEX_DB_PASSWORD', "gestex-magic-password");
 define('GESTEX_DB_SERVER',   "localhost");
 define('GESTEX_DB_DATABASE', "gestex");
-
 
 // Parametres generaux
 define('GESTEX_ADMIN_MAIL',  "webmaster@your-entity.sample");
