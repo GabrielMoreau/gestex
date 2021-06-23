@@ -2,7 +2,7 @@
 *.zip
 *.bak
 *.gz
-gestex_*.deb
+gestex*.deb
 connect.php
 .vscode/
 test.php
