@@ -14,4 +14,3 @@ ALTER TABLE `listing` MODIFY COLUMN `loanable` BOOLEAN NOT NULL DEFAULT FALSE;
 --
 
 UPDATE version SET version = 5 WHERE soft = 'database';
-
