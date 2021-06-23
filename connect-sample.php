@@ -3,21 +3,14 @@
 <?php
 // connect-sample.php
 
+// Do not modify directly this file
 // Rename and adapt this file under the name connect.php
 
-// exit(); // Comment this line
+exit(); // Comment this line
 
 // Informations de connexions a la base mySQL
-/*
 define('GESTEX_DB_USER',     "gestex-service");
 define('GESTEX_DB_PASSWORD', "gestex-magic-password");
-define('GESTEX_DB_SERVER',   "localhost");
-define('GESTEX_DB_DATABASE', "gestex");
-*/
-
-// local configuration : Estéban Ristich
-define('GESTEX_DB_USER',     "gestex");
-define('GESTEX_DB_PASSWORD', "gestex");
 define('GESTEX_DB_SERVER',   "localhost");
 define('GESTEX_DB_DATABASE', "gestex");
 
