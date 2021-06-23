@@ -79,6 +79,7 @@ $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id'
 <div class="form" style="margin-bottom: 2rem">
 <form action="loan-process.php" method="POST" name="inscrForm">
 	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
+	<input type="hidden" name="mode" value="<?php echo $param_mode?>">
 	<?php if ($mode == 'Modifier' || $mode == 'Reserver apres') { ?>
 		<input type="hidden" name="id_loan" value="<?php echo $loan_id ?>" >
 	<?php } ?>
