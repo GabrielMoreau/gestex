@@ -496,9 +496,9 @@ span.option-right {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	#justify-content: center;
-	#margin-left: auto;
-	#margin-right: auto;
+	justify-content: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .loan-list-container div {
@@ -516,7 +516,7 @@ span.option-right {
 	color: black;
 }
 
-/*
+
 div[class="navbar"] + .loan-list-container {
 	width: 42.5%;
 }
@@ -524,4 +524,4 @@ div[class="navbar"] + .loan-list-container {
 .space-between {
 	height: 5rem;
 }
-*/
+
