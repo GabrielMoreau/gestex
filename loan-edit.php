@@ -54,125 +54,7 @@ $num_line = 0;
 $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id']);
 
-if ($equipment_loans != false && $mode == 'Reserver apres') {
 ?>
-<div class="catalog" style="margin-bottom: 2rem">
-<table>
-	<tbody>
-		<tr>
-			<th>
-				ID
-			</th>
-			<th>
-				Emprunteur
-			</th>
-			<th>
-                Equipe Redevable
-			</th>
-			<th>
-				Emprunt le
-			</th>
-			<th>
-				Retour le
-			</th>
-		</tr>
-        <?php
-            foreach ($equipment_loans as $current_loan) {
-
-                if ($num_line % 2)
-				    echo '<tr class="pair">'.PHP_EOL;
-			    else
-				    echo '<tr class="impair">'.PHP_EOL;
-			    $num_line++;
-                $current_team = get_team_by_id($pdo, $current_loan["equipe"]);
-
-                echo '  <td>';
-                echo      $current_loan['id'];
-                echo '  </td>'.PHP_EOL;
-
-                echo '  <td>';
-                echo      $current_loan['commentaire'];
-                echo '  </td>'.PHP_EOL;
-
-                echo '  <td>';
-                echo      $current_team['nom'];
-                echo '  </td>'.PHP_EOL;
-
-                echo '  <td>';
-                echo      $current_loan['emprunt'];
-                echo '  </td>'.PHP_EOL;
-
-                echo '  <td>';
-                echo      $current_loan['retour'];
-                echo '  </td>'.PHP_EOL;
-
-                echo '</tr>' . PHP_EOL;
-            }
-        ?>
-	</tbody>
-</table>
-</div>
-<?php }?>
-
-<div class="form" style="margin-bottom: 2rem">
-<div class="catalog">
-<table>
-	<tbody>
-		<tr>
-			<th>
-				ID
-			</th>
-			<th>
-				Emprunteur
-			</th>
-			<th>
-                Equipe Redevable
-			</th>
-			<th>
-				Emprunt le
-			</th>
-			<th>
-				Retour le
-			</th>
-		</tr>
-        <?php
-            foreach ($equipment_loans as $current_loan) {
-
-                if ($num_line % 2)
-				    echo '<tr class="pair">'.PHP_EOL;
-			    else
-				    echo '<tr class="impair">'.PHP_EOL;
-			    $num_line++;
-                $current_team = get_team_by_id($pdo, $current_loan["equipe"]);
-
-                echo '  <td>';
-                echo      $current_loan['id'];
-                echo '  </td>'.PHP_EOL;
-
-                echo '  <td>';
-                echo      $current_loan['commentaire'];
-                echo '  </td>'.PHP_EOL;
-
-                echo '  <td>';
-                echo      $current_team['nom'];
-                echo '  </td>'.PHP_EOL;
-
-                echo '  <td>';
-                echo      $current_loan['emprunt'];
-                echo '  </td>'.PHP_EOL;
-
-                echo '  <td>';
-                echo      $current_loan['retour'];
-                echo '  </td>'.PHP_EOL;
-
-                echo '</tr>' . PHP_EOL;
-            }
-        ?>
-	</tbody>
-</table>
-</div>
-
-
 <div class="loan-list-container">
 	<?php if ($equipment_loans) {
 			foreach($equipment_loans as $loan_current) {
@@ -203,10 +85,21 @@ if ($equipment_loans != false && $mode == 'Reserver apres') {
 <table>
 
 		
-
-
-
 	<tbody>
+
+		<?php
+		if ($param_mode == "edit") {?>
+			<tr>
+				<td style="background-color: #a6a6a8;color: black;padding-left: 7px;padding: 4px;"><b>ID PRET</b></td>
+				<td style="background-color: var(--color-link);color: black;text-align: center;padding: 4px;"><b><?php echo param_get('id', "UNKNOW")?></b></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td></td>
+			</tr><?php
+		}?>
+
 		<tr>
 			<td>Nom de l'appareil
 			</td>
