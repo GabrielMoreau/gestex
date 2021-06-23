@@ -13,6 +13,7 @@ level_or_alert(3, 'Ajout ou modification d\'un pr&ecirc;t');
 
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
+$logged_level = $_SESSION['logged_level'];
 
 $equipment_id = param_get('equipment'); // -> new
 $loan_id      = param_get('id');     // -> modify
@@ -54,7 +55,7 @@ $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id']);
 
 
-if ($equipment_loans != false && $mode == 'Reserver apres') {
+/* if ($equipment_loans != false && $mode == 'Reserver apres') {
 ?>
 <div class="catalog" style="margin-bottom: 2rem">
 <table>
@@ -112,10 +113,28 @@ if ($equipment_loans != false && $mode == 'Reserver apres') {
 	</tbody>
 </table>
 </div>
-<?php }?>
+<?php }?> */
 
+?>
+<div class="loan-list-container">
+	<?php if ($equipment_loans) {
+			foreach($equipment_loans as $loan_current) {
+				echo '<div>'.PHP_EOL;
+				echo '<h4>PRET N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+				echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
+				echo '<span class="option-right">';
+				if ($logged_level >= 3) {echo '<a href="loan-del.php?id='.$loan_current['id'].'">';}
+				echo ICON_RETURN;
+				if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';}
+				echo '</span>'.PHP_EOL;
+				echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])["nom"].PHP_EOL;
+				echo '<br>'.$loan_current['commentaire'].PHP_EOL;
+				echo '</div>'.PHP_EOL;
+			}
+		}?>
+</div>
 
-
+<div class="space-between"></div>
 
 
 <div class="form" style="margin-bottom: 2rem">
@@ -125,6 +144,11 @@ if ($equipment_loans != false && $mode == 'Reserver apres') {
 		<input type="hidden" name="id_loan" value="<?php echo $loan_id ?>" >
 	<?php } ?>
 <table>
+
+		
+
+
+
 	<tbody>
 		<tr>
 			<td>Nom de l'appareil
