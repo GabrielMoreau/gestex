@@ -172,9 +172,7 @@ if ($equipment_loans != false && $mode == 'Reserver apres') {
 </table>
 </div>
 
-<?php }?> */
 
-?>
 <div class="loan-list-container">
 	<?php if ($equipment_loans) {
 			foreach($equipment_loans as $loan_current) {
