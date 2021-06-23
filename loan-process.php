@@ -48,6 +48,16 @@ if (!empty($erreur)) {
 }
 
 $pdo = connect_db_or_alert();
+$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
+if (!empty($loan_dates) || $loan_dates != false) {
+	$title        = 'Impossible d\'emprunter sur la même plage qu\'une autre réservation';
+	$action       = 'equipment-view.php?id='.$equipment_id;
+	$message_text = 'Impossible d\'emprunter sur la même plage qu\'une autre réservation';
+	$transmit_post = true;
+	include_once('include/warning-box.php');
+	exit();
+}
+
 
 if ($param_mode == 'booking') {
 /* 	$loan = get_loan_short_by_id_equipment($pdo, $equipment_id);
@@ -62,7 +72,6 @@ if ($param_mode == 'booking') {
 	// TEST //
 
 
-	$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
 
 /* 	$emprunt = new DateTime($loan_dates['emprunt']);
 	$retour = new DateTime($loan_dates['retour']);
