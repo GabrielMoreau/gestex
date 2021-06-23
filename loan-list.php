@@ -25,7 +25,7 @@ if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
 	$title        .= ' de l\'&eacute;quipe <i>'.$team_selected['nom'].'</i>';
 	$loan_fetch = get_loan_listall_by_team($pdo, $team_id);
-}
+} 
 else
 	$loan_fetch = get_loan_listall($pdo);
 ?>
@@ -55,6 +55,7 @@ else
 				Num&eacute;ro de l'appareil
 			</th>
 			<?php if ($logged_level >= 3) { ?>
+			<th class="sorttable_nosort"></th>
 			<th class="sorttable_nosort"></th>
 			<th class="sorttable_nosort"></th>
 			<?php } ?>
@@ -96,7 +97,10 @@ foreach ($loan_fetch as $loan_current) {
 
 	if ($logged_level >= 3) {
 		echo '  <td>';
-		echo '    <a href="loan-edit.php?id=',$loan_current['id'],'">'.ICON_EDIT.'</a>';
+		echo '    <a href="loan-edit.php?equipment=',$loan_current['nom'],'&mode=booking-after">'.ICON_BOOKING_AFTER.'</a>';
+		echo '  </td>'.PHP_EOL;
+		echo '  <td>';
+		echo '    <a href="loan-edit.php?id=',$loan_current['id'],'&mode=edit">'.ICON_EDIT.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		echo '    <a href="loan-del.php?id=',$loan_current['id'],'">'.ICON_RETURN.'</a>';

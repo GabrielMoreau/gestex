@@ -28,7 +28,7 @@ CREATE TABLE `Listing` (
   `barcode` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `nom` (`nom`),
-  INDEX `barcode` (`barcode`);
+  INDEX `barcode` (`barcode`)
 ) ENGINE=MyISAM AUTO_INCREMENT=342 DEFAULT CHARSET=latin1;
 
 --
@@ -125,7 +125,7 @@ CREATE TABLE `intervention` (
   `descr` varchar(255) DEFAULT NULL,
   `tech` int(11) NOT NULL DEFAULT '0',
   `fournisseur` int(11) NOT NULL DEFAULT '0',
-  `date` date NOT NULL DEFAULT '0000-00-00',
+  `date` date NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `facture` varchar(30) DEFAULT NULL,
   `appareil` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -168,7 +168,7 @@ CREATE TABLE `manip` (
   `chercheur_bis` int(11) DEFAULT NULL,
   `assoc_proj` varchar(10) DEFAULT NULL,
   `local` varchar(5) NOT NULL DEFAULT '',
-  `date` date NOT NULL DEFAULT '0000-00-00',
+  `date` date NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nom` (`nom`)
 ) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
@@ -203,7 +203,7 @@ CREATE TABLE `projet` (
   `manip` int(11) NOT NULL DEFAULT '0',
   `nom` varchar(20) NOT NULL DEFAULT '',
   `descr` varchar(255) NOT NULL DEFAULT '',
-  `date` date NOT NULL DEFAULT '2000-00-00',
+  `date` date NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 
@@ -218,7 +218,7 @@ DROP TABLE IF EXISTS `tache`;
 CREATE TABLE `tache` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `projet` int(11) NOT NULL DEFAULT '0',
-  `date` date NOT NULL DEFAULT '0000-00-00',
+  `date` date NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nom` varchar(20) NOT NULL DEFAULT '',
   `descr` varchar(255) NOT NULL DEFAULT '',
   `user` varchar(30) DEFAULT NULL,
@@ -320,10 +320,12 @@ ALTER TABLE `users`
 ADD `theme` VARCHAR (50) DEFAULT 'clair';
 
 
-  PRIMARY KEY (`id`),
+/*   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_appareil`) REFERENCES `Listing` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1; */
 
+ALTER TABLE `notice`
+ADD FOREIGN KEY (`id_appareil`) REFERENCES `Listing`(`id`);
 
 --
 -- Table structure for table `version`

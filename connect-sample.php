@@ -3,6 +3,7 @@
 <?php
 // connect-sample.php
 
+// Do not modify directly this file
 // Rename and adapt this file under the name connect.php
 
 exit(); // Comment this line

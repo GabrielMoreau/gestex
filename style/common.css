@@ -308,6 +308,10 @@ span.check-bad {
 	color: var(--color-bad);
 }
 
+span.check-warn {
+	color: var(--color-alert)
+}
+
 span.option-right {
 	float: right;
 	margin-right: 2px;
@@ -485,3 +489,39 @@ span.option-right {
 	border-radius: 4px;
 	font-weight: normal;
 }
+
+/************** MODIFICATIONS ESTEBAN RISTICH ****************/
+
+.loan-list-container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	#justify-content: center;
+	#margin-left: auto;
+	#margin-right: auto;
+}
+
+.loan-list-container div {
+	margin: 0.5rem;
+	padding: 0;
+	border: 1.5px solid white;
+	border-radius: 4px;
+}
+
+.loan-list-container div h4 {
+	margin: 0 0 0.5rem 0;
+	text-align: center;
+	border-bottom: 1.5px solid white;
+	background-color: #a6a6a8;
+	color: black;
+}
+
+/*
+div[class="navbar"] + .loan-list-container {
+	width: 42.5%;
+}
+
+.space-between {
+	height: 5rem;
+}
+*/

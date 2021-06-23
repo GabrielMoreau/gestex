@@ -186,17 +186,23 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 			<th>
 				Empruntable
 			</th>
-			<td>
+			<td class="loan-list-container">
 				<?php if ($equipment_selected['loanable'] == 1) {
 					if ($loan) {
-						echo 'Oui, en pr&ecirc;t <span class="option-right">';
-						if ($logged_level >= 3) {echo '<a href="loan-del.php?id='.$loan['id'].'">';}
-						echo ICON_RETURN;
-						if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan['id'].'">'.ICON_EDIT.'</a>&nbsp;';}
-						echo '</span>'.PHP_EOL;
-						echo '<br>'.$loan['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan['retour'].PHP_EOL;
-						echo '<br>'.$loan['equipe'].PHP_EOL;
-						echo '<br>'.$loan['commentaire'].PHP_EOL;
+						echo 'Oui, en pr&ecirc;t';
+						foreach($loan as $loan_current) {
+							echo '<div>'.PHP_EOL;
+							echo '<h4>PRET N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+							echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
+							echo '<span class="option-right">';
+							if ($logged_level >= 3) {echo '<a href="loan-del.php?id='.$loan_current['id'].'">';}
+							echo ICON_RETURN;
+							if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';}
+							echo '</span>'.PHP_EOL;
+							echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])["nom"].PHP_EOL;
+							echo '<br>'.$loan_current['commentaire'].PHP_EOL;
+							echo '</div>'.PHP_EOL;
+						}
 					} else {
 						echo 'Oui'.'<span class="option-right">';
 						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'">';}

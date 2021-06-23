@@ -81,6 +81,7 @@ if ($team_id > 0) {
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($logged_level >= 3)
 				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="equipment-edit.php">'.ICON_ADD_EQUIPMENT.'</a></span></th>'.PHP_EOL;
+				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			?>
 		</tr>
 
@@ -155,13 +156,19 @@ if ($team_id > 0) {
 				if ($logged_level >= 3) {echo '    <a href="loan-del.php?id='.$loan['id'].'">';}
 				echo ICON_RETURN;
 				if ($logged_level >= 3) {echo '</a>';}
-			}
-			else {
-				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'">';}
+				echo '  </td>';
+
+				echo '	<td>';
+				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=booking-after">';}
+				echo ICON_BOOKING_AFTER;
+				if ($logged_level >= 3) {echo '</a>';}
+				echo '	</td>';
+			} else {
+				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=booking">';}
 				echo ICON_BOOKING;
 				if ($logged_level >= 3) {echo '</a>';}
+				echo '  </td>';
 			}
-			echo '  </td>';
 		}
 		else
 			echo '  <td></td>'.PHP_EOL;

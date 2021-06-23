@@ -1,6 +1,10 @@
 .DS_Store
 *.zip
 *.bak
+*.gz
+gestex_*.deb
 connect.php
-test.php
 .vscode/
+test.php
+Gestex Prod Simulation.session.sql
+db-schema-prod-dumpall.sql

@@ -63,9 +63,9 @@ function last_id_db() {
 function check_val_in_db($pdo, $table, $col, $value) {
 	//teste l'existence de $value dans le champ $col de la table $table
 	//echo "check in:".$table.":".$col." for ".$value."<br />";
-	$sql = 'SELECT * FROM ? WHERE ? = ?;';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($table, $col, $value));
+	//$sql = 'SELECT * FROM ? WHERE ? = ?;';
+	$stmt = $pdo->prepare("SELECT * FROM $table WHERE $col = '$value'");
+	$stmt->execute();
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	///echo "check_val:".numrows_db($reponse)."<br />";
@@ -379,6 +379,16 @@ function get_loan_all_by_id($pdo, $id) {
 	return false;
 }
 
+function get_all_reservations_equipment($pdo, $id_equipment) {
+	$sql = 'SELECT * FROM pret WHERE nom = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equipment));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch;
+	return false;
+}
+
 // ---------------------------------------------------------------------
 
 function get_loan_short_by_id_equipment($pdo, $id_equipment) {
@@ -401,7 +411,7 @@ function get_loan_all_by_id_equipment($pdo, $id_equipment) {
 	$stmt->execute(array($id_equipment));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
-		return $result_fetch[0];
+		return $result_fetch;
 	return false;
 }
 
@@ -427,6 +437,8 @@ function get_loan_listall_by_team($pdo, $id_team) {
 
 // ---------------------------------------------------------------------
 
+// ---------------------------------------------------------------------
+
 function get_loan_count_by_team($pdo, $id_team) {
 	$sql = 'SELECT COUNT(*) as count FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id WHERE e.equipe = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -443,6 +455,18 @@ function get_loan_find($pdo, $find) {
 	$stmt->execute(array($find));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
+}
+
+// ---------------------------------------------------------------------
+
+function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
+	$sql = 'SELECT * FROM pret WHERE ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` >= ? AND `retour` <= ?) AND `nom` = ?);';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($from, $from, $id_equipment, $to, $to, $id_equipment, $from, $to, $id_equipment));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch;
+	return false;
 }
 
 // ---------------------------------------------------------------------
@@ -470,6 +494,7 @@ function del_loan_by_id($pdo, $id) {
 	$iostat = $stmt->execute(array($id));
 	return $iostat;
 }
+
 
 // ---------------------------------------------------------------------
 // Supplier
@@ -769,7 +794,7 @@ function set_user_status_by_id($pdo, $user_id, $user_status) {
 function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme) {
 	$sql = 'UPDATE LOW_PRIORITY users SET nom = ?, prenom = ?, email = ?, level = ?, tel = ?, equipe = ?, theme = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($familyname, $firstname, $email, $level, $tel, $team_id, $theme));
+	$iostat = $stmt->execute(array($familyname, $firstname, $email, $level, $tel, $team_id, $theme, $user_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
