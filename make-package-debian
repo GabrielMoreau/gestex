@@ -11,8 +11,23 @@ tmp_folder=$(mktemp --directory /tmp/gestex-XXXXXX)
 [ -n "${tmp_folder}" -a -d "${tmp_folder}" ] || exit 1
 
 PKG_NAME=gestex
-CODE_VERSION=$(grep GESTEX_VERSION module/base-functions.php | cut -f 4 -d "'") # '
+CODE_VERSION=$(grep GESTEX_VERSION module/base-functions.php | cut -f 4 -d "'") # ')
 PKG_VERSION=2
+
+# get options
+while getopts "nv" options
+do
+   case ${options} in
+      n)
+         export PKG_NAME="${PKG_NAME}-ng"
+         export CODE_VERSION="${CODE_VERSION}.$(date '+%y%j')"
+         ;;
+      v)
+         export verbose='yes'
+         ;;
+   esac
+done
+shift $(($OPTIND -1))
 
 mkdir -p ${tmp_folder}/etc/apache2/conf-available
 mkdir -p ${tmp_folder}/etc/gestex
