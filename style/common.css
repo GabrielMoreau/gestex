@@ -508,6 +508,10 @@ span.option-right {
 	border-radius: 4px;
 }
 
+.loan-list-container div {
+	padding: 0 10px 10px 10px;
+}
+
 .loan-list-container div h4 {
 	margin: 0 0 0.5rem 0;
 	text-align: center;
