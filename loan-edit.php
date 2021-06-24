@@ -17,7 +17,7 @@ $logged_level = $_SESSION['logged_level'];
 
 $equipment_id = param_get('equipment'); // -> new
 $loan_id      = param_get('id');     // -> modify
-$param_mode	  = param_get('mode', 'booking');
+$param_mode	  = param_get('mode', "loan");
 
 /* if ($loan_id == 0) {
 	$mode = 'Ajouter';
@@ -30,11 +30,11 @@ $param_mode	  = param_get('mode', 'booking');
 	en_tete('Modifier le pr&ecirc;t d\'un appareil'); 
 }*/
 
-if ($param_mode == 'booking') {
-	$mode = 'Ajouter';
+if ($param_mode == 'loan') {
+	$mode = 'Empunter';
 	en_tete('Ajouter un pr&ecirc;t');
-} else if ($param_mode == 'booking-after'){
-	$mode = 'Reserver apres';
+} else if ($param_mode == 'booking'){
+	$mode = 'Reserver';
 	en_tete('Reserver plus tard');
 } else {
 	$mode = 'Modifier';
@@ -59,11 +59,16 @@ $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id'
 	<?php if ($equipment_loans) {
 			foreach($equipment_loans as $loan_current) {
 				echo '<div>'.PHP_EOL;
-				echo '<h4>PRET N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+
+				if ($loan_current["state"] == 'loan') {
+					echo '<h4 style="background-color: #EA526F;">EMPRUNT N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+				} else {
+					echo '<h4>RESERVATION N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+				}
 				echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
 				echo '<span class="option-right">';
-				if ($logged_level >= 3) {echo '<a href="loan-del.php?id='.$loan_current['id'].'">';}
-				echo ICON_RETURN;
+				if ($logged_level >= 3 && $loan_current["state"] == 'loan') {echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
+				echo ICON_RETURN;}
 				if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';}
 				echo '</span>'.PHP_EOL;
 				echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])["nom"].PHP_EOL;
@@ -80,7 +85,7 @@ $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id'
 <form action="loan-process.php" method="POST" name="inscrForm">
 	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
 	<input type="hidden" name="mode" value="<?php echo $param_mode?>">
-	<?php if ($mode == 'Modifier' || $mode == 'Reserver apres') { ?>
+	<?php if ($mode == 'Modifier' || $mode == 'Reserver') { ?>
 		<input type="hidden" name="id_loan" value="<?php echo $loan_id ?>" >
 	<?php } ?>
 <table>

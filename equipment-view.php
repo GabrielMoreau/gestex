@@ -192,11 +192,15 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 						echo 'Oui, en pr&ecirc;t';
 						foreach($loan as $loan_current) {
 							echo '<div>'.PHP_EOL;
-							echo '<h4>PRET N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+							if ($loan_current["state"] == 'loan') {
+								echo '<h4 style="background-color: #EA526F">EMPRUNT N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+							} else {
+								echo '<h4>RESERVATION N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+							}
 							echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
 							echo '<span class="option-right">';
-							if ($logged_level >= 3) {echo '<a href="loan-del.php?id='.$loan_current['id'].'">';}
-							echo ICON_RETURN;
+							if ($logged_level >= 3 && $loan_current["state"] == 'loan') {echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
+							echo ICON_RETURN;}
 							if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';}
 							echo '</span>'.PHP_EOL;
 							echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])["nom"].PHP_EOL;
