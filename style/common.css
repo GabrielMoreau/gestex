@@ -520,6 +520,9 @@ span.option-right {
 	color: black;
 }
 
+.loan-title-container div h4 {
+	background-color: green;
+}
 
 div[class="navbar"] + .loan-list-container {
 	width: 42.5%;
