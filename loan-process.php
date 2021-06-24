@@ -48,54 +48,42 @@ if (!empty($erreur)) {
 }
 
 $pdo = connect_db_or_alert();
-$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
-if (!empty($loan_dates) || $loan_dates != false) {
-	$title        = 'Impossible d\'emprunter sur la même plage qu\'une autre réservation';
-	// $action       = 'equipment-view.php?id='.$equipment_id;
-	$action       = '';
 
-	if ($param_mode == "booking-after") {
-		$action = 'loan-edit.php?equipment='.$equipment_id.'&mode='.$param_mode;
-	} else if ($param_mode == "edit") {
-		$action = 'loan-edit.php?id='.$loan_id.'&mode='.$param_mode;
-	} else {
-		$action = 'loan-edit.php?equipment='.$equipment_id.'&mode='.$param_mode;
-	}
+if ($param_mode == 'loan') {
 
-	$message_text = 'Impossible d\'emprunter sur la même plage qu\'une autre réservation';
-	$transmit_post = true;
-	include_once('include/warning-box.php');
-	exit();
-}
-
-
-if ($param_mode == 'booking' || $param_mode == 'booking-after') {
-/* 	$loan = get_loan_short_by_id_equipment($pdo, $equipment_id);
-	if (empty($loan)) {
-		$title        = 'Erreur concernant un nouvel emprunt';
-		$action       = 'equipment-view.php?id='.$equipment_id;
-		$message_text = 'L\'appareil est d&eacute;j&agrave; emprunt&eacute;';
-		include_once('include/warning-box.php');
-		exit();
-	} */
-
-	// TEST //
-
-
-
-/* 	$emprunt = new DateTime($loan_dates['emprunt']);
-	$retour = new DateTime($loan_dates['retour']);
-
-	$intervalle = $emprunt->diff($retour);
-	if (($emprunt <= $date_emprunt ) && ($date_emprunt <= $retour)) {
-		echo "emprunt impossible sur l'intervalle demandé";
-	} */
-
-	// inscription
 	$loan_id = set_loan_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 	$message_text = 'Ajout du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />';
-}
-else {
+	
+} else if ($param_mode == "booking") {
+	// CHECK FUTUR
+	$tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
+	$emprunt = strtotime(date('Y-m-d', strtotime($date_emprunt)));
+	if ($emprunt >= $tomorrow) {
+		
+		// CHECK DATE OVERLAP
+		$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
+		if (!empty($loan_dates) || $loan_dates != false) {
+			$action = 'loan-edit.php?equipment='.$equipment_id.'&mode='.$param_mode;
+			$title = 'Impossible de réserver sur la même plage qu\'une autre réservation';
+			$message_text = $title;
+			$transmit_post = true;
+			include_once('include/warning-box.php');
+			exit();
+		}
+
+		// RESERVATION POSSIBLE
+		set_booking_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+		
+	} else {
+		// RESERVATION IMPOSSIBLE
+		$title        = 'Impossible de réserver le jour même ou avant';
+		$message_text = $title;
+		$action       = 'loan-edit.php?equipment='.$equipment_id.'&mode='.$param_mode;
+		$transmit_post = true;
+		include_once('include/warning-box.php');
+		exit();
+	}
+} else {
 	set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 	$message_text = 'Mise &agrave; jour du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />';
 }
