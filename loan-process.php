@@ -69,7 +69,7 @@ if (!empty($loan_dates) || $loan_dates != false) {
 }
 
 
-if ($param_mode == 'booking') {
+if ($param_mode == 'booking' || $param_mode == 'booking-after') {
 /* 	$loan = get_loan_short_by_id_equipment($pdo, $equipment_id);
 	if (empty($loan)) {
 		$title        = 'Erreur concernant un nouvel emprunt';
