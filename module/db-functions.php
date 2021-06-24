@@ -472,7 +472,16 @@ function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
 // ---------------------------------------------------------------------
 
 function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
-	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?, ?, ?, ?, ?);';
+	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?, ?, ?, ?, ?, 2);';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment));
+	return $pdo->lastInsertId();
+}
+
+// ---------------------------------------------------------------------
+
+function set_booking_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
+	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?, ?, ?, ?, ?, 1);';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment));
 	return $pdo->lastInsertId();
