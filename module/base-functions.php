@@ -5,10 +5,9 @@
 // ---------------------------------------------------------------------
 
 define('GESTEX_VERSION', '1.1.0');
-define('MODE_DEFAULT', 0);
-define('MODE_BOOKING', 1);
-define('MODE_LOAN', 2);
-define('MODE_OLD_LOAN', 4);
+define('STATUS_BOOKING', 'BOOKING');
+define('STATUS_LOAN', 'LOAN');
+define('STATUS_OLD', 'RETURN');
 
 // ---------------------------------------------------------------------
 
