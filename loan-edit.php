@@ -61,19 +61,23 @@ $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id'
 			foreach($equipment_loans as $loan_current) {
 				echo '<div>'.PHP_EOL;
 
-				if ($loan_current["status"] == STATUS_LOAN) {
+				if ($loan_current["status"] == STATUS_LOAN_BORROWED) {
 					echo '<h4 style="background-color: #EA526F;">EMPRUNT N°'.$loan_current["id"].'</h4>'.PHP_EOL;
 				} else {
 					echo '<h4>RESERVATION N°'.$loan_current["id"].'</h4>'.PHP_EOL;
 				}
 				echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
 				echo '<span class="option-right">';
-				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN) {echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
-				echo ICON_RETURN;}
-				if ($logged_level >= 3 && $loan_current["status"] == STATUS_BOOKING && $equipment_blacklist == false) {
+				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_BORROWED) {
+					echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
+					echo ICON_RETURN;
+				}
+				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED && $equipment_blacklist == false) {
 					echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan-now">'.ICON_BOOKING.'</a>';
 				}
-				if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';}
+				if ($logged_level >= 3) {
+					echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';
+				}
 				echo '</span>'.PHP_EOL;
 				
 				echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])["nom"].PHP_EOL;
@@ -101,7 +105,7 @@ $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id'
 		<?php
 		if ($param_mode == "edit") {?>
 			<tr>
-				<td style="background-color: #a6a6a8;color: black;padding-left: 7px;padding: 4px;"><b>ID <?php if (STATUS_LOAN == get_loan_status_by_id($pdo, $loan_id)) {echo "EMPRUNT";} else {echo "RESERVATION";}?></b></td>
+				<td style="background-color: #a6a6a8;color: black;padding-left: 7px;padding: 4px;"><b>ID <?php if (STATUS_LOAN_BORROWED == get_loan_status_by_id($pdo, $loan_id)) {echo "EMPRUNT";} else {echo "RESERVATION";}?></b></td>
 				<td style="background-color: var(--color-link);color: black;text-align: center;padding: 4px;"><b><?php echo param_get('id', "UNKNOW")?></b></td>
 			</tr>
 

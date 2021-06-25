@@ -192,17 +192,17 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 						echo 'Oui, en pr&ecirc;t';
 						foreach($loan as $loan_current) {
 							echo '<div>'.PHP_EOL;
-							if ($loan_current["status"] == STATUS_LOAN) {
+							if ($loan_current["status"] == STATUS_LOAN_BORROWED) {
 								echo '<h4 style="background-color: #EA526F">EMPRUNT N°'.$loan_current["id"].'</h4>'.PHP_EOL;
 							} else {
 								echo '<h4>RESERVATION N°'.$loan_current["id"].'</h4>'.PHP_EOL;
 							}
 							echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
 							echo '<span class="option-right">';
-							if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN) {echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
+							if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_BORROWED) {echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
 							echo ICON_RETURN;}
 
-							if ($loan_current["status"] == STATUS_BOOKING) {
+							if ($loan_current["status"] == STATUS_LOAN_RESERVED) {
 								echo '<span class="option-right">'.PHP_EOL;
 								if ($logged_level >= 3) {echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan-now">';}
 								echo ICON_BOOKING;
