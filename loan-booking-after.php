@@ -26,7 +26,7 @@ var_dump($equipment_id);
 var_dump($equipment_loans);
 
 if ($equipment_loans == false) {
-    exit();
+	exit();
 }
 ?>
 
@@ -41,7 +41,7 @@ if ($equipment_loans == false) {
 				Emprunteur
 			</th>
 			<th>
-                Equipe Redevable
+				Equipe Redevable
 			</th>
 			<th>
 				Emprunt le
@@ -50,38 +50,38 @@ if ($equipment_loans == false) {
 				Retour le
 			</th>
 		</tr>
-        <?php
-            foreach ($equipment_loans as $current_loan) {
-                if ($num_line % 2)
-				    echo '<tr class="pair">'.PHP_EOL;
-			    else
-				    echo '<tr class="impair">'.PHP_EOL;
-			    $num_line++;
-                $current_team = get_team_by_id($pdo, $current_loan["equipe"]);
+		<?php
+			foreach ($equipment_loans as $current_loan) {
+				if ($num_line % 2)
+					echo '<tr class="pair">'.PHP_EOL;
+				else
+					echo '<tr class="impair">'.PHP_EOL;
+				$num_line++;
+				$current_team = get_team_by_id($pdo, $current_loan["equipe"]);
 
-                echo '  <td>';
-                echo      $current_loan['id'];
-                echo '  </td>'.PHP_EOL;
+				echo '  <td>';
+				echo      $current_loan['id'];
+				echo '  </td>'.PHP_EOL;
 
-                echo '  <td>';
-                echo      $current_loan['commentaire'];
-                echo '  </td>'.PHP_EOL;
+				echo '  <td>';
+				echo      $current_loan['commentaire'];
+				echo '  </td>'.PHP_EOL;
 
-                echo '  <td>';
-                echo      $current_team['nom'];
-                echo '  </td>'.PHP_EOL;
+				echo '  <td>';
+				echo      $current_team['nom'];
+				echo '  </td>'.PHP_EOL;
 
-                echo '  <td>';
-                echo      $current_loan['emprunt'];
-                echo '  </td>'.PHP_EOL;
+				echo '  <td>';
+				echo      $current_loan['emprunt'];
+				echo '  </td>'.PHP_EOL;
 
-                echo '  <td>';
-                echo      $current_loan['retour'];
-                echo '  </td>'.PHP_EOL;
+				echo '  <td>';
+				echo      $current_loan['retour'];
+				echo '  </td>'.PHP_EOL;
 
-                echo '</tr>' . PHP_EOL;
-            }
-        ?>
+				echo '</tr>'.PHP_EOL;
+			}
+		?>
 	</tbody>
 </table>
 </div>
