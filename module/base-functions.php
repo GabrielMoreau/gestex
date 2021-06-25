@@ -6,9 +6,9 @@
 
 define('GESTEX_VERSION', '1.1.0');
 
-define('STATUS_LOAN_RESERVED', 'BOOKING');
-define('STATUS_LOAN_BORROWED', 'LOAN');
-define('STATUS_LOAN_RETURNED', 'RETURN');
+define('STATUS_LOAN_RESERVED', 'LOAN_RESERVED');
+define('STATUS_LOAN_BORROWED', 'LOAN_BORROWED');
+define('STATUS_LOAN_RETURNED', 'LOAN_RETURNED');
 
 // ---------------------------------------------------------------------
 
