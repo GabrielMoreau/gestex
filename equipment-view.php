@@ -200,12 +200,12 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 							echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
 							echo '<span class="option-right">';
 							if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_BORROWED) {echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
-							echo ICON_RETURN;}
+							echo ICON_LOAN_RETURNED;}
 
 							if ($loan_current["status"] == STATUS_LOAN_RESERVED) {
 								echo '<span class="option-right">'.PHP_EOL;
 								if ($logged_level >= 3) {echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan-now">';}
-								echo ICON_BOOKING;
+								echo ICON_LOAN_BORROWED;
 								if ($logged_level >= 3) {echo '</a>';}
 								echo '</span>'.PHP_EOL;
 							}
@@ -221,7 +221,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 					} else {
 						echo 'Oui'.'<span class="option-right">';
 						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'">';}
-						echo ICON_BOOKING;
+						echo ICON_LOAN_BORROWED;
 						if ($logged_level >= 3) {echo '</a>';}
 						echo '</span>'.PHP_EOL;
 					}

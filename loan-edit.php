@@ -70,10 +70,10 @@ $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id'
 				echo '<span class="option-right">';
 				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_BORROWED) {
 					echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
-					echo ICON_RETURN;
+					echo ICON_LOAN_RETURNED;
 				}
 				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED && $equipment_blacklist == false) {
-					echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan-now">'.ICON_BOOKING.'</a>';
+					echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan-now">'.ICON_LOAN_BORROWED.'</a>';
 				}
 				if ($logged_level >= 3) {
 					echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';

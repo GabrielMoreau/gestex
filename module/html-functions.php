@@ -15,9 +15,9 @@ define('ICON_MAIL',          '<span><svg width="1.2em" height="1.2em" fill="curr
 define('ICON_PHONE',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>T&eacute;l&eacute;phone</title><use xlink:href="images/bootstrap-icons.svg#telephone-plus"/></svg></span>');
 define('ICON_HOUSE',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>T&eacute;l&eacute;phone</title><use xlink:href="images/bootstrap-icons.svg#house"/></svg></span>');
 define('ICON_LOGIN',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Se d&eacute;connecter</title><use xlink:href="images/bootstrap-icons.svg#power"/></svg></span>');
-define('ICON_RETURN',        '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Rendre / Retour d\'un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
-define('ICON_BOOKING_AFTER', '<span class="check-warn"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunter un appareil plus tard</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
-define('ICON_BOOKING',       '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunter un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
+define('ICON_LOAN_RETURNED', '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Rendre / Retour d\'un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
+define('ICON_LOAN_RESERVED', '<span class="check-warn"><svg width="1.2em" height="1.2em" fill="currentColor"><title>R&eacute;server un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
+define('ICON_LOAN_BORROWED', '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunter un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
 define('ICON_EDIT',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Modifier</title><use xlink:href="images/bootstrap-icons.svg#pen"/></svg></span>');
 define('ICON_LIST',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Liste</title><use xlink:href="images/bootstrap-icons.svg#card-list"/></svg></span>');
 define('ICON_BARCODE',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Code barre</title><use xlink:href="images/bootstrap-icons.svg#upc-scan"/></svg></span>');
@@ -148,7 +148,7 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 			<a href="logout.php"><?php echo ICON_LOGIN;?> Se d&eacute;connecter</a>
 			<a href="user-edit.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>
 			<a href="user-changepwd.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PASWD;?> Changer le<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a>
-			<a href="user-loan.php?id=<?php echo $logged_id ?>"><?php echo ICON_BOOKING;?> Mes emprunts</a>
+			<a href="user-loan.php?id=<?php echo $logged_id ?>"><?php echo ICON_LOAN_BORROWED;?> Mes emprunts</a>
 		</div>
 	</li>
 	<?php } ?>

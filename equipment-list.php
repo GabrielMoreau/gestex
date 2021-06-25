@@ -154,18 +154,18 @@ if ($team_id > 0) {
 			echo '  <td>';
 			if ($loan) {
 				if ($logged_level >= 3) {echo '    <a href="loan-del.php?id='.$loan['id'].'">';}
-				echo ICON_RETURN;
+				echo ICON_LOAN_RETURNED;
 				if ($logged_level >= 3) {echo '</a>';}
 				echo '  </td>';
 
 				echo '	<td>';
 				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=booking-after">';}
-				echo ICON_BOOKING_AFTER;
+				echo ICON_LOAN_RESERVED;
 				if ($logged_level >= 3) {echo '</a>';}
 				echo '	</td>';
 			} else {
 				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=booking">';}
-				echo ICON_BOOKING;
+				echo ICON_LOAN_BORROWED;
 				if ($logged_level >= 3) {echo '</a>';}
 				echo '  </td>';
 			}
