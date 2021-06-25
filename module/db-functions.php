@@ -333,6 +333,16 @@ function get_equipment_listshort($pdo) {
 
 // ---------------------------------------------------------------------
 
+function get_equipment_by_loan_id($pdo, $id_loan) {
+	$sql = 'SELECT nom FROM pret WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_loan));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch[0]["nom"];
+}
+
+// ---------------------------------------------------------------------
+
 function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable) {
 	$sql = 'INSERT INTO Listing (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice, barcode, loanable)';
 	$sql .=            ' VALUES (?,         ?,   ?,      ?,     ?,      ?,           ?,     ?,           ?,          ?,           ?,          ?,      ?,       ?);';
@@ -459,6 +469,17 @@ function get_loan_find($pdo, $find) {
 
 // ---------------------------------------------------------------------
 
+function get_loans_blacklist_by_equipment($pdo, $id_equipment) {
+	$sql = 'SELECT * FROM pret WHERE nom = ? AND status = 2;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equipment));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch;
+	return false;
+}
+// ---------------------------------------------------------------------
+
 function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
 	$sql = 'SELECT * FROM pret WHERE ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` >= ? AND `retour` <= ?) AND `nom` = ?);';
 	$stmt = $pdo->prepare($sql);
@@ -467,6 +488,16 @@ function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
 	if (count($result_fetch) > 0)
 		return $result_fetch;
 	return false;
+}
+
+// ---------------------------------------------------------------------
+
+function get_loan_status_by_id($pdo, $id_loan) {
+	$sql = 'SELECT status FROM pret WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_loan));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch[0]["status"];
 }
 
 // ---------------------------------------------------------------------
@@ -480,8 +511,16 @@ function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $co
 
 // ---------------------------------------------------------------------
 
+function set_booking_update_to_loan($pdo, $id_loan) {
+	$sql = 'UPDATE pret SET status = 2 WHERE id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_loan));
+}
+
+// ---------------------------------------------------------------------
+
 function set_booking_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
-	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?, ?, ?, ?, ?, 1);';
+	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, 1);';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment));
 	return $pdo->lastInsertId();
