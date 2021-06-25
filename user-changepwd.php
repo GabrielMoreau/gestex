@@ -42,7 +42,7 @@ $user_selected = get_user_all_by_id($pdo, $user2chg);
 if (isset($passwd1) && isset($passwd2)){
 	// check that passwords match
 	if ($passwd1 != $passwd2)
- 		 $errormsg = 'Passwords do not match, please try again';
+		$errormsg = 'Passwords do not match, please try again';
 
 	if (!isset($errormsg) && isset($old_pass) && $logged_level < 3) {
 		if(md5($old_pass) != $user_selected['password'])

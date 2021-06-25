@@ -76,7 +76,7 @@ if ($pdo = connect_db()) {
 		$chef = get_user_by_id($pdo, $team_current['chef']);
 		echo '  <td style="vertical-align: top;">';
 		if ($chef)
-			 echo $chef['nom'].' '.$chef['prenom'];
+			echo $chef['nom'].' '.$chef['prenom'];
 		echo '  </td>'.PHP_EOL;
 
 		echo '  <td>';
