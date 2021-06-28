@@ -12,7 +12,7 @@ define('GESTEX_DB_VERSION', 4);
 
 // connexion au serveur mySQL
 
-function connect_db() {
+function connect_db_minimal() {
 	try{
 		$pdo = new PDO('mysql:host='.GESTEX_DB_SERVER.'; dbname='.GESTEX_DB_DATABASE, GESTEX_DB_USER, GESTEX_DB_PASSWORD);
 	}
@@ -22,18 +22,26 @@ function connect_db() {
 		return false;
 	}
 
-	try{
-		$datasheet_version = get_version_by_name($pdo, 'datasheet');
-		if ($datasheet_version < GESTEX_DB_VERSION) {
-			error_log('Database version error: update the database schema');
-			echo "Mettre à jour le schéma de la base de données";
-			return false
+	return $pdo;
+}
+
+// ---------------------------------------------------------------------
+
+function connect_db() {
+	if ($pdo = connect_db_minimal()) {
+		try{
+			$datasheet_version = get_version_by_name($pdo, 'datasheet');
+			if ($datasheet_version < GESTEX_DB_VERSION) {
+				error_log('Database version error: update the database schema');
+				echo "Mettre à jour le schéma de la base de données";
+				return false
+			}
 		}
-	}
-	catch(PDOException $exception){
-		error_log('Database version error: '.$exception->getMessage());
-		echo $exception->getMessage();
-		return false;
+		catch(PDOException $exception){
+			error_log('Database version error: '.$exception->getMessage());
+			echo $exception->getMessage();
+			return false;
+		}
 	}
 
 	return $pdo;

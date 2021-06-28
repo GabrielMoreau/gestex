@@ -10,7 +10,7 @@ require_once('module/upgrade-functions.php');
 auth_or_login('index.php');
 level_or_alert(4, 'Mise &agrave; jour de l\'application');
 
-if (!$pdo = connect_db())
+if (!$pdo = connect_db_minimal())
 	exit();
 
 en_tete('Mise &agrave; jour de la base de donn&eacute;e des notices');
