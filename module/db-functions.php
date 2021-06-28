@@ -404,7 +404,7 @@ function get_all_reservations_equipment($pdo, $id_equipment) {
 
 function get_loan_short_by_id_equipment($pdo, $id_equipment) {
 	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
-	$sql = 'SELECT id FROM pret WHERE nom = ?;';
+	$sql = 'SELECT id, status FROM pret WHERE nom = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_equipment));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -430,7 +430,7 @@ function get_loan_all_by_id_equipment($pdo, $id_equipment) {
 
 function get_loan_listall($pdo) {
 	//$sql = 'SELECT * FROM pret;';
-	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id ORDER BY l.retour DESC, l.emprunt DESC, e.nom;';
+	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id WHERE status = \''.STATUS_LOAN_BORROWED.'\' ORDER BY l.retour DESC, l.emprunt DESC, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -439,7 +439,7 @@ function get_loan_listall($pdo) {
 // ---------------------------------------------------------------------
 
 function get_loan_listall_by_team($pdo, $id_team) {
-	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id WHERE e.equipe = ? ORDER BY l.retour DESC, l.emprunt DESC, e.nom;';
+	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id WHERE l.equipe = ? AND status = \''.STATUS_LOAN_BORROWED.'\' ORDER BY l.retour DESC, l.emprunt DESC, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_team));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -471,7 +471,7 @@ function get_loan_find($pdo, $find) {
 // ---------------------------------------------------------------------
 
 function get_loans_blacklist_by_equipment($pdo, $id_equipment) {
-	$sql = "SELECT * FROM pret WHERE nom = $id_equipment AND status = '". STATUS_LOAN_BORROWED . "';";
+	$sql = "SELECT * FROM pret WHERE nom = $id_equipment AND status = '".STATUS_LOAN_BORROWED."';";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -516,9 +516,9 @@ function get_last_reserved_loan($pdo, $id_equipment) {
 // ---------------------------------------------------------------------
 
 function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
-	$sql = "INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES ($id_equipment, $id_team, $date_begin, $date_end, $comment, '".STATUS_LOAN_BORROWED."');";
+	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, \''.STATUS_LOAN_BORROWED.'\');';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
+	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment));
 	return $pdo->lastInsertId();
 }
 
@@ -533,9 +533,9 @@ function set_booking_update_to_loan($pdo, $id_loan) {
 // ---------------------------------------------------------------------
 
 function set_booking_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
-	$sql = "INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES ($id_equipment, $id_team, $date_begin, $date_end, $comment, '".STATUS_LOAN_RESERVED."');";
+	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, \''.STATUS_LOAN_RESERVED.'\');';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
+	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment));
 	return $pdo->lastInsertId();
 }
 
