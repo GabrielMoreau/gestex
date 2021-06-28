@@ -1,6 +1,7 @@
 <?php if (!$web_page) exit() ?>
 
 <?php
+require_once('base-functions.php');
 require_once('connect.php');
 
 // ---------------------------------------------------------------------
@@ -390,9 +391,9 @@ function get_loan_all_by_id($pdo, $id) {
 }
 
 function get_all_reservations_equipment($pdo, $id_equipment) {
-	$sql = 'SELECT * FROM pret WHERE nom = ?;';
+	$sql = "SELECT * FROM pret WHERE nom = $id_equipment AND status != '".STATUS_LOAN_RETURNED."' ORDER BY status DESC, emprunt ASC, retour ASC;";
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment));
+	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
@@ -470,9 +471,9 @@ function get_loan_find($pdo, $find) {
 // ---------------------------------------------------------------------
 
 function get_loans_blacklist_by_equipment($pdo, $id_equipment) {
-	$sql = 'SELECT * FROM pret WHERE nom = ? AND status = 2;';
+	$sql = "SELECT * FROM pret WHERE nom = $id_equipment AND status = '". STATUS_LOAN_BORROWED . "';";
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment));
+	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
@@ -502,27 +503,39 @@ function get_loan_status_by_id($pdo, $id_loan) {
 
 // ---------------------------------------------------------------------
 
-function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
-	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES (?, ?, ?, ?, ?, 2);';
+function get_last_reserved_loan($pdo, $id_equipment) {
+	$sql = "SELECT * FROM pret WHERE nom = $id_equipment AND status = '".STATUS_LOAN_RETURNED."' ORDER BY retour DESC LIMIT 1;";
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment));
+	$stmt->execute();
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch;
+	return false;
+}
+
+// ---------------------------------------------------------------------
+
+function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
+	$sql = "INSERT INTO pret (nom, equipe, emprunt, retour, commentaire) VALUES ($id_equipment, $id_team, $date_begin, $date_end, $comment, '".STATUS_LOAN_BORROWED."');";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
 	return $pdo->lastInsertId();
 }
 
 // ---------------------------------------------------------------------
 
 function set_booking_update_to_loan($pdo, $id_loan) {
-	$sql = 'UPDATE pret SET status = 2 WHERE id = ?;';
+	$sql = "UPDATE pret SET status = '".STATUS_LOAN_BORROWED."' WHERE id = $id_loan;";
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_loan));
+	$stmt->execute();
 }
 
 // ---------------------------------------------------------------------
 
 function set_booking_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
-	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, 1);';
+	$sql = "INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES ($id_equipment, $id_team, $date_begin, $date_end, $comment, '".STATUS_LOAN_RESERVED."');";
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment));
+	$stmt->execute();
 	return $pdo->lastInsertId();
 }
 
@@ -540,6 +553,15 @@ function del_loan_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM pret WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($id));
+	return $iostat;
+}
+
+// ---------------------------------------------------------------------
+
+function set_loan_to_returned($pdo, $id) {
+	$sql = "UPDATE LOW_PRIORITY pret SET status = '".STATUS_LOAN_RETURNED."', retour = CURRENT_DATE WHERE id = $id;";
+	$stmt = $pdo->prepare($sql);
+	$iostat = $stmt->execute();
 	return $iostat;
 }
 
