@@ -30,11 +30,11 @@ done
 shift $(($OPTIND -1))
 
 mkdir -p ${tmp_folder}/etc/apache2/conf-available
-mkdir -p ${tmp_folder}/etc/gestex
-mkdir -p ${tmp_folder}/usr/share/doc/gestex
-mkdir -p ${tmp_folder}/usr/share/gestex
-rsync -a *.php images include module script style  ${tmp_folder}/usr/share/gestex/
-rsync -a AUTHORS.md README.md LICENSE              ${tmp_folder}/usr/share/doc/gestex/
+mkdir -p ${tmp_folder}/etc/${PKG_NAME}
+mkdir -p ${tmp_folder}/usr/share/doc/${PKG_NAME}
+mkdir -p ${tmp_folder}/usr/share/${PKG_NAME}
+rsync -a *.php images include module script style  ${tmp_folder}/usr/share/${PKG_NAME}/
+rsync -a AUTHORS.md README.md LICENSE              ${tmp_folder}/usr/share/doc/${PKG_NAME}/
 chmod -R a+rX,go-w   ${tmp_folder}/usr
 chmod -R a+rX,go-w   ${tmp_folder}/etc
 
