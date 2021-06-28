@@ -149,12 +149,12 @@ if ($team_id > 0) {
 		echo '  </td>'.PHP_EOL;
 
 		if ($equipment_item['loanable'] == 1) {
-			$loan = get_loan_short_by_id_equipment($pdo, $equipment_item['id']);
+			$loan = get_loan_short_by_id_equipment($pdo, $equipment_item['id']); # effectuer une modification ici
 
 			echo '  <td>';
 			if ($loan) {
 				if ($logged_level >= 3) {echo '    <a href="loan-del.php?id='.$loan['id'].'">';}
-				echo ICON_LOAN_RETURNED;
+				if ($loan["status"] == STATUS_LOAN_BORROWED) {echo ICON_LOAN_RETURNED;}
 				if ($logged_level >= 3) {echo '</a>';}
 				echo '  </td>';
 
@@ -164,7 +164,7 @@ if ($team_id > 0) {
 				if ($logged_level >= 3) {echo '</a>';}
 				echo '	</td>';
 			} else {
-				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=booking">';}
+				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=loan">';}
 				echo ICON_LOAN_BORROWED;
 				if ($logged_level >= 3) {echo '</a>';}
 				echo '  </td>';
