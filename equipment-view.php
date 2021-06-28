@@ -35,7 +35,10 @@ if ($pdo = connect_db()) {
 		$equipment_selected['barcode'] = '';
 
 	if ($equipment_selected['loanable'] == 1)
-		$loan = get_loan_all_by_id_equipment($pdo, $id_equipment);
+		$loan = get_all_reservations_equipment($pdo, $id_equipment);
+
+	$equipment_blacklist = get_loans_blacklist_by_equipment($pdo, $id_equipment);
+	$equipment_loan_reserved = get_last_reserved_loan($pdo, $id_equipment);
 
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'].'</b>');
 ?>
@@ -186,38 +189,13 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 			<th>
 				Empruntable
 			</th>
-			<td class="loan-list-container">
+
+
+			<td>
 				<?php if ($equipment_selected['loanable'] == 1) {
 					if ($loan) {
 						echo 'Oui, en pr&ecirc;t';
-						foreach($loan as $loan_current) {
-							echo '<div>'.PHP_EOL;
-							if ($loan_current["status"] == STATUS_LOAN_BORROWED) {
-								echo '<h4 style="background-color: #EA526F">EMPRUNT N°'.$loan_current["id"].'</h4>'.PHP_EOL;
-							} else {
-								echo '<h4>RESERVATION N°'.$loan_current["id"].'</h4>'.PHP_EOL;
-							}
-							echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
-							echo '<span class="option-right">';
-							if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_BORROWED) {echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
-							echo ICON_LOAN_RETURNED;}
-
-							if ($loan_current["status"] == STATUS_LOAN_RESERVED) {
-								echo '<span class="option-right">'.PHP_EOL;
-								if ($logged_level >= 3) {echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan-now">';}
-								echo ICON_LOAN_BORROWED;
-								if ($logged_level >= 3) {echo '</a>';}
-								echo '</span>'.PHP_EOL;
-							}
-
-							if ($logged_level >= 3) {echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';}
-							echo '</span>'.PHP_EOL;
-
-							echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])["nom"].PHP_EOL;
-							echo '<br>'.$loan_current['commentaire'].PHP_EOL;
-							
-							echo '</div>'.PHP_EOL;
-						}
+						loan_list_container($pdo, $loan, $equipment_loan_reserved, $equipment_blacklist, $logged_level);
 					} else {
 						echo 'Oui'.'<span class="option-right">';
 						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'">';}

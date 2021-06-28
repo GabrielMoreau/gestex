@@ -54,38 +54,9 @@ $num_line = 0;
 $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 $equipment_blacklist = get_loans_blacklist_by_equipment($pdo, $equipment_id);
 $equipment_loans = get_all_reservations_equipment($pdo, $equipment_selected['id']);
+$equipment_loan_reserved = get_last_reserved_loan($pdo, $equipment_id);
 
-?>
-<div class="loan-list-container">
-	<?php if ($equipment_loans) {
-			foreach($equipment_loans as $loan_current) {
-				echo '<div>'.PHP_EOL;
-
-				if ($loan_current["status"] == STATUS_LOAN_BORROWED) {
-					echo '<h4 style="background-color: #EA526F;">EMPRUNT N°'.$loan_current["id"].'</h4>'.PHP_EOL;
-				} else {
-					echo '<h4>RESERVATION N°'.$loan_current["id"].'</h4>'.PHP_EOL;
-				}
-				echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
-				echo '<span class="option-right">';
-				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_BORROWED) {
-					echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
-					echo ICON_LOAN_RETURNED;
-				}
-				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED && $equipment_blacklist == false) {
-					echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan-now">'.ICON_LOAN_BORROWED.'</a>';
-				}
-				if ($logged_level >= 3) {
-					echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';
-				}
-				echo '</span>'.PHP_EOL;
-				
-				echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])["nom"].PHP_EOL;
-				echo '<br>'.$loan_current['commentaire'].PHP_EOL;
-				echo '</div>'.PHP_EOL;
-			}
-		}?>
-</div>
+loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $equipment_blacklist, $logged_level);?>
 
 <div class="space-between"></div>
 
