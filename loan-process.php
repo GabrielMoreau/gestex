@@ -129,7 +129,7 @@ if ($param_mode == "loan-now") {
 		include_once('include/warning-box.php');
 		exit();
 	}
-} else if ($_GET["mode"] == "loan-now") {
+} else if (isset($_GET["mode"]) && $_GET["mode"] == "loan-now") {
 	
 	if (get_loans_blacklist_by_equipment($pdo, get_equipment_by_loan_id($pdo, $_GET["id"])) == false) {
 		set_booking_update_to_loan($pdo, $_GET["id"]);
@@ -145,9 +145,16 @@ if ($param_mode == "loan-now") {
 	}
 
 } else if ($param_mode == 'loan') {
+	$tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
+	$emprunt = strtotime(date('Y-m-d', strtotime($date_emprunt)));
 
-	$loan_id = set_loan_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
-	$message_text = 'Ajout du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
+	if ($emprunt >= $tomorrow) {
+		$loan_id = set_booking_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+		$message_text = 'Ajout de la réservation sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
+	} else {
+		$loan_id = set_loan_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+		$message_text = 'Ajout du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
+	}
 
 } else {
 	$title         = 'Impossible d\'effectuer un emprunt ou une réservation';
