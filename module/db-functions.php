@@ -391,9 +391,9 @@ function get_loan_all_by_id($pdo, $id) {
 }
 
 function get_all_reservations_equipment($pdo, $id_equipment) {
-	$sql = "SELECT * FROM pret WHERE nom = $id_equipment AND status != '".STATUS_LOAN_RETURNED."' ORDER BY status DESC, emprunt ASC, retour ASC;";
+	$sql = 'SELECT * FROM pret WHERE nom = ? AND status != \''.STATUS_LOAN_RETURNED.'\' ORDER BY status DESC, emprunt ASC, retour ASC;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
+	$stmt->execute(array($id_equipment));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
@@ -471,9 +471,9 @@ function get_loan_find($pdo, $find) {
 // ---------------------------------------------------------------------
 
 function get_loans_blacklist_by_equipment($pdo, $id_equipment) {
-	$sql = "SELECT * FROM pret WHERE nom = $id_equipment AND status = '".STATUS_LOAN_BORROWED."';";
+	$sql = 'SELECT * FROM pret WHERE nom = ? AND status = \''.STATUS_LOAN_BORROWED.'\';';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
+	$stmt->execute(array($id_equipment));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
@@ -504,9 +504,9 @@ function get_loan_status_by_id($pdo, $id_loan) {
 // ---------------------------------------------------------------------
 
 function get_last_reserved_loan($pdo, $id_equipment) {
-	$sql = "SELECT * FROM pret WHERE nom = $id_equipment AND status = '".STATUS_LOAN_RETURNED."' ORDER BY retour DESC LIMIT 1;";
+	$sql = 'SELECT * FROM pret WHERE nom = ? AND status = \''.STATUS_LOAN_RETURNED.'\' ORDER BY retour DESC LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
+	$stmt->execute(array($id_equipment));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
