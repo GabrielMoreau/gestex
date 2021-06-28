@@ -28,11 +28,23 @@ function param_get($string, $default = '') {
 
 // ---------------------------------------------------------------------
 
+// Priority to POST method
 function param_post_or_get($string, $default = '') {
 	if (!empty($_POST[$string]))
 		return filter_var($_POST[$string], FILTER_SANITIZE_STRING);
 	if (!empty($_GET[$string]))
 		return filter_var($_GET[$string], FILTER_SANITIZE_STRING);
+	return $default;
+}
+
+// ---------------------------------------------------------------------
+
+// Priority to GET method
+function param_get_or_post($string, $default = '') {
+	if (!empty($_GET[$string]))
+		return filter_var($_GET[$string], FILTER_SANITIZE_STRING);
+	if (!empty($_POST[$string]))
+		return filter_var($_POST[$string], FILTER_SANITIZE_STRING);
 	return $default;
 }
 
