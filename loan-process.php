@@ -74,6 +74,7 @@ if ($param_mode == "loan-now") {
 	// CHECK FUTUR
 	$tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
 	$emprunt = strtotime(date('Y-m-d', strtotime($date_emprunt)));
+
 	if ($emprunt >= $tomorrow) {
 		
 		// CHECK DATE OVERLAP
@@ -104,10 +105,17 @@ if ($param_mode == "loan-now") {
 	// CHECK FUTUR
 	$tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
 	$emprunt = strtotime(date('Y-m-d', strtotime($date_emprunt)));
+
+	if (isset($loan_id))
+		var_dump($loan_id);
+	else
+		echo 'no variable $loan_id';
+
 	if ($emprunt >= $tomorrow) {
 			
 		// CHECK DATE OVERLAP
-		$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
+		#$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
+		$loan_dates = get_loans_interval_by_id_except_self($pdo, $equipment_id, $date_emprunt, $date_retour, $loan_id);
 		if (!empty($loan_dates) || $loan_dates != false) {
 			$action = 'loan-edit.php?id='.$loan_id.'&mode='.$param_mode;
 			$title = 'Impossible d\'éditer sur la même plage qu\'une autre réservation';

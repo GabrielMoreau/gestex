@@ -479,12 +479,25 @@ function get_loans_blacklist_by_equipment($pdo, $id_equipment) {
 		return $result_fetch;
 	return false;
 }
+
 // ---------------------------------------------------------------------
 
 function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
 	$sql = 'SELECT * FROM pret WHERE ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` >= ? AND `retour` <= ?) AND `nom` = ?);';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($from, $from, $id_equipment, $to, $to, $id_equipment, $from, $to, $id_equipment));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch;
+	return false;
+}
+
+// ---------------------------------------------------------------------
+
+function get_loans_interval_by_id_except_self($pdo, $id_equipment, $from, $to, $except_id) {
+	$sql = 'SELECT * FROM pret WHERE (((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` >= ? AND `retour` <= ?) AND `nom` = ?)) AND NOT id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($from, $from, $id_equipment, $to, $to, $id_equipment, $from, $to, $id_equipment, $except_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
