@@ -106,31 +106,40 @@ if ($param_mode == "loan-now") {
 	$tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
 	$emprunt = strtotime(date('Y-m-d', strtotime($date_emprunt)));
 
-	if ($emprunt >= $tomorrow) {
-		// CHECK DATE OVERLAP
-		#$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
-		$loan_dates = get_loans_interval_by_id_except_loan($pdo, $equipment_id, $date_emprunt, $date_retour, $loan_id);
-		if (!empty($loan_dates) || $loan_dates != false) {
-			$action = 'loan-edit.php?id='.$loan_id.'&mode='.$param_mode;
-			$title = 'Impossible d\'éditer sur la même plage qu\'une autre réservation';
+	if (isset($loan_id))
+		var_dump($loan_id);
+
+	if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_BORROWED) {
+		set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+		$message_text = 'Mise à jour du pret avec succes';
+	} else {
+		if ($emprunt >= $tomorrow) {
+			// CHECK DATE OVERLAP
+			#$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
+			$loan_dates = get_loans_interval_by_id_except_loan($pdo, $equipment_id, $date_emprunt, $date_retour, $loan_id);
+			if (!empty($loan_dates) || $loan_dates != false) {
+				$action = 'loan-edit.php?id='.$loan_id.'&mode='.$param_mode;
+				$title = 'Impossible d\'éditer sur la même plage qu\'une autre réservation';
+				$message_text = $title;
+				$transmit_post = true;
+				include_once('include/warning-box.php');
+				exit();
+			}
+	
+			set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+			$message_text = 'Mise &agrave; jour du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />';
+	
+		} else {
+			// EDITION IMPOSSIBLE
+			$title        = 'Impossible d\'éditer la réservation le jour même ou avant';
 			$message_text = $title;
+			$action       = 'loan-edit.php?id='.$loan_id.'&mode='.$param_mode;
 			$transmit_post = true;
 			include_once('include/warning-box.php');
 			exit();
 		}
-
-		set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
-		$message_text = 'Mise &agrave; jour du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />';
-
-	} else {
-		// EDITION IMPOSSIBLE
-		$title        = 'Impossible d\'éditer la réservation le jour même ou avant';
-		$message_text = $title;
-		$action       = 'loan-edit.php?id='.$loan_id.'&mode='.$param_mode;
-		$transmit_post = true;
-		include_once('include/warning-box.php');
-		exit();
 	}
+
 } else if (isset($_GET["mode"]) && $_GET["mode"] == "loan-now") {
 	
 	if (get_loans_blacklist_by_equipment($pdo, get_equipment_by_loan_id($pdo, $_GET["id"])) == false) {
