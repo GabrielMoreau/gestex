@@ -21,6 +21,12 @@ if ($valid == 'edit')
 
 $pdo = connect_db_or_alert();
 
+$loan_selected  = get_loan_all_by_id($pdo, $loan_id);
+$equipment = get_equipment_by_id($pdo, $loan_selected['nom']);
+$equipment_name = $equipment["nom"];
+$equipment_id = $equipment["id"];
+
+
 if ($valid == 'yes') {
 	/* $iostat = del_loan_by_id($pdo, $loan_id); */
 	$str_type = "du pret";
@@ -31,14 +37,11 @@ if ($valid == 'yes') {
 		$iostat = set_loan_to_returned($pdo, $loan_id);
 	}
 	if ($iostat) // ca a marche
-		redirect('loan-list.php');
+		redirect('equipment-view.php?id='.$equipment_id);
 	$message_alert = 'Erreur dans la suppression '.$type.' : '.$loan_id;
 	include_once('include/alert-data.php');
 	exit();
 	}
-
-$loan_selected  = get_loan_all_by_id($pdo, $loan_id);
-$equipment_name = get_equipment_by_id($pdo, $loan_selected['nom'])['nom'];
 
 // $loan_id
 // $equipment_name
