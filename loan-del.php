@@ -23,10 +23,16 @@ $pdo = connect_db_or_alert();
 
 if ($valid == 'yes') {
 	/* $iostat = del_loan_by_id($pdo, $loan_id); */
-	$iostat = set_loan_to_returned($pdo, $loan_id);
+	$str_type = "du pret";
+	if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_RESERVED) {
+		$iostat = del_loan_by_id($pdo, $loan_id);
+		$str_type = "de la reservation";
+	} else {
+		$iostat = set_loan_to_returned($pdo, $loan_id);
+	}
 	if ($iostat) // ca a marche
 		redirect('loan-list.php');
-	$message_alert = 'Erreur dans la suppression du pr&ecirc;t : '.$loan_id;
+	$message_alert = 'Erreur dans la suppression '.$type.' : '.$loan_id;
 	include_once('include/alert-data.php');
 	exit();
 	}
