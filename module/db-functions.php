@@ -34,7 +34,7 @@ function connect_db() {
 			if ($datasheet_version < GESTEX_DB_VERSION) {
 				error_log('Database version error: update the database schema');
 				echo "Mettre à jour le schéma de la base de données";
-				return false
+				return false;
 			}
 		}
 		catch(PDOException $exception){

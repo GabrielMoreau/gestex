@@ -115,7 +115,7 @@ if ($param_mode == "loan-now") {
 			
 		// CHECK DATE OVERLAP
 		#$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
-		$loan_dates = get_loans_interval_by_id_except_self($pdo, $equipment_id, $date_emprunt, $date_retour, $loan_id);
+		$loan_dates = get_loans_interval_by_id_except_loan($pdo, $equipment_id, $date_emprunt, $date_retour, $loan_id);
 		if (!empty($loan_dates) || $loan_dates != false) {
 			$action = 'loan-edit.php?id='.$loan_id.'&mode='.$param_mode;
 			$title = 'Impossible d\'éditer sur la même plage qu\'une autre réservation';
