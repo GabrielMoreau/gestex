@@ -106,13 +106,7 @@ if ($param_mode == "loan-now") {
 	$tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
 	$emprunt = strtotime(date('Y-m-d', strtotime($date_emprunt)));
 
-	if (isset($loan_id))
-		var_dump($loan_id);
-	else
-		echo 'no variable $loan_id';
-
 	if ($emprunt >= $tomorrow) {
-			
 		// CHECK DATE OVERLAP
 		#$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
 		$loan_dates = get_loans_interval_by_id_except_loan($pdo, $equipment_id, $date_emprunt, $date_retour, $loan_id);
