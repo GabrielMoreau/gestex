@@ -521,7 +521,7 @@ function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
 
 // ---------------------------------------------------------------------
 
-function get_loans_interval_by_id_except_self($pdo, $id_equipment, $from, $to, $except_id) {
+function get_loans_interval_by_id_except_loan($pdo, $id_equipment, $from, $to, $except_id) {
 	$sql = 'SELECT * FROM pret WHERE (((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` >= ? AND `retour` <= ?) AND `nom` = ?)) AND NOT id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($from, $from, $id_equipment, $to, $to, $id_equipment, $from, $to, $id_equipment, $except_id));
@@ -916,7 +916,7 @@ function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level
 // ---------------------------------------------------------------------
 
 function get_version_by_name($pdo, $name) {
-	$sql = 'SELECT version FROM version WHERE name = ?;';
+	$sql = 'SELECT version FROM version WHERE soft = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($name));
 	$version_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -927,9 +927,9 @@ function get_version_by_name($pdo, $name) {
 // ---------------------------------------------------------------------
 
 function set_version_by_name($pdo, $name, $version) {
-	$sql = 'INSERT INTO version (name, version) VALUES (?, ?);';
+	$sql = 'INSERT INTO version (soft, version) VALUES (?, ?);';
 	if (get_version_by_name($pdo, $name))
-		$sql = 'UPDATE version SET version = ? WHERE name = ?;';
+		$sql = 'UPDATE version SET version = ? WHERE soft = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($name, $version));
 }
