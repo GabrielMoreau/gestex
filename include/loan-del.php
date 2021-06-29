@@ -5,8 +5,10 @@
 // $equipment_name
 require_once('module/db-functions.php');
 $str_loan_type = "le pret";
+$loan_status = STATUS_LOAN_BORROWED;
 if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_RESERVED) {
 	$str_loan_type = "la réservation";
+	$loan_status = STATUS_LOAN_RESERVED;
 }
 ?>
 
@@ -19,7 +21,7 @@ if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_RESERVED) {
 	Concernant <?=$str_loan_type?> <?=$loan_id?> (<?=$equipment_name?>), voulez-vous :
 	<ul>
 		<li>Modifier / &Eacute;diter <?=$str_loan_type?> ? <button type="submit" name="ok" value="edit"><?php echo ICON_EDIT ?></button></li>
-		<li>Supprimer <?=$str_loan_type?> (retour de l'appareil) ?
+		<li>Supprimer <?=$str_loan_type?> <?php if ($loan_status == STATUS_LOAN_BORROWED){echo '(retour de l\'appareil) ?';}?>
 			<button class="red" type="submit" name="ok" value="yes">Oui</button>
 			<button class="green" type="submit" formaction="loan-list.php" value="no">Non</button>
 		</li>
