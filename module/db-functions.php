@@ -579,7 +579,7 @@ function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $co
 // ---------------------------------------------------------------------
 
 function set_booking_update_to_loan($pdo, $id_loan) {
-	$sql = "UPDATE pret SET status = '".STATUS_LOAN_BORROWED."' WHERE id = $id_loan;";
+	$sql = "UPDATE pret SET status = '".STATUS_LOAN_BORROWED."', emprunt = CURRENT_DATE WHERE id = $id_loan;";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 }
