@@ -8,3 +8,4 @@ connect.php
 test.php
 Gestex Prod Simulation.session.sql
 db-schema-prod-dumpall.sql
+*.old
