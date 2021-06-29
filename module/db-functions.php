@@ -417,6 +417,20 @@ function get_loan_all_by_id($pdo, $id) {
 	return false;
 }
 
+// ---------------------------------------------------------------------
+
+function get_loans_by_equipment($pdo, $equipment_id) {
+	$sql = 'SELECT * FROM pret WHERE nom = ? AND NOT status = \''.STATUS_LOAN_RETURNED.'\';';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($equipment_id));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch;
+	return false;
+}
+
+// ---------------------------------------------------------------------
+
 function get_all_reservations_equipment($pdo, $id_equipment) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND status != \''.STATUS_LOAN_RETURNED.'\' ORDER BY status DESC, emprunt ASC, retour ASC;';
 	$stmt = $pdo->prepare($sql);
