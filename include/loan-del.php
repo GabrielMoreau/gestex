@@ -18,8 +18,8 @@ if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_RESERVED) {
 	<input type="hidden" name="id" value="<?=$loan_id?>" >
 	Concernant <?=$str_loan_type?> <?=$loan_id?> (<?=$equipment_name?>), voulez-vous :
 	<ul>
-		<li>Modifier / &Eacute;diter le pr&ecirc;t ? <button type="submit" name="ok" value="edit"><?php echo ICON_EDIT ?></button></li>
-		<li>Supprimer le pr&ecirc;t (retour de l'appareil) ?
+		<li>Modifier / &Eacute;diter <?=$str_loan_type?> ? <button type="submit" name="ok" value="edit"><?php echo ICON_EDIT ?></button></li>
+		<li>Supprimer <?=$str_loan_type?> (retour de l'appareil) ?
 			<button class="red" type="submit" name="ok" value="yes">Oui</button>
 			<button class="green" type="submit" formaction="loan-list.php" value="no">Non</button>
 		</li>
