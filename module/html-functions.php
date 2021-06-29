@@ -260,6 +260,11 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED && $equipment_blacklist == false) {
 					echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan-now">'.ICON_LOAN_BORROWED.'</a>';
 				}
+				
+				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED) {
+					echo '<a href="loan-del.php?id='.$loan_current["id"].'">'.ICON_TRASH.'</a>';
+				}
+
 				if ($logged_level >= 3 && $loan_current["status"] != STATUS_LOAN_RETURNED) {
 					echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';
 				}
