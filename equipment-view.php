@@ -195,6 +195,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				<?php if ($equipment_selected['loanable'] == 1) {
 					if ($loan) {
 						echo 'Oui, en pr&ecirc;t';
+						loan_list_container($pdo, $loan, $equipment_loan_reserved, $equipment_blacklist, $logged_level);
 					} else {
 						echo 'Oui'.'<span class="option-right">';
 						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'&mode=loan">';}
