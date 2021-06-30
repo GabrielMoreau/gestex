@@ -61,7 +61,11 @@ if ($param_mode == "loan-now") {
 	
 	if (get_loans_blacklist_by_equipment($pdo, get_equipment_by_loan_id($pdo, $_GET["id"])) == false) {
 		set_booking_update_to_loan($pdo, $_GET["id"]);
-		$message_text = 'L\'empunt a été réalisé avec succés';
+		$message_text = 'Votre réservation a bien été enregistré comme emprunt';
+		$title     = 'R&eacute;sultat demande d\'emprunt';
+		$action    = 'equipment-view.php?id='.get_equipment_by_loan_id($pdo, $_GET["id"]);
+		include_once('include/message-box.php');
+		exit();
 	} else {
 		$title         = 'Erreur sur l\'emprunt';
 		$action        = 'loan-edit.php?id='.$_GET["id"].'&mode=edit';
@@ -140,7 +144,11 @@ if ($param_mode == "loan-now") {
 	
 	if (get_loans_blacklist_by_equipment($pdo, get_equipment_by_loan_id($pdo, $_GET["id"])) == false) {
 		set_booking_update_to_loan($pdo, $_GET["id"]);
-		$message_text = 'L\'empunt a été réalisé avec succés';
+		$message_text = 'Votre réservation a bien été enregistré comme emprunt';
+		$title     = 'R&eacute;sultat demande d\'emprunt';
+		$action    = 'equipment-view.php?id='.get_equipment_by_loan_id($pdo, $_GET["id"]);
+		include_once('include/message-box.php');
+		exit();
 	} else {
 		$title         = 'Erreur sur l\'emprunt';
 		$action        = 'loan-edit.php?id='.$_GET["id"].'&mode=edit';
