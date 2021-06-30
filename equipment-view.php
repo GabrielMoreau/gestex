@@ -206,7 +206,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 						echo 'Oui, en pr&ecirc;t';
 
 						echo '<span class="option-right">';
-						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'&mode=loan">';}
+						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'&mode=booking">';}
 						echo ICON_LOAN_RESERVED;
 						if ($logged_level >= 3) {echo '</a>';}
 						echo '</span>'.PHP_EOL;
