@@ -285,6 +285,11 @@ function del_datasheet_by_id($pdo, $id) {
 // Equipment
 // ---------------------------------------------------------------------
 
+/**
+ * Recupère l'ID et le nom d'un équipement par son ID
+ * 
+ * @return false|array Le contenu d'un équipement directement
+ */
 function get_equipment_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -297,6 +302,11 @@ function get_equipment_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu d'un équipement par son ID
+ * 
+ * @return false|array Le contenu d'un équipement directement
+ */
 function get_equipment_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM Listing WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -309,6 +319,12 @@ function get_equipment_all_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Recupere tout le contenu d'un équipement ainsi que son nom de categorie
+ * rangé par nom d'équipement et nom d'équipe
+ * 
+ * @return array
+ */
 function get_equipment_listall($pdo) {
 	// $sql = 'SELECT * FROM Listing ORDER BY categorie, nom;';
 	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM Listing AS e INNER JOIN categorie AS c ON e.categorie = c.id ORDER BY c.nom, e.nom;';
@@ -321,8 +337,8 @@ function get_equipment_listall($pdo) {
 // ---------------------------------------------------------------------
 
 /**
- * Recupere tout le contenu d'un équipement ainsi que son nom de categorie
- * via son ID d'équipe, rangé par nom d'équipement et d'équipe
+ * Recupere tout le contenu des équipements ainsi que leurs nom d'équipe via 
+ * l'ID d'équipe, rangé par nom d'équipement et nom d'équipe
  * 
  * @return array
  */
@@ -503,6 +519,12 @@ function get_loan_active_listall_by_equipment($pdo, $id_equipment) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Recupère l'ID et le status d'un pret via l'ID d'équipement
+ * 
+ * @return false|array Le contenu du pret directement
+ * @deprecated
+ */
 function get_loan_short_by_id_equipment($pdo, $id_equipment) {
 	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
 	$sql = 'SELECT id, status FROM pret WHERE nom = ?;';
@@ -516,6 +538,11 @@ function get_loan_short_by_id_equipment($pdo, $id_equipment) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Recupère tout le contenu d'un pret via l'ID d'équipement
+ * 
+ * @return false|array Le contenu du pret directement
+ */
 function get_loan_all_by_id_equipment($pdo, $id_equipment) {
 	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
 	$sql = 'SELECT * FROM pret WHERE nom = ?;';
@@ -529,6 +556,9 @@ function get_loan_all_by_id_equipment($pdo, $id_equipment) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * @todo effectuer la documentation de la jointure
+ */
 function get_loan_listall($pdo) {
 	//$sql = 'SELECT * FROM pret;';
 	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id WHERE status = ? ORDER BY l.retour DESC, l.emprunt DESC, e.nom;';
@@ -539,6 +569,9 @@ function get_loan_listall($pdo) {
 }
 // ---------------------------------------------------------------------
 
+/**
+ * @todo effectuer la documentation de la jointure
+ */
 function get_loan_listall_by_team($pdo, $id_team) {
 	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id WHERE l.equipe = ? AND status = ? ORDER BY l.retour DESC, l.emprunt DESC, e.nom;';
 	$stmt = $pdo->prepare($sql);
@@ -549,8 +582,11 @@ function get_loan_listall_by_team($pdo, $id_team) {
 
 // ---------------------------------------------------------------------
 
-// ---------------------------------------------------------------------
-
+/**
+ * Récupère le nombre de pret d'une équipe correspondante
+ * 
+ * @return int
+ */
 function get_loan_count_by_team($pdo, $id_team) {
 	$sql = 'SELECT COUNT(*) as count FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id WHERE e.equipe = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -561,6 +597,13 @@ function get_loan_count_by_team($pdo, $id_team) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu des prets d'un emprunteur en utilisant
+ * la directive "RLIKE" pour détécter l'utilisateur dans le champ
+ * commentaire des prets
+ * 
+ * @return array 
+ */
 function get_loan_find($pdo, $find) {
 	$sql = 'SELECT * FROM pret WHERE commentaire RLIKE ?;';
 	$stmt = $pdo->prepare($sql);
@@ -571,7 +614,13 @@ function get_loan_find($pdo, $find) {
 
 // ---------------------------------------------------------------------
 
-function get_loans_blacklist_by_equipment($pdo, $id_equipment) {
+/**
+ * Récupère tout le contenu des prets qui possède le même ID d'équipement
+ * et étant actuellement en emprunt
+ * 
+ * @return false|array
+ */
+function get_loans_by_equipment_and_borrowed($pdo, $id_equipment) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND status = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_equipment, STATUS_LOAN_BORROWED));
@@ -583,6 +632,12 @@ function get_loans_blacklist_by_equipment($pdo, $id_equipment) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu des prets étant dans l'intervalle d'emprunt
+ * des autres prets d'un équipement. Renverra "false" s'il n'y en a pas
+ * 
+ * @return false|array
+ */
 function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
 	$sql = 'SELECT * FROM pret WHERE ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` >= ? AND `retour` <= ?) AND `nom` = ?);';
 	$stmt = $pdo->prepare($sql);
