@@ -371,6 +371,12 @@ function get_equipment_by_loan_id($pdo, $id_loan) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Créer un équipement
+ * 
+ * @return array|string Renvoie une chaine si echec sinon 
+ * un tableau avec l'ID et un msg d'erreur eventuellement
+ */
 function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable) {
 	$sql = 'INSERT INTO Listing (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice, barcode, loanable)';
 	$sql .=            ' VALUES (?,         ?,   ?,      ?,     ?,      ?,           ?,     ?,           ?,          ?,           ?,          ?,      ?,       ?);';
@@ -384,6 +390,12 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $
 
 // ---------------------------------------------------------------------
 
+/**
+ * Met à jour un équipement par son ID
+ *
+ * @return string Renvoie une chaine vide
+ * si réussite sinon une chaine d'erreurs
+ */
 function set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable) {
 	$sql = 'UPDATE Listing SET categorie = ?, nom = ?, modele = ?, gamme = ?, equipe = ?, fournisseur = ?, achat = ?, responsable = ?, reparation = ?, accessoires = ?, inventaire = ?, notice = ?, barcode = ?, loanable = ? WHERE id = ?;)';
 	$stmt = $pdo->prepare($sql);
@@ -396,6 +408,9 @@ function set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $f
 
 // ---------------------------------------------------------------------
 
+/**
+ * Supprime un equipement par son ID
+ */
 function del_equipment_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM Listing WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
@@ -407,6 +422,12 @@ function del_equipment_by_id($pdo, $id) {
 // Loan
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu d'un pret par son ID
+ * 
+ * @return array|false S'il n'est pas "false", le 
+ * retour ne sera qu'un seul objet
+ */
 function get_loan_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM pret WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -419,6 +440,11 @@ function get_loan_all_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupere tout les prets liés à un équipement qui ne sont pas retourné
+ * 
+ * @deprecated Remplacé par la fonction get_loan_active_listall_by_equipment()
+ */
 function get_loans_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND NOT status = ?;';
 	$stmt = $pdo->prepare($sql);
