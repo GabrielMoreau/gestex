@@ -320,6 +320,12 @@ function get_equipment_listall($pdo) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Recupere tout le contenu d'un équipement ainsi que son nom de categorie
+ * via son ID d'équipe, rangé par nom d'équipement et d'équipe
+ * 
+ * @return array
+ */
 function get_equipment_listall_by_team($pdo, $id_team) {
 	//$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY categorie, nom;';
 	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM Listing AS e INNER JOIN categorie AS c ON e.categorie = c.id WHERE e.equipe = ? ORDER BY c.nom, e.nom;';
@@ -331,6 +337,12 @@ function get_equipment_listall_by_team($pdo, $id_team) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Recupere le nombre d'équipement empruntable avec la même équipe via 
+ * l'ID de l'équipe
+ * 
+ * @return int
+ */
 function get_equipment_count_loanable_by_team($pdo, $id_team) {
 	$sql = 'SELECT COUNT(*) as count FROM Listing AS e WHERE e.loanable = 1 and e.equipe = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -341,6 +353,12 @@ function get_equipment_count_loanable_by_team($pdo, $id_team) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Recupere tout le contenu des equipements ayant la même 
+ * categorie, rangé par nom
+ * 
+ * @return array
+ */
 function get_equipment_listall_by_category($pdo, $id_category) {
 	$sql = 'SELECT * FROM Listing WHERE categorie = ? ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
@@ -351,6 +369,12 @@ function get_equipment_listall_by_category($pdo, $id_category) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Recupere l'ID et le nom de tout les equipements rangé par
+ * catégorie et nom
+ * 
+ * @return array
+ */
 function get_equipment_listshort($pdo) {
 	$sql = 'SELECT id, nom FROM Listing ORDER BY categorie, nom;';
 	$stmt = $pdo->prepare($sql);
@@ -361,6 +385,12 @@ function get_equipment_listshort($pdo) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupere l'ID d'un équipement depuis la table pret, 
+ * de par l'ID du pret
+ * 
+ * @return ID de l'equipement
+ */
 function get_equipment_by_loan_id($pdo, $id_loan) {
 	$sql = 'SELECT nom FROM pret WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
