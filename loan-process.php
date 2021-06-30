@@ -59,7 +59,7 @@ $pdo = connect_db_or_alert();
 
 if ($param_mode == "loan-now") {
 	
-	if (get_loans_blacklist_by_equipment($pdo, get_equipment_by_loan_id($pdo, $_GET["id"])) == false) {
+	if (get_loans_by_equipment_and_borrowed($pdo, get_equipment_by_loan_id($pdo, $_GET["id"])) == false) {
 		set_booking_update_to_loan($pdo, $_GET["id"]);
 		$message_text = 'Votre réservation a bien été enregistré comme emprunt';
 		$title     = 'R&eacute;sultat demande d\'emprunt';
@@ -142,7 +142,7 @@ if ($param_mode == "loan-now") {
 
 } else if (isset($_GET["mode"]) && $_GET["mode"] == "loan-now") {
 	
-	if (get_loans_blacklist_by_equipment($pdo, get_equipment_by_loan_id($pdo, $_GET["id"])) == false) {
+	if (get_loans_by_equipment_and_borrowed($pdo, get_equipment_by_loan_id($pdo, $_GET["id"])) == false) {
 		set_booking_update_to_loan($pdo, $_GET["id"]);
 		$message_text = 'Votre réservation a bien été enregistré comme emprunt';
 		$title     = 'R&eacute;sultat demande d\'emprunt';
