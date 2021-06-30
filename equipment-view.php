@@ -35,7 +35,7 @@ if ($pdo = connect_db()) {
 		$equipment_selected['barcode'] = '';
 
 	if ($equipment_selected['loanable'] == 1)
-		$loan = get_all_reservations_equipment($pdo, $id_equipment);
+		$loan = get_loan_active_listall_by_equipment($pdo, $id_equipment);
 
 	$equipment_blacklist = get_loans_blacklist_by_equipment($pdo, $id_equipment);
 	$equipment_loan_reserved = get_last_reserved_loan($pdo, $id_equipment);

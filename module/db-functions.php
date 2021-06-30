@@ -431,7 +431,11 @@ function get_loans_by_equipment($pdo, $equipment_id) {
 
 // ---------------------------------------------------------------------
 
-function get_all_reservations_equipment($pdo, $id_equipment) {
+/**
+* Récupere tout les prets liés à un équipement qui ne sont pas retourné,
+* rangé dans un certaine ordre de priorité.
+*/
+function get_loan_active_listall_by_equipment($pdo, $id_equipment) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND status != ? ORDER BY status DESC, emprunt ASC, retour ASC;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_equipment, STATUS_LOAN_RETURNED));
