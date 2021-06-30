@@ -848,6 +848,14 @@ function get_supplier_listall($pdo) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Retourne la liste de tout les fournisseurs si la valeurs $find est "true"
+ * ou une chaîne vide. Sinon elle récuperera tout le contenu des fournisseurs
+ * où le chaine demandé a le plus de similitude avec le nom ou la description
+ * du fournisseur
+ * 
+ * @return array
+ */
 function get_supplier_find($pdo, $find='') {
 	if (empty($find) or ($find === true))
 		return get_supplier_listall($pdo);
@@ -860,6 +868,11 @@ function get_supplier_find($pdo, $find='') {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Ajoute un nouveau fournisseur
+ * 
+ * @return array Avec chaine d'erreur au deuxième index
+ */
 function set_supplier_new($pdo, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
 	$sql = 'INSERT INTO fournisseurs (nom, adresse, mail, www, tel, fax, contact, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 	$stmt = $pdo->prepare($sql);
@@ -872,6 +885,11 @@ function set_supplier_new($pdo, $name, $address, $tel, $fax, $email, $www, $cont
 
 // ---------------------------------------------------------------------
 
+/**
+ * Met à jour un fournisseur via son ID
+ * 
+ * @return array Avec chaine d'erreur au deuxième index
+ */
 function set_supplier_update($pdo, $id_supplier, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
 	$sql = 'UPDATE LOW_PRIORITY fournisseurs  SET nom = ?, adresse = ?, tel = ?, fax = ?, mail = ?, www = ?, contact = ?, descr = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -884,6 +902,9 @@ function set_supplier_update($pdo, $id_supplier, $name, $address, $tel, $fax, $e
 
 // ---------------------------------------------------------------------
 
+/**
+ * Supprime un fournisseur via son ID
+ */
 function del_supplier_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM fournisseurs WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
@@ -895,6 +916,11 @@ function del_supplier_by_id($pdo, $id) {
 // Team
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère l'ID et le nom d'une seul équipe via son ID
+ * 
+ * @return array Retourne directement l'équipe
+ */
 function get_team_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM equipe WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -907,6 +933,11 @@ function get_team_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu d'une seul équipe via son ID
+ * 
+ * @return array Retourne directement l'équipe
+ */
 function get_team_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM equipe WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -919,6 +950,11 @@ function get_team_all_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère l'ID et le nom de toutes les équipes par ordre de nom croissant
+ * 
+ * @return array
+ */
 function get_team_listshort($pdo) {
 	$sql = 'SELECT id, nom FROM equipe ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
@@ -929,6 +965,11 @@ function get_team_listshort($pdo) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu de toutes les équipe par ordre de nom croissant
+ * 
+ * @return array
+ */
 function get_team_listall($pdo) {
 	$sql = 'SELECT * FROM equipe ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
@@ -939,6 +980,12 @@ function get_team_listall($pdo) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère l'ID et le nom des équipe par ordre croissant de nom,
+ * possèdant au moins un équipement
+ * 
+ * @return array
+ */
 function get_team_with_appareil($pdo) {
 	$sql = 'SELECT DISTINCT equipe.id, equipe.nom FROM equipe INNER JOIN Listing ON equipe.id = Listing.equipe ORDER BY equipe.nom;';
 	$stmt = $pdo->prepare($sql);
