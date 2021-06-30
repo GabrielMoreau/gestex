@@ -89,7 +89,7 @@ if ($param_mode == "loan-now") {
 		}
 
 		// RESERVATION POSSIBLE
-		set_booking_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+		set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 		$message_text = 'La réservation a été effectuer avec succés';
 		
 	} else {
@@ -160,10 +160,10 @@ if ($param_mode == "loan-now") {
 	$emprunt = strtotime(date('Y-m-d', strtotime($date_emprunt)));
 
 	if ($emprunt >= $tomorrow) {
-		$loan_id = set_booking_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+		$loan_id = set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 		$message_text = 'Ajout de la réservation sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
 	} else {
-		$loan_id = set_loan_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+		$loan_id = set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 		$message_text = 'Ajout du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
 	}
 

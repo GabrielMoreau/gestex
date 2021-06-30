@@ -569,10 +569,19 @@ function get_last_reserved_loan($pdo, $id_equipment) {
 
 // ---------------------------------------------------------------------
 
-function set_loan_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
+function set_loan_borrowed_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
 	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment, STATUS_LOAN_BORROWED));
+	return $pdo->lastInsertId();
+}
+
+// ---------------------------------------------------------------------
+
+function set_loan_reserved_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
+	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, ?);';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment, STATUS_LOAN_RESERVED));
 	return $pdo->lastInsertId();
 }
 
@@ -582,15 +591,6 @@ function set_booking_update_to_loan($pdo, $id_loan) {
 	$sql = 'UPDATE pret SET status = ?, emprunt = CURRENT_DATE WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array(STATUS_LOAN_BORROWED, $id_loan));
-}
-
-// ---------------------------------------------------------------------
-
-function set_booking_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
-	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, ?);';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment, STATUS_LOAN_RESERVED));
-	return $pdo->lastInsertId();
 }
 
 // ---------------------------------------------------------------------
