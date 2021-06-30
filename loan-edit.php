@@ -54,7 +54,7 @@ $num_line = 0;
 $equipment_selected = get_equipment_by_id($pdo, $equipment_id);
 $equipment_blacklist = get_loans_by_equipment_and_borrowed($pdo, $equipment_id);
 $equipment_loans = get_loan_active_listall_by_equipment($pdo, $equipment_selected['id']);
-$equipment_loan_reserved = get_last_reserved_loan($pdo, $equipment_id);
+$equipment_loan_reserved = get_reserved_listall_last_loan($pdo, $equipment_id);
 
 loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $equipment_blacklist, $logged_level);?>
 

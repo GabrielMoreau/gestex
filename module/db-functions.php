@@ -689,7 +689,7 @@ function get_loan_status_by_id($pdo, $id_loan) {
  * 
  * @return false|array
  */
-function get_last_reserved_loan($pdo, $id_equipment) {
+function get_reserved_listall_last_loan($pdo, $id_equipment) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND status = ? ORDER BY retour DESC LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id_equipment, STATUS_LOAN_RETURNED));
@@ -789,7 +789,7 @@ function set_loan_to_returned($pdo, $id_loan) {
  * 
  * @return false|array Retourne directement le fournisseur
  */
-function get_supplier_by_id($pdo, $id) {
+function get_supplier_listshort_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
