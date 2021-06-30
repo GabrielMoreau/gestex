@@ -26,6 +26,9 @@ if (isset($_GET["mode"])) {
 	$param_mode = $_GET["mode"];
 }
 
+$date_tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
+$date_out_ymd  = strtotime(date('Y-m-d', strtotime($date_emprunt)));
+
 //variables ne pouvant etre nulles
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 	if (empty($equipment_id))
@@ -62,7 +65,7 @@ if ($param_mode == "loan-now") {
 	} else {
 		$title         = 'Erreur sur l\'emprunt';
 		$action        = 'loan-edit.php?id='.$_GET["id"].'&mode=edit';
-		$erreur		   = 'L\'équipement est déjà emprunté';
+		$erreur        = 'L\'équipement est déjà emprunté';
 		$message_text  = $erreur;
 		$transmit_post = true;
 		include_once('include/warning-box.php');
@@ -72,11 +75,7 @@ if ($param_mode == "loan-now") {
 
 } else if ($param_mode == "booking") {
 	// CHECK FUTUR
-	$tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
-	$emprunt = strtotime(date('Y-m-d', strtotime($date_emprunt)));
-
-	if ($emprunt >= $tomorrow) {
-		
+	if ($date_out_ymd >= $date_tomorrow) {
 		// CHECK DATE OVERLAP
 		$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
 		if (!empty($loan_dates) || $loan_dates != false) {
@@ -103,9 +102,6 @@ if ($param_mode == "loan-now") {
 	}
 } else if ($param_mode == "edit") {
 	// CHECK FUTUR
-	$tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
-	$emprunt = strtotime(date('Y-m-d', strtotime($date_emprunt)));
-
 	if (isset($loan_id))
 		var_dump($loan_id);
 
@@ -113,7 +109,7 @@ if ($param_mode == "loan-now") {
 		set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 		$message_text = 'Mise à jour du pret avec succes';
 	} else {
-		if ($emprunt >= $tomorrow) {
+		if ($date_out_ymd >= $date_tomorrow) {
 			// CHECK DATE OVERLAP
 			#$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
 			$loan_dates = get_loans_interval_by_id_except_loan($pdo, $equipment_id, $date_emprunt, $date_retour, $loan_id);
@@ -125,10 +121,10 @@ if ($param_mode == "loan-now") {
 				include_once('include/warning-box.php');
 				exit();
 			}
-	
+
 			set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 			$message_text = 'Mise &agrave; jour du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />';
-	
+
 		} else {
 			// EDITION IMPOSSIBLE
 			$title        = 'Impossible d\'éditer la réservation le jour même ou avant';
@@ -148,7 +144,7 @@ if ($param_mode == "loan-now") {
 	} else {
 		$title         = 'Erreur sur l\'emprunt';
 		$action        = 'loan-edit.php?id='.$_GET["id"].'&mode=edit';
-		$erreur		   = 'L\'équipement est déjà emprunté';
+		$erreur        = 'L\'équipement est déjà emprunté';
 		$message_text  = $erreur;
 		$transmit_post = true;
 		include_once('include/warning-box.php');
@@ -156,10 +152,7 @@ if ($param_mode == "loan-now") {
 	}
 
 } else if ($param_mode == 'loan') {
-	$tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
-	$emprunt = strtotime(date('Y-m-d', strtotime($date_emprunt)));
-
-	if ($emprunt >= $tomorrow) {
+	if ($date_out_ymd >= $date_tomorrow) {
 		$loan_id = set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 		$message_text = 'Ajout de la réservation sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
 	} else {
@@ -170,7 +163,7 @@ if ($param_mode == "loan-now") {
 } else {
 	$title         = 'Impossible d\'effectuer un emprunt ou une réservation';
 	$action        = 'loan-edit.php?id='.$_GET["id"].'&mode=edit';
-	$erreur		   = 'Impossible d\'effectuer un emprunt ou une réservation, erreur inconnue';
+	$erreur        = 'Impossible d\'effectuer un emprunt ou une réservation, erreur inconnue';
 	$message_text  = $erreur;
 	$transmit_post = true;
 	include_once('include/warning-box.php');
