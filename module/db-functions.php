@@ -455,7 +455,7 @@ function set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $f
 // ---------------------------------------------------------------------
 
 /**
- * Supprime un equipement par son ID
+ * Supprime un seul équipement par son ID
  */
 function del_equipment_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM Listing WHERE id = ? LIMIT 1;';
@@ -634,7 +634,7 @@ function get_loans_by_equipment_and_borrowed($pdo, $id_equipment) {
 
 /**
  * Récupère tout le contenu des prets étant dans l'intervalle d'emprunt
- * des autres prets d'un équipement. Renverra "false" s'il n'y en a pas
+ * des dates d'un équipement spécifier. Renverra "false" s'il n'y en a pas
  * 
  * @return false|array
  */
@@ -650,6 +650,13 @@ function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu des prets étant dans l'intervalle d'emprunt
+ * des dates d'un équipement spécifier excepter un emprunt en particulier.
+ * Renverra "false" s'il n'y en a pas
+ * 
+ * @return false|array
+ */
 function get_loans_interval_by_id_except_loan($pdo, $id_equipment, $from, $to, $except_id) {
 	$sql = 'SELECT * FROM pret WHERE (((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` >= ? AND `retour` <= ?) AND `nom` = ?)) AND NOT id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -662,6 +669,11 @@ function get_loans_interval_by_id_except_loan($pdo, $id_equipment, $from, $to, $
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère le status du pret via son ID
+ * 
+ * @return string 
+ */
 function get_loan_status_by_id($pdo, $id_loan) {
 	$sql = 'SELECT status FROM pret WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -672,6 +684,11 @@ function get_loan_status_by_id($pdo, $id_loan) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu du dernier prêt emprunter
+ * 
+ * @return false|array
+ */
 function get_last_reserved_loan($pdo, $id_equipment) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND status = ? ORDER BY retour DESC LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
@@ -684,6 +701,12 @@ function get_last_reserved_loan($pdo, $id_equipment) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Ajoute un nouveau pret défini comme étant actuellement en emprunt
+ * 
+ * @deprecated
+ * @return int
+ */
 function set_loan_borrowed_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
 	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
@@ -693,6 +716,12 @@ function set_loan_borrowed_new($pdo, $id_equipment, $id_team, $date_begin, $date
 
 // ---------------------------------------------------------------------
 
+/**
+ * Ajoute un nouveau pret défini comme étant en réservation
+ * 
+ * @deprecated
+ * @return int
+ */
 function set_loan_reserved_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
 	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
@@ -702,6 +731,12 @@ function set_loan_reserved_new($pdo, $id_equipment, $id_team, $date_begin, $date
 
 // ---------------------------------------------------------------------
 
+/**
+ * Met à jour un emprunt (en spécifiant son ID) comme étant emprunter et bloque également
+ * sa date d'emprunt au jour même de son appel
+ * 
+ * @deprecated
+ */
 function set_booking_update_to_loan($pdo, $id_loan) {
 	$sql = 'UPDATE pret SET status = ?, emprunt = CURRENT_DATE WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -710,6 +745,9 @@ function set_booking_update_to_loan($pdo, $id_loan) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Met à jour le pret en spécifiant son ID sans modifier par défaut le status
+ */
 function set_loan_update($pdo, $id_loan, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
 	$sql = 'UPDATE pret SET nom = ?, equipe = ?, emprunt = ?, retour = ?, commentaire = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -718,6 +756,9 @@ function set_loan_update($pdo, $id_loan, $id_equipment, $id_team, $date_begin, $
 
 // ---------------------------------------------------------------------
 
+/**
+ * Supprime un seul pret via son ID
+ */
 function del_loan_by_id($pdo, $id_loan) {
 	$sql = 'DELETE LOW_PRIORITY FROM pret WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
@@ -727,6 +768,10 @@ function del_loan_by_id($pdo, $id_loan) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Met à jour un pret (en spécifiant son ID) comme étant retourné et
+ * bloque sa date de retour au jour de son appel
+ */
 function set_loan_to_returned($pdo, $id_loan) {
 	$sql = 'UPDATE LOW_PRIORITY pret SET status = ?, retour = CURRENT_DATE WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -739,6 +784,11 @@ function set_loan_to_returned($pdo, $id_loan) {
 // Supplier
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère l'ID et le nom d'un fournisseur via son ID
+ * 
+ * @return false|array Retourne directement le fournisseur
+ */
 function get_supplier_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -751,6 +801,11 @@ function get_supplier_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu d'un seul fournisseur via son ID
+ * 
+ * @return false|array Retourne directement le fournisseur
+ */
 function get_supplier_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM fournisseurs WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -763,6 +818,11 @@ function get_supplier_all_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère l'ID et le nom de tout les fournisseurs trier par nom croissant
+ * 
+ * @return array
+ */
 function get_supplier_listshort($pdo) {
 	$sql = 'SELECT id, nom FROM fournisseurs ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
@@ -773,6 +833,11 @@ function get_supplier_listshort($pdo) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu de tout les fournisseurs trier par nom croissant
+ * 
+ * @return array
+ */
 function get_supplier_listall($pdo) {
 	$sql = 'SELECT * FROM fournisseurs ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
