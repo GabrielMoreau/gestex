@@ -194,6 +194,11 @@ function get_datasheet_listall_by_equipment($pdo, $equipment_id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère le nombre de notice pour un équipement donné
+ * 
+ * @return int
+ */
 function get_datasheet_count_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT COUNT(*) as count FROM datasheet WHERE id_equipment = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -204,6 +209,9 @@ function get_datasheet_count_by_equipment($pdo, $equipment_id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Ajoute ou met à jour une notice
+ */
 function set_datasheet_new($pdo, $equipment_id, $file_field_name) {
 	$datasheet_filename_upload = $_FILES[$file_field_name]['name'];
 	$datasheet_tmp_file        = $_FILES[$file_field_name]['tmp_name'];
@@ -262,6 +270,10 @@ function set_datasheet_new($pdo, $equipment_id, $file_field_name) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Supprime la notice via son ID ainsi que son fichier et son dossier 
+ * sur le disque s'ils éxistent
+ */
 function del_datasheet_by_id($pdo, $id) {
 	$datasheet_selected = get_datasheet_all_by_id($pdo, $id);
 
