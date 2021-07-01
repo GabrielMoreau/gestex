@@ -17,7 +17,7 @@ if ($supplier_id == 0 || $valid == 'cancel')
 	redirect('supplier-list.php');
 
 $pdo = connect_db_or_alert();
-$supplier_name = get_supplier_listshort_by_id($pdo, $supplier_id)['nom'];
+$supplier_name = get_supplier_short_by_id($pdo, $supplier_id)['nom'];
 
 if ($valid == 'yes') {
 	$iostat = del_supplier_by_id($pdo, $supplier_id);

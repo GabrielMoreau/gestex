@@ -137,7 +137,7 @@ if ($team_id > 0) {
 
 		echo '  <td>';
 		// recupere le nom du fournisseur
-		$supplier = get_supplier_by_id($pdo, $equipment_item['fournisseur']);
+		$supplier = get_supplier_short_by_id($pdo, $equipment_item['fournisseur']);
 		if ($supplier) {echo $supplier['nom'];}
 		echo '  </td>'.PHP_EOL;
 

@@ -24,7 +24,7 @@ if ($pdo = connect_db()) {
 	$equipment_selected = get_equipment_all_by_id($pdo, $id_equipment);
 	$responsible = get_user_by_id($pdo, $equipment_selected['responsable']);
 	$team        = get_team_by_id($pdo, $equipment_selected['equipe']);
-	$supplier    = get_supplier_listshort_by_id($pdo, $equipment_selected['fournisseur']);
+	$supplier    = get_supplier_short_by_id($pdo, $equipment_selected['fournisseur']);
 	$category    = get_category_by_id($pdo, $equipment_selected['categorie']);
 
 	$datacheet_path  = get_datasheet_basepath();
