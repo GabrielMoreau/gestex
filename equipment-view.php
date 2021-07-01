@@ -197,9 +197,10 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 
 					if ($loan != false)
 						foreach($loan as $loan_current) {
-							if ($loan_current["status"] == STATUS_LOAN_BORROWED)
+							if ($loan_current["status"] == STATUS_LOAN_BORROWED) {
 								$is_borrowed = True;
 								break;
+							}
 						}
 
 					if ($is_borrowed)
@@ -225,8 +226,8 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 /* 						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'&mode=booking">';}
 						echo ICON_LOAN_RESERVED;
 						if ($logged_level >= 3) {echo '</a>';} */
-						echo '</span>'.PHP_EOL;
 
+						echo '</span>'.PHP_EOL;
 						loan_list_container($pdo, $loan, $equipment_loan_reserved, $equipment_blacklist, $logged_level);
 					}
 				} else { echo 'Non'.PHP_EOL; } ?>
