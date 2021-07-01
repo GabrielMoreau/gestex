@@ -685,11 +685,12 @@ function get_loan_status_by_id($pdo, $loan_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu du dernier prêt emprunter
+ * Récupère tout le contenu du dernier prêt retourné
  * 
+ * @todo Faire en sorte de retourner qu'un seul objet directement
  * @return false|array
  */
-function get_reserved_listall_last_loan($pdo, $equipment_id) {
+function get_loan_all_last_returned($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND status = ? ORDER BY retour DESC LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, STATUS_LOAN_RETURNED));
@@ -737,7 +738,7 @@ function set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_begin, $date
  * 
  * @deprecated
  */
-function set_booking_update_to_loan($pdo, $loan_id) {
+function set_loan_update_to_borrowed($pdo, $loan_id) {
 	$sql = 'UPDATE pret SET status = ?, emprunt = CURRENT_DATE WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array(STATUS_LOAN_BORROWED, $loan_id));
@@ -1197,6 +1198,8 @@ function set_user_password_by_id($pdo, $user_id, $user_password) {
 // ---------------------------------------------------------------------
 
 /**
+ * Aciennement : set_user_valid_by_id()
+ * 
  * @todo Voir qu'est-ce que la colonne "valid"
  */
 function set_user_valid_by_id($pdo, $user_id, $user_status) {
@@ -1227,6 +1230,11 @@ function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level
 // Version
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère le numéro de version via le nom de l'application/fonctionnalitée
+ * 
+ * @return false|array
+ */
 function get_version_by_name($pdo, $name) {
 	$sql = 'SELECT version FROM version WHERE soft = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -1238,6 +1246,10 @@ function get_version_by_name($pdo, $name) {
 }
 // ---------------------------------------------------------------------
 
+/**
+ * Ajoute une version d'application/fonctionnalité si celle si existe
+ * sinon met seulement à jour la version
+ */
 function set_version_by_name($pdo, $name, $version) {
 	$sql = 'INSERT INTO version (soft, version) VALUES (?, ?);';
 	if (get_version_by_name($pdo, $name))
