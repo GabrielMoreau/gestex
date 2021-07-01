@@ -548,7 +548,7 @@ function get_loan_all_by_id($pdo, $id) {
 /**
  * Récupere tout les prets liés à un équipement qui ne sont pas retourné
  * 
- * @deprecated Remplacé par la fonction get_loan_active_listall_by_equipment()
+ * @deprecated Remplacé par la fonction get_loans_all_not_return_by_equipment()
  */
 function get_loans_all_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND NOT status = ?;';
@@ -566,7 +566,7 @@ function get_loans_all_by_equipment($pdo, $equipment_id) {
 * Récupere tout les prets liés à un équipement qui ne sont pas retourné,
 * rangé dans un certaine ordre de priorité.
 */
-function get_loan_active_listall_by_equipment($pdo, $equipment_id) {
+function get_loans_all_not_return_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND status != ? ORDER BY status DESC, emprunt ASC, retour ASC;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, STATUS_LOAN_RETURNED));
