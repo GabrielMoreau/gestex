@@ -181,6 +181,9 @@ if ($team_id > 0) {
 		else
 			echo '  <td></td>'.PHP_EOL;
 
+		if ($equipment_item['loanable'] == false) {
+			echo '	<td></td>'.PHP_EOL;
+		}
 		if ($logged_level >= 2) {
 			echo '  <td>';
 			echo '    <a href="equipment-edit.php?id='.$equipment_item['id'].'">'.ICON_EDIT.'</a>';
