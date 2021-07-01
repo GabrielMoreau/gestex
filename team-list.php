@@ -73,7 +73,7 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 
 		// recupere le nom de chef d'equipe
-		$chef = get_user_by_id($pdo, $team_current['chef']);
+		$chef = get_user_short_by_id($pdo, $team_current['chef']);
 		echo '  <td style="vertical-align: top;">';
 		if ($chef)
 			echo $chef['nom'].' '.$chef['prenom'];

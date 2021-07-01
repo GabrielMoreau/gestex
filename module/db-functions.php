@@ -996,6 +996,11 @@ function get_team_with_appareil($pdo) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère le nombre d'équipe directement
+ * 
+ * @return int
+ */
 function get_team_count($pdo) {
 	$sql = 'SELECT COUNT(*) as count FROM equipe;';
 	$stmt = $pdo->prepare($sql);
@@ -1006,6 +1011,11 @@ function get_team_count($pdo) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Ajoute une nouvelle équipe
+ * 
+ * @return array Avec potentiellement une chaine d'erreur
+ */
 function set_team_new($pdo, $name, $description, $account, $manager) {
 	$sql = 'INSERT INTO equipe (nom, descr, compte, chef) VALUES (?,  ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
@@ -1018,6 +1028,11 @@ function set_team_new($pdo, $name, $description, $account, $manager) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Met à jour une équipe via son ID
+ * 
+ * @return array Avec potentiellement une chaine d'erreur
+ */
 function set_team_update($pdo, $team_id, $name, $description, $account, $manager) {
 	$sql = 'UPDATE LOW_PRIORITY equipe SET nom = ?, descr = ?, compte = ?, chef = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -1030,6 +1045,9 @@ function set_team_update($pdo, $team_id, $name, $description, $account, $manager
 
 // ---------------------------------------------------------------------
 
+/**
+ * Supprime une équipe via son ID
+ */
 function del_team_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM equipe WHERE id = ? LIMIT 1';
 	$stmt = $pdo->prepare($sql);
@@ -1041,7 +1059,12 @@ function del_team_by_id($pdo, $id) {
 // User
 // ---------------------------------------------------------------------
 
-function get_user_by_id($pdo, $id) {
+/**
+ * Récupère l'ID, le nom et le prénom d'un utilisateur via son ID
+ * 
+ * @return false|array Retourne un seul utilisateur
+ */
+function get_user_short_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom, prenom FROM users WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
@@ -1053,6 +1076,11 @@ function get_user_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu d'un utilisateur via son ID
+ * 
+ * @return false|array Retourne un seul utilisateur
+ */
 function get_user_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM users WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -1065,6 +1093,11 @@ function get_user_all_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu d'un utilisateur via son nom de login
+ * 
+ * @return false|array Retourne un seul utilisateur
+ */
 function get_user_all_by_login($pdo, $login) {
 	$sql = 'SELECT * FROM users WHERE loggin = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -1077,6 +1110,12 @@ function get_user_all_by_login($pdo, $login) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu des utilisateurs suivant le privilège défini
+ * rangé par ordre de nom et prénom
+ * 
+ * @return array
+ */
 function get_user_listall_by_logged_level($pdo, $logged_level) {
 	if ($logged_level > 3)       // lorsqu'on est haut place, on voit tout le monde
 		$sql = 'SELECT * FROM users ORDER BY nom, prenom;';
@@ -1092,6 +1131,17 @@ function get_user_listall_by_logged_level($pdo, $logged_level) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère l'ID, le nom et le prénom des utilisateurs étant validé et
+ * étant supérieur ou égale au privilege minimum indiqué. Ou bien via
+ * l'ID s'il n'est pas égale à 0. La requète est rangé par ordre de nom
+ * et prénom utilisateur. Attention toutefois au fait que cette fonction
+ * ne vérifie pas les privilèges, mais néanmoins, elle retournera des 
+ * éléments de la table qui ne sont pas sensible.
+ * 
+ * @todo Voir pour renommer
+ * @return array
+ */
 function get_user_listshort_with_right($pdo, $level_min=1, $bonus_id=0) {
 	$sql = 'SELECT id, nom, prenom FROM users WHERE (valid = 1 and level >= ?) or id = ? ORDER BY nom, prenom;';
 	$stmt = $pdo->prepare($sql);
@@ -1102,6 +1152,11 @@ function get_user_listshort_with_right($pdo, $level_min=1, $bonus_id=0) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère le nombre d'utilisateurs directement
+ * 
+ * @return int
+ */
 function get_user_count($pdo) {
 	$sql = 'SELECT COUNT(*) as count FROM users;';
 	$stmt = $pdo->prepare($sql);
@@ -1112,6 +1167,11 @@ function get_user_count($pdo) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Ajoute un nouvel utilisateur
+ * 
+ * @return array Avec potentiellement une chaine d'erreur
+ */
 function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme) {
 	$sql = 'INSERT INTO users (nom, prenom, loggin, password, email, level, tel, equipe, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
 	$stmt = $pdo->prepare($sql);
@@ -1124,6 +1184,9 @@ function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, 
 
 // ---------------------------------------------------------------------
 
+/**
+ * Met à jour le mot de passe d'un utilisateur via son ID
+ */
 function set_user_password_by_id($pdo, $user_id, $user_password) {
 	$sql = 'UPDATE users SET password = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -1133,7 +1196,10 @@ function set_user_password_by_id($pdo, $user_id, $user_password) {
 
 // ---------------------------------------------------------------------
 
-function set_user_status_by_id($pdo, $user_id, $user_status) {
+/**
+ * @todo Voir qu'est-ce que la colonne "valid"
+ */
+function set_user_valid_by_id($pdo, $user_id, $user_status) {
 	$sql = 'UPDATE users SET valid = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($user_status, $user_id));
@@ -1142,6 +1208,11 @@ function set_user_status_by_id($pdo, $user_id, $user_status) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Met à jour un utilisateur via son ID
+ * 
+ * @return array Avec potentiellement une chaine d'erreur
+ */
 function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme) {
 	$sql = 'UPDATE LOW_PRIORITY users SET nom = ?, prenom = ?, email = ?, level = ?, tel = ?, equipe = ?, theme = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
