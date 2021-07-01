@@ -37,7 +37,7 @@ if ($pdo = connect_db()) {
 	if ($equipment_selected['loanable'] == 1)
 		$loan = get_loan_active_listall_by_equipment($pdo, $id_equipment);
 
-	$equipment_blacklist = get_loans_by_equipment_and_borrowed($pdo, $id_equipment);
+	$equipment_blacklist = get_loans_all_by_equipment_and_borrowed($pdo, $id_equipment);
 	$equipment_loan_reserved = get_loan_all_last_returned($pdo, $id_equipment);
 
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'].'</b>');

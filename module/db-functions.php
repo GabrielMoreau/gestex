@@ -550,7 +550,7 @@ function get_loan_all_by_id($pdo, $id) {
  * 
  * @deprecated Remplacé par la fonction get_loan_active_listall_by_equipment()
  */
-function get_loans_by_equipment($pdo, $equipment_id) {
+function get_loans_all_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND NOT status = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, STATUS_LOAN_RETURNED));
@@ -679,7 +679,7 @@ function get_loan_find($pdo, $find) {
  * 
  * @return false|array
  */
-function get_loans_by_equipment_and_borrowed($pdo, $equipment_id) {
+function get_loans_all_by_equipment_and_borrowed($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND status = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, STATUS_LOAN_BORROWED));

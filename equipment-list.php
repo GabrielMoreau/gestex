@@ -151,7 +151,7 @@ if ($team_id > 0) {
 		if ($equipment_item['loanable'] == 1) {
 			$is_loan = false;
 			# $loan = get_loan_short_by_id_equipment($pdo, $equipment_item['id']); # effectuer une modification ici
-			$loans = get_loans_by_equipment($pdo, $equipment_item['id']);
+			$loans = get_loans_all_by_equipment($pdo, $equipment_item['id']);
 			if ($loans != false) {
 				foreach($loans as $loan) {
 					if ($loan["status"] == STATUS_LOAN_BORROWED) {
