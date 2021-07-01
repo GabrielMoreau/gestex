@@ -147,10 +147,10 @@ function set_category_new($pdo, $name) {
 
 // ---------------------------------------------------------------------
 
-function set_category_update($pdo, $id_category, $name) {
+function set_category_update($pdo, $category_id, $name) {
 	$sql = 'UPDATE categorie SET nom = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($name, $id_category));
+	$stmt->execute(array($name, $category_id));
 }
 
 // ---------------------------------------------------------------------
@@ -184,20 +184,20 @@ function get_datasheet_all_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
-function get_datasheet_listall_by_equipment($pdo, $id_equipment) {
+function get_datasheet_listall_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM datasheet WHERE id_equipment = ?;' ;
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment));
+	$stmt->execute(array($equipment_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
 
 // ---------------------------------------------------------------------
 
-function get_datasheet_count_by_equipment($pdo, $id_equipment) {
+function get_datasheet_count_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT COUNT(*) as count FROM datasheet WHERE id_equipment = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment));
+	$stmt->execute(array($equipment_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch[0]['count'];
 }
@@ -239,12 +239,12 @@ function set_datasheet_new($pdo, $equipment_id, $file_field_name) {
 	$sql1 = 'INSERT INTO datasheet (description, id_equipment) VALUES (?, ?);';
 	$stmt1 = $pdo->prepare($sql1);
 	$stmt1->execute(array($datasheet_filename_no_ext, $equipment_id));
-	$id_datasheet = $pdo->lastInsertId();
+	$datasheet_id = $pdo->lastInsertId();
 
-	$sub_path = $id_datasheet.'-'.random_string(8);
+	$sub_path = $datasheet_id.'-'.random_string(8);
 	$sql2 = 'UPDATE datasheet SET pathname = ? WHERE id = ?;';
 	$stmt2 = $pdo->prepare($sql2);
-	$stmt2->execute(array($sub_path.'/'.$datasheet_filename_kebab, $id_datasheet));
+	$stmt2->execute(array($sub_path.'/'.$datasheet_filename_kebab, $datasheet_id));
 
 	$new_dir = $new_datasheet_path.'/'.$sub_path;
 	if (!is_dir($new_dir))
@@ -253,11 +253,11 @@ function set_datasheet_new($pdo, $equipment_id, $file_field_name) {
 	$iostat = move_uploaded_file($datasheet_tmp_file, $new_dir.'/'.$datasheet_filename_kebab);
 	if (!$iostat) {
 		error_log('Error: not move datasheet file '.$datasheet_filename_upload.' to '.$datasheet_filename_kebab);
-		del_datasheet_by_id($pdo, $id_datasheet);
+		del_datasheet_by_id($pdo, $datasheet_id);
 		return false;
 	}
 
-	return $id_datasheet;
+	return $datasheet_id;
 }
 
 // ---------------------------------------------------------------------
@@ -342,11 +342,11 @@ function get_equipment_listall($pdo) {
  * 
  * @return array
  */
-function get_equipment_listall_by_team($pdo, $id_team) {
+function get_equipment_listall_by_team($pdo, $team_id) {
 	//$sql = 'SELECT * FROM Listing WHERE equipe = ? ORDER BY categorie, nom;';
 	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM Listing AS e INNER JOIN categorie AS c ON e.categorie = c.id WHERE e.equipe = ? ORDER BY c.nom, e.nom;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_team));
+	$stmt->execute(array($team_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
@@ -359,10 +359,10 @@ function get_equipment_listall_by_team($pdo, $id_team) {
  * 
  * @return int
  */
-function get_equipment_count_loanable_by_team($pdo, $id_team) {
+function get_equipment_count_loanable_by_team($pdo, $team_id) {
 	$sql = 'SELECT COUNT(*) as count FROM Listing AS e WHERE e.loanable = 1 and e.equipe = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_team));
+	$stmt->execute(array($team_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch[0]['count'];
 }
@@ -375,10 +375,10 @@ function get_equipment_count_loanable_by_team($pdo, $id_team) {
  * 
  * @return array
  */
-function get_equipment_listall_by_category($pdo, $id_category) {
+function get_equipment_listall_by_category($pdo, $category_id) {
 	$sql = 'SELECT * FROM Listing WHERE categorie = ? ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_category));
+	$stmt->execute(array($category_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
@@ -407,10 +407,10 @@ function get_equipment_listshort($pdo) {
  * 
  * @return ID de l'equipement
  */
-function get_equipment_by_loan_id($pdo, $id_loan) {
+function get_equipment_by_loan_id($pdo, $loan_id) {
 	$sql = 'SELECT nom FROM pret WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_loan));
+	$stmt->execute(array($loan_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch[0]["nom"];
 }
@@ -442,10 +442,10 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $
  * @return string Renvoie une chaine vide
  * si réussite sinon une chaine d'erreurs
  */
-function set_equipment_update($pdo, $id_equipment, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable) {
+function set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable) {
 	$sql = 'UPDATE Listing SET categorie = ?, nom = ?, modele = ?, gamme = ?, equipe = ?, fournisseur = ?, achat = ?, responsable = ?, reparation = ?, accessoires = ?, inventaire = ?, notice = ?, barcode = ?, loanable = ? WHERE id = ?;)';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $id_equipment));
+	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $equipment_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
@@ -507,10 +507,10 @@ function get_loans_by_equipment($pdo, $equipment_id) {
 * Récupere tout les prets liés à un équipement qui ne sont pas retourné,
 * rangé dans un certaine ordre de priorité.
 */
-function get_loan_active_listall_by_equipment($pdo, $id_equipment) {
+function get_loan_active_listall_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND status != ? ORDER BY status DESC, emprunt ASC, retour ASC;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment, STATUS_LOAN_RETURNED));
+	$stmt->execute(array($equipment_id, STATUS_LOAN_RETURNED));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
@@ -525,11 +525,11 @@ function get_loan_active_listall_by_equipment($pdo, $id_equipment) {
  * @return false|array Le contenu du pret directement
  * @deprecated
  */
-function get_loan_short_by_id_equipment($pdo, $id_equipment) {
+function get_loan_short_by_id_equipment($pdo, $equipment_id) {
 	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
 	$sql = 'SELECT id, status FROM pret WHERE nom = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment));
+	$stmt->execute(array($equipment_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch[0];
@@ -543,11 +543,11 @@ function get_loan_short_by_id_equipment($pdo, $id_equipment) {
  * 
  * @return false|array Le contenu du pret directement
  */
-function get_loan_all_by_id_equipment($pdo, $id_equipment) {
+function get_loan_all_by_id_equipment($pdo, $equipment_id) {
 	// recupere l'appareil via l'id qui est mis dans un champs texte (nom) !
 	$sql = 'SELECT * FROM pret WHERE nom = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment));
+	$stmt->execute(array($equipment_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
@@ -572,10 +572,10 @@ function get_loan_listall($pdo) {
 /**
  * @todo effectuer la documentation de la jointure
  */
-function get_loan_listall_by_team($pdo, $id_team) {
+function get_loan_listall_by_team($pdo, $team_id) {
 	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id WHERE l.equipe = ? AND status = ? ORDER BY l.retour DESC, l.emprunt DESC, e.nom;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_team, STATUS_LOAN_BORROWED));
+	$stmt->execute(array($team_id, STATUS_LOAN_BORROWED));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
@@ -587,10 +587,10 @@ function get_loan_listall_by_team($pdo, $id_team) {
  * 
  * @return int
  */
-function get_loan_count_by_team($pdo, $id_team) {
+function get_loan_count_by_team($pdo, $team_id) {
 	$sql = 'SELECT COUNT(*) as count FROM pret AS l INNER JOIN Listing AS e ON l.nom = e.id WHERE e.equipe = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_team));
+	$stmt->execute(array($team_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch[0]['count'];
 }
@@ -620,10 +620,10 @@ function get_loan_find($pdo, $find) {
  * 
  * @return false|array
  */
-function get_loans_by_equipment_and_borrowed($pdo, $id_equipment) {
+function get_loans_by_equipment_and_borrowed($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND status = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment, STATUS_LOAN_BORROWED));
+	$stmt->execute(array($equipment_id, STATUS_LOAN_BORROWED));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
@@ -638,10 +638,10 @@ function get_loans_by_equipment_and_borrowed($pdo, $id_equipment) {
  * 
  * @return false|array
  */
-function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
+function get_loans_interval_by_id($pdo, $equipment_id, $from, $to) {
 	$sql = 'SELECT * FROM pret WHERE ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` >= ? AND `retour` <= ?) AND `nom` = ?);';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($from, $from, $id_equipment, $to, $to, $id_equipment, $from, $to, $id_equipment));
+	$stmt->execute(array($from, $from, $equipment_id, $to, $to, $equipment_id, $from, $to, $equipment_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
@@ -657,10 +657,10 @@ function get_loans_interval_by_id($pdo, $id_equipment, $from, $to) {
  * 
  * @return false|array
  */
-function get_loans_interval_by_id_except_loan($pdo, $id_equipment, $from, $to, $except_id) {
+function get_loans_interval_by_id_except_loan($pdo, $equipment_id, $from, $to, $except_id) {
 	$sql = 'SELECT * FROM pret WHERE (((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` <= ? AND `retour` >= ?) AND `nom` = ?) OR ((`emprunt` >= ? AND `retour` <= ?) AND `nom` = ?)) AND NOT id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($from, $from, $id_equipment, $to, $to, $id_equipment, $from, $to, $id_equipment, $except_id));
+	$stmt->execute(array($from, $from, $equipment_id, $to, $to, $equipment_id, $from, $to, $equipment_id, $except_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
@@ -674,10 +674,10 @@ function get_loans_interval_by_id_except_loan($pdo, $id_equipment, $from, $to, $
  * 
  * @return string 
  */
-function get_loan_status_by_id($pdo, $id_loan) {
+function get_loan_status_by_id($pdo, $loan_id) {
 	$sql = 'SELECT status FROM pret WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_loan));
+	$stmt->execute(array($loan_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch[0]["status"];
 }
@@ -689,10 +689,10 @@ function get_loan_status_by_id($pdo, $id_loan) {
  * 
  * @return false|array
  */
-function get_reserved_listall_last_loan($pdo, $id_equipment) {
+function get_reserved_listall_last_loan($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM pret WHERE nom = ? AND status = ? ORDER BY retour DESC LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment, STATUS_LOAN_RETURNED));
+	$stmt->execute(array($equipment_id, STATUS_LOAN_RETURNED));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch;
@@ -707,10 +707,10 @@ function get_reserved_listall_last_loan($pdo, $id_equipment) {
  * @deprecated
  * @return int
  */
-function set_loan_borrowed_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
+function set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_begin, $date_end, $comment) {
 	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment, STATUS_LOAN_BORROWED));
+	$stmt->execute(array($equipment_id, $team_id, $date_begin, $date_end, $comment, STATUS_LOAN_BORROWED));
 	return $pdo->lastInsertId();
 }
 
@@ -722,10 +722,10 @@ function set_loan_borrowed_new($pdo, $id_equipment, $id_team, $date_begin, $date
  * @deprecated
  * @return int
  */
-function set_loan_reserved_new($pdo, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
+function set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_begin, $date_end, $comment) {
 	$sql = 'INSERT INTO pret (nom, equipe, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment, STATUS_LOAN_RESERVED));
+	$stmt->execute(array($equipment_id, $team_id, $date_begin, $date_end, $comment, STATUS_LOAN_RESERVED));
 	return $pdo->lastInsertId();
 }
 
@@ -737,10 +737,10 @@ function set_loan_reserved_new($pdo, $id_equipment, $id_team, $date_begin, $date
  * 
  * @deprecated
  */
-function set_booking_update_to_loan($pdo, $id_loan) {
+function set_booking_update_to_loan($pdo, $loan_id) {
 	$sql = 'UPDATE pret SET status = ?, emprunt = CURRENT_DATE WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array(STATUS_LOAN_BORROWED, $id_loan));
+	$stmt->execute(array(STATUS_LOAN_BORROWED, $loan_id));
 }
 
 // ---------------------------------------------------------------------
@@ -748,10 +748,10 @@ function set_booking_update_to_loan($pdo, $id_loan) {
 /**
  * Met à jour le pret en spécifiant son ID sans modifier par défaut le status
  */
-function set_loan_update($pdo, $id_loan, $id_equipment, $id_team, $date_begin, $date_end, $comment) {
+function set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_begin, $date_end, $comment) {
 	$sql = 'UPDATE pret SET nom = ?, equipe = ?, emprunt = ?, retour = ?, commentaire = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($id_equipment, $id_team, $date_begin, $date_end, $comment, $id_loan));
+	$stmt->execute(array($equipment_id, $team_id, $date_begin, $date_end, $comment, $loan_id));
 }
 
 // ---------------------------------------------------------------------
@@ -759,10 +759,10 @@ function set_loan_update($pdo, $id_loan, $id_equipment, $id_team, $date_begin, $
 /**
  * Supprime un seul pret via son ID
  */
-function del_loan_by_id($pdo, $id_loan) {
+function del_loan_by_id($pdo, $loan_id) {
 	$sql = 'DELETE LOW_PRIORITY FROM pret WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($id_loan));
+	$iostat = $stmt->execute(array($loan_id));
 	return $iostat;
 }
 
@@ -772,10 +772,10 @@ function del_loan_by_id($pdo, $id_loan) {
  * Met à jour un pret (en spécifiant son ID) comme étant retourné et
  * bloque sa date de retour au jour de son appel
  */
-function set_loan_to_returned($pdo, $id_loan) {
+function set_loan_to_returned($pdo, $loan_id) {
 	$sql = 'UPDATE LOW_PRIORITY pret SET status = ?, retour = CURRENT_DATE WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array(STATUS_LOAN_RETURNED, $id_loan));
+	$iostat = $stmt->execute(array(STATUS_LOAN_RETURNED, $loan_id));
 	return $iostat;
 }
 
@@ -890,10 +890,10 @@ function set_supplier_new($pdo, $name, $address, $tel, $fax, $email, $www, $cont
  * 
  * @return array Avec chaine d'erreur au deuxième index
  */
-function set_supplier_update($pdo, $id_supplier, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
+function set_supplier_update($pdo, $supplier_id, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
 	$sql = 'UPDATE LOW_PRIORITY fournisseurs  SET nom = ?, adresse = ?, tel = ?, fax = ?, mail = ?, www = ?, contact = ?, descr = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description, $id_supplier));
+	$iostat = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description, $supplier_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
@@ -1018,10 +1018,10 @@ function set_team_new($pdo, $name, $description, $account, $manager) {
 
 // ---------------------------------------------------------------------
 
-function set_team_update($pdo, $id_team, $name, $description, $account, $manager) {
+function set_team_update($pdo, $team_id, $name, $description, $account, $manager) {
 	$sql = 'UPDATE LOW_PRIORITY equipe SET nom = ?, descr = ?, compte = ?, chef = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($name, $description, $account, $manager, $id_team));
+	$iostat = $stmt->execute(array($name, $description, $account, $manager, $team_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
@@ -1092,10 +1092,10 @@ function get_user_listall_by_logged_level($pdo, $logged_level) {
 
 // ---------------------------------------------------------------------
 
-function get_user_listshort_with_right($pdo, $level_min=1, $id_bonus=0) {
+function get_user_listshort_with_right($pdo, $level_min=1, $bonus_id=0) {
 	$sql = 'SELECT id, nom, prenom FROM users WHERE (valid = 1 and level >= ?) or id = ? ORDER BY nom, prenom;';
 	$stmt = $pdo->prepare($sql);
-    $stmt->execute(array($level_min, $id_bonus));
+    $stmt->execute(array($level_min, $bonus_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
