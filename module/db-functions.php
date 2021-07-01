@@ -88,6 +88,13 @@ function last_id_db() {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Permet de vérifier si la valeur existe dans la colonne d'une table
+ * spécifié manuellement. La fonction retournera "true" si la vérification
+ * trouve des données sinon elle retournera "false"
+ * 
+ * @return boolean
+ */
 function check_val_in_db($pdo, $table, $col, $value) {
 	//teste l'existence de $value dans le champ $col de la table $table
 	//echo "check in:".$table.":".$col." for ".$value."<br />";
@@ -108,6 +115,11 @@ function check_val_in_db($pdo, $table, $col, $value) {
 // Category
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère l'ID et le nom de la catégorie via son ID
+ * 
+ * @return array Retourne directement l'élément
+ */
 function get_category_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM categorie WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -118,6 +130,12 @@ function get_category_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère l'ID et le nom de toutes les catégories rangées 
+ * par nom croissant
+ * 
+ * @return array
+ */
 function get_category_listshort($pdo) {
 	$sql = 'SELECT id, nom FROM categorie ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
@@ -128,6 +146,13 @@ function get_category_listshort($pdo) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Effectue une vérification pour savoir si le nom d'une catégorie
+ * existe déjà. Retourne "true" si la catégorie est présente sinon
+ * renvoie "false"
+ * 
+ * @return boolean
+ */
 function check_category_by_name($pdo, $name) {
 	$sql = 'SELECT COUNT(*) as count FROM categorie WHERE nom = ?';
 	$stmt = $pdo->prepare($sql);
@@ -138,6 +163,11 @@ function check_category_by_name($pdo, $name) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Ajoute une catégorie
+ * 
+ * @return int
+ */
 function set_category_new($pdo, $name) {
 	$sql = 'INSERT INTO categorie (nom) VALUE (?);';
 	$stmt = $pdo->prepare($sql);
@@ -147,6 +177,9 @@ function set_category_new($pdo, $name) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Met à jour une catégorie (nom) via son ID
+ */
 function set_category_update($pdo, $category_id, $name) {
 	$sql = 'UPDATE categorie SET nom = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -155,6 +188,9 @@ function set_category_update($pdo, $category_id, $name) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Supprime une catégorie via son ID
+ */
 function del_category_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM categorie WHERE id = ? LIMIT 1';
 	$stmt = $pdo->prepare($sql);
@@ -172,6 +208,11 @@ function get_datasheet_basepath() {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu d'une notice via son ID
+ * 
+ * @return false|array Retourne directement l'élément
+ */
 function get_datasheet_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM datasheet WHERE id = ?;' ;
 	$stmt = $pdo->prepare($sql);
@@ -184,6 +225,12 @@ function get_datasheet_all_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu des notices appartenant à un 
+ * équipement spécifié
+ * 
+ * @return array
+ */
 function get_datasheet_listall_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM datasheet WHERE id_equipment = ?;' ;
 	$stmt = $pdo->prepare($sql);
