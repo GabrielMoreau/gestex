@@ -30,12 +30,12 @@ function upgrade_datasheet_1_to_2($pdo) {
 					$sql1 = 'INSERT INTO datasheet (description, id_equipment) VALUES (?, ?);';
 					$stmt1 = $pdo->prepare($sql1);
 					$stmt1->execute(array($equipment_name, $equipment_id));
-					$id_datasheet = $pdo->lastInsertId();
+					$datasheet_id = $pdo->lastInsertId();
 					
-					$sub_path = $id_datasheet.'-'.random_string(8);
+					$sub_path = $datasheet_id.'-'.random_string(8);
 					$sql2 = 'UPDATE datasheet SET pathname = ? WHERE id = ?;';
 					$stmt2 = $pdo->prepare($sql2);
-					$stmt2->execute(array($sub_path.'/'.$datasheet_filename_kebab.'.pdf', $id_datasheet));
+					$stmt2->execute(array($sub_path.'/'.$datasheet_filename_kebab.'.pdf', $datasheet_id));
 					
 					$new_dir = $new_datasheet_path.'/'.$sub_path;
 					if (!is_dir($new_dir))
