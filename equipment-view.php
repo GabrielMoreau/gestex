@@ -24,7 +24,7 @@ if ($pdo = connect_db()) {
 	$equipment_selected = get_equipment_all_by_id($pdo, $id_equipment);
 	$responsible = get_user_by_id($pdo, $equipment_selected['responsable']);
 	$team        = get_team_by_id($pdo, $equipment_selected['equipe']);
-	$supplier    = get_supplier_by_id($pdo, $equipment_selected['fournisseur']);
+	$supplier    = get_supplier_listshort_by_id($pdo, $equipment_selected['fournisseur']);
 	$category    = get_category_by_id($pdo, $equipment_selected['categorie']);
 
 	$datacheet_path  = get_datasheet_basepath();
@@ -37,8 +37,8 @@ if ($pdo = connect_db()) {
 	if ($equipment_selected['loanable'] == 1)
 		$loan = get_loan_active_listall_by_equipment($pdo, $id_equipment);
 
-	$equipment_blacklist = get_loans_blacklist_by_equipment($pdo, $id_equipment);
-	$equipment_loan_reserved = get_last_reserved_loan($pdo, $id_equipment);
+	$equipment_blacklist = get_loans_by_equipment_and_borrowed($pdo, $id_equipment);
+	$equipment_loan_reserved = get_reserved_listall_last_loan($pdo, $id_equipment);
 
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'].'</b>');
 ?>
