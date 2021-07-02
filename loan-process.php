@@ -28,7 +28,6 @@ if (isset($_GET["mode"])) {
 
 $date_tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
 $date_out_ymd  = strtotime(date('Y-m-d', strtotime($date_emprunt)));
-$date_out_rtn = strtotime(date('Y-m-d', strtotime($date_retour)));
 
 //variables ne pouvant etre nulles
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
@@ -38,8 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 		$erreur = '&Eacute;quipe non pr&eacute;cis&eacute;';
 	if (empty($date_emprunt))
 		$erreur = 'Date d\'emprunt non pr&eacute;cis&eacute;';
-	if ($date_out_rtn < $date_out_ymd)
-		$erreur = 'Les dates ne correspondent pas. Merci de rentrer une intervalle correcte';
 }
 
 /* $flag_new = true;
