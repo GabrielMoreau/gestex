@@ -89,6 +89,27 @@ function last_id_db() {
 // ---------------------------------------------------------------------
 
 /**
+ * Vérifie si un pret a été emprunté. Retourne "false" s'il n'y en a pas
+ * et "true" s'il en trouve au moins un. Il n'est censé normalement n'y 
+ * avoir qu'un seul pret emprunter.
+ * 
+ * @todo Pensez à faire une méthode pour avertir s'il y a plus de 1 pret
+ * emprunté
+ * @return boolean
+ */
+function check_loan_borrowed_by_equipment($pdo, $equipment_id) {
+	$sql = 'SELECT id FROM pret WHERE nom = ? AND status = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($equipment_id, STATUS_LOAN_BORROWED));
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result) > 0)
+		return true;
+	return false;
+}
+
+// ---------------------------------------------------------------------
+
+/**
  * Permet de vérifier si la valeur existe dans la colonne d'une table
  * spécifié manuellement. La fonction retournera "true" si la vérification
  * trouve des données sinon elle retournera "false"
@@ -1275,6 +1296,23 @@ function set_user_valid_by_id($pdo, $user_id, $user_status) {
  * 
  * @return array Avec potentiellement une chaine d'erreur
  */
+/* function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme, $logged_level, $loggin='') {
+	if (isset($loggin) && $loggin != '' && $logged_level > 3) {
+		$sql = 'UPDATE LOW_PRIORITY users SET loggin = ?, nom = ?, prenom = ?, email = ?, level = ?, tel = ?, equipe = ?, theme = ? WHERE id = ?;';
+		$stmt = $pdo->prepare($sql);
+		$iostat = $stmt->execute(array($loggin, $familyname, $firstname, $email, $level, $tel, $team_id, $theme, $user_id));
+	} else {
+		$sql = 'UPDATE LOW_PRIORITY users SET nom = ?, prenom = ?, email = ?, level = ?, tel = ?, equipe = ?, theme = ? WHERE id = ?;';
+		$stmt = $pdo->prepare($sql);
+		$iostat = $stmt->execute(array($familyname, $firstname, $email, $level, $tel, $team_id, $theme, $user_id));
+	}
+
+	$err_msg = '';
+	if (!$iostat)
+		$err_msg = $stmt->errorInfo()[2];
+	return $err_msg;
+} */
+
 function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme) {
 	$sql = 'UPDATE LOW_PRIORITY users SET nom = ?, prenom = ?, email = ?, level = ?, tel = ?, equipe = ?, theme = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
@@ -1284,7 +1322,6 @@ function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level
 		$err_msg = $stmt->errorInfo()[2];
 	return $err_msg;
 }
-
 // ---------------------------------------------------------------------
 // Version
 // ---------------------------------------------------------------------
