@@ -160,6 +160,15 @@ if ($param_mode == "loan-now") {
 	}
 
 } else if ($param_mode == 'loan') {
+	if (check_loan_borrowed_by_equipment($pdo, $equipment_id)) {
+		$title         = 'L\'équipement est déjà en emprunt';
+		$action        = 'loan-edit.php?equipment='.$equipment_id.'&mode=booking';
+		$erreur        = 'L\'équipement est déjà en emprunt';
+		$message_text  = $erreur;
+		$transmit_post = true;
+		include_once('include/warning-box.php');
+		exit();
+	}
 	if ($date_out_ymd >= $date_tomorrow) {
 		$loan_id = set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 		$message_text = 'Ajout de la réservation sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
