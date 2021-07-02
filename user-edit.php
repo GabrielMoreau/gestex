@@ -49,7 +49,8 @@ if ($mode == 'Ajouter') {
 				Identifiant (login)
 			</th>
 			<td>
-				<b><?= param_post_key('loggin', $user_selected) ?></b>
+				<?php if ($logged_level > 3) { echo '<input type="text" name="loggin" size="25" maxlength="25" value="'.param_post_key('loggin', $user_selected).'" placeholder="Identifiant (login) *">'; } else {
+				echo '<b>'.param_post_key('loggin', $user_selected).'</b>'; } ?>
 			</td>
 			<?php } ?>
 		</tr>

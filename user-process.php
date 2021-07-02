@@ -114,7 +114,7 @@ if (   ($nom    != $user_selected['nom'])
 	$modif = true;
 
 if ($modif) {
-	$err_msg = set_user_update($pdo, $user_id, $nom, $prenom, $mail, $level, $phone, $equipe, $theme);
+	$err_msg = set_user_update($pdo, $user_id, $nom, $prenom, $mail, $level, $phone, $equipe, $theme, $logged_level, $loggin);
 	if ($err_msg != '') {
 		$title        = 'Erreur utilisateur';
 		$action       = 'user-list.php?highlight='.$user_id;

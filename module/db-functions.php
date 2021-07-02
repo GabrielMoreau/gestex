@@ -1296,7 +1296,7 @@ function set_user_valid_by_id($pdo, $user_id, $user_status) {
  * 
  * @return array Avec potentiellement une chaine d'erreur
  */
-/* function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme, $logged_level, $loggin='') {
+function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme, $logged_level, $loggin='') {
 	if (isset($loggin) && $loggin != '' && $logged_level > 3) {
 		$sql = 'UPDATE LOW_PRIORITY users SET loggin = ?, nom = ?, prenom = ?, email = ?, level = ?, tel = ?, equipe = ?, theme = ? WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
@@ -1311,9 +1311,9 @@ function set_user_valid_by_id($pdo, $user_id, $user_status) {
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
 	return $err_msg;
-} */
+}
 
-function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme) {
+/* function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme) {
 	$sql = 'UPDATE LOW_PRIORITY users SET nom = ?, prenom = ?, email = ?, level = ?, tel = ?, equipe = ?, theme = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($familyname, $firstname, $email, $level, $tel, $team_id, $theme, $user_id));
@@ -1321,7 +1321,7 @@ function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
 	return $err_msg;
-}
+} */
 // ---------------------------------------------------------------------
 // Version
 // ---------------------------------------------------------------------
