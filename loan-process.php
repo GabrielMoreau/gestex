@@ -28,6 +28,7 @@ if (isset($_GET["mode"])) {
 
 $date_tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
 $date_out_ymd  = strtotime(date('Y-m-d', strtotime($date_emprunt)));
+$date_out_rtn  = strtotime(date('Y-m-d', strtotime($date_retour)));
 
 //variables ne pouvant etre nulles
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
@@ -38,6 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 	if (empty($date_emprunt))
 		$erreur = 'Date d\'emprunt non pr&eacute;cis&eacute;';
 }
+if($date_retour < $date_emprunt)
+	$erreur = 'L\'intervalle des dates ne correspond pas. Merci de les vérifier';
 
 /* $flag_new = true;
 if ($loan_id > 0)
