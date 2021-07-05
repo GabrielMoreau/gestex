@@ -21,3 +21,13 @@ UPDATE `pret` SET `status` = 'LOAN_BORROWED';
 --
 
 UPDATE version SET version = 5 WHERE soft = 'database';
+
+CREATE TABLE IF NOT EXISTS `interventions` (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    f_supplier INT NOT NULL,
+    f_listing INT NOT NULL,
+    description TINYTEXT DEFAULT NULL,
+    check_on DATE DEFAULT NULL,
+    FOREIGN KEY (f_supplier) REFERENCES fournisseurs(id),
+    FOREIGN KEY (f_listing) REFERENCES listing(id)
+) ENGINE=MyISAM CHARSET=utf8;
