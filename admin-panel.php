@@ -23,6 +23,29 @@ if ($logged_level < 4) {
     exit();
 }
 
-echo 'console admin';
-
+$pdo = connect_db();
 ?>
+
+<div class="adm-panel-body">
+	<div>
+	<h3>FEATURES AND SERVICES VERSIONS</h3><?php 
+		foreach(get_version_listall($pdo) as $current_version) { ?>
+			<div>
+				<h4><?=$current_version["soft"]?></h4>
+				<table class="version-item">
+					<tr>
+						<td>Version</td>
+						<td><a>v<?=$current_version["version"]?></a></td>
+					</tr>
+					<tr>
+						<td>Updated on</td>
+						<td><a><?=$current_version["updated_on"]?></a></td>
+					</tr>
+				</table>
+			</div><?php
+		} ?>
+	</div>
+	<content>
+		<h3>LOGS</h3>
+	</content>
+</div>
