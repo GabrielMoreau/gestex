@@ -819,7 +819,7 @@ function set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_begin, $date
  * @deprecated
  */
 function set_loan_update_to_borrowed($pdo, $loan_id) {
-	$sql = 'UPDATE pret SET status = ? WHERE id = ?;';
+	$sql = 'UPDATE pret SET status = ?, emprunt = CURRENT_DATE WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array(STATUS_LOAN_BORROWED, $loan_id));
 }
@@ -854,7 +854,7 @@ function del_loan_by_id($pdo, $loan_id) {
  * bloque sa date de retour au jour de son appel
  */
 function set_loan_to_returned($pdo, $loan_id) {
-	$sql = 'UPDATE LOW_PRIORITY pret SET status = ?, retour = CURRENT_DATE WHERE id = ?;';
+	$sql = 'UPDATE LOW_PRIORITY pret SET status = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array(STATUS_LOAN_RETURNED, $loan_id));
 	return $iostat;
