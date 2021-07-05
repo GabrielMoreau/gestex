@@ -22,6 +22,7 @@ UPDATE `pret` SET `status` = 'LOAN_BORROWED';
 
 UPDATE version SET version = 5 WHERE soft = 'database';
 
+DROP TABLE IF EXISTS `intervention`;
 CREATE TABLE IF NOT EXISTS `interventions` (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     f_supplier INT NOT NULL,
