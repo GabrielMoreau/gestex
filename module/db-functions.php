@@ -819,7 +819,7 @@ function set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_begin, $date
  * @deprecated
  */
 function set_loan_update_to_borrowed($pdo, $loan_id) {
-	$sql = 'UPDATE pret SET status = ?, emprunt = CURRENT_DATE WHERE id = ?;';
+	$sql = 'UPDATE pret SET status = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array(STATUS_LOAN_BORROWED, $loan_id));
 }
