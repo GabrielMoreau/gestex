@@ -1340,6 +1340,23 @@ function get_version_by_name($pdo, $name) {
 		return $version_fetch[0];
 	return false;
 }
+
+// ---------------------------------------------------------------------
+/**
+ * Récupère tout le contenu des versions de fonctionnalitées
+ * 
+ * @return false|array
+ */
+function get_version_listall($pdo) {
+	$sql = 'SELECT * FROM version';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
+	$version_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($version_fetch) > 0)
+		return $version_fetch;
+	return false;
+}
+
 // ---------------------------------------------------------------------
 
 /**
