@@ -532,3 +532,75 @@ div[class="navbar"] + .loan-list-container {
 	height: 5rem;
 }
 
+.adm-panel-body {
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	margin: 1.5rem 2rem 2rem 2rem;
+}
+
+.adm-panel-body content {
+	width: 70%;
+	max-height: 40rem;
+	margin-left: 3rem;
+	margin-top: 18px;
+	border: 1px solid white;
+	border-radius: 7px;
+}
+
+.adm-panel-body content h3 {
+	margin: 0;
+	padding: 1rem;
+	border-bottom: 1px solid white;
+	background-color: #110c0c98;
+}
+
+.adm-panel-body div {
+	display: flex;
+	width: 30%;
+	max-height: 40rem;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.adm-panel-body div h3 {
+	background-color: #969696;
+	border-radius: 7px;
+	color: black;
+	padding: 1rem;
+}
+
+.adm-panel-body div div {
+	width: 100%;
+	border-radius: 7px;
+	text-align: center;
+	border: 1px solid white;
+	margin-top: 1.5rem
+}
+
+.adm-panel-body div div:hover {
+	background-color: #292727;
+}
+
+.adm-panel-body div div h4 {
+	background-color: #5e5d5d;
+	margin-bottom: 0;
+	margin-top: 0;
+	font-size: 24px;
+	padding: 1rem 1rem 1rem 1rem;
+	border-bottom: 1px solid white;
+}
+
+.adm-panel-body div div {
+	width: 100%;
+}
+
+.version-item {
+	width: 100%;
+}
+
+.version-item tr td {
+	width: 50%;
+	border-bottom: 1px solid white;
+}
+
