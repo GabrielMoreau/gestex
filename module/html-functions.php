@@ -33,6 +33,7 @@ define('ICON_ADD_EQUIPMENT', '<span><svg width="1.2em" height="1.2em" fill="curr
 define('ICON_ADD_USER',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un utilisateur</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
 define('ICON_MARK_RIGHT',    '<span><svg width="1.2em" height="1.2em" fill="currentColor"><use xlink:href="images/bootstrap-icons.svg#arrow-right-square"/></svg></span>');
 define('ICON_ADMIN', 		 '<span><svg width="1.2em" height="1.2em" fill="currentColor"><use xlink:href="images/bootstrap-icons.svg#shield-lock"/></svg></span>');
+define('ICON_INTERVENTION',	 '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter une intervention</title><use xlink:href="images/bootstrap-icons.svg#hammer"/></svg></span>');
 
 // ---------------------------------------------------------------------
 
