@@ -22,8 +22,9 @@ $date_retour  = param_post('retour');
 $commentaire  = param_post('commentaire');
 
 $param_mode	  = param_post('mode', 'booking'); // booking, booking-after, edit
-if (isset($_GET["mode"])) {
-	$param_mode = $_GET["mode"];
+if (isset(param_get("mode")) && param_get('mode') != '') {
+	$param_mode = param_get("mode");
+	$loan_id = param_get('id');
 }
 
 $date_tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));
@@ -125,16 +126,16 @@ if ($param_mode == "booking") {
 
 } else if ($param_mode == "loan-now") {
 	
-	if (get_loans_all_by_equipment_borrowed($pdo, get_equipment_by_loan_id($pdo, $_GET["id"])) == false) {
-		set_loan_update_to_borrowed($pdo, $_GET["id"]);
+	if (get_loans_all_by_equipment_borrowed($pdo, get_equipment_by_loan_id($pdo, $loan_id)) == false) {
+		set_loan_update_to_borrowed($pdo, $loan_id);
 		$message_text = 'Votre réservation a bien été enregistré comme emprunt';
 		$title     = 'R&eacute;sultat demande d\'emprunt';
-		$action    = 'equipment-view.php?id='.get_equipment_by_loan_id($pdo, $_GET["id"]);
+		$action    = 'equipment-view.php?id='.get_equipment_by_loan_id($pdo, $loan_id);
 		include_once('include/message-box.php');
 		exit();
 	} else {
 		$title         = 'Erreur sur l\'emprunt';
-		$action        = 'loan-edit.php?id='.$_GET["id"].'&mode=edit';
+		$action        = 'loan-edit.php?id='.$loan_id.'&mode=edit';
 		$erreur        = 'L\'équipement est déjà emprunté';
 		$message_text  = $erreur;
 		$transmit_post = true;
@@ -162,7 +163,7 @@ if ($param_mode == "booking") {
 
 } else {
 	$title         = 'Impossible d\'effectuer un emprunt ou une réservation';
-	$action        = 'loan-edit.php?id='.$_GET["id"].'&mode=edit';
+	$action        = 'loan-edit.php?id='.$loan_id.'&mode=edit';
 	$erreur        = 'Impossible d\'effectuer un emprunt ou une réservation, erreur inconnue';
 	$message_text  = $erreur;
 	$transmit_post = true;
