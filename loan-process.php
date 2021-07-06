@@ -121,43 +121,45 @@ if ($param_mode == "booking") {
 			exit();
 		}
 	}
-
-} else if ($param_mode == "loan-now") {
-	
-	if (get_loans_all_by_equipment_borrowed($pdo, get_equipment_by_loan_id($pdo, $loan_id)) == false) {
-		set_loan_update_to_borrowed($pdo, $loan_id);
-		$message_text = 'Votre réservation a bien été enregistré comme emprunt';
-		$title     = 'R&eacute;sultat demande d\'emprunt';
-		$action    = 'equipment-view.php?id='.get_equipment_by_loan_id($pdo, $loan_id);
-		include_once('include/message-box.php');
-		exit();
-	} else {
-		$title         = 'Erreur sur l\'emprunt';
-		$action        = 'loan-edit.php?id='.$loan_id.'&mode=edit';
-		$erreur        = 'L\'équipement est déjà emprunté';
-		$message_text  = $erreur;
-		$transmit_post = true;
-		include_once('include/warning-box.php');
-		exit();
-	}
-
 } else if ($param_mode == 'loan') {
-	if (check_loan_borrowed_by_equipment($pdo, $equipment_id)) {
-		$title         = 'L\'équipement est déjà en emprunt';
-		$action        = 'loan-edit.php?equipment='.$equipment_id.'&mode=booking';
-		$erreur        = 'L\'équipement est déjà en emprunt';
-		$message_text  = $erreur;
-		$transmit_post = true;
-		include_once('include/warning-box.php');
-		exit();
-	}
-	if ($date_out_ymd >= $date_tomorrow) {
-		$loan_id = set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
-		$message_text = 'Ajout de la réservation sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
+
+	if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_RESERVED) {
+		if (get_loans_all_by_equipment_borrowed($pdo, get_equipment_by_loan_id($pdo, $loan_id)) == false) {
+			set_loan_update_to_borrowed($pdo, $loan_id);
+			$message_text = 'Votre réservation a bien été enregistré comme emprunt';
+			$title     = 'R&eacute;sultat demande d\'emprunt';
+			$action    = 'equipment-view.php?id='.get_equipment_by_loan_id($pdo, $loan_id);
+			include_once('include/message-box.php');
+			exit();
+		} else {
+			$title         = 'Erreur sur l\'emprunt';
+			$action        = 'loan-edit.php?id='.$loan_id.'&mode=edit';
+			$erreur        = 'L\'équipement est déjà emprunté';
+			$message_text  = $erreur;
+			$transmit_post = true;
+			include_once('include/warning-box.php');
+			exit();
+		}
 	} else {
-		$loan_id = set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
-		$message_text = 'Ajout du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
+		if (check_loan_borrowed_by_equipment($pdo, $equipment_id)) {
+			$title         = 'L\'équipement est déjà en emprunt';
+			$action        = 'loan-edit.php?equipment='.$equipment_id.'&mode=booking';
+			$erreur        = 'L\'équipement est déjà en emprunt';
+			$message_text  = $erreur;
+			$transmit_post = true;
+			include_once('include/warning-box.php');
+			exit();
+		}
+		if ($date_out_ymd >= $date_tomorrow) {
+			$loan_id = set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+			$message_text = 'Ajout de la réservation sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
+		} else {
+			$loan_id = set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+			$message_text = 'Ajout du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
+		}
 	}
+
+
 
 } else {
 	$title         = 'Impossible d\'effectuer un emprunt ou une réservation';
