@@ -31,4 +31,4 @@ CREATE TABLE IF NOT EXISTS `interventions` (
     check_on DATE DEFAULT NULL,
     FOREIGN KEY (f_supplier) REFERENCES fournisseurs(id),
     FOREIGN KEY (f_listing) REFERENCES listing(id)
-) ENGINE=MyISAM CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=700 CHARSET=utf8;
