@@ -60,27 +60,7 @@ if (!empty($erreur)) {
 
 $pdo = connect_db_or_alert();
 
-if ($param_mode == "loan-now") {
-	
-	if (get_loans_all_by_equipment_borrowed($pdo, get_equipment_by_loan_id($pdo, $_GET["id"])) == false) {
-		set_loan_update_to_borrowed($pdo, $_GET["id"]);
-		$message_text = 'Votre réservation a bien été enregistré comme emprunt';
-		$title     = 'R&eacute;sultat demande d\'emprunt';
-		$action    = 'equipment-view.php?id='.get_equipment_by_loan_id($pdo, $_GET["id"]);
-		include_once('include/message-box.php');
-		exit();
-	} else {
-		$title         = 'Erreur sur l\'emprunt';
-		$action        = 'loan-edit.php?id='.$_GET["id"].'&mode=edit';
-		$erreur        = 'L\'équipement est déjà emprunté';
-		$message_text  = $erreur;
-		$transmit_post = true;
-		include_once('include/warning-box.php');
-		exit();
-	}
-	
-
-} else if ($param_mode == "booking") {
+if ($param_mode == "booking") {
 	// CHECK FUTUR
 	if ($date_out_ymd >= $date_tomorrow) {
 		// CHECK DATE OVERLAP
