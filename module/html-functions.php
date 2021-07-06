@@ -263,7 +263,7 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 					echo ICON_LOAN_RETURNED;
 				}
 				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED && $equipment_blacklist == false) {
-					echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan-now">'.ICON_LOAN_BORROWED.'</a>';
+					echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan">'.ICON_LOAN_BORROWED.'</a>';
 				}
 				
 				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED) {
