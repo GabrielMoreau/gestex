@@ -22,7 +22,7 @@ $date_retour  = param_post('retour');
 $commentaire  = param_post('commentaire');
 
 $param_mode	  = param_post('mode', 'booking'); // booking, booking-after, edit
-if (isset(param_get("mode")) && param_get('mode') != '') {
+if (isset($_GET['mode']) && param_get('mode') != '') {
 	$param_mode = param_get("mode");
 	$loan_id = param_get('id');
 }
@@ -90,8 +90,6 @@ if ($param_mode == "booking") {
 	}
 } else if ($param_mode == "edit") {
 	// CHECK FUTUR
-	if (isset($loan_id))
-		var_dump($loan_id);
 
 	if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_BORROWED) {
 		set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
