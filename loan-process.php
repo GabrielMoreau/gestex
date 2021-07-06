@@ -123,7 +123,7 @@ if ($param_mode == "booking") {
 		}
 	}
 
-} else if (isset($_GET["mode"]) && $_GET["mode"] == "loan-now") {
+} else if ($param_mode == "loan-now") {
 	
 	if (get_loans_all_by_equipment_borrowed($pdo, get_equipment_by_loan_id($pdo, $_GET["id"])) == false) {
 		set_loan_update_to_borrowed($pdo, $_GET["id"]);
