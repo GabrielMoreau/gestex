@@ -220,6 +220,15 @@ $team_chief_id = param_post_key('responsable', $equipment_selected, 0);
 
 		<tr>
 			<th>
+				Nombre de jour max pour un emprunt (0 = inderterminé)
+			</th>
+			<td>
+				<input type="number" name="max-loan-day" min="0" max="90" value="0" required>
+			</td>
+		</tr>
+
+		<tr>
+			<th>
 				Empruntable (oui / non - non par d&eacute;faut)
 			</th>
 			<td>
