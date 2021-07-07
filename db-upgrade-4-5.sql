@@ -33,3 +33,5 @@ CREATE TABLE IF NOT EXISTS `interventions` (
     FOREIGN KEY (f_supplier) REFERENCES fournisseurs(id),
     FOREIGN KEY (f_listing) REFERENCES listing(id)
 ) ENGINE=MyISAM AUTO_INCREMENT=700 CHARSET=utf8;
+
+ALTER TABLE listing ADD COLUMN max_loan_day INT NOT NULL DEFAULT 0;
