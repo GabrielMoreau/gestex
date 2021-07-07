@@ -545,7 +545,7 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $
 function set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_loan_day) {
 	$sql = 'UPDATE Listing SET categorie = ?, nom = ?, modele = ?, gamme = ?, equipe = ?, fournisseur = ?, achat = ?, responsable = ?, reparation = ?, accessoires = ?, inventaire = ?, notice = ?, barcode = ?, loanable = ?, max_loan_day = ? WHERE id = ?;)';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $max_loan_day, $loanable, $max_loan_day, $equipment_id));
+	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_loan_day, $equipment_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
