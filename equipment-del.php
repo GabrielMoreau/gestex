@@ -17,7 +17,7 @@ if ($equipment_id == 0 || $valid == 'cancel')
 	redirect('equipment-list.php');
 
 $pdo = connect_db_or_alert();
-$equipment_name = get_equipment_by_id($pdo, $equipment_id)['nom'];
+$equipment_name = get_equipment_listshort_by_id($pdo, $equipment_id)['nom'];
 
 if ($valid == 'yes') {
 	$iostat = del_equipment_by_id($pdo, $equipment_id);

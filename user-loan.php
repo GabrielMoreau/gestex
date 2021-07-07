@@ -52,7 +52,7 @@ if ($pdo = connect_db()) {
 				echo '<tr class="impair">'.PHP_EOL;
 			$num_line++;
 
-			$equipment = get_equipment_by_id($pdo, $loan_current['nom']);
+			$equipment = get_equipment_listshort_by_id($pdo, $loan_current['nom']);
 			echo '  <td>';
 			echo      $equipment['nom'];
 			echo '  </td>'.PHP_EOL;

@@ -71,7 +71,7 @@ foreach ($loan_fetch as $loan_current) {
 	$num_line++;
 
 	// recupere le nom de l'appareil via l'ID qui est mis dans un champs texte !
-	// $appareil_selected = get_equipment_by_id($pdo, $loan_current['nom']);
+	// $appareil_selected = get_equipment_listshort_by_id($pdo, $loan_current['nom']);
 	echo '  <td>';
 	echo '    <a href="equipment-view.php?id='.$loan_current['nom'].'">'.$loan_current['equipment_name'].'</a>';
 	echo '  </td>'.PHP_EOL;

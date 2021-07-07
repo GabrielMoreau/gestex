@@ -390,7 +390,7 @@ function del_datasheet_by_id($pdo, $id) {
  * 
  * @return false|array Le contenu d'un équipement directement
  */
-function get_equipment_by_id($pdo, $id) {
+function get_equipment_listshort_by_id($pdo, $id) {
 	$sql = 'SELECT id, nom FROM Listing WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));

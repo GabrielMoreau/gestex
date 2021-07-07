@@ -22,7 +22,7 @@ if ($valid == 'edit')
 $pdo = connect_db_or_alert();
 
 $loan_selected  = get_loan_all_by_id($pdo, $loan_id);
-$equipment = get_equipment_by_id($pdo, $loan_selected['nom']);
+$equipment = get_equipment_listshort_by_id($pdo, $loan_selected['nom']);
 $equipment_name = $equipment["nom"];
 $equipment_id = $equipment["id"];
 
