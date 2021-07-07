@@ -43,6 +43,18 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 if($date_retour < $date_emprunt)
 	$erreur = 'L\'intervalle des dates ne correspond pas. Merci de les vérifier';
 
+$pdo = connect_db_or_alert();
+
+if ($param_mode == "loan" || $param_mode == "booking") {
+	$day_diff = $date_out_rtn - $date_out_ymd;
+	$day_diff = intval(date('d', $day_diff));
+	$equipment_max_day = get_equipment_all_by_id($pdo, $equipment_id)["max_loan_day"];
+	if ($equipment_max_day != 0) {
+		if ($day_diff > $equipment_max_day)
+			$erreur = 'L\'équipement ne peut pas être enprunter sur une durée de plus de '.$equipment_max_day.' jours';
+	}
+}
+
 /* $flag_new = true;
 if ($loan_id > 0)
 	$flag_new = false; */
@@ -58,8 +70,6 @@ if (!empty($erreur)) {
 	include_once('include/warning-box.php');
 	exit();
 }
-
-$pdo = connect_db_or_alert();
 
 if ($param_mode == "booking") {
 	// CHECK FUTUR
