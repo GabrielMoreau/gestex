@@ -7,22 +7,25 @@ require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
 // Authenticate
-auth_or_login('team-list.php');
+auth_or_login('intervention-edit.php.php');
 level_or_alert(3, 'Ajout d\'une intervention');
 
-$intervention_id = param_post_or_get('id', 0);
+$equipment_id = param_post_or_get('equipment', 0);
 $mode = 'Modifier';
-if ($intervention_id == 0) // new
+if ($equipment_id == 0) // new
 	$mode = 'Ajouter';
 
 $pdo = connect_db_or_alert();
+$intervention_fetch = array();
 
 if ($mode == 'Ajouter') {
 	en_tete('Ajouter une intervention');
 } else if ($mode == 'Modifier') {
     en_tete('Modifier une intervention');
+    $intervention_fetch = get_interventions_listall_by_equipment($pdo, $equipment_id);
 }
 ?>
+
 
 
 <div class="form">
