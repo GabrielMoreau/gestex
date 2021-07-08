@@ -503,11 +503,11 @@ function get_equipment_by_loan_id($pdo, $loan_id) {
  * @return array|string Renvoie une chaine si echec sinon 
  * un tableau avec l'ID et un msg d'erreur eventuellement
  */
-function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_loan_day) {
-	$sql = 'INSERT INTO Listing (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice, barcode, loanable, max_loan_day)';
+function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day) {
+	$sql = 'INSERT INTO Listing (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice, barcode, loanable, max_day)';
 	$sql .=            ' VALUES (?,         ?,   ?,      ?,     ?,      ?,           ?,     ?,           ?,          ?,           ?,          ?,      ?,       ?, 		?);';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_loan_day));
+	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
@@ -522,10 +522,10 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $
  * @return string Renvoie une chaine vide
  * si réussite sinon une chaine d'erreurs
  */
-function set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_loan_day) {
-	$sql = 'UPDATE Listing SET categorie = ?, nom = ?, modele = ?, gamme = ?, equipe = ?, fournisseur = ?, achat = ?, responsable = ?, reparation = ?, accessoires = ?, inventaire = ?, notice = ?, barcode = ?, loanable = ?, max_loan_day = ? WHERE id = ?;)';
+function set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day) {
+	$sql = 'UPDATE Listing SET categorie = ?, nom = ?, modele = ?, gamme = ?, equipe = ?, fournisseur = ?, achat = ?, responsable = ?, reparation = ?, accessoires = ?, inventaire = ?, notice = ?, barcode = ?, loanable = ?, max_day = ? WHERE id = ?;)';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_loan_day, $equipment_id));
+	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day, $equipment_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];

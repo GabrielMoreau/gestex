@@ -33,7 +33,7 @@ $reparation  = param_post('reparation');
 $accessoires = param_post('accessoires');
 $inventaire  = param_post('inventaire');
 $barcode     = param_post('barcode');
-$max_loan_day = param_post('max-loan-day', 0);
+$max_day     = param_post('max_day', 0);
 $loanable    = param_post('loanable');
 //variables ne pouvant etre nulles
 if (empty($categorie))
@@ -75,7 +75,7 @@ if (!empty($erreur)) {
 $pdo = connect_db_or_alert();
 
 if ($flag_new) { // new
-	list($equipment_id, $err_msg) = set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_loan_day);
+	list($equipment_id, $err_msg) = set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day);
 	if ($err_msg != '') {
 		$message_alert = ($logged_level > 3 ? $err_msg : '');
 		include_once('include/alert-data.php');
@@ -119,11 +119,11 @@ if (   ($categorie   != $equipment_selected['categorie'])
 	|| ($notice      != $equipment_selected['notice'])
 	|| ($barcode     != $equipment_selected['barcode'])
 	|| ($loanable    != $equipment_selected['loanable'])
-	|| ($max_loan_day != $equipment_selected['max_loan_day']))
+	|| ($max_day     != $equipment_selected['max_day']))
 	$modif = true;
 
 if ($modif) {
-	$err_msg = set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_loan_day);
+	$err_msg = set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day);
 	if ($err_msg != '') {
 		$title        = 'Erreur appareil';
 		$action       = 'equipment-view.php?id='.$equipment_id;
