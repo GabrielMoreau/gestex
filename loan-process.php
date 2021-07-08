@@ -48,6 +48,13 @@ $pdo = connect_db_or_alert();
 if ($param_mode == "loan" || $param_mode == "booking") {
 	$day_diff = $date_out_rtn - $date_out_ymd;
 	$day_diff = intval(date('d', $day_diff));
+	if ($loan_id > 0) {
+		$equipment_max_day = get_equipment_all_by_id($pdo, get_equipment_by_loan_id($pdo, $loan_id))["max_loan_day"];
+	} else {
+		$equipment_max_day = get_equipment_all_by_id($pdo, $equipment_id)["max_loan_day"];
+	}
+	# var_dump('EQUIPEMENT ID : '.$equipment_id);
+	# var_dump('LOAN ID : '.$loan_id);
 	$equipment_max_day = get_equipment_all_by_id($pdo, $equipment_id)["max_loan_day"];
 	if ($equipment_max_day != 0) {
 		if ($day_diff > $equipment_max_day)
@@ -62,7 +69,7 @@ if ($loan_id > 0)
 if (!empty($erreur)) {
 	//erreur
 	$title         = 'Erreur sur l\'emprunt';
-	$action        = 'loan-edit.php?id='.$loan_id.'mode=edit';
+	$action        = 'loan-edit.php?id='.$loan_id.'&mode=edit';
 	if ($param_mode == 'booking')
 		$action    = 'loan-edit.php?equipment='.$equipment_id.'&mode='.$param_mode;
 	$message_text  = $erreur;
@@ -133,7 +140,9 @@ if ($param_mode == "booking") {
 	}
 } else if ($param_mode == 'loan') {
 
-	if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_RESERVED) {
+	
+
+	if ($loan_id > 0 && get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_RESERVED) {
 		if (get_loans_all_by_equipment_borrowed($pdo, get_equipment_by_loan_id($pdo, $loan_id)) == false) {
 			set_loan_update_to_borrowed($pdo, $loan_id);
 			$message_text = 'Votre réservation a bien été enregistré comme emprunt';
