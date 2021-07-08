@@ -53,9 +53,6 @@ if ($param_mode == "loan" || $param_mode == "booking") {
 	} else {
 		$equipment_max_day = get_equipment_all_by_id($pdo, $equipment_id)["max_loan_day"];
 	}
-	# var_dump('EQUIPEMENT ID : '.$equipment_id);
-	# var_dump('LOAN ID : '.$loan_id);
-	$equipment_max_day = get_equipment_all_by_id($pdo, $equipment_id)["max_loan_day"];
 	if ($equipment_max_day != 0) {
 		if ($day_diff > $equipment_max_day)
 			$erreur = 'L\'équipement ne peut pas être enprunter sur une durée de plus de '.$equipment_max_day.' jours';
@@ -160,7 +157,13 @@ if ($param_mode == "booking") {
 			exit();
 		}
 	} else {
-		if (check_loan_borrowed_by_equipment($pdo, $equipment_id)) {
+		if (empty($equipment_id)) {
+			$equipment_id = get_equipment_by_loan_id($pdo, $loan_id);
+			$check = check_loan_borrowed_by_equipment($pdo, get_equipment_by_loan_id($pdo, $loan_id));
+		} else {
+			$check = check_loan_borrowed_by_equipment($pdo, $equipment_id);
+		}
+		if ($check) {
 			$title         = 'L\'équipement est déjà en emprunt';
 			$action        = 'loan-edit.php?equipment='.$equipment_id.'&mode=booking';
 			$erreur        = 'L\'équipement est déjà en emprunt';
