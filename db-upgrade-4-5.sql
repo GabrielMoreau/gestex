@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `interventions` (
     listing_id INT NOT NULL,
     description VARCHAR(255) DEFAULT NULL,
     date DATE NOT NULL DEFAULT CURRENT_DATE,
-    KEY `f_company` (`f_supplier`),
+    KEY `company_id` (`supplier_id`),
     FOREIGN KEY (f_supplier) REFERENCES fournisseurs(id),
     FOREIGN KEY (f_listing) REFERENCES listing(id)
 ) ENGINE=MyISAM AUTO_INCREMENT=700 CHARSET=utf8;
