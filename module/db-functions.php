@@ -142,7 +142,7 @@ function check_val_in_db($pdo, $table, $col, $value) {
  * 
  * @return false|array
  */
-function get_interventions_listall_by_equipment($pdo, $equipment_id) {
+function get_interventions_all_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM interventions WHERE f_listing = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id));
