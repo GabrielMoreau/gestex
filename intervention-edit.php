@@ -22,7 +22,7 @@ if ($mode == 'Ajouter') {
 	en_tete('Ajouter une intervention');
 } else if ($mode == 'Modifier') {
     en_tete('Modifier une intervention');
-    $intervention_fetch = get_interventions_all_by_equipment($pdo, $equipment_id);
+    $intervention_fetch = get_intervention_listall_by_equipment($pdo, $equipment_id);
 }
 ?>
 

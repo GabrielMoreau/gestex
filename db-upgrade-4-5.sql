@@ -8,6 +8,8 @@
 --
 
 ALTER TABLE `listing` MODIFY COLUMN `barcode` BIGINT DEFAULT NULL;
+ALTER TABLE `listing` ADD COLUMN `max_loan_day` INT(11) NOT NULL DEFAULT 0;
+UPDATE `listing` SET `max_loan_day` = 0;
 
 
 -- TIMESTAMP =< MySQL 5.5.x < DATETIME
@@ -20,18 +22,17 @@ UPDATE `pret` SET `status` = 'LOAN_BORROWED';
 -- Fix global DB version
 --
 
-UPDATE version SET version = 5 WHERE soft = 'database';
+UPDATE `version` SET `version` = 5 WHERE `soft` = 'database';
 
 RENAME TABLE `intervention` TO `old_intervention`;
-CREATE TABLE IF NOT EXISTS `interventions` (
-    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    supplier_id INT NOT NULL,
-    listing_id INT NOT NULL,
-    description VARCHAR(255) DEFAULT NULL,
-    date DATE NOT NULL DEFAULT CURRENT_DATE,
-    KEY `company_id` (`supplier_id`),
-    FOREIGN KEY (f_supplier) REFERENCES fournisseurs(id),
-    FOREIGN KEY (f_listing) REFERENCES listing(id)
+CREATE TABLE IF NOT EXISTS `intervention` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `supplier_id` INT(11) NOT NULL,
+  `equipment_id` INT(11) NOT NULL,
+  `description` VARCHAR(255) DEFAULT NULL,
+  `date` DATE NOT NULL DEFAULT CURRENT_DATE,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`supplier_id`) REFERENCES `fournisseurs`(`id`),
+  FOREIGN KEY (`equipment_id`) REFERENCES `listing`(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=700 CHARSET=utf8;
-
-ALTER TABLE listing ADD COLUMN max_loan_day INT NOT NULL DEFAULT 0;
+--   KEY `company_id` (`supplier_id`),
