@@ -28,7 +28,7 @@ $pdo = connect_db();
 
 <div class="adm-panel-body">
 	<div>
-	<h3>FEATURES AND SERVICES VERSIONS</h3><?php 
+	<h3>Features and services versions</h3><?php 
 		foreach(get_version_listall($pdo) as $current_version) { ?>
 			<div>
 				<h4><?=$current_version["soft"]?></h4>
@@ -46,6 +46,6 @@ $pdo = connect_db();
 		} ?>
 	</div>
 	<content>
-		<h3>LOGS</h3>
+		<h3>Logs</h3>
 	</content>
 </div>

@@ -76,9 +76,9 @@ if (!empty($erreur)) {
 }
 
 if ($param_mode == "booking") {
-	// CHECK FUTUR
+	// Check futur
 	if ($date_out_ymd >= $date_tomorrow) {
-		// CHECK DATE OVERLAP
+		// Check date overlap
 		$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
 		if (!empty($loan_dates) || $loan_dates != false) {
 			$action = 'loan-edit.php?equipment='.$equipment_id.'&mode='.$param_mode;
@@ -89,12 +89,12 @@ if ($param_mode == "booking") {
 			exit();
 		}
 
-		// RESERVATION POSSIBLE
+		// Reservation possible
 		set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 		$message_text = 'La réservation a été effectuer avec succés';
 		
 	} else {
-		// RESERVATION IMPOSSIBLE
+		// Reservation impossible
 		$title        = 'Impossible de réserver le jour même ou avant';
 		$message_text = $title;
 		$action       = 'loan-edit.php?equipment='.$equipment_id.'&mode='.$param_mode;
@@ -103,14 +103,14 @@ if ($param_mode == "booking") {
 		exit();
 	}
 } else if ($param_mode == "edit") {
-	// CHECK FUTUR
+	// Check futur
 
 	if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_BORROWED) {
 		set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 		$message_text = 'Mise à jour du pret avec succes';
 	} else {
 		if ($date_out_ymd >= $date_tomorrow) {
-			// CHECK DATE OVERLAP
+			// Check date overlap
 			#$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
 			$loan_dates = get_loans_interval_by_id_except_loan($pdo, $equipment_id, $date_emprunt, $date_retour, $loan_id);
 			if (!empty($loan_dates) || $loan_dates != false) {
@@ -126,7 +126,7 @@ if ($param_mode == "booking") {
 			$message_text = 'Mise &agrave; jour du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />';
 
 		} else {
-			// EDITION IMPOSSIBLE
+			// Edition impossible
 			$title        = 'Impossible d\'éditer la réservation le jour même ou avant';
 			$message_text = $title;
 			$action       = 'loan-edit.php?id='.$loan_id.'&mode='.$param_mode;
