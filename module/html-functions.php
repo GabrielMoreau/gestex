@@ -236,50 +236,58 @@ function redirect($link='index.php') {
 	exit();
 }
 
+// ---------------------------------------------------------------------
 
-function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=false, $equipment_blacklist=false, $logged_level) {?>
-	<div class="loan-list-container"><?php
-	if ($equipment_loan_reserved) {?>
+function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=false, $equipment_blacklist=false, $logged_level) {
+	?>
+	<div class="loan-list-container">
+	<?php if ($equipment_loan_reserved) { ?>
 		<div>
-			<h4 style="background-color: orange;">DERNIER EMPRUNT N°<?php echo $equipment_loan_reserved[0]["id"] ?></h4><?php
+			<h4 style="background-color: orange;">Dernier emprunt N°<?php echo $equipment_loan_reserved[0]["id"] ?></h4>
+			<?php
 			echo $equipment_loan_reserved[0]['emprunt'].'&nbsp;&#8594;&nbsp;'.$equipment_loan_reserved[0]['retour'].PHP_EOL;
 			echo '<br>'.get_team_by_id($pdo, $equipment_loan_reserved[0]['equipe'])["nom"].PHP_EOL;
 			echo '<br>'.$equipment_loan_reserved[0]['commentaire'].PHP_EOL;
-		?></div>
-	<?php	
-	}
+			?>
+		</div>
+	<?php } ?>
+
+	<?php
 	if ($equipment_loans) {
-			foreach($equipment_loans as $loan_current) {
-				echo '<div>'.PHP_EOL;
+		foreach ($equipment_loans as $loan_current) {
+			echo '<div>'.PHP_EOL;
 
-				if ($loan_current["status"] == STATUS_LOAN_BORROWED) {
-					echo '<h4 style="background-color: green;">EMPRUNT N°'.$loan_current["id"].'</h4>'.PHP_EOL;
-				} else {
-					echo '<h4>RESERVATION N°'.$loan_current["id"].'</h4>'.PHP_EOL;
-				}
-				echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
-				echo '<span class="option-right">';
-				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_BORROWED) {
-					echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
-					echo ICON_LOAN_RETURNED;
-				}
-				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED && $equipment_blacklist == false) {
-					echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan">'.ICON_LOAN_BORROWED.'</a>';
-				}
-				
-				if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED) {
-					echo '<a href="loan-del.php?id='.$loan_current["id"].'">'.ICON_TRASH.'</a>';
-				}
-
-				if ($logged_level >= 3 && $loan_current["status"] != STATUS_LOAN_RETURNED) {
-					echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';
-				}
-				echo '</span>'.PHP_EOL;
-				
-				echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])["nom"].PHP_EOL;
-				echo '<br>'.$loan_current['commentaire'].PHP_EOL;
-				echo '</div>'.PHP_EOL;
+			if ($loan_current["status"] == STATUS_LOAN_BORROWED) {
+				echo '<h4 style="background-color: green;">Emprunt N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+			} else {
+				echo '<h4>Réservation N°'.$loan_current["id"].'</h4>'.PHP_EOL;
 			}
-		}?>
-</div><?php
+			echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
+			echo '<span class="option-right">';
+			if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_BORROWED) {
+				echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
+				echo ICON_LOAN_RETURNED;
+			}
+			if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED && $equipment_blacklist == false) {
+				echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan">'.ICON_LOAN_BORROWED.'</a>';
+			}
+			
+			if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED) {
+				echo '<a href="loan-del.php?id='.$loan_current["id"].'">'.ICON_TRASH.'</a>';
+			}
+
+			if ($logged_level >= 3 && $loan_current["status"] != STATUS_LOAN_RETURNED) {
+				echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';
+			}
+			echo '</span>'.PHP_EOL;
+
+			echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])["nom"].PHP_EOL;
+			echo '<br>'.$loan_current['commentaire'].PHP_EOL;
+			echo '</div>'.PHP_EOL;
+		}
+	}
+	?>
+</div>
+<?php
 }
+?>
