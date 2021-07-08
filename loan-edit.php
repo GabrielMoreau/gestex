@@ -76,8 +76,12 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $equipment
 		<?php
 		if ($param_mode == "edit") {?>
 			<tr>
-				<td style="background-color: #a6a6a8;color: black;padding-left: 7px;padding: 4px;"><b>ID <?php if (STATUS_LOAN_BORROWED == get_loan_status_by_id($pdo, $loan_id)) {echo "EMPRUNT";} else {echo "RESERVATION";}?></b></td>
-				<td style="background-color: var(--color-link);color: black;text-align: center;padding: 4px;"><b><?php echo param_get('id', "UNKNOW")?></b></td>
+				<td style="background-color: #a6a6a8;color: black;padding-left: 7px;padding: 4px;">
+					<b>ID <?php if (STATUS_LOAN_BORROWED == get_loan_status_by_id($pdo, $loan_id)) {echo "Emprunt";} else {echo "Réservation";}?></b>
+				</td>
+				<td style="background-color: var(--color-link);color: black;text-align: center;padding: 4px;">
+					<b><?php echo param_get('id', "UNKNOW")?></b>
+				</td>
 			</tr>
 
 			<tr>
