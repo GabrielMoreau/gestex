@@ -22,13 +22,13 @@ UPDATE `pret` SET `status` = 'LOAN_BORROWED';
 
 UPDATE version SET version = 5 WHERE soft = 'database';
 
-DROP TABLE IF EXISTS `intervention`;
+RENAME TABLE `intervention` TO `old_intervention`;
 CREATE TABLE IF NOT EXISTS `interventions` (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    f_supplier INT NOT NULL,
-    f_listing INT NOT NULL,
-    description TINYTEXT DEFAULT NULL,
-    check_on DATE NOT NULL DEFAULT CURRENT_DATE,
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    supplier_id INT NOT NULL,
+    listing_id INT NOT NULL,
+    description VARCHAR(255) DEFAULT NULL,
+    date DATE NOT NULL DEFAULT CURRENT_DATE,
     KEY `f_company` (`f_supplier`),
     FOREIGN KEY (f_supplier) REFERENCES fournisseurs(id),
     FOREIGN KEY (f_listing) REFERENCES listing(id)
