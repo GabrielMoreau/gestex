@@ -504,7 +504,7 @@ span.option-right {
 .loan-list-container div {
 	margin: 0.5rem;
 	padding: 0;
-	border: 1.5px solid white;
+	border: 2px solid var(--navbar-title-hover-bg);
 	border-radius: 4px;
 }
 

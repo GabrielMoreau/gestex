@@ -243,7 +243,7 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 	<div class="loan-list-container">
 	<?php if ($equipment_loan_reserved) { ?>
 		<div>
-			<h4 style="background-color: orange;">Dernier emprunt N°<?php echo $equipment_loan_reserved[0]["id"] ?></h4>
+			<h4 style="background-color: var(--color-alert);">Dernier emprunt N°<?php echo $equipment_loan_reserved[0]["id"] ?></h4>
 			<?php
 			echo $equipment_loan_reserved[0]['emprunt'].'&nbsp;&#8594;&nbsp;'.$equipment_loan_reserved[0]['retour'].PHP_EOL;
 			echo '<br>'.get_team_by_id($pdo, $equipment_loan_reserved[0]['equipe'])["nom"].PHP_EOL;
@@ -258,7 +258,7 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 			echo '<div>'.PHP_EOL;
 
 			if ($loan_current["status"] == STATUS_LOAN_BORROWED) {
-				echo '<h4 style="background-color: green;">Emprunt N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+				echo '<h4 style="background-color: var(--color-ok);">Emprunt N°'.$loan_current["id"].'</h4>'.PHP_EOL;
 			} else {
 				echo '<h4>Réservation N°'.$loan_current["id"].'</h4>'.PHP_EOL;
 			}
