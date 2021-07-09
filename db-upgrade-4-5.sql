@@ -28,7 +28,7 @@ UPDATE `version` SET `version` = 5 WHERE `soft` = 'database';
 -- ADD TABLE
 --
 
-RENAME TABLE `intervention` TO `old_intervention`;
+-- RENAME TABLE `intervention` TO `old_intervention`;
 CREATE TABLE IF NOT EXISTS `intervention` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `supplier_id` INT(11) NOT NULL,
