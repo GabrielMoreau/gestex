@@ -4,7 +4,7 @@
 --
 
 --
--- Upgrade table
+-- ALTER TABLE
 --
 
 ALTER TABLE `listing` MODIFY COLUMN `barcode` BIGINT DEFAULT NULL;
@@ -16,13 +16,17 @@ UPDATE `listing` SET `max_day` = 0;
 ALTER TABLE `version` ADD COLUMN `updated_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 
 ALTER TABLE `pret` ADD COLUMN `status` ENUM('LOAN_BORROWED', 'LOAN_RESERVED', 'LOAN_RETURNED') NOT NULL;
+
+--
+-- UPDATE TABLE
+--
+
 UPDATE `pret` SET `status` = 'LOAN_BORROWED';
-
---
--- Fix global DB version
---
-
 UPDATE `version` SET `version` = 5 WHERE `soft` = 'database';
+
+--
+-- ADD TABLE
+--
 
 RENAME TABLE `intervention` TO `old_intervention`;
 CREATE TABLE IF NOT EXISTS `intervention` (
@@ -35,4 +39,3 @@ CREATE TABLE IF NOT EXISTS `intervention` (
   FOREIGN KEY (`supplier_id`) REFERENCES `fournisseurs`(`id`),
   FOREIGN KEY (`equipment_id`) REFERENCES `listing`(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=700 CHARSET=utf8;
---   KEY `company_id` (`supplier_id`),
