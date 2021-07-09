@@ -238,7 +238,7 @@ function redirect($link='index.php') {
 
 // ---------------------------------------------------------------------
 
-function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=false, $equipment_blacklist=false, $logged_level) {
+function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=false, $loan_borrow=false, $logged_level) {
 	?>
 	<div class="loan-list-container">
 	<?php if ($equipment_loan_reserved) { ?>
@@ -268,7 +268,7 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 				echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
 				echo ICON_LOAN_RETURNED;
 			}
-			if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED && $equipment_blacklist == false) {
+			if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED && $loan_borrow == false) {
 				echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan">'.ICON_LOAN_BORROWED.'</a>';
 			}
 			

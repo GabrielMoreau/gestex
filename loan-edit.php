@@ -52,11 +52,11 @@ if ($mode == 'Modifier') {
 }
 $num_line = 0;
 $equipment_selected = get_equipment_listshort_by_id($pdo, $equipment_id);
-$equipment_blacklist = get_loans_all_by_equipment_borrowed($pdo, $equipment_id);
+$equipment_borrow = get_loans_all_by_equipment_borrowed($pdo, $equipment_id);
 $equipment_loans = get_loans_all_not_return_by_equipment($pdo, $equipment_selected['id']);
 $equipment_loan_reserved = get_loan_all_last_returned($pdo, $equipment_id);
 
-loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $equipment_blacklist, $logged_level);?>
+loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borrow, $logged_level);?>
 
 <div class="space-between"></div>
 

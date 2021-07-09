@@ -37,7 +37,7 @@ if ($pdo = connect_db()) {
 	if ($equipment_selected['loanable'] == 1)
 		$loan = get_loans_all_not_return_by_equipment($pdo, $id_equipment);
 
-	$equipment_blacklist = get_loans_all_by_equipment_borrowed($pdo, $id_equipment);
+	$loan_borrow = get_loans_all_by_equipment_borrowed($pdo, $id_equipment);
 	$equipment_loan_reserved = get_loan_all_last_returned($pdo, $id_equipment);
 
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'].'</b>');
@@ -216,7 +216,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 						if ($logged_level >= 3) {echo '</a>';}
 						echo '</span>'.PHP_EOL;
 
-						loan_list_container($pdo, $loan, $equipment_loan_reserved, $equipment_blacklist, $logged_level);
+						loan_list_container($pdo, $loan, $equipment_loan_reserved, $loan_borrow, $logged_level);
 					} else {
 						echo '<span class="option-right">';
 						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'&mode=loan">';}
@@ -228,7 +228,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 						if ($logged_level >= 3) {echo '</a>';} */
 
 						echo '</span>'.PHP_EOL;
-						loan_list_container($pdo, $loan, $equipment_loan_reserved, $equipment_blacklist, $logged_level);
+						loan_list_container($pdo, $loan, $equipment_loan_reserved, $loan_borrow, $logged_level);
 					}
 				} else { echo 'Non'.PHP_EOL; } ?>
 			</td>
