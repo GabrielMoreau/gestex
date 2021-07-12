@@ -52,6 +52,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				if ($logged_level >= 3) {
 					echo '<span class="option-right"><a href="equipment-del.php?id='.$id_equipment.'">'.ICON_TRASH.'</a>&nbsp;</span>'.PHP_EOL;
 					echo '<span class="option-right"><a href="equipment-edit.php?id='.$id_equipment.'">'.ICON_EDIT.'</a>&nbsp;</span>'.PHP_EOL;
+					echo '<span class="option-right"><a href="intervention-edit.php?equipment='.$id_equipment.'">'.ICON_INTERVENTION.'</a>&nbsp;</span>'.PHP_EOL;
 				}
 			?>
 		</th>
