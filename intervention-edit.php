@@ -29,7 +29,7 @@ if ($mode == 'Ajouter') {
 
 
 <div class="form">
-<form action="team-process.php" method="POST" name="inscrForm">
+<form action="intervention-process.php" method="POST" name="inscrForm">
 	<input type="hidden" name="id_equip" value="<?php if( $mode=='Modifier'){ echo $team_id; }?>" >
 <table>
     <tbody>
