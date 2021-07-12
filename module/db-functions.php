@@ -565,6 +565,23 @@ function get_intervention_listall_by_equipment($pdo, $equipment_id) {
 }
 
 // ---------------------------------------------------------------------
+
+/**
+ * Créer une nouvelle fiche d'intervention
+ * 
+ * @return array
+ */
+function set_new_intervention($pdo, $description, $supplier_id, $equipment_id, $date) {
+	$sql = 'INSERT INTO intervention (supplier_id, equipment_id, description, date) VALUES (?, ?, ?, ?);';
+	$stmt = $pdo->prepare($sql);
+	$iostat = $stmt->execute(array($supplier_id, $equipment_id, $description, $date));
+	$err_msg = '';
+	if (!$iostat)
+		$err_msg = $stmt->errorInfo()[2];
+	return array($pdo->lastInsertId(), $err_msg);
+}
+
+// ---------------------------------------------------------------------
 // Loan
 // ---------------------------------------------------------------------
 
