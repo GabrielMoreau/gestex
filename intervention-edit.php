@@ -11,7 +11,7 @@ auth_or_login('intervention-edit.php.php');
 level_or_alert(3, 'Ajout d\'une intervention');
 
 $equipment_id = param_post_or_get('equipment', 0);
-$mode = 'Modifier';
+$mode = 'Ajouter';
 if ($equipment_id == 0) // new
 	$mode = 'Ajouter';
 
@@ -30,14 +30,13 @@ if ($mode == 'Ajouter') {
 
 <div class="form">
 <form action="intervention-process.php" method="POST" name="inscrForm">
-	<input type="hidden" name="id_equip" value="<?php if( $mode=='Modifier'){ echo $team_id; }?>" >
+	<input type="hidden" name="equipment" value="<?php if( $mode=='Modifier'){ echo $team_id; }?>" >
 <table>
     <tbody>
         <tr>
             <th>Description</th>
             <td>
-                <textarea name="description" rows="4" cols="33">Description de l'intervention...
-                </textarea>
+                <textarea name="description" rows="4" cols="33">D</textarea>
             </td>
         </tr>
         <tr>
@@ -60,19 +59,7 @@ if ($mode == 'Ajouter') {
 				<span class="option-right"><a href="team-edit.php"><?php echo ICON_ADD_TEAM ?></a></span>
 			</td>
         </tr>
-        <tr>
-            <th>Fiche d'interevention</th>
-            <td>
-				<?php if ($mode == 'Modifier' && $datasheet_count > 0) { ?>
-				<ul>
-					<?php foreach ($datasheet_fetch as $datasheet_current) { ?>
-					<li><a href="<?php echo $datasheet_path.'/'.$datasheet_current['pathname'] ?>" target="_top"><?php echo $datasheet_current['description'] ?> (<?php echo $datasheet_current['pathname']?>)</a></li>
-					<?php } ?>
-				</ul>
-				<?php } ?>
-				<input type="file" name="notice" value="<?= param_post_key('notice', $equipment_selected) ?>" placeholder="Notice (facultatif)">
-			</td>
-		</tr>
+		<tr>
             <th>Date</th>
             <td>
 				<input type="date" name="date" size="10" maxlength="10" value="<?= param_post_key('date', $loan_selected, date('Y-m-d', time())) ?>" >
