@@ -14,8 +14,17 @@ $logged_level = $_SESSION['logged_level'];
 
 unset($erreur);
 
-$desciption = param_post('description');
-$company    = param_post('company');
-$notice     = param_post('notice');
+$description    = param_post('description');
+$equipment_id   = param_post('equipment');
+$supplier_id    = param_post('company');
+$notice         = param_post('notice');
+$date           = param_post('date');
 
+$pdo = connect_db_or_alert();
+
+var_dump($description);
+var_dump($equipment_id);
+var_dump($supplier_id);
+var_dump($date);
+$res = set_new_intervention($pdo, $description, $supplier_id, $equipment_id, $date);
 ?>
