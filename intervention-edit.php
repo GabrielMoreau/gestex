@@ -72,14 +72,17 @@ if ($mode == 'Ajouter') {
 				<?php } ?>
 				<input type="file" name="notice" value="<?= param_post_key('notice', $equipment_selected) ?>" placeholder="Notice (facultatif)">
 			</td>
+		</tr>
+            <th>Date</th>
+            <td>
+				<input type="date" name="date" size="10" maxlength="10" value="<?= param_post_key('date', $loan_selected, date('Y-m-d', time())) ?>" >
+			</td>
+        </tr>
         <tr>
             <td></td>
 			<th class="button">
 				<input type="submit" name="Login" value="<?php echo $mode ?>">
 			</th>
-		</tr>
-            <th></th>
-            <td></td>
         </tr>
     </tbody>
     <tbody>
