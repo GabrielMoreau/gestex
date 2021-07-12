@@ -39,3 +39,13 @@ CREATE TABLE IF NOT EXISTS `intervention` (
   FOREIGN KEY (`supplier_id`) REFERENCES `fournisseurs`(`id`),
   FOREIGN KEY (`equipment_id`) REFERENCES `listing`(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 CHARSET=utf8;
+
+
+
+CREATE TABLE IF NOT EXISTS `recipe` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `pathname` VARCHAR(500) NOT NULL,
+    `intervention_id` INT(11) NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`intervention_id`) REFERENCES `intervention`(`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 CHARSET=utf8;
