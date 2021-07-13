@@ -71,7 +71,7 @@ if ($mode == 'Ajouter') {
 					<?php } ?>
 				</ul>
 				<?php } ?>
-				<input type="file" name="notice" value="<?= param_post_key('notice', $equipment_selected) ?>" placeholder="Notice (facultatif)">
+				<input type="file" name="recipe" value="<?= param_post_key('recipe', $equipment_selected) ?>" placeholder="Fiche (facultatif)">
 			</td>
 		</tr>
 		<tr>
