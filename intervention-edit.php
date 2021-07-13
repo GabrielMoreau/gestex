@@ -60,6 +60,21 @@ if ($mode == 'Ajouter') {
 			</td>
         </tr>
 		<tr>
+			<th>
+				Recipe (facultatif) &nbsp; <?php echo ICON_SEE_DOC ?>
+			</th>
+			<td>
+				<?php if ($mode == 'Modifier' && $datasheet_count > 0) { ?>
+				<ul>
+					<?php foreach ($datasheet_fetch as $datasheet_current) { ?>
+					<li><a href="<?php echo $datasheet_path.'/'.$datasheet_current['pathname'] ?>" target="_top"><?php echo $datasheet_current['description'] ?> (<?php echo $datasheet_current['pathname']?>)</a></li>
+					<?php } ?>
+				</ul>
+				<?php } ?>
+				<input type="file" name="notice" value="<?= param_post_key('notice', $equipment_selected) ?>" placeholder="Notice (facultatif)">
+			</td>
+		</tr>
+		<tr>
             <th>Date</th>
             <td>
 				<input type="date" name="date" size="10" maxlength="10" value="<?= param_post_key('date', $loan_selected, date('Y-m-d', time())) ?>" >
