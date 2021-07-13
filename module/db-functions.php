@@ -1408,4 +1408,18 @@ function set_version_by_name($pdo, $name, $version) {
 	$stmt->execute(array($name, $version));
 }
 
+// ---------------------------------------------------------------------
+// RECIPE
+// ---------------------------------------------------------------------
+
+function set_new_recipe($pdo, $pathname, $intervention_id) {
+	$sql = 'INSERT INTO recipe (pathname, intervention_id) VALUES (?, ?)';
+	$stmt = $pdo->prepare($sql);
+	$iostat = $stmt->execute(array($pathname, $intervention_id));
+	$err_msg = '';
+	if (!$iostat)
+		$err_msg = $stmt->errorInfo()[2];
+	return array($pdo->lastInsertId(), $err_msg);
+}
+
 ?>
