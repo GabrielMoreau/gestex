@@ -11,18 +11,26 @@ auth_or_login('intervention-edit.php.php');
 level_or_alert(3, 'Ajout d\'une intervention');
 
 $equipment_id = param_post_or_get('equipment', 0);
+$intervention_id = param_post_or_get('id', 0);
+
 $mode = 'Ajouter';
-if ($equipment_id == 0) // new
+if ($intervention_id == 0) // new
 	$mode = 'Ajouter';
 
 $pdo = connect_db_or_alert();
+
+$equipment_selected = [];
 $intervention_fetch = array();
+$recipe_count = 0;
+$recipe_path = get_recipe_basepath();
 
 if ($mode == 'Ajouter') {
 	en_tete('Ajouter une intervention');
 } else if ($mode == 'Modifier') {
     en_tete('Modifier une intervention');
     $intervention_fetch = get_intervention_listall_by_equipment($pdo, $equipment_id);
+	$recipe_fetch 		= get_recipe_listall_by_equipment($pdo, $equipment_id);
+	$recipe_count		= count($recipe_fetch);
 }
 ?>
 
@@ -35,7 +43,7 @@ if ($mode == 'Ajouter') {
     <tbody>
 		<tr>
 			<th>Equipement</th>
-			<td><?php echo get_equipment_all_by_id($pdo, $equipment_id)["nom"] ?></td>
+			<td><b><?php echo get_equipment_all_by_id($pdo, $equipment_id)["nom"] ?></b></td>
 		</tr>
         <tr>
             <th>Description</th>
@@ -44,7 +52,7 @@ if ($mode == 'Ajouter') {
             </td>
         </tr>
         <tr>
-            <th>Société</th>
+            <th>Société</th>	
             <?php // recupere la liste des equipes
 			$company_fetch = get_supplier_listshort($pdo);
 			?>
