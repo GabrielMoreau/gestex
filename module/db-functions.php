@@ -1426,4 +1426,14 @@ function set_recipe_new($pdo, $pathname, $intervention_id) {
 	return array($pdo->lastInsertId(), $err_msg);
 }
 
+// ---------------------------------------------------------------------
+
+function get_recipe_listall_by_equipment($pdo, $equipment_id) {
+	$sql = 'SELECT * FROM recipe WHERE equipment_id = ?;' ;
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($equipment_id));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch;
+}
+
 ?>
