@@ -1,9 +1,3 @@
--- MySQL dump 10.13  Distrib 5.5.60, for debian-linux-gnu (i686)
---
--- Host: localhost    Database: pool
--- ------------------------------------------------------
--- Server version	5.5.60-0+deb7u1
--- Version 1 Date : 22/06/2020
 
 --
 -- Table structure for table `Listing` (equipment)
@@ -27,6 +21,9 @@ CREATE TABLE `Listing` (
   `loanable` boolean NOT NULL DEFAULT false,
   `barcode` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`);
+  FOREIGN KEY (`fournisseur`) REFERENCES `fournisseurs` (`id`);
+  FOREIGN KEY (`responsable`) REFERENCES `users` (`id`);
   INDEX `nom` (`nom`),
   INDEX `barcode` (`barcode`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -93,6 +90,7 @@ CREATE TABLE `equipe` (
   `compte` int(11) NOT NULL DEFAULT '0',
   `chef` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
+  FOREIGN KEY (`chef`) REFERENCES `users` (`id`);
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
@@ -260,6 +258,7 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL DEFAULT '',
   `equipe` int(11) NOT NULL DEFAULT '1',
   `valid` int(11) DEFAULT NULL,
+  `theme` VARCHAR (50) DEFAULT 'clair';
   PRIMARY KEY (`id`),
   UNIQUE KEY `loggin` (`loggin`),
   FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`)
@@ -277,6 +276,7 @@ CREATE TABLE `notice` (
   `nom_notice` varchar(150) NOT NULL DEFAULT '',
   `id_appareil` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
+  FOREIGN KEY (`id_appareil`) REFERENCES `Listing` (`id`);
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
@@ -310,22 +310,6 @@ CREATE TABLE `relation_equipment_datasheet` (
 
 
 --
--- Modification de la table users, ajout de theme
---
-
-ALTER TABLE `users`
-ADD `theme` VARCHAR (50) DEFAULT 'clair';
-
-
-/*   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_appareil`) REFERENCES `Listing` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; */
-
-ALTER TABLE `notice`
-ADD FOREIGN KEY (`id_appareil`) REFERENCES `Listing`(`id`);
-
-
---
 -- Table structure for table `version`
 --
 
@@ -340,18 +324,7 @@ CREATE TABLE `version` (
 
 
 --
--- Fix foreign key
---
-
-ALTER TABLE `equipe` ADD FOREIGN KEY (`chef`) REFERENCES `users` (`id`);
-
-ALTER TABLE `Listing` ADD FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`);
-ALTER TABLE `Listing` ADD FOREIGN KEY (`fournisseur`) REFERENCES `fournisseurs` (`id`);
-ALTER TABLE `Listing` ADD FOREIGN KEY (`responsable`) REFERENCES `users` (`id`);
-
-
---
 -- Fix global DB version
 --
 
-INSERT INTO version (soft, version) VALUES ('database',  3);
+INSERT INTO version (soft, version) VALUES ('database',  4);
