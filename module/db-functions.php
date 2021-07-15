@@ -1416,14 +1416,60 @@ function set_version_by_name($pdo, $name, $version) {
 // RECIPE
 // ---------------------------------------------------------------------
 
-function set_recipe_new($pdo, $pathname, $intervention_id) {
-	$sql = 'INSERT INTO recipe (pathname, intervention_id) VALUES (?, ?)';
-	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($pathname, $intervention_id));
-	$err_msg = '';
-	if (!$iostat)
-		$err_msg = $stmt->errorInfo()[2];
-	return array($pdo->lastInsertId(), $err_msg);
+function set_recipe_new($pdo, $equipment_id, $intervention_id, $file_field_name) {
+	$recipe_filename_upload = $_FILES[$file_field_name]['name'];
+	$recipe_tmp_file        = $_FILES[$file_field_name]['tmp_name'];
+	$recipe_io_error        = $_FILES[$file_field_name]['error'];
+
+	$file_upload_errors = array(
+		0 => 'There is no error, the file uploaded with success',
+		1 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+		2 => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
+		3 => 'The uploaded file was only partially uploaded',
+		4 => 'No file was uploaded',
+		6 => 'Missing a temporary folder',
+		7 => 'Failed to write file to disk.',
+		8 => 'A PHP extension stopped the file upload.',
+	);
+	if (!is_uploaded_file($recipe_tmp_file) or $recipe_io_error > 0) {
+		error_log('Error: not uploaded recipe file - '.$recipe_filename_upload.' - '.$file_upload_errors[$recipe_io_error]);
+		return false;
+	}
+
+	if (!preg_match('/\.pdf$/i', $recipe_filename_upload)) {
+		error_log('Error: recipe file not a pdf - '.$recipe_filename_upload);
+		return false;
+	}
+
+	$new_recipe_path = './data/recipe';
+	if (!is_dir($new_recipe_path))
+		mkdir($new_recipe_path, 0755);
+
+	$recipe_filename_no_ext = pathinfo($recipe_filename_upload, PATHINFO_FILENAME);
+	$recipe_filename_kebab = string_to_filename_kebab($recipe_filename_no_ext).'.pdf';
+
+	$sql1 = 'INSERT INTO recipe (description, equipment_id, intervention_id) VALUES (?, ?, ?);';
+	$stmt1 = $pdo->prepare($sql1);
+	$stmt1->execute(array($recipe_filename_no_ext, $equipment_id, $intervention_id));
+	$recipe_id = $pdo->lastInsertId();
+
+	$sub_path = $recipe_id.'-'.random_string(8);
+	$sql2 = 'UPDATE recipe SET pathname = ? WHERE id = ?;';
+	$stmt2 = $pdo->prepare($sql2);
+	$stmt2->execute(array($sub_path.'/'.$recipe_filename_kebab, $recipe_id));
+
+	$new_dir = $new_recipe_path.'/'.$sub_path;
+	if (!is_dir($new_dir))
+		mkdir($new_dir, 0755);
+
+	$iostat = move_uploaded_file($recipe_tmp_file, $new_dir.'/'.$recipe_filename_kebab);
+	if (!$iostat) {
+		error_log('Error: not move recipe file '.$recipe_filename_upload.' to '.$recipe_filename_kebab);
+		// del_recipe_by_id($pdo, $recipe_id);
+		return false;
+	}
+
+	return $recipe_id;
 }
 
 // ---------------------------------------------------------------------
