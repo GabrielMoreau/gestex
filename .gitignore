@@ -1,6 +1,7 @@
 .DS_Store
 *.zip
 *.bak
+*.old
 *.gz
 gestex*.deb
 connect.php
@@ -9,5 +10,5 @@ test.php
 Gestex Prod Simulation.session.sql
 db-schema-prod-dumpall.sql
 db-gestex-dump-*.sql
-*.old
+db-schema-dump-*.sql
 data/
