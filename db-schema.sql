@@ -304,7 +304,7 @@ CREATE TABLE `relation_equipment_datasheet` (
   `id_equipment` INT(11) NOT NULL,
   `id_datasheet` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_equipment`) REFERENCES `listing` (`id`),
+  FOREIGN KEY (`id_equipment`) REFERENCES `Listing` (`id`),
   FOREIGN KEY (`id_datasheet`) REFERENCES `datasheet` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 

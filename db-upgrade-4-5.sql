@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `intervention` (
   `date` DATE NOT NULL DEFAULT CURRENT_DATE,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`supplier_id`) REFERENCES `fournisseurs` (`id`),
-  FOREIGN KEY (`equipment_id`) REFERENCES `listing` (`id`)
+  FOREIGN KEY (`equipment_id`) REFERENCES `Listing` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 CHARSET=utf8;
 
 
