@@ -47,8 +47,6 @@ CREATE TABLE IF NOT EXISTS `recipe` (
     `pathname` VARCHAR(500) DEFAULT NULL,
     `description` VARCHAR(150) NOT NULL,
     `intervention_id` INT(11) NOT NULL,
-    `equipment_id` INT(11) NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`intervention_id`) REFERENCES `intervention`(`id`),
-    FOREIGN KEY (`equipment_id`) REFERENCES `listing`(`id`)
+    FOREIGN KEY (`intervention_id`) REFERENCES `intervention`(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 CHARSET=utf8;
