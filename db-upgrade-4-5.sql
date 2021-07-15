@@ -4,7 +4,7 @@
 --
 
 --
--- ALTER TABLE
+-- Upgrade table
 --
 
 ALTER TABLE `Listing` MODIFY COLUMN `barcode` BIGINT DEFAULT NULL;
@@ -15,14 +15,10 @@ UPDATE `Listing` SET `max_day` = 0;
 -- TIMESTAMP =< MySQL 5.5.x < DATETIME
 ALTER TABLE `version` ADD COLUMN `updated_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 
+
 ALTER TABLE `pret` ADD COLUMN `status` ENUM('LOAN_BORROWED', 'LOAN_RESERVED', 'LOAN_RETURNED') NOT NULL;
-
---
--- UPDATE TABLE
---
-
 UPDATE `pret` SET `status` = 'LOAN_BORROWED';
-UPDATE `version` SET `version` = 5 WHERE `soft` = 'database';
+
 
 --
 -- ADD TABLE
@@ -42,7 +38,6 @@ CREATE TABLE IF NOT EXISTS `intervention` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 CHARSET=utf8;
 
 
-
 CREATE TABLE IF NOT EXISTS `recipe` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `pathname` VARCHAR(500) DEFAULT NULL,
@@ -51,3 +46,10 @@ CREATE TABLE IF NOT EXISTS `recipe` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`intervention_id`) REFERENCES `intervention` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 CHARSET=utf8;
+
+
+--
+-- Fix global DB version
+--
+
+UPDATE `version` SET `version` = 5 WHERE `soft` = 'database';
