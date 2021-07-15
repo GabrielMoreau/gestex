@@ -1416,7 +1416,7 @@ function set_version_by_name($pdo, $name, $version) {
 // RECIPE
 // ---------------------------------------------------------------------
 
-function set_recipe_new($pdo, $equipment_id, $intervention_id, $file_field_name) {
+function set_recipe_new($pdo, $intervention_id, $file_field_name) {
 	$recipe_filename_upload = $_FILES[$file_field_name]['name'];
 	$recipe_tmp_file        = $_FILES[$file_field_name]['tmp_name'];
 	$recipe_io_error        = $_FILES[$file_field_name]['error'];
@@ -1448,9 +1448,9 @@ function set_recipe_new($pdo, $equipment_id, $intervention_id, $file_field_name)
 	$recipe_filename_no_ext = pathinfo($recipe_filename_upload, PATHINFO_FILENAME);
 	$recipe_filename_kebab = string_to_filename_kebab($recipe_filename_no_ext).'.pdf';
 
-	$sql1 = 'INSERT INTO recipe (description, equipment_id, intervention_id) VALUES (?, ?, ?);';
+	$sql1 = 'INSERT INTO recipe (description, intervention_id) VALUES (?, ?, ?);';
 	$stmt1 = $pdo->prepare($sql1);
-	$stmt1->execute(array($recipe_filename_no_ext, $equipment_id, $intervention_id));
+	$stmt1->execute(array($recipe_filename_no_ext, $intervention_id));
 	$recipe_id = $pdo->lastInsertId();
 
 	$sub_path = $recipe_id.'-'.random_string(8);
@@ -1507,10 +1507,10 @@ function get_recipe_all_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
-function get_recipe_listall_by_equipment($pdo, $equipment_id) {
-	$sql = 'SELECT * FROM recipe WHERE equipment_id = ?;' ;
+function get_recipe_listall_by_intervention($pdo, $intervention_id) {
+	$sql = 'SELECT * FROM recipe WHERE intervention_id = ?;' ;
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($equipment_id));
+	$stmt->execute(array($intervention_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
