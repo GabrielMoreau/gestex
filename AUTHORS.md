@@ -5,3 +5,4 @@
  * Gabriel Moreau <Gabriel.Moreau(A)univ-grenoble-alpes.fr>
  * Sylène Moreau <Sylene.Moreau(A)isen-ouest.yncrea.fr>
  * Olivier De Marchi <Olivier.De-Marchi(A)univ-grenoble-alpes.fr>
+ * Estéban Ristich <Esteban.Ristich(A)protonmail.com>
