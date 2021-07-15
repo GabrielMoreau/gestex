@@ -1416,6 +1416,11 @@ function set_version_by_name($pdo, $name, $version) {
 // RECIPE
 // ---------------------------------------------------------------------
 
+/**
+ * Créer une nouvelle fiche d'intervention
+ * 
+ * @return int
+ */
 function set_recipe_new($pdo, $intervention_id, $file_field_name) {
 	$recipe_filename_upload = $_FILES[$file_field_name]['name'];
 	$recipe_tmp_file        = $_FILES[$file_field_name]['tmp_name'];
@@ -1474,6 +1479,11 @@ function set_recipe_new($pdo, $intervention_id, $file_field_name) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Supprime la fiche d'intervention via son id
+ * 
+ * @return bool
+ */
 function del_recipe_by_id($pdo, $id) {
 	$recipe_selected = get_recipe_all_by_id($pdo, $id);
 
@@ -1495,6 +1505,11 @@ function del_recipe_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu de la fiche d'intervention via son ID
+ * 
+ * @return array|false
+ */
 function get_recipe_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM recipe WHERE id = ?;' ;
 	$stmt = $pdo->prepare($sql);
@@ -1507,6 +1522,12 @@ function get_recipe_all_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+/**
+ * Récupère tout le contenu de toutes les fiches d'intervention via l'ID
+ * de l'intervention
+ * 
+ * @return array
+ */
 function get_recipe_listall_by_intervention($pdo, $intervention_id) {
 	$sql = 'SELECT * FROM recipe WHERE intervention_id = ?;' ;
 	$stmt = $pdo->prepare($sql);
