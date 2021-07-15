@@ -1474,6 +1474,27 @@ function set_recipe_new($pdo, $equipment_id, $intervention_id, $file_field_name)
 
 // ---------------------------------------------------------------------
 
+function del_recipe_by_id($pdo, $id) {
+	$recipe_selected = get_recipe_all_by_id($pdo, $id);
+
+	$recipe_basepath = get_recipe_basepath();
+	$recipe_pathname = $recipe_selected['pathname'];
+	$recipe_dirname  = pathinfo($recipe_pathname, PATHINFO_DIRNAME);
+
+	if (is_file($recipe_basepath.'/'.$recipe_pathname))
+		$iostat = unlink($recipe_basepath.'/'.$recipe_pathname);
+
+	if (!empty($recipe_dirname) and is_dir($recipe_basepath.'/'.$recipe_dirname))
+		$iostat = rmdir($recipe_basepath.'/'.$recipe_dirname);
+
+	$sql = 'DELETE LOW_PRIORITY FROM recipe WHERE id = ? LIMIT 1;';
+	$stmt = $pdo->prepare($sql);
+	$iostat = $stmt->execute(array($id));
+	return $iostat;
+}
+
+// ---------------------------------------------------------------------
+
 function get_recipe_listall_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM recipe WHERE equipment_id = ?;' ;
 	$stmt = $pdo->prepare($sql);
