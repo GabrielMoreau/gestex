@@ -32,7 +32,7 @@ function connect_db() {
 		try{
 			$datasheet_version = get_version_by_name($pdo, 'database');
 			if ($datasheet_version < GESTEX_DB_VERSION) {
-				error_log('Database version error: update the database schema');
+				error_log('Database version error: upgrade the database schema from '.$datasheet_version.' to '.GESTEX_DB_VERSION);
 				echo 'Erreur: code de gestion de la base de donnée en version '.GESTEX_DB_VERSION.',';
 				echo "        mettre à jour le schéma de la base de données qui est actuellement en version $datasheet_version.";
 				return false;
