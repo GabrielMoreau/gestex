@@ -30,10 +30,10 @@ function connect_db_minimal() {
 function connect_db() {
 	if ($pdo = connect_db_minimal()) {
 		try{
-			$datasheet_version = get_version_by_name($pdo, 'datasheet');
+			$datasheet_version = get_version_by_name($pdo, 'database');
 			if ($datasheet_version < GESTEX_DB_VERSION) {
 				error_log('Database version error: update the database schema');
-				echo "Mettre à jour le schéma de la base de données";
+				echo "Code en version ".GESTEX_DB_VERSION.", mettre à jour le schéma de la base de données qui est actuellement en version $datasheet_version.";
 				return false;
 			}
 		}
