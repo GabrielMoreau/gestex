@@ -134,7 +134,7 @@ QUIT;
 #### Sauvegarde de la base de donnée
 
 ```bash
-mysqldump -u root -p gestex > db-gestex-dump.sql
+mysqldump -u root -p gestex > db-gestex-dump-$(date '+%Y%m%d').sql
 ```
 
 Pour récupérer la base de donnée ainsi sauvée,
@@ -142,7 +142,7 @@ il suffit de faire l'inverse.
 Attention cependant que cette opération va annuler toutes les opérations qui auront été faites entre temps...
 
 ```bash
-mysql -u root -p gestex < db-gestex-dump.sql
+mysql -u root -p gestex < db-gestex-dump-YYYYMMDD.sql
 ```
 
 
