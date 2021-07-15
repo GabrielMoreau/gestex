@@ -33,6 +33,10 @@ if ($mode == 'Ajouter') {
 	<input type="hidden" name="equipment" value="<?php if ($mode == "Ajouter") {echo $equipment_id;} ?>" >
 <table>
     <tbody>
+		<tr>
+			<th>Equipement</th>
+			<td><?php echo get_equipment_all_by_id($pdo, $equipment_id)["nom"] ?></td>
+		</tr>
         <tr>
             <th>Description</th>
             <td>
