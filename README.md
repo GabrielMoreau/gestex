@@ -133,6 +133,7 @@ QUIT;
 
 #### Sauvegarde de la base de donnée
 
+On sauve la base de donnée dans un fichier portant la date du jour.
 ```bash
 mysqldump -u root -p gestex > db-gestex-dump-$(date '+%Y%m%d').sql
 ```
@@ -140,9 +141,25 @@ mysqldump -u root -p gestex > db-gestex-dump-$(date '+%Y%m%d').sql
 Pour récupérer la base de donnée ainsi sauvée,
 il suffit de faire l'inverse.
 Attention cependant que cette opération va annuler toutes les opérations qui auront été faites entre temps...
-
 ```bash
 mysql -u root -p gestex < db-gestex-dump-YYYYMMDD.sql
+```
+
+Pour ne récupérer que le schéma de la base de donnée
+```bash
+mysqldump --no-data --lock-tables=false  -u pool -p pool  | grep -v '^/\*!' \
+  | sed -e 's/ int(/ INT(/; s/ bigint(/ BIGINT(/; s/ char(/ CHAR(/; s/ varchar(/ VARCHAR(/;
+            s/ boolean / BOOLEAN /; s/ date / DATE /; s/ text / TEXT /;
+            s/ timestamp / TIMESTAMP /; s/ enum(/ ENUM(/;
+            s/ AUTO_INCREMENT=[[:digit:]]* / AUTO_INCREMENT=1 /;
+            s/ current_timestamp()/ CURRENT_TIMESTAMP/g;' \
+  > db-schema-dump-$(date '+%Y%m%d').sql
+```
+
+Il est possible de comparer alors ce schéma avec le schéma officiel
+(intéressant s'il y a des soucis lors des mises à jour de schéma)...
+```bash
+meld db-schema.sql db-schema-dump-$(date '+%Y%m%d').sql
 ```
 
 #### Mise à jour de la base de donnée
