@@ -28,7 +28,8 @@ UPDATE `version` SET `version` = 5 WHERE `soft` = 'database';
 -- ADD TABLE
 --
 
--- RENAME TABLE `intervention` TO `old_intervention`;
+RENAME TABLE `intervention` TO `old_intervention`;
+
 CREATE TABLE IF NOT EXISTS `intervention` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `supplier_id` INT(11) NOT NULL,
@@ -36,17 +37,17 @@ CREATE TABLE IF NOT EXISTS `intervention` (
   `description` VARCHAR(255) DEFAULT NULL,
   `date` DATE NOT NULL DEFAULT CURRENT_DATE,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`supplier_id`) REFERENCES `fournisseurs`(`id`),
-  FOREIGN KEY (`equipment_id`) REFERENCES `listing`(`id`)
+  FOREIGN KEY (`supplier_id`) REFERENCES `fournisseurs` (`id`),
+  FOREIGN KEY (`equipment_id`) REFERENCES `listing` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 CHARSET=utf8;
 
 
 
 CREATE TABLE IF NOT EXISTS `recipe` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT,
-    `pathname` VARCHAR(500) DEFAULT NULL,
-    `description` VARCHAR(150) NOT NULL,
-    `intervention_id` INT(11) NOT NULL,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (`intervention_id`) REFERENCES `intervention`(`id`)
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `pathname` VARCHAR(500) DEFAULT NULL,
+  `description` VARCHAR(150) NOT NULL,
+  `intervention_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`intervention_id`) REFERENCES `intervention` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 CHARSET=utf8;
