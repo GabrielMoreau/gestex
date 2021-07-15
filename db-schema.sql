@@ -29,7 +29,7 @@ CREATE TABLE `Listing` (
   PRIMARY KEY (`id`),
   INDEX `nom` (`nom`),
   INDEX `barcode` (`barcode`)
-) ENGINE=MyISAM AUTO_INCREMENT=342 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `appareils`
@@ -46,7 +46,7 @@ CREATE TABLE `appareils` (
   `achat` date DEFAULT NULL,
   `facture` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -58,7 +58,7 @@ CREATE TABLE `categorie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -76,7 +76,7 @@ CREATE TABLE `demandes` (
   `termine` varchar(15) DEFAULT NULL,
   `piecesjointes` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `equipe` (
   `compte` int(11) NOT NULL DEFAULT '0',
   `chef` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `fournisseurs` (
   `contact` varchar(255) DEFAULT NULL,
   `descr` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=118 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `intervention` (
   `facture` varchar(30) DEFAULT NULL,
   `appareil` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -149,7 +149,7 @@ CREATE TABLE `labview` (
   `ecran` varchar(30) DEFAULT NULL,
   `pdf` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -171,7 +171,7 @@ CREATE TABLE `manip` (
   `date` date NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nom` (`nom`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -188,7 +188,7 @@ CREATE TABLE `pret` (
   `commentaire` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=627 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -205,7 +205,7 @@ CREATE TABLE `projet` (
   `descr` varchar(255) NOT NULL DEFAULT '',
   `date` date NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -225,7 +225,7 @@ CREATE TABLE `tache` (
   `fourniss` varchar(30) DEFAULT NULL,
   `temps` int(4) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=134 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -241,7 +241,7 @@ CREATE TABLE `temps` (
   `duree` int(11) DEFAULT NULL,
   `remarks` varchar(255) DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=158 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -263,7 +263,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `loggin` (`loggin`),
   FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `notice`
@@ -276,7 +276,7 @@ CREATE TABLE `notice` (
   `nom_notice` varchar(150) NOT NULL DEFAULT '',
   `id_appareil` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `datasheet`;
@@ -287,7 +287,7 @@ CREATE TABLE `datasheet` (
   `id_equipment` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_equipment`) REFERENCES `Listing` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `datasheet`
@@ -309,7 +309,7 @@ CREATE TABLE `relation_equipment_datasheet` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_equipment`) REFERENCES `listing` (`id`),
   FOREIGN KEY (`id_datasheet`) REFERENCES `datasheet` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -322,7 +322,7 @@ ADD `theme` VARCHAR (50) DEFAULT 'clair';
 
 /*   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_appareil`) REFERENCES `Listing` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1; */
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8; */
 
 ALTER TABLE `notice`
 ADD FOREIGN KEY (`id_appareil`) REFERENCES `Listing`(`id`);
@@ -338,7 +338,7 @@ CREATE TABLE `version` (
   `version` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `soft` (`soft`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
