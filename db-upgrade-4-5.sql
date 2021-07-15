@@ -7,9 +7,9 @@
 -- ALTER TABLE
 --
 
-ALTER TABLE `listing` MODIFY COLUMN `barcode` BIGINT DEFAULT NULL;
-ALTER TABLE `listing` ADD COLUMN `max_day` INT(11) NOT NULL DEFAULT 0;
-UPDATE `listing` SET `max_day` = 0;
+ALTER TABLE `Listing` MODIFY COLUMN `barcode` BIGINT DEFAULT NULL;
+ALTER TABLE `Listing` ADD COLUMN `max_day` INT(11) NOT NULL DEFAULT 0;
+UPDATE `Listing` SET `max_day` = 0;
 
 
 -- TIMESTAMP =< MySQL 5.5.x < DATETIME
