@@ -227,6 +227,10 @@ function get_datasheet_basepath() {
 	return './data/datasheet';
 }
 
+function get_recipe_basepath() {
+	return './data/recipe';
+}
+
 // ---------------------------------------------------------------------
 
 /**
