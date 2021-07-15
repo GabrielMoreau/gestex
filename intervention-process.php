@@ -33,7 +33,7 @@ var_dump($supplier_id);
 var_dump($date);
 
 if ($recipe != '') {
-    $id_recipe = set_recipe_new($pdo, $equipment_id, $intervention_id, 'recipe');
+    $id_recipe = set_recipe_new($pdo, $intervention_id, 'recipe');
     if (!$id_recipe) {
         $title        = 'Erreur appareil';
         $action       = 'equipment-view.php?id='.$equipment_id;
