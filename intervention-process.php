@@ -17,9 +17,18 @@ unset($erreur);
 $description        = param_post('description');
 $equipment_id       = param_post('equipment');
 $supplier_id        = param_post('company');
-$recipe             = param_post('recipe');
 $date               = param_post('date');
 $intervention_id    = param_post('id');
+
+
+$recipe = '';
+if (isset($_FILES["recipe"])) {
+	$recipe = $_FILES['recipe']['name'];
+	$recipe = str_replace(' ', '_', $recipe);
+	$recipe = str_replace('é', 'e', $recipe);
+	$recipe = str_replace('è', 'e', $recipe);
+	$recipe = str_replace('à', 'a', $notice);
+}
 
 $pdo = connect_db_or_alert();
 
