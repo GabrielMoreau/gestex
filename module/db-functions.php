@@ -1465,7 +1465,7 @@ function set_recipe_new($pdo, $intervention_id, $file_field_name) {
 	$iostat = move_uploaded_file($recipe_tmp_file, $new_dir.'/'.$recipe_filename_kebab);
 	if (!$iostat) {
 		error_log('Error: not move recipe file '.$recipe_filename_upload.' to '.$recipe_filename_kebab);
-		// del_recipe_by_id($pdo, $recipe_id);
+		del_recipe_by_id($pdo, $recipe_id);
 		return false;
 	}
 
