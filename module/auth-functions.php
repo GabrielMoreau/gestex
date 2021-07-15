@@ -26,7 +26,7 @@ function auth($reqlevel, $logged_user='', $password='') {
 		return false;
 	}
 
-	$pdo = connect_db();
+	$pdo = connect_db_minimal();
 	$user = get_user_all_by_login($pdo, $logged_user);
 
 	// is the password correct

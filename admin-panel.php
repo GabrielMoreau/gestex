@@ -7,23 +7,27 @@ require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 require_once('module/base-functions.php');
 
-session_start();
-if (empty($_SESSION['logged_user'])) {
-	$logged_level = 0;
-} else {
-	$logged_id    = $_SESSION['logged_id'];
-	$logged_user  = strtolower($_SESSION['logged_user']);
-	$logged_level = $_SESSION['logged_level'];
-}
+// Authenticate
+auth_or_login('index.php');
+level_or_alert(4, 'Console Administrateur');
+
+// session_start();
+// if (empty($_SESSION['logged_user'])) {
+// 	$logged_level = 0;
+// } else {
+// 	$logged_id    = $_SESSION['logged_id'];
+// 	$logged_user  = strtolower($_SESSION['logged_user']);
+// 	$logged_level = $_SESSION['logged_level'];
+// }
 
 en_tete('Console Administrateur');
 
-if ($logged_level < 4) {
-    echo 'Permission denied !';
-    exit();
-}
+// if ($logged_level < 4) {
+//     echo 'Permission denied !';
+//     exit();
+// }
 
-$pdo = connect_db();
+$pdo = connect_db_minimal();
 ?>
 
 <div class="adm-panel-body">
@@ -35,15 +39,17 @@ $pdo = connect_db();
 				<table class="version-item">
 					<tr>
 						<td>Version</td>
-						<td><a>v<?=$current_version["version"]?></a></td>
+						<td><?=$current_version['version']?></td>
 					</tr>
 					<tr>
 						<td>Updated on</td>
-						<td><a><?=$current_version["updated_on"]?></a></td>
+						<td><?php if (isset($current_version['updated_on'])) { echo $current_version['updated_on']; } ?></td>
 					</tr>
 				</table>
 			</div><?php
 		} ?>
+
+		Database version needed: <?= GESTEX_DB_VERSION ?>
 	</div>
 	<content>
 		<h3>Logs</h3>

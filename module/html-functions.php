@@ -38,7 +38,7 @@ define('ICON_INTERVENTION',	 '<span><svg width="1.2em" height="1.2em" fill="curr
 // ---------------------------------------------------------------------
 
 function en_tete($titre, $find=false) {
-	$pdo = connect_db();
+	$pdo = connect_db_minimal();
 	if (empty($_SESSION['logged_user']))
 		$logged_level = 0;
 	if (!empty($_SESSION)) {

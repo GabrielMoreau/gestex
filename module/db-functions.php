@@ -33,7 +33,8 @@ function connect_db() {
 			$datasheet_version = get_version_by_name($pdo, 'database');
 			if ($datasheet_version < GESTEX_DB_VERSION) {
 				error_log('Database version error: update the database schema');
-				echo "Code en version ".GESTEX_DB_VERSION.", mettre à jour le schéma de la base de données qui est actuellement en version $datasheet_version.";
+				echo 'Erreur: code de gestion de la base de donnée en version '.GESTEX_DB_VERSION.',';
+				echo "        mettre à jour le schéma de la base de données qui est actuellement en version $datasheet_version.";
 				return false;
 			}
 		}
@@ -1378,7 +1379,7 @@ function get_version_by_name($pdo, $name) {
 	$stmt->execute(array($name));
 	$version_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($version_fetch) > 0)
-		return $version_fetch[0];
+		return $version_fetch[0]['version'];
 	return false;
 }
 
