@@ -265,6 +265,7 @@ CREATE TABLE `users` (
   FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+
 --
 -- Table structure for table `notice`
 --
@@ -279,6 +280,10 @@ CREATE TABLE `notice` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
+--
+-- Table structure for table `datasheet`
+--
+
 DROP TABLE IF EXISTS `datasheet`;
 CREATE TABLE `datasheet` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -292,14 +297,6 @@ CREATE TABLE `datasheet` (
 --
 -- Table structure for table `datasheet`
 --
-
-DROP TABLE IF EXISTS `datasheet`;
-CREATE TABLE `datasheet` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `path` varchar(250) NOT NULL DEFAULT '',
-  `desc` varchar(250) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `relation_equipment_datasheet`;
 CREATE TABLE `relation_equipment_datasheet` (
@@ -326,6 +323,7 @@ ADD `theme` VARCHAR (50) DEFAULT 'clair';
 
 ALTER TABLE `notice`
 ADD FOREIGN KEY (`id_appareil`) REFERENCES `Listing`(`id`);
+
 
 --
 -- Table structure for table `version`
