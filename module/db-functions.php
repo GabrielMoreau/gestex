@@ -1495,6 +1495,18 @@ function del_recipe_by_id($pdo, $id) {
 
 // ---------------------------------------------------------------------
 
+function get_recipe_all_by_id($pdo, $id) {
+	$sql = 'SELECT * FROM recipe WHERE id = ?;' ;
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($id));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	if (count($result_fetch) > 0)
+		return $result_fetch[0];
+	return false;
+}
+
+// ---------------------------------------------------------------------
+
 function get_recipe_listall_by_equipment($pdo, $equipment_id) {
 	$sql = 'SELECT * FROM recipe WHERE equipment_id = ?;' ;
 	$stmt = $pdo->prepare($sql);
