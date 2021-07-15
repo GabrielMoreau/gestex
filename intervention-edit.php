@@ -29,7 +29,7 @@ if ($mode == 'Ajouter') {
 } else if ($mode == 'Modifier') {
     en_tete('Modifier une intervention');
     $intervention_fetch = get_intervention_listall_by_equipment($pdo, $equipment_id);
-	$recipe_fetch 		= get_recipe_listall_by_equipment($pdo, $equipment_id);
+	$recipe_fetch 		= get_recipe_listall_by_intervention($pdo, $intervention_id);
 	$recipe_count		= count($recipe_fetch);
 }
 ?>
