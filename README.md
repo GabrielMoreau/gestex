@@ -145,6 +145,22 @@ Attention cependant que cette opération va annuler toutes les opérations qui a
 mysql -u root -p gestex < db-gestex-dump-YYYYMMDD.sql
 ```
 
+#### Mise à jour de la base de donnée
+
+Pour connaître la version du schéma nécessaire dans le code
+et la version du schéma actuellement utilisé par la base de donnée.
+```bash
+grep 'define.*GESTEX_DB_VERSION' module/*.php
+
+mysql -u root -p gestex
+SELECT * FROM version WHERE soft = 'database';
+```
+
+Par exemple, pour passer de la version 3 à la version 4 du schéma
+```bash
+mysql -u root -p gestex < db-upgrade-3-4.sql
+```
+
 
 ### Icônes
 
