@@ -37,7 +37,7 @@ if ($mode == 'Ajouter') {
 
 
 <div class="form">
-<form action="intervention-process.php" method="POST" name="inscrForm">
+<form action="intervention-process.php" method="POST" name="inscrForm" enctype="multipart/form-data">
 	<input type="hidden" name="equipment" value="<?php if ($mode == "Ajouter") {echo $equipment_id;} ?>" >
 <table>
     <tbody>
