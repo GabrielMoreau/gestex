@@ -491,6 +491,7 @@ span.option-right {
 }
 
 /************** MODIFICATIONS ESTEBAN RISTICH ****************/
+/*----loan----*/
 
 .loan-list-container {
 	display: flex;
@@ -503,25 +504,30 @@ span.option-right {
 
 .loan-list-container div {
 	margin: 0.5rem;
-	padding: 0;
+	padding: 0 10px 10px 10px;
 	border: 2px solid var(--navbar-title-hover-bg);
 	border-radius: 4px;
 }
 
-.loan-list-container div {
-	padding: 0 10px 10px 10px;
-}
+#.loan-list-container div {
+#	padding: 0 10px 10px 10px;
+#}
 
 .loan-list-container div h4 {
 	margin: 0 0 0.5rem 0;
-	text-align: center;
-	border-bottom: 1.5px solid white;
-	background-color: #a6a6a8;
-	color: black;
+	text-align: left;
+	border-bottom: 1.5px solid var(--body-fg);
+	background-color: var(--body-bg);
+	color: var(--body-fg);
+	white-space: pre;
 }
 
 .loan-title-container div h4 {
-	background-color: green;
+	background-color: var(--color-ok);
+}
+
+.loan-title-container div p {
+	white-space: nowrap;
 }
 
 div[class="navbar"] + .loan-list-container {
