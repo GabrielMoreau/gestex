@@ -258,30 +258,31 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 			echo '<div>'.PHP_EOL;
 
 			if ($loan_current["status"] == STATUS_LOAN_BORROWED) {
-				echo '<h4 style="background-color: var(--color-ok);">Emprunt actuel N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+				#echo '<h4 style="background-color: var(--color-ok);">Emprunt actuel N°'.$loan_current["id"].' '.PHP_EOL;
+				echo '<h4 style="background-color: var(--color-ok);">Emprunt actuel '.PHP_EOL;
 			} else {
-				echo '<h4>Réservation N°'.$loan_current["id"].'</h4>'.PHP_EOL;
+				echo '<h4>Réservation N°'.$loan_current["id"].' '.PHP_EOL;
 			}
-			echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
-			echo '<span class="option-right">';
+			echo '&nbsp; <span class="option-right">';
 			if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_BORROWED) {
-				echo '<a href="loan-del.php?id='.$loan_current['id'].'">';
-				echo ICON_LOAN_RETURNED;
+				echo '<a href="loan-del.php?id='.$loan_current['id'].'">'.ICON_LOAN_RETURNED.'</a>'.PHP_EOL;
 			}
 			if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED && $loan_borrow == false) {
-				echo '<a href="loan-process.php?id='.$loan_current["id"].'&mode=loan">'.ICON_LOAN_BORROWED.'</a>';
+				echo '<a href="loan-process.php?id='.$loan_current['id'].'&mode=loan">'.ICON_LOAN_BORROWED.'</a>'.PHP_EOL;
 			}
 			
 			if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED) {
-				echo '<a href="loan-del.php?id='.$loan_current["id"].'">'.ICON_TRASH.'</a>';
+				echo '<a href="loan-del.php?id='.$loan_current["id"].'">'.ICON_TRASH.'</a>'.PHP_EOL;
 			}
 
 			if ($logged_level >= 3 && $loan_current["status"] != STATUS_LOAN_RETURNED) {
-				echo '</a></span> <span class="option-right"><a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>&nbsp;';
+				echo '<a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>'.PHP_EOL;
 			}
 			echo '</span>'.PHP_EOL;
+			echo '</h4>'.PHP_EOL;
+			echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
 
-			echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])["nom"].PHP_EOL;
+			echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])['nom'].PHP_EOL;
 			echo '<br>'.$loan_current['commentaire'].PHP_EOL;
 			echo '</div>'.PHP_EOL;
 		}
