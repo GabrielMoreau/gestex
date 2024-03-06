@@ -1,7 +1,5 @@
 # GestEx - Gestion des Expérimentations
 
-L'application web !GestEx est installé à l'adresse https://www.legi.grenoble-inp.fr/servgestex/
-
 ## Inventaire du matériel instrumentation du LEGI
 
 Ce sont des scripts PHP liés à un gestionnaire de bases de données MySQL.
@@ -21,18 +19,6 @@ on fait apparaître des renseignements complémentaires comme :
 
 Il apparaît également le numéro de l'instrument qui est incrémenté dans la liste
 et que l'on retrouve sur l'appareil sous la forme d'une étiquette du type : LEGI équipe N° d'instrument.
-
-## Accès aux fiches via WebDAV
-
-Les fiches associées sont maintenant accessible en WebDAV.
-
- https://www.legi.grenoble-inp.fr/servgestex/dav/
-
-Pour cela, il faut utiliser l'application bitkinex.
-C'est en gros pareil que du FTP mais basée sur le protocole HTTP...
-
-Les membres ayant un accès en lecture et écriture (modification) doivent être dans le groupe LDAP : soft-gestex.
-Demander au service informatique pour rajouter ou supprimer quelqu'un.
 
 ## Sources GIT
 
