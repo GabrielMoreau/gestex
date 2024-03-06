@@ -1,6 +1,6 @@
 # COPYRIGHT
 
-Copyright (C) 2005-2021, LEGI UMR 5519 / CNRS UGA G-INP, Grenoble, France
+Copyright (C) 2005-2024, LEGI UMR 5519 / CNRS UGA G-INP, Grenoble, France
  http://www.legi.grenoble-inp.fr
 
 Gestex est une application écrite en PHP utilisant une base de données MySQL.

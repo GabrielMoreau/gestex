@@ -34,7 +34,7 @@ mkdir -p ${tmp_folder}/etc/${PKG_NAME}
 mkdir -p ${tmp_folder}/usr/share/doc/${PKG_NAME}
 mkdir -p ${tmp_folder}/usr/share/${PKG_NAME}
 rsync -a *.php images include module script style  ${tmp_folder}/usr/share/${PKG_NAME}/
-rsync -a AUTHORS.md README.md LICENSE              ${tmp_folder}/usr/share/doc/${PKG_NAME}/
+rsync -a AUTHORS.md README.md LICENSE.md           ${tmp_folder}/usr/share/doc/${PKG_NAME}/
 chmod -R a+rX,go-w   ${tmp_folder}/usr
 chmod -R a+rX,go-w   ${tmp_folder}/etc
 

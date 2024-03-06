@@ -1,12 +1,13 @@
 # GestEx - Gestion des Expérimentations
 
-## Inventaire du matériel instrumentation du LEGI
+## Inventaire du matériel instrumentation
 
 Ce sont des scripts PHP liés à un gestionnaire de bases de données MySQL.
-Cet inventaire affiche un listing du matériel instrumentation au LEGI.
+Cet inventaire affiche un listing du matériel instrumentation.
+Il est possible d'avoir un inventaire de matériel autre.
 
 Le tri se fait par catégorie d'appareil.
-On peut également afficher la liste globale des appareils du LEGI. 
+On peut également afficher la liste globale des appareils. 
 Pour chaque appareil est indiqué le modèle, le fournisseur, la gamme d'utilisation,
 l'équipe propriétaire de l'appareil et une notice au format PDF. 
 Si on clique sur le nom de l'appareil,
@@ -25,8 +26,8 @@ et que l'on retrouve sur l'appareil sous la forme d'une étiquette du type : LEG
 ### Git global setup
 
 ```bash
-git config --global user.name "Gabriel Moreau"
-git config --global user.email "gabriel.moreau@univ-grenoble-alpes.fr"
+git config --global user.name "Prénom Nom-de-Famille"
+git config --global user.email "Prénom.Nom-de-Famille@univ-grenoble-alpes.fr"
 ```
 
 ### Create a new repository
@@ -45,15 +46,6 @@ Le message est à mettre de préférence dans l'éditeur
 (`vi` par exemple),
 ce qui permet de vérifier le commit et de l'annuler.
 
-## Ancien serveur SVN
-
-### Accès aux sources
-
-On récupère la branche principale sur le repository
-```bash
-svn checkout https://servcode.legi.grenoble-inp.fr/svn/soft-gestex/trunk soft-gestex
-```
-
 ### Mise à jour de l'application sur le serveur web
 
 On ne développe plus l'application directement sur le serveur,
@@ -65,14 +57,16 @@ On se connecte au serveur,
 puis les sources sont synchronisées et pousser dans le bon dossier.
 
 ```bash
-cd soft-gestex
-svn update
-sudo rsync -av --exclude .svn ./ /var/www/web-legi/pool/public_html/PoolProject/
-sudo chown -R :www-data /var/www/web-legi/pool/public_html/PoolProject/
-sudo chown -R www-data:www-data /var/www/web-legi/pool/public_html/PoolProject/data
+# Première fois
+git clone https://gricad-gitlab.univ-grenoble-alpes.fr/legi/soft/gestex.git
+
+# Ensuite
+git pull
+sudo rsync -av --exclude .git gestex/ /var/www/gestex/
+sudo chown -R www-data:www-data /var/www/gestex/
 ```
 
-Une procédure plus performante sera mise en place dès que l'application sera de nouveau pleinement opérationnelle.
+Une procédure plus performante et simple est possible via un paquet Debian, mais celle-ci n'a pas été complètement testée.
 Chaque chose en son temps !
 
 
@@ -168,15 +162,16 @@ Actuellement, nous avons recopié dans le projet GestEx uniquement les quelques 
 
 ### Vocabulaire
 
-Anglais	Français
-datasheet	notice / fiche technique
-user	utilisateur
-team	équipe
-equipment	équipement
-supplier	fournisseur
-category	catégorie
-loan	prêt
-device	dispositif
-platform	plateau expérimental
+ | Anglais    | Français                 |
+ | :---       | :---                     |
+ | datasheet  | notice / fiche technique |
+ | user       | utilisateur              |
+ | team       | équipe                   |
+ | equipment  | équipement               |
+ | supplier   | fournisseur              |
+ | category   | catégorie                |
+ | loan       | prêt                     |
+ | device     | dispositif               |
+ | platform   | plateau expérimental     |
 
 
