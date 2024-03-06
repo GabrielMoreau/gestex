@@ -54,13 +54,6 @@ On récupère la branche principale sur le repository
 svn checkout https://servcode.legi.grenoble-inp.fr/svn/soft-gestex/trunk soft-gestex
 ```
 
-'''Attention''' : le 2012/07/19, le projet à changer de nom.
-Si vous aviez un accès à l'ancien repository `instru-materiel`,
-ceui-ci est maintenant `soft-gestex`
-```bash
-svn switch --relocate https://servcode.legi.grenoble-inp.fr/svn/instru-materiel https://servcode.legi.grenoble-inp.fr/svn/soft-gestex
-```
-
 ### Mise à jour de l'application sur le serveur web
 
 On ne développe plus l'application directement sur le serveur,
@@ -68,11 +61,10 @@ ni on ne fait de copie externe.
 L'idée est de passer par une mise à jour (update) du repository.
 C'est un peu lourd mais c'est un mal nécessaire afin d'avoir enfin une vue un peu historique et globale dans le temps.
 
-On se connecte au serveur `legilnx06`,
+On se connecte au serveur,
 puis les sources sont synchronisées et pousser dans le bon dossier.
 
 ```bash
-ssh krialforzh@legilnx06
 cd soft-gestex
 svn update
 sudo rsync -av --exclude .svn ./ /var/www/web-legi/pool/public_html/PoolProject/
