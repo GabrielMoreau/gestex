@@ -60,10 +60,13 @@ puis les sources sont synchronisées et pousser dans le bon dossier.
 # Première fois
 git clone https://gricad-gitlab.univ-grenoble-alpes.fr/legi/soft/gestex.git
 
-# Ensuite
+# Ensuite (retirer l'option dry-run après validation visuelle)
 git pull
-sudo rsync -av --delete -n --exclude connect.php --exclude data --exclude old \
-  --exclude .git --exclude .gitignore --exclude Makefile --exclude make-package-debian gestex/ /var/www/gestex/
+sudo rsync -av --delete --dry-run \
+  --exclude connect.php --exclude data --exclude old \
+  --exclude .git --exclude .gitignore \
+  --exclude Makefile --exclude make-package-debian \
+  gestex/ /var/www/gestex/
 sudo chown -R www-data:www-data /var/www/gestex/
 ```
 
