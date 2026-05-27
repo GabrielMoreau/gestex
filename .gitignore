@@ -12,3 +12,4 @@ db-schema-prod-dumpall.sql
 db-gestex-dump-*.sql
 db-schema-dump-*.sql
 data/
+old/
