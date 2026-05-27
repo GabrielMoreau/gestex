@@ -62,7 +62,8 @@ git clone https://gricad-gitlab.univ-grenoble-alpes.fr/legi/soft/gestex.git
 
 # Ensuite
 git pull
-sudo rsync -av --exclude .git gestex/ /var/www/gestex/
+sudo rsync -av --delete -n --exclude connect.php --exclude data --exclude old \
+  --exclude .git --exclude .gitignore --exclude Makefile --exclude make-package-debian gestex/ /var/www/gestex/
 sudo chown -R www-data:www-data /var/www/gestex/
 ```
 
