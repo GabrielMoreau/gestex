@@ -38,7 +38,7 @@ en_tete($title);
 				Cat&eacute;gorie * (en minuscule uniquement)
 			</th>
 			<td>
-				<input type="text" name="categorie_name" size="30" value="<?php if($mode=='Modifier'){echo $category['nom'];} ?>" placeholder="Cat&eacute;gorie *">
+				<input type="text" name="categorie_name" size="30" value="<?php if ($mode == 'Modifier'){echo $category['nom'];} ?>" placeholder="Cat&eacute;gorie *">
 			</td>
 		</tr>
 
