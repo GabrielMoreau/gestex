@@ -130,7 +130,7 @@ if ($mode == 'Ajouter') {
 		</tr>
 		<tr>
 			<th>
-				Qualit&eacute;
+				Qualit&eacute; *
 			</th>
 			<td>
 				<?php  if ($logged_level >= 3 || !isset($logged_level)) { // admin loggue ou premiere inscription: modif possible ?>

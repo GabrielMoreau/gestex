@@ -26,10 +26,10 @@ $password  = param_post('password');  // * new only
 $password2 = param_post('password2'); // * new only
 $nom       = param_post('nom');       // *
 $level     = param_post('level');     // *
-$theme     = param_post('theme');     // *
+$theme     = param_post('theme', 'clair');     // *
 $mail      = param_post('email');     // *
 $prenom    = param_post('prenom');
-$phone     = param_post('tel');
+$phone     = param_post('tel', 0);
 $equipe    = param_post('equipe');
 
 if (empty($nom))
