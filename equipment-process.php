@@ -34,7 +34,7 @@ $accessoires = param_post('accessoires');
 $inventaire  = param_post('inventaire');
 $barcode     = param_post('barcode');
 $max_day     = param_post('max_day', 0);
-$loanable    = param_post('loanable');
+$loanable    = param_post('loanable', 0);
 //variables ne pouvant etre nulles
 if (empty($categorie))
 	$erreur = 'Cat&eacute;gorie non pr&eacute;cis&eacute;';
