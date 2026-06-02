@@ -96,12 +96,12 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 ?>
 <div class="navbar">
 <ul>
-	<li><a href="supplier-list.php">Liste des fournisseurs</a></li>
-	<li><a href="user-list.php">Liste des utilisateurs</a></li>
-	<li><a href="team-list.php">Liste des &eacute;quipes</a></li>
-	<li><a href="loan-list.php">Liste des appareils en pr&ecirc;t</a></li>
+	<li><a href="supplier-list.php">Fournisseurs</a></li>
+	<li><a href="user-list.php">Utilisateurs</a></li>
+	<li><a href="team-list.php">&Eacute;quipes</a></li>
+	<li><a href="loan-list.php">Appareils en pr&ecirc;t&eacute;s</a></li>
 	<li class="dropdown">
-		<a class="dropbtn">Liste des appareils</a>
+		<a class="dropbtn">Appareils</a>
 		<div class="dropdown-content">
 			<a href="category-list.php"><b>Cat&eacute;gories</b></a>
 			<a href="equipment-list.php"><b>Global</b></a>
