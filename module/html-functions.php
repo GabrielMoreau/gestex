@@ -128,22 +128,6 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 	</li>
 	<?php } ?>
 
-	<?php if ($level >= 4) { ?>
-	<li class="dropdown">
-		<a class="dropbtn">Bonus</a>
-		<div class="dropdown-content">
-			<a href="add_time.php">Temps</a>
-			<a href="add_task.php">Task</a>
-			<a href="add_demande.php">Demande</a>
-			<a href="add_labviews.php">Labview</a>
-			<a href="add_intapp.php?app=3">Intervention</a>
-			<a href="add_machine.php">Machine</a>
-			<a href="add_manip.php">Manip</a>
-			<a href="list_manip.php">Liste des manips</a>
-		</div>
-	</li>
-	<?php } ?>
-
 	<?php if ($level == 0) { ?>
 	<li class="right"><a href="login.php">Se connecter</a></li>
 	<?php } else { ?>
