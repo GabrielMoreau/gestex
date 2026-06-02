@@ -99,7 +99,7 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 	<li><a href="supplier-list.php">Fournisseurs</a></li>
 	<li><a href="user-list.php">Utilisateurs</a></li>
 	<li><a href="team-list.php">&Eacute;quipes</a></li>
-	<li><a href="loan-list.php">Appareils en pr&ecirc;t&eacute;s</a></li>
+	<li><a href="loan-list.php">Appareils pr&ecirc;t&eacute;s</a></li>
 	<li class="dropdown">
 		<a class="dropbtn">Appareils</a>
 		<div class="dropdown-content">
