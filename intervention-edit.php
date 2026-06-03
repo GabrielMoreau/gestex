@@ -27,8 +27,8 @@ $recipe_path = get_recipe_basepath();
 if ($mode == 'Ajouter') {
 	en_tete('Ajouter une intervention');
 } else if ($mode == 'Modifier') {
-    en_tete('Modifier une intervention');
-    $intervention_fetch = get_intervention_listall_by_equipment($pdo, $equipment_id);
+	en_tete('Modifier une intervention');
+	$intervention_fetch = get_intervention_listall_by_equipment($pdo, $equipment_id);
 	$recipe_fetch 		= get_recipe_listall_by_intervention($pdo, $intervention_id);
 	$recipe_count		= count($recipe_fetch);
 }
@@ -40,20 +40,20 @@ if ($mode == 'Ajouter') {
 <form action="intervention-process.php" method="POST" name="inscrForm" enctype="multipart/form-data">
 	<input type="hidden" name="equipment" value="<?php if ($mode == "Ajouter") {echo $equipment_id;} ?>" >
 <table>
-    <tbody>
+	<tbody>
 		<tr>
 			<th>Equipement</th>
 			<td><b><?php echo get_equipment_all_by_id($pdo, $equipment_id)["nom"] ?></b></td>
 		</tr>
-        <tr>
-            <th>Description</th>
-            <td>
-                <textarea name="description" rows="4" cols="33">D</textarea>
-            </td>
-        </tr>
-        <tr>
-            <th>Société</th>	
-            <?php // recupere la liste des equipes
+		<tr>
+			<th>Description</th>
+			<td>
+				<textarea name="description" rows="4" cols="33">D</textarea>
+			</td>
+		</tr>
+		<tr>
+			<th>Société</th>	
+			<?php // recupere la liste des equipes
 			$company_fetch = get_supplier_listshort($pdo);
 			?>
 			<td>
@@ -62,7 +62,7 @@ if ($mode == 'Ajouter') {
 					foreach ($company_fetch as $company_current) {
 						echo '<option value="'.$company_current['id'].'"';
 						// selectionne la bonne equipe
-/* 						if ($company_current['id'] == param_post_key('company', $user_selected, 0))
+						/* if ($company_current['id'] == param_post_key('company', $user_selected, 0))
 							echo ' selected'; */
 						echo '>'.$company_current['nom'].'</option>';
 					} // end foreach
@@ -70,7 +70,7 @@ if ($mode == 'Ajouter') {
 				</select>
 				<span class="option-right"><a href="team-edit.php"><?php echo ICON_ADD_TEAM ?></a></span>
 			</td>
-        </tr>
+		</tr>
 		<tr>
 			<th>
 				Recipe (facultatif) &nbsp; <?php echo ICON_SEE_DOC ?>
@@ -87,19 +87,19 @@ if ($mode == 'Ajouter') {
 			</td>
 		</tr>
 		<tr>
-            <th>Date</th>
-            <td>
+			<th>Date</th>
+			<td>
 				<input type="date" name="date" size="10" maxlength="10" value="<?= param_post_key('date', $loan_selected, date('Y-m-d', time())) ?>" >
 			</td>
-        </tr>
-        <tr>
-            <td></td>
+		</tr>
+		<tr>
+			<td></td>
 			<th class="button">
 				<input type="submit" name="Login" value="<?php echo $mode ?>">
 			</th>
-        </tr>
-    </tbody>
-    <tbody>
+		</tr>
+	</tbody>
+	<tbody>
 		<tr>
 			<td colspan="2" class="button">
 				<?php if ($mode == 'Modifier') { ?>
@@ -109,8 +109,8 @@ if ($mode == 'Ajouter') {
 				<?php } ?>
 			</td>
 		</tr>
-        </form>
-    </tbody>
+		</form>
+	</tbody>
 </table>
 </form>
 </div>
