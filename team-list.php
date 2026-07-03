@@ -48,7 +48,7 @@ en_tete('Liste de toutes les &eacute;quipes');
 			?>
 		</tr>
 
-<?php	//interrogation base de donnees
+<?php //interrogation base de données
 if ($pdo = connect_db()) {
 	// recupere la liste de fournisseurs
 	$team_fetch = get_team_listall($pdo);

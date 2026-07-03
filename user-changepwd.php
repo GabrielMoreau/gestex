@@ -72,7 +72,7 @@ if (!empty($_GET['id'])) {
 					<th>Ancien mot de passe</th>
 					<td><input type="password" name="old_pass" placeholder="Ancien mot de passe"></td>
 				</tr>
-				<?php }	?>
+				<?php } ?>
 				<tr>
 					<th>Nouveau mot de passe</th>
 					<td><input type="password" name="passwd1" placeholder="Nouveau mot de passe"></td>

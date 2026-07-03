@@ -25,8 +25,7 @@ if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
 	$title        .= ' de l\'&eacute;quipe <i>'.$team_selected['nom'].'</i>';
 	$loan_fetch = get_loan_listall_by_team($pdo, $team_id);
-} 
-else
+} else
 	$loan_fetch = get_loan_listall($pdo);
 ?>
 

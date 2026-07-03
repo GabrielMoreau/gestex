@@ -21,7 +21,7 @@ if (!$datasheet_version or $datasheet_version < 2) {
 	echo 'YES';
 	if (upgrade_datasheet_1_to_2($pdo))
 		set_version_by_name($pdo, 'datasheet', 2);
-} else 
+} else
 	echo 'NOOO';
 
 echo "HERE33<br>";

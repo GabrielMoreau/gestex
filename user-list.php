@@ -49,7 +49,7 @@ en_tete('Liste de tous les utilisateurs');
 			<?php } ?>
 		</tr>
 
-<?php	//interrogation base de donnees
+<?php // interrogation base de données
 if ($pdo = connect_db()) {
 	// recupere la liste des users
 	$user_fetch = get_user_listall_by_logged_level($pdo, $logged_level);

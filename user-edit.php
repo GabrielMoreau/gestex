@@ -138,7 +138,7 @@ if ($mode == 'Ajouter') {
 				<input type="radio" name="level" value="1" <?php if (param_post_key('level', $user_selected, 0) == 1) echo 'checked="checked"' ?> >Chercheur<br>
 				<input type="radio" name="level" value="2" <?php if (param_post_key('level', $user_selected, 0) == 2) echo 'checked="checked"' ?> >ITA<br>
 				<?php } ?>
-				
+
 				<?php if (isset($logged_level) && $logged_level >= 3) { ?>
 				<input type="radio" name="level" value="3" <?php if (param_post_key('level', $user_selected, 0) == 3) echo 'checked="checked"' ?> >Admin<br>
 				<?php } ?>
@@ -146,7 +146,7 @@ if ($mode == 'Ajouter') {
 				<?php if (isset($logged_level) && $logged_level >= 4) { ?>
 				<input type="radio" name="level" value="4" <?php if (param_post_key('level', $user_selected, 0) == 4) echo 'checked="checked"' ?> >SuperAdmin<br>
 				<?php } ?>
-				
+
 				<?php if (isset($logged_level) && ($logged_level < 3)) { // consultation seulement
 					switch ($user_selected['level']) {
 						case 0: echo "&Eacute;tudiant"; break;
@@ -187,7 +187,7 @@ if ($mode == 'Ajouter') {
 		</form>
 	</tbody>
 </table>
-</form>	
+</form>
 </div>
 
 <?php pied_page() ?>

@@ -17,7 +17,7 @@ $logged_level = $_SESSION['logged_level'];
 
 $equipment_id = param_get('equipment'); // -> new
 $loan_id      = param_get('id');     // -> modify
-$param_mode	  = param_get('mode', "loan");
+$param_mode   = param_get('mode', "loan");
 
 /* if ($loan_id == 0) {
 	$mode = 'Ajouter';
@@ -27,7 +27,7 @@ $param_mode	  = param_get('mode', "loan");
 	en_tete('Reserver plus tard');
 } else {
 	$mode = 'Modifier';
-	en_tete('Modifier le pr&ecirc;t d\'un appareil'); 
+	en_tete('Modifier le pr&ecirc;t d\'un appareil');
 }*/
 
 if ($param_mode == 'loan') {
@@ -38,7 +38,7 @@ if ($param_mode == 'loan') {
 	en_tete('Reserver plus tard');
 } else {
 	$mode = 'Modifier';
-	en_tete('Modifier le pr&ecirc;t d\'un appareil'); 
+	en_tete('Modifier le pr&ecirc;t d\'un appareil');
 }
 
 // transmet la valeur de la categorie a la page valid appareil
@@ -69,8 +69,6 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 		<input type="hidden" name="id_loan" value="<?php echo $loan_id ?>" >
 	<?php } ?>
 <table>
-
-		
 	<tbody>
 
 		<?php
@@ -131,7 +129,6 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 				} //end foreach
 				?>
 				</select>
-				
 			</td>
 		</tr>
 

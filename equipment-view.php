@@ -224,9 +224,11 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 						echo ICON_LOAN_BORROWED;
 						if ($logged_level >= 3) {echo '</a>';}
 
-/* 						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'&mode=booking">';}
+/*
+						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'&mode=booking">';}
 						echo ICON_LOAN_RESERVED;
-						if ($logged_level >= 3) {echo '</a>';} */
+						if ($logged_level >= 3) {echo '</a>';}
+*/
 
 						echo '</span>'.PHP_EOL;
 						loan_list_container($pdo, $loan, $equipment_loan_reserved, $loan_borrow, $logged_level);

@@ -32,8 +32,8 @@ $pdo = connect_db_minimal();
 
 <div class="adm-panel-body">
 	<div>
-	<h3>Features and services versions</h3><?php 
-		foreach(get_version_listall($pdo) as $current_version) { ?>
+	<h3>Features and services versions</h3>
+		<?php foreach(get_version_listall($pdo) as $current_version) { ?>
 			<div>
 				<h4><?=$current_version["soft"]?></h4>
 				<table class="version-item">
@@ -46,8 +46,8 @@ $pdo = connect_db_minimal();
 						<td><?php if (isset($current_version['updated_on'])) { echo $current_version['updated_on']; } ?></td>
 					</tr>
 				</table>
-			</div><?php
-		} ?>
+			</div>
+		<?php } ?>
 
 		Database version needed: <?= GESTEX_DB_VERSION ?>
 	</div>

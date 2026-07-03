@@ -13,7 +13,7 @@ level_or_alert(3, 'Ajout / Modification d\'un fournisseur');
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
-// creation ou modification d'un fournisseur
+// création ou modification d'un fournisseur
 
 unset($erreur);
 
@@ -30,14 +30,14 @@ $fax     = param_post('fax');
 $email   = param_post('addr_mail');
 $contact = param_post('contact');
 $descr   = param_post('descr');
-//variables ne pouvant etre nulles
+// variables ne pouvant etre nulles
 if (empty($nom))
 	$erreur = 'Nom du fournisseur non pr&eacute;cis&eacute;';
 if (empty($adresse))
 	$erreur = 'Adresse non pr&eacute;cis&eacute;e';
 
 if (!empty($erreur)) {
-	//erreur
+	// erreur
 	$title         = 'Erreur';
 	$action        = 'supplier-edit.php?id='.$supplier_id;
 	$message_text  =  $erreur;

@@ -21,7 +21,7 @@ $date_emprunt = param_post('emprunt');
 $date_retour  = param_post('retour');
 $commentaire  = param_post('commentaire');
 
-$param_mode	  = param_post('mode', 'booking'); // booking, booking-after, edit
+$param_mode   = param_post('mode', 'booking'); // booking, booking-after, edit
 if (isset($_GET['mode']) && param_get('mode') != '') {
 	$param_mode = param_get("mode");
 	$loan_id = param_get('id');
@@ -92,7 +92,6 @@ if ($param_mode == "booking") {
 		// RESERVATION POSSIBLE
 		set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
 		$message_text = 'La réservation a été effectuer avec succés';
-		
 	} else {
 		// RESERVATION IMPOSSIBLE
 		$title        = 'Impossible de réserver le jour même ou avant';
@@ -137,8 +136,6 @@ if ($param_mode == "booking") {
 	}
 } else if ($param_mode == 'loan') {
 
-	
-
 	if ($loan_id > 0 && get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_RESERVED) {
 		if (get_loans_all_by_equipment_borrowed($pdo, get_equipment_by_loan_id($pdo, $loan_id)) == false) {
 			set_loan_update_to_borrowed($pdo, $loan_id);
@@ -174,10 +171,10 @@ if ($param_mode == "booking") {
 		}
 		if ($date_out_ymd >= $date_tomorrow) {
 			$loan_id = set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
-			$message_text = 'Ajout de la réservation sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
+			$message_text = 'Ajout de la réservation sur l\'appareil '.$equipment_id.' valid&eacute;<br />';
 		} else {
 			$loan_id = set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
-			$message_text = 'Ajout du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />'; 
+			$message_text = 'Ajout du pr&ecirc;t sur l\'appareil '.$equipment_id.' valid&eacute;<br />';
 		}
 	}
 

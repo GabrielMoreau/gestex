@@ -61,7 +61,7 @@ en_tete('Liste de tous les fournisseurs', $find);
 			<?php } ?>
 		</tr>
 
-<?php	// interrogation base de donnees
+<?php // interrogation base de donnees
 if ($pdo = connect_db()) {
 	$supplier_fetch = get_supplier_find($pdo, $find);
 	$num_line = 1;
