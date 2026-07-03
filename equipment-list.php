@@ -81,7 +81,7 @@ if ($team_id > 0) {
 				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			if ($logged_level >= 3)
 				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="equipment-edit.php">'.ICON_ADD_EQUIPMENT.'</a></span></th>'.PHP_EOL;
-				echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
+			echo '<th class="sorttable_nosort"></th>'.PHP_EOL;
 			?>
 		</tr>
 
@@ -172,17 +172,17 @@ if ($team_id > 0) {
 				if ($logged_level >= 3) {echo '</a>';}
 				echo '  </td>';
 			}
-			echo '	<td>';
+			echo ' <td>';
 			if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=booking">';}
 			echo ICON_LOAN_RESERVED;
 			if ($logged_level >= 3) {echo '</a>';}
-			echo '	</td>';
-		}
-		else
+			echo ' </td>';
+		} else {
 			echo '  <td></td>'.PHP_EOL;
+		}
 
 		if ($equipment_item['loanable'] == false) {
-			echo '	<td></td>'.PHP_EOL;
+			echo '  <td></td>'.PHP_EOL;
 		}
 		if ($logged_level >= 2) {
 			echo '  <td>';
@@ -193,7 +193,6 @@ if ($team_id > 0) {
 			echo '  <td>';
 			echo '    <a href="equipment-del.php?id='.$equipment_item['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
-
 		}
 		echo '</tr>'.PHP_EOL;
 	} // end foreach

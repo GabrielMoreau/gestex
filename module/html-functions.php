@@ -51,9 +51,9 @@ function en_tete($titre, $find=false) {
 		if (empty($_COOKIE['GestEx-Theme'])) {
 			$actual_theme = theme('random');
 			setcookie('GestEx-Theme', "$actual_theme", time() + 7200); // 2 h
-		}
-		else
+		} else {
 			$actual_theme = $_COOKIE['GestEx-Theme'];
+		}
 	}
 	$css_style = 'theme-'.$actual_theme.'.css';
 ?>

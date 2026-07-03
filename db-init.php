@@ -25,9 +25,9 @@ if ($pdo = connect_db()) {
 			echo '<br/>Erreur cr&eacute;ation utilisateur : '.$err_msg;
 		else
 			echo '<br>Avis : la base de donn&eacute;e est maintenant initialis&eacute;e';
-	}
-	else
+	} else {
 		echo '<br>Avis : la base de donn&eacute;e est d&eacute;j&agrave; initialis&eacute;e';
+	}
 }
 ?>
 
