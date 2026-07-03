@@ -32,7 +32,7 @@ $tech        = param_post('tech');
 $reparation  = param_post('reparation');
 $accessoires = param_post('accessoires');
 $inventaire  = param_post('inventaire');
-$barcode     = param_post('barcode');
+$barcode     = param_post('barcode', 0); // force int
 $max_day     = param_post('max_day', 0);
 $loanable    = param_post('loanable', 0);
 //variables ne pouvant etre nulles
