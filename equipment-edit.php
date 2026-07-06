@@ -200,9 +200,13 @@ $team_chief_id = param_post_key('responsable', $equipment_selected, 0);
 			<td>
 				<?php if ($mode == 'Modifier' && $datasheet_count > 0) { ?>
 				<ul>
-					<?php foreach ($datasheet_fetch as $datasheet_current) { ?>
-					<li><a href="<?php echo $datasheet_path.'/'.$datasheet_current['pathname'] ?>" target="_top"><?php echo $datasheet_current['description'] ?> (<?php echo $datasheet_current['pathname']?>)</a></li>
-					<?php } ?>
+					<?php foreach ($datasheet_fetch as $datasheet_current): ?>
+					<li>
+						<a href="<?= $datasheet_path . '/' . $datasheet_current['pathname'] ?>" target="_top">
+							<?= $datasheet_current['description'] ?> (<?= $datasheet_current['pathname'] ?>)
+						</a>
+					</li>
+					<?php endforeach; ?>
 				</ul>
 				<?php } ?>
 				<input type="file" name="notice" value="<?= param_post_key('notice', $equipment_selected) ?>" placeholder="Notice (facultatif)">

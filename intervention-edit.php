@@ -58,15 +58,11 @@ if ($mode == 'Ajouter') {
 			?>
 			<td>
 				<select  name="company">
-					<?php
-					foreach ($company_fetch as $company_current) {
-						echo '<option value="'.$company_current['id'].'"';
-						// selectionne la bonne equipe
-						/* if ($company_current['id'] == param_post_key('company', $user_selected, 0))
-							echo ' selected'; */
-						echo '>'.$company_current['nom'].'</option>';
-					} // end foreach
-					?>
+					<?php foreach ($company_fetch as $company_current): ?>
+					<option value="<?= $company_current['id'] ?>"
+						<?= $company_current['nom'] ?>
+					</option>
+					<?php endforeach; ?>
 				</select>
 				<span class="option-right"><a href="team-edit.php"><?php echo ICON_ADD_TEAM ?></a></span>
 			</td>
@@ -76,13 +72,17 @@ if ($mode == 'Ajouter') {
 				Recipe (facultatif) &nbsp; <?php echo ICON_SEE_DOC ?>
 			</th>
 			<td>
-				<?php if ($mode == 'Modifier' && $datasheet_count > 0) { ?>
+				<?php if ($mode == 'Modifier' && $datasheet_count > 0): ?>
 				<ul>
-					<?php foreach ($datasheet_fetch as $datasheet_current) { ?>
-					<li><a href="<?php echo $datasheet_path.'/'.$datasheet_current['pathname'] ?>" target="_top"><?php echo $datasheet_current['description'] ?> (<?php echo $datasheet_current['pathname']?>)</a></li>
-					<?php } ?>
+					<?php foreach ($datasheet_fetch as $datasheet_current): ?>
+					<li>
+						<a href="<?= $datasheet_path . '/' . $datasheet_current['pathname'] ?>" target="_top">
+							<?= $datasheet_current['description'] ?> (<?= $datasheet_current['pathname'] ?>)
+						</a>
+					</li>
+					<?php endforeach; ?>
 				</ul>
-				<?php } ?>
+				<?php endif; ?>
 				<input type="file" name="recipe" value="<?= param_post_key('recipe', $equipment_selected) ?>" placeholder="Fiche (facultatif)">
 			</td>
 		</tr>
