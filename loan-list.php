@@ -53,62 +53,69 @@ if ($team_id > 0) {
 			<th>
 				Num&eacute;ro de l'appareil
 			</th>
-			<?php if ($logged_level >= 3) { ?>
+			<?php if ($logged_level >= 3): ?>
 			<th class="sorttable_nosort"></th>
 			<th class="sorttable_nosort"></th>
 			<th class="sorttable_nosort"></th>
-			<?php } ?>
+			<?php endif; ?>
 		</tr>
 
-<?php
-$num_line = 1;
-foreach ($loan_fetch as $loan_current) {
-	if ($num_line % 2)
-		echo '<tr class="impair">'.PHP_EOL;
-	else
-		echo '<tr class="pair">'.PHP_EOL;
-	$num_line++;
+	<?php
+	$num_line = 1;
+	foreach ($loan_fetch as $loan_current):
+	?>
+		<?php if ($num_line % 2): ?>
+		<tr class="impair">
+		<?php else: ?>
+		<tr class="pair">
+		<?php endif; ?>
 
-	// recupere le nom de l'appareil via l'ID qui est mis dans un champs texte !
-	// $appareil_selected = get_equipment_listshort_by_id($pdo, $loan_current['nom']);
-	echo '  <td>';
-	echo '    <a href="equipment-view.php?id='.$loan_current['nom'].'">'.$loan_current['equipment_name'].'</a>';
-	echo '  </td>'.PHP_EOL;
+			<?php $num_line++; ?>
 
-	// recupere le nom d'equipe
-	$team_selected = get_team_by_id($pdo, $loan_current['equipe']);
-	echo '  <td>';
-	echo '    <a href="equipment-list.php?equipe='.$loan_current['equipe'].'">'.$team_selected['nom'].'</a>';
-	echo '  </td>'.PHP_EOL;
+			<td>
+				<a href="equipment-view.php?id=<?= $loan_current['nom'] ?>">
+					<?= $loan_current['equipment_name'] ?>
+				</a>
+			</td>
 
-	echo '  <td>';
-	echo      $loan_current['emprunt'];
-	echo '  </td>'.PHP_EOL;
-	echo '  <td>';
-	echo      $loan_current['retour'];
-	echo '  </td>'.PHP_EOL;
-	echo '  <td>';
-	echo      $loan_current['commentaire'];
-	echo '  </td>'.PHP_EOL;
-	echo '  <td>';
-	echo      $loan_current['nom'];
-	echo '  </td>'.PHP_EOL;
+			<?php
+			$team_selected = get_team_by_id($pdo, $loan_current['equipe']);
+			?>
 
-	if ($logged_level >= 3) {
-		echo '  <td>';
-		echo '    <a href="loan-edit.php?equipment=',$loan_current['nom'],'&mode=booking">'.ICON_LOAN_RESERVED.'</a>';
-		echo '  </td>'.PHP_EOL;
-		echo '  <td>';
-		echo '    <a href="loan-edit.php?id=',$loan_current['id'],'&mode=edit">'.ICON_EDIT.'</a>';
-		echo '  </td>'.PHP_EOL;
-		echo '  <td>';
-		echo '    <a href="loan-del.php?id=',$loan_current['id'],'">'.ICON_LOAN_RETURNED.'</a>';
-		echo '  </td>'.PHP_EOL;
-	}
+			<td>
+				<a href="equipment-list.php?equipe=<?= $loan_current['equipe'] ?>">
+					<?= $team_selected['nom'] ?>
+				</a>
+			</td>
 
-	echo '</tr>'.PHP_EOL;
-} // end foreach
-?>
+			<td><?= $loan_current['emprunt'] ?></td>
+			<td><?= $loan_current['retour'] ?></td>
+			<td><?= $loan_current['commentaire'] ?></td>
+			<td><?= $loan_current['nom'] ?></td>
+
+			<?php if ($logged_level >= 3): ?>
+			<td>
+				<a href="loan-edit.php?equipment=<?= $loan_current['nom'] ?>&mode=booking">
+					<?= ICON_LOAN_RESERVED ?>
+				</a>
+			</td>
+
+			<td>
+				<a href="loan-edit.php?id=<?= $loan_current['id'] ?>&mode=edit">
+					<?= ICON_EDIT ?>
+				</a>
+			</td>
+
+			<td>
+				<a href="loan-del.php?id=<?= $loan_current['id'] ?>">
+					<?= ICON_LOAN_RETURNED ?>
+				</a>
+			</td>
+			<?php endif; ?>
+
+		</tr>
+	<?php endforeach; ?>
+
 	</tbody>
 </table>
 </div>
