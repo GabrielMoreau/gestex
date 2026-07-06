@@ -172,11 +172,11 @@ if ($team_id > 0) {
 				if ($logged_level >= 3) {echo '</a>';}
 				echo '  </td>';
 			}
-			echo ' <td>';
+			echo '  <td>';
 			if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=booking">';}
 			echo ICON_LOAN_RESERVED;
 			if ($logged_level >= 3) {echo '</a>';}
-			echo ' </td>';
+			echo '  </td>';
 		} else {
 			echo '  <td></td>'.PHP_EOL;
 		}
