@@ -185,6 +185,16 @@ function pied_page() {
 
 // ---------------------------------------------------------------------
 
+function render(string $template, array $data = []): string {
+	extract($data, EXTR_SKIP);
+
+	ob_start();
+	include_once "include/$template";
+	return ob_get_clean();
+}
+
+// ---------------------------------------------------------------------
+
 function check_mail($mail) {
    $atom = '[-a-z0-9!#$%&\'*+/=?^_`{|}~]';    // allowed characters for part before "at" character
    $domain = '([a-z]([-a-z0-9]*[a-z0-9]+)?)'; // allowed characters for part after "at" character

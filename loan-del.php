@@ -46,5 +46,12 @@ if ($valid == 'yes') {
 // $loan_id
 // $equipment_name
 include_once('include/loan-del.php');
+
+// echo render('loan-del.php', [
+//	'web_page' => $web_page,
+//	'pdo' => $pdo,
+// 	'loan_id' => $loan_id,
+// 	'equipment_name' => $equipment_name,
+// ]);
 exit();
 ?>
