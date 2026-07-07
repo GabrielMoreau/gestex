@@ -4,7 +4,7 @@
 
 // ---------------------------------------------------------------------
 
-define('GESTEX_VERSION', '1.2.2');
+define('GESTEX_VERSION', '2.1.6');
 
 define('STATUS_LOAN_RESERVED', 'LOAN_RESERVED');
 define('STATUS_LOAN_BORROWED', 'LOAN_BORROWED');
