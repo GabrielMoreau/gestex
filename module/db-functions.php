@@ -1311,6 +1311,7 @@ function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, 
  * Met à jour le mot de passe d'un utilisateur via son ID
  */
 function set_user_password_by_id($pdo, $user_id, $user_password) {
+	error_log('Warn: update password for user '.$user_id);
 	$sql = 'UPDATE users SET password = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($user_password, $user_id));

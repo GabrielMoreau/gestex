@@ -16,7 +16,7 @@ require_once('base-functions.php');
 
 function ldap_authenticate($login, $password) {
 	if ($password === '') {
-		error_log('Error: empty password');
+		error_log('Error: empty password for user '.$login);
 		return false;
 	}
 
@@ -40,7 +40,7 @@ function ldap_authenticate($login, $password) {
 	$search = ldap_search($ldap, GESTEX_LDAP_BASEDN, $filter);
 	$entries = ldap_get_entries($ldap, $search);
 	if ($entries["count"] != 1) {
-		error_log('Error: ldap no one response entry '.$entries["count"]);
+		error_log('Error: ldap no one response entry '.$entries["count"].' for user '.$login);
 		return false;
 	}
 
@@ -48,7 +48,7 @@ function ldap_authenticate($login, $password) {
 
 	// Check password
 	if (!@ldap_bind($ldap, $dn, $password)) {
-		error_log('Error: ldap bad check password');
+		error_log('Error: ldap bad check password for user '.$login);
 		return false;
 	}
 
