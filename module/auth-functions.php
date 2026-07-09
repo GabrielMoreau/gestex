@@ -90,6 +90,7 @@ function auth($reqlevel, $logged_user='', $password='') {
 	// test password
 	$is_local = false;
 	if (!empty($user) && $user['password'] !== 'ldap') {
+		error_log('Warn: local account for user '.$logged_user);
 		if (password_verify($password, $user['password'])) {
 			error_log('Warn: local auth for user '.$logged_user);
 			$is_local = true;
