@@ -72,8 +72,8 @@ if (!empty($erreur)) {
 if ($flag_new) { // new
 	level_or_alert(3, 'Validation d\'un nouvel utilisateur');
 
-	$mot_crypte = md5($password);
-	list($user_id, $err_msg) = set_user_new($pdo, $nom, $prenom, $loggin, $mot_crypte, $mail, $level, $phone, $equipe, $theme);
+	$new_pwhash = md5($password);
+	list($user_id, $err_msg) = set_user_new($pdo, $nom, $prenom, $loggin, $new_pwhash, $mail, $level, $phone, $equipe, $theme);
 
 	if ($err_msg != '') {
 		$title        = 'Erreur utilisateur';

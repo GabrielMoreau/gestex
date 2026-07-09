@@ -50,9 +50,9 @@ if (isset($passwd1) && isset($passwd2)){
 	}
 	echo $errormsg;
 	if ($errormsg == '') {
-		$mot_crypte = md5($passwd1);
+		$new_pwhash = md5($passwd1);
 		// ok on change
-		set_user_password_by_id($pdo, $user2chg, $mot_crypte);
+		set_user_password_by_id($pdo, $user2chg, $new_pwhash);
 		redirect('user-list.php');
 	}
 } // end if isset

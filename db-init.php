@@ -18,9 +18,9 @@ if ($pdo = connect_db()) {
 		if ($err_msg != '')
 			echo '<br/>Erreur cr&eacute;ation &eacute;quipe : '.$err_msg;
 
-		$mot_crypte = md5('chief!');
+		$new_pwhash = md5('chief!');
 		$err_msg = '';
-		list($id_user, $err_msg) = set_user_new($pdo, 'Admin', 'Sys', 'sysadmin', $mot_crypte, 'sysadmin@example.com', 4, '', $id_team, '');
+		list($id_user, $err_msg) = set_user_new($pdo, 'Admin', 'Sys', 'sysadmin', $new_pwhash, 'sysadmin@example.com', 4, '', $id_team, '');
 		if ($err_msg != '')
 			echo '<br/>Erreur cr&eacute;ation utilisateur : '.$err_msg;
 		else

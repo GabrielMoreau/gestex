@@ -95,8 +95,8 @@ function auth($reqlevel, $logged_user='', $password='') {
 		} elseif ($user['password'] === md5($password)) {
 			$is_local = true;
 			// update hash in database
-			$new_hash = password_hash($password, PASSWORD_DEFAULT);
-			set_user_password_by_id($pdo, $user['id'], $new_hash);
+			$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
+			set_user_password_by_id($pdo, $user['id'], $new_pwhash);
 		}
 	}
 
