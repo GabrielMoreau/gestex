@@ -91,6 +91,10 @@ function auth($reqlevel, $logged_user='', $password='') {
 	$is_local = false;
 	if (!empty($user) && $user['password'] !== 'ldap') {
 		if (password_verify($password, $user['password'])) {
+			if (password_needs_rehash($user['password'], PASSWORD_DEFAULT)) {
+				$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
+				set_user_password_by_id($pdo, $user['id'], $new_pwhash);
+			}
 			$is_local = true;
 		} elseif ($user['password'] === md5($password)) {
 			$is_local = true;
