@@ -22,8 +22,8 @@ if ($user_id > 0)
 	$flag_new = false;
 
 $loggin    = param_post('loggin');    // * new only
-$password  = param_post('password');  // * new only
-$password2 = param_post('password2'); // * new only
+$password  = param_post_password('password');  // * new only
+$password2 = param_post_password('password2'); // * new only
 $nom       = param_post('nom');       // *
 $level     = param_post('level');     // *
 $theme     = param_post('theme', 'clair');     // *

@@ -47,19 +47,27 @@ function ldap_authenticate($login, $password) {
 	$dn = $entries[0]["dn"];
 
 	// Check password
+	error_log('Warn: LDAP DN = ' . $dn);
 	if (!@ldap_bind($ldap, $dn, $password)) {
-		error_log('Error: ldap bad check password for user '.$login);
+		error_log(sprintf(
+			'Error: LDAP bind failed for %s: [%d] %s',
+			$login,
+			ldap_errno($ldap),
+			ldap_error($ldap)
+        ));
+        // 'Error: ldap bad check password for user '.$login);
 		return false;
 	}
 
-	ldap_unbind($ldap);
-	return [
+	$result = [
 		'uid'        => $entries[0]['uid'][0] ?? '',
 		'sn'         => $entries[0]['sn'][0] ?? '',
 		'givenname'  => $entries[0]['givenname'][0] ?? '',
 		'mail'       => $entries[0]['mail'][0] ?? '',
 		'telephone'  => (int)($entries[0]['telephonenumber'][0] ?? 0),
 	];
+	ldap_unbind($ldap);
+	return $result;
 }
 
 // ---------------------------------------------------------------------

@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 require_once('module/base-functions.php');
 
 $username = param_post('username');
-$password = param_post('password');
+$password = param_post_password('password');
 
 //valeur par defaut
 $login_failure = false;

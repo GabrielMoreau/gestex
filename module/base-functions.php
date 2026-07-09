@@ -12,6 +12,16 @@ define('STATUS_LOAN_RETURNED', 'LOAN_RETURNED');
 
 // ---------------------------------------------------------------------
 
+function param_post_password($string, $default = '') {
+	if (isset($_POST[$string]))
+		return $_POST[$string];
+	return $default;
+}
+
+// ---------------------------------------------------------------------
+
+// return htmlspecialchars($_POST[$string], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+
 function param_post($string, $default = '') {
 	if (!empty($_POST[$string]))
 		return filter_var($_POST[$string], FILTER_SANITIZE_STRING);
