@@ -47,7 +47,7 @@ if (isset($passwd1) && isset($passwd2)){
 	if (!isset($errormsg) && isset($old_pass) && $logged_level < 3) {
 		if (
 			!password_verify($old_pass, $user_selected['password'])
-			&& (md5($old_pass) !== $user_selected['password'])
+			&& (paswd_old_hash($old_pass) !== $user_selected['password'])
 		) {
 			$errormsg = 'Wrong password, sorry!';
 		}

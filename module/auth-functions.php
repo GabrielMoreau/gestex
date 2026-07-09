@@ -6,6 +6,12 @@ require_once('base-functions.php');
 
 // ---------------------------------------------------------------------
 
+function paswd_old_hash($password) {
+	return md5(filter_var($password, FILTER_SANITIZE_STRING));
+}
+
+// ---------------------------------------------------------------------
+
 /*
 	define('GESTEX_LDAP_URI',    'ldaps://ldap.mondomaine.fr');
 	define('GESTEX_LDAP_PORT',   636);
@@ -107,7 +113,7 @@ function auth($reqlevel, $logged_user='', $password='') {
 				$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
 				set_user_password_by_id($pdo, $user['id'], $new_pwhash);
 			}
-		} elseif ($user['password'] === md5($password)) {
+		} elseif ($user['password'] === paswd_old_hash($password)) {
 			error_log('Warn: local auth for user '.$logged_user);
 			$is_local = true;
 			// update hash in database
