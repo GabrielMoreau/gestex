@@ -91,12 +91,15 @@ function auth($reqlevel, $logged_user='', $password='') {
 	$is_local = false;
 	if (!empty($user) && $user['password'] !== 'ldap') {
 		if (password_verify($password, $user['password'])) {
+			error_log('Warn: local auth for user '.$logged_user);
+			$is_local = true;
 			if (password_needs_rehash($user['password'], PASSWORD_DEFAULT)) {
+				// update hash in database
 				$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
 				set_user_password_by_id($pdo, $user['id'], $new_pwhash);
 			}
-			$is_local = true;
 		} elseif ($user['password'] === md5($password)) {
+			error_log('Warn: local auth for user '.$logged_user);
 			$is_local = true;
 			// update hash in database
 			$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
@@ -107,9 +110,10 @@ function auth($reqlevel, $logged_user='', $password='') {
 	if (!$is_local) {
 		$ldap_user = ldap_authenticate($logged_user, $password);
 		if ($ldap_user === false) {
+			error_log('Error: no ldap auth for user '.$logged_user);
 			return false;
 		}
-		// LDAP password OK
+		error_log('Warn: ldap auth for user '.$logged_user);
 		// check user in database or create it
 		if (empty($user)) {
 			set_user_new($pdo,

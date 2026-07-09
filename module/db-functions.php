@@ -1296,6 +1296,7 @@ function get_user_count($pdo) {
  * @return array Avec potentiellement une chaine d'erreur
  */
 function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme) {
+	error_log('Warn: new user '.$login);
 	$sql = 'INSERT INTO users (nom, prenom, loggin, password, email, level, tel, equipe, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme));
