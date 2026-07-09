@@ -16,17 +16,20 @@ require_once('base-functions.php');
 
 function ldap_authenticate($login, $password) {
 	if ($password === '') {
+		error_log('Error: empty password');
 		return false;
 	}
 
 	$ldap = ldap_connect(GESTEX_LDAP_URI, GESTEX_LDAP_PORT);
 	if (!$ldap) {
+		error_log('Error: ldap connect '.GESTEX_LDAP_URI);
 		return false;
 	}
 	ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
 	ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
 	// LDAP Bind
 	if (!@ldap_bind($ldap, GESTEX_LDAP_BINDDN, GESTEX_LDAP_BINDPW)) {
+		error_log('Error: ldap bind');
 		return false;
 	}
 
@@ -37,6 +40,7 @@ function ldap_authenticate($login, $password) {
 	$search = ldap_search($ldap, GESTEX_LDAP_BASEDN, $filter);
 	$entries = ldap_get_entries($ldap, $search);
 	if ($entries["count"] != 1) {
+		error_log('Error: ldap no one response entry '.$entries["count"]);
 		return false;
 	}
 
@@ -44,6 +48,7 @@ function ldap_authenticate($login, $password) {
 
 	// Check password
 	if (!@ldap_bind($ldap, $dn, $password)) {
+		error_log('Error: ldap bad check password');
 		return false;
 	}
 
