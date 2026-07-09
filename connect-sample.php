@@ -14,6 +14,13 @@ define('GESTEX_DB_PASSWORD', "gestex-magic-password");
 define('GESTEX_DB_SERVER',   "localhost");
 define('GESTEX_DB_DATABASE', "gestex");
 
+// Information concernant l'annuaire LDAP
+define('GESTEX_LDAP_URI',    "ldap://ldap.mondomaine.fr");
+define('GESTEX_LDAP_PORT',   636);
+define('GESTEX_LDAP_BASEDN', "ou=people,dc=mondomaine,dc=fr");
+define('GESTEX_LDAP_BINDDN', "cn=reader,ou=services,dc=mondomaine,dc=fr");
+define('GESTEX_LDAP_BINDPW', "...");
+
 // Parametres generaux
 define('GESTEX_ADMIN_MAIL',  "webmaster@your-entity.sample");
 define('GESTEX_ENTITY_NAME', "YOUR ENTITY");
