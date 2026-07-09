@@ -282,7 +282,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `loggin` VARCHAR(20) NOT NULL DEFAULT '',
-  `password` VARCHAR(40) NOT NULL DEFAULT '',
+  `password` VARCHAR(255) NOT NULL DEFAULT '',
   `level` INT(11) NOT NULL DEFAULT 1,
   `nom` VARCHAR(20) NOT NULL DEFAULT '',
   `prenom` VARCHAR(20) NOT NULL DEFAULT '',
@@ -328,4 +328,4 @@ CREATE TABLE `version` (
 -- Fix global DB version
 --
 
-INSERT INTO version (soft, version) VALUES ('database',  4);
+INSERT INTO version (soft, version) VALUES ('database',  6);

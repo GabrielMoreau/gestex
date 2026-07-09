@@ -67,4 +67,4 @@ SHOW CREATE TABLE `pret`;
 -- Fix global DB version
 --
 
-INSERT INTO version (soft, version) VALUES ('database',  2);
+INSERT INTO `version` (soft, version) VALUES ('database',  2);
