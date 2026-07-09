@@ -72,7 +72,7 @@ if (!empty($erreur)) {
 if ($flag_new) { // new
 	level_or_alert(3, 'Validation d\'un nouvel utilisateur');
 
-	$new_pwhash = md5($password);
+	$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
 	list($user_id, $err_msg) = set_user_new($pdo, $nom, $prenom, $loggin, $new_pwhash, $mail, $level, $phone, $equipe, $theme);
 
 	if ($err_msg != '') {

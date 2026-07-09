@@ -45,12 +45,19 @@ if (isset($passwd1) && isset($passwd2)){
 		$errormsg = 'Passwords do not match, please try again';
 
 	if (!isset($errormsg) && isset($old_pass) && $logged_level < 3) {
-		if(md5($old_pass) != $user_selected['password'])
+		if (
+			!password_verify($old_pass, $user_selected['password'])
+			&& (md5($old_pass) !== $user_selected['password'])
+		) {
 			$errormsg = 'Wrong password, sorry!';
+		}
 	}
 	echo $errormsg;
 	if ($errormsg == '') {
-		$new_pwhash = md5($passwd1);
+		if ($passwd1 === 'ldap')
+			$new_pwhash = 'ldap'; // bind with LDAP
+		else
+			$new_pwhash = password_hash($passwd1, PASSWORD_DEFAULT);
 		// ok on change
 		set_user_password_by_id($pdo, $user2chg, $new_pwhash);
 		redirect('user-list.php');
