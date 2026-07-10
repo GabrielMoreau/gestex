@@ -80,7 +80,9 @@ Chaque chose en son temps !
 
 ```bash
 mysql -u root -p
-CREATE DATABASE gestex;
+CREATE DATABASE gestex
+  DEFAULT CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
 
 CREATE USER 'gestex-server'@'localhost' IDENTIFIED BY 'ZZZZZZZZZ';
 GRANT ALL PRIVILEGES ON gestex . * TO 'gestex-server'@'localhost';
@@ -112,6 +114,9 @@ QUIT;
 On sauve la base de donnée dans un fichier portant la date du jour.
 ```bash
 mysqldump -u root -p gestex > db-gestex-dump-$(date '+%Y%m%d').sql
+
+# Without the CREATE DATABASE
+mysqldump -u root -p --default-character-set=utf8mb4 --no-create-db gestex > db-gestex-dump-$(date '+%Y%m%d').sql
 ```
 
 Pour récupérer la base de donnée ainsi sauvée,
