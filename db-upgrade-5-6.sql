@@ -14,6 +14,9 @@ ALTER TABLE `users` MODIFY password VARCHAR(255) NOT NULL;
 
 RENAME TABLE `Listing` TO `equipment`;
 RENAME TABLE `fournisseurs` TO `supplier`;
+RENAME TABLE `equipe` TO `team`;
+RENAME TABLE `pret` TO `loan`;
+RENAME TABLE `categorie` TO `category`;
 
 --
 -- Fix global DB version

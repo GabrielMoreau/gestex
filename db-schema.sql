@@ -22,7 +22,7 @@ CREATE TABLE `equipment` (
   `barcode` BIGINT(20) DEFAULT NULL,
   `max_day` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`);
+  FOREIGN KEY (`equipe`) REFERENCES `team` (`id`);
   FOREIGN KEY (`fournisseur`) REFERENCES `supplier` (`id`);
   FOREIGN KEY (`responsable`) REFERENCES `users` (`id`);
   INDEX `nom` (`nom`),
@@ -47,11 +47,11 @@ CREATE TABLE `appareils` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `categorie`
+-- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `categorie`;
-CREATE TABLE `categorie` (
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE `category` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -89,13 +89,11 @@ CREATE TABLE `demandes` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `equipe`
+-- Table structure for table `team`
 --
 
--- liste des equipes
-
-DROP TABLE IF EXISTS `equipe`;
-CREATE TABLE `equipe` (
+DROP TABLE IF EXISTS `team`;
+CREATE TABLE `team` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nom` TEXT,
   `descr` VARCHAR(255) NOT NULL DEFAULT '',
@@ -194,11 +192,11 @@ CREATE TABLE `notice` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `pret`
+-- Table structure for table `loan`
 --
 
-DROP TABLE IF EXISTS `pret`;
-CREATE TABLE `pret` (
+DROP TABLE IF EXISTS `loan`;
+CREATE TABLE `loan` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(60) DEFAULT NULL,
   `equipe` INT(11) DEFAULT NULL,
@@ -207,7 +205,7 @@ CREATE TABLE `pret` (
   `commentaire` VARCHAR(100) DEFAULT NULL,
   `status` ENUM('LOAN_BORROWED','LOAN_RESERVED','LOAN_RETURNED') NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`)
+  FOREIGN KEY (`equipe`) REFERENCES `team` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
@@ -293,7 +291,7 @@ CREATE TABLE `users` (
   `theme` VARCHAR (50) DEFAULT 'clair',
   PRIMARY KEY (`id`),
   UNIQUE KEY `loggin` (`loggin`),
-  FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`)
+  FOREIGN KEY (`equipe`) REFERENCES `team` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
