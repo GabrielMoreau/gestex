@@ -1,5 +1,5 @@
 --
--- VERSION : 5, DATE : 10/11/2022
+-- VERSION: 5, DATE: 2022/11/10
 --
 
 --
@@ -20,7 +20,7 @@ ALTER TABLE `pret` ADD COLUMN `status` ENUM('LOAN_BORROWED', 'LOAN_RESERVED', 'L
 UPDATE `pret` SET `status` = 'LOAN_BORROWED';
 
 --
--- ADD TABLE
+-- Table structure for tables `intervention` and `recipe`
 --
 
 RENAME TABLE `intervention` TO `old_intervention`;
