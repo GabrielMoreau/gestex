@@ -70,7 +70,7 @@ function ldap_authenticate($login, $password) {
 		'sn'         => $entries[0]['sn'][0] ?? '',
 		'givenname'  => $entries[0]['givenname'][0] ?? '',
 		'mail'       => $entries[0]['mail'][0] ?? '',
-		'telephone'  => (int)($entries[0]['telephonenumber'][0] ?? 0),
+		'telephone'  => (int)($entries[0]['telephonenumber'][0] ?? 'Na'),
 	];
 	ldap_unbind($ldap);
 	return $result;
