@@ -103,7 +103,7 @@ function auth($reqlevel, $logged_user='', $password='') {
 
 	// test password
 	$is_local = false;
-	if (!empty($user) && $user['password'] !== 'ldap') {
+	if (!empty($user) && $user['password'] !== '!ldap!') {
 		error_log('Warn: local account for user '.$logged_user);
 		if (password_verify($password, $user['password'])) {
 			error_log('Warn: local auth for user '.$logged_user);
@@ -135,7 +135,7 @@ function auth($reqlevel, $logged_user='', $password='') {
 				$ldap_user['sn'],        /* familyname */
 				$ldap_user['givenname'], /* firstname */
 				$ldap_user['uid'],       /* login */
-				'ldap',                  /* password */
+				'!ldap!',                /* password */
 				$ldap_user['mail'],      /* email */
 				4,                       /* level */
 				$ldap_user['telephone'], /* tel */

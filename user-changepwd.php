@@ -54,8 +54,8 @@ if (isset($passwd1) && isset($passwd2)){
 	}
 	echo $errormsg;
 	if ($errormsg == '') {
-		if ($passwd1 === 'ldap')
-			$new_pwhash = 'ldap'; // bind with LDAP
+		if ($passwd1 === '!ldap!')
+			$new_pwhash = '!ldap!'; // bind with LDAP
 		else
 			$new_pwhash = password_hash($passwd1, PASSWORD_DEFAULT);
 		// ok on change
