@@ -23,7 +23,6 @@ if(empty($_SESSION['logged_user'])){
 destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l'instrumentation des plateformes exp&eacute;rimentales du laboratoire.</p>
 
 <center>
-<h2>Gestion instrumentation</h2>
 <ul>
 	<li><a href="category-list.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</li>
 	<li><a href="user-loan.php">Liste de vos emprunts d'appareils</a></li>
