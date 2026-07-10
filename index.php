@@ -23,15 +23,10 @@ if(empty($_SESSION['logged_user'])){
 destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l'instrumentation des plateformes exp&eacute;rimentales du laboratoire.</p>
 
 <center>
-<ul>
-	<li><a href="category-list.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</li>
-	<li><a href="user-loan.php">Liste de vos emprunts d'appareils</a></li>
-</ul>
-
-<p>Il faut &ecirc;tre un utilisateur r&eacute;f&eacute;renc&eacute; pour pouvoir acc&eacute;der &agrave; certaines parties.</p>
-<ul>
-	<li><a href="user-edit.php">Demander son inscription</a></li>
-</ul>
+	<p><a href="category-list.php">Inventaire des mat&eacute;riels</a> sous sa responsabilit&eacute;.</p>
+	<p><a href="user-loan.php">Liste de vos emprunts d'appareils</a></p>
+	<p>Il faut &ecirc;tre un utilisateur r&eacute;f&eacute;renc&eacute; pour pouvoir acc&eacute;der &agrave; certaines parties.</p>
+	<p><a href="user-edit.php">Demander son inscription</a></p>
 </center>
 </div>
 
