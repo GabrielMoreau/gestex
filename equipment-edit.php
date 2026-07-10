@@ -50,7 +50,7 @@ $team_chief_id = param_post_key('responsable', $equipment_selected, 0);
 			<td>
 				<select name="categorie">
 				<?php
-				// listing des categories
+				// liste des categories
 				$category_fetch = get_category_listshort($pdo);
 				foreach ($category_fetch as $category_current) {
 					echo '<option value="'.$category_current['id'].'"';
@@ -58,7 +58,7 @@ $team_chief_id = param_post_key('responsable', $equipment_selected, 0);
 						echo " selected";
 					}
 
-					// si on choisit ajouter, le listing preselectionne la categorie
+					// si on choisit ajouter, la liste preselectionne la categorie
 					echo '>'.$category_current['nom'].'</option>';
 				} // end foreach
 				?>
