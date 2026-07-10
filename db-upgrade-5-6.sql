@@ -7,6 +7,8 @@
 --
 
 ALTER TABLE `users` MODIFY password VARCHAR(255) NOT NULL;
+ALTER TABLE `users` MODIFY tel VARCHAR(25) NOT NULL DEFAULT 'Na';
+ALTER TABLE `supplier` MODIFY tel VARCHAR(25) NOT NULL DEFAULT 'Na';
 
 --
 -- Rename table
@@ -31,6 +33,21 @@ DROP TABLE IF EXISTS `projet`;
 DROP TABLE IF EXISTS `tache`;
 DROP TABLE IF EXISTS `temps`;
 DROP TABLE IF EXISTS `old_intervention`;
+
+--
+-- Add foreign key
+--
+
+ALTER TABLE `users` ADD CONSTRAINT `fk_users_team` FOREIGN KEY (`equipe`) REFERENCES `team` (`id`);
+ALTER TABLE `equipment` ADD CONSTRAINT `fk_equipment_team` FOREIGN KEY (`equipe`) REFERENCES `team` (`id`);
+ALTER TABLE `equipment` ADD CONSTRAINT `fk_equipment_supplier` FOREIGN KEY (`fournisseur`) REFERENCES `supplier` (`id`);
+ALTER TABLE `equipment` ADD CONSTRAINT `fk_equipment_manager` FOREIGN KEY (`responsable`) REFERENCES `users` (`id`);
+ALTER TABLE `datasheet` ADD CONSTRAINT `fk_datasheet_equipment` FOREIGN KEY (`id_equipment`) REFERENCES `equipment` (`id`);
+ALTER TABLE `intervention` ADD CONSTRAINT `fk_intervention_supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`);
+ALTER TABLE `intervention` ADD CONSTRAINT `fk_intervention_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`);
+ALTER TABLE `loan` ADD CONSTRAINT `fk_loan_team` FOREIGN KEY (`equipe`) REFERENCES `team` (`id`);
+ALTER TABLE `recipe` ADD CONSTRAINT `fk_recipe_intervention` FOREIGN KEY (`intervention_id`) REFERENCES `intervention` (`id`);
+ALTER TABLE `team` ADD CONSTRAINT `fk_team_chief` FOREIGN KEY (`chef`) REFERENCES `users` (`id`);
 
 --
 -- Fix global DB version
