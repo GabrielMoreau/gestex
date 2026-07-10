@@ -1,10 +1,10 @@
 
 --
--- Table structure for table `Listing` (equipment)
+-- Table structure for table `equipment`
 --
 
-DROP TABLE IF EXISTS `Listing`;
-CREATE TABLE `Listing` (
+DROP TABLE IF EXISTS `equipment`;
+CREATE TABLE `equipment` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `categorie` VARCHAR(255) DEFAULT NULL,
   `nom` VARCHAR(255) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `datasheet` (
   `description` VARCHAR(150) NOT NULL DEFAULT '',
   `id_equipment` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_equipment`) REFERENCES `Listing` (`id`)
+  FOREIGN KEY (`id_equipment`) REFERENCES `equipment` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
@@ -190,7 +190,7 @@ CREATE TABLE `notice` (
   `nom_notice` VARCHAR(150) NOT NULL DEFAULT '',
   `id_appareil` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-  FOREIGN KEY (`id_appareil`) REFERENCES `Listing` (`id`);
+  FOREIGN KEY (`id_appareil`) REFERENCES `equipment` (`id`);
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
@@ -306,7 +306,7 @@ CREATE TABLE `relation_equipment_datasheet` (
   `id_equipment` INT(11) NOT NULL,
   `id_datasheet` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_equipment`) REFERENCES `Listing` (`id`),
+  FOREIGN KEY (`id_equipment`) REFERENCES `equipment` (`id`),
   FOREIGN KEY (`id_datasheet`) REFERENCES `datasheet` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
