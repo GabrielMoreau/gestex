@@ -3,7 +3,7 @@
 Copyright (C) 2005-2026, LEGI UMR 5519 / CNRS UGA G-INP, Grenoble, France
  http://www.legi.grenoble-inp.fr
 
-Gestex est une application écrite en PHP utilisant une base de données MySQL.
+Gestex est une application écrite en PHP utilisant une base de données MariaDB (MySQL).
 Elle permet de faire inventaire du matériel d'expérimentation d'un lanoratoire
 et d'en gérer les éventuels réservations et prêts.
 

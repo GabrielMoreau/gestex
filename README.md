@@ -2,7 +2,7 @@
 
 ## Inventaire du matériel instrumentation
 
-Ce sont des scripts PHP liés à un gestionnaire de bases de données MySQL.
+Ce sont des scripts PHP liés à un gestionnaire de bases de données MariaDB (MySQL).
 Cet inventaire affiche un listing du matériel instrumentation.
 Il est possible d'avoir un inventaire de matériel autre.
 
