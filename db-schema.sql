@@ -23,7 +23,7 @@ CREATE TABLE `equipment` (
   `max_day` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`equipe`) REFERENCES `equipe` (`id`);
-  FOREIGN KEY (`fournisseur`) REFERENCES `fournisseurs` (`id`);
+  FOREIGN KEY (`fournisseur`) REFERENCES `supplier` (`id`);
   FOREIGN KEY (`responsable`) REFERENCES `users` (`id`);
   INDEX `nom` (`nom`),
   INDEX `barcode` (`barcode`)
@@ -106,11 +106,11 @@ CREATE TABLE `equipe` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `fournisseurs`
+-- Table structure for table `supplier`
 --
 
-DROP TABLE IF EXISTS `fournisseurs`;
-CREATE TABLE `fournisseurs` (
+DROP TABLE IF EXISTS `supplier`;
+CREATE TABLE `supplier` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(50) DEFAULT NULL,
   `adresse` VARCHAR(50) NOT NULL DEFAULT '',

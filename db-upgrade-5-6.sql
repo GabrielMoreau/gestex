@@ -13,6 +13,7 @@ ALTER TABLE `users` MODIFY password VARCHAR(255) NOT NULL;
 --
 
 RENAME TABLE `Listing` TO `equipment`;
+RENAME TABLE `fournisseurs` TO `supplier`;
 
 --
 -- Fix global DB version

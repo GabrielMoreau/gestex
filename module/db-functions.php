@@ -913,7 +913,7 @@ function set_loan_to_returned($pdo, $loan_id) {
  * @return false|array Retourne directement le fournisseur
  */
 function get_supplier_short_by_id($pdo, $id) {
-	$sql = 'SELECT id, nom FROM fournisseurs WHERE id = ?;';
+	$sql = 'SELECT id, nom FROM supplier WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -930,7 +930,7 @@ function get_supplier_short_by_id($pdo, $id) {
  * @return false|array Retourne directement le fournisseur
  */
 function get_supplier_all_by_id($pdo, $id) {
-	$sql = 'SELECT * FROM fournisseurs WHERE id = ?;';
+	$sql = 'SELECT * FROM supplier WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -947,7 +947,7 @@ function get_supplier_all_by_id($pdo, $id) {
  * @return array
  */
 function get_supplier_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM fournisseurs ORDER BY nom;';
+	$sql = 'SELECT id, nom FROM supplier ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$supplier_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -962,7 +962,7 @@ function get_supplier_listshort($pdo) {
  * @return array
  */
 function get_supplier_listall($pdo) {
-	$sql = 'SELECT * FROM fournisseurs ORDER BY nom;';
+	$sql = 'SELECT * FROM supplier ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$supplier_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -982,7 +982,7 @@ function get_supplier_listall($pdo) {
 function get_supplier_find($pdo, $find='') {
 	if (empty($find) or ($find === true))
 		return get_supplier_listall($pdo);
-	$sql = 'SELECT * FROM fournisseurs WHERE nom RLIKE ? OR descr RLIKE ?;';
+	$sql = 'SELECT * FROM supplier WHERE nom RLIKE ? OR descr RLIKE ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($find, $find));
 	$supplier_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -997,7 +997,7 @@ function get_supplier_find($pdo, $find='') {
  * @return array Avec chaine d'erreur au deuxième index
  */
 function set_supplier_new($pdo, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
-	$sql = 'INSERT INTO fournisseurs (nom, adresse, mail, www, tel, fax, contact, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+	$sql = 'INSERT INTO supplier (nom, adresse, mail, www, tel, fax, contact, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description));
 	$err_msg = '';
@@ -1014,7 +1014,7 @@ function set_supplier_new($pdo, $name, $address, $tel, $fax, $email, $www, $cont
  * @return array Avec chaine d'erreur au deuxième index
  */
 function set_supplier_update($pdo, $supplier_id, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
-	$sql = 'UPDATE LOW_PRIORITY fournisseurs  SET nom = ?, adresse = ?, tel = ?, fax = ?, mail = ?, www = ?, contact = ?, descr = ? WHERE id = ?;';
+	$sql = 'UPDATE LOW_PRIORITY supplier  SET nom = ?, adresse = ?, tel = ?, fax = ?, mail = ?, www = ?, contact = ?, descr = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description, $supplier_id));
 	$err_msg = '';
@@ -1029,7 +1029,7 @@ function set_supplier_update($pdo, $supplier_id, $name, $address, $tel, $fax, $e
  * Supprime un fournisseur via son ID
  */
 function del_supplier_by_id($pdo, $id) {
-	$sql = 'DELETE LOW_PRIORITY FROM fournisseurs WHERE id = ? LIMIT 1;';
+	$sql = 'DELETE LOW_PRIORITY FROM supplier WHERE id = ? LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($id));
 	return $iostat;
