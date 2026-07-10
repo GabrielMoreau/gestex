@@ -30,6 +30,7 @@ DROP TABLE IF EXISTS `notice`;
 DROP TABLE IF EXISTS `projet`;
 DROP TABLE IF EXISTS `tache`;
 DROP TABLE IF EXISTS `temps`;
+DROP TABLE IF EXISTS `old_intervention`;
 
 --
 -- Fix global DB version
