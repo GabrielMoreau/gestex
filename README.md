@@ -182,5 +182,3 @@ Actuellement, nous avons recopié dans le projet GestEx uniquement les quelques 
  | loan       | prêt                     |
  | device     | dispositif               |
  | platform   | plateau expérimental     |
-
-

@@ -9,14 +9,14 @@ session_start();
 if(empty($_SESSION['logged_user'])){
 	$log = false;
 }else{
-	$logged_id        = $_SESSION['logged_id'];
-	$logged_user = strtolower($_SESSION['logged_user']);
-	$logged_level     = $_SESSION['logged_level'];
-	$log            = true;
+	$logged_id    = $_SESSION['logged_id'];
+	$logged_user  = strtolower($_SESSION['logged_user']);
+	$logged_level = $_SESSION['logged_level'];
+	$log          = true;
 }
-
-en_tete('Gestion des plateformes exp&eacute;rimentales');
 ?>
+
+<?php en_tete('Gestion des plateformes exp&eacute;rimentales'); ?>
 
 <div class="index">
 <p>GestEx est une application web developp&eacute;e au LEGI (collaboration entre les services technique / instrumentation / informatique)
@@ -29,8 +29,7 @@ destin&eacute;e &agrave; g&eacute;rer l'historique des montages et le suivi de l
 	<li><a href="user-loan.php">Liste de vos emprunts d'appareils</a></li>
 </ul>
 
-<h2>Gestion des projets techniques</h2>
-<p>Il faut &ecirc;tre un utilisateur r&eacute;f&eacute;renc&eacute; pour pouvoir acc&eacute;der &agrave; cette partie.</p>
+<p>Il faut &ecirc;tre un utilisateur r&eacute;f&eacute;renc&eacute; pour pouvoir acc&eacute;der &agrave; certaines parties.</p>
 <ul>
 	<li><a href="user-edit.php">Demander son inscription</a></li>
 </ul>
