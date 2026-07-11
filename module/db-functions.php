@@ -471,14 +471,14 @@ function get_equipment_listall_by_category($pdo, $category_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère le nombre d'équipement par fournisseur
+ * Récupère le nombre d'équipement par catégorie
  * 
  * @return int
  */
 function get_equipment_count_by_category($pdo, $category_id) {
 	$sql = 'SELECT COUNT(*) as count FROM equipment WHERE categorie = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($supplier_id));
+	$stmt->execute(array($category_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch[0]['count'];
 }
