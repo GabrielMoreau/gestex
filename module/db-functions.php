@@ -479,7 +479,7 @@ function get_equipment_listall_by_category($pdo, $category_id) {
 function get_equipment_listall_by_supplier($pdo, $supplier_id) {
 	$sql = 'SELECT * FROM equipment WHERE fournisseur = ? ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($category_id));
+	$stmt->execute(array($supplier_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
