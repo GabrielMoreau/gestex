@@ -38,6 +38,13 @@ if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
 	$title .= ' de l\'&eacute;quipe <i>'.$team_selected['nom'].'</i>';
 }
+
+// recupere le fournisseur
+$supplier_id = param_get('supplier', 0);
+if ($supplier_id > 0) {
+	$supplier_selected = get_supplier_short_by_id($pdo, $supplier_id);
+	$title .= ' du fournisseur <i>'.$supplier_selected['nom'].'</i>';
+}
 ?>
 
 <?php en_tete($title) ?>
@@ -91,6 +98,8 @@ if ($team_id > 0) {
 		$equipment_fetch =  get_equipment_listall_by_team($pdo, $team_id);
 	else if ($category_id != 0 && $team_id == 0)
 		$equipment_fetch = get_equipment_listall_by_category($pdo, $category_id);
+	else if ($supplier_id != 0 && $team_id == 0 && $category_id == 0)
+		$equipment_fetch = get_equipment_listall_by_supplier($pdo, $supplier_id);
 	else
 		$equipment_fetch = get_equipment_listall($pdo);
 

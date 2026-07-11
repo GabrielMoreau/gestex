@@ -471,6 +471,22 @@ function get_equipment_listall_by_category($pdo, $category_id) {
 // ---------------------------------------------------------------------
 
 /**
+ * Récupère tout le contenu des équipements ayant le même 
+ * fournisseur, rangé par nom
+ * 
+ * @return array
+ */
+function get_equipment_listall_by_supplier($pdo, $supplier_id) {
+	$sql = 'SELECT * FROM equipment WHERE fournisseur = ? ORDER BY nom;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($category_id));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch;
+}
+
+// ---------------------------------------------------------------------
+
+/**
  * Recupere l'ID et le nom de tout les equipements rangé par
  * catégorie et nom
  * 
