@@ -477,7 +477,8 @@ function get_equipment_listall_by_category($pdo, $category_id) {
  * @return array
  */
 function get_equipment_listall_by_supplier($pdo, $supplier_id) {
-	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.categorie = c.id WHERE e.fournisseur = ? ORDER BY c.nom, e.nom;';
+	// $sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.categorie = c.id WHERE e.fournisseur = ? ORDER BY c.nom, e.nom;';
+	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.categorie = c.id WHERE e.fournisseur = ? ORDER BY c.nom, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($supplier_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
