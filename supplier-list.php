@@ -95,8 +95,9 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($logged_level >= 3) {
+			$count = get_equipment_count_by_supplier($pdo, $supplier_item['id']);
 			echo '  </td><td>';
-			echo '    <a href="supplier-del.php?id='.$supplier_item['id'].'">'.ICON_TRASH.'</a>';
+			echo '    <a href="supplier-del.php?id='.$supplier_item['id'].'">'.ICON_TRASH.$count.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} // end if
 		echo '</tr>'.PHP_EOL;
