@@ -53,11 +53,11 @@ if ($supplier_id > 0) {
 <table class="sortable">
 	<tbody>
 		<tr>
-			<?php if ($category_id == 0) { ?>
+			<?php if ($category_id == 0): ?>
 			<th>
 				Cat&eacute;gorie
 			</th>
-			<?php } ?>
+			<?php endif; ?>
 			<th>
 				Num&eacute;ro de l'appareil
 			</th>
@@ -70,14 +70,16 @@ if ($supplier_id > 0) {
 			<th class="sorttable_nosort">
 				Caract&eacute;ristiques
 			</th>
-			<?php if ($team_id == 0) { ?>
+			<?php if ($team_id == 0): ?>
 			<th>
 				&Eacute;quipe
 			</th>
-			<?php } ?>
+			<?php endif; ?>
+			<?php if ($supplier_id == 0): ?>
 			<th>
 				Fournisseur
 			</th>
+			<?php endif; ?>
 			<th class="sorttable_nosort">
 				Notice
 			</th>
@@ -140,15 +142,19 @@ if ($supplier_id > 0) {
 			echo '  <td>';
 			// recupere le nom d'equipe
 			$team = get_team_by_id($pdo, $equipment_item['equipe']);
-			echo      '<a href="equipment-list.php?equipe='.$equipment_item['equipe'].'">'.$team['nom'].'</a>';
+			echo '    <a href="equipment-list.php?equipe='.$team['id'].'">'.$team['nom'].'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 
-		echo '  <td>';
-		// recupere le nom du fournisseur
-		$supplier = get_supplier_short_by_id($pdo, $equipment_item['fournisseur']);
-		if ($supplier) {echo $supplier['nom'];}
-		echo '  </td>'.PHP_EOL;
+		if ($supplier_id == 0) {
+			echo '  <td>';
+			// recupere le nom du fournisseur
+			$supplier = get_supplier_short_by_id($pdo, $equipment_item['fournisseur']);
+			if ($supplier) {
+				echo '    <a href="equipment-list.php?supplier='.$supplier['id'].'">'.$supplier['nom'].'</a>';
+			}
+			echo '  </td>'.PHP_EOL;
+		}
 
 		echo '  <td>';
 		// cherche l'existence de la notice
