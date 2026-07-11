@@ -87,19 +87,19 @@ if ($pdo = connect_db()) {
 		echo '  <td>';
 		$supplier_mail = sanitize_mail($supplier_item['mail']);
 		if (!empty($supplier_mail))
-			echo '    <a href="mailto:'.$supplier_mail.'">'.ICON_MAIL.'</a>';
-		echo '  </td>'.PHP_EOL;
+			echo '<a href="mailto:'.$supplier_mail.'">'.ICON_MAIL.'</a>';
+		echo '</td>'.PHP_EOL;
 		echo '  <td>';
 		$url = sanitize_url($supplier_item['www']);
 		if (!empty($url))
-			echo '    <a href="'.$url.'">'.ICON_URL.'</a>';
-		echo '  </td>'.PHP_EOL;
+			echo '<a href="'.$url.'">'.ICON_URL.'</a>';
+		echo '</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['contact'].'</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['descr'].'</td>'.PHP_EOL;
 		if ($logged_level >= 2) {
 			echo '  </td><td>';
-			echo '    <a href="supplier-edit.php?id='.$supplier_item['id'].'">'.ICON_EDIT.'</a>';
-			echo '  </td>'.PHP_EOL;
+			echo '<a href="supplier-edit.php?id='.$supplier_item['id'].'">'.ICON_EDIT.'</a>';
+			echo '</td>'.PHP_EOL;
 		} //end if
 		if ($logged_level >= 3) {
 			echo '  </td><td>';
