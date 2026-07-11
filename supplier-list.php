@@ -65,38 +65,38 @@ en_tete('Liste de tous les fournisseurs', $find);
 if ($pdo = connect_db()) {
 	$supplier_fetch = get_supplier_find($pdo, $find);
 	$num_line = 1;
-	foreach ($supplier_fetch as $fournisseur) {
+	foreach ($supplier_fetch as $supplier_item) {
 		$class = 'impair';
 		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
-		if ($fournisseur['id'] == $id_highlight)
+		if ($supplier_item['id'] == $id_highlight)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
-		echo '  <td><a name="item'.$fournisseur['id'].'"></a>'.$fournisseur['nom'].'</td>'.PHP_EOL;
-		echo '  <td>'.$fournisseur['adresse'].'</td>'.PHP_EOL;
-		echo '  <td>'.$fournisseur['tel'].'</td>'.PHP_EOL;
-		echo '  <td>'.$fournisseur['fax'].'</td>'.PHP_EOL;
+		echo '  <td><a name="item'.$supplier_item['id'].'</a><a href=equipment-list.php?supplier='.$supplier_item['id'].'">'.$supplier_item['nom'].'</a></td>'.PHP_EOL;
+		echo '  <td>'.$supplier_item['adresse'].'</td>'.PHP_EOL;
+		echo '  <td>'.$supplier_item['tel'].'</td>'.PHP_EOL;
+		echo '  <td>'.$supplier_item['fax'].'</td>'.PHP_EOL;
 		echo '  <td>';
-		$supplier_mail = sanitize_mail($fournisseur['mail']);
+		$supplier_mail = sanitize_mail($supplier_item['mail']);
 		if (!empty($supplier_mail))
 			echo '    <a href="mailto:'.$supplier_mail.'">'.ICON_MAIL.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		$url = sanitize_url($fournisseur['www']);
+		$url = sanitize_url($supplier_item['www']);
 		if (!empty($url))
 			echo '    <a href="'.$url.'">'.ICON_URL.'</a>';
 		echo '  </td>'.PHP_EOL;
-		echo '  <td>'.$fournisseur['contact'].'</td>'.PHP_EOL;
-		echo '  <td>'.$fournisseur['descr'].'</td>'.PHP_EOL;
+		echo '  <td>'.$supplier_item['contact'].'</td>'.PHP_EOL;
+		echo '  <td>'.$supplier_item['descr'].'</td>'.PHP_EOL;
 		if ($logged_level >= 2) {
 			echo '  </td><td>';
-			echo '    <a href="supplier-edit.php?id='.$fournisseur['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="supplier-edit.php?id='.$supplier_item['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($logged_level >= 3) {
 			echo '  </td><td>';
-			echo '    <a href="supplier-del.php?id='.$fournisseur['id'].'">'.ICON_TRASH.'</a>';
+			echo '    <a href="supplier-del.php?id='.$supplier_item['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} // end if
 		echo '</tr>'.PHP_EOL;
