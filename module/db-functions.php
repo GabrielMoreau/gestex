@@ -412,7 +412,7 @@ function get_equipment_all_by_id($pdo, $id) {
  */
 function get_equipment_listall($pdo) {
 	// $sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.categorie = c.id ORDER BY c.nom, e.nom;';
-	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEF JOIN category AS c ON e.categorie = c.id ORDER BY c.nom, e.nom;';
+	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.categorie = c.id ORDER BY c.nom, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
