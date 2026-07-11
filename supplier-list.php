@@ -74,13 +74,11 @@ if ($pdo = connect_db()) {
 		if ($supplier_item['id'] == $id_highlight)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
-		echo '  <td><a name="item'.$supplier_item['id'].'"</a>';
 		if ($count === 0) {
-			echo $supplier_item['nom'];
+			echo '  <td><a name="item'.$supplier_item['id'].'" </a>'.$supplier_item['nom'].'</td>'.PHP_EOL;
 		} else {
-			echo '<a href="equipment-list.php?supplier='.$supplier_item['id'].'">'.$supplier_item['nom'].'</a>';
+			echo '  <td><a name="item'.$supplier_item['id'].'"</a><a href="equipment-list.php?supplier='.$supplier_item['id'].'">'.$supplier_item['nom'].'</a></td>'.PHP_EOL;
 		}
-		echo '</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['adresse'].'</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['tel'].'</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['fax'].'</td>'.PHP_EOL;
