@@ -39,24 +39,33 @@ en_tete('Liste des appareils par cat&eacute;gorie');
 if ($pdo = connect_db()) {
 	$category_fetch = get_category_listshort($pdo);
 	$num_line = 1;
-	foreach ($category_fetch as $category) {
+	foreach ($category_fetch as $category_item) {
+		$count = get_equipment_count_by_category($pdo, $category_item['id']);
 		$class = 'impair';
 		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
-		if ($category['id'] == $id_highlight)
+		if ($category_item['id'] == $id_highlight)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		echo '  <td>';
-		echo '    <a href="equipment-list.php?categorie='.$category['id'].'" name="item'.$category['id'].'">'.$category['nom'].'</a>';
-		echo '  </td>'.PHP_EOL;
+			if ($count === 0) {
+				echo '<a name="item'.$category_item['id'].'">'.$category_item['nom'].'</a>';
+			} else {
+				echo '<a href="equipment-list.php?categorie='.$category_item['id'].'" name="item'.$category_item['id'].'">'.$category_item['nom'].'</a>';
+			}
+		echo '</td>'.PHP_EOL;
 		if ($logged_level >= 3) {
 			echo '  <td>';
-			echo '    <a href="category-edit.php?id='.$category['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="category-edit.php?id='.$category_item['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
-			echo '    <a href="category-del.php?id=',$category['id'],'">'.ICON_TRASH.'</a>';
-			echo '  </td>'.PHP_EOL;
+			if ($count === 0) {
+				echo '<a href="category-del.php?id='.$category_item['id'].'">'.ICON_TRASH.'</a>';
+			} else {
+				echo $count;
+			}
+			echo '</td>'.PHP_EOL;
 		}
 		echo '</tr>'.PHP_EOL;
 	}
