@@ -59,7 +59,7 @@ if ($supplier_id > 0) {
 			</th>
 			<?php endif; ?>
 			<th>
-				Num&eacute;ro de l'appareil
+				Id
 			</th>
 			<th>
 				Nom
@@ -180,13 +180,12 @@ if ($supplier_id > 0) {
 				if ($logged_level >= 3) {echo '    <a href="loan-del.php?id='.$loan['id'].'">';}
 				echo ICON_LOAN_RETURNED;
 				if ($logged_level >= 3) {echo '</a>';}
-				echo '  </td>';
 			} else {
 				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=loan">';}
 				echo ICON_LOAN_BORROWED;
 				if ($logged_level >= 3) {echo '</a>';}
-				echo '  </td>';
 			}
+			echo '  </td>';
 			echo '  <td>';
 			if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=booking">';}
 			echo ICON_LOAN_RESERVED;
