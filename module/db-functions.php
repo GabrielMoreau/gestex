@@ -490,7 +490,7 @@ function get_equipment_listall_by_supplier($pdo, $supplier_id) {
  * @return int
  */
 function get_equipment_count_by_supplier($pdo, $supplier_id) {
-	$sql = 'SELECT COUNT(*) as count FROM equipment WHERE supplier = ?;';
+	$sql = 'SELECT COUNT(*) as count FROM equipment WHERE fournisseur = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($supplier_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
