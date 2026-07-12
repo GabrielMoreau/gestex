@@ -119,7 +119,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				&Eacute;quipe
 			</th>
 			<td>
-				<a href="equipment-list.php?team_id=<?php echo $equipment_selected['team_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $team['nom'] ?></a>
+				<a href="equipment-list.php?team_id=<?php echo $equipment_selected['team_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $team['name'] ?></a>
 			</td>
 		</tr>
 
