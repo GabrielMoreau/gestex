@@ -23,7 +23,7 @@ $pdo = connect_db_or_alert();
 $team_id = param_get('team_id', 0);
 if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
-	$title        .= ' de l\'&eacute;quipe <i>'.$team_selected['nom'].'</i>';
+	$title        .= ' de l\'&eacute;quipe <i>'.$team_selected['name'].'</i>';
 	$loan_fetch = get_loan_listall_by_team($pdo, $team_id);
 } else
 	$loan_fetch = get_loan_listall($pdo);

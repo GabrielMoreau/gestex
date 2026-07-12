@@ -36,7 +36,7 @@ if ($category_id > 0) {
 $team_id = param_get('team_id', 0);
 if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
-	$title .= ' de l\'&eacute;quipe <i>'.$team_selected['nom'].'</i>';
+	$title .= ' de l\'&eacute;quipe <i>'.$team_selected['name'].'</i>';
 }
 
 // recupere le fournisseur
@@ -140,7 +140,7 @@ if ($supplier_id > 0) {
 			echo '  <td>';
 			// recupere le nom d'equipe
 			$team = get_team_by_id($pdo, $equipment_item['team_id']);
-			echo '    <a href="equipment-list.php?team_id='.$team['id'].'">'.$team['nom'].'</a>';
+			echo '    <a href="equipment-list.php?team_id='.$team['id'].'">'.$team['name'].'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 

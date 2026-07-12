@@ -60,7 +60,7 @@ if ($pdo = connect_db()) {
 			// recupere le nom d'equipe
 			$team = get_team_by_id($pdo, $loan_current['team_id']);
 			echo '  <td>';
-			echo      $team['nom'];
+			echo      $team['name'];
 			echo '  </td>'.PHP_EOL;
 
 			echo '  <td>';
