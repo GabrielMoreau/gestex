@@ -1092,7 +1092,7 @@ function del_supplier_by_id($pdo, $id) {
  * @return array Retourne directement l'équipe
  */
 function get_team_by_id($pdo, $id) {
-	$sql = 'SELECT id, nom FROM team WHERE id = ?;';
+	$sql = 'SELECT id, name FROM team WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1126,7 +1126,7 @@ function get_team_all_by_id($pdo, $id) {
  * @return array
  */
 function get_team_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM team ORDER BY nom;';
+	$sql = 'SELECT id, name FROM team ORDER BY name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$team_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1136,12 +1136,12 @@ function get_team_listshort($pdo) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu de toutes les équipe par ordre de nom croissant
+ * Récupère tout le contenu de toutes les équipes par ordre de nom croissant
  * 
  * @return array
  */
 function get_team_listall($pdo) {
-	$sql = 'SELECT * FROM team ORDER BY nom;';
+	$sql = 'SELECT * FROM team ORDER BY name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$team_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1157,7 +1157,7 @@ function get_team_listall($pdo) {
  * @return array
  */
 function get_team_with_appareil($pdo) {
-	$sql = 'SELECT DISTINCT team.id, team.nom FROM team INNER JOIN equipment ON team.id = equipment.team_id ORDER BY team.nom;';
+	$sql = 'SELECT DISTINCT team.id, team.name FROM team INNER JOIN equipment ON team.id = equipment.team_id ORDER BY team.name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$team_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1186,10 +1186,10 @@ function get_team_count($pdo) {
  * 
  * @return array Avec potentiellement une chaine d'erreur
  */
-function set_team_new($pdo, $name, $description, $account, $manager) {
-	$sql = 'INSERT INTO team (nom, descr, compte, chef) VALUES (?,  ?, ?, ?);';
+function set_team_new($pdo, $name, $description, $accounting, $manager_id) {
+	$sql = 'INSERT INTO team (name, description, accounting, manager_id) VALUES (?,  ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($name, $description, $account, $manager));
+	$iostat = $stmt->execute(array($name, $description, $accounting, $manager_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
@@ -1203,10 +1203,10 @@ function set_team_new($pdo, $name, $description, $account, $manager) {
  * 
  * @return array Avec potentiellement une chaine d'erreur
  */
-function set_team_update($pdo, $team_id, $name, $description, $account, $manager) {
-	$sql = 'UPDATE LOW_PRIORITY team SET nom = ?, descr = ?, compte = ?, chef = ? WHERE id = ?;';
+function set_team_update($pdo, $team_id, $name, $description, $accounting, $manager_id) {
+	$sql = 'UPDATE LOW_PRIORITY team SET name = ?, description = ?, accounting = ?, manager_id = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($name, $description, $account, $manager, $team_id));
+	$iostat = $stmt->execute(array($name, $description, $accounting, $manager_id, $team_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
