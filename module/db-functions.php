@@ -1311,7 +1311,7 @@ function get_user_listall_by_logged_level($pdo, $logged_level) {
  * @return array
  */
 function get_user_listshort_with_right($pdo, $level_min=1, $bonus_id=0) {
-	$sql = 'SELECT id, nom, firstname FROM user WHERE (valid = 1 and level >= ?) or id = ? ORDER BY familyname, firstname;';
+	$sql = 'SELECT id, familyname, firstname FROM user WHERE (valid = 1 and level >= ?) or id = ? ORDER BY familyname, firstname;';
 	$stmt = $pdo->prepare($sql);
     $stmt->execute(array($level_min, $bonus_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
