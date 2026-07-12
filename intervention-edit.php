@@ -42,7 +42,7 @@ if ($mode == 'Ajouter') {
 <table>
 	<tbody>
 		<tr>
-			<th>Equipement</th>
+			<th>Équipement</th>
 			<td><b><?php echo get_equipment_all_by_id($pdo, $equipment_id)["nom"] ?></b></td>
 		</tr>
 		<tr>
@@ -54,13 +54,13 @@ if ($mode == 'Ajouter') {
 		<tr>
 			<th>Société</th>
 			<?php // recupere la liste des fournisseurs
-			$company_fetch = get_supplier_listshort($pdo);
+			$supplier_fetch = get_supplier_listshort($pdo);
 			?>
 			<td>
 				<select name="supplier_id">
-					<?php foreach ($company_fetch as $company_current): ?>
-					<option value="<?= $company_current['id'] ?>"
-						<?= $company_current['nom'] ?>
+					<?php foreach ($supplier_fetch as $supplier_current): ?>
+					<option value="<?= $supplier_current['id'] ?>"
+						<?= $supplier_current['nom'] ?>
 					</option>
 					<?php endforeach; ?>
 				</select>
@@ -72,12 +72,12 @@ if ($mode == 'Ajouter') {
 				Recipe (facultatif) &nbsp; <?php echo ICON_SEE_DOC ?>
 			</th>
 			<td>
-				<?php if ($mode == 'Modifier' && $datasheet_count > 0): ?>
+				<?php if ($mode == 'Modifier' && $recipe_count > 0): ?>
 				<ul>
-					<?php foreach ($datasheet_fetch as $datasheet_current): ?>
+					<?php foreach ($recipe_fetch as $recipe_current): ?>
 					<li>
-						<a href="<?= $datasheet_path . '/' . $datasheet_current['pathname'] ?>" target="_top">
-							<?= $datasheet_current['description'] ?> (<?= $datasheet_current['pathname'] ?>)
+						<a href="<?= $recipe_path . '/' . $recipe_current['pathname'] ?>" target="_top">
+							<?= $recipe_current['description'] ?> (<?= $recipe_current['pathname'] ?>)
 						</a>
 					</li>
 					<?php endforeach; ?>
@@ -89,7 +89,7 @@ if ($mode == 'Ajouter') {
 		<tr>
 			<th>Date</th>
 			<td>
-				<input type="date" name="date" size="10" maxlength="10" value="<?= param_post_key('date', $loan_selected, date('Y-m-d', time())) ?>" >
+				<input type="date" name="date" size="10" maxlength="10" value="<?= param_post_key('date', $equipment_selected, date('Y-m-d', time())) ?>" >
 			</td>
 		</tr>
 		<tr>
