@@ -106,9 +106,9 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 			<a href="category-list.php"><b>Cat&eacute;gories</b></a>
 			<a href="equipment-list.php"><b>Global</b></a>
 			<a href="equipment-list.php?loanable=yes"><b>Empruntable</b></a>
-			<?php foreach (get_team_with_appareil($pdo) as $team): ?>
-			<a href="equipment-list.php?team_id=<?= $team['id'] ?>">
-				<b><?= htmlspecialchars($team['nom']) ?></b>
+			<?php foreach (get_team_with_appareil($pdo) as $team_current): ?>
+			<a href="equipment-list.php?team_id=<?= $team_current['id'] ?>">
+				<b><?= htmlspecialchars($team_current['name']) ?></b>
 			</a>
 			<?php endforeach; ?>
 		</div>
@@ -240,7 +240,7 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 			<h4 style="background-color: var(--color-alert);">Dernier retour N°<?php echo $equipment_loan_reserved[0]["id"] ?></h4>
 			<?php
 			echo $equipment_loan_reserved[0]['emprunt'].'&nbsp;&#8594;&nbsp;'.$equipment_loan_reserved[0]['retour'].PHP_EOL;
-			echo '<br>'.get_team_by_id($pdo, $equipment_loan_reserved[0]['equipe'])["nom"].PHP_EOL;
+			echo '<br>'.get_team_by_id($pdo, $equipment_loan_reserved[0]['team_id'])["name"].PHP_EOL;
 			echo '<br>'.$equipment_loan_reserved[0]['commentaire'].PHP_EOL;
 			?>
 		</div>
@@ -276,7 +276,7 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 			echo '</h4>'.PHP_EOL;
 			echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
 
-			echo '<br>'.get_team_by_id($pdo, $loan_current['equipe'])['nom'].PHP_EOL;
+			echo '<br>'.get_team_by_id($pdo, $loan_current['team_id'])['name'].PHP_EOL;
 			echo '<br>'.$loan_current['commentaire'].PHP_EOL;
 			echo '</div>'.PHP_EOL;
 		}

@@ -81,7 +81,7 @@ if ($param_mode == "booking") {
 		// CHECK DATE OVERLAP
 		$loan_dates = get_loans_interval_by_id($pdo, $equipment_id, $date_emprunt, $date_retour);
 		if (!empty($loan_dates) || $loan_dates != false) {
-			$action = 'loan-edit.php?equipment='.$equipment_id.'&mode='.$param_mode;
+			$action = 'loan-edit.php?equipment_id='.$equipment_id.'&mode='.$param_mode;
 			$title = 'Impossible de réserver sur la même plage qu’une autre réservation';
 			$message_text = $title;
 			$transmit_post = true;
@@ -96,7 +96,7 @@ if ($param_mode == "booking") {
 		// RESERVATION IMPOSSIBLE
 		$title        = 'Impossible de réserver le jour même ou avant';
 		$message_text = $title;
-		$action       = 'loan-edit.php?equipment='.$equipment_id.'&mode='.$param_mode;
+		$action       = 'loan-edit.php?equipment_id='.$equipment_id.'&mode='.$param_mode;
 		$transmit_post = true;
 		include_once('include/warning-box.php');
 		exit();
@@ -162,7 +162,7 @@ if ($param_mode == "booking") {
 		}
 		if ($check) {
 			$title         = 'L’équipement est déjà en emprunt';
-			$action        = 'loan-edit.php?equipment='.$equipment_id.'&mode=booking';
+			$action        = 'loan-edit.php?equipment_id='.$equipment_id.'&mode=booking';
 			$erreur        = 'L’équipement est déjà en emprunt';
 			$message_text  = $erreur;
 			$transmit_post = true;
