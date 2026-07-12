@@ -81,7 +81,7 @@ if ($pdo = connect_db()) {
 
 		echo '  <td>';
 		if (get_loan_count_by_team($pdo, $team_current['id']) > 0)
-			echo '<a href="loan-list.php?team='.$team_current['id'].'">'.ICON_LOAN_RETURNED.'</a>';
+			echo '<a href="loan-list.php?team_id='.$team_current['id'].'">'.ICON_LOAN_RETURNED.'</a>';
 		echo '  </td>'.PHP_EOL;
 
 		echo '  <td>';

@@ -52,7 +52,7 @@ if ($pdo = connect_db()) {
 			if ($count === 0) {
 				echo '<a name="item'.$category_item['id'].'">'.$category_item['name'].'</a>';
 			} else {
-				echo '<a href="equipment-list.php?categorie='.$category_item['id'].'" name="item'.$category_item['id'].'">'.$category_item['name'].'</a>';
+				echo '<a href="equipment-list.php?category_id='.$category_item['id'].'" name="item'.$category_item['id'].'">'.$category_item['name'].'</a>';
 			}
 		echo '</td>'.PHP_EOL;
 		if ($logged_level >= 3) {

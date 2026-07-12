@@ -107,7 +107,7 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 			<a href="equipment-list.php"><b>Global</b></a>
 			<a href="equipment-list.php?loanable=yes"><b>Empruntable</b></a>
 			<?php foreach (get_team_with_appareil($pdo) as $team): ?>
-			<a href="equipment-list.php?equipe=<?= $team['id'] ?>">
+			<a href="equipment-list.php?team_id=<?= $team['id'] ?>">
 				<b><?= htmlspecialchars($team['nom']) ?></b>
 			</a>
 			<?php endforeach; ?>

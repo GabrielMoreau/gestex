@@ -6,10 +6,10 @@
 DROP TABLE IF EXISTS `team`;
 CREATE TABLE `team` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `nom` TEXT,
-  `descr` VARCHAR(255) NOT NULL DEFAULT '',
-  `compte` INT(11) NOT NULL DEFAULT 0,
-  `chef` INT(11) NOT NULL DEFAULT 0,
+  `name` TEXT,
+  `description` VARCHAR(255) NOT NULL DEFAULT '',
+  `accounting` INT(11) NOT NULL DEFAULT 0,
+  `manager_id` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -191,7 +191,7 @@ CREATE TABLE `version` (
 -- Special after foreign key
 --
 
-ALTER TABLE `team` ADD CONSTRAINT `fk_team_chief` FOREIGN KEY (`chef`) REFERENCES `users` (`id`);
+ALTER TABLE `team` ADD CONSTRAINT `fk_team_manager` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`);
 
 --
 -- Fix global DB version

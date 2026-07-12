@@ -47,12 +47,12 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 <table>
 	<tbody>
 		<th colspan="2">
-			<span class="option-right"><a href="equipment-list.php?categorie=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo ICON_LIST ?></a></span>
+			<span class="option-right"><a href="equipment-list.php?category_id=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo ICON_LIST ?></a></span>
 			<?php
 				if ($logged_level >= 3) {
 					echo '<span class="option-right"><a href="equipment-del.php?id='.$id_equipment.'">'.ICON_TRASH.'</a>&nbsp;</span>'.PHP_EOL;
 					echo '<span class="option-right"><a href="equipment-edit.php?id='.$id_equipment.'">'.ICON_EDIT.'</a>&nbsp;</span>'.PHP_EOL;
-					echo '<span class="option-right"><a href="intervention-edit.php?equipment='.$id_equipment.'">'.ICON_INTERVENTION.'</a>&nbsp;</span>'.PHP_EOL;
+					echo '<span class="option-right"><a href="intervention-edit.php?equipment_id='.$id_equipment.'">'.ICON_INTERVENTION.'</a>&nbsp;</span>'.PHP_EOL;
 				}
 			?>
 		</th>
@@ -119,7 +119,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				&Eacute;quipe
 			</th>
 			<td>
-				<a href="equipment-list.php?equipe=<?php echo $equipment_selected['team_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $team['nom'] ?></a>
+				<a href="equipment-list.php?team_id=<?php echo $equipment_selected['team_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $team['nom'] ?></a>
 			</td>
 		</tr>
 
@@ -128,7 +128,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				Cat&eacute;gorie
 			</th>
 			<td>
-				<a href="equipment-list.php?categorie=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $category['name'] ?></a>
+				<a href="equipment-list.php?category_id=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $category['name'] ?></a>
 			</td>
 		</tr>
 
@@ -212,7 +212,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 
 					if ($is_borrowed) {
 						echo '<span class="option-right">';
-						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'&mode=booking">';}
+						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment_id='.$equipment_selected['id'].'&mode=booking">';}
 						echo ICON_LOAN_RESERVED;
 						if ($logged_level >= 3) {echo '</a>';}
 						echo '</span>'.PHP_EOL;
@@ -220,15 +220,9 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 						loan_list_container($pdo, $loan, $equipment_loan_reserved, $loan_borrow, $logged_level);
 					} else {
 						echo '<span class="option-right">';
-						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'&mode=loan">';}
+						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment_id='.$equipment_selected['id'].'&mode=loan">';}
 						echo ICON_LOAN_BORROWED;
 						if ($logged_level >= 3) {echo '</a>';}
-
-/*
-						if ($logged_level >= 3) {echo '<a href="loan-edit.php?equipment='.$equipment_selected['id'].'&mode=booking">';}
-						echo ICON_LOAN_RESERVED;
-						if ($logged_level >= 3) {echo '</a>';}
-*/
 
 						echo '</span>'.PHP_EOL;
 						loan_list_container($pdo, $loan, $equipment_loan_reserved, $loan_borrow, $logged_level);

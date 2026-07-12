@@ -83,7 +83,7 @@ if ($team_id > 0) {
 			?>
 
 			<td>
-				<a href="equipment-list.php?equipe=<?= $loan_current['equipe'] ?>">
+				<a href="equipment-list.php?team_id=<?= $loan_current['equipe'] ?>">
 					<?= $team_selected['nom'] ?>
 				</a>
 			</td>
@@ -95,7 +95,7 @@ if ($team_id > 0) {
 
 			<?php if ($logged_level >= 3): ?>
 			<td>
-				<a href="loan-edit.php?equipment=<?= $loan_current['nom'] ?>&mode=booking">
+				<a href="loan-edit.php?equipment_id=<?= $loan_current['nom'] ?>&mode=booking">
 					<?= ICON_LOAN_RESERVED ?>
 				</a>
 			</td>
