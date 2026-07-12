@@ -68,7 +68,7 @@ if (!empty($erreur)) {
 	$title         = 'Erreur sur l’emprunt';
 	$action        = 'loan-edit.php?id='.$loan_id.'&mode=edit'; # à fixer
 	if ($param_mode == 'booking')
-		$action    = 'loan-edit.php?equipment='.$equipment_id.'&mode='.$param_mode;
+		$action    = 'loan-edit.php?equipment_id='.$equipment_id.'&mode='.$param_mode;
 	$message_text  = $erreur;
 	$transmit_post = true;
 	include_once('include/warning-box.php');

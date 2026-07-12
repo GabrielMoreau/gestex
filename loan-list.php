@@ -73,17 +73,17 @@ if ($team_id > 0) {
 			<?php $num_line++; ?>
 
 			<td>
-				<a href="equipment-view.php?id=<?= $loan_current['nom'] ?>">
+				<a href="equipment-view.php?id=<?= $loan_current['equipment_id'] ?>">
 					<?= $loan_current['equipment_name'] ?>
 				</a>
 			</td>
 
 			<?php
-			$team_selected = get_team_by_id($pdo, $loan_current['equipe']);
+			$team_selected = get_team_by_id($pdo, $loan_current['team_id']);
 			?>
 
 			<td>
-				<a href="equipment-list.php?team_id=<?= $loan_current['equipe'] ?>">
+				<a href="equipment-list.php?team_id=<?= $loan_current['team_id'] ?>">
 					<?= $team_selected['nom'] ?>
 				</a>
 			</td>
@@ -95,7 +95,7 @@ if ($team_id > 0) {
 
 			<?php if ($logged_level >= 3): ?>
 			<td>
-				<a href="loan-edit.php?equipment_id=<?= $loan_current['nom'] ?>&mode=booking">
+				<a href="loan-edit.php?equipment_id=<?= $loan_current['equipment_id'] ?>&mode=booking">
 					<?= ICON_LOAN_RESERVED ?>
 				</a>
 			</td>

@@ -48,7 +48,7 @@ $pdo = connect_db_or_alert();
 $loan_selected = [];
 if ($mode == 'Modifier') {
 	$loan_selected = get_loan_all_by_id($pdo, $loan_id);
-	$equipment_id = $loan_selected['nom'];
+	$equipment_id = $loan_selected['equipment_id'];
 }
 $num_line = 0;
 $equipment_selected = get_equipment_listshort_by_id($pdo, $equipment_id);
