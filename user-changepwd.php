@@ -64,7 +64,7 @@ if (isset($passwd1) && isset($passwd2)){
 	}
 } // end if isset
 
-en_tete('Changement de mot de passe pour <i>'.$user_selected['nom'].' '.$user_selected['prenom'].'</i>');
+en_tete('Changement de mot de passe pour <i>'.$user_selected['familyname'].' '.$user_selected['firstname'].'</i>');
 
 if (!empty($_GET['id'])) {
 ?>

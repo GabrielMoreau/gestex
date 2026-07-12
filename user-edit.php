@@ -79,7 +79,7 @@ if ($mode == 'Ajouter') {
 				Nom de famille *
 			</th>
 			<td>
-				<input type="text" name="nom" size="30" maxlength="30" value="<?= param_post_key('nom', $user_selected) ?>" placeholder="Nom de famille *">
+				<input type="text" name="familyname" size="30" maxlength="30" value="<?= param_post_key('familyname', $user_selected) ?>" placeholder="Nom de famille *">
 			</td>
 		</tr>
 		<tr>
@@ -87,7 +87,7 @@ if ($mode == 'Ajouter') {
 				Pr&eacute;nom
 			</th>
 			<td>
-				<input type="text" name="prenom" size="30" maxlength="30" value="<?= param_post_key('prenom', $user_selected) ?>" placeholder="Pr&eacute;nom">
+				<input type="text" name="firstname" size="30" maxlength="30" value="<?= param_post_key('firstname', $user_selected) ?>" placeholder="Pr&eacute;nom">
 			</td>
 		</tr>
 		<tr>

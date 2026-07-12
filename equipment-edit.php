@@ -160,7 +160,7 @@ $team_manager_id = param_post_key('manager_id', $equipment_selected, 0);
 					if ($mode == 'Modifier' && $user_current['id'] == $team_manager_id) {
 						echo ' selected';
 					}
-					echo '>'.$user_current['nom'].' '.$user_current['prenom'].'</option>';
+					echo '>'.$user_current['familyname'].' '.$user_current['firstname'].'</option>';
 				} // end foreach
 				?>
 				</select>

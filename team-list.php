@@ -76,7 +76,7 @@ if ($pdo = connect_db()) {
 		$manager = get_user_short_by_id($pdo, $team_current['manager_id']);
 		echo '  <td style="vertical-align: top;">';
 		if ($manager)
-			echo $manager['nom'].' '.$manager['prenom'];
+			echo $manager['familyname'].' '.$manager['firstname'];
 		echo '  </td>'.PHP_EOL;
 
 		echo '  <td>';

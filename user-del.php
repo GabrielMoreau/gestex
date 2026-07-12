@@ -19,7 +19,7 @@ if ($user_id == 0 || $valid == 'cancel')
 
 $pdo = connect_db_or_alert();
 $user_selected = get_user_short_by_id($pdo, $user_id);
-$user_fullname = $user_selected['prenom'].' '.$user_selected['nom'];
+$user_fullname = $user_selected['firstname'].' '.$user_selected['familyname'];
 
 if ($valid == 'yes') {
 	// on change le status de cet user

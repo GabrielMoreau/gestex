@@ -68,14 +68,14 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 		}
 		echo '  <td>';
-		echo '    <a name="item'.$user_current['id'].'"></a>'.$user_current['prenom'];
+		echo '    <a name="item'.$user_current['id'].'"></a>'.$user_current['firstname'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		// l'utilisateur a la possiblite de modifier ses coordonnees
 		if ($logged_id == $user_current['id'] || $logged_level >= 3)
-			echo '    <a href="user-edit.php?id='.$user_current['id'].'">'.$user_current['nom'].'</a>';
+			echo '    <a href="user-edit.php?id='.$user_current['id'].'">'.$user_current['familyname'].'</a>';
 		else
-			echo      $user_current['nom'];
+			echo      $user_current['familyname'];
 
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
@@ -88,9 +88,9 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		// recupere la liste de equipes
-		$team = get_team_by_id($pdo, $user_current['equipe']);
+		$team = get_team_by_id($pdo, $user_current['team_id']);
 		if ($team)
-			echo $team['name'].' ('.$user_current['equipe'].')';
+			echo $team['name'].' ('.$user_current['team_id'].')';
 		echo '  </td>'.PHP_EOL;
 		if ($logged_level >= 3) {
 			echo '  <td>';

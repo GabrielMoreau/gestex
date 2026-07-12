@@ -110,7 +110,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				Responsable
 			</th>
 			<td>
-				<a href="user-list.php?highlight=<?php echo $equipment_selected['manager_id'] ?>#item<?php echo $equipment_selected['manager_id'] ?>"><?php echo $manager['nom'].' '.$manager['prenom'] ?></a>
+				<a href="user-list.php?highlight=<?php echo $equipment_selected['manager_id'] ?>#item<?php echo $equipment_selected['manager_id'] ?>"><?php echo $manager['familyname'].' '.$manager['firstname'] ?></a>
 			</td>
 		</tr>
 

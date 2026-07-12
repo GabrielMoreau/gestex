@@ -21,18 +21,18 @@ $flag_new = true;
 if ($user_id > 0)
 	$flag_new = false;
 
-$loggin    = param_post('loggin');    // * new only
-$password  = param_post_password('password');  // * new only
-$password2 = param_post_password('password2'); // * new only
-$nom       = param_post('nom');       // *
-$level     = param_post('level');     // *
-$theme     = param_post('theme', 'clair');     // *
-$mail      = param_post('email');     // *
-$prenom    = param_post('prenom');
-$phone     = param_post('tel', 'Na');
+$loggin     = param_post('loggin');    // * new only
+$password   = param_post_password('password');  // * new only
+$password2  = param_post_password('password2'); // * new only
+$familyname = param_post('familyname');       // *
+$level      = param_post('level');     // *
+$theme      = param_post('theme', 'clair');     // *
+$mail       = param_post('email');     // *
+$firstname  = param_post('firstname');
+$phone      = param_post('tel', 'Na');
 $team_id    = param_post('team_id');
 
-if (empty($nom))
+if (empty($familyname))
 	$erreur = 'Nom de famille non pr&eacute;cis&eacute;';
 if (empty($mail))
 	$erreur = 'Adresse de courriel non pr&eacute;cis&eacute;';
@@ -73,7 +73,7 @@ if ($flag_new) { // new
 	level_or_alert(3, 'Validation d\'un nouvel utilisateur');
 
 	$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
-	list($user_id, $err_msg) = set_user_new($pdo, $nom, $prenom, $loggin, $new_pwhash, $mail, $level, $phone, $team_id, $theme);
+	list($user_id, $err_msg) = set_user_new($pdo, $familyname, $firstname, $loggin, $new_pwhash, $mail, $level, $phone, $team_id, $theme);
 
 	if ($err_msg != '') {
 		$title        = 'Erreur utilisateur';
@@ -85,13 +85,13 @@ if ($flag_new) { // new
 
 	// inscription enregistree mais pas encore validee !
 	// envoi d'un courriel a l'admin
-	// $texte = 'Inscription de '.$prenom.' '.$nom;
-	// mail(GESTEX_ADMIN_MAIL, '[GestEx] ajout utilisateur - '.$nom.'  '.$prenom, $texte);
+	// $texte = 'Inscription de '.$firstname.' '.$familyname;
+	// mail(GESTEX_ADMIN_MAIL, '[GestEx] ajout utilisateur - '.$familyname.'  '.$firstname, $texte);
 
 	$title        = 'Ajout utilisateur';
 	$action       = 'user-list.php?highlight='.$user_id;
 	$highlight    = $user_id;
-	$message_text = 'Ajout de l\'utilisateur '.$nom.' '.$prenom.' valid&eacute;e';
+	$message_text = 'Ajout de l\'utilisateur '.$familyname.' '.$firstname.' valid&eacute;e';
 	include_once('include/message-box.php');
 	exit();
 }
@@ -104,17 +104,17 @@ if ($level != $user_selected['level'] && $logged_level < 3)
 	$level = $user_selected['level'];
 
 $modif = false;
-if (   ($nom     != $user_selected['nom'])
-	|| ($prenom  != $user_selected['prenom'])
-	|| ($mail    != $user_selected['email'])
-	|| ($level   != $user_selected['level'])
-	|| ($phone   != $user_selected['tel'])
-	|| ($team_id != $user_selected['team_id'])
-	|| ($theme   != $user_selected['theme']))
+if (   ($familyname != $user_selected['familyname'])
+	|| ($firstname  != $user_selected['firstname'])
+	|| ($mail       != $user_selected['email'])
+	|| ($level      != $user_selected['level'])
+	|| ($phone      != $user_selected['tel'])
+	|| ($team_id    != $user_selected['team_id'])
+	|| ($theme      != $user_selected['theme']))
 	$modif = true;
 
 if ($modif) {
-	$err_msg = set_user_update($pdo, $user_id, $nom, $prenom, $mail, $level, $phone, $team_id, $theme, $logged_level, $loggin);
+	$err_msg = set_user_update($pdo, $user_id, $familyname, $firstname, $mail, $level, $phone, $team_id, $theme, $logged_level, $loggin);
 	if ($err_msg != '') {
 		$title        = 'Erreur utilisateur';
 		$action       = 'user-list.php?highlight='.$user_id;
@@ -134,8 +134,8 @@ if ($user_id == $logged_id)
 if ($logged_level >= 3 && $valid == 1) {
 	//validation d'un user acceptee
 	//envoi d'un mail a cet user
-	//$texte = $prenom.' '.$nom.' votre inscription au systeme GestEx &agrave; &eacute;t&eacute; accept&eacute;e !';
-	// mail($mail, "[GestEx] inscription accept&eacute;e - ".$nom." ".$prenom, $texte);
+	//$texte = $firstname.' '.$familyname.' votre inscription au systeme GestEx &agrave; &eacute;t&eacute; accept&eacute;e !';
+	// mail($mail, "[GestEx] inscription accept&eacute;e - ".$familyname." ".$firstname, $texte);
 }
 
 redirect('user-list.php?highlight='.$user_id.'#item'.$user_id);

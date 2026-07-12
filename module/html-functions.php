@@ -84,7 +84,7 @@ function en_tete($titre, $find=false) {
 
 <?php
 	if (!empty($_SESSION)) {
-		nav_bar($pdo, $user['prenom'], $user['nom'], $logged_level, $_SESSION['logged_id'], $find);
+		nav_bar($pdo, $user['firstname'], $user['familyname'], $logged_level, $_SESSION['logged_id'], $find);
 	} else {
 		nav_bar($pdo, '', '', 0, 0, $find);
 	}
@@ -92,7 +92,7 @@ function en_tete($titre, $find=false) {
 
 // ---------------------------------------------------------------------
 
-function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
+function nav_bar($pdo, $firstname, $familyname, $level, $logged_id, $find) {
 ?>
 <div class="navbar">
 <ul>
@@ -132,7 +132,7 @@ function nav_bar($pdo, $prenom, $nom, $level, $logged_id, $find) {
 	<li class="right"><a href="login.php">Se connecter</a></li>
 	<?php } else { ?>
 	<li class="dropdown right">
-		<a class="dropbtn"><?php echo "$nom",   "  $prenom ";?></a>
+		<a class="dropbtn"><?php echo "$familyname",   "  $firstname ";?></a>
 		<div class="dropdown-content">
 			<a href="logout.php"><?php echo ICON_LOGIN;?> Se d&eacute;connecter</a>
 			<a href="user-edit.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>

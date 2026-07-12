@@ -1233,7 +1233,7 @@ function del_team_by_id($pdo, $id) {
  * @return false|array Retourne un seul utilisateur
  */
 function get_user_short_by_id($pdo, $id) {
-	$sql = 'SELECT id, nom, prenom FROM users WHERE id = ?;';
+	$sql = 'SELECT id, familyname, firstname FROM user WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1250,7 +1250,7 @@ function get_user_short_by_id($pdo, $id) {
  * @return false|array Retourne un seul utilisateur
  */
 function get_user_all_by_id($pdo, $id) {
-	$sql = 'SELECT * FROM users WHERE id = ?;';
+	$sql = 'SELECT * FROM user WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1267,7 +1267,7 @@ function get_user_all_by_id($pdo, $id) {
  * @return false|array Retourne un seul utilisateur
  */
 function get_user_all_by_login($pdo, $login) {
-	$sql = 'SELECT * FROM users WHERE loggin = ?;';
+	$sql = 'SELECT * FROM user WHERE loggin = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($login));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1286,11 +1286,11 @@ function get_user_all_by_login($pdo, $login) {
  */
 function get_user_listall_by_logged_level($pdo, $logged_level) {
 	if ($logged_level > 3)       // lorsqu'on est haut place, on voit tout le monde
-		$sql = 'SELECT * FROM users ORDER BY nom, prenom;';
-	else if ($logged_level == 3) // losrqu'on est de niveau 3, on voit tout le monde sauf les users de plus haut level
-		$sql = 'SELECT * FROM users WHERE level < 4 ORDER BY nom, prenom;';
-	else                         // lorsqu'on est < 3, on voit tout le monde sauf le suser de level > 3 et les users non valides
-		$sql = 'SELECT * FROM users WHERE valid = 1 and level < 3 ORDER BY nom, prenom;';
+		$sql = 'SELECT * FROM user ORDER BY familyname, firstname;';
+	else if ($logged_level == 3) // losrqu'on est de niveau 3, on voit tout le monde sauf les utilisateurs de plus haut level
+		$sql = 'SELECT * FROM user WHERE level < 4 ORDER BY familyname, firstname;';
+	else                         // lorsqu'on est < 3, on voit tout le monde sauf le suser de level > 3 et les utilisateurs non valides
+		$sql = 'SELECT * FROM user WHERE valid = 1 and level < 3 ORDER BY familyname, firstname;';
 	$stmt = $pdo->prepare($sql);
     $stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1311,7 +1311,7 @@ function get_user_listall_by_logged_level($pdo, $logged_level) {
  * @return array
  */
 function get_user_listshort_with_right($pdo, $level_min=1, $bonus_id=0) {
-	$sql = 'SELECT id, nom, prenom FROM users WHERE (valid = 1 and level >= ?) or id = ? ORDER BY nom, prenom;';
+	$sql = 'SELECT id, nom, firstname FROM user WHERE (valid = 1 and level >= ?) or id = ? ORDER BY familyname, firstname;';
 	$stmt = $pdo->prepare($sql);
     $stmt->execute(array($level_min, $bonus_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1326,7 +1326,7 @@ function get_user_listshort_with_right($pdo, $level_min=1, $bonus_id=0) {
  * @return int
  */
 function get_user_count($pdo) {
-	$sql = 'SELECT COUNT(*) as count FROM users;';
+	$sql = 'SELECT COUNT(*) as count FROM user;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1342,7 +1342,7 @@ function get_user_count($pdo) {
  */
 function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme) {
 	error_log('Warn: new user '.$login);
-	$sql = 'INSERT INTO users (nom, prenom, loggin, password, email, level, tel, equipe, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
+	$sql = 'INSERT INTO user (familyname, firstname, loggin, password, email, level, tel, team_id, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme));
 	$err_msg = '';
@@ -1358,7 +1358,7 @@ function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, 
  */
 function set_user_password_by_id($pdo, $user_id, $user_password) {
 	error_log('Warn: update password for user '.$user_id);
-	$sql = 'UPDATE users SET password = ? WHERE id = ?;';
+	$sql = 'UPDATE user SET password = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($user_password, $user_id));
 	return $iostat;
@@ -1372,7 +1372,7 @@ function set_user_password_by_id($pdo, $user_id, $user_password) {
  * @todo Voir qu'est-ce que la colonne "valid"
  */
 function set_user_valid_by_id($pdo, $user_id, $user_status) {
-	$sql = 'UPDATE users SET valid = ? WHERE id = ?;';
+	$sql = 'UPDATE user SET valid = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($user_status, $user_id));
 	return $iostat;
@@ -1387,11 +1387,11 @@ function set_user_valid_by_id($pdo, $user_id, $user_status) {
  */
 function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme, $logged_level, $loggin='') {
 	if (isset($loggin) && $loggin != '' && $logged_level > 3) {
-		$sql = 'UPDATE LOW_PRIORITY users SET loggin = ?, nom = ?, prenom = ?, email = ?, level = ?, tel = ?, equipe = ?, theme = ? WHERE id = ?;';
+		$sql = 'UPDATE LOW_PRIORITY user SET loggin = ?, familyname = ?, firstname = ?, email = ?, level = ?, tel = ?, team_id = ?, theme = ? WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
 		$iostat = $stmt->execute(array($loggin, $familyname, $firstname, $email, $level, $tel, $team_id, $theme, $user_id));
 	} else {
-		$sql = 'UPDATE LOW_PRIORITY users SET nom = ?, prenom = ?, email = ?, level = ?, tel = ?, equipe = ?, theme = ? WHERE id = ?;';
+		$sql = 'UPDATE LOW_PRIORITY user SET familyname = ?, firstname = ?, email = ?, level = ?, tel = ?, team_id = ?, theme = ? WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
 		$iostat = $stmt->execute(array($familyname, $firstname, $email, $level, $tel, $team_id, $theme, $user_id));
 	}
@@ -1403,7 +1403,7 @@ function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level
 }
 
 /* function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme) {
-	$sql = 'UPDATE LOW_PRIORITY users SET nom = ?, prenom = ?, email = ?, level = ?, tel = ?, equipe = ?, theme = ? WHERE id = ?;';
+	$sql = 'UPDATE LOW_PRIORITY user SET familyname = ?, firstname = ?, email = ?, level = ?, tel = ?, team_id = ?, theme = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($familyname, $firstname, $email, $level, $tel, $team_id, $theme, $user_id));
 	$err_msg = '';
@@ -1411,6 +1411,7 @@ function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level
 		$err_msg = $stmt->errorInfo()[2];
 	return $err_msg;
 } */
+
 // ---------------------------------------------------------------------
 // Version
 // ---------------------------------------------------------------------

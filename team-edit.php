@@ -75,7 +75,7 @@ else if ($mode == 'Modifier') {
 					if ($mode == 'Modifier' && $user_selected['id'] == $team_manager_id) {
 						echo ' selected';
 					}
-					echo '>'.$user_selected['nom'].' '.$user_selected['prenom'].'</option>';
+					echo '>'.$user_selected['familyname'].' '.$user_selected['firstname'].'</option>';
 				} //end foreach
 				?>
 				</select>
