@@ -123,7 +123,6 @@ function nav_bar($pdo, $firstname, $familyname, $level, $logged_id, $find) {
 			<?php if ($level >= 3) { ?><a href="team-edit.php">&Eacute;quipe</a><?php } ?>
 			<a href="supplier-edit.php">Fournisseur</a>
 			<?php if ($level >= 3) { ?><a href="user-edit.php">Utilisateur</a><?php } ?>
-			<?php if ($level >= 3) { ?><a href="intervention-edit.php">Intervention</a><?php } ?>
 		</div>
 	</li>
 	<?php } ?>
