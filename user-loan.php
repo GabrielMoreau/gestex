@@ -52,13 +52,13 @@ if ($pdo = connect_db()) {
 				echo '<tr class="impair">'.PHP_EOL;
 			$num_line++;
 
-			$equipment = get_equipment_listshort_by_id($pdo, $loan_current['nom']);
+			$equipment = get_equipment_listshort_by_id($pdo, $loan_current['equipment_id']);
 			echo '  <td>';
 			echo      $equipment['nom'];
 			echo '  </td>'.PHP_EOL;
 
 			// recupere le nom d'equipe
-			$team = get_team_by_id($pdo, $loan_current['equipe']);
+			$team = get_team_by_id($pdo, $loan_current['team_id']);
 			echo '  <td>';
 			echo      $team['nom'];
 			echo '  </td>'.PHP_EOL;
@@ -73,7 +73,7 @@ if ($pdo = connect_db()) {
 			echo      $loan_current['commentaire'];
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
-			echo      $loan_current['nom'];
+			echo      $loan_current['equipment_id'];
 			echo '  </td>'.PHP_EOL;
 
 			if ($logged_level >= 3)  {

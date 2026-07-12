@@ -84,14 +84,14 @@ if ($team_id > 0) {
 
 			<td>
 				<a href="equipment-list.php?team_id=<?= $loan_current['team_id'] ?>">
-					<?= $team_selected['nom'] ?>
+					<?= $team_selected['name'] ?>
 				</a>
 			</td>
 
 			<td><?= $loan_current['emprunt'] ?></td>
 			<td><?= $loan_current['retour'] ?></td>
 			<td><?= $loan_current['commentaire'] ?></td>
-			<td><?= $loan_current['nom'] ?></td>
+			<td><?= $loan_current['equipment_id'] ?></td>
 
 			<?php if ($logged_level >= 3): ?>
 			<td>

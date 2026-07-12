@@ -99,7 +99,7 @@ function last_id_db() {
  * @return boolean
  */
 function check_loan_borrowed_by_equipment($pdo, $equipment_id) {
-	$sql = 'SELECT id FROM loan WHERE nom = ? AND status = ?;';
+	$sql = 'SELECT id FROM loan WHERE equipment_id = ? AND status = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, STATUS_LOAN_BORROWED));
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
