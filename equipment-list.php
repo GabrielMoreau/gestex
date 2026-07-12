@@ -119,9 +119,9 @@ if ($supplier_id > 0) {
 
 		if ($category_id == 0) {
 			echo '  <td>';
-			// $category = get_category_by_id($pdo, $equipment_item['categorie']);
+			// $category = get_category_by_id($pdo, $equipment_item['category_id']);
 			// echo      $category['nom'];
-			echo      '<a href="equipment-list.php?categorie='.$equipment_item['categorie'].'">'.$equipment_item['category_name'].'</a>'; // inner join
+			echo      '<a href="equipment-list.php?categorie='.$equipment_item['category_id'].'">'.$equipment_item['category_name'].'</a>'; // inner join
 			echo '  </td>'.PHP_EOL;
 		}
 
@@ -141,7 +141,7 @@ if ($supplier_id > 0) {
 		if ($team_id == 0) {
 			echo '  <td>';
 			// recupere le nom d'equipe
-			$team = get_team_by_id($pdo, $equipment_item['equipe']);
+			$team = get_team_by_id($pdo, $equipment_item['team_id']);
 			echo '    <a href="equipment-list.php?equipe='.$team['id'].'">'.$team['nom'].'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
@@ -149,7 +149,7 @@ if ($supplier_id > 0) {
 		if ($supplier_id == 0) {
 			echo '  <td>';
 			// recupere le nom du fournisseur
-			$supplier = get_supplier_short_by_id($pdo, $equipment_item['fournisseur']);
+			$supplier = get_supplier_short_by_id($pdo, $equipment_item['supplier_id']);
 			if ($supplier) {
 				echo '    <a href="equipment-list.php?supplier='.$supplier['id'].'">'.$supplier['nom'].'</a>';
 			}

@@ -411,8 +411,8 @@ function get_equipment_all_by_id($pdo, $id) {
  * @return array
  */
 function get_equipment_listall($pdo) {
-	// $sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.categorie = c.id ORDER BY c.nom, e.nom;';
-	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.categorie = c.id ORDER BY c.nom, e.nom;';
+	// $sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id ORDER BY c.nom, e.nom;';
+	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id ORDER BY c.nom, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -428,8 +428,8 @@ function get_equipment_listall($pdo) {
  * @return array
  */
 function get_equipment_listall_by_team($pdo, $team_id) {
-	// $sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.categorie = c.id WHERE e.equipe = ? ORDER BY c.nom, e.nom;';
-	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.categorie = c.id WHERE e.equipe = ? ORDER BY c.nom, e.nom;';
+	// $sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id WHERE e.team_id = ? ORDER BY c.nom, e.nom;';
+	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id WHERE e.team_id = ? ORDER BY c.nom, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($team_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -445,7 +445,7 @@ function get_equipment_listall_by_team($pdo, $team_id) {
  * @return int
  */
 function get_equipment_count_loanable_by_team($pdo, $team_id) {
-	$sql = 'SELECT COUNT(*) as count FROM equipment AS e WHERE e.loanable = 1 and e.equipe = ?;';
+	$sql = 'SELECT COUNT(*) as count FROM equipment AS e WHERE e.loanable = 1 and e.team_id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($team_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -461,7 +461,7 @@ function get_equipment_count_loanable_by_team($pdo, $team_id) {
  * @return array
  */
 function get_equipment_listall_by_category($pdo, $category_id) {
-	$sql = 'SELECT * FROM equipment WHERE categorie = ? ORDER BY nom;';
+	$sql = 'SELECT * FROM equipment WHERE category_id = ? ORDER BY nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($category_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -476,7 +476,7 @@ function get_equipment_listall_by_category($pdo, $category_id) {
  * @return int
  */
 function get_equipment_count_by_category($pdo, $category_id) {
-	$sql = 'SELECT COUNT(*) as count FROM equipment WHERE categorie = ?;';
+	$sql = 'SELECT COUNT(*) as count FROM equipment WHERE category_id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($category_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -492,8 +492,8 @@ function get_equipment_count_by_category($pdo, $category_id) {
  * @return array
  */
 function get_equipment_listall_by_supplier($pdo, $supplier_id) {
-	// $sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.categorie = c.id WHERE e.fournisseur = ? ORDER BY c.nom, e.nom;';
-	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.categorie = c.id WHERE e.fournisseur = ? ORDER BY c.nom, e.nom;';
+	// $sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id WHERE e.supplier_id = ? ORDER BY c.nom, e.nom;';
+	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id WHERE e.supplier_id = ? ORDER BY c.nom, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($supplier_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -508,7 +508,7 @@ function get_equipment_listall_by_supplier($pdo, $supplier_id) {
  * @return int
  */
 function get_equipment_count_by_supplier($pdo, $supplier_id) {
-	$sql = 'SELECT COUNT(*) as count FROM equipment WHERE fournisseur = ?;';
+	$sql = 'SELECT COUNT(*) as count FROM equipment WHERE supplier_id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($supplier_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -524,7 +524,7 @@ function get_equipment_count_by_supplier($pdo, $supplier_id) {
  * @return array
  */
 function get_equipment_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM equipment ORDER BY categorie, nom;';
+	$sql = 'SELECT id, nom FROM equipment ORDER BY category_id, nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -556,7 +556,7 @@ function get_equipment_by_loan_id($pdo, $loan_id) {
  * un tableau avec l'ID et un msg d'erreur eventuellement
  */
 function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day) {
-	$sql = 'INSERT INTO equipment (categorie, nom, modele, gamme, equipe, fournisseur, achat, responsable, reparation, accessoires, inventaire, notice, barcode, loanable, max_day)';
+	$sql = 'INSERT INTO equipment (category_id, nom, modele, gamme, team_id, supplier_id, achat, manager_id, reparation, accessoires, inventaire, notice, barcode, loanable, max_day)';
 	$sql .=            ' VALUES (?,         ?,   ?,      ?,     ?,      ?,           ?,     ?,           ?,          ?,           ?,          ?,      ?,       ?,        ?);';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day));
@@ -575,7 +575,7 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $
  * si réussite sinon une chaine d'erreurs
  */
 function set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day) {
-	$sql = 'UPDATE equipment SET categorie = ?, nom = ?, modele = ?, gamme = ?, equipe = ?, fournisseur = ?, achat = ?, responsable = ?, reparation = ?, accessoires = ?, inventaire = ?, notice = ?, barcode = ?, loanable = ?, max_day = ? WHERE id = ?;)';
+	$sql = 'UPDATE equipment SET category_id = ?, nom = ?, modele = ?, gamme = ?, team_id = ?, supplier_id = ?, achat = ?, manager_id = ?, reparation = ?, accessoires = ?, inventaire = ?, notice = ?, barcode = ?, loanable = ?, max_day = ? WHERE id = ?;)';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day, $equipment_id));
 	$err_msg = '';
@@ -757,7 +757,7 @@ function get_loan_listall_by_team($pdo, $team_id) {
  * @return int
  */
 function get_loan_count_by_team($pdo, $team_id) {
-	$sql = 'SELECT COUNT(*) as count FROM loan AS l INNER JOIN equipment AS e ON l.nom = e.id WHERE e.equipe = ?;';
+	$sql = 'SELECT COUNT(*) as count FROM loan AS l INNER JOIN equipment AS e ON l.nom = e.id WHERE e.team_id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($team_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1157,7 +1157,7 @@ function get_team_listall($pdo) {
  * @return array
  */
 function get_team_with_appareil($pdo) {
-	$sql = 'SELECT DISTINCT team.id, team.nom FROM team INNER JOIN equipment ON team.id = equipment.equipe ORDER BY team.nom;';
+	$sql = 'SELECT DISTINCT team.id, team.nom FROM team INNER JOIN equipment ON team.id = equipment.team_id ORDER BY team.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$team_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);

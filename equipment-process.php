@@ -105,13 +105,13 @@ $equipment_selected = get_equipment_all_by_id($pdo, $equipment_id);
 
 //modification app
 $modif = false;
-if (   ($categorie   != $equipment_selected['categorie'])
+if (   ($categorie   != $equipment_selected['category_id'])
 	|| ($nom         != $equipment_selected['nom'])
 	|| ($modele      != $equipment_selected['modele'])
 	|| ($feature     != $equipment_selected['gamme'])
-	|| ($tech        != $equipment_selected['responsable'])
-	|| ($equipe      != $equipment_selected['equipe'])
-	|| ($fourn       != $equipment_selected['fournisseur'])
+	|| ($tech        != $equipment_selected['manager_id'])
+	|| ($equipe      != $equipment_selected['team_id'])
+	|| ($fourn       != $equipment_selected['supplier_id'])
 	|| ($achat       != $equipment_selected['achat'])
 	|| ($reparation  != $equipment_selected['reparation'])
 	|| ($accessoires != $equipment_selected['accessoires'])
