@@ -73,14 +73,14 @@ CREATE TABLE `category` (
 DROP TABLE IF EXISTS `equipment`;
 CREATE TABLE `equipment` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `categorie` VARCHAR(255) DEFAULT NULL,
+  `category_id` INT(11) DEFAULT NULL,
   `nom` VARCHAR(255) DEFAULT NULL,
   `modele` VARCHAR(255) DEFAULT NULL,
   `gamme` VARCHAR(255) DEFAULT NULL,
-  `equipe` INT(11) DEFAULT NULL,
-  `fournisseur` INT(11) DEFAULT NULL,
+  `team_id` INT(11) DEFAULT NULL,
+  `supplier_id` INT(11) DEFAULT NULL,
   `achat` DATE DEFAULT NULL,
-  `responsable` INT(11) DEFAULT NULL,
+  `manager_id` INT(11) DEFAULT NULL,
   `reparation` VARCHAR(30) DEFAULT NULL,
   `accessoires` VARCHAR(255) DEFAULT NULL,
   `notice` VARCHAR(255) DEFAULT NULL,
@@ -89,11 +89,12 @@ CREATE TABLE `equipment` (
   `barcode` BIGINT(20) DEFAULT NULL,
   `max_day` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_equipment_team` FOREIGN KEY (`equipe`) REFERENCES `team` (`id`);
-  CONSTRAINT `fk_equipment_supplier` FOREIGN KEY (`fournisseur`) REFERENCES `supplier` (`id`);
-  CONSTRAINT `fk_equipment_manager` FOREIGN KEY (`responsable`) REFERENCES `users` (`id`);
-  INDEX `nom` (`nom`),
-  INDEX `barcode` (`barcode`)
+  CONSTRAINT `fk_equipment_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
+  CONSTRAINT `fk_equipment_team` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`),
+  CONSTRAINT `fk_equipment_supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`),
+  CONSTRAINT `fk_equipment_manager` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`),
+  INDEX `idx_equipment_name` (`nom`),
+  INDEX `idx_equipment_barcode` (`barcode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
