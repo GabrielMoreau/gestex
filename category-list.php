@@ -50,9 +50,9 @@ if ($pdo = connect_db()) {
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		echo '  <td>';
 			if ($count === 0) {
-				echo '<a name="item'.$category_item['id'].'">'.$category_item['nom'].'</a>';
+				echo '<a name="item'.$category_item['id'].'">'.$category_item['name'].'</a>';
 			} else {
-				echo '<a href="equipment-list.php?categorie='.$category_item['id'].'" name="item'.$category_item['id'].'">'.$category_item['nom'].'</a>';
+				echo '<a href="equipment-list.php?categorie='.$category_item['id'].'" name="item'.$category_item['id'].'">'.$category_item['name'].'</a>';
 			}
 		echo '</td>'.PHP_EOL;
 		if ($logged_level >= 3) {

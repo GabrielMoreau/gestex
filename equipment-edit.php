@@ -59,7 +59,7 @@ $team_chief_id = param_post_key('responsable', $equipment_selected, 0);
 					}
 
 					// si on choisit ajouter, la liste preselectionne la categorie
-					echo '>'.$category_current['nom'].'</option>';
+					echo '>'.$category_current['name'].'</option>';
 				} // end foreach
 				?>
 				</select>

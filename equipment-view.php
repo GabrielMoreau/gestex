@@ -22,10 +22,10 @@ if (empty($id_equipment))
 
 if ($pdo = connect_db()) {
 	$equipment_selected = get_equipment_all_by_id($pdo, $id_equipment);
-	$responsible = get_user_short_by_id($pdo, $equipment_selected['manager_id']);
-	$team        = get_team_by_id($pdo, $equipment_selected['team_id']);
-	$supplier    = get_supplier_short_by_id($pdo, $equipment_selected['supplier_id']);
-	$category    = get_category_by_id($pdo, $equipment_selected['category_id']);
+	$manager  = get_user_short_by_id($pdo, $equipment_selected['manager_id']);
+	$team     = get_team_by_id($pdo, $equipment_selected['team_id']);
+	$supplier = get_supplier_short_by_id($pdo, $equipment_selected['supplier_id']);
+	$category = get_category_by_id($pdo, $equipment_selected['category_id']);
 
 	$datacheet_path  = get_datasheet_basepath();
 	$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $id_equipment);
@@ -110,7 +110,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				Responsable
 			</th>
 			<td>
-				<a href="user-list.php?highlight=<?php echo $equipment_selected['manager_id'] ?>#item<?php echo $equipment_selected['manager_id'] ?>"><?php echo $responsible['nom'].' '.$responsible['prenom'] ?></a>
+				<a href="user-list.php?highlight=<?php echo $equipment_selected['manager_id'] ?>#item<?php echo $equipment_selected['manager_id'] ?>"><?php echo $manager['nom'].' '.$manager['prenom'] ?></a>
 			</td>
 		</tr>
 
@@ -128,7 +128,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				Cat&eacute;gorie
 			</th>
 			<td>
-				<a href="equipment-list.php?categorie=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $category['nom'] ?></a>
+				<a href="equipment-list.php?categorie=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $category['name'] ?></a>
 			</td>
 		</tr>
 

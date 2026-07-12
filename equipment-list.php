@@ -29,7 +29,7 @@ $pdo = connect_db_or_alert();
 $category_id = param_get('categorie', 0);
 if ($category_id > 0) {
 	$category_selected = get_category_by_id($pdo, $category_id);
-	$title .= ' de la cat&eacute;gorie <i>'.$category_selected['nom'].'</i>';
+	$title .= ' de la cat&eacute;gorie <i>'.$category_selected['name'].'</i>';
 }
 
 // recupere l'equipe
@@ -119,8 +119,6 @@ if ($supplier_id > 0) {
 
 		if ($category_id == 0) {
 			echo '  <td>';
-			// $category = get_category_by_id($pdo, $equipment_item['category_id']);
-			// echo      $category['nom'];
 			echo      '<a href="equipment-list.php?categorie='.$equipment_item['category_id'].'">'.$equipment_item['category_name'].'</a>'; // inner join
 			echo '  </td>'.PHP_EOL;
 		}

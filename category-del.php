@@ -17,7 +17,7 @@ if ($category_id == 0 || $valid == 'cancel')
 	redirect('category-list.php');
 
 $pdo = connect_db_or_alert();
-$category_name = get_category_by_id($pdo, $category_id)['nom'];
+$category_name = get_category_by_id($pdo, $category_id)['name'];
 
 if ($valid == 'yes') {
 	$iostat = del_category_by_id($pdo, $category_id);

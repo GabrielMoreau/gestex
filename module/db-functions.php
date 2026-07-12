@@ -143,7 +143,7 @@ function check_val_in_db($pdo, $table, $col, $value) {
  * @return array Retourne directement l'élément
  */
 function get_category_by_id($pdo, $id) {
-	$sql = 'SELECT id, nom FROM category WHERE id = ?;';
+	$sql = 'SELECT id, name FROM category WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$category_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -159,7 +159,7 @@ function get_category_by_id($pdo, $id) {
  * @return array
  */
 function get_category_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM category ORDER BY nom;';
+	$sql = 'SELECT id, name FROM category ORDER BY name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -176,7 +176,7 @@ function get_category_listshort($pdo) {
  * @return boolean
  */
 function check_category_by_name($pdo, $name) {
-	$sql = 'SELECT COUNT(*) as count FROM category WHERE nom = ?';
+	$sql = 'SELECT COUNT(*) as count FROM category WHERE name = ?';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($name));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -191,7 +191,7 @@ function check_category_by_name($pdo, $name) {
  * @return int
  */
 function set_category_new($pdo, $name) {
-	$sql = 'INSERT INTO category (nom) VALUE (?);';
+	$sql = 'INSERT INTO category (name) VALUE (?);';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($name));
 	return $pdo->lastInsertId();
@@ -203,7 +203,7 @@ function set_category_new($pdo, $name) {
  * Met à jour une catégorie (nom) via son ID
  */
 function set_category_update($pdo, $category_id, $name) {
-	$sql = 'UPDATE category SET nom = ? WHERE id = ?;';
+	$sql = 'UPDATE category SET name = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($name, $category_id));
 }
@@ -411,8 +411,8 @@ function get_equipment_all_by_id($pdo, $id) {
  * @return array
  */
 function get_equipment_listall($pdo) {
-	// $sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id ORDER BY c.nom, e.nom;';
-	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id ORDER BY c.nom, e.nom;';
+	// $sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id ORDER BY c.name, e.nom;';
+	$sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id ORDER BY c.name, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -428,8 +428,8 @@ function get_equipment_listall($pdo) {
  * @return array
  */
 function get_equipment_listall_by_team($pdo, $team_id) {
-	// $sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id WHERE e.team_id = ? ORDER BY c.nom, e.nom;';
-	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id WHERE e.team_id = ? ORDER BY c.nom, e.nom;';
+	// $sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id WHERE e.team_id = ? ORDER BY c.name, e.nom;';
+	$sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id WHERE e.team_id = ? ORDER BY c.name, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($team_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -492,8 +492,8 @@ function get_equipment_count_by_category($pdo, $category_id) {
  * @return array
  */
 function get_equipment_listall_by_supplier($pdo, $supplier_id) {
-	// $sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id WHERE e.supplier_id = ? ORDER BY c.nom, e.nom;';
-	$sql = 'SELECT DISTINCT e.*, c.nom AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id WHERE e.supplier_id = ? ORDER BY c.nom, e.nom;';
+	// $sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id WHERE e.supplier_id = ? ORDER BY c.name, e.nom;';
+	$sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id WHERE e.supplier_id = ? ORDER BY c.name, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($supplier_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
