@@ -17,7 +17,7 @@ if ($team_id == 0 || $valid == 'cancel')
 	redirect('team-list.php');
 
 $pdo = connect_db_or_alert();
-$team_name = get_team_by_id($pdo, $team_id)['nom'];
+$team_name = get_team_by_id($pdo, $team_id)['name'];
 
 if ($valid == 'yes') {
 	$iostat = del_category_by_id($pdo, $team_id);

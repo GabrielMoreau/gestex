@@ -10,7 +10,7 @@ require_once('module/html-functions.php');
 auth_or_login('intervention-edit.php.php');
 level_or_alert(3, 'Ajout d\'une intervention');
 
-$equipment_id = param_post_or_get('equipment', 0);
+$equipment_id = param_post_or_get('equipment_id', 0);
 $intervention_id = param_post_or_get('id', 0);
 
 $mode = 'Ajouter';
@@ -38,7 +38,7 @@ if ($mode == 'Ajouter') {
 
 <div class="form">
 <form action="intervention-process.php" method="POST" name="inscrForm" enctype="multipart/form-data">
-	<input type="hidden" name="equipment" value="<?php if ($mode == "Ajouter") {echo $equipment_id;} ?>" >
+	<input type="hidden" name="equipment_id" value="<?php if ($mode == "Ajouter") {echo $equipment_id;} ?>" >
 <table>
 	<tbody>
 		<tr>
@@ -53,11 +53,11 @@ if ($mode == 'Ajouter') {
 		</tr>
 		<tr>
 			<th>Société</th>
-			<?php // recupere la liste des equipes
+			<?php // recupere la liste des fournisseurs
 			$company_fetch = get_supplier_listshort($pdo);
 			?>
 			<td>
-				<select  name="company">
+				<select name="supplier_id">
 					<?php foreach ($company_fetch as $company_current): ?>
 					<option value="<?= $company_current['id'] ?>"
 						<?= $company_current['nom'] ?>

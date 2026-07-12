@@ -14,9 +14,9 @@ level_or_alert(3, 'Ajout ou modification d’un prêt');
 
 unset($erreur);
 
-$loan_id      = param_post('id_loan', 0); // modify
-$equipment_id = param_post('id_equipment');
-$team_id      = param_post('equipe');
+$loan_id      = param_post('loan_id', 0); // modify
+$equipment_id = param_post('equipment_id');
+$team_id      = param_post('team_id');
 $date_emprunt = param_post('emprunt');
 $date_retour  = param_post('retour');
 $commentaire  = param_post('commentaire');

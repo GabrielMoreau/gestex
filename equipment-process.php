@@ -16,19 +16,19 @@ $logged_level = $_SESSION['logged_level'];
 
 unset($erreur);
 
-$equipment_id = param_post('id_equipment', 0);
+$equipment_id = param_post('equipment_id', 0);
 $flag_new = true;
 if ($equipment_id > 0)
 	$flag_new = false;
 
-$categorie   = param_post('categorie');
+$categorie   = param_post('category_id');
 $nom         = param_post('nom');
 $modele      = param_post('modele');
 $feature     = param_post('gamme');
-$equipe      = param_post('equipe');
-$fourn       = param_post('fourn');
+$equipe      = param_post('team_id');
+$fourn       = param_post('supplier_id');
 $achat       = param_post('achat');
-$tech        = param_post('tech');
+$tech        = param_post('manager_id');
 $reparation  = param_post('reparation');
 $accessoires = param_post('accessoires');
 $inventaire  = param_post('inventaire');

@@ -12,7 +12,7 @@ level_or_alert(3, 'Ajout d\'une cat&eacute;gorie');
 
 unset($erreur);
 
-$id_category = param_post('id_category'); // -> modify
+$id_category = param_post('category_id'); // -> modify
 $flag_new = true;
 if (!empty($id_category))
 	$flag_new = false;

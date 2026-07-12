@@ -15,8 +15,8 @@ $logged_level = $_SESSION['logged_level'];
 unset($erreur);
 
 $description        = param_post('description');
-$equipment_id       = param_post('equipment');
-$supplier_id        = param_post('company');
+$equipment_id       = param_post('equipment_id');
+$supplier_id        = param_post('supplier_id');
 $date               = param_post('date');
 $intervention_id    = param_post('id');
 

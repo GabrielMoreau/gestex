@@ -20,7 +20,7 @@ if ($team_id == 0) // new
 
 $pdo = connect_db_or_alert();
 
-$team_chief_id = 0;
+$team_manager_id = 0;
 
 $team_selected = [];
 if ($mode == 'Ajouter')
@@ -29,13 +29,13 @@ else if ($mode == 'Modifier') {
 	en_tete('Modifier les coordonn&eacute;es d\'une &eacute;quipe');
 	// recupere le fournisseur selectionne
 	$team_selected = get_team_all_by_id($pdo, $team_id);
-	$team_chief_id = $team_selected['chef'];
+	$team_manager_id = $team_selected['manager_id'];
 }
 ?>
 
 <div class="form">
 <form action="team-process.php" method="POST" name="inscrForm">
-	<input type="hidden" name="id_equip" value="<?php if ($mode == 'Modifier'){ echo $team_id; }?>" >
+	<input type="hidden" name="team_id" value="<?php if ($mode == 'Modifier'){ echo $team_id; }?>" >
 <table>
 	<tbody>
 		<tr>
@@ -43,7 +43,7 @@ else if ($mode == 'Modifier') {
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="25" maxlength="30" placeholder="Nom *" value="<?= param_post_key('nom', $team_selected) ?>" >
+				<input type="text" name="name" size="25" maxlength="30" placeholder="Nom *" value="<?= param_post_key('name', $team_selected) ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -51,7 +51,7 @@ else if ($mode == 'Modifier') {
 				Description
 			</th>
 			<td>
-				<input type="text" name="descr" size="25" maxlength="255" placeholder="Description" value="<?= param_post_key('descr', $team_selected) ?>" >
+				<input type="text" name="description" size="25" maxlength="255" placeholder="Description" value="<?= param_post_key('description', $team_selected) ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -59,7 +59,7 @@ else if ($mode == 'Modifier') {
 				Compte *
 			</th>
 			<td>
-				<input type="text" name="compte" size="5" maxlength="5" placeholder="Compte *" value="<?= param_post_key('compte', $team_selected) ?>" >
+				<input type="text" name="accounting" size="5" maxlength="5" placeholder="Compte *" value="<?= param_post_key('accounting', $team_selected) ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -67,15 +67,15 @@ else if ($mode == 'Modifier') {
 				Chef d'&eacute;quipe<br />
 			</th>
 			<td>
-				<select name="chef">
+				<select name="manager_id">
 				<?php
-				$user_fetch = get_user_listshort_with_right($pdo, 1, $team_chief_id);
-				foreach ($user_fetch as $chef) {
-					echo '<option value="'.$chef['id'].'"';
-					if ($mode == 'Modifier' && $chef['id'] == $team_chief_id) {
+				$user_fetch = get_user_listshort_with_right($pdo, 1, $team_manager_id);
+				foreach ($user_fetch as $user_selected) {
+					echo '<option value="'.$user_selected['id'].'"';
+					if ($mode == 'Modifier' && $user_selected['id'] == $team_manager_id) {
 						echo ' selected';
 					}
-					echo '>'.$chef['nom'].' '.$chef['prenom'].'</option>';
+					echo '>'.$user_selected['nom'].' '.$user_selected['prenom'].'</option>';
 				} //end foreach
 				?>
 				</select>

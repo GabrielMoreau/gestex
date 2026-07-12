@@ -30,7 +30,7 @@ $theme     = param_post('theme', 'clair');     // *
 $mail      = param_post('email');     // *
 $prenom    = param_post('prenom');
 $phone     = param_post('tel', 'Na');
-$equipe    = param_post('equipe');
+$team_id    = param_post('team_id');
 
 if (empty($nom))
 	$erreur = 'Nom de famille non pr&eacute;cis&eacute;';
@@ -73,7 +73,7 @@ if ($flag_new) { // new
 	level_or_alert(3, 'Validation d\'un nouvel utilisateur');
 
 	$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
-	list($user_id, $err_msg) = set_user_new($pdo, $nom, $prenom, $loggin, $new_pwhash, $mail, $level, $phone, $equipe, $theme);
+	list($user_id, $err_msg) = set_user_new($pdo, $nom, $prenom, $loggin, $new_pwhash, $mail, $level, $phone, $team_id, $theme);
 
 	if ($err_msg != '') {
 		$title        = 'Erreur utilisateur';
@@ -104,17 +104,17 @@ if ($level != $user_selected['level'] && $logged_level < 3)
 	$level = $user_selected['level'];
 
 $modif = false;
-if (   ($nom    != $user_selected['nom'])
-	|| ($prenom != $user_selected['prenom'])
-	|| ($mail   != $user_selected['email'])
-	|| ($level  != $user_selected['level'])
-	|| ($phone  != $user_selected['tel'])
-	|| ($equipe != $user_selected['equipe'])
-	|| ($theme  != $user_selected['theme']))
+if (   ($nom     != $user_selected['nom'])
+	|| ($prenom  != $user_selected['prenom'])
+	|| ($mail    != $user_selected['email'])
+	|| ($level   != $user_selected['level'])
+	|| ($phone   != $user_selected['tel'])
+	|| ($team_id != $user_selected['team_id'])
+	|| ($theme   != $user_selected['theme']))
 	$modif = true;
 
 if ($modif) {
-	$err_msg = set_user_update($pdo, $user_id, $nom, $prenom, $mail, $level, $phone, $equipe, $theme, $logged_level, $loggin);
+	$err_msg = set_user_update($pdo, $user_id, $nom, $prenom, $mail, $level, $phone, $team_id, $theme, $logged_level, $loggin);
 	if ($err_msg != '') {
 		$title        = 'Erreur utilisateur';
 		$action       = 'user-list.php?highlight='.$user_id;

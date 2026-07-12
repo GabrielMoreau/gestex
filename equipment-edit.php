@@ -13,7 +13,7 @@ level_or_alert(3, 'Modification d\'un appareil');
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-$category_id  = param_post_or_get('categorie');
+$category_id  = param_post_or_get('category_id');
 $equipment_id = param_post_or_get('id', 0);
 $mode = 'Modifier';
 if ($equipment_id == 0) // new
@@ -35,12 +35,12 @@ else if ($mode == 'Modifier') {
 	$datasheet_count    = count($datasheet_fetch);
 }
 
-$team_chief_id = param_post_key('responsable', $equipment_selected, 0);
+$team_manager_id = param_post_key('manager_id', $equipment_selected, 0);
 ?>
 
 <div class="form">
-<form action="equipment-process.php?categorie=<?php echo $category_id ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
-	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
+<form action="equipment-process.php?category_id<?php echo $category_id ?>" method="POST" name="inscrForm" enctype="multipart/form-data">
+	<input type="hidden" name="equipment_id" value="<?php echo $equipment_id ?>" >
 <table>
 	<tbody>
 		<tr>
@@ -48,13 +48,13 @@ $team_chief_id = param_post_key('responsable', $equipment_selected, 0);
 				Cat&eacute;gorie
 			</th>
 			<td>
-				<select name="categorie">
+				<select name="category_id">
 				<?php
 				// liste des categories
 				$category_fetch = get_category_listshort($pdo);
 				foreach ($category_fetch as $category_current) {
 					echo '<option value="'.$category_current['id'].'"';
-					if ($category_current['id'] == param_post_key('categorie', $equipment_selected, $category_id)) {
+					if ($category_current['id'] == param_post_key('category_id', $equipment_selected, $category_id)) {
 						echo " selected";
 					}
 
@@ -98,16 +98,16 @@ $team_chief_id = param_post_key('responsable', $equipment_selected, 0);
 				&Eacute;quipe *
 			</th>
 			<td>
-				<select name="equipe">
+				<select name="team_id">
 				<?php
 				// recupere la liste des equipes
 				$team_fetch = get_team_listshort($pdo);
 				foreach ($team_fetch as $team_current) {
 					echo '<option value="'.$team_current['id'].'"';
-					if ($team_current['id'] == param_post_key('equipe', $equipment_selected, 0)) {
+					if ($team_current['id'] == param_post_key('team_id', $equipment_selected, 0)) {
 						echo ' selected';
 					}
-					echo '>'.$team_current['nom'].'</option>';
+					echo '>'.$team_current['name'].'</option>';
 				} // end foreach
 				?>
 				</select>
@@ -120,13 +120,13 @@ $team_chief_id = param_post_key('responsable', $equipment_selected, 0);
 				Fournisseur *
 			</th>
 			<td>
-				<select name="fourn">
+				<select name="supplier_id">
 				<?php
 				// recupere la liste des fournisseurs
 				$supplier_fetch = get_supplier_listshort($pdo);
 				foreach ($supplier_fetch as $supplier_current) {
 					echo "<option value=\"".$supplier_current['id']."\"";
-					if ($supplier_current['id'] == param_post_key('fournisseur', $equipment_selected, 0)) {
+					if ($supplier_current['id'] == param_post_key('supplier_id', $equipment_selected, 0)) {
 						echo ' selected';
 						}
 					echo '>'.$supplier_current['nom'].'</option>';
@@ -151,13 +151,13 @@ $team_chief_id = param_post_key('responsable', $equipment_selected, 0);
 				Responsable *
 			</th>
 			<td>
-				<select name="tech">
+				<select name="manager_id">
 				<?php
 				// recupere la liste des tech
-				$user_fetch = get_user_listshort_with_right($pdo, 1, $team_chief_id);
+				$user_fetch = get_user_listshort_with_right($pdo, 1, $team_manager_id);
 				foreach ($user_fetch as $user_current) {
 					echo '<option value="'.$user_current['id'].'"';
-					if ($mode == 'Modifier' && $user_current['id'] == $team_chief_id) {
+					if ($mode == 'Modifier' && $user_current['id'] == $team_manager_id) {
 						echo ' selected';
 					}
 					echo '>'.$user_current['nom'].' '.$user_current['prenom'].'</option>';

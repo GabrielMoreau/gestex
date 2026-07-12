@@ -15,7 +15,7 @@ $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
-$equipment_id = param_get('equipment'); // -> new
+$equipment_id = param_get('equipment_id'); // -> new
 $loan_id      = param_get('id');     // -> modify
 $param_mode   = param_get('mode', "loan");
 
@@ -63,10 +63,10 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 
 <div class="form" style="margin-bottom: 2rem">
 <form action="loan-process.php" method="POST" name="inscrForm">
-	<input type="hidden" name="id_equipment" value="<?php echo $equipment_id ?>" >
+	<input type="hidden" name="equipment_id" value="<?php echo $equipment_id ?>" >
 	<input type="hidden" name="mode" value="<?php echo $param_mode?>">
 	<?php if ($mode == 'Modifier' || $mode == 'Reserver') { ?>
-		<input type="hidden" name="id_loan" value="<?php echo $loan_id ?>" >
+		<input type="hidden" name="loan_id" value="<?php echo $loan_id ?>" >
 	<?php } ?>
 <table>
 	<tbody>
@@ -116,16 +116,16 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 			<td>&Eacute;quipe redevable *
 			</td>
 			<td>
-				<select name="equipe">
+				<select name="team_id">
 				<?php
 				// recupere la liste des equipes
 				$team_fetch = get_team_listshort($pdo);
 				foreach ($team_fetch as $team_current) {
 					echo '<option value="'.$team_current['id'].'"';
-					if ($team_current['id'] == param_post_key('equipe', $loan_selected)) {
+					if ($team_current['id'] == param_post_key('team_id', $loan_selected)) {
 						echo ' selected';
 					}
-					echo '>'.$team_current['nom'].'</option>';
+					echo '>'.$team_current['name'].'</option>';
 				} //end foreach
 				?>
 				</select>

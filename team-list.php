@@ -63,30 +63,30 @@ if ($pdo = connect_db()) {
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		echo '    <a name="item'.$team_current['id'].'"></a>'.$team_current['nom'];
+		echo '    <a name="item'.$team_current['id'].'"></a>'.$team_current['name'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		echo      $team_current['descr'];
+		echo      $team_current['description'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		echo      $team_current['compte'];
+		echo      $team_current['accounting'];
 		echo '  </td>'.PHP_EOL;
 
 		// recupere le nom de chef d'equipe
-		$chef = get_user_short_by_id($pdo, $team_current['chef']);
+		$manager = get_user_short_by_id($pdo, $team_current['manager_id']);
 		echo '  <td style="vertical-align: top;">';
-		if ($chef)
-			echo $chef['nom'].' '.$chef['prenom'];
+		if ($manager)
+			echo $manager['nom'].' '.$manager['prenom'];
 		echo '  </td>'.PHP_EOL;
 
 		echo '  <td>';
 		if (get_loan_count_by_team($pdo, $team_current['id']) > 0)
-			echo '<a href="loan-list.php?equipe='.$team_current['id'].'">'.ICON_LOAN_RETURNED.'</a>';
+			echo '<a href="loan-list.php?team='.$team_current['id'].'">'.ICON_LOAN_RETURNED.'</a>';
 		echo '  </td>'.PHP_EOL;
 
 		echo '  <td>';
 		if (get_equipment_count_loanable_by_team($pdo, $team_current['id']) > 0)
-			echo '<a href="equipment-list.php?loanable=yes&equipe='.$team_current['id'].'">'.ICON_LOAN_BORROWED.'</a>';
+			echo '<a href="equipment-list.php?loanable=yes&team='.$team_current['id'].'">'.ICON_LOAN_BORROWED.'</a>';
 		echo '  </td>'.PHP_EOL;
 
 		if ($logged_level >= 2) {

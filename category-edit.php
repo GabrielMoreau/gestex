@@ -30,7 +30,7 @@ en_tete($title);
 
 <div class="form">
 <form action="category-process.php" method="POST" name="inscrForm">
-	<input type="hidden" name="id_category" value="<?php echo $id_category ?>" >
+	<input type="hidden" name="category_id" value="<?php echo $id_category ?>" >
 <table>
 	<tbody>
 		<tr>

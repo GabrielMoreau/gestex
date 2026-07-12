@@ -17,15 +17,15 @@ $logged_level = $_SESSION['logged_level'];
 
 unset($erreur);
 
-$team_id = param_post('id_equip', 0); // -> modify
+$team_id = param_post('team_id', 0); // -> modify
 $flag_new = true;
 if ($team_id > 0)
 	$flag_new = false;
 
-$nom     = param_post('nom');
-$compte  = param_post('compte');
-$chef    = param_post('chef');
-$descr   = param_post('descr');
+$nom     = param_post('name');
+$compte  = param_post('accounting');
+$chef    = param_post('manager_id');
+$descr   = param_post('description');
 // variables ne pouvant etre nulles
 if (empty($nom))
 	$erreur = 'Nom d\'&eacute;quipe non pr&eacute;cis&eacute;';
@@ -68,10 +68,10 @@ if ($flag_new) { // new
 $team_selected = get_team_all_by_id($pdo, $team_id);
 
 $modif = false;
-if (   ($nom    != $team_selected['nom'])
-	|| ($descr  != $team_selected['descr'])
-	|| ($compte != $team_selected['compte'])
-	|| ($chef   != $team_selected['chef']))
+if (   ($nom    != $team_selected['name'])
+	|| ($descr  != $team_selected['description'])
+	|| ($compte != $team_selected['accounting'])
+	|| ($chef   != $team_selected['manager_id']))
 	$modif = true;
 
 if ($modif) {

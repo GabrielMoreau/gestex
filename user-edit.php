@@ -114,14 +114,14 @@ if ($mode == 'Ajouter') {
 			$team_fetch = get_team_listshort($pdo);
 			?>
 			<td>
-				<select  name="equipe">
+				<select name="team_id">
 					<?php
 					foreach ($team_fetch as $team_current) {
 						echo '<option value="'.$team_current['id'].'"';
 						// selectionne la bonne equipe
-						if ($team_current['id'] == param_post_key('equipe', $user_selected, 0))
+						if ($team_current['id'] == param_post_key('team_id', $user_selected, 0))
 							echo ' selected';
-						echo '>'.$team_current['nom'].'</option>';
+						echo '>'.$team_current['name'].'</option>';
 					} // end foreach
 					?>
 				</select>

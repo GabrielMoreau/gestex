@@ -26,21 +26,21 @@ if ($loanable_flag == 'yes')
 $pdo = connect_db_or_alert();
 
 // recupere la categorie
-$category_id = param_get('categorie', 0);
+$category_id = param_get('category_id', 0);
 if ($category_id > 0) {
 	$category_selected = get_category_by_id($pdo, $category_id);
 	$title .= ' de la cat&eacute;gorie <i>'.$category_selected['name'].'</i>';
 }
 
 // recupere l'equipe
-$team_id = param_get('equipe', 0);
+$team_id = param_get('team_id', 0);
 if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
 	$title .= ' de l\'&eacute;quipe <i>'.$team_selected['nom'].'</i>';
 }
 
 // recupere le fournisseur
-$supplier_id = param_get('supplier', 0);
+$supplier_id = param_get('supplier_id', 0);
 if ($supplier_id > 0) {
 	$supplier_selected = get_supplier_short_by_id($pdo, $supplier_id);
 	$title .= ' du fournisseur <i>'.$supplier_selected['nom'].'</i>';
@@ -119,7 +119,7 @@ if ($supplier_id > 0) {
 
 		if ($category_id == 0) {
 			echo '  <td>';
-			echo      '<a href="equipment-list.php?categorie='.$equipment_item['category_id'].'">'.$equipment_item['category_name'].'</a>'; // inner join
+			echo      '<a href="equipment-list.php?category_id='.$equipment_item['category_id'].'">'.$equipment_item['category_name'].'</a>'; // inner join
 			echo '  </td>'.PHP_EOL;
 		}
 
@@ -140,7 +140,7 @@ if ($supplier_id > 0) {
 			echo '  <td>';
 			// recupere le nom d'equipe
 			$team = get_team_by_id($pdo, $equipment_item['team_id']);
-			echo '    <a href="equipment-list.php?equipe='.$team['id'].'">'.$team['nom'].'</a>';
+			echo '    <a href="equipment-list.php?team_id='.$team['id'].'">'.$team['nom'].'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 
@@ -149,7 +149,7 @@ if ($supplier_id > 0) {
 			// recupere le nom du fournisseur
 			$supplier = get_supplier_short_by_id($pdo, $equipment_item['supplier_id']);
 			if ($supplier) {
-				echo '    <a href="equipment-list.php?supplier='.$supplier['id'].'">'.$supplier['nom'].'</a>';
+				echo '    <a href="equipment-list.php?supplier_id='.$supplier['id'].'">'.$supplier['nom'].'</a>';
 			}
 			echo '  </td>'.PHP_EOL;
 		}
@@ -179,13 +179,13 @@ if ($supplier_id > 0) {
 				echo ICON_LOAN_RETURNED;
 				if ($logged_level >= 3) {echo '</a>';}
 			} else {
-				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=loan">';}
+				if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment_id='.$equipment_item['id'].'&mode=loan">';}
 				echo ICON_LOAN_BORROWED;
 				if ($logged_level >= 3) {echo '</a>';}
 			}
 			echo '  </td>';
 			echo '  <td>';
-			if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment='.$equipment_item['id'].'&mode=booking">';}
+			if ($logged_level >= 3) {echo '    <a href="loan-edit.php?equipment_id='.$equipment_item['id'].'&mode=booking">';}
 			echo ICON_LOAN_RESERVED;
 			if ($logged_level >= 3) {echo '</a>';}
 			echo '  </td>';
