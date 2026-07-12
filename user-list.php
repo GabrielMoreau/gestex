@@ -54,62 +54,62 @@ if ($pdo = connect_db()) {
 	// recupere la liste des users
 	$user_fetch = get_user_listall_by_logged_level($pdo, $logged_level);
 	$num_line = 1;
-	foreach ($user_fetch as $data) {
+	foreach ($user_fetch as $user_current) {
 		$class = 'impair';
 		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
-		if ($data['id'] == $id_highlight)
+		if ($user_current['id'] == $id_highlight)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		if ($logged_level >=3 ) {
 			echo '  <td>';
-			echo      $data['level'];
+			echo      $user_current['level'];
 			echo '  </td>'.PHP_EOL;
 		}
 		echo '  <td>';
-		echo '    <a name="item'.$data['id'].'"></a>'.$data['prenom'];
+		echo '    <a name="item'.$user_current['id'].'"></a>'.$user_current['prenom'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		// l'utilisateur a la possiblite de modifier ses coordonnees
-		if ($logged_id == $data['id'] || $logged_level >= 3)
-			echo '    <a href="user-edit.php?id='.$data['id'].'">'.$data['nom'].'</a>';
+		if ($logged_id == $user_current['id'] || $logged_level >= 3)
+			echo '    <a href="user-edit.php?id='.$user_current['id'].'">'.$user_current['nom'].'</a>';
 		else
-			echo      $data['nom'];
+			echo      $user_current['nom'];
 
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo      $data['tel'];
+		echo      $user_current['tel'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		$user_mail = sanitize_mail($data['email']);
+		$user_mail = sanitize_mail($user_current['email']);
 		if (!empty($user_mail))
 			echo '    <a href="mailto:'.$user_mail.'">'.ICON_MAIL.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		// recupere la liste de equipes
-		$equipe = get_team_by_id($pdo, $data['equipe']);
-		if ($equipe)
-			echo $equipe['nom'].' ('.$data['equipe'].')';
+		$team = get_team_by_id($pdo, $user_current['equipe']);
+		if ($team)
+			echo $team['name'].' ('.$user_current['equipe'].')';
 		echo '  </td>'.PHP_EOL;
 		if ($logged_level >= 3) {
 			echo '  <td>';
-			echo '    <a href="user-edit.php?id='.$data['id'].'">';
+			echo '    <a href="user-edit.php?id='.$user_current['id'].'">';
 			echo        ICON_PERSON_PROFIL;
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
-			echo '    <a href="user-changepwd.php?id='.$data['id'].'">';
+			echo '    <a href="user-changepwd.php?id='.$user_current['id'].'">';
 			echo        ICON_PERSON_PASWD;
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
-			if ($data['valid'] == 0){
-				echo '<a href="user-del.php?id='.$data['id'].'&status=0">';
+			if ($user_current['valid'] == 0){
+				echo '<a href="user-del.php?id='.$user_current['id'].'&status=0">';
 				echo ICON_PERSON_BAD;
 				echo '</a>';
 			}else{
-				echo '<a href="user-del.php?id='.$data['id'].'&status=1">';
+				echo '<a href="user-del.php?id='.$user_current['id'].'&status=1">';
 				echo ICON_PERSON_OK;
 				echo '</a>';
 			}
