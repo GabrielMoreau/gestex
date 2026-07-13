@@ -22,14 +22,14 @@ $flag_new = true;
 if ($team_id > 0)
 	$flag_new = false;
 
-$nom     = param_post('name');
-$compte  = param_post('accounting');
-$chef    = param_post('manager_id');
-$descr   = param_post('description');
+$name        = param_post('name');
+$accounting  = param_post('accounting');
+$manager     = param_post('manager_id');
+$description = param_post('description');
 // variables ne pouvant etre nulles
-if (empty($nom))
+if (empty($name))
 	$erreur = 'Nom d\'&eacute;quipe non pr&eacute;cis&eacute;';
-if (empty($compte))
+if (empty($accounting))
 	$erreur = 'Compte non pr&eacute;cis&eacute;';
 
 if (!empty($erreur)) {
@@ -46,7 +46,7 @@ if (!empty($erreur)) {
 $pdo = connect_db_or_alert();
 
 if ($flag_new) { // new
-	list($team_id, $err_msg) = set_team_new($pdo, $nom, $descr, $compte, $chef);
+	list($team_id, $err_msg) = set_team_new($pdo, $name, $description, $accounting, $manager);
 	if ($err_msg != '') {
 		$title        = 'Erreur &eacute;quipe';
 		$action       = 'team-list.php';
@@ -58,7 +58,7 @@ if ($flag_new) { // new
 	$title        = 'Ajout &eacute;quipe';
 	$action       = 'team-list.php?highlight='.$team_id;
 	$highlight    = $team_id;
-	$message_text = 'Ajout de l\'&eacute;quipe '.$nom.' valid&eacute;e';
+	$message_text = 'Ajout de l\'&eacute;quipe '.$name.' valid&eacute;e';
 	include_once('include/message-box.php');
 	exit();
 }
@@ -68,14 +68,14 @@ if ($flag_new) { // new
 $team_selected = get_team_all_by_id($pdo, $team_id);
 
 $modif = false;
-if (   ($nom    != $team_selected['name'])
-	|| ($descr  != $team_selected['description'])
-	|| ($compte != $team_selected['accounting'])
-	|| ($chef   != $team_selected['manager_id']))
+if (   ($name        != $team_selected['name'])
+	|| ($description != $team_selected['description'])
+	|| ($accounting  != $team_selected['accounting'])
+	|| ($manager     != $team_selected['manager_id']))
 	$modif = true;
 
 if ($modif) {
-	$err_msg = set_team_update($pdo, $team_id, $nom, $descr, $compte, $chef);
+	$err_msg = set_team_update($pdo, $team_id, $name, $description, $accounting, $manager);
 	if ($err_msg != '') {
 		$title        = 'Erreur &eacute;quipe';
 		$action       = 'team-list.php?highlight='.$team_id;
