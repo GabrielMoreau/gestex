@@ -13,7 +13,7 @@ CREATE TABLE `team` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- FOREIGN KEY (`chef`) REFERENCES `users` (`id`);
+-- FOREIGN KEY (`chef`) REFERENCES `user` (`id`);
 
 --
 -- Table structure for table `supplier`
@@ -34,25 +34,25 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Table structure for table `users`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `loggin` VARCHAR(20) NOT NULL DEFAULT '',
   `password` VARCHAR(255) NOT NULL DEFAULT '',
   `level` INT(11) NOT NULL DEFAULT 1,
-  `nom` VARCHAR(20) NOT NULL DEFAULT '',
-  `prenom` VARCHAR(20) NOT NULL DEFAULT '',
+  `familyname` VARCHAR(20) NOT NULL DEFAULT '',
+  `firstname` VARCHAR(20) NOT NULL DEFAULT '',
   `tel` VARCHAR(25) NOT NULL DEFAULT 'Na',
   `email` VARCHAR(50) NOT NULL DEFAULT '',
-  `equipe` INT(11) NOT NULL DEFAULT 1,
+  `team_id` INT(11) NOT NULL DEFAULT 1,
   `valid` INT(11) DEFAULT NULL,
   `theme` VARCHAR (50) DEFAULT 'clair',
   PRIMARY KEY (`id`),
   UNIQUE KEY `loggin` (`loggin`),
-  CONSTRAINT `fk_users_team` FOREIGN KEY (`equipe`) REFERENCES `team` (`id`)
+  CONSTRAINT `fk_user_team` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -92,7 +92,7 @@ CREATE TABLE `equipment` (
   CONSTRAINT `fk_equipment_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
   CONSTRAINT `fk_equipment_team` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`),
   CONSTRAINT `fk_equipment_supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`),
-  CONSTRAINT `fk_equipment_manager` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `fk_equipment_manager` FOREIGN KEY (`manager_id`) REFERENCES `user` (`id`),
   INDEX `idx_equipment_name` (`nom`),
   INDEX `idx_equipment_barcode` (`barcode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -135,14 +135,15 @@ CREATE TABLE IF NOT EXISTS `intervention` (
 DROP TABLE IF EXISTS `loan`;
 CREATE TABLE `loan` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `nom` VARCHAR(60) DEFAULT NULL,
-  `equipe` INT(11) DEFAULT NULL,
+  `equipment_id` INT(11) DEFAULT NULL,
+  `team_id` INT(11) DEFAULT NULL,
   `emprunt` DATE DEFAULT NULL,
   `retour` DATE DEFAULT NULL,
   `commentaire` VARCHAR(100) DEFAULT NULL,
   `status` ENUM('LOAN_BORROWED','LOAN_RESERVED','LOAN_RETURNED') NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_loan_team` FOREIGN KEY (`equipe`) REFERENCES `team` (`id`)
+  CONSTRAINT `fk_loan_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `team` (`id`)
+  CONSTRAINT `fk_loan_team` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -191,7 +192,7 @@ CREATE TABLE `version` (
 -- Special after foreign key
 --
 
-ALTER TABLE `team` ADD CONSTRAINT `fk_team_manager` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`);
+ALTER TABLE `team` ADD CONSTRAINT `fk_team_manager` FOREIGN KEY (`manager_id`) REFERENCES `user` (`id`);
 
 --
 -- Fix global DB version
