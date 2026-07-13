@@ -1340,11 +1340,11 @@ function get_user_count($pdo) {
  * 
  * @return array Avec potentiellement une chaine d'erreur
  */
-function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme) {
+function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, $level, $phone, $team_id, $theme) {
 	error_log('Warn: new user '.$login);
-	$sql = 'INSERT INTO user (familyname, firstname, loggin, password, email, level, tel, team_id, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
+	$sql = 'INSERT INTO user (familyname, firstname, loggin, password, email, level, phone, team_id, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($familyname, $firstname, $login, $password, $email, $level, $tel, $team_id, $theme));
+	$iostat = $stmt->execute(array($familyname, $firstname, $login, $password, $email, $level, $phone, $team_id, $theme));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
@@ -1385,15 +1385,15 @@ function set_user_valid_by_id($pdo, $user_id, $user_status) {
  * 
  * @return array Avec potentiellement une chaine d'erreur
  */
-function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme, $logged_level, $loggin='') {
+function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $phone, $team_id, $theme, $logged_level, $loggin='') {
 	if (isset($loggin) && $loggin != '' && $logged_level > 3) {
-		$sql = 'UPDATE LOW_PRIORITY user SET loggin = ?, familyname = ?, firstname = ?, email = ?, level = ?, tel = ?, team_id = ?, theme = ? WHERE id = ?;';
+		$sql = 'UPDATE LOW_PRIORITY user SET loggin = ?, familyname = ?, firstname = ?, email = ?, level = ?, phone = ?, team_id = ?, theme = ? WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
-		$iostat = $stmt->execute(array($loggin, $familyname, $firstname, $email, $level, $tel, $team_id, $theme, $user_id));
+		$iostat = $stmt->execute(array($loggin, $familyname, $firstname, $email, $level, $phone, $team_id, $theme, $user_id));
 	} else {
-		$sql = 'UPDATE LOW_PRIORITY user SET familyname = ?, firstname = ?, email = ?, level = ?, tel = ?, team_id = ?, theme = ? WHERE id = ?;';
+		$sql = 'UPDATE LOW_PRIORITY user SET familyname = ?, firstname = ?, email = ?, level = ?, phone = ?, team_id = ?, theme = ? WHERE id = ?;';
 		$stmt = $pdo->prepare($sql);
-		$iostat = $stmt->execute(array($familyname, $firstname, $email, $level, $tel, $team_id, $theme, $user_id));
+		$iostat = $stmt->execute(array($familyname, $firstname, $email, $level, $phone, $team_id, $theme, $user_id));
 	}
 
 	$err_msg = '';
@@ -1402,10 +1402,10 @@ function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level
 	return $err_msg;
 }
 
-/* function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $tel, $team_id, $theme) {
-	$sql = 'UPDATE LOW_PRIORITY user SET familyname = ?, firstname = ?, email = ?, level = ?, tel = ?, team_id = ?, theme = ? WHERE id = ?;';
+/* function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $phone, $team_id, $theme) {
+	$sql = 'UPDATE LOW_PRIORITY user SET familyname = ?, firstname = ?, email = ?, level = ?, phone = ?, team_id = ?, theme = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($familyname, $firstname, $email, $level, $tel, $team_id, $theme, $user_id));
+	$iostat = $stmt->execute(array($familyname, $firstname, $email, $level, $phone, $team_id, $theme, $user_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];

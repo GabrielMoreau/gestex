@@ -29,7 +29,7 @@ $level      = param_post('level');     // *
 $theme      = param_post('theme', 'clair');     // *
 $mail       = param_post('email');     // *
 $firstname  = param_post('firstname');
-$phone      = param_post('tel', 'Na');
+$phone      = param_post('phone', 'Na');
 $team_id    = param_post('team_id');
 
 if (empty($familyname))
@@ -108,7 +108,7 @@ if (   ($familyname != $user_selected['familyname'])
 	|| ($firstname  != $user_selected['firstname'])
 	|| ($mail       != $user_selected['email'])
 	|| ($level      != $user_selected['level'])
-	|| ($phone      != $user_selected['tel'])
+	|| ($phone      != $user_selected['phone'])
 	|| ($team_id    != $user_selected['team_id'])
 	|| ($theme      != $user_selected['theme']))
 	$modif = true;

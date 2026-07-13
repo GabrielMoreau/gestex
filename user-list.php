@@ -79,7 +79,7 @@ if ($pdo = connect_db()) {
 
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo      $user_current['tel'];
+		echo      $user_current['phone'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		$user_mail = sanitize_mail($user_current['email']);

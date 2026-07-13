@@ -45,7 +45,7 @@ CREATE TABLE `user` (
   `level` INT(11) NOT NULL DEFAULT 1,
   `familyname` VARCHAR(20) NOT NULL DEFAULT '',
   `firstname` VARCHAR(20) NOT NULL DEFAULT '',
-  `tel` VARCHAR(25) NOT NULL DEFAULT 'Na',
+  `phone` VARCHAR(25) NOT NULL DEFAULT 'Na',
   `email` VARCHAR(50) NOT NULL DEFAULT '',
   `team_id` INT(11) NOT NULL DEFAULT 1,
   `valid` INT(11) DEFAULT NULL,

@@ -74,6 +74,8 @@ ALTER TABLE `loan` ADD CONSTRAINT `fk_loan_team` FOREIGN KEY (`team_id`) REFEREN
 ALTER TABLE `users` RENAME COLUMN `nom` TO `familyname`;
 ALTER TABLE `users` RENAME COLUMN `prenom` TO `firstname`;
 ALTER TABLE `users` RENAME COLUMN `equipe` TO `team_id`;
+ALTER TABLE `users` RENAME COLUMN `tel` TO `phone`;
+
 RENAME TABLE `users` TO `user`;
 
 -- SHOW CREATE TABLE user\G

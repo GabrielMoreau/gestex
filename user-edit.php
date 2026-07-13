@@ -103,7 +103,7 @@ if ($mode == 'Ajouter') {
 				T&eacute;l&eacute;phone <?=ICON_PHONE?>
 			</th>
 			<td>
-				<input type="tel" name="tel" size="15" maxlength="15" value="<?= param_post_key('tel', $user_selected) ?>" placeholder="T&eacute;l&eacute;phone">
+				<input type="tel" name="phone" size="15" maxlength="15" value="<?= param_post_key('phone', $user_selected) ?>" placeholder="T&eacute;l&eacute;phone">
 			</td>
 		</tr>
 		<tr>
