@@ -40,7 +40,7 @@ CREATE TABLE `supplier` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `loggin` VARCHAR(20) NOT NULL DEFAULT '',
+  `username` VARCHAR(20) NOT NULL DEFAULT '',
   `password` VARCHAR(255) NOT NULL DEFAULT '',
   `level` INT(11) NOT NULL DEFAULT 1,
   `familyname` VARCHAR(20) NOT NULL DEFAULT '',
@@ -51,7 +51,7 @@ CREATE TABLE `user` (
   `valid` INT(11) DEFAULT NULL,
   `theme` VARCHAR (50) DEFAULT 'clair',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `loggin` (`loggin`),
+  UNIQUE KEY `username` (`username`),
   CONSTRAINT `fk_user_team` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

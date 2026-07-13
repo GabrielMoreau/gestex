@@ -74,12 +74,13 @@ ALTER TABLE `loan` ADD CONSTRAINT `fk_loan_team` FOREIGN KEY (`team_id`) REFEREN
 -- Upgrade table `user`
 --
 
-ALTER TABLE `users` RENAME COLUMN `nom` TO `familyname`;
-ALTER TABLE `users` RENAME COLUMN `prenom` TO `firstname`;
-ALTER TABLE `users` RENAME COLUMN `equipe` TO `team_id`;
-ALTER TABLE `users` RENAME COLUMN `tel` TO `phone`;
-
 RENAME TABLE `users` TO `user`;
+
+ALTER TABLE `user` RENAME COLUMN `nom` TO `familyname`;
+ALTER TABLE `user` RENAME COLUMN `prenom` TO `firstname`;
+ALTER TABLE `user` RENAME COLUMN `equipe` TO `team_id`;
+ALTER TABLE `user` RENAME COLUMN `tel` TO `phone`;
+ALTER TABLE `user` RENAME COLUMN `loggin` TO `username`;
 
 -- SHOW CREATE TABLE user\G
 -- SHOW INDEX FROM user;

@@ -42,15 +42,15 @@ if ($mode == 'Ajouter') {
 				Identifiant (login) *
 			</th>
 			<td>
-				<input type="text" name="loggin" size="25" maxlength="25" value="" placeholder="Identifiant (login) *">
+				<input type="text" name="username" size="25" maxlength="25" value="" placeholder="Identifiant (login) *">
 			</td>
 			<?php } else { ?>
 			<th>
 				Identifiant (login)
 			</th>
 			<td>
-				<?php if ($logged_level > 3) { echo '<input type="text" name="loggin" size="25" maxlength="25" value="'.param_post_key('loggin', $user_selected).'" placeholder="Identifiant (login) *">'; } else {
-				echo '<b>'.param_post_key('loggin', $user_selected).'</b>'; } ?>
+				<?php if ($logged_level > 3) { echo '<input type="text" name="username" size="25" maxlength="25" value="'.param_post_key('username', $user_selected).'" placeholder="Identifiant (login) *">'; } else {
+				echo '<b>'.param_post_key('username', $user_selected).'</b>'; } ?>
 			</td>
 			<?php } ?>
 		</tr>

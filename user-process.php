@@ -21,7 +21,7 @@ $flag_new = true;
 if ($user_id > 0)
 	$flag_new = false;
 
-$loggin     = param_post('loggin');    // * new only
+$username   = param_post('username');    // * new only
 $password   = param_post_password('password');  // * new only
 $password2  = param_post_password('password2'); // * new only
 $familyname = param_post('familyname');       // *
@@ -41,7 +41,7 @@ if (empty($level))
 if (empty($theme))
 	$erreur = 'Th&egrave;me non pr&eacute;cis&eacute;';
 if ($flag_new) {
-	if (empty($loggin))
+	if (empty($username))
 		$erreur = 'Identifiant (login) non pr&eacute;cis&eacute;';
 	if (empty($password))
 		$erreur = 'Password non pr&eacute;cis&eacute;';
@@ -53,9 +53,9 @@ if ($flag_new) {
 
 $pdo = connect_db_or_alert();
 
-if ($flag_new and check_val_in_db($pdo, 'users', 'loggin', $loggin)) {
+if ($flag_new and check_val_in_db($pdo, 'users', 'username', $username)) {
 	// nom existant deja dans db
-	$erreur = 'L\'identifiant <i>'.$loggin.'</i> est d&eacute;j&agrave; utilis&eacute; dans la base de donn&eacute;es';
+	$erreur = 'L\'identifiant <i>'.$username.'</i> est d&eacute;j&agrave; utilis&eacute; dans la base de donn&eacute;es';
 }
 
 if (!empty($erreur)) {
@@ -73,7 +73,7 @@ if ($flag_new) { // new
 	level_or_alert(3, 'Validation d\'un nouvel utilisateur');
 
 	$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
-	list($user_id, $err_msg) = set_user_new($pdo, $familyname, $firstname, $loggin, $new_pwhash, $mail, $level, $phone, $team_id, $theme);
+	list($user_id, $err_msg) = set_user_new($pdo, $familyname, $firstname, $username, $new_pwhash, $mail, $level, $phone, $team_id, $theme);
 
 	if ($err_msg != '') {
 		$title        = 'Erreur utilisateur';
@@ -114,7 +114,7 @@ if (   ($familyname != $user_selected['familyname'])
 	$modif = true;
 
 if ($modif) {
-	$err_msg = set_user_update($pdo, $user_id, $familyname, $firstname, $mail, $level, $phone, $team_id, $theme, $logged_level, $loggin);
+	$err_msg = set_user_update($pdo, $user_id, $familyname, $firstname, $mail, $level, $phone, $team_id, $theme, $logged_level, $username);
 	if ($err_msg != '') {
 		$title        = 'Erreur utilisateur';
 		$action       = 'user-list.php?highlight='.$user_id;
