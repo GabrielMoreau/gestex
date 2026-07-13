@@ -11,6 +11,7 @@ ALTER TABLE `equipment` RENAME COLUMN `categorie` TO `category_id`;
 ALTER TABLE `equipment` RENAME COLUMN `equipe` TO `team_id`;
 ALTER TABLE `equipment` RENAME COLUMN `fournisseur` TO `supplier_id`;
 ALTER TABLE `equipment` RENAME COLUMN `responsable` TO `manager_id`;
+-- ALTER TABLE `equipment` RENAME COLUMN `nom` TO `name`;
 
 ALTER TABLE `equipment` RENAME INDEX `equipe` TO `idx_equipment_team`;
 ALTER TABLE `equipment` RENAME INDEX `fournisseur` TO `idx_equipment_supplier`;
@@ -88,6 +89,8 @@ ALTER TABLE `supplier` RENAME COLUMN `adresse` TO `address`;
 ALTER TABLE `supplier` RENAME COLUMN `mail` TO `email`;
 ALTER TABLE `supplier` RENAME COLUMN `tel` TO `phone`;
 ALTER TABLE `supplier` RENAME COLUMN `descr` TO `description`;
+
+ALTER TABLE `supplier` MODIFY COLUMN `address` VARCHAR(100) NOT NULL DEFAULT '';
 
 -- SHOW CREATE TABLE supplier\G
 
