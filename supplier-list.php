@@ -75,15 +75,15 @@ if ($pdo = connect_db()) {
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		if ($count === 0) {
-			echo '  <td><a name="item'.$supplier_item['id'].'"></a>'.$supplier_item['nom'].'</td>'.PHP_EOL;
+			echo '  <td><a name="item'.$supplier_item['id'].'"></a>'.$supplier_item['name'].'</td>'.PHP_EOL;
 		} else {
-			echo '  <td><a name="item'.$supplier_item['id'].'"></a><a href="equipment-list.php?supplier_id='.$supplier_item['id'].'">'.$supplier_item['nom'].'</a></td>'.PHP_EOL;
+			echo '  <td><a name="item'.$supplier_item['id'].'"></a><a href="equipment-list.php?supplier_id='.$supplier_item['id'].'">'.$supplier_item['name'].'</a></td>'.PHP_EOL;
 		}
-		echo '  <td>'.$supplier_item['adresse'].'</td>'.PHP_EOL;
-		echo '  <td>'.$supplier_item['tel'].'</td>'.PHP_EOL;
+		echo '  <td>'.$supplier_item['address'].'</td>'.PHP_EOL;
+		echo '  <td>'.$supplier_item['phone'].'</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['fax'].'</td>'.PHP_EOL;
 		echo '  <td>';
-		$supplier_mail = sanitize_mail($supplier_item['mail']);
+		$supplier_mail = sanitize_mail($supplier_item['email']);
 		if (!empty($supplier_mail))
 			echo '<a href="mailto:'.$supplier_mail.'">'.ICON_MAIL.'</a>';
 		echo '</td>'.PHP_EOL;
@@ -93,7 +93,7 @@ if ($pdo = connect_db()) {
 			echo '<a href="'.$url.'">'.ICON_URL.'</a>';
 		echo '</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['contact'].'</td>'.PHP_EOL;
-		echo '  <td>'.$supplier_item['descr'].'</td>'.PHP_EOL;
+		echo '  <td>'.$supplier_item['description'].'</td>'.PHP_EOL;
 		if ($logged_level >= 2) {
 			echo '  </td><td>';
 			echo '<a href="supplier-edit.php?id='.$supplier_item['id'].'">'.ICON_EDIT.'</a>';

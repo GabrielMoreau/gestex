@@ -80,6 +80,19 @@ RENAME TABLE `users` TO `user`;
 
 
 --
+-- Upgrade table `supplier`
+--
+
+ALTER TABLE `supplier` RENAME COLUMN `nom` TO `name`;
+ALTER TABLE `supplier` RENAME COLUMN `adresse` TO `address`;
+ALTER TABLE `supplier` RENAME COLUMN `mail` TO `email`;
+ALTER TABLE `supplier` RENAME COLUMN `tel` TO `phone`;
+ALTER TABLE `supplier` RENAME COLUMN `descr` TO `description`;
+
+-- SHOW CREATE TABLE supplier\G
+
+
+--
 -- Fix global DB version
 --
 

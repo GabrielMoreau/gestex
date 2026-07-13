@@ -41,7 +41,7 @@ else if ($mode == 'Modifier') {
 				Nom *
 			</th>
 			<td>
-				<input type="text" name="nom" size="50" maxlength="50" value="<?= param_post_key('nom', $supplier_selected) ?>" placeholder="Nom *">
+				<input type="text" name="name" size="50" maxlength="50" value="<?= param_post_key('name', $supplier_selected) ?>" placeholder="Nom *">
 			</td>
 		</tr>
 		<tr>
@@ -49,7 +49,7 @@ else if ($mode == 'Modifier') {
 				Adresse <?=ICON_HOUSE?> *
 			</th>
 			<td>
-				<input type="text" name="adresse" size="50" maxlength="50" value="<?= param_post_key('adresse', $supplier_selected) ?>" placeholder="Adresse *">
+				<input type="text" name="address" size="50" maxlength="50" value="<?= param_post_key('address', $supplier_selected) ?>" placeholder="Adresse *">
 			</td>
 		</tr>
 		<tr>
@@ -57,7 +57,7 @@ else if ($mode == 'Modifier') {
 				Adresse courriel <?=ICON_MAIL?>
 			</th>
 			<td>
-				<input type="email" name="addr_mail" size="50" maxlength="50" value="<?= param_post_key('mail', $supplier_selected) ?>" placeholder="Adresse courriel">
+				<input type="email" name="email" size="50" maxlength="50" value="<?= param_post_key('email', $supplier_selected) ?>" placeholder="Adresse courriel">
 			</td>
 		</tr>
 		<tr>
@@ -65,7 +65,7 @@ else if ($mode == 'Modifier') {
 				T&eacute;l&eacute;phone <?=ICON_PHONE?>
 			</th>
 			<td>
-				<input type="tel" name="phone" size="15" maxlength="15" value="<?= param_post_key('tel', $supplier_selected) ?>" placeholder="T&eacute;l&eacute;phone">
+				<input type="tel" name="phone" size="15" maxlength="15" value="<?= param_post_key('phone', $supplier_selected) ?>" placeholder="T&eacute;l&eacute;phone">
 			</td>
 		</tr>
 		<tr>
@@ -96,7 +96,7 @@ else if ($mode == 'Modifier') {
 			Utiliser des mots stanadards (capteur, moteur, profil&eacute;...)
 			</th>
 			<td>
-				<textarea name="descr" cols="50" rows="5" placeholder="Description pour faciliter la recherche de fournisseurs. Utiliser des mots standards (capteur, moteur, profil&eacute;...)"><?= param_post_key('descr', $supplier_selected) ?></textarea>
+				<textarea name="description" cols="50" rows="5" placeholder="Description pour faciliter la recherche de fournisseurs. Utiliser des mots standards (capteur, moteur, profil&eacute;...)"><?= param_post_key('description', $supplier_selected) ?></textarea>
 			</td>
 		</tr>
 

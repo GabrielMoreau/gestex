@@ -137,7 +137,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				Fournisseur
 			</th>
 			<td>
-				<a href="supplier-list.php?highlight=<?php echo $equipment_selected['supplier_id'] ?>#item<?php echo $equipment_selected['supplier_id'] ?>"><?php echo $supplier['nom'] ?></a>
+				<a href="supplier-list.php?highlight=<?php echo $equipment_selected['supplier_id'] ?>#item<?php echo $equipment_selected['supplier_id'] ?>"><?php echo $supplier['name'] ?></a>
 			</td>
 		</tr>
 

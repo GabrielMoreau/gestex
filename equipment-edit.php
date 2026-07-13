@@ -129,7 +129,7 @@ $team_manager_id = param_post_key('manager_id', $equipment_selected, 0);
 					if ($supplier_current['id'] == param_post_key('supplier_id', $equipment_selected, 0)) {
 						echo ' selected';
 						}
-					echo '>'.$supplier_current['nom'].'</option>';
+					echo '>'.$supplier_current['name'].'</option>';
 				} // end foreach
 				?>
 				</select>

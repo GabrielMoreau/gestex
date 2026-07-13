@@ -22,18 +22,18 @@ $flag_new = true;
 if ($supplier_id > 0)
 	$flag_new = false;
 
-$nom     = param_post('nom');
-$adresse = param_post('adresse');
+$name     = param_post('name');
+$address = param_post('address');
 $www     = param_post('www');
 $phone   = param_post('phone');
 $fax     = param_post('fax');
-$email   = param_post('addr_mail');
+$email   = param_post('email');
 $contact = param_post('contact');
-$descr   = param_post('descr');
+$description   = param_post('description');
 // variables ne pouvant etre nulles
-if (empty($nom))
+if (empty($name))
 	$erreur = 'Nom du fournisseur non pr&eacute;cis&eacute;';
-if (empty($adresse))
+if (empty($address))
 	$erreur = 'Adresse non pr&eacute;cis&eacute;e';
 
 if (!empty($erreur)) {
@@ -49,7 +49,7 @@ if (!empty($erreur)) {
 $pdo = connect_db_or_alert();
 
 if ($flag_new) { // new
-	list($supplier_id, $err_msg) = set_supplier_new($pdo, $nom, $adresse, $phone, $fax, $email, $www, $contact, $descr);
+	list($supplier_id, $err_msg) = set_supplier_new($pdo, $name, $address, $phone, $fax, $email, $www, $contact, $description);
 	if ($err_msg != '') {
 		$message_alert = ($logged_level > 3 ? $err_msg : '');
 		include_once('include/alert-data.php');
@@ -59,7 +59,7 @@ if ($flag_new) { // new
 	$title        = 'R&eacute;sultat ajout fournisseur';
 	$action       = 'supplier-list.php?highlight='.$supplier_id;
 	$highlight    = $supplier_id;
-	$message_text = 'Ajout du fournisseur '.$nom.' valid&eacute;';
+	$message_text = 'Ajout du fournisseur '.$name.' valid&eacute;';
 	include_once('include/message-box.php');
 	exit();
 }
@@ -69,18 +69,18 @@ if ($flag_new) { // new
 $supplier_selected = get_supplier_all_by_id($pdo, $supplier_id);
 
 $modif = false;
-if (   ($nom     != $supplier_selected['nom'])
-	|| ($adresse != $supplier_selected['adresse'])
-	|| ($phone   != $supplier_selected['tel'])
-	|| ($fax     != $supplier_selected['fax'])
-	|| ($email   != $supplier_selected['mail'])
-	|| ($www     != $supplier_selected['www'])
-	|| ($contact != $supplier_selected['contact'])
-	|| ($descr   != $supplier_selected['descr']))
+if (   ($name        != $supplier_selected['name'])
+	|| ($address     != $supplier_selected['address'])
+	|| ($phone       != $supplier_selected['phone'])
+	|| ($fax         != $supplier_selected['fax'])
+	|| ($email       != $supplier_selected['email'])
+	|| ($www         != $supplier_selected['www'])
+	|| ($contact     != $supplier_selected['contact'])
+	|| ($description != $supplier_selected['description']))
 	$modif = true;
 
 if ($modif) {
-	$err_msg = set_supplier_update($pdo, $supplier_id, $nom, $adresse, $phone, $fax, $email, $www, $contact, $descr);
+	$err_msg = set_supplier_update($pdo, $supplier_id, $name, $address, $phone, $fax, $email, $www, $contact, $description);
 	if ($err_msg != '') {
 		$title        = 'Erreur fournisseur';
 		$action       = 'supplier-list.php?highlight='.$supplier_id;

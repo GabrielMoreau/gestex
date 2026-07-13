@@ -60,7 +60,7 @@ if ($mode == 'Ajouter') {
 				<select name="supplier_id">
 					<?php foreach ($supplier_fetch as $supplier_current): ?>
 					<option value="<?= $supplier_current['id'] ?>"
-						<?= $supplier_current['nom'] ?>
+						<?= $supplier_current['name'] ?>
 					</option>
 					<?php endforeach; ?>
 				</select>

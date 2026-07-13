@@ -43,7 +43,7 @@ if ($team_id > 0) {
 $supplier_id = param_get('supplier_id', 0);
 if ($supplier_id > 0) {
 	$supplier_selected = get_supplier_short_by_id($pdo, $supplier_id);
-	$title .= ' du fournisseur <i>'.$supplier_selected['nom'].'</i>';
+	$title .= ' du fournisseur <i>'.$supplier_selected['name'].'</i>';
 }
 ?>
 
@@ -149,7 +149,7 @@ if ($supplier_id > 0) {
 			// recupere le nom du fournisseur
 			$supplier = get_supplier_short_by_id($pdo, $equipment_item['supplier_id']);
 			if ($supplier) {
-				echo '    <a href="equipment-list.php?supplier_id='.$supplier['id'].'">'.$supplier['nom'].'</a>';
+				echo '    <a href="equipment-list.php?supplier_id='.$supplier['id'].'">'.$supplier['name'].'</a>';
 			}
 			echo '  </td>'.PHP_EOL;
 		}

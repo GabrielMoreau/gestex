@@ -992,7 +992,7 @@ function get_supplier_all_by_id($pdo, $id) {
  * @return array
  */
 function get_supplier_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM supplier ORDER BY nom;';
+	$sql = 'SELECT id, nom FROM supplier ORDER BY name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$supplier_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1007,7 +1007,7 @@ function get_supplier_listshort($pdo) {
  * @return array
  */
 function get_supplier_listall($pdo) {
-	$sql = 'SELECT * FROM supplier ORDER BY nom;';
+	$sql = 'SELECT * FROM supplier ORDER BY name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$supplier_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1027,7 +1027,7 @@ function get_supplier_listall($pdo) {
 function get_supplier_find($pdo, $find='') {
 	if (empty($find) or ($find === true))
 		return get_supplier_listall($pdo);
-	$sql = 'SELECT * FROM supplier WHERE nom RLIKE ? OR descr RLIKE ?;';
+	$sql = 'SELECT * FROM supplier WHERE name RLIKE ? OR description RLIKE ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($find, $find));
 	$supplier_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1041,10 +1041,10 @@ function get_supplier_find($pdo, $find='') {
  * 
  * @return array Avec chaine d'erreur au deuxième index
  */
-function set_supplier_new($pdo, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
-	$sql = 'INSERT INTO supplier (nom, adresse, mail, www, tel, fax, contact, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+function set_supplier_new($pdo, $name, $address, $phone, $fax, $email, $www, $contact, $description) {
+	$sql = 'INSERT INTO supplier (name, address, email, www, phone, fax, contact, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description));
+	$iostat = $stmt->execute(array($name, $address, $phone, $fax, $email, $www, $contact, $description));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
@@ -1058,10 +1058,10 @@ function set_supplier_new($pdo, $name, $address, $tel, $fax, $email, $www, $cont
  * 
  * @return array Avec chaine d'erreur au deuxième index
  */
-function set_supplier_update($pdo, $supplier_id, $name, $address, $tel, $fax, $email, $www, $contact, $description) {
-	$sql = 'UPDATE LOW_PRIORITY supplier  SET nom = ?, adresse = ?, tel = ?, fax = ?, mail = ?, www = ?, contact = ?, descr = ? WHERE id = ?;';
+function set_supplier_update($pdo, $supplier_id, $name, $address, $phone, $fax, $email, $www, $contact, $description) {
+	$sql = 'UPDATE LOW_PRIORITY supplier  SET name = ?, address = ?, phone = ?, fax = ?, email = ?, www = ?, contact = ?, description = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($name, $address, $tel, $fax, $email, $www, $contact, $description, $supplier_id));
+	$iostat = $stmt->execute(array($name, $address, $phone, $fax, $email, $www, $contact, $description, $supplier_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
