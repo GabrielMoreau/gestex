@@ -16,29 +16,29 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$id_equipment = param_get('id');
-if (empty($id_equipment))
+$equipment_id = param_get('id');
+if (empty($equipment_id))
 	redirect('equipment-list.php');
 
 if ($pdo = connect_db()) {
-	$equipment_selected = get_equipment_all_by_id($pdo, $id_equipment);
+	$equipment_selected = get_equipment_all_by_id($pdo, $equipment_id);
 	$manager  = get_user_short_by_id($pdo, $equipment_selected['manager_id']);
 	$team     = get_team_by_id($pdo, $equipment_selected['team_id']);
 	$supplier = get_supplier_short_by_id($pdo, $equipment_selected['supplier_id']);
 	$category = get_category_by_id($pdo, $equipment_selected['category_id']);
 
 	$datacheet_path  = get_datasheet_basepath();
-	$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $id_equipment);
+	$datasheet_fetch = get_datasheet_listall_by_equipment($pdo, $equipment_id);
 	$datasheet_count = count($datasheet_fetch);
 
 	if ($equipment_selected['barcode'] == 0)
 		$equipment_selected['barcode'] = '';
 
 	if ($equipment_selected['loanable'] == 1)
-		$loan = get_loans_all_not_return_by_equipment($pdo, $id_equipment);
+		$loan = get_loans_all_not_return_by_equipment($pdo, $equipment_id);
 
-	$loan_borrow = get_loans_all_by_equipment_borrowed($pdo, $id_equipment);
-	$equipment_loan_reserved = get_loan_all_last_returned($pdo, $id_equipment);
+	$loan_borrow = get_loans_all_by_equipment_borrowed($pdo, $equipment_id);
+	$equipment_loan_reserved = get_loan_all_last_returned($pdo, $equipment_id);
 
 en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'].'</b>');
 ?>
@@ -47,12 +47,12 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 <table>
 	<tbody>
 		<th colspan="2">
-			<span class="option-right"><a href="equipment-list.php?category_id=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo ICON_LIST ?></a></span>
+			<span class="option-right"><a href="equipment-list.php?category_id=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $equipment_id ?>#item<?php echo $equipment_id ?>"><?php echo ICON_LIST ?></a></span>
 			<?php
 				if ($logged_level >= 3) {
-					echo '<span class="option-right"><a href="equipment-del.php?id='.$id_equipment.'">'.ICON_TRASH.'</a>&nbsp;</span>'.PHP_EOL;
-					echo '<span class="option-right"><a href="equipment-edit.php?id='.$id_equipment.'">'.ICON_EDIT.'</a>&nbsp;</span>'.PHP_EOL;
-					echo '<span class="option-right"><a href="intervention-edit.php?equipment_id='.$id_equipment.'">'.ICON_INTERVENTION.'</a>&nbsp;</span>'.PHP_EOL;
+					echo '<span class="option-right"><a href="equipment-del.php?id='.$equipment_id.'">'.ICON_TRASH.'</a>&nbsp;</span>'.PHP_EOL;
+					echo '<span class="option-right"><a href="equipment-edit.php?id='.$equipment_id.'">'.ICON_EDIT.'</a>&nbsp;</span>'.PHP_EOL;
+					echo '<span class="option-right"><a href="intervention-edit.php?equipment_id='.$equipment_id.'">'.ICON_INTERVENTION.'</a>&nbsp;</span>'.PHP_EOL;
 				}
 			?>
 		</th>
@@ -119,7 +119,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				&Eacute;quipe
 			</th>
 			<td>
-				<a href="equipment-list.php?team_id=<?php echo $equipment_selected['team_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $team['name'] ?></a>
+				<a href="equipment-list.php?team_id=<?php echo $equipment_selected['team_id'] ?>&highlight=<?php echo $equipment_id ?>#item<?php echo $equipment_id ?>"><?php echo $team['name'] ?></a>
 			</td>
 		</tr>
 
@@ -128,7 +128,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				Cat&eacute;gorie
 			</th>
 			<td>
-				<a href="equipment-list.php?category_id=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $id_equipment ?>#item<?php echo $id_equipment ?>"><?php echo $category['name'] ?></a>
+				<a href="equipment-list.php?category_id=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $equipment_id ?>#item<?php echo $equipment_id ?>"><?php echo $category['name'] ?></a>
 			</td>
 		</tr>
 

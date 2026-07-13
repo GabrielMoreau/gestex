@@ -21,14 +21,14 @@ $flag_new = true;
 if ($equipment_id > 0)
 	$flag_new = false;
 
-$categorie   = param_post('category_id');
+$category_id = param_post('category_id');
 $nom         = param_post('nom');
 $modele      = param_post('modele');
 $feature     = param_post('gamme');
-$equipe      = param_post('team_id');
-$fourn       = param_post('supplier_id');
+$team_id     = param_post('team_id');
+$supplier_id = param_post('supplier_id');
 $achat       = param_post('achat');
-$tech        = param_post('manager_id');
+$manager_id  = param_post('manager_id');
 $reparation  = param_post('reparation');
 $accessoires = param_post('accessoires');
 $inventaire  = param_post('inventaire');
@@ -36,17 +36,17 @@ $barcode     = param_post('barcode', 0); // force int
 $max_day     = param_post('max_day', 0);
 $loanable    = param_post('loanable', 0);
 //variables ne pouvant etre nulles
-if (empty($categorie))
+if (empty($category_id))
 	$erreur = 'Cat&eacute;gorie non pr&eacute;cis&eacute;';
 if (empty($nom))
 	$erreur = 'Nom de l\'appareil non pr&eacute;cis&eacute;';
 if (empty($modele))
 	$erreur = 'Mod&egrave;le non pr&eacute;cis&eacute;';
-if (empty($equipe))
+if (empty($team_id))
 	$erreur = '&Eacute;quipe non pr&eacute;cis&eacute;';
-if (empty($tech))
+if (empty($manager_id))
 	$erreur = 'Tech non pr&eacute;cis&eacute;';
-if (empty($fourn))
+if (empty($supplier_id))
 	$erreur = 'Fournisseur non pr&eacute;cis&eacute;';
 if (empty($achat))
 	$erreur = 'Achat non pr&eacute;cis&eacute;';
@@ -75,7 +75,7 @@ if (!empty($erreur)) {
 $pdo = connect_db_or_alert();
 
 if ($flag_new) { // new
-	list($equipment_id, $err_msg) = set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day);
+	list($equipment_id, $err_msg) = set_equipment_new($pdo, $category_id, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $manager_id, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day);
 	if ($err_msg != '') {
 		$message_alert = ($logged_level > 3 ? $err_msg : '');
 		include_once('include/alert-data.php');
@@ -105,13 +105,13 @@ $equipment_selected = get_equipment_all_by_id($pdo, $equipment_id);
 
 //modification app
 $modif = false;
-if (   ($categorie   != $equipment_selected['category_id'])
+if (   ($category_id != $equipment_selected['category_id'])
 	|| ($nom         != $equipment_selected['nom'])
 	|| ($modele      != $equipment_selected['modele'])
 	|| ($feature     != $equipment_selected['gamme'])
-	|| ($tech        != $equipment_selected['manager_id'])
-	|| ($equipe      != $equipment_selected['team_id'])
-	|| ($fourn       != $equipment_selected['supplier_id'])
+	|| ($manager_id  != $equipment_selected['manager_id'])
+	|| ($team_id     != $equipment_selected['team_id'])
+	|| ($supplier_id != $equipment_selected['supplier_id'])
 	|| ($achat       != $equipment_selected['achat'])
 	|| ($reparation  != $equipment_selected['reparation'])
 	|| ($accessoires != $equipment_selected['accessoires'])
@@ -125,7 +125,7 @@ if (   ($categorie   != $equipment_selected['category_id'])
 if ($modif) {
 	if ($barcode == '')
 		$barcode = 0;
-	$err_msg = set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day);
+	$err_msg = set_equipment_update($pdo, $equipment_id, $category_id, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $manager_id, $reparation, $accessoires, $inventaire, $notice, $barcode, $loanable, $max_day);
 	if ($err_msg != '') {
 		$title        = 'Erreur appareil';
 		$action       = 'equipment-view.php?id='.$equipment_id;
