@@ -958,7 +958,7 @@ function set_loan_to_returned($pdo, $loan_id) {
  * @return false|array Retourne directement le fournisseur
  */
 function get_supplier_short_by_id($pdo, $id) {
-	$sql = 'SELECT id, nom FROM supplier WHERE id = ?;';
+	$sql = 'SELECT id, name FROM supplier WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -992,7 +992,7 @@ function get_supplier_all_by_id($pdo, $id) {
  * @return array
  */
 function get_supplier_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM supplier ORDER BY name;';
+	$sql = 'SELECT id, name FROM supplier ORDER BY name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$supplier_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
