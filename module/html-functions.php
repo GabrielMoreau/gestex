@@ -238,7 +238,7 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 		<div>
 			<h4 style="background-color: var(--color-alert);">Dernier retour N°<?php echo $equipment_loan_reserved[0]["id"] ?></h4>
 			<?php
-			echo $equipment_loan_reserved[0]['emprunt'].'&nbsp;&#8594;&nbsp;'.$equipment_loan_reserved[0]['retour'].PHP_EOL;
+			echo $equipment_loan_reserved[0]['start_date'].'&nbsp;&#8594;&nbsp;'.$equipment_loan_reserved[0]['end_date'].PHP_EOL;
 			echo '<br>'.get_team_by_id($pdo, $equipment_loan_reserved[0]['team_id'])["name"].PHP_EOL;
 			echo '<br>'.$equipment_loan_reserved[0]['comment'].PHP_EOL;
 			?>
@@ -273,7 +273,7 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 			}
 			echo '</span>'.PHP_EOL;
 			echo '</h4>'.PHP_EOL;
-			echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
+			echo $loan_current['start_date'].'&nbsp;&#8594;&nbsp;'.$loan_current['end_date'].PHP_EOL;
 
 			echo '<br>'.get_team_by_id($pdo, $loan_current['team_id'])['name'].PHP_EOL;
 			echo '<br>'.$loan_current['comment'].PHP_EOL;

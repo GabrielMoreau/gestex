@@ -677,7 +677,7 @@ function get_loans_all_by_equipment($pdo, $equipment_id) {
 * rangé dans un certaine ordre de priorité.
 */
 function get_loans_all_not_return_by_equipment($pdo, $equipment_id) {
-	$sql = 'SELECT * FROM loan WHERE equipment_id = ? AND status != ? ORDER BY status DESC, emprunt ASC, retour ASC;';
+	$sql = 'SELECT * FROM loan WHERE equipment_id = ? AND status != ? ORDER BY status DESC, start_date ASC, end_date ASC;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, STATUS_LOAN_RETURNED));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -728,7 +728,7 @@ function get_loan_all_by_id_equipment($pdo, $equipment_id) {
  */
 function get_loan_listall($pdo) {
 	//$sql = 'SELECT * FROM loan;';
-	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM loan AS l INNER JOIN equipment AS e ON l.equipment_id = e.id WHERE status = ? ORDER BY l.retour DESC, l.emprunt DESC, e.nom;';
+	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM loan AS l INNER JOIN equipment AS e ON l.equipment_id = e.id WHERE status = ? ORDER BY l.end_date DESC, l.start_date DESC, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array(STATUS_LOAN_BORROWED));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -740,7 +740,7 @@ function get_loan_listall($pdo) {
  * @todo effectuer la documentation de la jointure
  */
 function get_loan_listall_by_team($pdo, $team_id) {
-	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM loan AS l INNER JOIN equipment AS e ON l.equipment_id = e.id WHERE l.team_id = ? AND status = ? ORDER BY l.retour DESC, l.emprunt DESC, e.nom;';
+	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM loan AS l INNER JOIN equipment AS e ON l.equipment_id = e.id WHERE l.team_id = ? AND status = ? ORDER BY l.end_date DESC, l.start_date DESC, e.nom;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($team_id, STATUS_LOAN_BORROWED));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -806,7 +806,7 @@ function get_loans_all_by_equipment_borrowed($pdo, $equipment_id) {
  * @return false|array
  */
 function get_loans_interval_by_id($pdo, $equipment_id, $from, $to) {
-	$sql = 'SELECT * FROM loan WHERE (((`emprunt` <= ? AND `retour` >= ?) AND `equipment_id` = ?) OR ((`emprunt` <= ? AND `retour` >= ?) AND `equipment_id` = ?) OR ((`emprunt` >= ? AND `retour` <= ?) AND `equipment_id` = ?)) AND status != ?;';
+	$sql = 'SELECT * FROM loan WHERE (((`start_date` <= ? AND `end_date` >= ?) AND `equipment_id` = ?) OR ((`start_date` <= ? AND `end_date` >= ?) AND `equipment_id` = ?) OR ((`start_date` >= ? AND `end_date` <= ?) AND `equipment_id` = ?)) AND status != ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($from, $from, $equipment_id, $to, $to, $equipment_id, $from, $to, $equipment_id, STATUS_LOAN_RETURNED));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -825,7 +825,7 @@ function get_loans_interval_by_id($pdo, $equipment_id, $from, $to) {
  * @return false|array
  */
 function get_loans_interval_by_id_except_loan($pdo, $equipment_id, $from, $to, $except_id) {
-	$sql = 'SELECT * FROM loan WHERE (((`emprunt` <= ? AND `retour` >= ?) AND `equipment_id` = ?) OR ((`emprunt` <= ? AND `retour` >= ?) AND `equipment_id` = ?) OR ((`emprunt` >= ? AND `retour` <= ?) AND `equipment_id` = ?)) AND NOT id = ?;';
+	$sql = 'SELECT * FROM loan WHERE (((`start_date` <= ? AND `end_date` >= ?) AND `equipment_id` = ?) OR ((`start_date` <= ? AND `end_date` >= ?) AND `equipment_id` = ?) OR ((`start_date` >= ? AND `end_date` <= ?) AND `equipment_id` = ?)) AND NOT id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($from, $from, $equipment_id, $to, $to, $equipment_id, $from, $to, $equipment_id, $except_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -858,7 +858,7 @@ function get_loan_status_by_id($pdo, $loan_id) {
  * @return false|array
  */
 function get_loan_all_last_returned($pdo, $equipment_id) {
-	$sql = 'SELECT * FROM loan WHERE equipment_id = ? AND status = ? ORDER BY retour DESC LIMIT 1;';
+	$sql = 'SELECT * FROM loan WHERE equipment_id = ? AND status = ? ORDER BY end_date DESC LIMIT 1;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, STATUS_LOAN_RETURNED));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -876,7 +876,7 @@ function get_loan_all_last_returned($pdo, $equipment_id) {
  * @return int
  */
 function set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_begin, $date_end, $comment) {
-	$sql = 'INSERT INTO loan (equipment_id, team_id, emprunt, retour, comment, status) VALUES (?, ?, ?, ?, ?, ?);';
+	$sql = 'INSERT INTO loan (equipment_id, team_id, start_date, end_date, comment, status) VALUES (?, ?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, $team_id, $date_begin, $date_end, $comment, STATUS_LOAN_BORROWED));
 	return $pdo->lastInsertId();
@@ -891,7 +891,7 @@ function set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_begin, $date
  * @return int
  */
 function set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_begin, $date_end, $comment) {
-	$sql = 'INSERT INTO loan (equipment_id, team_id, emprunt, retour, comment, status) VALUES (?, ?, ?, ?, ?, ?);';
+	$sql = 'INSERT INTO loan (equipment_id, team_id, start_date, end_date, comment, status) VALUES (?, ?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, $team_id, $date_begin, $date_end, $comment, STATUS_LOAN_RESERVED));
 	return $pdo->lastInsertId();
@@ -906,7 +906,7 @@ function set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_begin, $date
  * @deprecated
  */
 function set_loan_update_to_borrowed($pdo, $loan_id) {
-	$sql = 'UPDATE loan SET status = ?, emprunt = CURRENT_DATE WHERE id = ?;';
+	$sql = 'UPDATE loan SET status = ?, start_date = CURRENT_DATE WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array(STATUS_LOAN_BORROWED, $loan_id));
 }
@@ -917,7 +917,7 @@ function set_loan_update_to_borrowed($pdo, $loan_id) {
  * Met à jour le pret en spécifiant son ID sans modifier par défaut le status
  */
 function set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_begin, $date_end, $comment) {
-	$sql = 'UPDATE loan SET equipment_id = ?, team_id = ?, emprunt = ?, retour = ?, comment = ? WHERE id = ?;';
+	$sql = 'UPDATE loan SET equipment_id = ?, team_id = ?, start_date = ?, end_date = ?, comment = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, $team_id, $date_begin, $date_end, $comment, $loan_id));
 }

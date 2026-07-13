@@ -100,7 +100,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 			<td>Date demande pr&ecirc;t * (<i>format YYYY-MM-DD</i>)
 			</td>
 			<td>
-				<input type="date" name="emprunt" size="10" maxlength="10" value="<?= param_post_key('emprunt', $loan_selected, date('Y-m-d', time())) ?>"
+				<input type="date" name="start_date" size="10" maxlength="10" value="<?= param_post_key('start_date', $loan_selected, date('Y-m-d', time())) ?>"
 			</td>
 		</tr>
 
@@ -108,7 +108,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 			<td>Date de retour estim&eacute;e * (<i>format YYYY-MM-DD</i>)
 			</td>
 			<td>
-				<input type="date" name="retour" size="10" maxlength="10" value="<?= param_post_key('retour', $loan_selected, date('Y-m-d', time())) ?>" >
+				<input type="date" name="end_date" size="10" maxlength="10" value="<?= param_post_key('end_date', $loan_selected, date('Y-m-d', time())) ?>" >
 			</td>
 		</tr>
 

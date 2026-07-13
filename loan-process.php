@@ -17,8 +17,8 @@ unset($erreur);
 $loan_id      = param_post('loan_id', 0); // modify
 $equipment_id = param_post('equipment_id');
 $team_id      = param_post('team_id');
-$date_emprunt = param_post('emprunt');
-$date_retour  = param_post('retour');
+$date_emprunt = param_post('start_date');
+$date_retour  = param_post('end_date');
 $comment      = param_post('comment');
 
 $param_mode   = param_post('mode', 'booking'); // booking, booking-after, edit

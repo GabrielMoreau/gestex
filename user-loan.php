@@ -64,10 +64,10 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 
 			echo '  <td>';
-			echo      $loan_current['emprunt'];
+			echo      $loan_current['start_date'];
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
-			echo    $loan_current['retour'];
+			echo    $loan_current['end_date'];
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
 			echo      $loan_current['comment'];

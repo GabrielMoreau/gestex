@@ -88,8 +88,8 @@ if ($team_id > 0) {
 				</a>
 			</td>
 
-			<td><?= $loan_current['emprunt'] ?></td>
-			<td><?= $loan_current['retour'] ?></td>
+			<td><?= $loan_current['start_date'] ?></td>
+			<td><?= $loan_current['end_date'] ?></td>
 			<td><?= $loan_current['comment'] ?></td>
 			<td><?= $loan_current['equipment_id'] ?></td>
 
