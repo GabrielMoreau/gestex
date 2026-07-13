@@ -101,7 +101,7 @@ ainsi que pour mettre manuellement un nouveau mot de passe à une personne au ca
 echo -n XXXXXXXXX | md5sum
 
 mysql -u root -p gestex
-INSERT INTO `users`(`id`, `loggin`, `password`, `level`, `nom`, `prenom`, `tel`, `email`, `equipe`, `valid`) VALUES (1,'sys-admin','YYYYYYYYYYYYYYYYY',5,'Sys','Admin',0,0,0,1);
+INSERT INTO `user`(`id`, `loggin`, `password`, `level`, `familyname`, `firstname`, `tel`, `email`, `team_id`, `valid`) VALUES (1,'sys-admin','YYYYYYYYYYYYYYYYY',5,'Sys','Admin',0,0,0,1);
 QUIT;
 
 mysql -u root -p gestex
