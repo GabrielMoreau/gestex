@@ -18,7 +18,7 @@ if ($datasheet_id > 0) {
 	$pdo = connect_db_or_alert();
 
 	$datasheet_selected = get_datasheet_all_by_id($pdo, $datasheet_id);
-	$equipment_id       = $datasheet_selected['id_equipment'];
+	$equipment_id       = $datasheet_selected['equipment_id'];
 }
 
 if ($datasheet_id == 0 || $equipment_id == 0 || $valid == 'cancel') {

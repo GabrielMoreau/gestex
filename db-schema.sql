@@ -106,10 +106,10 @@ CREATE TABLE `datasheet` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `pathname` VARCHAR(500) NOT NULL DEFAULT '',
   `description` VARCHAR(150) NOT NULL DEFAULT '',
-  `id_equipment` INT(11) NOT NULL DEFAULT 0,
+  `equipment_id` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  KEY `id_equipment` (`id_equipment`),
-  CONSTRAINT `fk_datasheet_equipment` FOREIGN KEY (`id_equipment`) REFERENCES `equipment` (`id`)
+  KEY `equipment_id` (`equipment_id`),
+  CONSTRAINT `fk_datasheet_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -167,11 +167,11 @@ CREATE TABLE `recipe` (
 -- DROP TABLE IF EXISTS `relation_equipment_datasheet`;
 -- CREATE TABLE `relation_equipment_datasheet` (
 --   `id` INT(11) NOT NULL AUTO_INCREMENT,
---   `id_equipment` INT(11) NOT NULL,
---   `id_datasheet` INT(11) NOT NULL,
+--   `equipment_id` INT(11) NOT NULL,
+--   `datasheet_id` INT(11) NOT NULL,
 --   PRIMARY KEY (`id`),
---   CONSTRAINT `fk_red_equipment` FOREIGN KEY (`id_equipment`) REFERENCES `equipment` (`id`),
---   CONSTRAINT `fk_red_datasheet` FOREIGN KEY (`id_datasheet`) REFERENCES `datasheet` (`id`)
+--   CONSTRAINT `fk_red_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`),
+--   CONSTRAINT `fk_red_datasheet` FOREIGN KEY (`datasheet_id`) REFERENCES `datasheet` (`id`)
 -- ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --

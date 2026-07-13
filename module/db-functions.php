@@ -258,7 +258,7 @@ function get_datasheet_all_by_id($pdo, $id) {
  * @return array
  */
 function get_datasheet_listall_by_equipment($pdo, $equipment_id) {
-	$sql = 'SELECT * FROM datasheet WHERE id_equipment = ?;' ;
+	$sql = 'SELECT * FROM datasheet WHERE equipment_id = ?;' ;
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -273,7 +273,7 @@ function get_datasheet_listall_by_equipment($pdo, $equipment_id) {
  * @return int
  */
 function get_datasheet_count_by_equipment($pdo, $equipment_id) {
-	$sql = 'SELECT COUNT(*) as count FROM datasheet WHERE id_equipment = ?;';
+	$sql = 'SELECT COUNT(*) as count FROM datasheet WHERE equipment_id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -317,7 +317,7 @@ function set_datasheet_new($pdo, $equipment_id, $file_field_name) {
 	$datasheet_filename_no_ext = pathinfo($datasheet_filename_upload, PATHINFO_FILENAME);
 	$datasheet_filename_kebab = string_to_filename_kebab($datasheet_filename_no_ext).'.pdf';
 
-	$sql1 = 'INSERT INTO datasheet (description, id_equipment) VALUES (?, ?);';
+	$sql1 = 'INSERT INTO datasheet (description, equipment_id) VALUES (?, ?);';
 	$stmt1 = $pdo->prepare($sql1);
 	$stmt1->execute(array($datasheet_filename_no_ext, $equipment_id));
 	$datasheet_id = $pdo->lastInsertId();

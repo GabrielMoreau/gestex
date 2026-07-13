@@ -98,6 +98,15 @@ ALTER TABLE `supplier` MODIFY COLUMN `address` VARCHAR(100) NOT NULL DEFAULT '';
 
 
 --
+-- Upgrade table `datasheet`
+--
+
+ALTER TABLE `datasheet` RENAME COLUMN `id_equipment` TO `equipment_id`;
+
+-- SHOW CREATE TABLE datasheet\G
+
+
+--
 -- Fix global DB version
 --
 
