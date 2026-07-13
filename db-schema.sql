@@ -139,7 +139,7 @@ CREATE TABLE `loan` (
   `team_id` INT(11) DEFAULT NULL,
   `emprunt` DATE DEFAULT NULL,
   `retour` DATE DEFAULT NULL,
-  `commentaire` VARCHAR(100) DEFAULT NULL,
+  `comment` VARCHAR(100) DEFAULT NULL,
   `status` ENUM('LOAN_BORROWED','LOAN_RESERVED','LOAN_RETURNED') NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_loan_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `team` (`id`)

@@ -70,7 +70,7 @@ if ($pdo = connect_db()) {
 			echo    $loan_current['retour'];
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
-			echo      $loan_current['commentaire'];
+			echo      $loan_current['comment'];
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
 			echo      $loan_current['equipment_id'];

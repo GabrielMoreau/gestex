@@ -772,7 +772,7 @@ function get_loan_count_by_team($pdo, $team_id) {
  * @return array 
  */
 function get_loan_find($pdo, $find) {
-	$sql = 'SELECT * FROM loan WHERE commentaire RLIKE ?;';
+	$sql = 'SELECT * FROM loan WHERE comment RLIKE ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($find));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -876,7 +876,7 @@ function get_loan_all_last_returned($pdo, $equipment_id) {
  * @return int
  */
 function set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_begin, $date_end, $comment) {
-	$sql = 'INSERT INTO loan (equipment_id, team_id, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, ?);';
+	$sql = 'INSERT INTO loan (equipment_id, team_id, emprunt, retour, comment, status) VALUES (?, ?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, $team_id, $date_begin, $date_end, $comment, STATUS_LOAN_BORROWED));
 	return $pdo->lastInsertId();
@@ -891,7 +891,7 @@ function set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_begin, $date
  * @return int
  */
 function set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_begin, $date_end, $comment) {
-	$sql = 'INSERT INTO loan (equipment_id, team_id, emprunt, retour, commentaire, status) VALUES (?, ?, ?, ?, ?, ?);';
+	$sql = 'INSERT INTO loan (equipment_id, team_id, emprunt, retour, comment, status) VALUES (?, ?, ?, ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, $team_id, $date_begin, $date_end, $comment, STATUS_LOAN_RESERVED));
 	return $pdo->lastInsertId();
@@ -917,7 +917,7 @@ function set_loan_update_to_borrowed($pdo, $loan_id) {
  * Met à jour le pret en spécifiant son ID sans modifier par défaut le status
  */
 function set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_begin, $date_end, $comment) {
-	$sql = 'UPDATE loan SET equipment_id = ?, team_id = ?, emprunt = ?, retour = ?, commentaire = ? WHERE id = ?;';
+	$sql = 'UPDATE loan SET equipment_id = ?, team_id = ?, emprunt = ?, retour = ?, comment = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($equipment_id, $team_id, $date_begin, $date_end, $comment, $loan_id));
 }

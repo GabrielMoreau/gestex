@@ -136,7 +136,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 			<td>Commentaire (Nom de l'emprunteur)
 			</td>
 			<td>
-				<input type="text" name="commentaire" size="30" maxlength="30" value="<?= param_post_key('commentaire', $loan_selected) ?>" >
+				<input type="text" name="comment" size="30" maxlength="30" value="<?= param_post_key('comment', $loan_selected) ?>" >
 			</td>
 		</tr>
 

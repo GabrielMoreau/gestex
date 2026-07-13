@@ -90,7 +90,7 @@ if ($team_id > 0) {
 
 			<td><?= $loan_current['emprunt'] ?></td>
 			<td><?= $loan_current['retour'] ?></td>
-			<td><?= $loan_current['commentaire'] ?></td>
+			<td><?= $loan_current['comment'] ?></td>
 			<td><?= $loan_current['equipment_id'] ?></td>
 
 			<?php if ($logged_level >= 3): ?>

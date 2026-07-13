@@ -19,7 +19,7 @@ $equipment_id = param_post('equipment_id');
 $team_id      = param_post('team_id');
 $date_emprunt = param_post('emprunt');
 $date_retour  = param_post('retour');
-$commentaire  = param_post('commentaire');
+$comment      = param_post('comment');
 
 $param_mode   = param_post('mode', 'booking'); // booking, booking-after, edit
 if (isset($_GET['mode']) && param_get('mode') != '') {
@@ -90,7 +90,7 @@ if ($param_mode == "booking") {
 		}
 
 		// RESERVATION POSSIBLE
-		set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+		set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $comment);
 		$message_text = 'La réservation a été effectuer avec succés';
 	} else {
 		// RESERVATION IMPOSSIBLE
@@ -105,7 +105,7 @@ if ($param_mode == "booking") {
 	// CHECK FUTUR
 
 	if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_BORROWED) {
-		set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+		set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $comment);
 		$message_text = 'Mise à jour du prêt avec succés';
 	} else {
 		if ($date_out_ymd >= $date_tomorrow) {
@@ -121,7 +121,7 @@ if ($param_mode == "booking") {
 				exit();
 			}
 
-			set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+			set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_emprunt, $date_retour, $comment);
 			$message_text = 'Mise à jour du prêt sur l’appareil '.$equipment_id.' validé<br />';
 
 		} else {
@@ -170,10 +170,10 @@ if ($param_mode == "booking") {
 			exit();
 		}
 		if ($date_out_ymd >= $date_tomorrow) {
-			$loan_id = set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+			$loan_id = set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $comment);
 			$message_text = 'Ajout de la réservation sur l’appareil '.$equipment_id.' validé<br />';
 		} else {
-			$loan_id = set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $commentaire);
+			$loan_id = set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_emprunt, $date_retour, $comment);
 			$message_text = 'Ajout du prêt sur l’appareil '.$equipment_id.' validé<br />';
 		}
 	}

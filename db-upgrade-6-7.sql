@@ -58,6 +58,7 @@ ALTER TABLE `team` ADD CONSTRAINT `fk_team_manager` FOREIGN KEY (`manager_id`) R
 ALTER TABLE `loan` MODIFY COLUMN `nom` INT(11) DEFAULT NULL;
 ALTER TABLE `loan` RENAME COLUMN `nom` TO `equipment_id`;
 ALTER TABLE `loan` RENAME COLUMN `equipe` TO `team_id`;
+ALTER TABLE `loan` RENAME COLUMN `commentaire` TO `comment`;
 
 ALTER TABLE `loan` ADD CONSTRAINT `fk_loan_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`);
 ALTER TABLE `loan` ADD CONSTRAINT `fk_loan_team` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`);

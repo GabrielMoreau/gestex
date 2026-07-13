@@ -240,7 +240,7 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 			<?php
 			echo $equipment_loan_reserved[0]['emprunt'].'&nbsp;&#8594;&nbsp;'.$equipment_loan_reserved[0]['retour'].PHP_EOL;
 			echo '<br>'.get_team_by_id($pdo, $equipment_loan_reserved[0]['team_id'])["name"].PHP_EOL;
-			echo '<br>'.$equipment_loan_reserved[0]['commentaire'].PHP_EOL;
+			echo '<br>'.$equipment_loan_reserved[0]['comment'].PHP_EOL;
 			?>
 		</div>
 	<?php } ?>
@@ -276,7 +276,7 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 			echo $loan_current['emprunt'].'&nbsp;&#8594;&nbsp;'.$loan_current['retour'].PHP_EOL;
 
 			echo '<br>'.get_team_by_id($pdo, $loan_current['team_id'])['name'].PHP_EOL;
-			echo '<br>'.$loan_current['commentaire'].PHP_EOL;
+			echo '<br>'.$loan_current['comment'].PHP_EOL;
 			echo '</div>'.PHP_EOL;
 		}
 	}
