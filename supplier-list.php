@@ -27,7 +27,7 @@ en_tete('Liste de tous les fournisseurs', $find);
 	<tbody>
 		<tr>
 			<th>
-				Nom
+				Entreprise <?=ICON_LIST?>
 			</th>
 			<th class="sorttable_nosort">
 				Adresse
