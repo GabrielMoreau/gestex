@@ -69,7 +69,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['name
 				Mod&egrave;le
 			</th>
 			<td>
-				<?php echo $equipment_selected['modele'] ?>
+				<?php echo $equipment_selected['model'] ?>
 			</td>
 		</tr>
 		<tr>

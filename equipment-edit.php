@@ -81,7 +81,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 				Mod&egrave;le *
 			</th>
 			<td>
-				<input type="text"name="modele" size="30" value="<?= param_post_key('modele', $equipment_selected) ?>" placeholder="Mod&egrave;le *">
+				<input type="text"name="model" size="30" value="<?= param_post_key('model', $equipment_selected) ?>" placeholder="Mod&egrave;le *">
 			</td>
 		</tr>
 		<tr>

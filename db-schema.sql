@@ -75,7 +75,7 @@ CREATE TABLE `equipment` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `category_id` INT(11) DEFAULT NULL,
   `name` VARCHAR(255) DEFAULT NULL,
-  `modele` VARCHAR(255) DEFAULT NULL,
+  `model` VARCHAR(255) DEFAULT NULL,
   `gamme` VARCHAR(255) DEFAULT NULL,
   `team_id` INT(11) DEFAULT NULL,
   `supplier_id` INT(11) DEFAULT NULL,
