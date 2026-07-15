@@ -556,7 +556,7 @@ function get_equipment_by_loan_id($pdo, $loan_id) {
  * un tableau avec l'ID et un msg d'erreur eventuellement
  */
 function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventory_number, $notice, $barcode, $loanable, $max_day) {
-	$sql = 'INSERT INTO equipment (category_id, nom, modele, gamme, team_id, supplier_id, achat, manager_id, reparation, accessoires, inventory_number, notice, barcode, loanable, max_day)';
+	$sql = 'INSERT INTO equipment (category_id, nom, modele, gamme, team_id, supplier_id, achat, manager_user_id, reparation, accessoires, inventory_number, notice, barcode, loanable, max_day)';
 	$sql .=            ' VALUES (?,         ?,   ?,      ?,     ?,      ?,           ?,     ?,           ?,          ?,           ?,          ?,      ?,       ?,        ?);';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventory_number, $notice, $barcode, $loanable, $max_day));
@@ -575,7 +575,7 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $equipe, $
  * si réussite sinon une chaine d'erreurs
  */
 function set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventory_number, $notice, $barcode, $loanable, $max_day) {
-	$sql = 'UPDATE equipment SET category_id = ?, nom = ?, modele = ?, gamme = ?, team_id = ?, supplier_id = ?, achat = ?, manager_id = ?, reparation = ?, accessoires = ?, inventory_number = ?, notice = ?, barcode = ?, loanable = ?, max_day = ? WHERE id = ?;';
+	$sql = 'UPDATE equipment SET category_id = ?, nom = ?, modele = ?, gamme = ?, team_id = ?, supplier_id = ?, achat = ?, manager_user_id = ?, reparation = ?, accessoires = ?, inventory_number = ?, notice = ?, barcode = ?, loanable = ?, max_day = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $equipe, $fourn, $achat, $tech, $reparation, $accessoires, $inventory_number, $notice, $barcode, $loanable, $max_day, $equipment_id));
 	$err_msg = '';
@@ -1184,10 +1184,10 @@ function get_team_count($pdo) {
  * 
  * @return array Avec potentiellement une chaine d'erreur
  */
-function set_team_new($pdo, $name, $description, $accounting, $manager_id) {
-	$sql = 'INSERT INTO team (name, description, accounting, manager_id) VALUES (?,  ?, ?, ?);';
+function set_team_new($pdo, $name, $description, $accounting, $manager_user_id) {
+	$sql = 'INSERT INTO team (name, description, accounting, manager_user_id) VALUES (?,  ?, ?, ?);';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($name, $description, $accounting, $manager_id));
+	$iostat = $stmt->execute(array($name, $description, $accounting, $manager_user_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
@@ -1201,10 +1201,10 @@ function set_team_new($pdo, $name, $description, $accounting, $manager_id) {
  * 
  * @return array Avec potentiellement une chaine d'erreur
  */
-function set_team_update($pdo, $team_id, $name, $description, $accounting, $manager_id) {
-	$sql = 'UPDATE LOW_PRIORITY team SET name = ?, description = ?, accounting = ?, manager_id = ? WHERE id = ?;';
+function set_team_update($pdo, $team_id, $name, $description, $accounting, $manager_user_id) {
+	$sql = 'UPDATE LOW_PRIORITY team SET name = ?, description = ?, accounting = ?, manager_user_id = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($name, $description, $accounting, $manager_id, $team_id));
+	$iostat = $stmt->execute(array($name, $description, $accounting, $manager_user_id, $team_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
