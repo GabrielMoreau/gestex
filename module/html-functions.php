@@ -205,21 +205,20 @@ function check_mail($mail) {
       $domain . '{2,63}'.                  // Must be followed by one set consisting a period of two
       '$';                                // or max 63 domain characters.
 
-   $erreur = 0;
-
+   $iostat = 0;
    if (strlen($mail) == 0):
       //echo '&nbsp;<br />';
-      $erreur = 1;
+      $iostat = 1;
    else:
       if (eregi($regex, $mail)):
          // echo $mail . ' matched<br />';
-         $erreur = 0;
+         $iostat = 0;
       else:
          // echo '<strong>'. $mail . ' not matched</strong><br />';
-         $erreur = 2;
+         $iostat = 2;
       endif;
    endif;
-   return $erreur;
+   return $iostat;
    }
 
 // ---------------------------------------------------------------------
