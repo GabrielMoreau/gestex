@@ -84,7 +84,7 @@ CREATE TABLE `equipment` (
   `reparation` VARCHAR(30) DEFAULT NULL,
   `accessoires` VARCHAR(255) DEFAULT NULL,
   `notice` VARCHAR(255) DEFAULT NULL,
-  `inventaire` VARCHAR(50) DEFAULT NULL,
+  `inventory_number` VARCHAR(50) DEFAULT NULL,
   `loanable` BOOLEAN NOT NULL DEFAULT FALSE,
   `barcode` BIGINT(20) DEFAULT NULL,
   `max_day` INT(11) NOT NULL DEFAULT 0,

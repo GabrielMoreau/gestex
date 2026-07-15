@@ -154,7 +154,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				Inventaire
 			</th>
 			<td>
-				<?php echo $equipment_selected['inventaire'] ?>
+				<?php echo $equipment_selected['inventory_number'] ?>
 			</td>
 		</tr>
 		<?php if ($datasheet_count > 0) { ?>

@@ -189,7 +189,7 @@ $team_manager_id = param_post_key('manager_id', $equipment_selected, 0);
 				Inventaire (facultatif)
 			</th>
 			<td>
-				<input type="text" name="inventaire" size="30" maxlength="30" value="<?= param_post_key('inventaire', $equipment_selected) ?>" placeholder="Inventaire (facultatif)">
+				<input type="text" name="inventory_number" size="30" maxlength="30" value="<?= param_post_key('inventory_number', $equipment_selected) ?>" placeholder="Inventaire (facultatif)">
 			</td>
 		</tr>
 
