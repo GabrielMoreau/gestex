@@ -81,7 +81,7 @@ CREATE TABLE `equipment` (
   `supplier_id` INT(11) DEFAULT NULL,
   `date_of_purchase` DATE DEFAULT NULL,
   `manager_user_id` INT(11) DEFAULT NULL,
-  `reparation` VARCHAR(30) DEFAULT NULL,
+  `repair_comment` VARCHAR(30) DEFAULT NULL,
   `accessories` VARCHAR(255) DEFAULT NULL,
   `notice` VARCHAR(255) DEFAULT NULL,
   `inventory_number` VARCHAR(50) DEFAULT NULL,

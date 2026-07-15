@@ -101,7 +101,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['name
 				R&eacute;paration / &Eacute;talonnages
 			</th>
 			<td>
-				<?php echo $equipment_selected['reparation'] ?>
+				<?php echo $equipment_selected['repair_comment'] ?>
 			</td>
 		</tr>
 

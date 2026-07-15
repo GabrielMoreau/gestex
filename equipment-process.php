@@ -29,7 +29,7 @@ $team_id          = param_post('team_id');
 $supplier_id      = param_post('supplier_id');
 $date_of_purchase = param_post('date_of_purchase');
 $manager_user_id  = param_post('manager_user_id');
-$reparation       = param_post('reparation');
+$repair_comment   = param_post('repair_comment');
 $accessories      = param_post('accessories');
 $inventory_number = empty_to_null(param_post('inventory_number'));
 $barcode          = param_post('barcode', 0); // force int
@@ -75,7 +75,7 @@ if (!empty($erreur)) {
 $pdo = connect_db_or_alert();
 
 if ($flag_new) { // new
-	list($equipment_id, $err_msg) = set_equipment_new($pdo, $category_id, $name, $model, $feature, $team_id, $supplier_id, $date_of_purchase, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days);
+	list($equipment_id, $err_msg) = set_equipment_new($pdo, $category_id, $name, $model, $feature, $team_id, $supplier_id, $date_of_purchase, $manager_user_id, $repair_comment, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days);
 	if ($err_msg != '') {
 		$message_alert = ($logged_level > 3 ? $err_msg : '');
 		include_once('include/alert-data.php');
@@ -113,7 +113,7 @@ if (   ($category_id      != $equipment_selected['category_id'])
 	|| ($team_id          != $equipment_selected['team_id'])
 	|| ($supplier_id      != $equipment_selected['supplier_id'])
 	|| ($date_of_purchase != $equipment_selected['date_of_purchase'])
-	|| ($reparation       != $equipment_selected['reparation'])
+	|| ($repair_comment   != $equipment_selected['repair_comment'])
 	|| ($accessories      != $equipment_selected['accessories'])
 	|| ($inventory_number != $equipment_selected['inventory_number'])
 	|| ($notice           != $equipment_selected['notice'])
@@ -125,7 +125,7 @@ if (   ($category_id      != $equipment_selected['category_id'])
 if ($modif) {
 	if ($barcode == '')
 		$barcode = 0;
-	$err_msg = set_equipment_update($pdo, $equipment_id, $category_id, $name, $model, $feature, $team_id, $supplier_id, $date_of_purchase, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days);
+	$err_msg = set_equipment_update($pdo, $equipment_id, $category_id, $name, $model, $feature, $team_id, $supplier_id, $date_of_purchase, $manager_user_id, $repair_comment, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days);
 	if ($err_msg != '') {
 		$title        = 'Erreur appareil';
 		$action       = 'equipment-view.php?id='.$equipment_id;

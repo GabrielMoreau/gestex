@@ -173,7 +173,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 				R&eacute;paration
 			</th>
 			<td>
-				<input type="text" name="reparation" size="30" maxlength="30" value="<?= param_post_key('reparation', $equipment_selected) ?>" placeholder="R&eacute;paration">
+				<input type="text" name="repair_comment" size="30" maxlength="30" value="<?= param_post_key('repair_comment', $equipment_selected) ?>" placeholder="R&eacute;paration">
 			</td>
 		</tr>
 		<tr>
