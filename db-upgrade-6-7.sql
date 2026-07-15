@@ -44,6 +44,8 @@ ALTER TABLE `team` RENAME COLUMN `descr` TO `description`;
 ALTER TABLE `team` RENAME COLUMN `compte` TO `accounting`;
 ALTER TABLE `team` RENAME COLUMN `chef` TO `manager_id`;
 
+ALTER TABLE `team` MODIFY COLUMN `name` VARCHAR(50) DEFAULT NULL;
+
 ALTER TABLE `team` DROP FOREIGN KEY `fk_team_chief`;
 ALTER TABLE `team` ADD CONSTRAINT `fk_team_manager` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`);
 
