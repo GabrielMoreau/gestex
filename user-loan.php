@@ -17,7 +17,7 @@ en_tete('Liste de vos emprunts');
 
 if ($pdo = connect_db()) {
 	$user = get_user_all_by_id($pdo, $logged_id);
-	$loan_fetch = get_loan_find($pdo, $user['nom']);
+	$loan_fetch = get_loan_find($pdo, $user['familyname']);
 }
 ?>
 
