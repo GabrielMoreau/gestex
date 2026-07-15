@@ -73,10 +73,10 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 
 		// recupere le nom de chef d'equipe
-		$manager = get_user_short_by_id($pdo, $team_current['manager_id']);
+		$manager_user_id = get_user_short_by_id($pdo, $team_current['manager_user_id']);
 		echo '  <td style="vertical-align: top;">';
-		if ($manager)
-			echo $manager['familyname'].' '.$manager['firstname'];
+		if ($manager_user_id)
+			echo $manager_user_id['familyname'].' '.$manager_user_id['firstname'];
 		echo '  </td>'.PHP_EOL;
 
 		echo '  <td>';

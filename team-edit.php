@@ -20,7 +20,7 @@ if ($team_id == 0) // new
 
 $pdo = connect_db_or_alert();
 
-$team_manager_id = 0;
+$team_manager_user_id = 0;
 
 $team_selected = [];
 if ($mode == 'Ajouter')
@@ -29,7 +29,7 @@ else if ($mode == 'Modifier') {
 	en_tete('Modifier les coordonn&eacute;es d\'une &eacute;quipe');
 	// recupere le fournisseur selectionne
 	$team_selected = get_team_all_by_id($pdo, $team_id);
-	$team_manager_id = $team_selected['manager_id'];
+	$team_manager_user_id = $team_selected['manager_user_id'];
 }
 ?>
 
@@ -67,12 +67,12 @@ else if ($mode == 'Modifier') {
 				Chef d'&eacute;quipe<br />
 			</th>
 			<td>
-				<select name="manager_id">
+				<select name="manager_user_id">
 				<?php
-				$user_fetch = get_user_listshort_with_right($pdo, 1, $team_manager_id);
+				$user_fetch = get_user_listshort_with_right($pdo, 1, $team_manager_user_id);
 				foreach ($user_fetch as $user_selected) {
 					echo '<option value="'.$user_selected['id'].'"';
-					if ($mode == 'Modifier' && $user_selected['id'] == $team_manager_id) {
+					if ($mode == 'Modifier' && $user_selected['id'] == $team_manager_user_id) {
 						echo ' selected';
 					}
 					echo '>'.$user_selected['familyname'].' '.$user_selected['firstname'].'</option>';

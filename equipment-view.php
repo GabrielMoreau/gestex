@@ -22,7 +22,7 @@ if (empty($equipment_id))
 
 if ($pdo = connect_db()) {
 	$equipment_selected = get_equipment_all_by_id($pdo, $equipment_id);
-	$manager  = get_user_short_by_id($pdo, $equipment_selected['manager_id']);
+	$manager  = get_user_short_by_id($pdo, $equipment_selected['manager_user_id']);
 	$team     = get_team_by_id($pdo, $equipment_selected['team_id']);
 	$supplier = get_supplier_short_by_id($pdo, $equipment_selected['supplier_id']);
 	$category = get_category_by_id($pdo, $equipment_selected['category_id']);
@@ -110,7 +110,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				Responsable
 			</th>
 			<td>
-				<a href="user-list.php?highlight=<?php echo $equipment_selected['manager_id'] ?>#item<?php echo $equipment_selected['manager_id'] ?>"><?php echo $manager['familyname'].' '.$manager['firstname'] ?></a>
+				<a href="user-list.php?highlight=<?php echo $equipment_selected['manager_user_id'] ?>#item<?php echo $equipment_selected['manager_user_id'] ?>"><?php echo $manager['familyname'].' '.$manager['firstname'] ?></a>
 			</td>
 		</tr>
 

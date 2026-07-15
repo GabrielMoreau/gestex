@@ -22,10 +22,10 @@ $flag_new = true;
 if ($team_id > 0)
 	$flag_new = false;
 
-$name        = param_post('name');
-$accounting  = param_post('accounting');
-$manager     = param_post('manager_id');
-$description = param_post('description');
+$name            = param_post('name');
+$accounting      = param_post('accounting');
+$manager_user_id = param_post('manager_user_id');
+$description     = param_post('description');
 // variables ne pouvant etre nulles
 if (empty($name))
 	$erreur = 'Nom d\'&eacute;quipe non pr&eacute;cis&eacute;';
@@ -46,7 +46,7 @@ if (!empty($erreur)) {
 $pdo = connect_db_or_alert();
 
 if ($flag_new) { // new
-	list($team_id, $err_msg) = set_team_new($pdo, $name, $description, $accounting, $manager);
+	list($team_id, $err_msg) = set_team_new($pdo, $name, $description, $accounting, $manager_user_id);
 	if ($err_msg != '') {
 		$title        = 'Erreur &eacute;quipe';
 		$action       = 'team-list.php';
@@ -68,14 +68,14 @@ if ($flag_new) { // new
 $team_selected = get_team_all_by_id($pdo, $team_id);
 
 $modif = false;
-if (   ($name        != $team_selected['name'])
-	|| ($description != $team_selected['description'])
-	|| ($accounting  != $team_selected['accounting'])
-	|| ($manager     != $team_selected['manager_id']))
+if (   ($name                != $team_selected['name'])
+	|| ($description     != $team_selected['description'])
+	|| ($accounting      != $team_selected['accounting'])
+	|| ($manager_user_id != $team_selected['manager_user_id']))
 	$modif = true;
 
 if ($modif) {
-	$err_msg = set_team_update($pdo, $team_id, $name, $description, $accounting, $manager);
+	$err_msg = set_team_update($pdo, $team_id, $name, $description, $accounting, $manager_user_id);
 	if ($err_msg != '') {
 		$title        = 'Erreur &eacute;quipe';
 		$action       = 'team-list.php?highlight='.$team_id;

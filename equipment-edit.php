@@ -35,7 +35,7 @@ else if ($mode == 'Modifier') {
 	$datasheet_count    = count($datasheet_fetch);
 }
 
-$team_manager_id = param_post_key('manager_id', $equipment_selected, 0);
+$manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 ?>
 
 <div class="form">
@@ -151,13 +151,13 @@ $team_manager_id = param_post_key('manager_id', $equipment_selected, 0);
 				Responsable *
 			</th>
 			<td>
-				<select name="manager_id">
+				<select name="manager_user_id">
 				<?php
 				// recupere la liste des tech
-				$user_fetch = get_user_listshort_with_right($pdo, 1, $team_manager_id);
+				$user_fetch = get_user_listshort_with_right($pdo, 1, $manager_user_id);
 				foreach ($user_fetch as $user_current) {
 					echo '<option value="'.$user_current['id'].'"';
-					if ($mode == 'Modifier' && $user_current['id'] == $team_manager_id) {
+					if ($mode == 'Modifier' && $user_current['id'] == $manager_user_id) {
 						echo ' selected';
 					}
 					echo '>'.$user_current['familyname'].' '.$user_current['firstname'].'</option>';

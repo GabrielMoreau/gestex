@@ -9,7 +9,7 @@ CREATE TABLE `team` (
   `name` VARCHAR(50) DEFAULT NULL,
   `description` VARCHAR(255) NOT NULL DEFAULT '',
   `accounting` INT(11) NOT NULL DEFAULT 0,
-  `manager_id` INT(11) NOT NULL DEFAULT 0,
+  `manager_user_id` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -80,7 +80,7 @@ CREATE TABLE `equipment` (
   `team_id` INT(11) DEFAULT NULL,
   `supplier_id` INT(11) DEFAULT NULL,
   `achat` DATE DEFAULT NULL,
-  `manager_id` INT(11) DEFAULT NULL,
+  `manager_user_id` INT(11) DEFAULT NULL,
   `reparation` VARCHAR(30) DEFAULT NULL,
   `accessoires` VARCHAR(255) DEFAULT NULL,
   `notice` VARCHAR(255) DEFAULT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE `equipment` (
   CONSTRAINT `fk_equipment_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
   CONSTRAINT `fk_equipment_team` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`),
   CONSTRAINT `fk_equipment_supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`),
-  CONSTRAINT `fk_equipment_manager` FOREIGN KEY (`manager_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `fk_equipment_manager` FOREIGN KEY (`manager_user_id`) REFERENCES `user` (`id`),
   INDEX `idx_equipment_name` (`nom`),
   INDEX `idx_equipment_barcode` (`barcode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -193,7 +193,7 @@ CREATE TABLE `version` (
 -- Special after foreign key
 --
 
-ALTER TABLE `team` ADD CONSTRAINT `fk_team_manager` FOREIGN KEY (`manager_id`) REFERENCES `user` (`id`);
+ALTER TABLE `team` ADD CONSTRAINT `fk_team_manager` FOREIGN KEY (`manager_user_id`) REFERENCES `user` (`id`);
 
 --
 -- Fix global DB version
