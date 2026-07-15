@@ -54,7 +54,7 @@ if ($pdo = connect_db()) {
 
 			$equipment = get_equipment_listshort_by_id($pdo, $loan_current['equipment_id']);
 			echo '  <td>';
-			echo      $equipment['nom'];
+			echo      $equipment['name'];
 			echo '  </td>'.PHP_EOL;
 
 			// recupere le nom d'equipe

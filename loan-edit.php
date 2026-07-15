@@ -92,7 +92,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 			<td>Nom de l'appareil
 			</td>
 			<td>
-				<b><?php echo $equipment_selected['nom'] ?></b>
+				<b><?php echo $equipment_selected['name'] ?></b>
 			</td>
 		</tr>
 

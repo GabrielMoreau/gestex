@@ -37,7 +37,7 @@ if ($valid == 'yes') {
 	}
 
 $datasheet_pathname = $datasheet_selected['pathname'];
-$equipment_name     = get_equipment_listshort_by_id($pdo, $equipment_id )['nom'];
+$equipment_name     = get_equipment_listshort_by_id($pdo, $equipment_id )['name'];
 
 // $datasheet_id
 // $datasheet_pathname

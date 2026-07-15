@@ -40,7 +40,7 @@ if ($pdo = connect_db()) {
 	$loan_borrow = get_loans_all_by_equipment_borrowed($pdo, $equipment_id);
 	$equipment_loan_reserved = get_loan_all_last_returned($pdo, $equipment_id);
 
-en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'].'</b>');
+en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['name'].'</b>');
 ?>
 
 <div class="form">
@@ -61,7 +61,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 				Nom
 			</th>
 			<td>
-				<b><?php echo $equipment_selected['nom'] ?></b>
+				<b><?php echo $equipment_selected['name'] ?></b>
 			</td>
 		</tr>
 		<tr>

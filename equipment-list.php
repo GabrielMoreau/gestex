@@ -127,7 +127,7 @@ if ($supplier_id > 0) {
 		echo      $equipment_item['id'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo '    <a name="item'.$equipment_item['id'].'"></a><a href="equipment-view.php?id='.$equipment_item['id'].'">'. $equipment_item['nom'].'</a>';
+		echo '    <a name="item'.$equipment_item['id'].'"></a><a href="equipment-view.php?id='.$equipment_item['id'].'">'. $equipment_item['name'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		echo      $equipment_item['modele'];

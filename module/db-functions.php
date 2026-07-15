@@ -376,7 +376,7 @@ function del_datasheet_by_id($pdo, $id) {
  * @return false|array Le contenu d'un équipement directement
  */
 function get_equipment_listshort_by_id($pdo, $id) {
-	$sql = 'SELECT id, nom FROM equipment WHERE id = ?;';
+	$sql = 'SELECT id, name FROM equipment WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -411,8 +411,8 @@ function get_equipment_all_by_id($pdo, $id) {
  * @return array
  */
 function get_equipment_listall($pdo) {
-	// $sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id ORDER BY c.name, e.nom;';
-	$sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id ORDER BY c.name, e.nom;';
+	// $sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id ORDER BY c.name, e.name;';
+	$sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id ORDER BY c.name, e.name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -428,8 +428,8 @@ function get_equipment_listall($pdo) {
  * @return array
  */
 function get_equipment_listall_by_team($pdo, $team_id) {
-	// $sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id WHERE e.team_id = ? ORDER BY c.name, e.nom;';
-	$sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id WHERE e.team_id = ? ORDER BY c.name, e.nom;';
+	// $sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id WHERE e.team_id = ? ORDER BY c.name, e.name;';
+	$sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id WHERE e.team_id = ? ORDER BY c.name, e.name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($team_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -461,7 +461,7 @@ function get_equipment_count_is_loanable_by_team($pdo, $team_id) {
  * @return array
  */
 function get_equipment_listall_by_category($pdo, $category_id) {
-	$sql = 'SELECT * FROM equipment WHERE category_id = ? ORDER BY nom;';
+	$sql = 'SELECT * FROM equipment WHERE category_id = ? ORDER BY name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($category_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -492,8 +492,8 @@ function get_equipment_count_by_category($pdo, $category_id) {
  * @return array
  */
 function get_equipment_listall_by_supplier($pdo, $supplier_id) {
-	// $sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id WHERE e.supplier_id = ? ORDER BY c.name, e.nom;';
-	$sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id WHERE e.supplier_id = ? ORDER BY c.name, e.nom;';
+	// $sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e INNER JOIN category AS c ON e.category_id = c.id WHERE e.supplier_id = ? ORDER BY c.name, e.name;';
+	$sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id WHERE e.supplier_id = ? ORDER BY c.name, e.name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($supplier_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -524,7 +524,7 @@ function get_equipment_count_by_supplier($pdo, $supplier_id) {
  * @return array
  */
 function get_equipment_listshort($pdo) {
-	$sql = 'SELECT id, nom FROM equipment ORDER BY category_id, nom;';
+	$sql = 'SELECT id, name FROM equipment ORDER BY category_id, name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -540,11 +540,11 @@ function get_equipment_listshort($pdo) {
  * @return ID de l'equipement
  */
 function get_equipment_by_loan_id($pdo, $loan_id) {
-	$sql = 'SELECT nom FROM loan WHERE id = ?;';
+	$sql = 'SELECT equipment_id FROM loan WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($loan_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	return $result_fetch[0]["nom"];
+	return $result_fetch[0]['equipment_id'];
 }
 
 // ---------------------------------------------------------------------
@@ -555,11 +555,11 @@ function get_equipment_by_loan_id($pdo, $loan_id) {
  * @return array|string Renvoie une chaine si echec sinon 
  * un tableau avec l'ID et un msg d'erreur eventuellement
  */
-function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days) {
-	$sql = 'INSERT INTO equipment (category_id, nom, modele, gamme, team_id, supplier_id, achat, manager_user_id, reparation, accessories, inventory_number, notice, barcode, is_loanable, max_loan_days)';
+function set_equipment_new($pdo, $categorie, $name, $modele, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days) {
+	$sql = 'INSERT INTO equipment (category_id, name, modele, gamme, team_id, supplier_id, achat, manager_user_id, reparation, accessories, inventory_number, notice, barcode, is_loanable, max_loan_days)';
 	$sql .=            ' VALUES (?,         ?,   ?,      ?,     ?,      ?,           ?,     ?,           ?,          ?,           ?,          ?,      ?,       ?,        ?);';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days));
+	$iostat = $stmt->execute(array($categorie, $name, $modele, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
@@ -574,10 +574,10 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $team_id, 
  * @return string Renvoie une chaine vide
  * si réussite sinon une chaine d'erreurs
  */
-function set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days) {
-	$sql = 'UPDATE equipment SET category_id = ?, nom = ?, modele = ?, gamme = ?, team_id = ?, supplier_id = ?, achat = ?, manager_user_id = ?, reparation = ?, accessories = ?, inventory_number = ?, notice = ?, barcode = ?, is_loanable = ?, max_loan_days = ? WHERE id = ?;';
+function set_equipment_update($pdo, $equipment_id, $categorie, $name, $modele, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days) {
+	$sql = 'UPDATE equipment SET category_id = ?, name = ?, modele = ?, gamme = ?, team_id = ?, supplier_id = ?, achat = ?, manager_user_id = ?, reparation = ?, accessories = ?, inventory_number = ?, notice = ?, barcode = ?, is_loanable = ?, max_loan_days = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days, $equipment_id));
+	$iostat = $stmt->execute(array($categorie, $name, $modele, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days, $equipment_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
@@ -728,7 +728,7 @@ function get_loan_all_by_id_equipment($pdo, $equipment_id) {
  */
 function get_loan_listall($pdo) {
 	//$sql = 'SELECT * FROM loan;';
-	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM loan AS l INNER JOIN equipment AS e ON l.equipment_id = e.id WHERE status = ? ORDER BY l.end_date DESC, l.start_date DESC, e.nom;';
+	$sql = 'SELECT DISTINCT l.*, e.name AS equipment_name FROM loan AS l INNER JOIN equipment AS e ON l.equipment_id = e.id WHERE status = ? ORDER BY l.end_date DESC, l.start_date DESC, e.name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array(STATUS_LOAN_BORROWED));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -740,7 +740,7 @@ function get_loan_listall($pdo) {
  * @todo effectuer la documentation de la jointure
  */
 function get_loan_listall_by_team($pdo, $team_id) {
-	$sql = 'SELECT DISTINCT l.*, e.nom AS equipment_name FROM loan AS l INNER JOIN equipment AS e ON l.equipment_id = e.id WHERE l.team_id = ? AND status = ? ORDER BY l.end_date DESC, l.start_date DESC, e.nom;';
+	$sql = 'SELECT DISTINCT l.*, e.name AS equipment_name FROM loan AS l INNER JOIN equipment AS e ON l.equipment_id = e.id WHERE l.team_id = ? AND status = ? ORDER BY l.end_date DESC, l.start_date DESC, e.name;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($team_id, STATUS_LOAN_BORROWED));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1300,7 +1300,7 @@ function get_user_listall_by_logged_level($pdo, $logged_level) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère l'ID, le nom et le prénom des utilisateurs étant validé et
+ * Récupère l'ID, le nom de famille et le prénom des utilisateurs étant validé et
  * étant supérieur ou égale au privilege minimum indiqué. Ou bien via
  * l'ID s'il n'est pas égale à 0. La requète est rangé par ordre de nom
  * et prénom utilisateur. Attention toutefois au fait que cette fonction

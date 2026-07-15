@@ -15,7 +15,7 @@ function upgrade_datasheet_1_to_2($pdo) {
 
 	$count = 0;
 	foreach (get_equipment_listshort($pdo) as $equipment) {
-		$equipment_name = $equipment['nom'];
+		$equipment_name = $equipment['name'];
 		$equipment_id   = $equipment['id'];
 		$datasheet_filename_kebab = string_to_filename_kebab($equipment_name);
 		$datasheet_filename_snake = string_to_filename_snake($equipment_name);

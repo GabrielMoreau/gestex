@@ -43,7 +43,7 @@ if ($mode == 'Ajouter') {
 	<tbody>
 		<tr>
 			<th>Équipement</th>
-			<td><b><?php echo get_equipment_all_by_id($pdo, $equipment_id)["nom"] ?></b></td>
+			<td><b><?php echo get_equipment_all_by_id($pdo, $equipment_id)['name'] ?></b></td>
 		</tr>
 		<tr>
 			<th>Description</th>

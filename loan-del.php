@@ -23,14 +23,14 @@ $pdo = connect_db_or_alert();
 
 $loan_selected  = get_loan_all_by_id($pdo, $loan_id);
 $equipment = get_equipment_listshort_by_id($pdo, $loan_selected['equipment_id']);
-$equipment_name = $equipment["nom"];
-$equipment_id = $equipment["id"];
+$equipment_name = $equipment['name'];
+$equipment_id = $equipment['id'];
 
 
 if ($valid == 'yes') {
 	/* $iostat = del_loan_by_id($pdo, $loan_id); */
 	$str_type = "du pret";
-	if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_RESERVED) {
+	if (get_loan_all_by_id($pdo, $loan_id)['status'] == STATUS_LOAN_RESERVED) {
 		$iostat = del_loan_by_id($pdo, $loan_id);
 		$str_type = "de la reservation";
 	} else {

@@ -74,7 +74,7 @@ DROP TABLE IF EXISTS `equipment`;
 CREATE TABLE `equipment` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `category_id` INT(11) DEFAULT NULL,
-  `nom` VARCHAR(255) DEFAULT NULL,
+  `name` VARCHAR(255) DEFAULT NULL,
   `modele` VARCHAR(255) DEFAULT NULL,
   `gamme` VARCHAR(255) DEFAULT NULL,
   `team_id` INT(11) DEFAULT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE `equipment` (
   CONSTRAINT `fk_equipment_team` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`),
   CONSTRAINT `fk_equipment_supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`),
   CONSTRAINT `fk_equipment_manager` FOREIGN KEY (`manager_user_id`) REFERENCES `user` (`id`),
-  INDEX `idx_equipment_name` (`nom`),
+  INDEX `idx_equipment_name` (`name`),
   INDEX `idx_equipment_barcode` (`barcode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
