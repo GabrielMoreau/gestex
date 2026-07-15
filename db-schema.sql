@@ -6,7 +6,7 @@
 DROP TABLE IF EXISTS `team`;
 CREATE TABLE `team` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` TEXT,
+  `name` VARCHAR(50) DEFAULT NULL,
   `description` VARCHAR(255) NOT NULL DEFAULT '',
   `accounting` INT(11) NOT NULL DEFAULT 0,
   `manager_id` INT(11) NOT NULL DEFAULT 0,
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `intervention` (
   `description` VARCHAR(255) DEFAULT NULL,
   `date` DATE NOT NULL DEFAULT CURRENT_DATE,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_intervention_supplier` FOREIGN KEY (`supplier_id`) REFERENCES `fournisseurs` (`id`),
+  CONSTRAINT `fk_intervention_supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`),
   CONSTRAINT `fk_intervention_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -142,7 +142,7 @@ CREATE TABLE `loan` (
   `comment` VARCHAR(100) DEFAULT NULL,
   `status` ENUM('LOAN_BORROWED','LOAN_RESERVED','LOAN_RETURNED') NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_loan_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `team` (`id`)
+  CONSTRAINT `fk_loan_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`)
   CONSTRAINT `fk_loan_team` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
