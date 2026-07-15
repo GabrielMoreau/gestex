@@ -44,11 +44,11 @@ if ($flag_new) {
 	if (empty($username))
 		$err_msg = 'Identifiant (login) non précisé';
 	if (empty($password))
-		$err_msg = 'Password non précisé';
+		$err_msg = 'Mot de passe non précisé';
 	if (empty($password2))
-		$err_msg = 'Confirmation de password non précisé';
+		$err_msg = 'Confirmation de mot de passe non précisé';
 	if ($password != $password2)
-		$err_msg = 'Les passwords diffèrent';
+		$err_msg = 'Les mots de passe diffèrent';
 }
 
 $pdo = connect_db_or_alert();
