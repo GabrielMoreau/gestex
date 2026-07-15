@@ -66,6 +66,13 @@ function param_post_key($string, $var = [], $default = '') {
 
 // ---------------------------------------------------------------------
 
+function empty_to_null(?string $value): ?string {
+	$value = trim($value ?? '');
+	return $value === '' ? null : $value;
+}
+
+// ---------------------------------------------------------------------
+
 function string_to_filename_snake($string) {
 	// $string = strtolower($string);
 	$string = str_replace(' ', '_', $string);

@@ -89,6 +89,7 @@ CREATE TABLE `equipment` (
   `barcode` BIGINT(20) DEFAULT NULL,
   `max_day` INT(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_equipment_inventory_number` (`inventory_number`),
   CONSTRAINT `fk_equipment_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
   CONSTRAINT `fk_equipment_team` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`),
   CONSTRAINT `fk_equipment_supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`),
