@@ -8,7 +8,7 @@
 
 <div class="box-alert">
 	<center>
-		Une erreur est survenue lors de l'accèes aux données avec la base de donnée.
+		Une erreur est survenue lors de l’accès aux données avec la base de donnée.
 		<br>
 		<b><?=$message_alert?></b>
 		<br>

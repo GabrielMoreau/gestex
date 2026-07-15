@@ -10,7 +10,7 @@
 <center class="box-alert">
 <form action="team-del.php" method="POST">
 	<input type="hidden" name="id" value="<?=$team_id?>">
-	Voulez-vous supprimer l'équipe <i><?=$team_name?></i> (#<?=$team_id?>) ?
+	Voulez-vous supprimer l’équipe <i><?=$team_name?></i> (#<?=$team_id?>) ?
 	<button class="red" type="submit" name="ok" value="yes">Oui</button>
 	<button class="green" type="submit" formaction="team-list.php" value="no">Non</button>
 	<hr>
