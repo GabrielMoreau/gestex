@@ -105,7 +105,7 @@ function nav_bar($pdo, $firstname, $familyname, $level, $logged_id, $find) {
 		<div class="dropdown-content">
 			<a href="category-list.php"><b>Cat&eacute;gories</b></a>
 			<a href="equipment-list.php"><b>Global</b></a>
-			<a href="equipment-list.php?loanable=yes"><b>Empruntable</b></a>
+			<a href="equipment-list.php?is_loanable=yes"><b>Empruntable</b></a>
 			<?php foreach (get_team_with_appareil($pdo) as $team_current): ?>
 			<a href="equipment-list.php?team_id=<?= $team_current['id'] ?>">
 				<b><?= htmlspecialchars($team_current['name']) ?></b>

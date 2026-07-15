@@ -236,7 +236,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 				Empruntable (oui / non - non par d&eacute;faut)
 			</th>
 			<td>
-				<input type="checkbox" name="loanable" value="1" <?php if (param_post_key('loanable', $equipment_selected, 0) == 1) echo 'checked' ?> >
+				<input type="checkbox" name="is_loanable" value="1" <?php if (param_post_key('is_loanable', $equipment_selected, 0) == 1) echo 'checked' ?> >
 			</td>
 		</tr>
 

@@ -16,11 +16,11 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$id_highlight  = param_post_or_get('highlight', 0);
-$loanable_flag = param_get('loanable');
+$id_highlight = param_post_or_get('highlight', 0);
+$is_loanable  = param_get('is_loanable');
 
 $title = 'Liste des appareils';
-if ($loanable_flag == 'yes')
+if ($is_loanable == 'yes')
 	$title .= ' empruntables';
 
 $pdo = connect_db_or_alert();
@@ -107,7 +107,7 @@ if ($supplier_id > 0) {
 
 	$num_line = 1;
 	foreach ($equipment_fetch as $equipment_item) {
-		if ($loanable_flag == 'yes' && $equipment_item['loanable'] != 1)
+		if ($is_loanable == 'yes' && $equipment_item['is_loanable'] != 1)
 			continue;
 		$class = 'impair';
 		if ($num_line % 2)
@@ -161,7 +161,7 @@ if ($supplier_id > 0) {
 		}
 		echo '  </td>'.PHP_EOL;
 
-		if ($equipment_item['loanable'] == 1) {
+		if ($equipment_item['is_loanable'] == 1) {
 			$is_loan = false;
 			# $loan = get_loan_short_by_id_equipment($pdo, $equipment_item['id']); # effectuer une modification ici
 			$loans = get_loans_all_by_equipment($pdo, $equipment_item['id']);
@@ -193,7 +193,7 @@ if ($supplier_id > 0) {
 			echo '  <td></td>'.PHP_EOL;
 		}
 
-		if ($equipment_item['loanable'] == false) {
+		if ($equipment_item['is_loanable'] == false) {
 			echo '  <td></td>'.PHP_EOL;
 		}
 		if ($logged_level >= 2) {

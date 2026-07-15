@@ -34,7 +34,7 @@ if ($pdo = connect_db()) {
 	if ($equipment_selected['barcode'] == 0)
 		$equipment_selected['barcode'] = '';
 
-	if ($equipment_selected['loanable'] == 1)
+	if ($equipment_selected['is_loanable'] == 1)
 		$loan = get_loans_all_not_return_by_equipment($pdo, $equipment_id);
 
 	$loan_borrow = get_loans_all_by_equipment_borrowed($pdo, $equipment_id);
@@ -193,7 +193,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['nom'
 
 
 			<td>
-				<?php if ($equipment_selected['loanable'] == 1) {
+				<?php if ($equipment_selected['is_loanable'] == 1) {
 					$is_borrowed = false;
 
 					if ($loan != false)

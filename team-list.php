@@ -85,8 +85,8 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 
 		echo '  <td>';
-		if (get_equipment_count_loanable_by_team($pdo, $team_current['id']) > 0)
-			echo '<a href="equipment-list.php?loanable=yes&team='.$team_current['id'].'">'.ICON_LOAN_BORROWED.'</a>';
+		if (get_equipment_count_is_loanable_by_team($pdo, $team_current['id']) > 0)
+			echo '<a href="equipment-list.php?is_loanable=yes&team='.$team_current['id'].'">'.ICON_LOAN_BORROWED.'</a>';
 		echo '  </td>'.PHP_EOL;
 
 		if ($logged_level >= 2) {
