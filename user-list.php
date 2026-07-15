@@ -100,7 +100,10 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
 			echo '    <a href="user-changepwd.php?id='.$user_current['id'].'">';
-			echo        ICON_PERSON_PASWD;
+			if (preg_match('/^!ldap!/i', $user_current['password']))
+				echo '<span class="check-warn">'.ICON_PERSON_PASWD.'</span>';
+			else
+				echo ICON_PERSON_PASWD;
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
