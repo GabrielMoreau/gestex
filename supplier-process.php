@@ -65,7 +65,7 @@ if ($flag_new) { // new
 }
 
 // modify
-// récupère les anciennes caracteristiques
+// Récupère les anciennes caractéristiques
 $supplier_selected = get_supplier_all_by_id($pdo, $supplier_id);
 
 $modif = false;

@@ -27,7 +27,7 @@ if ($mode == 'Ajouter')
 	en_tete('Ajouter une équipe');
 else if ($mode == 'Modifier') {
 	en_tete('Modifier les coordonnées d’une équipe');
-	// récupère le fournisseur selectionne
+	// Récupère le fournisseur sélectionné
 	$team_selected = get_team_all_by_id($pdo, $team_id);
 	$team_manager_user_id = $team_selected['manager_user_id'];
 }

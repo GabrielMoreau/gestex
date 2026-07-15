@@ -53,7 +53,7 @@ if ($mode == 'Ajouter') {
 		</tr>
 		<tr>
 			<th>Société</th>
-			<?php // récupère la liste des fournisseurs
+			<?php // Récupère la liste des fournisseurs
 			$supplier_fetch = get_supplier_listshort($pdo);
 			?>
 			<td>

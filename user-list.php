@@ -51,7 +51,7 @@ en_tete('Liste de tous les utilisateurs');
 
 <?php // interrogation base de données
 if ($pdo = connect_db()) {
-	// récupère la liste des users
+	// Récupère la liste des users
 	$user_fetch = get_user_listall_by_logged_level($pdo, $logged_level);
 	$num_line = 1;
 	foreach ($user_fetch as $user_current) {
@@ -87,7 +87,7 @@ if ($pdo = connect_db()) {
 			echo '    <a href="mailto:'.$user_mail.'">'.ICON_MAIL.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		// récupère la liste de equipes
+		// Récupère la liste de equipes
 		$team = get_team_by_id($pdo, $user_current['team_id']);
 		if ($team)
 			echo $team['name'].' ('.$user_current['team_id'].')';

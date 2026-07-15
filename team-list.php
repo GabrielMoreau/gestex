@@ -35,7 +35,7 @@ en_tete('Liste de toutes les équipes');
 				Compte
 			</th>
 			<th>
-				Chef d’équipe
+				Chef d'équipe
 			</th>
 			<th class="sorttable_nosort"></th>
 			<th class="sorttable_nosort"></th>
@@ -50,7 +50,7 @@ en_tete('Liste de toutes les équipes');
 
 <?php //interrogation base de données
 if ($pdo = connect_db()) {
-	// récupère la liste de fournisseurs
+	// Récupère la liste de fournisseurs
 	$team_fetch = get_team_listall($pdo);
 	$num_line = 1;
 	foreach ($team_fetch as $team_current) {
@@ -72,7 +72,7 @@ if ($pdo = connect_db()) {
 		echo      $team_current['accounting'];
 		echo '  </td>'.PHP_EOL;
 
-		// récupère le nom de chef d’equipe
+		// Récupère le nom de chef d'equipe
 		$manager_user_id = get_user_short_by_id($pdo, $team_current['manager_user_id']);
 		echo '  <td style="vertical-align: top;">';
 		if ($manager_user_id)

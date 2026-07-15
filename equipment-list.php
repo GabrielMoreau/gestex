@@ -25,21 +25,21 @@ if ($is_loanable == 'yes')
 
 $pdo = connect_db_or_alert();
 
-// récupère la categorie
+// Récupère la categorie
 $category_id = param_get('category_id', 0);
 if ($category_id > 0) {
 	$category_selected = get_category_by_id($pdo, $category_id);
 	$title .= ' de la catégorie <i>'.$category_selected['name'].'</i>';
 }
 
-// récupère l'equipe
+// Récupère l'equipe
 $team_id = param_get('team_id', 0);
 if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
 	$title .= ' de l’équipe <i>'.$team_selected['name'].'</i>';
 }
 
-// récupère le fournisseur
+// Récupère le fournisseur
 $supplier_id = param_get('supplier_id', 0);
 if ($supplier_id > 0) {
 	$supplier_selected = get_supplier_short_by_id($pdo, $supplier_id);
@@ -95,7 +95,7 @@ if ($supplier_id > 0) {
 		</tr>
 
 <?php
-	// récupère la liste de appareils
+	// Récupère la liste de appareils
 	if ($category_id == 0 && $team_id != 0)
 		$equipment_fetch =  get_equipment_listall_by_team($pdo, $team_id);
 	else if ($category_id != 0 && $team_id == 0)
@@ -138,7 +138,7 @@ if ($supplier_id > 0) {
 
 		if ($team_id == 0) {
 			echo '  <td>';
-			// récupère le nom d'equipe
+			// Récupère le nom d'equipe
 			$team = get_team_by_id($pdo, $equipment_item['team_id']);
 			echo '    <a href="equipment-list.php?team_id='.$team['id'].'">'.$team['name'].'</a>';
 			echo '  </td>'.PHP_EOL;
@@ -146,7 +146,7 @@ if ($supplier_id > 0) {
 
 		if ($supplier_id == 0) {
 			echo '  <td>';
-			// récupère le nom du fournisseur
+			// Récupère le nom du fournisseur
 			$supplier = get_supplier_short_by_id($pdo, $equipment_item['supplier_id']);
 			if ($supplier) {
 				echo '    <a href="equipment-list.php?supplier_id='.$supplier['id'].'">'.$supplier['name'].'</a>';

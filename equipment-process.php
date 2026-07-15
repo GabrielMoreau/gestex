@@ -63,7 +63,7 @@ if (isset($_FILES["notice"])) {
 }
 
 if (!empty($erreur)) {
-	//erreur
+	// erreur
 	$title         = 'Erreur';
 	$action        = 'equipment-edit.php?id='.$equipment_id;
 	$message_text  =  $erreur;
@@ -100,7 +100,7 @@ if ($flag_new) { // new
 }
 
 // modify
-// récupère les anciennes caracteristiques
+// Récupère les anciennes caractéristiques
 $equipment_selected = get_equipment_all_by_id($pdo, $equipment_id);
 
 //modification app

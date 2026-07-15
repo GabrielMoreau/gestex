@@ -26,7 +26,7 @@ if ($mode == 'Ajouter') {
 	en_tete('Inscrire un utilisateur');
 } else if ($mode == 'Modifier') {
 	en_tete('Modifier mon profil');
-	// récupère le user concerne
+	// Récupère le user concerne
 	$user_selected = get_user_all_by_id($pdo, $user_id);
 }
 ?>
@@ -110,7 +110,7 @@ if ($mode == 'Ajouter') {
 			<th>
 				Équipe
 			</th>
-			<?php // récupère la liste des equipes
+			<?php // Récupère la liste des équipes
 			$team_fetch = get_team_listshort($pdo);
 			?>
 			<td>
@@ -118,7 +118,7 @@ if ($mode == 'Ajouter') {
 					<?php
 					foreach ($team_fetch as $team_current) {
 						echo '<option value="'.$team_current['id'].'"';
-						// selectionne la bonne equipe
+						// Selectionne la bonne équipe
 						if ($team_current['id'] == param_post_key('team_id', $user_selected, 0))
 							echo ' selected';
 						echo '>'.$team_current['name'].'</option>';

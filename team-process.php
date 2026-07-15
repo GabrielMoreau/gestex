@@ -64,7 +64,7 @@ if ($flag_new) { // new
 }
 
 // modify
-// récupère les anciennes caracteristiques
+// Récupère les anciennes caractéristiques
 $team_selected = get_team_all_by_id($pdo, $team_id);
 
 $modif = false;

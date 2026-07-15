@@ -29,7 +29,7 @@ if ($mode == 'Ajouter') {
 }
 else if ($mode == 'Modifier') {
 	en_tete('Modifier un appareil');
-	// récupère l'appareil selectionne
+	// Récupère l'appareil selectionne
 	$equipment_selected = get_equipment_all_by_id($pdo, $equipment_id);
 	$datasheet_fetch    = get_datasheet_listall_by_equipment($pdo, $equipment_id);
 	$datasheet_count    = count($datasheet_fetch);
@@ -50,7 +50,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 			<td>
 				<select name="category_id">
 				<?php
-				// liste des categories
+				// Liste des catégories
 				$category_fetch = get_category_listshort($pdo);
 				foreach ($category_fetch as $category_current) {
 					echo '<option value="'.$category_current['id'].'"';
@@ -58,7 +58,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 						echo " selected";
 					}
 
-					// si on choisit ajouter, la liste preselectionne la categorie
+					// Si on choisit ajouter, la liste présélectionnée la catégorie
 					echo '>'.$category_current['name'].'</option>';
 				} // end foreach
 				?>
@@ -100,7 +100,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 			<td>
 				<select name="team_id">
 				<?php
-				// récupère la liste des equipes
+				// Récupère la liste des équipes
 				$team_fetch = get_team_listshort($pdo);
 				foreach ($team_fetch as $team_current) {
 					echo '<option value="'.$team_current['id'].'"';
@@ -122,7 +122,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 			<td>
 				<select name="supplier_id">
 				<?php
-				// récupère la liste des fournisseurs
+				// Récupère la liste des fournisseurs
 				$supplier_fetch = get_supplier_listshort($pdo);
 				foreach ($supplier_fetch as $supplier_current) {
 					echo '<option value="'.$supplier_current['id'].'"';
@@ -153,7 +153,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 			<td>
 				<select name="manager_user_id">
 				<?php
-				// récupère la liste des tech
+				// Récupère la liste des tech
 				$user_fetch = get_user_listshort_with_right($pdo, 1, $manager_user_id);
 				foreach ($user_fetch as $user_current) {
 					echo '<option value="'.$user_current['id'].'"';

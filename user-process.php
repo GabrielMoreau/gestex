@@ -97,7 +97,7 @@ if ($flag_new) { // new
 }
 
 // modify
-// récupère les anciennes caracteristiques
+// Récupère les anciennes caractéristiques
 $user_selected = get_user_all_by_id($pdo, $user_id);
 
 if ($level != $user_selected['level'] && $logged_level < 3)
@@ -132,9 +132,9 @@ if ($user_id == $logged_id)
 	$_SESSION['logged_theme'] = theme($theme);
 
 if ($logged_level >= 3 && $valid == 1) {
-	//validation d'un user acceptee
-	//envoi d'un mail a cet user
-	//$texte = $firstname.' '.$familyname.' votre inscription au systeme GestEx à été acceptée !';
+	// Validation d'un utilisateur acceptée
+	// envoi d'un mail a cet user
+	// $texte = $firstname.' '.$familyname.' votre inscription au systeme GestEx à été acceptée !';
 	// mail($mail, "[GestEx] inscription acceptée - ".$familyname." ".$firstname, $texte);
 }
 

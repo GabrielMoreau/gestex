@@ -118,7 +118,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 			<td>
 				<select name="team_id">
 				<?php
-				// récupère la liste des equipes
+				// Récupère la liste des equipes
 				$team_fetch = get_team_listshort($pdo);
 				foreach ($team_fetch as $team_current) {
 					echo '<option value="'.$team_current['id'].'"';

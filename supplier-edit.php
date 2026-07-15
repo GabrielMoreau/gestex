@@ -26,7 +26,7 @@ if ($mode == 'Ajouter') {
 }
 else if ($mode == 'Modifier') {
 	en_tete('Modifier les coordonnées d’un fournisseur');
-	// récupère le fournisseur selectionne
+	// Récupère le fournisseur selectionné
 	$supplier_selected = get_supplier_all_by_id($pdo, $supplier_id);
 }
 ?>
