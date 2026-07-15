@@ -76,7 +76,7 @@ CREATE TABLE `equipment` (
   `category_id` INT(11) DEFAULT NULL,
   `name` VARCHAR(255) DEFAULT NULL,
   `model` VARCHAR(255) DEFAULT NULL,
-  `gamme` VARCHAR(255) DEFAULT NULL,
+  `feature` VARCHAR(255) DEFAULT NULL,
   `team_id` INT(11) DEFAULT NULL,
   `supplier_id` INT(11) DEFAULT NULL,
   `achat` DATE DEFAULT NULL,

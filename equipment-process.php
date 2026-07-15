@@ -24,7 +24,7 @@ if ($equipment_id > 0)
 $category_id      = param_post('category_id');
 $name             = param_post('name');
 $model            = param_post('model');
-$feature          = param_post('gamme');
+$feature          = param_post('feature');
 $team_id          = param_post('team_id');
 $supplier_id      = param_post('supplier_id');
 $achat            = param_post('achat');
@@ -108,7 +108,7 @@ $modif = false;
 if (   ($category_id      != $equipment_selected['category_id'])
 	|| ($name             != $equipment_selected['name'])
 	|| ($model            != $equipment_selected['model'])
-	|| ($feature          != $equipment_selected['gamme'])
+	|| ($feature          != $equipment_selected['feature'])
 	|| ($manager_user_id  != $equipment_selected['manager_user_id'])
 	|| ($team_id          != $equipment_selected['team_id'])
 	|| ($supplier_id      != $equipment_selected['supplier_id'])

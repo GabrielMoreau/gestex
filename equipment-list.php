@@ -133,7 +133,7 @@ if ($supplier_id > 0) {
 		echo      $equipment_item['model'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		echo      $equipment_item['gamme'];
+		echo      $equipment_item['feature'];
 		echo '  </td>'.PHP_EOL;
 
 		if ($team_id == 0) {

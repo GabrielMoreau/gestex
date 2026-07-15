@@ -89,7 +89,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 				Caract&eacute;ristiques (gamme d'usage) *
 			</th>
 			<td>
-				<input type="text" name="gamme" size="30" maxlength="100" value="<?= param_post_key('gamme', $equipment_selected) ?>" placeholder="Caract&eacute;ristiques (gamme d'usage) *">
+				<input type="text" name="feature" size="30" maxlength="100" value="<?= param_post_key('feature', $equipment_selected) ?>" placeholder="Caract&eacute;ristiques (gamme d'usage) *">
 			</td>
 		</tr>
 

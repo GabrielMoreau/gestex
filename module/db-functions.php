@@ -556,7 +556,7 @@ function get_equipment_by_loan_id($pdo, $loan_id) {
  * un tableau avec l'ID et un msg d'erreur eventuellement
  */
 function set_equipment_new($pdo, $categorie, $name, $model, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days) {
-	$sql = 'INSERT INTO equipment (category_id, name, model, gamme, team_id, supplier_id, achat, manager_user_id, reparation, accessories, inventory_number, notice, barcode, is_loanable, max_loan_days)';
+	$sql = 'INSERT INTO equipment (category_id, name, model, feature, team_id, supplier_id, achat, manager_user_id, reparation, accessories, inventory_number, notice, barcode, is_loanable, max_loan_days)';
 	$sql .=            ' VALUES (?,         ?,   ?,      ?,     ?,      ?,           ?,     ?,           ?,          ?,           ?,          ?,      ?,       ?,        ?);';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($categorie, $name, $model, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days));
@@ -575,7 +575,7 @@ function set_equipment_new($pdo, $categorie, $name, $model, $feature, $team_id, 
  * si réussite sinon une chaine d'erreurs
  */
 function set_equipment_update($pdo, $equipment_id, $categorie, $name, $model, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days) {
-	$sql = 'UPDATE equipment SET category_id = ?, name = ?, model = ?, gamme = ?, team_id = ?, supplier_id = ?, achat = ?, manager_user_id = ?, reparation = ?, accessories = ?, inventory_number = ?, notice = ?, barcode = ?, is_loanable = ?, max_loan_days = ? WHERE id = ?;';
+	$sql = 'UPDATE equipment SET category_id = ?, name = ?, model = ?, feature = ?, team_id = ?, supplier_id = ?, achat = ?, manager_user_id = ?, reparation = ?, accessories = ?, inventory_number = ?, notice = ?, barcode = ?, is_loanable = ?, max_loan_days = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($categorie, $name, $model, $feature, $team_id, $supplier_id, $achat, $manager_user_id, $reparation, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days, $equipment_id));
 	$err_msg = '';
