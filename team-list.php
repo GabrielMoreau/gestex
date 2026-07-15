@@ -47,7 +47,7 @@ en_tete('Liste de toutes les équipes');
 			if ($logged_level == 2)
 				echo '<th class="sorttable_nosort"></th>';
 			if ($logged_level >= 3)
-				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="team-edit.php">'.ICON_ADD_TEAM.'</a></span></th>';
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="team-edit.php">'.ICON_LIST.'</a></span></th>';
 			?>
 		</tr>
 
@@ -72,7 +72,8 @@ if ($pdo = connect_db()) {
 		echo      $team_current['description'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
-		echo '    <a href="equipment-list.php?team_id='.$team_current['id'].'">'.ICON_ADD_EQUIPMENT.'</a>';
+		if (get_equipment_count_by_team($pdo, $team_current['id']) > 0)
+			echo '    <a href="equipment-list.php?team_id='.$team_current['id'].'">'.ICON_LIST.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $team_current['accounting'];

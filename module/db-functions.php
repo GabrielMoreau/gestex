@@ -439,6 +439,21 @@ function get_equipment_listall_by_team($pdo, $team_id) {
 // ---------------------------------------------------------------------
 
 /**
+ * Récupère le nombre d'équipement par équipe
+ * 
+ * @return int
+ */
+function get_equipment_count_by_team($pdo, $team_id) {
+	$sql = 'SELECT COUNT(*) as count FROM equipment AS e WHERE e.team_id = ?;';
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute(array($team_id));
+	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	return $result_fetch[0]['count'];
+}
+
+// ---------------------------------------------------------------------
+
+/**
  * Recupere le nombre d'équipement empruntable avec la même équipe via 
  * l'ID de l'équipe
  * 
