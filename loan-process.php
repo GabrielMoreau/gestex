@@ -49,13 +49,13 @@ if ($param_mode == "loan" || $param_mode == "booking") {
 	$day_diff = $date_out_rtn - $date_out_ymd;
 	$day_diff = intval(date('d', $day_diff));
 	if ($loan_id > 0) {
-		$equipment_max_day = get_equipment_all_by_id($pdo, get_equipment_by_loan_id($pdo, $loan_id))["max_day"];
+		$equipment_max_loan_days = get_equipment_all_by_id($pdo, get_equipment_by_loan_id($pdo, $loan_id))["max_loan_days"];
 	} else {
-		$equipment_max_day = get_equipment_all_by_id($pdo, $equipment_id)["max_day"];
+		$equipment_max_loan_days = get_equipment_all_by_id($pdo, $equipment_id)["max_loan_days"];
 	}
-	if ($equipment_max_day != 0) {
-		if ($day_diff > $equipment_max_day)
-			$erreur = 'L’équipement ne peut pas être emprunter sur une durée de plus de '.$equipment_max_day.' jours';
+	if ($equipment_max_loan_days != 0) {
+		if ($day_diff > $equipment_max_loan_days)
+			$erreur = 'L’équipement ne peut pas être emprunter sur une durée de plus de '.$equipment_max_loan_days.' jours';
 	}
 }
 
