@@ -32,13 +32,13 @@ en_tete('Liste de toutes les équipes');
 				Description
 			</th>
 			<th class="sorttable_nosort">
-				<a href="equipment-list.php"><?=ICON_ADD_EQUIPMENT?></a>
+				<a href="equipment-list.php"><?=ICON_LIST?></a>
 			</th>
 			<th>
 				Compte
 			</th>
 			<th>
-				Chef d'équipe
+				Chef d’équipe
 			</th>
 			<th class="sorttable_nosort"></th>
 			<th class="sorttable_nosort"></th>
@@ -47,7 +47,7 @@ en_tete('Liste de toutes les équipes');
 			if ($logged_level == 2)
 				echo '<th class="sorttable_nosort"></th>';
 			if ($logged_level >= 3)
-				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="team-edit.php">'.ICON_LIST.'</a></span></th>';
+				echo '<th class="sorttable_nosort" colspan=2"><span class="option-right"><a href="team-edit.php">'.ICON_ADD_TEAM.'</a></span></th>';
 			?>
 		</tr>
 
