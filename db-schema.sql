@@ -82,7 +82,7 @@ CREATE TABLE `equipment` (
   `achat` DATE DEFAULT NULL,
   `manager_user_id` INT(11) DEFAULT NULL,
   `reparation` VARCHAR(30) DEFAULT NULL,
-  `accessoires` VARCHAR(255) DEFAULT NULL,
+  `accessories` VARCHAR(255) DEFAULT NULL,
   `notice` VARCHAR(255) DEFAULT NULL,
   `inventory_number` VARCHAR(50) DEFAULT NULL,
   `loanable` BOOLEAN NOT NULL DEFAULT FALSE,

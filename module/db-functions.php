@@ -555,11 +555,11 @@ function get_equipment_by_loan_id($pdo, $loan_id) {
  * @return array|string Renvoie une chaine si echec sinon 
  * un tableau avec l'ID et un msg d'erreur eventuellement
  */
-function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $tech, $reparation, $accessoires, $inventory_number, $notice, $barcode, $loanable, $max_day) {
-	$sql = 'INSERT INTO equipment (category_id, nom, modele, gamme, team_id, supplier_id, achat, manager_user_id, reparation, accessoires, inventory_number, notice, barcode, loanable, max_day)';
+function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $tech, $reparation, $accessories, $inventory_number, $notice, $barcode, $loanable, $max_day) {
+	$sql = 'INSERT INTO equipment (category_id, nom, modele, gamme, team_id, supplier_id, achat, manager_user_id, reparation, accessories, inventory_number, notice, barcode, loanable, max_day)';
 	$sql .=            ' VALUES (?,         ?,   ?,      ?,     ?,      ?,           ?,     ?,           ?,          ?,           ?,          ?,      ?,       ?,        ?);';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $tech, $reparation, $accessoires, $inventory_number, $notice, $barcode, $loanable, $max_day));
+	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $tech, $reparation, $accessories, $inventory_number, $notice, $barcode, $loanable, $max_day));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
@@ -574,10 +574,10 @@ function set_equipment_new($pdo, $categorie, $nom, $modele, $feature, $team_id, 
  * @return string Renvoie une chaine vide
  * si réussite sinon une chaine d'erreurs
  */
-function set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $tech, $reparation, $accessoires, $inventory_number, $notice, $barcode, $loanable, $max_day) {
-	$sql = 'UPDATE equipment SET category_id = ?, nom = ?, modele = ?, gamme = ?, team_id = ?, supplier_id = ?, achat = ?, manager_user_id = ?, reparation = ?, accessoires = ?, inventory_number = ?, notice = ?, barcode = ?, loanable = ?, max_day = ? WHERE id = ?;';
+function set_equipment_update($pdo, $equipment_id, $categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $tech, $reparation, $accessories, $inventory_number, $notice, $barcode, $loanable, $max_day) {
+	$sql = 'UPDATE equipment SET category_id = ?, nom = ?, modele = ?, gamme = ?, team_id = ?, supplier_id = ?, achat = ?, manager_user_id = ?, reparation = ?, accessories = ?, inventory_number = ?, notice = ?, barcode = ?, loanable = ?, max_day = ? WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $tech, $reparation, $accessoires, $inventory_number, $notice, $barcode, $loanable, $max_day, $equipment_id));
+	$iostat = $stmt->execute(array($categorie, $nom, $modele, $feature, $team_id, $supplier_id, $achat, $tech, $reparation, $accessories, $inventory_number, $notice, $barcode, $loanable, $max_day, $equipment_id));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];

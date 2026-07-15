@@ -181,7 +181,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 				Accessoires
 			</th>
 			<td>
-				<input type="text" name="accessoires" size="30" maxlength="30" value="<?= param_post_key('accessoires', $equipment_selected) ?>" placeholder="Accessoires">
+				<input type="text" name="accessories" size="30" maxlength="30" value="<?= param_post_key('accessories', $equipment_selected) ?>" placeholder="Accessoires">
 			</td>
 		</tr>
 		<tr>
