@@ -1262,14 +1262,14 @@ function get_user_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu d'un utilisateur via son nom de login
+ * Récupère tout le contenu d'un utilisateur via son username
  * 
  * @return false|array Retourne un seul utilisateur
  */
-function get_user_all_by_login($pdo, $login) {
+function get_user_all_by_login($pdo, $username) {
 	$sql = 'SELECT * FROM user WHERE username = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($login));
+	$stmt->execute(array($username));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	if (count($result_fetch) > 0)
 		return $result_fetch[0];
@@ -1340,11 +1340,11 @@ function get_user_count($pdo) {
  * 
  * @return array Avec potentiellement une chaine d'erreur
  */
-function set_user_new($pdo, $familyname, $firstname, $login, $password, $email, $level, $phone, $team_id, $theme) {
-	error_log('Warn: new user '.$login);
+function set_user_new($pdo, $familyname, $firstname, $username, $password, $email, $level, $phone, $team_id, $theme) {
+	error_log('Warn: new user '.$username);
 	$sql = 'INSERT INTO user (familyname, firstname, username, password, email, level, phone, team_id, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
 	$stmt = $pdo->prepare($sql);
-	$iostat = $stmt->execute(array($familyname, $firstname, $login, $password, $email, $level, $phone, $team_id, $theme));
+	$iostat = $stmt->execute(array($familyname, $firstname, $username, $password, $email, $level, $phone, $team_id, $theme));
 	$err_msg = '';
 	if (!$iostat)
 		$err_msg = $stmt->errorInfo()[2];
