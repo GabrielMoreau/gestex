@@ -15,7 +15,7 @@ $logged_level = $_SESSION['logged_level'];
 
 // modification d'une equipe
 
-unset($erreur);
+unset($err_msg);
 
 $team_id = param_post('team_id', 0); // -> modify
 $flag_new = true;
@@ -28,16 +28,16 @@ $manager_user_id = param_post('manager_user_id');
 $description     = param_post('description');
 // variables ne pouvant etre nulles
 if (empty($name))
-	$erreur = 'Nom d’équipe non précisé';
+	$err_msg = 'Nom d’équipe non précisé';
 if (empty($accounting))
-	$erreur = 'Compte non précisé';
+	$err_msg = 'Compte non précisé';
 
-if (!empty($erreur)) {
+if (!empty($err_msg)) {
 	//erreur
 	$title         = 'Erreur équipe';
 	$action        = 'team-edit.php?id='.$team_id;
 	$highlight     = $team_id;
-	$message_text  = $erreur;
+	$message_text  = $err_msg;
 	$transmit_post = true;
 	include_once('include/warning-box.php');
 	exit();

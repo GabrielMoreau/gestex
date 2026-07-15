@@ -15,7 +15,7 @@ $logged_level = $_SESSION['logged_level'];
 
 // création ou modification d'un fournisseur
 
-unset($erreur);
+unset($err_msg);
 
 $supplier_id = param_post('id', 0);
 $flag_new = true;
@@ -32,15 +32,15 @@ $contact = param_post('contact');
 $description   = param_post('description');
 // variables ne pouvant etre nulles
 if (empty($name))
-	$erreur = 'Nom du fournisseur non précisé';
+	$err_msg = 'Nom du fournisseur non précisé';
 if (empty($address))
-	$erreur = 'Adresse non précisée';
+	$err_msg = 'Adresse non précisée';
 
-if (!empty($erreur)) {
+if (!empty($err_msg)) {
 	// erreur
 	$title         = 'Erreur';
 	$action        = 'supplier-edit.php?id='.$supplier_id;
-	$message_text  =  $erreur;
+	$message_text  =  $err_msg;
 	$transmit_post = true;
 	include_once('include/warning-box.php');
 	exit();

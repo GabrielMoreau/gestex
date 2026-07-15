@@ -12,7 +12,7 @@ level_or_alert(3, 'Ajout / Modification d’une intervention');
 
 $logged_level = $_SESSION['logged_level'];
 
-unset($erreur);
+unset($err_msg);
 
 $description        = param_post('description');
 $equipment_id       = param_post('equipment_id');

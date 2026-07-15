@@ -33,37 +33,37 @@ $phone      = param_post('phone', 'Na');
 $team_id    = param_post('team_id');
 
 if (empty($familyname))
-	$erreur = 'Nom de famille non précisé';
+	$err_msg = 'Nom de famille non précisé';
 if (empty($mail))
-	$erreur = 'Adresse de courriel non précisée';
+	$err_msg = 'Adresse de courriel non précisée';
 if (empty($level))
-	$erreur = 'Qualité non précisée';
+	$err_msg = 'Qualité non précisée';
 if (empty($theme))
-	$erreur = 'Thème non précisé';
+	$err_msg = 'Thème non précisé';
 if ($flag_new) {
 	if (empty($username))
-		$erreur = 'Identifiant (login) non précisé';
+		$err_msg = 'Identifiant (login) non précisé';
 	if (empty($password))
-		$erreur = 'Password non précisé';
+		$err_msg = 'Password non précisé';
 	if (empty($password2))
-		$erreur = 'Confirmation de password non précisé';
+		$err_msg = 'Confirmation de password non précisé';
 	if ($password != $password2)
-		$erreur = 'Les passwords diffèrent';
+		$err_msg = 'Les passwords diffèrent';
 }
 
 $pdo = connect_db_or_alert();
 
 if ($flag_new and check_val_in_db($pdo, 'users', 'username', $username)) {
 	// nom existant deja dans db
-	$erreur = 'L’identifiant <i>'.$username.'</i> est déjà utilisé dans la base de données';
+	$err_msg = 'L’identifiant <i>'.$username.'</i> est déjà utilisé dans la base de données';
 }
 
-if (!empty($erreur)) {
+if (!empty($err_msg)) {
 	// erreur
 	$title         = 'Erreur utilisateur';
 	$action        = 'user-edit.php?id='.$user_id;
 	$highlight     = $user_id;
-	$message_text  = $erreur;
+	$message_text  = $err_msg;
 	$transmit_post = true;
 	include_once('include/warning-box.php');
 	exit();

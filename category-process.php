@@ -10,7 +10,7 @@ require_once('module/base-functions.php');
 auth_or_login('category-process.php');
 level_or_alert(3, 'Ajout d’une catégorie');
 
-unset($erreur);
+unset($err_msg);
 
 $id_category = param_post('category_id'); // -> modify
 $flag_new = true;
@@ -20,18 +20,18 @@ if (!empty($id_category))
 //variables ne pouvant etre nulles
 $categorie_name = strtolower(param_post('categorie_name'));
 if (empty($categorie_name))
-	$erreur = 'Catégorie non précisée';
+	$err_msg = 'Catégorie non précisée';
 
 $pdo = connect_db_or_alert();
 
 if (check_category_by_name($pdo, $categorie_name))
-	$erreur = 'La catégorie <i>'.$categorie_name.'</i> existe déjà';
+	$err_msg = 'La catégorie <i>'.$categorie_name.'</i> existe déjà';
 
-if (!empty($erreur)) {
+if (!empty($err_msg)) {
 	//erreur
 	$title        = 'Erreur';
 	$action       = 'category-list.php';
-	$message_text = $erreur;
+	$message_text = $err_msg;
 	include_once('include/warning-box.php');
 	exit();
 }

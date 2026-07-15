@@ -14,7 +14,7 @@ $logged_level = $_SESSION['logged_level'];
 
 // validation d'un nouvel appareil
 
-unset($erreur);
+unset($err_msg);
 
 $equipment_id = param_post('equipment_id', 0);
 $flag_new = true;
@@ -37,21 +37,21 @@ $max_loan_days    = param_post('max_loan_days', 0);
 $is_loanable      = param_post('is_loanable', 0);
 //variables ne pouvant etre nulles
 if (empty($category_id))
-	$erreur = 'Catégorie non précisé';
+	$err_msg = 'Catégorie non précisé';
 if (empty($name))
-	$erreur = 'Nom de l’appareil non précisé';
+	$err_msg = 'Nom de l’appareil non précisé';
 if (empty($model))
-	$erreur = 'Modèle non précisé';
+	$err_msg = 'Modèle non précisé';
 if (empty($team_id))
-	$erreur = 'Équipe non précisé';
+	$err_msg = 'Équipe non précisé';
 if (empty($manager_user_id))
-	$erreur = 'Tech non précisé';
+	$err_msg = 'Tech non précisé';
 if (empty($supplier_id))
-	$erreur = 'Fournisseur non précisé';
+	$err_msg = 'Fournisseur non précisé';
 if (empty($date_of_purchase))
-	$erreur = 'Achat non précisé';
+	$err_msg = 'Achat non précisé';
 if (empty($feature))
-	$erreur = 'Caractéristique non précisé';
+	$err_msg = 'Caractéristique non précisé';
 
 $notice = '';
 if (isset($_FILES["notice"])) {
@@ -62,11 +62,11 @@ if (isset($_FILES["notice"])) {
 	$notice = str_replace('à', 'a', $notice);
 }
 
-if (!empty($erreur)) {
+if (!empty($err_msg)) {
 	// erreur
 	$title         = 'Erreur';
 	$action        = 'equipment-edit.php?id='.$equipment_id;
-	$message_text  =  $erreur;
+	$message_text  =  $err_msg;
 	$transmit_post = true;
 	include_once('include/warning-box.php');
 	exit();

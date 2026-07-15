@@ -12,7 +12,7 @@ level_or_alert(3, 'Ajout ou modification d’un prêt');
 
 // validation d'un pret
 
-unset($erreur);
+unset($err_msg);
 
 $loan_id      = param_post('loan_id', 0); // modify
 $equipment_id = param_post('equipment_id');
@@ -34,14 +34,14 @@ $date_out_rtn  = strtotime(date('Y-m-d', strtotime($date_retour)));
 //variables ne pouvant etre nulles
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 	if (empty($equipment_id))
-		$erreur = 'Nom de l’appareil non précisé';
+		$err_msg = 'Nom de l’appareil non précisé';
 	if (empty($team_id))
-		$erreur = 'Équipe non précisée';
+		$err_msg = 'Équipe non précisée';
 	if (empty($date_emprunt))
-		$erreur = 'Date d’emprunt non précisé';
+		$err_msg = 'Date d’emprunt non précisé';
 }
 if($date_retour < $date_emprunt)
-	$erreur = 'L’intervalle des dates ne correspond pas. Merci de les vérifier';
+	$err_msg = 'L’intervalle des dates ne correspond pas. Merci de les vérifier';
 
 $pdo = connect_db_or_alert();
 
@@ -55,7 +55,7 @@ if ($param_mode == "loan" || $param_mode == "booking") {
 	}
 	if ($equipment_max_loan_days != 0) {
 		if ($day_diff > $equipment_max_loan_days)
-			$erreur = 'L’équipement ne peut pas être emprunter sur une durée de plus de '.$equipment_max_loan_days.' jours';
+			$err_msg = 'L’équipement ne peut pas être emprunter sur une durée de plus de '.$equipment_max_loan_days.' jours';
 	}
 }
 
@@ -63,13 +63,13 @@ if ($param_mode == "loan" || $param_mode == "booking") {
 if ($loan_id > 0)
 	$flag_new = false; */
 
-if (!empty($erreur)) {
+if (!empty($err_msg)) {
 	//erreur
 	$title         = 'Erreur sur l’emprunt';
 	$action        = 'loan-edit.php?id='.$loan_id.'&mode=edit'; # à fixer
 	if ($param_mode == 'booking')
 		$action    = 'loan-edit.php?equipment_id='.$equipment_id.'&mode='.$param_mode;
-	$message_text  = $erreur;
+	$message_text  = $err_msg;
 	$transmit_post = true;
 	include_once('include/warning-box.php');
 	exit();
@@ -147,8 +147,8 @@ if ($param_mode == "booking") {
 		} else {
 			$title         = 'Erreur sur l’emprunt';
 			$action        = 'loan-edit.php?id='.$loan_id.'&mode=edit';
-			$erreur        = 'L’équipement est déjà emprunté';
-			$message_text  = $erreur;
+			$err_msg       = 'L’équipement est déjà emprunté';
+			$message_text  = $err_msg;
 			$transmit_post = true;
 			include_once('include/warning-box.php');
 			exit();
@@ -163,8 +163,8 @@ if ($param_mode == "booking") {
 		if ($check) {
 			$title         = 'L’équipement est déjà en emprunt';
 			$action        = 'loan-edit.php?equipment_id='.$equipment_id.'&mode=booking';
-			$erreur        = 'L’équipement est déjà en emprunt';
-			$message_text  = $erreur;
+			$err_msg       = 'L’équipement est déjà en emprunt';
+			$message_text  = $err_msg;
 			$transmit_post = true;
 			include_once('include/warning-box.php');
 			exit();
@@ -183,8 +183,8 @@ if ($param_mode == "booking") {
 } else {
 	$title         = 'Impossible d’effectuer un emprunt ou une réservation';
 	$action        = 'loan-edit.php?id='.$loan_id.'&mode=edit';
-	$erreur        = 'Impossible d’effectuer un emprunt ou une réservation, erreur inconnue';
-	$message_text  = $erreur;
+	$err_msg       = 'Impossible d’effectuer un emprunt ou une réservation, erreur inconnue';
+	$message_text  = $err_msg;
 	$transmit_post = true;
 	include_once('include/warning-box.php');
 	exit();

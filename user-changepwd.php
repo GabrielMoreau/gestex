@@ -14,7 +14,7 @@ $logged_id    = $_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
-$errormsg = '';
+$err_msg = '';
 
 if (!empty($_GET['id'] )) {
 	$user2chg = $_GET['id'];
@@ -42,18 +42,18 @@ $user_selected = get_user_all_by_id($pdo, $user2chg);
 if (isset($passwd1) && isset($passwd2)){
 	// check that passwords match
 	if ($passwd1 != $passwd2)
-		$errormsg = 'Passwords do not match, please try again';
+		$err_msg = 'Passwords do not match, please try again';
 
-	if (!isset($errormsg) && isset($old_pass) && $logged_level < 3) {
+	if (!isset($err_msg) && isset($old_pass) && $logged_level < 3) {
 		if (
 			!password_verify($old_pass, $user_selected['password'])
 			&& (paswd_old_hash($old_pass) !== $user_selected['password'])
 		) {
-			$errormsg = 'Wrong password, sorry!';
+			$err_msg = 'Wrong password, sorry!';
 		}
 	}
-	echo $errormsg;
-	if ($errormsg == '') {
+	echo $err_msg;
+	if ($err_msg == '') {
 		if ($passwd1 === '!ldap!')
 			$new_pwhash = '!ldap!'; // bind with LDAP
 		else
@@ -98,6 +98,6 @@ if (!empty($_GET['id'])) {
 	</form>
 </div>
 
-<?php } else { echo $errormsg; } ?>
+<?php } else { echo $err_msg; } ?>
 
 <?php pied_page() ?>
