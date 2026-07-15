@@ -31,6 +31,9 @@ en_tete('Liste de toutes les équipes');
 			<th>
 				Description
 			</th>
+			<th class="sorttable_nosort">
+				<a href="equipment-list.php"><?=ICON_ADD_EQUIPMENT?></a>
+			</th>
 			<th>
 				Compte
 			</th>
@@ -67,6 +70,9 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $team_current['description'];
+		echo '  </td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">';
+		echo '    <a href="equipment-list.php?team_id='.$team_current['id'].'">'.ICON_ADD_EQUIPMENT.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $team_current['accounting'];
