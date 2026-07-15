@@ -21,7 +21,7 @@ $category_name = get_category_by_id($pdo, $category_id)['name'];
 
 if ($valid == 'yes') {
 	$iostat = del_category_by_id($pdo, $category_id);
-	if ($iostat) // ca a marche
+	if ($iostat) // Ça a marché
 		redirect('category-list.php');
 	$message_alert = 'Erreur dans la suppression de la catégorie : '.$category_name.' (#'.$category_id.')';
 	include_once('include/alert-data.php');

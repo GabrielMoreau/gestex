@@ -29,7 +29,7 @@ if ($datasheet_id == 0 || $equipment_id == 0 || $valid == 'cancel') {
 
 if ($valid == 'yes') {
 	$iostat = del_datasheet_by_id($pdo, $datasheet_id);
-	if ($iostat) // ca a marche
+	if ($iostat) // Ça a marché
 		redirect('equipment-view.php?id='.$equipment_id);
 	$message_alert = 'Erreur dans la suppression de la notice : '.$datasheet_id;
 	include_once('include/alert-data.php');

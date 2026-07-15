@@ -21,7 +21,7 @@ $supplier_name = get_supplier_short_by_id($pdo, $supplier_id)['name'];
 
 if ($valid == 'yes') {
 	$iostat = del_supplier_by_id($pdo, $supplier_id);
-	if ($iostat) // ca a marche
+	if ($iostat) // Ça a marché
 		redirect('supplier-list.php');
 	$message_alert = 'Erreur dans la suppression du fournisseur : '.$supplier_name.' (#'.$supplier_id.')';
 	include_once('include/alert-data.php');

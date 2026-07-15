@@ -21,7 +21,7 @@ $team_name = get_team_by_id($pdo, $team_id)['name'];
 
 if ($valid == 'yes') {
 	$iostat = del_category_by_id($pdo, $team_id);
-	if ($iostat) // ca a marche
+	if ($iostat) // Ça a marché
 		redirect('team-list.php');
 	$message_alert = 'Erreur dans la suppression de l’équipe : '.$team_name.' (#'.$team_id.')';
 	include_once('include/alert-data.php');

@@ -21,7 +21,7 @@ $equipment_name = get_equipment_listshort_by_id($pdo, $equipment_id)['name'];
 
 if ($valid == 'yes') {
 	$iostat = del_equipment_by_id($pdo, $equipment_id);
-	if ($iostat) // ca a marche
+	if ($iostat) // Ça a marché
 		redirect('equipment-list.php');
 	$message_alert = 'Erreur dans la suppression d’un appareil et des notices associées : '.$equipment_name.' (#'.$equipment_id.')';
 	include_once('include/alert-data.php');

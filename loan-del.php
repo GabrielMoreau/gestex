@@ -36,7 +36,7 @@ if ($valid == 'yes') {
 	} else {
 		$iostat = set_loan_to_returned($pdo, $loan_id);
 	}
-	if ($iostat) // ca a marche
+	if ($iostat) // Ça a marché
 		redirect('equipment-view.php?id='.$equipment_id);
 	$message_alert = 'Erreur dans la suppression '.$type.' : '.$loan_id;
 	include_once('include/alert-data.php');
