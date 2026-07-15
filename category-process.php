@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 require_once('module/base-functions.php');
 
 auth_or_login('category-process.php');
-level_or_alert(3, 'Ajout d\'une cat&eacute;gorie');
+level_or_alert(3, 'Ajout d’une catégorie');
 
 unset($erreur);
 
@@ -20,12 +20,12 @@ if (!empty($id_category))
 //variables ne pouvant etre nulles
 $categorie_name = strtolower(param_post('categorie_name'));
 if (empty($categorie_name))
-	$erreur = 'Cat&eacute;gorie non pr&eacute;cis&eacute;e';
+	$erreur = 'Catégorie non précisée';
 
 $pdo = connect_db_or_alert();
 
 if (check_category_by_name($pdo, $categorie_name))
-	$erreur = 'La cat&eacute;gorie <i>'.$categorie_name.'</i> existe d&eacute;j&agrave;';
+	$erreur = 'La catégorie <i>'.$categorie_name.'</i> existe déjà';
 
 if (!empty($erreur)) {
 	//erreur
@@ -41,10 +41,10 @@ if ($flag_new)
 else
 	set_category_update($pdo, $id_category, $categorie_name);
 
-$title        = 'R&eacute;sultat ajout/modification cat&eacute;gorie';
+$title        = 'Résultat ajout/modification catégorie';
 $action       = 'category-list.php';
 $highlight    = $id_category;
-$message_text = 'Ajout/modification de la cat&eacute;gorie '.$categorie_name.' valid&eacute;e';
+$message_text = 'Ajout/modification de la catégorie '.$categorie_name.' validée';
 include_once('include/message-box.php');
 exit();
 ?>

@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('team-list.php');
-level_or_alert(3, 'Modification d\'une &eacute;quipe');
+level_or_alert(3, 'Modification d’une équipe');
 
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
@@ -24,10 +24,10 @@ $team_manager_user_id = 0;
 
 $team_selected = [];
 if ($mode == 'Ajouter')
-	en_tete('Ajouter une &eacute;quipe');
+	en_tete('Ajouter une équipe');
 else if ($mode == 'Modifier') {
-	en_tete('Modifier les coordonn&eacute;es d\'une &eacute;quipe');
-	// recupere le fournisseur selectionne
+	en_tete('Modifier les coordonnées d’une équipe');
+	// récupère le fournisseur selectionne
 	$team_selected = get_team_all_by_id($pdo, $team_id);
 	$team_manager_user_id = $team_selected['manager_user_id'];
 }
@@ -64,7 +64,7 @@ else if ($mode == 'Modifier') {
 		</tr>
 		<tr>
 			<th>
-				Chef d'&eacute;quipe<br />
+				Chef d’équipe<br />
 			</th>
 			<td>
 				<select name="manager_user_id">
@@ -83,7 +83,7 @@ else if ($mode == 'Modifier') {
 			</td>
 		</tr>
 		<tr>
-			<td>Les champs avec * sont &agrave;
+			<td>Les champs avec * sont à
 				remplir obligatoirement, les autres sont optionnels.
 			</td>
 			<td class="button">

@@ -28,19 +28,19 @@ en_tete('Liste de tous les utilisateurs');
 			</th>
 			<?php } ?>
 			<th>
-				Pr&eacute;nom
+				Prénom
 			</th>
 			<th>
 				Nom de famille
 			</th>
 			<th>
-				T&eacute;l&eacute;phone
+				Téléphone
 			</th>
 			<th>
 				Courriel
 			</th>
 			<th>
-				&Eacute;quipe
+				Équipe
 			</th>
 			<?php if ($logged_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan="3">
@@ -51,7 +51,7 @@ en_tete('Liste de tous les utilisateurs');
 
 <?php // interrogation base de données
 if ($pdo = connect_db()) {
-	// recupere la liste des users
+	// récupère la liste des users
 	$user_fetch = get_user_listall_by_logged_level($pdo, $logged_level);
 	$num_line = 1;
 	foreach ($user_fetch as $user_current) {
@@ -87,7 +87,7 @@ if ($pdo = connect_db()) {
 			echo '    <a href="mailto:'.$user_mail.'">'.ICON_MAIL.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		// recupere la liste de equipes
+		// récupère la liste de equipes
 		$team = get_team_by_id($pdo, $user_current['team_id']);
 		if ($team)
 			echo $team['name'].' ('.$user_current['team_id'].')';

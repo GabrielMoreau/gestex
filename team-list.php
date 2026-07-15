@@ -18,7 +18,7 @@ if (empty($_SESSION['logged_user'])) {
 
 $id_highlight = param_post_or_get('highlight', 0);
 
-en_tete('Liste de toutes les &eacute;quipes');
+en_tete('Liste de toutes les équipes');
 ?>
 
 <div class="catalog">
@@ -35,7 +35,7 @@ en_tete('Liste de toutes les &eacute;quipes');
 				Compte
 			</th>
 			<th>
-				Chef d'&eacute;quipe
+				Chef d’équipe
 			</th>
 			<th class="sorttable_nosort"></th>
 			<th class="sorttable_nosort"></th>
@@ -50,7 +50,7 @@ en_tete('Liste de toutes les &eacute;quipes');
 
 <?php //interrogation base de données
 if ($pdo = connect_db()) {
-	// recupere la liste de fournisseurs
+	// récupère la liste de fournisseurs
 	$team_fetch = get_team_listall($pdo);
 	$num_line = 1;
 	foreach ($team_fetch as $team_current) {
@@ -72,7 +72,7 @@ if ($pdo = connect_db()) {
 		echo      $team_current['accounting'];
 		echo '  </td>'.PHP_EOL;
 
-		// recupere le nom de chef d'equipe
+		// récupère le nom de chef d’equipe
 		$manager_user_id = get_user_short_by_id($pdo, $team_current['manager_user_id']);
 		echo '  <td style="vertical-align: top;">';
 		if ($manager_user_id)

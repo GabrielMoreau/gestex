@@ -1,10 +1,10 @@
 <?php if (!$web_page) exit() ?>
 
-<?php en_tete('Erreur avec la base de donn&eacute;es') ?>
+<?php en_tete('Erreur avec la base de données') ?>
 
 <div class="box-alert">
 	<center>
-		La base de donn&eacute;e est momentan&eacute;ment indisponible.
+		La base de donnée est momentanément indisponible.
 	</center>
 </div>
 

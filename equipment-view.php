@@ -40,7 +40,7 @@ if ($pdo = connect_db()) {
 	$loan_borrow = get_loans_all_by_equipment_borrowed($pdo, $equipment_id);
 	$equipment_loan_reserved = get_loan_all_last_returned($pdo, $equipment_id);
 
-en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['name'].'</b>');
+en_tete('Caractéristiques de l’appareil : <b>'.$equipment_selected['name'].'</b>');
 ?>
 
 <div class="form">
@@ -66,7 +66,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['name
 		</tr>
 		<tr>
 			<th>
-				Mod&egrave;le
+				Modèle
 			</th>
 			<td>
 				<?php echo $equipment_selected['model'] ?>
@@ -74,7 +74,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['name
 		</tr>
 		<tr>
 			<th>
-				Caract&eacute;ristiques
+				Caractéristiques
 			</th>
 			<td>
 				<?php echo $equipment_selected['feature'] ?>
@@ -98,7 +98,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['name
 		</tr>
 		<tr>
 			<th>
-				R&eacute;paration / &Eacute;talonnages
+				Réparation / Étalonnages
 			</th>
 			<td>
 				<?php echo $equipment_selected['repair_comment'] ?>
@@ -116,7 +116,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['name
 
 		<tr>
 			<th>
-				&Eacute;quipe
+				Équipe
 			</th>
 			<td>
 				<a href="equipment-list.php?team_id=<?php echo $equipment_selected['team_id'] ?>&highlight=<?php echo $equipment_id ?>#item<?php echo $equipment_id ?>"><?php echo $team['name'] ?></a>
@@ -125,7 +125,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['name
 
 		<tr>
 			<th>
-				Cat&eacute;gorie
+				Catégorie
 			</th>
 			<td>
 				<a href="equipment-list.php?category_id=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $equipment_id ?>#item<?php echo $equipment_id ?>"><?php echo $category['name'] ?></a>
@@ -143,7 +143,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['name
 
 		<tr>
 			<th>
-				Num&eacute;ro d'instrument
+				Numéro d’instrument
 			</th>
 			<td>
 				<?php echo $equipment_selected['id'] ?>
@@ -205,7 +205,7 @@ en_tete('Caract&eacute;ristiques de l\'appareil : <b>'.$equipment_selected['name
 						}
 
 					if ($is_borrowed)
-						echo 'Oui, en pr&ecirc;t';
+						echo 'Oui, en prêt';
 					else
 						echo 'Oui';
 

@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('supplier-process.php');
-level_or_alert(3, 'Ajout / Modification d\'un fournisseur');
+level_or_alert(3, 'Ajout / Modification d’un fournisseur');
 
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
@@ -32,9 +32,9 @@ $contact = param_post('contact');
 $description   = param_post('description');
 // variables ne pouvant etre nulles
 if (empty($name))
-	$erreur = 'Nom du fournisseur non pr&eacute;cis&eacute;';
+	$erreur = 'Nom du fournisseur non précisé';
 if (empty($address))
-	$erreur = 'Adresse non pr&eacute;cis&eacute;e';
+	$erreur = 'Adresse non précisée';
 
 if (!empty($erreur)) {
 	// erreur
@@ -56,16 +56,16 @@ if ($flag_new) { // new
 		exit();
 	}
 
-	$title        = 'R&eacute;sultat ajout fournisseur';
+	$title        = 'Résultat ajout fournisseur';
 	$action       = 'supplier-list.php?highlight='.$supplier_id;
 	$highlight    = $supplier_id;
-	$message_text = 'Ajout du fournisseur '.$name.' valid&eacute;';
+	$message_text = 'Ajout du fournisseur '.$name.' validé';
 	include_once('include/message-box.php');
 	exit();
 }
 
 // modify
-// recupere les anciennes caracteristiques
+// récupère les anciennes caracteristiques
 $supplier_selected = get_supplier_all_by_id($pdo, $supplier_id);
 
 $modif = false;
@@ -85,7 +85,7 @@ if ($modif) {
 		$title        = 'Erreur fournisseur';
 		$action       = 'supplier-list.php?highlight='.$supplier_id;
 		$highlight    = $supplier_id;
-		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise &agrave; jour de la fiche fournisseur');
+		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise à jour de la fiche fournisseur');
 		include_once('include/message-box.php');
 		exit();
 	}
@@ -96,7 +96,7 @@ if ($modif) {
 $title        = 'Modification fournisseur';
 $action       = 'supplier-list.php?highlight='.$supplier_id;
 $highlight    = $supplier_id;
-$message_text = 'Aucune modification &agrave; faire';
+$message_text = 'Aucune modification à faire';
 include_once('include/message-box.php');
 exit();
 ?>

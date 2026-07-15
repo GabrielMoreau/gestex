@@ -12,7 +12,7 @@
 		<br>
 		<b><?=$message_alert?></b>
 		<br>
-		Veuillez voir avec votre administrateur pour vous faire changer &eacute;ventuellement les droits.
+		Veuillez voir avec votre administrateur pour vous faire changer éventuellement les droits.
 	</center>
 </div>
 

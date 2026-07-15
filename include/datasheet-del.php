@@ -7,7 +7,7 @@
 // $equipment_name
 ?>
 
-<?php en_tete('Suppression d\'une notice'); ?>
+<?php en_tete('Suppression d’une notice'); ?>
 
 <center class="alert">
 <form action="datasheet-del.php" method="POST">

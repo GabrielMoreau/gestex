@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('equipment-list.php');
-level_or_alert(3, 'Suppression d\'une notice');
+level_or_alert(3, 'Suppression d’une notice');
 
 $datasheet_id = param_post_or_get('id', 0);
 $valid        = param_post('ok', 'no');

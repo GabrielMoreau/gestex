@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('team-list.php');
-level_or_alert(3, 'Modification d\'une &eacute;quipe');
+level_or_alert(3, 'Modification d’une équipe');
 
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
@@ -28,13 +28,13 @@ $manager_user_id = param_post('manager_user_id');
 $description     = param_post('description');
 // variables ne pouvant etre nulles
 if (empty($name))
-	$erreur = 'Nom d\'&eacute;quipe non pr&eacute;cis&eacute;';
+	$erreur = 'Nom d’équipe non précisé';
 if (empty($accounting))
-	$erreur = 'Compte non pr&eacute;cis&eacute;';
+	$erreur = 'Compte non précisé';
 
 if (!empty($erreur)) {
 	//erreur
-	$title         = 'Erreur &eacute;quipe';
+	$title         = 'Erreur équipe';
 	$action        = 'team-edit.php?id='.$team_id;
 	$highlight     = $team_id;
 	$message_text  = $erreur;
@@ -48,27 +48,27 @@ $pdo = connect_db_or_alert();
 if ($flag_new) { // new
 	list($team_id, $err_msg) = set_team_new($pdo, $name, $description, $accounting, $manager_user_id);
 	if ($err_msg != '') {
-		$title        = 'Erreur &eacute;quipe';
+		$title        = 'Erreur équipe';
 		$action       = 'team-list.php';
-		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la cr&eacute;ation de l\'&eacute;quipe');
+		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la création de l’équipe');
 		include_once('include/message-box.php');
 		exit();
 	}
 
-	$title        = 'Ajout &eacute;quipe';
+	$title        = 'Ajout équipe';
 	$action       = 'team-list.php?highlight='.$team_id;
 	$highlight    = $team_id;
-	$message_text = 'Ajout de l\'&eacute;quipe '.$name.' valid&eacute;e';
+	$message_text = 'Ajout de l’équipe '.$name.' validée';
 	include_once('include/message-box.php');
 	exit();
 }
 
 // modify
-// recupere les anciennes caracteristiques
+// récupère les anciennes caracteristiques
 $team_selected = get_team_all_by_id($pdo, $team_id);
 
 $modif = false;
-if (   ($name                != $team_selected['name'])
+if (   ($name            != $team_selected['name'])
 	|| ($description     != $team_selected['description'])
 	|| ($accounting      != $team_selected['accounting'])
 	|| ($manager_user_id != $team_selected['manager_user_id']))
@@ -77,10 +77,10 @@ if (   ($name                != $team_selected['name'])
 if ($modif) {
 	$err_msg = set_team_update($pdo, $team_id, $name, $description, $accounting, $manager_user_id);
 	if ($err_msg != '') {
-		$title        = 'Erreur &eacute;quipe';
+		$title        = 'Erreur équipe';
 		$action       = 'team-list.php?highlight='.$team_id;
 		$highlight    = $team_id;
-		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise &agrave; jour de l\'&eacute;quipe');
+		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise à jour de l’équipe');
 		include_once('include/message-box.php');
 		exit();
 	}
@@ -88,10 +88,10 @@ if ($modif) {
 	redirect('team-list.php?highlight='.$team_id.'#item'.$team_id);
 }
 
-$title        = 'Modification &eacute;quipe';
+$title        = 'Modification équipe';
 $action       = 'team-list.php?highlight='.$team_id;
 $highlight    = $team_id;
-$message_text = 'Aucune modification &agrave; faire';
+$message_text = 'Aucune modification à faire';
 include_once('include/message-box.php');
 exit();
 ?>

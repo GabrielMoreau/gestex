@@ -5,7 +5,7 @@
 // $equipment_name
 ?>
 
-<?php en_tete('Suppression de l\'appareil et des notices associ&eacute;es <i>'.$equipment_name.'</i>'); ?>
+<?php en_tete('Suppression de l’appareil et des notices associées <i>'.$equipment_name.'</i>'); ?>
 
 <center class="box-alert">
 <form action="equipment-del.php" method="POST">

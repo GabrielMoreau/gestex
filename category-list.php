@@ -18,7 +18,7 @@ if (empty($_SESSION['logged_user'])) {
 
 $id_highlight = param_post_or_get('highlight', 0);
 
-en_tete('Liste des appareils par cat&eacute;gorie');
+en_tete('Liste des appareils par catégorie');
 ?>
 
 <div class="catalog">
@@ -26,7 +26,7 @@ en_tete('Liste des appareils par cat&eacute;gorie');
 	<tbody>
 		<tr>
 			<th>
-				Cat&eacute;gorie
+				Catégorie
 			</th>
 			<?php if ($logged_level >= 3) { ?>
 			<th class="sorttable_nosort" colspan="2">

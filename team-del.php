@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('team-del.php');
-level_or_alert(3, 'Suppression d\'une &eacute;quipe');
+level_or_alert(3, 'Suppression d’une équipe');
 
 $team_id = param_post_or_get('id', 0);
 $valid   = param_post('ok', 'no');
@@ -23,7 +23,7 @@ if ($valid == 'yes') {
 	$iostat = del_category_by_id($pdo, $team_id);
 	if ($iostat) // ca a marche
 		redirect('team-list.php');
-	$message_alert = 'Erreur dans la suppression de l\'&eacute;quipe : '.$team_name.' (#'.$team_id.')';
+	$message_alert = 'Erreur dans la suppression de l’équipe : '.$team_name.' (#'.$team_id.')';
 	include_once('include/alert-data.php');
 	exit();
 }

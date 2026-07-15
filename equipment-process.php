@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('equipment-list.php');
-level_or_alert(3, 'Ajout / Modification d\'un appareil');
+level_or_alert(3, 'Ajout / Modification d’un appareil');
 
 $logged_level = $_SESSION['logged_level'];
 
@@ -37,21 +37,21 @@ $max_loan_days    = param_post('max_loan_days', 0);
 $is_loanable      = param_post('is_loanable', 0);
 //variables ne pouvant etre nulles
 if (empty($category_id))
-	$erreur = 'Cat&eacute;gorie non pr&eacute;cis&eacute;';
+	$erreur = 'Catégorie non précisé';
 if (empty($name))
-	$erreur = 'Nom de l\'appareil non pr&eacute;cis&eacute;';
+	$erreur = 'Nom de l’appareil non précisé';
 if (empty($model))
-	$erreur = 'Mod&egrave;le non pr&eacute;cis&eacute;';
+	$erreur = 'Modèle non précisé';
 if (empty($team_id))
-	$erreur = '&Eacute;quipe non pr&eacute;cis&eacute;';
+	$erreur = 'Équipe non précisé';
 if (empty($manager_user_id))
-	$erreur = 'Tech non pr&eacute;cis&eacute;';
+	$erreur = 'Tech non précisé';
 if (empty($supplier_id))
-	$erreur = 'Fournisseur non pr&eacute;cis&eacute;';
+	$erreur = 'Fournisseur non précisé';
 if (empty($date_of_purchase))
-	$erreur = 'Achat non pr&eacute;cis&eacute;';
+	$erreur = 'Achat non précisé';
 if (empty($feature))
-	$erreur = 'Caract&eacute;ristique non pr&eacute;cis&eacute;';
+	$erreur = 'Caractéristique non précisé';
 
 $notice = '';
 if (isset($_FILES["notice"])) {
@@ -86,21 +86,21 @@ if ($flag_new) { // new
 		if (!$id_datasheet) {
 			$title        = 'Erreur appareil';
 			$action       = 'equipment-view.php?id='.$equipment_id;
-			$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l\'ajout d\'une notice &agrave; appareil (pas au format PDF ?)');
+			$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l’ajout d’une notice à appareil (pas au format PDF ?)');
 			include_once('include/message-box.php');
 			exit();
 		}
 	}
 
-	$title        = 'R&eacute;sultat ajout d\'un appareil';
+	$title        = 'Résultat ajout d’un appareil';
 	$action       = 'equipment-view.php?id='.$equipment_id;
-	$message_text = 'Ajout d\'un appareil '.$name.' valid&eacute;';
+	$message_text = 'Ajout d’un appareil '.$name.' validé';
 	include_once('include/message-box.php');
 	exit();
 }
 
 // modify
-// recupere les anciennes caracteristiques
+// récupère les anciennes caracteristiques
 $equipment_selected = get_equipment_all_by_id($pdo, $equipment_id);
 
 //modification app
@@ -129,7 +129,7 @@ if ($modif) {
 	if ($err_msg != '') {
 		$title        = 'Erreur appareil';
 		$action       = 'equipment-view.php?id='.$equipment_id;
-		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise &agrave; jour de la fiche appareil');
+		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise à jour de la fiche appareil');
 		include_once('include/message-box.php');
 		exit();
 	}
@@ -138,7 +138,7 @@ if ($modif) {
 		if (!$id_datasheet) {
 			$title        = 'Erreur appareil';
 			$action       = 'equipment-view.php?id='.$equipment_id;
-			$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l\'ajout d\'une notice &agrave; appareil (pas au format PDF ?)');
+			$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l’ajout d’une notice à appareil (pas au format PDF ?)');
 			include_once('include/message-box.php');
 			exit();
 		}
@@ -149,7 +149,7 @@ if ($modif) {
 
 $title        = 'Modification appareil';
 $action       = 'equipment-view.php?id='.$equipment_id;
-$message_text = 'Aucune modification &agrave; faire';
+$message_text = 'Aucune modification à faire';
 include_once('include/message-box.php');
 exit();
 ?>

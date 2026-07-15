@@ -4,16 +4,16 @@
 // $message_alert
 ?>
 
-<?php en_tete('Erreur avec la base de donn&eacute;es') ?>
+<?php en_tete('Erreur avec la base de données') ?>
 
 <div class="box-alert">
 	<center>
-		Une erreur est survenue lors de l'acc&egrave;es aux donn&eacute;es avec la base de donn&eacute;e.
+		Une erreur est survenue lors de l'accèes aux données avec la base de donnée.
 		<br>
 		<b><?=$message_alert?></b>
 		<br>
-		Veuillez voir avec votre administrateur pour vous corriger &eacute;ventuellement les probl&egrave;mes sur votre base de donn&eacute;es.
-		En cas d'erreurs syst&eacute;matiques, veuillez remonter un bogue aux d&eacute;veloppeurs amont.
+		Veuillez voir avec votre administrateur pour vous corriger éventuellement les problèmes sur votre base de données.
+		En cas d'erreurs systématiques, veuillez remonter un bogue aux développeurs amont.
 	</center>
 </div>
 

@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('supplier-list.php');
-level_or_alert(2, 'Modification d\'une &eacute;quipe');
+level_or_alert(2, 'Modification d’une équipe');
 
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
@@ -25,8 +25,8 @@ if ($mode == 'Ajouter') {
 	en_tete('Ajouter un fournisseur');
 }
 else if ($mode == 'Modifier') {
-	en_tete('Modifier les coordonn&eacute;es d\'un fournisseur');
-	// recupere le fournisseur selectionne
+	en_tete('Modifier les coordonnées d’un fournisseur');
+	// récupère le fournisseur selectionne
 	$supplier_selected = get_supplier_all_by_id($pdo, $supplier_id);
 }
 ?>
@@ -62,10 +62,10 @@ else if ($mode == 'Modifier') {
 		</tr>
 		<tr>
 			<th>
-				T&eacute;l&eacute;phone <?=ICON_PHONE?>
+				Téléphone <?=ICON_PHONE?>
 			</th>
 			<td>
-				<input type="tel" name="phone" size="15" maxlength="15" value="<?= param_post_key('phone', $supplier_selected) ?>" placeholder="T&eacute;l&eacute;phone">
+				<input type="tel" name="phone" size="15" maxlength="15" value="<?= param_post_key('phone', $supplier_selected) ?>" placeholder="Téléphone">
 			</td>
 		</tr>
 		<tr>
@@ -85,23 +85,23 @@ else if ($mode == 'Modifier') {
 			</td>
 		</tr>
 		<tr>
-			<th>Contact(s) - nom, fonction, t&eacute;l&eacute;phone...
+			<th>Contact(s) - nom, fonction, téléphone...
 			</th>
 			<td>
-				<textarea name="contact" cols="50" rows="5" placeholder="Contact(s) - nom, fonction, t&eacute;l&eacute;phone..."><?= param_post_key('contact', $supplier_selected) ?></textarea>
+				<textarea name="contact" cols="50" rows="5" placeholder="Contact(s) - nom, fonction, téléphone..."><?= param_post_key('contact', $supplier_selected) ?></textarea>
 			</td>
 		</tr>
 		<tr>
 			<th>Description pour faciliter la recherche de fournisseurs<br>
-			Utiliser des mots stanadards (capteur, moteur, profil&eacute;...)
+			Utiliser des mots stanadards (capteur, moteur, profilé...)
 			</th>
 			<td>
-				<textarea name="description" cols="50" rows="5" placeholder="Description pour faciliter la recherche de fournisseurs. Utiliser des mots standards (capteur, moteur, profil&eacute;...)"><?= param_post_key('description', $supplier_selected) ?></textarea>
+				<textarea name="description" cols="50" rows="5" placeholder="Description pour faciliter la recherche de fournisseurs. Utiliser des mots standards (capteur, moteur, profilé...)"><?= param_post_key('description', $supplier_selected) ?></textarea>
 			</td>
 		</tr>
 
 		<tr>
-			<td>Les champs avec * sont &agrave;
+			<td>Les champs avec * sont à
 				remplir obligatoirement, les autres sont optionnels.
 			</td>
 			<td class="button">

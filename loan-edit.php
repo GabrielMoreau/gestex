@@ -9,7 +9,7 @@ require_once('module/base-functions.php');
 
 // Authenticate
 auth_or_login('loan-list.php');
-level_or_alert(3, 'Ajout ou modification d\'un pr&ecirc;t');
+level_or_alert(3, 'Ajout ou modification d’un prêt');
 
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
@@ -21,24 +21,24 @@ $param_mode   = param_get('mode', "loan");
 
 /* if ($loan_id == 0) {
 	$mode = 'Ajouter';
-	en_tete('Ajouter un pr&ecirc;t');
+	en_tete('Ajouter un prêt');
 } else if (!empty($equipment_id) && $equipment_id != 0 && $equipment_id != NULL){
 	$mode = 'Reserver apres';
 	en_tete('Reserver plus tard');
 } else {
 	$mode = 'Modifier';
-	en_tete('Modifier le pr&ecirc;t d\'un appareil');
+	en_tete('Modifier le prêt d’un appareil');
 }*/
 
 if ($param_mode == 'loan') {
 	$mode = 'Empunter';
-	en_tete('Ajouter un pr&ecirc;t');
+	en_tete('Ajouter un prêt');
 } else if ($param_mode == 'booking'){
 	$mode = 'Reserver';
 	en_tete('Reserver plus tard');
 } else {
 	$mode = 'Modifier';
-	en_tete('Modifier le pr&ecirc;t d\'un appareil');
+	en_tete('Modifier le prêt d’un appareil');
 }
 
 // transmet la valeur de la categorie a la page valid appareil
@@ -97,7 +97,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 		</tr>
 
 		<tr>
-			<td>Date demande pr&ecirc;t * (<i>format YYYY-MM-DD</i>)
+			<td>Date demande prêt * (<i>format YYYY-MM-DD</i>)
 			</td>
 			<td>
 				<input type="date" name="start_date" size="10" maxlength="10" value="<?= param_post_key('start_date', $loan_selected, date('Y-m-d', time())) ?>"
@@ -105,7 +105,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 		</tr>
 
 		<tr>
-			<td>Date de retour estim&eacute;e * (<i>format YYYY-MM-DD</i>)
+			<td>Date de retour estimée * (<i>format YYYY-MM-DD</i>)
 			</td>
 			<td>
 				<input type="date" name="end_date" size="10" maxlength="10" value="<?= param_post_key('end_date', $loan_selected, date('Y-m-d', time())) ?>" >
@@ -113,12 +113,12 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 		</tr>
 
 		<tr>
-			<td>&Eacute;quipe redevable *
+			<td>Équipe redevable *
 			</td>
 			<td>
 				<select name="team_id">
 				<?php
-				// recupere la liste des equipes
+				// récupère la liste des equipes
 				$team_fetch = get_team_listshort($pdo);
 				foreach ($team_fetch as $team_current) {
 					echo '<option value="'.$team_current['id'].'"';
@@ -141,7 +141,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 		</tr>
 
 		<tr>
-			<td>Les champs avec * sont &agrave;
+			<td>Les champs avec * sont à
 				remplir obligatoirement, les autres sont optionnels.
 			</td>
 			<td style="vertical-align: top;" align="right">

@@ -16,14 +16,14 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$title = 'Liste des pr&ecirc;ts';
+$title = 'Liste des prêts';
 
 $pdo = connect_db_or_alert();
 
 $team_id = param_get('team_id', 0);
 if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
-	$title        .= ' de l\'&eacute;quipe <i>'.$team_selected['name'].'</i>';
+	$title        .= ' de l’équipe <i>'.$team_selected['name'].'</i>';
 	$loan_fetch = get_loan_listall_by_team($pdo, $team_id);
 } else
 	$loan_fetch = get_loan_listall($pdo);
@@ -39,7 +39,7 @@ if ($team_id > 0) {
 				Nom
 			</th>
 			<th>
-				&Eacute;quipe redevable
+				Équipe redevable
 			</th>
 			<th>
 				Date
@@ -51,7 +51,7 @@ if ($team_id > 0) {
 				Emprunteur
 			</th>
 			<th>
-				Num&eacute;ro de l'appareil
+				Numéro de l'appareil
 			</th>
 			<?php if ($logged_level >= 3): ?>
 			<th class="sorttable_nosort"></th>

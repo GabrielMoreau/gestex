@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('equipment-list.php');
-level_or_alert(3, 'Ajout / Modification d\'une intervention');
+level_or_alert(3, 'Ajout / Modification d’une intervention');
 
 $logged_level = $_SESSION['logged_level'];
 
@@ -46,7 +46,7 @@ if ($recipe != '') {
 	if (!$id_recipe) {
 		$title        = 'Erreur appareil';
 		$action       = 'equipment-view.php?id='.$equipment_id;
-		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l\'ajout d\'une fiche d\'intervention &agrave; appareil (pas au format PDF ?)');
+		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l’ajout d’une fiche d’intervention à l’appareil (pas au format PDF ?)');
 		include_once('include/message-box.php');
 		exit();
 	}

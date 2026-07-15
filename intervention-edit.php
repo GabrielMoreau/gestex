@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('intervention-edit.php.php');
-level_or_alert(3, 'Ajout d\'une intervention');
+level_or_alert(3, 'Ajout d’une intervention');
 
 $equipment_id = param_post_or_get('equipment_id', 0);
 $intervention_id = param_post_or_get('id', 0);
@@ -53,7 +53,7 @@ if ($mode == 'Ajouter') {
 		</tr>
 		<tr>
 			<th>Société</th>
-			<?php // recupere la liste des fournisseurs
+			<?php // récupère la liste des fournisseurs
 			$supplier_fetch = get_supplier_listshort($pdo);
 			?>
 			<td>

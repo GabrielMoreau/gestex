@@ -6,7 +6,7 @@ $web_page = true;
 require_once('module/db-functions.php');
 require_once('module/html-functions.php');
 
-en_tete('Initialisation de la base de donn&eacute;e');
+en_tete('Initialisation de la base de donnée');
 
 if ($pdo = connect_db()) {
 	$team_count = get_team_count($pdo);
@@ -16,17 +16,17 @@ if ($pdo = connect_db()) {
 		$err_msg = '';
 		list($id_team, $err_msg) = set_team_new($pdo, 'srv-system', 'service systeme', '0', '1');
 		if ($err_msg != '')
-			echo '<br/>Erreur cr&eacute;ation &eacute;quipe : '.$err_msg;
+			echo '<br/>Erreur création équipe : '.$err_msg;
 
 		$new_pwhash = password_hash('chief!', PASSWORD_DEFAULT);
 		$err_msg = '';
 		list($id_user, $err_msg) = set_user_new($pdo, 'Admin', 'Sys', 'sysadmin', $new_pwhash, 'sysadmin@example.com', 4, '', $id_team, '');
 		if ($err_msg != '')
-			echo '<br/>Erreur cr&eacute;ation utilisateur : '.$err_msg;
+			echo '<br/>Erreur création utilisateur : '.$err_msg;
 		else
-			echo '<br>Avis : la base de donn&eacute;e est maintenant initialis&eacute;e';
+			echo '<br>Avis : la base de donnée est maintenant initialisée';
 	} else {
-		echo '<br>Avis : la base de donn&eacute;e est d&eacute;j&agrave; initialis&eacute;e';
+		echo '<br>Avis : la base de donnée est déjà initialisée';
 	}
 }
 ?>

@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('category-list.php');
-level_or_alert(3, 'Suppression d\'une cat&eacute;gorie');
+level_or_alert(3, 'Suppression d’une catégorie');
 
 $category_id = param_post_or_get('id', 0);
 $valid       = param_post('ok', 'no');
@@ -23,7 +23,7 @@ if ($valid == 'yes') {
 	$iostat = del_category_by_id($pdo, $category_id);
 	if ($iostat) // ca a marche
 		redirect('category-list.php');
-	$message_alert = 'Erreur dans la suppression de la cat&eacute;gorie : '.$category_name.' (#'.$category_id.')';
+	$message_alert = 'Erreur dans la suppression de la catégorie : '.$category_name.' (#'.$category_id.')';
 	include_once('include/alert-data.php');
 	exit();
 }

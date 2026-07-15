@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('user-list.php');
-level_or_alert(3, 'Modification d\'un utilisateur');
+level_or_alert(3, 'Modification d’un utilisateur');
 
 $logged_id    = $_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
@@ -26,7 +26,7 @@ if ($mode == 'Ajouter') {
 	en_tete('Inscrire un utilisateur');
 } else if ($mode == 'Modifier') {
 	en_tete('Modifier mon profil');
-	// recupere le user concerne
+	// récupère le user concerne
 	$user_selected = get_user_all_by_id($pdo, $user_id);
 }
 ?>
@@ -84,10 +84,10 @@ if ($mode == 'Ajouter') {
 		</tr>
 		<tr>
 			<th>
-				Pr&eacute;nom
+				Prénom
 			</th>
 			<td>
-				<input type="text" name="firstname" size="30" maxlength="30" value="<?= param_post_key('firstname', $user_selected) ?>" placeholder="Pr&eacute;nom">
+				<input type="text" name="firstname" size="30" maxlength="30" value="<?= param_post_key('firstname', $user_selected) ?>" placeholder="Prénom">
 			</td>
 		</tr>
 		<tr>
@@ -100,17 +100,17 @@ if ($mode == 'Ajouter') {
 		</tr>
 		<tr>
 			<th>
-				T&eacute;l&eacute;phone <?=ICON_PHONE?>
+				Téléphone <?=ICON_PHONE?>
 			</th>
 			<td>
-				<input type="tel" name="phone" size="15" maxlength="15" value="<?= param_post_key('phone', $user_selected) ?>" placeholder="T&eacute;l&eacute;phone">
+				<input type="tel" name="phone" size="15" maxlength="15" value="<?= param_post_key('phone', $user_selected) ?>" placeholder="Téléphone">
 			</td>
 		</tr>
 		<tr>
 			<th>
-				&Eacute;quipe
+				Équipe
 			</th>
-			<?php // recupere la liste des equipes
+			<?php // récupère la liste des equipes
 			$team_fetch = get_team_listshort($pdo);
 			?>
 			<td>
@@ -130,11 +130,11 @@ if ($mode == 'Ajouter') {
 		</tr>
 		<tr>
 			<th>
-				Qualit&eacute; *
+				Qualité *
 			</th>
 			<td>
 				<?php  if ($logged_level >= 3 || !isset($logged_level)) { // admin loggue ou premiere inscription: modif possible ?>
-				<input type="radio" name="level" value="0" <?php if (param_post_key('level', $user_selected, 0) == 0) echo 'checked="checked"' ?> >&Eacute;tudiant<br>
+				<input type="radio" name="level" value="0" <?php if (param_post_key('level', $user_selected, 0) == 0) echo 'checked="checked"' ?> >Étudiant<br>
 				<input type="radio" name="level" value="1" <?php if (param_post_key('level', $user_selected, 0) == 1) echo 'checked="checked"' ?> >Chercheur<br>
 				<input type="radio" name="level" value="2" <?php if (param_post_key('level', $user_selected, 0) == 2) echo 'checked="checked"' ?> >ITA<br>
 				<?php } ?>
@@ -149,7 +149,7 @@ if ($mode == 'Ajouter') {
 
 				<?php if (isset($logged_level) && ($logged_level < 3)) { // consultation seulement
 					switch ($user_selected['level']) {
-						case 0: echo "&Eacute;tudiant"; break;
+						case 0: echo "Étudiant"; break;
 						case 1: echo "Chercheur"; break;
 						case 2: echo "ITA"; break;
 						case 3: echo "Admin";
@@ -160,18 +160,17 @@ if ($mode == 'Ajouter') {
 		</tr>
 		<tr>
 			<th>
-				Th&egrave;me
+				Thème
 			</th>
 			<td>
-				<input type="radio" name="theme" value="random" <?php if (param_post_key('theme', $user_selected) == 'random') echo 'checked' ?> >Al&eacute;atoire<br>
+				<input type="radio" name="theme" value="random" <?php if (param_post_key('theme', $user_selected) == 'random') echo 'checked' ?> >Aléatoire<br>
 				<input type="radio" name="theme" value="clair" <?php if (param_post_key('theme', $user_selected) == 'clair') echo 'checked' ?> >Clair<br>
 				<input type="radio" name="theme" value="sombre" <?php if (param_post_key('theme', $user_selected) == 'sombre') echo 'checked' ?>>Sombre<br>
 				<input type="radio" name="theme" value="solarizeddark" <?php if (param_post_key('theme', $user_selected) == 'solarizeddark') echo 'checked' ?>>Solarized-Dark<br>
 			</td>
 		</tr>
 		<tr>
-			<td>Les champs avec * sont &agrave;
-				remplir obligatoirement, les autres sont optionnels.
+			<td>Les champs avec * sont à remplir obligatoirement, les autres sont optionnels.
 			</td>
 			<td class="button">
 				<input type="submit" name="Login" value="<?php echo $mode ?>" >

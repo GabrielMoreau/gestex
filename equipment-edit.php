@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('equipment-list.php');
-level_or_alert(3, 'Modification d\'un appareil');
+level_or_alert(3, 'Modification d’un appareil');
 
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
@@ -29,7 +29,7 @@ if ($mode == 'Ajouter') {
 }
 else if ($mode == 'Modifier') {
 	en_tete('Modifier un appareil');
-	// recupere l'appareil selectionne
+	// récupère l'appareil selectionne
 	$equipment_selected = get_equipment_all_by_id($pdo, $equipment_id);
 	$datasheet_fetch    = get_datasheet_listall_by_equipment($pdo, $equipment_id);
 	$datasheet_count    = count($datasheet_fetch);
@@ -45,7 +45,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 	<tbody>
 		<tr>
 			<th>
-				Cat&eacute;gorie
+				Catégorie
 			</th>
 			<td>
 				<select name="category_id">
@@ -78,29 +78,29 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 
 		<tr>
 			<th>
-				Mod&egrave;le *
+				Modèle *
 			</th>
 			<td>
-				<input type="text"name="model" size="30" value="<?= param_post_key('model', $equipment_selected) ?>" placeholder="Mod&egrave;le *">
+				<input type="text"name="model" size="30" value="<?= param_post_key('model', $equipment_selected) ?>" placeholder="Modèle *">
 			</td>
 		</tr>
 		<tr>
 			<th>
-				Caract&eacute;ristiques (gamme d'usage) *
+				Caractéristiques (gamme d'usage) *
 			</th>
 			<td>
-				<input type="text" name="feature" size="30" maxlength="100" value="<?= param_post_key('feature', $equipment_selected) ?>" placeholder="Caract&eacute;ristiques (gamme d'usage) *">
+				<input type="text" name="feature" size="30" maxlength="100" value="<?= param_post_key('feature', $equipment_selected) ?>" placeholder="Caractéristiques (gamme d'usage) *">
 			</td>
 		</tr>
 
 		<tr>
 			<th>
-				&Eacute;quipe *
+				Équipe *
 			</th>
 			<td>
 				<select name="team_id">
 				<?php
-				// recupere la liste des equipes
+				// récupère la liste des equipes
 				$team_fetch = get_team_listshort($pdo);
 				foreach ($team_fetch as $team_current) {
 					echo '<option value="'.$team_current['id'].'"';
@@ -122,10 +122,10 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 			<td>
 				<select name="supplier_id">
 				<?php
-				// recupere la liste des fournisseurs
+				// récupère la liste des fournisseurs
 				$supplier_fetch = get_supplier_listshort($pdo);
 				foreach ($supplier_fetch as $supplier_current) {
-					echo "<option value=\"".$supplier_current['id']."\"";
+					echo '<option value="'.$supplier_current['id'].'"';
 					if ($supplier_current['id'] == param_post_key('supplier_id', $equipment_selected, 0)) {
 						echo ' selected';
 						}
@@ -153,7 +153,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 			<td>
 				<select name="manager_user_id">
 				<?php
-				// recupere la liste des tech
+				// récupère la liste des tech
 				$user_fetch = get_user_listshort_with_right($pdo, 1, $manager_user_id);
 				foreach ($user_fetch as $user_current) {
 					echo '<option value="'.$user_current['id'].'"';
@@ -170,10 +170,10 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 
 		<tr>
 			<th>
-				R&eacute;paration
+				Réparation
 			</th>
 			<td>
-				<input type="text" name="repair_comment" size="30" maxlength="30" value="<?= param_post_key('repair_comment', $equipment_selected) ?>" placeholder="R&eacute;paration">
+				<input type="text" name="repair_comment" size="30" maxlength="30" value="<?= param_post_key('repair_comment', $equipment_selected) ?>" placeholder="Réparation">
 			</td>
 		</tr>
 		<tr>
@@ -233,7 +233,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 
 		<tr>
 			<th>
-				Empruntable (oui / non - non par d&eacute;faut)
+				Empruntable (oui / non - non par défaut)
 			</th>
 			<td>
 				<input type="checkbox" name="is_loanable" value="1" <?php if (param_post_key('is_loanable', $equipment_selected, 0) == 1) echo 'checked' ?> >
@@ -241,7 +241,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 		</tr>
 
 		<tr>
-			<td>Les champs avec * sont &agrave;
+			<td>Les champs avec * sont à
 			remplir obligatoirement, les autres sont optionnels.
 			</td>
 			<td class="button">

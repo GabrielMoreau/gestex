@@ -33,7 +33,7 @@ en_tete('Liste de tous les fournisseurs', $find);
 				Adresse
 			</th>
 			<th>
-				T&eacute;l&eacute;phone
+				Téléphone
 			</th>
 			<th class="sorttable_nosort">
 				Fax

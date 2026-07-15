@@ -619,7 +619,7 @@ function get_intervention_listall_by_equipment($pdo, $equipment_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Créer une nouvelle fiche d'intervention
+ * Créer une nouvelle fiche d’intervention
  * 
  * @return array
  */
@@ -1466,7 +1466,7 @@ function set_version_by_name($pdo, $name, $version) {
 // ---------------------------------------------------------------------
 
 /**
- * Créer une nouvelle fiche d'intervention
+ * Créer une nouvelle fiche d’intervention
  * 
  * @return int
  */
@@ -1529,7 +1529,7 @@ function set_recipe_new($pdo, $intervention_id, $file_field_name) {
 // ---------------------------------------------------------------------
 
 /**
- * Supprime la fiche d'intervention via son id
+ * Supprime la fiche d’intervention via son id
  * 
  * @return bool
  */
@@ -1555,7 +1555,7 @@ function del_recipe_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu de la fiche d'intervention via son ID
+ * Récupère tout le contenu de la fiche d’intervention via son ID
  * 
  * @return array|false
  */
@@ -1572,7 +1572,7 @@ function get_recipe_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu de toutes les fiches d'intervention via l'ID
+ * Récupère tout le contenu de toutes les fiches d’intervention via l'ID
  * de l'intervention
  * 
  * @return array

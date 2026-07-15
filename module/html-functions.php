@@ -6,17 +6,17 @@ require_once('base-functions.php');
 
 // ---------------------------------------------------------------------
 
-define('ICON_PERSON_OK',     '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-check"/></svg></span>');
-define('ICON_PERSON_BAD',    '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Non Valid&eacute;</title><use xlink:href="images/bootstrap-icons.svg#person-dash"/></svg></span>');
+define('ICON_PERSON_OK',     '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Validé</title><use xlink:href="images/bootstrap-icons.svg#person-check"/></svg></span>');
+define('ICON_PERSON_BAD',    '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Non Validé</title><use xlink:href="images/bootstrap-icons.svg#person-dash"/></svg></span>');
 define('ICON_PERSON_PROFIL', '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Modifier le profil</title><use xlink:href="images/bootstrap-icons.svg#gear"/></svg></span>');
 define('ICON_PERSON_PASWD',  '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Changer le mot de passe</title><use xlink:href="images/bootstrap-icons.svg#key"/></svg></span>');
 define('ICON_TRASH',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Supprimer</title><use xlink:href="images/bootstrap-icons.svg#trash"/></svg></span>');
 define('ICON_MAIL',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Courriel</title><use xlink:href="images/bootstrap-icons.svg#envelope"/></svg></span>');
-define('ICON_PHONE',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>T&eacute;l&eacute;phone</title><use xlink:href="images/bootstrap-icons.svg#telephone-plus"/></svg></span>');
-define('ICON_HOUSE',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>T&eacute;l&eacute;phone</title><use xlink:href="images/bootstrap-icons.svg#house"/></svg></span>');
-define('ICON_LOGIN',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Se d&eacute;connecter</title><use xlink:href="images/bootstrap-icons.svg#power"/></svg></span>');
-define('ICON_LOAN_RETURNED', '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Rendre / Retour d\'un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
-define('ICON_LOAN_RESERVED', '<span class="check-warn"><svg width="1.2em" height="1.2em" fill="currentColor"><title>R&eacute;server un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
+define('ICON_PHONE',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Téléphone</title><use xlink:href="images/bootstrap-icons.svg#telephone-plus"/></svg></span>');
+define('ICON_HOUSE',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Téléphone</title><use xlink:href="images/bootstrap-icons.svg#house"/></svg></span>');
+define('ICON_LOGIN',         '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Se déconnecter</title><use xlink:href="images/bootstrap-icons.svg#power"/></svg></span>');
+define('ICON_LOAN_RETURNED', '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Rendre / Retour d’un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-in-down"/></svg></span>');
+define('ICON_LOAN_RESERVED', '<span class="check-warn"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Réserver un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
 define('ICON_LOAN_BORROWED', '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunter un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
 define('ICON_EDIT',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Modifier</title><use xlink:href="images/bootstrap-icons.svg#pen"/></svg></span>');
 define('ICON_LIST',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Liste</title><use xlink:href="images/bootstrap-icons.svg#card-list"/></svg></span>');
@@ -26,9 +26,9 @@ define('ICON_URL',           '<span><svg width="1.2em" height="1.2em" fill="curr
 define('ICON_ADD_DOC',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un document</title><use xlink:href="images/bootstrap-icons.svg#paperclip"/></svg></span>');
 define('ICON_ADD_TASK',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter une tache</title><use xlink:href="images/bootstrap-icons.svg#plus-square"/></svg></span>');
 define('ICON_ADD_TIME',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter du temps</title><use xlink:href="images/bootstrap-icons.svg#clock"/></svg></span>');
-define('ICON_ADD_CATEGORY',  '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un cat&eacute;gorie</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
+define('ICON_ADD_CATEGORY',  '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un catégorie</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
 define('ICON_ADD_SUPPLIER',  '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un fournisseur</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
-define('ICON_ADD_TEAM',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter une &eacute;quipe</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
+define('ICON_ADD_TEAM',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter une équipe</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
 define('ICON_ADD_EQUIPMENT', '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un appareil</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
 define('ICON_ADD_USER',      '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Ajouter un utilisateur</title><use xlink:href="images/bootstrap-icons.svg#plus-circle"/></svg></span>');
 define('ICON_MARK_RIGHT',    '<span><svg width="1.2em" height="1.2em" fill="currentColor"><use xlink:href="images/bootstrap-icons.svg#arrow-right-square"/></svg></span>');
@@ -76,7 +76,7 @@ function en_tete($titre, $find=false) {
 		<a href="./"><img src="images/logo-gestex.png" alt="" height="100px"></a>
 	</div>
 	<div class="header-title">
-		<h1><a href="./">GestEx</a> - Gestion des plateformes Exp&eacute;rimentales</h1>
+		<h1><a href="./">GestEx</a> - Gestion des plateformes Expérimentales</h1>
 		<h2><?php echo $titre ?></h2>
 	</div>
 	<br>
@@ -98,12 +98,12 @@ function nav_bar($pdo, $firstname, $familyname, $level, $logged_id, $find) {
 <ul>
 	<li><a href="supplier-list.php">Fournisseurs</a></li>
 	<li><a href="user-list.php">Utilisateurs</a></li>
-	<li><a href="team-list.php">&Eacute;quipes</a></li>
-	<li><a href="loan-list.php">Appareils pr&ecirc;t&eacute;s</a></li>
+	<li><a href="team-list.php">Équipes</a></li>
+	<li><a href="loan-list.php">Appareils prêtés</a></li>
 	<li class="dropdown">
 		<a class="dropbtn">Appareils</a>
 		<div class="dropdown-content">
-			<a href="category-list.php"><b>Cat&eacute;gories</b></a>
+			<a href="category-list.php"><b>Catégories</b></a>
 			<a href="equipment-list.php"><b>Global</b></a>
 			<a href="equipment-list.php?is_loanable=yes"><b>Empruntable</b></a>
 			<?php foreach (get_team_with_appareil($pdo) as $team_current): ?>
@@ -119,8 +119,8 @@ function nav_bar($pdo, $firstname, $familyname, $level, $logged_id, $find) {
 		<a class="dropbtn">Ajouter</a>
 		<div class="dropdown-content">
 			<?php if ($level >= 3) { ?><a href="equipment-edit.php">Appareil</a><?php } ?>
-			<?php if ($level >= 3) { ?><a href="category-edit.php">Cat&eacute;gorie</a><?php } ?>
-			<?php if ($level >= 3) { ?><a href="team-edit.php">&Eacute;quipe</a><?php } ?>
+			<?php if ($level >= 3) { ?><a href="category-edit.php">Catégorie</a><?php } ?>
+			<?php if ($level >= 3) { ?><a href="team-edit.php">Équipe</a><?php } ?>
 			<a href="supplier-edit.php">Fournisseur</a>
 			<?php if ($level >= 3) { ?><a href="user-edit.php">Utilisateur</a><?php } ?>
 		</div>
@@ -133,7 +133,7 @@ function nav_bar($pdo, $firstname, $familyname, $level, $logged_id, $find) {
 	<li class="dropdown right">
 		<a class="dropbtn"><?php echo "$familyname",   "  $firstname ";?></a>
 		<div class="dropdown-content">
-			<a href="logout.php"><?php echo ICON_LOGIN;?> Se d&eacute;connecter</a>
+			<a href="logout.php"><?php echo ICON_LOGIN;?> Se déconnecter</a>
 			<a href="user-edit.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>
 			<a href="user-changepwd.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PASWD;?> Changer le<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a><?php
 			if ($level > 3) { echo '<a href="admin-panel.php">'.ICON_ADMIN.' Admin Panel</a>'; } ?>
@@ -172,7 +172,7 @@ function pied_page() {
 	<address><a href="mailto:<?php echo GESTEX_ADMIN_MAIL ?>?Subject=GestEx%20to%20WebMaster">GestEx WebMaster</a></address>
 	<br>
 	<i>
-		Derni&egrave;re mise &agrave; jour :
+		Dernière mise à jour :
 		<?php echo $last_update ?>
 	</i>
 </center>

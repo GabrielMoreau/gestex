@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('supplier-list.php');
-level_or_alert(3, 'Suppression d\'un fournisseur');
+level_or_alert(3, 'Suppression d’un fournisseur');
 
 $supplier_id = param_post_or_get('id', 0);
 $valid       = param_post('ok', 'no');

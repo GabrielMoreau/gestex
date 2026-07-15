@@ -33,29 +33,29 @@ $phone      = param_post('phone', 'Na');
 $team_id    = param_post('team_id');
 
 if (empty($familyname))
-	$erreur = 'Nom de famille non pr&eacute;cis&eacute;';
+	$erreur = 'Nom de famille non précisé';
 if (empty($mail))
-	$erreur = 'Adresse de courriel non pr&eacute;cis&eacute;';
+	$erreur = 'Adresse de courriel non précisée';
 if (empty($level))
-	$erreur = 'Qualit&eacute; non pr&eacute;cis&eacute;';
+	$erreur = 'Qualité non précisée';
 if (empty($theme))
-	$erreur = 'Th&egrave;me non pr&eacute;cis&eacute;';
+	$erreur = 'Thème non précisé';
 if ($flag_new) {
 	if (empty($username))
-		$erreur = 'Identifiant (login) non pr&eacute;cis&eacute;';
+		$erreur = 'Identifiant (login) non précisé';
 	if (empty($password))
-		$erreur = 'Password non pr&eacute;cis&eacute;';
+		$erreur = 'Password non précisé';
 	if (empty($password2))
-		$erreur = 'Confirmation de password non pr&eacute;cis&eacute;';
+		$erreur = 'Confirmation de password non précisé';
 	if ($password != $password2)
-		$erreur = 'Les passwords diff&egrave;rent';
+		$erreur = 'Les passwords diffèrent';
 }
 
 $pdo = connect_db_or_alert();
 
 if ($flag_new and check_val_in_db($pdo, 'users', 'username', $username)) {
 	// nom existant deja dans db
-	$erreur = 'L\'identifiant <i>'.$username.'</i> est d&eacute;j&agrave; utilis&eacute; dans la base de donn&eacute;es';
+	$erreur = 'L’identifiant <i>'.$username.'</i> est déjà utilisé dans la base de données';
 }
 
 if (!empty($erreur)) {
@@ -70,7 +70,7 @@ if (!empty($erreur)) {
 }
 
 if ($flag_new) { // new
-	level_or_alert(3, 'Validation d\'un nouvel utilisateur');
+	level_or_alert(3, 'Validation d’un nouvel utilisateur');
 
 	$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
 	list($user_id, $err_msg) = set_user_new($pdo, $familyname, $firstname, $username, $new_pwhash, $mail, $level, $phone, $team_id, $theme);
@@ -78,7 +78,7 @@ if ($flag_new) { // new
 	if ($err_msg != '') {
 		$title        = 'Erreur utilisateur';
 		$action       = 'user-list.php';
-		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la cr&eacute;ation de l\'utilisateur');
+		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la création de l’utilisateur');
 		include_once('include/message-box.php');
 		exit();
 	}
@@ -91,13 +91,13 @@ if ($flag_new) { // new
 	$title        = 'Ajout utilisateur';
 	$action       = 'user-list.php?highlight='.$user_id;
 	$highlight    = $user_id;
-	$message_text = 'Ajout de l\'utilisateur '.$familyname.' '.$firstname.' valid&eacute;e';
+	$message_text = 'Ajout de l’utilisateur '.$familyname.' '.$firstname.' validée';
 	include_once('include/message-box.php');
 	exit();
 }
 
 // modify
-// recupere les anciennes caracteristiques
+// récupère les anciennes caracteristiques
 $user_selected = get_user_all_by_id($pdo, $user_id);
 
 if ($level != $user_selected['level'] && $logged_level < 3)
@@ -119,7 +119,7 @@ if ($modif) {
 		$title        = 'Erreur utilisateur';
 		$action       = 'user-list.php?highlight='.$user_id;
 		$highlight    = $user_id;
-		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise &agrave; jour de l\'utilisateur');
+		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise à jour de l’utilisateur');
 		include_once('include/message-box.php');
 		exit();
 	}
@@ -134,8 +134,8 @@ if ($user_id == $logged_id)
 if ($logged_level >= 3 && $valid == 1) {
 	//validation d'un user acceptee
 	//envoi d'un mail a cet user
-	//$texte = $firstname.' '.$familyname.' votre inscription au systeme GestEx &agrave; &eacute;t&eacute; accept&eacute;e !';
-	// mail($mail, "[GestEx] inscription accept&eacute;e - ".$familyname." ".$firstname, $texte);
+	//$texte = $firstname.' '.$familyname.' votre inscription au systeme GestEx à été acceptée !';
+	// mail($mail, "[GestEx] inscription acceptée - ".$familyname." ".$firstname, $texte);
 }
 
 redirect('user-list.php?highlight='.$user_id.'#item'.$user_id);

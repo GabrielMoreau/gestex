@@ -7,7 +7,7 @@ require_once('module/auth-functions.php');
 require_once('module/html-functions.php');
 
 auth_or_login('user-list.php');
-level_or_alert(1, 'Pr&ecirc;t d\'un utilisateur');
+level_or_alert(1, 'Prêt d’un utilisateur');
 
 $logged_id    = $_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
@@ -29,7 +29,7 @@ if ($pdo = connect_db()) {
 				Nom
 			</th>
 			<th>
-				&Eacute;quipe
+				Équipe
 			</th>
 			<th>
 				Date
@@ -41,7 +41,7 @@ if ($pdo = connect_db()) {
 				Emprunteur
 			</th>
 			<th>
-				Num&eacute;ro de l'appareil
+				Numéro de l'appareil
 			</th>
 		</tr>
 		<?php
@@ -57,7 +57,7 @@ if ($pdo = connect_db()) {
 			echo      $equipment['name'];
 			echo '  </td>'.PHP_EOL;
 
-			// recupere le nom d'equipe
+			// récupère le nom d'equipe
 			$team = get_team_by_id($pdo, $loan_current['team_id']);
 			echo '  <td>';
 			echo      $team['name'];

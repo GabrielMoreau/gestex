@@ -8,7 +8,7 @@ require_once('module/html-functions.php');
 
 // Authenticate
 auth_or_login('equipment-list.php');
-level_or_alert(3, 'Suppression d\'un appareil et de ses notices associ&eacute;es');
+level_or_alert(3, 'Suppression d’un appareil et de ses notices associées');
 
 $equipment_id = param_post_or_get('id', 0);
 $valid        = param_post('ok', 'no');
@@ -23,7 +23,7 @@ if ($valid == 'yes') {
 	$iostat = del_equipment_by_id($pdo, $equipment_id);
 	if ($iostat) // ca a marche
 		redirect('equipment-list.php');
-	$message_alert = 'Erreur dans la suppression d\'un appareil et des notices associ&eacute;es : '.$equipment_name.' (#'.$equipment_id.')';
+	$message_alert = 'Erreur dans la suppression d’un appareil et des notices associées : '.$equipment_name.' (#'.$equipment_id.')';
 	include_once('include/alert-data.php');
 	exit();
 }
