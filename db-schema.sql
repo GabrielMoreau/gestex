@@ -79,7 +79,7 @@ CREATE TABLE `equipment` (
   `feature` VARCHAR(255) DEFAULT NULL,
   `team_id` INT(11) DEFAULT NULL,
   `supplier_id` INT(11) DEFAULT NULL,
-  `achat` DATE DEFAULT NULL,
+  `date_of_purchase` DATE DEFAULT NULL,
   `manager_user_id` INT(11) DEFAULT NULL,
   `reparation` VARCHAR(30) DEFAULT NULL,
   `accessories` VARCHAR(255) DEFAULT NULL,

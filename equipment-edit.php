@@ -142,7 +142,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 				Date achat * (<i>format YYYY-MM-DD</i>)
 			</th>
 			<td>
-				<input type="date" name="achat" size="10" maxlength="10" value="<?= param_post_key('achat', $equipment_selected, date('Y-m-d', time())) ?>">
+				<input type="date" name="date_of_purchase" size="10" maxlength="10" value="<?= param_post_key('date_of_purchase', $equipment_selected, date('Y-m-d', time())) ?>">
 			</td>
 		</tr>
 
