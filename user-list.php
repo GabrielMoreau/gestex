@@ -81,9 +81,12 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		$count_equipment = get_equipment_count_by_manager_user($pdo, $user_current['id']);
-		$class_option = $user_current['valid'] === 0 ? '' : 'class="bad-check"';
-		if ($count_equipment > 0)
-			echo '    <a href="equipment-list.php?manager_user_id='.$user_current['id'].'" '.$class_option.'>'.ICON_LIST.'</a> '.$count_equipment;
+		if ($count_equipment > 0) {
+			if ($user_current['valid'] === 1)
+				echo '    <a href="equipment-list.php?manager_user_id='.$user_current['id'].'">'.ICON_LIST.'</a> '.$count_equipment;
+			else
+				echo '    <a href="equipment-list.php?manager_user_id='.$user_current['id'].'">'.ICON_LIST_BAD.'</a> '.$count_equipment;
+		}
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		echo      $user_current['phone'];

@@ -20,6 +20,7 @@ define('ICON_LOAN_RESERVED', '<span class="check-warn"><svg width="1.2em" height
 define('ICON_LOAN_BORROWED', '<span class="check-ok"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Emprunter un appareil</title><use xlink:href="images/bootstrap-icons.svg#box-arrow-up"/></svg></span>');
 define('ICON_EDIT',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Modifier</title><use xlink:href="images/bootstrap-icons.svg#pen"/></svg></span>');
 define('ICON_LIST',          '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Liste</title><use xlink:href="images/bootstrap-icons.svg#card-list"/></svg></span>');
+define('ICON_LIST_BAD',      '<span class="check-bad"><svg width="1.2em" height="1.2em" fill="currentColor"><title>Liste</title><use xlink:href="images/bootstrap-icons.svg#card-list"/></svg></span>');
 define('ICON_BARCODE',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Code barre</title><use xlink:href="images/bootstrap-icons.svg#upc-scan"/></svg></span>');
 define('ICON_SEE_DOC',       '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Voir le document</title><use xlink:href="images/bootstrap-icons.svg#eye"/></svg></span>');
 define('ICON_URL',           '<span><svg width="1.2em" height="1.2em" fill="currentColor"><title>Lien web</title><use xlink:href="images/bootstrap-icons.svg#link"/></svg></span>');
