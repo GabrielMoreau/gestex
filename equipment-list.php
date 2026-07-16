@@ -68,7 +68,7 @@ if ($manager_user_id > 0) {
 			<th>
 				Id
 			</th>
-			<th>
+			<th class="max20">
 				Nom
 			</th>
 			<th class="max20">
@@ -135,7 +135,7 @@ if ($manager_user_id > 0) {
 		echo '  <td>';
 		echo      $equipment_item['id'];
 		echo '  </td>'.PHP_EOL;
-		echo '  <td>';
+		echo '  <td class="max20">';
 		echo '    <a name="item'.$equipment_item['id'].'"></a><a href="equipment-view.php?id='.$equipment_item['id'].'">'. $equipment_item['name'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td class="max20">';
