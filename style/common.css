@@ -192,7 +192,7 @@ div.catalog {
 
 .catalog td.max20,
 .catalog th.max20 {
-	max-width: 20em;
+	max-width: 17em;
 	white-space: normal;
 	overflow-wrap: anywhere;
 }
