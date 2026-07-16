@@ -33,6 +33,8 @@ en_tete('Liste de tous les utilisateurs');
 			<th>
 				Nom de famille
 			</th>
+			<th class="sorttable_nosort">
+			</th>
 			<th>
 				Téléphone
 			</th>
@@ -71,12 +73,16 @@ if ($pdo = connect_db()) {
 		echo '    <a name="item'.$user_current['id'].'"></a>'.$user_current['firstname'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		// l'utilisateur a la possiblite de modifier ses coordonnees
+		// L’utilisateur a la possibilité de modifier ses coordonnées
 		if ($logged_id == $user_current['id'] || $logged_level >= 3)
 			echo '    <a href="user-edit.php?id='.$user_current['id'].'">'.$user_current['familyname'].'</a>';
 		else
 			echo      $user_current['familyname'];
 
+		echo '  </td>'.PHP_EOL;
+		echo '  <td style="vertical-align: top;">';
+		if (get_equipment_count_by_manager_user($pdo, $user_current['id']) > 0)
+			echo '    <a href="equipment-list.php?manager_user_id='.$user_current['id'].'">'.ICON_LIST.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		echo      $user_current['phone'];
