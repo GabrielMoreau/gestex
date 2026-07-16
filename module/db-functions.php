@@ -90,11 +90,11 @@ function last_id_db() {
 // ---------------------------------------------------------------------
 
 /**
- * Vérifie si un pret a été emprunté. Retourne "false" s'il n'y en a pas
- * et "true" s'il en trouve au moins un. Il n'est censé normalement n'y 
- * avoir qu'un seul pret emprunter.
+ * Vérifie si un pret a été emprunté. Retourne "false" s’il n’y en a pas
+ * et "true" s’il en trouve au moins un. Il n’est censé normalement n’y 
+ * avoir qu’un seul pret emprunter.
  * 
- * @todo Pensez à faire une méthode pour avertir s'il y a plus de 1 pret
+ * @todo Pensez à faire une méthode pour avertir s’il y a plus de 1 pret
  * emprunté
  * @return boolean
  */
@@ -111,7 +111,7 @@ function check_loan_borrowed_by_equipment($pdo, $equipment_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Permet de vérifier si la valeur existe dans la colonne d'une table
+ * Permet de vérifier si la valeur existe dans la colonne d’une table
  * spécifié manuellement. La fonction retournera "true" si la vérification
  * trouve des données sinon elle retournera "false"
  * 
@@ -127,7 +127,7 @@ function check_val_in_db($pdo, $table, $col, $value) {
 
 	///echo "check_val:".numrows_db($reponse)."<br />";
 	//renvoie 0 si non trouve
-	//renvoie le nbre d'occurences autrement
+	//renvoie le nbre d’occurences autrement
 	if (count($result) > 0)
 		return true;
 	return false;
@@ -138,9 +138,9 @@ function check_val_in_db($pdo, $table, $col, $value) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère l'ID et le nom de la catégorie via son ID
+ * Récupère l’ID et le nom de la catégorie via son ID
  * 
- * @return array Retourne directement l'élément
+ * @return array Retourne directement l’élément
  */
 function get_category_by_id($pdo, $id) {
 	$sql = 'SELECT id, name FROM category WHERE id = ?;';
@@ -153,7 +153,7 @@ function get_category_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère l'ID et le nom de toutes les catégories rangées 
+ * Récupère l’ID et le nom de toutes les catégories rangées 
  * par nom croissant
  * 
  * @return array
@@ -169,7 +169,7 @@ function get_category_listshort($pdo) {
 // ---------------------------------------------------------------------
 
 /**
- * Effectue une vérification pour savoir si le nom d'une catégorie
+ * Effectue une vérification pour savoir si le nom d’une catégorie
  * existe déjà. Retourne "true" si la catégorie est présente sinon
  * renvoie "false"
  * 
@@ -212,6 +212,8 @@ function set_category_update($pdo, $category_id, $name) {
 
 /**
  * Supprime une catégorie via son ID
+ *
+ * @return small_int
  */
 function del_category_by_id($pdo, $id) {
 	$sql = 'DELETE LOW_PRIORITY FROM category WHERE id = ? LIMIT 1';
@@ -235,9 +237,9 @@ function get_recipe_basepath() {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu d'une notice via son ID
+ * Récupère tout le contenu d’une notice via son ID
  * 
- * @return false|array Retourne directement l'élément
+ * @return false|array Retourne directement l’élément
  */
 function get_datasheet_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM datasheet WHERE id = ?;' ;
@@ -284,6 +286,8 @@ function get_datasheet_count_by_equipment($pdo, $equipment_id) {
 
 /**
  * Ajoute ou met à jour une notice
+ * 
+ * @return false|id
  */
 function set_datasheet_new($pdo, $equipment_id, $file_field_name) {
 	$datasheet_filename_upload = $_FILES[$file_field_name]['name'];
@@ -345,7 +349,9 @@ function set_datasheet_new($pdo, $equipment_id, $file_field_name) {
 
 /**
  * Supprime la notice via son ID ainsi que son fichier et son dossier 
- * sur le disque s'ils éxistent
+ * sur le disque s’ils éxistent
+ *
+ * @return small_int
  */
 function del_datasheet_by_id($pdo, $id) {
 	$datasheet_selected = get_datasheet_all_by_id($pdo, $id);
@@ -371,9 +377,9 @@ function del_datasheet_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Recupère l'ID et le nom d'un équipement par son ID
+ * Recupère l’ID et le nom d’un équipement par son ID
  * 
- * @return false|array Le contenu d'un équipement directement
+ * @return false|array Le contenu d’un équipement directement
  */
 function get_equipment_listshort_by_id($pdo, $id) {
 	$sql = 'SELECT id, name FROM equipment WHERE id = ?;';
@@ -388,9 +394,9 @@ function get_equipment_listshort_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu d'un équipement par son ID
+ * Récupère tout le contenu d’un équipement par son ID
  * 
- * @return false|array Le contenu d'un équipement directement
+ * @return false|array Le contenu d’un équipement directement
  */
 function get_equipment_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM equipment WHERE id = ?;';
@@ -405,8 +411,8 @@ function get_equipment_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Recupere tout le contenu d'un équipement ainsi que son nom de categorie
- * rangé par nom d'équipement et nom d'équipe
+ * Récupère tout le contenu d’un équipement ainsi que son nom de categorie
+ * rangé par nom d’équipement et nom d’équipe
  * 
  * @return array
  */
@@ -422,8 +428,8 @@ function get_equipment_listall($pdo) {
 // ---------------------------------------------------------------------
 
 /**
- * Recupere tout le contenu des équipements ainsi que leurs nom d'équipe via 
- * l'ID d'équipe, rangé par nom d'équipement et nom d'équipe
+ * Récupère tout le contenu des équipements ainsi que leurs nom d’équipe via 
+ * l’ID d’équipe, rangé par nom d’équipement et nom d’équipe
  * 
  * @return array
  */
@@ -439,7 +445,7 @@ function get_equipment_listall_by_team($pdo, $team_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère le nombre d'équipement par équipe
+ * Récupère le nombre d’équipement par équipe
  * 
  * @return int
  */
@@ -454,8 +460,8 @@ function get_equipment_count_by_team($pdo, $team_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Recupere le nombre d'équipement empruntable avec la même équipe via 
- * l'ID de l'équipe
+ * Récupère le nombre d’équipement empruntable avec la même équipe via 
+ * l’ID de l’équipe
  * 
  * @return int
  */
@@ -470,7 +476,7 @@ function get_equipment_count_is_loanable_by_team($pdo, $team_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère le nombre d'équipement par responsable
+ * Récupère le nombre d’équipement par responsable
  * 
  * @return array
  */
@@ -485,7 +491,7 @@ function get_equipment_listall_by_manager_user($pdo, $manager_user_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère le nombre d'équipement par responsable
+ * Récupère le nombre d’équipement par responsable
  * 
  * @return int
  */
@@ -500,7 +506,7 @@ function get_equipment_count_by_manager_user($pdo, $manager_user_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Recupere tout le contenu des equipements ayant la même 
+ * Récupère tout le contenu des équipements ayant la même 
  * categorie, rangé par nom
  * 
  * @return array
@@ -516,7 +522,7 @@ function get_equipment_listall_by_category($pdo, $category_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère le nombre d'équipement par catégorie
+ * Récupère le nombre d’équipement par catégorie
  * 
  * @return int
  */
@@ -548,7 +554,7 @@ function get_equipment_listall_by_supplier($pdo, $supplier_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère le nombre d'équipement par fournisseur
+ * Récupère le nombre d’équipement par fournisseur
  * 
  * @return int
  */
@@ -563,7 +569,7 @@ function get_equipment_count_by_supplier($pdo, $supplier_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Recupere l'ID et le nom de tout les equipements rangé par
+ * Récupère l’ID et le nom de tous les équipements rangés par
  * catégorie et nom
  * 
  * @return array
@@ -579,10 +585,10 @@ function get_equipment_listshort($pdo) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupere l'ID d'un équipement depuis la table loan, 
- * de par l'ID du pret
+ * Récupere l’ID d’un équipement depuis la table loan, 
+ * de par l’ID du pret
  * 
- * @return ID de l'equipement
+ * @return ID de l’equipement
  */
 function get_equipment_by_loan_id($pdo, $loan_id) {
 	$sql = 'SELECT equipment_id FROM loan WHERE id = ?;';
@@ -597,8 +603,8 @@ function get_equipment_by_loan_id($pdo, $loan_id) {
 /**
  * Créer un équipement
  * 
- * @return array|string Renvoie une chaine si echec sinon 
- * un tableau avec l'ID et un msg d'erreur eventuellement
+ * @return array|string Renvoie une chaîne si échec sinon 
+ * un tableau avec l’ID et un msg d’erreur éventuellement
  */
 function set_equipment_new($pdo, $categorie, $name, $model, $feature, $team_id, $supplier_id, $date_of_purchase, $manager_user_id, $repair_comment, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days) {
 	$sql = 'INSERT INTO equipment (category_id, name, model, feature, team_id, supplier_id, date_of_purchase, manager_user_id, repair_comment, accessories, inventory_number, notice, barcode, is_loanable, max_loan_days)';
@@ -616,8 +622,8 @@ function set_equipment_new($pdo, $categorie, $name, $model, $feature, $team_id, 
 /**
  * Met à jour un équipement par son ID
  *
- * @return string Renvoie une chaine vide
- * si réussite sinon une chaine d'erreurs
+ * @return string Renvoie une chaîne vide
+ * si réussite sinon une chaîne d’erreurs
  */
 function set_equipment_update($pdo, $equipment_id, $categorie, $name, $model, $feature, $team_id, $supplier_id, $date_of_purchase, $manager_user_id, $repair_comment, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days) {
 	$sql = 'UPDATE equipment SET category_id = ?, name = ?, model = ?, feature = ?, team_id = ?, supplier_id = ?, date_of_purchase = ?, manager_user_id = ?, repair_comment = ?, accessories = ?, inventory_number = ?, notice = ?, barcode = ?, is_loanable = ?, max_loan_days = ? WHERE id = ?;';
@@ -683,10 +689,10 @@ function set_new_intervention($pdo, $description, $supplier_id, $equipment_id, $
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu d'un pret par son ID
+ * Récupère tout le contenu d’un pret par son ID
  * 
- * @return array|false S'il n'est pas "false", le 
- * retour ne sera qu'un seul objet
+ * @return array|false S’il n’est pas "false", le 
+ * retour ne sera qu’un seul objet
  */
 function get_loan_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM loan WHERE id = ?;';
@@ -701,7 +707,7 @@ function get_loan_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupere tout les prets liés à un équipement qui ne sont pas retourné
+ * Récupère tout les prêts liés à un équipement qui ne sont pas retournés
  * 
  * @deprecated Remplacé par la fonction get_loans_all_not_return_by_equipment()
  */
@@ -718,7 +724,7 @@ function get_loans_all_by_equipment($pdo, $equipment_id) {
 // ---------------------------------------------------------------------
 
 /**
-* Récupere tout les prets liés à un équipement qui ne sont pas retourné,
+* Récupère tout les prêts liés à un équipement qui ne sont pas retournés,
 * rangé dans un certaine ordre de priorité.
 */
 function get_loans_all_not_return_by_equipment($pdo, $equipment_id) {
@@ -734,7 +740,7 @@ function get_loans_all_not_return_by_equipment($pdo, $equipment_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Recupère l'ID et le status d'un pret via l'ID d'équipement
+ * Récupère l’ID et le statut d’un prêts via l’ID d’équipement
  * 
  * @return false|array Le contenu du pret directement
  * @deprecated
@@ -752,7 +758,7 @@ function get_loan_short_by_id_equipment($pdo, $equipment_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Recupère tout le contenu d'un pret via l'ID d'équipement
+ * Récupère tout le contenu d’un prêts via l’ID d’équipement
  * 
  * @return false|array Le contenu du pret directement
  */
@@ -795,7 +801,7 @@ function get_loan_listall_by_team($pdo, $team_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère le nombre de pret d'une équipe correspondante
+ * Récupère le nombre de pret d’une équipe correspondante
  * 
  * @return int
  */
@@ -810,9 +816,9 @@ function get_loan_count_by_team($pdo, $team_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu des prets d'un emprunteur en utilisant
- * la directive "RLIKE" pour détécter l'utilisateur dans le champ
- * commentaire des prets
+ * Récupère tout le contenu des prets d’un emprunteur en utilisant
+ * la directive "RLIKE" pour détecter l’utilisateur dans le champ
+ * commentaire des prêts
  * 
  * @return array 
  */
@@ -827,7 +833,7 @@ function get_loan_find($pdo, $find) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu des prets qui possède le même ID d'équipement
+ * Récupère tout le contenu des prets qui possède le même ID d’équipement
  * et étant actuellement en emprunt
  * 
  * @return false|array
@@ -845,8 +851,8 @@ function get_loans_all_by_equipment_borrowed($pdo, $equipment_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu des prets étant dans l'intervalle d'emprunt
- * des dates d'un équipement spécifier. Renverra "false" s'il n'y en a pas
+ * Récupère tout le contenu des prets étant dans l’intervalle d’emprunt
+ * des dates d’un équipement spécifier. Renverra "false" s’il n’y en a pas
  * 
  * @return false|array
  */
@@ -863,9 +869,9 @@ function get_loans_interval_by_id($pdo, $equipment_id, $from, $to) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu des prets étant dans l'intervalle d'emprunt
- * des dates d'un équipement spécifier excepter un emprunt en particulier.
- * Renverra "false" s'il n'y en a pas
+ * Récupère tout le contenu des prêts étant dans l’intervalle d’emprunt
+ * des dates d’un équipement spécifier excepter un emprunt en particulier.
+ * Renverra "false" s’il n’y en a pas
  * 
  * @return false|array
  */
@@ -899,7 +905,7 @@ function get_loan_status_by_id($pdo, $loan_id) {
 /**
  * Récupère tout le contenu du dernier prêt retourné
  * 
- * @todo Faire en sorte de retourner qu'un seul objet directement
+ * @todo Faire en sorte de retourner qu’un seul objet directement
  * @return false|array
  */
 function get_loan_all_last_returned($pdo, $equipment_id) {
@@ -915,7 +921,7 @@ function get_loan_all_last_returned($pdo, $equipment_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Ajoute un nouveau pret défini comme étant actuellement en emprunt
+ * Ajoute un nouveau prêt défini comme étant actuellement en emprunt
  * 
  * @deprecated
  * @return int
@@ -930,7 +936,7 @@ function set_loan_borrowed_new($pdo, $equipment_id, $team_id, $date_begin, $date
 // ---------------------------------------------------------------------
 
 /**
- * Ajoute un nouveau pret défini comme étant en réservation
+ * Ajoute un nouveau prêt défini comme étant en réservation
  * 
  * @deprecated
  * @return int
@@ -945,8 +951,8 @@ function set_loan_reserved_new($pdo, $equipment_id, $team_id, $date_begin, $date
 // ---------------------------------------------------------------------
 
 /**
- * Met à jour un emprunt (en spécifiant son ID) comme étant emprunter et bloque également
- * sa date d'emprunt au jour même de son appel
+ * Met à jour un emprunt (en spécifiant son ID) comme étant emprunté et bloque également
+ * sa date d’emprunt au jour même de son appel
  * 
  * @deprecated
  */
@@ -959,7 +965,7 @@ function set_loan_update_to_borrowed($pdo, $loan_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Met à jour le pret en spécifiant son ID sans modifier par défaut le status
+ * Met à jour le prêt en spécifiant son ID sans modifier par défaut le statut
  */
 function set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_begin, $date_end, $comment) {
 	$sql = 'UPDATE loan SET equipment_id = ?, team_id = ?, start_date = ?, end_date = ?, comment = ? WHERE id = ?;';
@@ -970,7 +976,7 @@ function set_loan_update($pdo, $loan_id, $equipment_id, $team_id, $date_begin, $
 // ---------------------------------------------------------------------
 
 /**
- * Supprime un seul pret via son ID
+ * Supprime un seul prêt via son ID
  */
 function del_loan_by_id($pdo, $loan_id) {
 	$sql = 'DELETE LOW_PRIORITY FROM loan WHERE id = ? LIMIT 1;';
@@ -982,7 +988,7 @@ function del_loan_by_id($pdo, $loan_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Met à jour un pret (en spécifiant son ID) comme étant retourné et
+ * Met à jour un prêt (en spécifiant son ID) comme étant retourné et
  * bloque sa date de retour au jour de son appel
  */
 function set_loan_to_returned($pdo, $loan_id) {
@@ -998,7 +1004,7 @@ function set_loan_to_returned($pdo, $loan_id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère l'ID et le nom d'un fournisseur via son ID
+ * Récupère l’ID et le nom d’un fournisseur via son ID
  * 
  * @return false|array Retourne directement le fournisseur
  */
@@ -1015,7 +1021,7 @@ function get_supplier_short_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu d'un seul fournisseur via son ID
+ * Récupère tout le contenu d’un seul fournisseur via son ID
  * 
  * @return false|array Retourne directement le fournisseur
  */
@@ -1032,7 +1038,7 @@ function get_supplier_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère l'ID et le nom de tout les fournisseurs trier par nom croissant
+ * Récupère l’ID et le nom de tout les fournisseurs triés par nom croissant
  * 
  * @return array
  */
@@ -1047,7 +1053,7 @@ function get_supplier_listshort($pdo) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu de tout les fournisseurs trier par nom croissant
+ * Récupère tout le contenu de tout les fournisseurs triés par nom croissant
  * 
  * @return array
  */
@@ -1064,7 +1070,7 @@ function get_supplier_listall($pdo) {
 /**
  * Retourne la liste de tout les fournisseurs si la valeurs $find est "true"
  * ou une chaîne vide. Sinon elle récuperera tout le contenu des fournisseurs
- * où le chaine demandé a le plus de similitude avec le nom ou la description
+ * où la chaîne demandée a le plus de similitude avec le nom ou la description
  * du fournisseur
  * 
  * @return array
@@ -1084,7 +1090,7 @@ function get_supplier_find($pdo, $find='') {
 /**
  * Ajoute un nouveau fournisseur
  * 
- * @return array Avec chaine d'erreur au deuxième index
+ * @return array Avec chaîne d’erreur au deuxième index
  */
 function set_supplier_new($pdo, $name, $address, $phone, $fax, $email, $www, $contact, $description) {
 	$sql = 'INSERT INTO supplier (name, address, email, www, phone, fax, contact, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
@@ -1101,7 +1107,7 @@ function set_supplier_new($pdo, $name, $address, $phone, $fax, $email, $www, $co
 /**
  * Met à jour un fournisseur via son ID
  * 
- * @return array Avec chaine d'erreur au deuxième index
+ * @return array Avec chaîne d’erreur au deuxième index
  */
 function set_supplier_update($pdo, $supplier_id, $name, $address, $phone, $fax, $email, $www, $contact, $description) {
 	$sql = 'UPDATE LOW_PRIORITY supplier  SET name = ?, address = ?, phone = ?, fax = ?, email = ?, www = ?, contact = ?, description = ? WHERE id = ?;';
@@ -1130,9 +1136,9 @@ function del_supplier_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère l'ID et le nom d'une seul équipe via son ID
+ * Récupère l’ID et le nom d’une seul équipe via son ID
  * 
- * @return array Retourne directement l'équipe
+ * @return array Retourne directement l’équipe
  */
 function get_team_by_id($pdo, $id) {
 	$sql = 'SELECT id, name FROM team WHERE id = ?;';
@@ -1147,9 +1153,9 @@ function get_team_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu d'une seul équipe via son ID
+ * Récupère tout le contenu d’une seul équipe via son ID
  * 
- * @return array Retourne directement l'équipe
+ * @return array Retourne directement l’équipe
  */
 function get_team_all_by_id($pdo, $id) {
 	$sql = 'SELECT * FROM team WHERE id = ?;';
@@ -1164,7 +1170,7 @@ function get_team_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère l'ID et le nom de toutes les équipes par ordre de nom croissant
+ * Récupère l’ID et le nom de toutes les équipes par ordre de nom croissant
  * 
  * @return array
  */
@@ -1194,7 +1200,7 @@ function get_team_listall($pdo) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère l'ID et le nom des équipe par ordre croissant de nom,
+ * Récupère l’ID et le nom des équipe par ordre croissant de nom,
  * possèdant au moins un équipement
  * 
  * @return array
@@ -1210,7 +1216,7 @@ function get_team_with_appareil($pdo) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère le nombre d'équipe directement
+ * Récupère le nombre d’équipe directement
  * 
  * @return int
  */
@@ -1227,7 +1233,7 @@ function get_team_count($pdo) {
 /**
  * Ajoute une nouvelle équipe
  * 
- * @return array Avec potentiellement une chaine d'erreur
+ * @return array Avec potentiellement une chaîne d’erreur
  */
 function set_team_new($pdo, $name, $description, $accounting, $manager_user_id) {
 	$sql = 'INSERT INTO team (name, description, accounting, manager_user_id) VALUES (?,  ?, ?, ?);';
@@ -1244,7 +1250,7 @@ function set_team_new($pdo, $name, $description, $accounting, $manager_user_id) 
 /**
  * Met à jour une équipe via son ID
  * 
- * @return array Avec potentiellement une chaine d'erreur
+ * @return array Avec potentiellement une chaîne d’erreur
  */
 function set_team_update($pdo, $team_id, $name, $description, $accounting, $manager_user_id) {
 	$sql = 'UPDATE LOW_PRIORITY team SET name = ?, description = ?, accounting = ?, manager_user_id = ? WHERE id = ?;';
@@ -1273,7 +1279,7 @@ function del_team_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère l'ID, le nom et le prénom d'un utilisateur via son ID
+ * Récupère l’ID, le nom et le prénom d’un utilisateur via son ID
  * 
  * @return false|array Retourne un seul utilisateur
  */
@@ -1290,7 +1296,7 @@ function get_user_short_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu d'un utilisateur via son ID
+ * Récupère tout le contenu d’un utilisateur via son ID
  * 
  * @return false|array Retourne un seul utilisateur
  */
@@ -1307,7 +1313,7 @@ function get_user_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu d'un utilisateur via son username
+ * Récupère tout le contenu d’un utilisateur via son username
  * 
  * @return false|array Retourne un seul utilisateur
  */
@@ -1345,9 +1351,9 @@ function get_user_listall_by_logged_level($pdo, $logged_level) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère l'ID, le nom de famille et le prénom des utilisateurs étant validé et
+ * Récupère l’ID, le nom de famille et le prénom des utilisateurs étant validé et
  * étant supérieur ou égale au privilege minimum indiqué. Ou bien via
- * l'ID s'il n'est pas égale à 0. La requète est rangé par ordre de nom
+ * l’ID s’il n’est pas égale à 0. La requête est rangé par ordre de nom
  * et prénom utilisateur. Attention toutefois au fait que cette fonction
  * ne vérifie pas les privilèges, mais néanmoins, elle retournera des 
  * éléments de la table qui ne sont pas sensible.
@@ -1366,7 +1372,7 @@ function get_user_listshort_with_right($pdo, $level_min=1, $bonus_id=0) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère le nombre d'utilisateurs directement
+ * Récupère le nombre d’utilisateurs directement
  * 
  * @return int
  */
@@ -1383,7 +1389,7 @@ function get_user_count($pdo) {
 /**
  * Ajoute un nouvel utilisateur
  * 
- * @return array Avec potentiellement une chaine d'erreur
+ * @return array Avec potentiellement une chaîne d’erreur
  */
 function set_user_new($pdo, $familyname, $firstname, $username, $password, $email, $level, $phone, $team_id, $theme) {
 	error_log('Warn: new user '.$username);
@@ -1399,7 +1405,7 @@ function set_user_new($pdo, $familyname, $firstname, $username, $password, $emai
 // ---------------------------------------------------------------------
 
 /**
- * Met à jour le mot de passe d'un utilisateur via son ID
+ * Met à jour le mot de passe d’un utilisateur via son ID
  */
 function set_user_password_by_id($pdo, $user_id, $user_password) {
 	error_log('Warn: update password for user '.$user_id);
@@ -1412,9 +1418,9 @@ function set_user_password_by_id($pdo, $user_id, $user_password) {
 // ---------------------------------------------------------------------
 
 /**
- * Aciennement : set_user_valid_by_id()
+ * Anciennement : set_user_valid_by_id()
  * 
- * @todo Voir qu'est-ce que la colonne "valid"
+ * @todo Voir qu’est-ce que la colonne "valid"
  */
 function set_user_valid_by_id($pdo, $user_id, $user_status) {
 	$sql = 'UPDATE user SET valid = ? WHERE id = ?;';
@@ -1428,7 +1434,7 @@ function set_user_valid_by_id($pdo, $user_id, $user_status) {
 /**
  * Met à jour un utilisateur via son ID
  * 
- * @return array Avec potentiellement une chaine d'erreur
+ * @return array Avec potentiellement une chaîne d’erreur
  */
 function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level, $phone, $team_id, $theme, $logged_level, $username='') {
 	if (isset($username) && $username != '' && $logged_level > 3) {
@@ -1462,7 +1468,7 @@ function set_user_update($pdo, $user_id, $familyname, $firstname, $email, $level
 // ---------------------------------------------------------------------
 
 /**
- * Récupère le numéro de version via le nom de l'application/fonctionnalitée
+ * Récupère le numéro de version via le nom de l’application/fonctionnalité
  * 
  * @return false|array
  */
@@ -1495,7 +1501,7 @@ function get_version_listall($pdo) {
 // ---------------------------------------------------------------------
 
 /**
- * Ajoute une version d'application/fonctionnalité si celle si existe
+ * Ajoute une version d’application/fonctionnalité si celle si existe
  * sinon met seulement à jour la version
  */
 function set_version_by_name($pdo, $name, $version) {
@@ -1574,7 +1580,7 @@ function set_recipe_new($pdo, $intervention_id, $file_field_name) {
 // ---------------------------------------------------------------------
 
 /**
- * Supprime la fiche d’intervention via son id
+ * Supprime la fiche d’intervention via son ID
  * 
  * @return bool
  */
@@ -1617,8 +1623,8 @@ function get_recipe_all_by_id($pdo, $id) {
 // ---------------------------------------------------------------------
 
 /**
- * Récupère tout le contenu de toutes les fiches d’intervention via l'ID
- * de l'intervention
+ * Récupère tout le contenu de toutes les fiches d’intervention via l’ID
+ * de l’intervention
  * 
  * @return array
  */
