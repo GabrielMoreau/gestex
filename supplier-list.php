@@ -27,7 +27,9 @@ en_tete('Liste de tous les fournisseurs', $find);
 	<tbody>
 		<tr>
 			<th>
-				Entreprise <?=ICON_LIST?>
+				Entreprise
+			</th>
+			<th class="sorttable_nosort">
 			</th>
 			<th class="sorttable_nosort">
 				Adresse
@@ -76,8 +78,10 @@ if ($pdo = connect_db()) {
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		if ($count_equipment === 0) {
 			echo '  <td><a name="item'.$supplier_item['id'].'"></a>'.$supplier_item['name'].'</td>'.PHP_EOL;
+			echo '  <td></td>'.PHP_EOL;
 		} else {
-			echo '  <td><a name="item'.$supplier_item['id'].'"></a><a href="equipment-list.php?supplier_id='.$supplier_item['id'].'">'.$supplier_item['name'].' '.ICON_LIST.'</a> '.$count_equipment.'</td>'.PHP_EOL;
+			echo '  <td><a name="item'.$supplier_item['id'].'"></a><a href="equipment-list.php?supplier_id='.$supplier_item['id'].'">'.$supplier_item['name'].'</a></td>'.PHP_EOL;
+			echo '  <td><a name="item'.$supplier_item['id'].'"></a><a href="equipment-list.php?supplier_id='.$supplier_item['id'].'">'.ICON_LIST.'</a> '.$count_equipment.'</td>'.PHP_EOL;
 		}
 		echo '  <td>'.$supplier_item['address'].'</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['phone'].'</td>'.PHP_EOL;
