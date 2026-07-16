@@ -49,7 +49,7 @@ en_tete('Liste de tous les fournisseurs', $find);
 			<th>
 				Contacts
 			</th>
-			<th>
+			<th class="max30">
 				Description
 			</th>
 			<?php if ($logged_level == 2) { ?>
@@ -97,7 +97,7 @@ if ($pdo = connect_db()) {
 			echo '<a href="'.$url.'">'.ICON_URL.'</a>';
 		echo '</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['contact'].'</td>'.PHP_EOL;
-		echo '  <td>'.$supplier_item['description'].'</td>'.PHP_EOL;
+		echo '  <td class="max30">'.$supplier_item['description'].'</td>'.PHP_EOL;
 		if ($logged_level >= 2) {
 			echo '  </td><td>';
 			echo '<a href="supplier-edit.php?id='.$supplier_item['id'].'">'.ICON_EDIT.'</a>';

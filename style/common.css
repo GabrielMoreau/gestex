@@ -190,6 +190,20 @@ div.catalog {
 	border-bottom: 1px solid var(--navbar-title-bg);
 }
 
+.catalog td.max20,
+.catalog th.max20 {
+	max-width: 20em;
+	white-space: normal;
+	overflow-wrap: anywhere;
+}
+
+.catalog td.max30,
+.catalog th.max30 {
+	max-width: 30em;
+	white-space: normal;
+	overflow-wrap: anywhere;
+}
+
 .catalog table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
 	content: "\00A0\21C5";
 	}
