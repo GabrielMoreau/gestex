@@ -477,7 +477,7 @@ function get_equipment_count_is_loanable_by_team($pdo, $team_id) {
 function get_equipment_listall_by_manager_user($pdo, $manager_user_id) {
 	$sql = 'SELECT DISTINCT e.*, c.name AS category_name FROM equipment AS e LEFT JOIN category AS c ON e.category_id = c.id WHERE e.manager_user_id = ? ORDER BY c.name, e.name;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($team_id));
+	$stmt->execute(array($manager_user_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch;
 }
@@ -492,7 +492,7 @@ function get_equipment_listall_by_manager_user($pdo, $manager_user_id) {
 function get_equipment_count_by_manager_user($pdo, $manager_user_id) {
 	$sql = 'SELECT COUNT(*) as count FROM equipment AS e WHERE e.manager_user_id = ?;';
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute(array($team_id));
+	$stmt->execute(array($manager_user_id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	return $result_fetch[0]['count'];
 }
