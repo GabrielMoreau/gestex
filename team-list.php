@@ -74,7 +74,7 @@ if ($pdo = connect_db()) {
 		echo '  <td style="vertical-align: top;">';
 		$count_equipment = get_equipment_count_by_team($pdo, $team_current['id']);
 		if ($count_equipment > 0)
-			echo '    <a href="equipment-list.php?team_id='.$team_current['id'].'">'.ICON_LIST.'</a>'.$count_equipment;
+			echo '    <a href="equipment-list.php?team_id='.$team_current['id'].'">'.ICON_LIST.'</a> '.$count_equipment;
 		echo '  </td>'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';
 		echo      $team_current['accounting'];
