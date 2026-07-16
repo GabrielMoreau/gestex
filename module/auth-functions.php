@@ -137,9 +137,9 @@ function auth($reqlevel, $logged_user='', $password='') {
 				$ldap_user['uid'],       /* login */
 				'!ldap!',                /* password */
 				$ldap_user['mail'],      /* email */
-				4,                       /* level */
+				1,                       /* level */
 				$ldap_user['telephone'], /* tel */
-				0,                       /* team_id */
+				1,                       /* team_id */
 				'clair',                 /* theme */
 			);
 			$user = get_user_all_by_login($pdo, $logged_user);
