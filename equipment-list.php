@@ -49,8 +49,8 @@ if ($supplier_id > 0) {
 // Récupère l'utilisateur
 $manager_user_id = param_get('manager_user_id', 0);
 if ($manager_user_id > 0) {
-	$user_selected = get_user_all_by_id($pdo, $manager_user_id);
-	$title .= ' en gestion par l’utilisateur <i>'.$user_selected['name'].'</i>';
+	$user_selected = get_user_short_by_id($pdo, $manager_user_id);
+	$title .= ' en gestion par l’utilisateur <i>'.$user_selected['firstname'].' '.$user_selected['familyname'].'</i>';
 }
 ?>
 
