@@ -26,4 +26,7 @@ define('GESTEX_ADMIN_MAIL',  "webmaster@your-entity.sample");
 define('GESTEX_ENTITY_NAME', "YOUR ENTITY");
 define('GESTEX_ENTITY_URL',  "http://www.your-entity.sample/");
 define('GESTEX_ENTITY_LOGO', "your-entity.jpg");
+
+// Default team for new users authenticate by the LDAP server
+define('GESTEX_DEFAULT_TEAM_ID', 1);
 ?>
