@@ -33,8 +33,7 @@ en_tete('Liste de tous les utilisateurs');
 			<th>
 				Nom de famille
 			</th>
-			<th class="sorttable_nosort">
-			</th>
+			<th class="sorttable_nosort"></th>
 			<th>
 				Téléphone
 			</th>

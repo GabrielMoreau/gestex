@@ -31,9 +31,7 @@ en_tete('Liste de toutes les équipes');
 			<th>
 				Description
 			</th>
-			<th class="sorttable_nosort">
-				<a href="equipment-list.php"><?=ICON_LIST?></a>
-			</th>
+			<th class="sorttable_nosort"></th>
 			<th>
 				Compte
 			</th>
