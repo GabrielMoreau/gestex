@@ -66,7 +66,7 @@ if ($pdo = connect_db()) {
 	$supplier_fetch = get_supplier_find($pdo, $find);
 	$num_line = 1;
 	foreach ($supplier_fetch as $supplier_item) {
-		$count = get_equipment_count_by_supplier($pdo, $supplier_item['id']);
+		$count_equipment = get_equipment_count_by_supplier($pdo, $supplier_item['id']);
 		$class = 'impair';
 		if ($num_line % 2)
 			$class = 'pair';
@@ -74,10 +74,10 @@ if ($pdo = connect_db()) {
 		if ($supplier_item['id'] == $id_highlight)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
-		if ($count === 0) {
+		if ($count_equipment === 0) {
 			echo '  <td><a name="item'.$supplier_item['id'].'"></a>'.$supplier_item['name'].'</td>'.PHP_EOL;
 		} else {
-			echo '  <td><a name="item'.$supplier_item['id'].'"></a><a href="equipment-list.php?supplier_id='.$supplier_item['id'].'">'.$supplier_item['name'].'</a></td>'.PHP_EOL;
+			echo '  <td><a name="item'.$supplier_item['id'].'"></a><a href="equipment-list.php?supplier_id='.$supplier_item['id'].'">'.$supplier_item['name'].' '.ICON_LIST'</a> '.$count_equipment.'</td>'.PHP_EOL;
 		}
 		echo '  <td>'.$supplier_item['address'].'</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['phone'].'</td>'.PHP_EOL;
@@ -101,10 +101,10 @@ if ($pdo = connect_db()) {
 		} //end if
 		if ($logged_level >= 3) {
 			echo '  </td><td>';
-			if ($count === 0) {
+			if ($count_equipment === 0) {
 				echo '<a href="supplier-del.php?id='.$supplier_item['id'].'">'.ICON_TRASH.'</a>';
 			} else {
-				echo $count;
+				echo $count_equipment;
 			}
 			echo '</td>'.PHP_EOL;
 		} // end if
