@@ -47,9 +47,9 @@ if ($supplier_id > 0) {
 }
 
 // Récupère l'utilisateur
-$user_id = param_get('user_id', 0);
-if ($user_id > 0) {
-	$user_selected = get_user_all_by_login($pdo, $user_id);
+$manager_user_id = param_get('manager_user_id', 0);
+if ($manager_user_id > 0) {
+	$manager_user_selected = get_user_all_by_login($pdo, $manager_user_id);
 	$title .= ' en gestion par l’utilisateur <i>'.$user_selected['name'].'</i>';
 }
 ?>
@@ -109,8 +109,8 @@ if ($user_id > 0) {
 		$equipment_fetch = get_equipment_listall_by_category($pdo, $category_id);
 	else if ($supplier_id != 0)
 		$equipment_fetch = get_equipment_listall_by_supplier($pdo, $supplier_id);
-	else if ($user_id != 0)
-		$equipment_fetch = get_equipment_listall_by_user($pdo, $user_id);
+	else if ($manager_user_id != 0)
+		$equipment_fetch = get_equipment_listall_by_manager_user($pdo, $manager_user_id);
 	else
 		$equipment_fetch = get_equipment_listall($pdo);
 
