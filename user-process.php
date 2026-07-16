@@ -72,7 +72,7 @@ if ($flag_new) { // new
 	level_or_alert(3, 'Validation d’un nouvel utilisateur');
 
 	$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
-	$team_id = (filter_var($team_id, FILTER_VALIDATE_INT) > 0) ? (int)$team_id : 1;
+	$team_id = (filter_var($team_id, FILTER_VALIDATE_INT) > 0) ? (int)$team_id : GESTEX_DEFAULT_TEAM_ID;
 	list($user_id, $err_msg) = set_user_new($pdo, $familyname, $firstname, $username, $new_pwhash, $mail, $level, $phone, $team_id, $theme);
 
 	if ($err_msg != '') {

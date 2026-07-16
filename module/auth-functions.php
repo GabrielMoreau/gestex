@@ -139,7 +139,7 @@ function auth($reqlevel, $logged_user='', $password='') {
 				$ldap_user['mail'],      /* email */
 				1,                       /* level */
 				$ldap_user['telephone'], /* tel */
-				1,                       /* team_id */
+				GESTEX_DEFAULT_TEAM_ID,  /* team_id */
 				'clair',                 /* theme */
 			);
 			$user = get_user_all_by_login($pdo, $logged_user);
