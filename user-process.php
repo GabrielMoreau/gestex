@@ -53,7 +53,7 @@ if ($flag_new) {
 
 $pdo = connect_db_or_alert();
 
-if ($flag_new and check_val_in_db($pdo, 'users', 'username', $username)) {
+if ($flag_new and check_val_in_db($pdo, 'user', 'username', $username)) {
 	// nom existant deja dans db
 	$err_msg = 'L’identifiant <i>'.$username.'</i> est déjà utilisé dans la base de données';
 }
