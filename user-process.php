@@ -73,7 +73,7 @@ if ($flag_new) { // new
 	level_or_alert(3, 'Validation d’un nouvel utilisateur');
 
 	$new_pwhash = password_hash($password, PASSWORD_DEFAULT);
-	if ($team_id === 0) {
+	if ($team_id === 0 || $team_id === '') {
 		$team_id = 1;
 	}
 	list($user_id, $err_msg) = set_user_new($pdo, $familyname, $firstname, $username, $new_pwhash, $mail, $level, $phone, $team_id, $theme);
