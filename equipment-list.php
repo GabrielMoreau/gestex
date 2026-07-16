@@ -45,6 +45,13 @@ if ($supplier_id > 0) {
 	$supplier_selected = get_supplier_short_by_id($pdo, $supplier_id);
 	$title .= ' du fournisseur <i>'.$supplier_selected['name'].'</i>';
 }
+
+// Récupère l'utilisateur
+$user_id = param_get('user_id', 0);
+if ($user_id > 0) {
+	$user_selected = get_user_all_by_login($pdo, $user_id);
+	$title .= ' en gestion par l’utilisateur <i>'.$user_selected['name'].'</i>';
+}
 ?>
 
 <?php en_tete($title) ?>
@@ -96,12 +103,14 @@ if ($supplier_id > 0) {
 
 <?php
 	// Récupère la liste de appareils
-	if ($category_id == 0 && $team_id != 0)
+	if ($team_id != 0)
 		$equipment_fetch =  get_equipment_listall_by_team($pdo, $team_id);
-	else if ($category_id != 0 && $team_id == 0)
+	else if ($category_id != 0)
 		$equipment_fetch = get_equipment_listall_by_category($pdo, $category_id);
-	else if ($supplier_id != 0 && $team_id == 0 && $category_id == 0)
+	else if ($supplier_id != 0)
 		$equipment_fetch = get_equipment_listall_by_supplier($pdo, $supplier_id);
+	else if ($user_id != 0)
+		$equipment_fetch = get_equipment_listall_by_user($pdo, $user_id);
 	else
 		$equipment_fetch = get_equipment_listall($pdo);
 
