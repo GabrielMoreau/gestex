@@ -83,7 +83,7 @@ if ($pdo = connect_db()) {
 		echo '  <td style="vertical-align: top;">';
 		$count_equipment = get_equipment_count_by_manager_user($pdo, $user_current['id']);
 		if ($count_equipment > 0)
-			echo '    <a href="equipment-list.php?manager_user_id='.$user_current['id'].'">'.ICON_LIST.' ('.$count_equipment.')</a>';
+			echo '    <a href="equipment-list.php?manager_user_id='.$user_current['id'].'">'.ICON_LIST.'</a>'.$count_equipment;
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
 		echo      $user_current['phone'];
