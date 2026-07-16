@@ -71,10 +71,10 @@ if ($manager_user_id > 0) {
 			<th>
 				Nom
 			</th>
-			<th>
+			<th class="max20">
 				Modèle
 			</th>
-			<th class="sorttable_nosort">
+			<th class="sorttable_nosort max20">
 				Caractéristiques
 			</th>
 			<?php if ($team_id == 0): ?>
@@ -138,10 +138,10 @@ if ($manager_user_id > 0) {
 		echo '  <td>';
 		echo '    <a name="item'.$equipment_item['id'].'"></a><a href="equipment-view.php?id='.$equipment_item['id'].'">'. $equipment_item['name'].'</a>';
 		echo '  </td>'.PHP_EOL;
-		echo '  <td>';
+		echo '  <td class="max20">';
 		echo      $equipment_item['model'];
 		echo '  </td>'.PHP_EOL;
-		echo '  <td>';
+		echo '  <td class="max20">';
 		echo      $equipment_item['feature'];
 		echo '  </td>'.PHP_EOL;
 
