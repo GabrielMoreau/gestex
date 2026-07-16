@@ -31,7 +31,7 @@ en_tete('Liste de tous les fournisseurs', $find);
 			</th>
 			<th class="sorttable_nosort">
 			</th>
-			<th class="sorttable_nosort">
+			<th class="sorttable_nosort max20">
 				Adresse
 			</th>
 			<th>
@@ -46,7 +46,7 @@ en_tete('Liste de tous les fournisseurs', $find);
 			<th class="sorttable_nosort">
 				WWW
 			</th>
-			<th>
+			<th class="max20">
 				Contacts
 			</th>
 			<th class="max30">
@@ -83,7 +83,7 @@ if ($pdo = connect_db()) {
 			echo '  <td><a name="item'.$supplier_item['id'].'"></a><a href="equipment-list.php?supplier_id='.$supplier_item['id'].'">'.$supplier_item['name'].'</a></td>'.PHP_EOL;
 			echo '  <td><a name="item'.$supplier_item['id'].'"></a><a href="equipment-list.php?supplier_id='.$supplier_item['id'].'">'.ICON_LIST.'</a> '.$count_equipment.'</td>'.PHP_EOL;
 		}
-		echo '  <td>'.$supplier_item['address'].'</td>'.PHP_EOL;
+		echo '  <td class="max20">'.$supplier_item['address'].'</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['phone'].'</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['fax'].'</td>'.PHP_EOL;
 		echo '  <td>';
@@ -96,7 +96,7 @@ if ($pdo = connect_db()) {
 		if (!empty($url))
 			echo '<a href="'.$url.'">'.ICON_URL.'</a>';
 		echo '</td>'.PHP_EOL;
-		echo '  <td>'.$supplier_item['contact'].'</td>'.PHP_EOL;
+		echo '  <td class="max20">'.$supplier_item['contact'].'</td>'.PHP_EOL;
 		echo '  <td class="max30">'.$supplier_item['description'].'</td>'.PHP_EOL;
 		if ($logged_level >= 2) {
 			echo '  </td><td>';
