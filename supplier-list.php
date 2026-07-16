@@ -77,7 +77,7 @@ if ($pdo = connect_db()) {
 		if ($count_equipment === 0) {
 			echo '  <td><a name="item'.$supplier_item['id'].'"></a>'.$supplier_item['name'].'</td>'.PHP_EOL;
 		} else {
-			echo '  <td><a name="item'.$supplier_item['id'].'"></a><a href="equipment-list.php?supplier_id='.$supplier_item['id'].'">'.$supplier_item['name'].' '.ICON_LIST'</a> '.$count_equipment.'</td>'.PHP_EOL;
+			echo '  <td><a name="item'.$supplier_item['id'].'"></a><a href="equipment-list.php?supplier_id='.$supplier_item['id'].'">'.$supplier_item['name'].' '.ICON_LIST.'</a> '.$count_equipment.'</td>'.PHP_EOL;
 		}
 		echo '  <td>'.$supplier_item['address'].'</td>'.PHP_EOL;
 		echo '  <td>'.$supplier_item['phone'].'</td>'.PHP_EOL;
