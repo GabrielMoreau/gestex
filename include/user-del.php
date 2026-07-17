@@ -12,7 +12,7 @@ if ($user_status === 0)
 	$user_status_msg = 'activé';
 ?>
 
-<?php en_tete('Changer l’état de l’utilisateur '.$user_fullname.' ('.$user_status_msg.')'); ?>
+<?php en_tete('Changer l’état de l’utilisateur '.$user_fullname.' ('.$user_status_msg.')'.$user_status); ?>
 
 <center class="alert">
 <form action="user-del.php" method="POST">
