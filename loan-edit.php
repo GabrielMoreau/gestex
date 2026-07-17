@@ -19,17 +19,6 @@ $equipment_id = (int)param_get('equipment_id'); // -> new
 $loan_id      = (int)param_get('loan_id');     // -> modify
 $param_mode   = param_get('mode', "loan");
 
-/* if ($loan_id == 0) {
-	$mode = 'Ajouter';
-	en_tete('Ajouter un prêt');
-} else if (!empty($equipment_id) && $equipment_id != 0 && $equipment_id != NULL){
-	$mode = 'Reserver apres';
-	en_tete('Reserver plus tard');
-} else {
-	$mode = 'Modifier';
-	en_tete('Modifier le prêt d’un appareil');
-}*/
-
 if ($param_mode == 'loan') {
 	$mode = 'Empunter';
 	en_tete('Ajouter un prêt');

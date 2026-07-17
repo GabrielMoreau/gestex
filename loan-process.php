@@ -33,9 +33,9 @@ $date_out_rtn  = strtotime(date('Y-m-d', strtotime($date_retour)));
 
 //variables ne pouvant etre nulles
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-	if (empty($equipment_id))
+	if ($equipment_id === 0)
 		$err_msg = 'Nom de l’appareil non précisé';
-	if (empty($team_id))
+	if ($team_id === 0)
 		$err_msg = 'Équipe non précisée';
 	if (empty($date_emprunt))
 		$err_msg = 'Date d’emprunt non précisé';
@@ -154,7 +154,7 @@ if ($param_mode == "booking") {
 			exit();
 		}
 	} else {
-		if (empty($equipment_id)) {
+		if ($equipment_id === 0) {
 			$equipment_id = get_equipment_by_loan_id($pdo, $loan_id);
 			$check = check_loan_borrowed_by_equipment($pdo, get_equipment_by_loan_id($pdo, $loan_id));
 		} else {

@@ -36,17 +36,17 @@ $barcode          = param_post('barcode', 0); // force int
 $max_loan_days    = param_post('max_loan_days', 0);
 $is_loanable      = param_post('is_loanable', 0);
 //variables ne pouvant etre nulles
-if (empty($category_id))
+if ($category_id === 0)
 	$err_msg = 'Catégorie non précisé';
 if (empty($name))
 	$err_msg = 'Nom de l’appareil non précisé';
 if (empty($model))
 	$err_msg = 'Modèle non précisé';
-if (empty($team_id))
+if ($team_id === 0)
 	$err_msg = 'Équipe non précisé';
-if (empty($manager_user_id))
+if ($manager_user_id === 0)
 	$err_msg = 'Tech non précisé';
-if (empty($supplier_id))
+if ($supplier_id === 0)
 	$err_msg = 'Fournisseur non précisé';
 if (empty($date_of_purchase))
 	$err_msg = 'Achat non précisé';

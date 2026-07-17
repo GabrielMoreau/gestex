@@ -17,7 +17,7 @@ if (empty($_SESSION['logged_user'])) {
 }
 
 $equipment_id = (int)param_get('equipment_id');
-if (empty($equipment_id))
+if ($equipment_id === 0)
 	redirect('equipment-list.php');
 
 if ($pdo = connect_db()) {
