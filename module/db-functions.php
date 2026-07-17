@@ -134,6 +134,62 @@ function check_val_in_db($pdo, $table, $col, $value) {
 }
 
 // ---------------------------------------------------------------------
+// Foreign Key References
+// ---------------------------------------------------------------------
+
+/**
+ * Recherche les références à une clef primaire dans toutes les tables.
+ *
+ * @param PDO    $pdo
+ * @param string $table          Table référencée (ex : 'user')
+ * @param string $column         Colonne référencée (ex : 'id')
+ * @param mixed  $value          Valeur recherchée
+ *
+ * @return array ['table' => nombre de références]
+ */
+
+function get_foreign_key_references(PDO $pdo, string $table, string $column, $value): array {
+	$sql = "
+		SELECT TABLE_NAME, COLUMN_NAME
+		FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+		WHERE REFERENCED_TABLE_SCHEMA = DATABASE()
+			AND REFERENCED_TABLE_NAME = :table
+			AND REFERENCED_COLUMN_NAME = :column
+	";
+
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute([
+		':table'  => $table,
+		':column' => $column
+	]);
+
+	$references = [];
+	foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $fk) {
+		if (
+			!preg_match('/^[A-Za-z0-9_]+$/', $fk['TABLE_NAME']) ||
+			!preg_match('/^[A-Za-z0-9_]+$/', $fk['COLUMN_NAME'])
+			) {
+			continue;
+		}
+
+		$sql = sprintf(
+			"SELECT COUNT(*) FROM `%s` WHERE `%s` = ?",
+			$fk['TABLE_NAME'],
+			$fk['COLUMN_NAME']
+		);
+
+		$$count_stmt = $pdo->prepare($sql);
+		$$count_stmt->execute([$value]);
+
+		$count = (int)$$count_stmt->fetchColumn();
+		if ($count > 0) {
+			$references[$fk['TABLE_NAME']] = $count;
+		}
+	}
+	return $references;
+}
+
+// ---------------------------------------------------------------------
 // Category
 // ---------------------------------------------------------------------
 
