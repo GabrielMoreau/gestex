@@ -178,10 +178,10 @@ function get_foreign_key_references(PDO $pdo, string $table, string $column, $va
 			$fk['COLUMN_NAME']
 		);
 
-		$$count_stmt = $pdo->prepare($sql);
-		$$count_stmt->execute([$value]);
+		$count_stmt = $pdo->prepare($sql);
+		$count_stmt->execute([$value]);
 
-		$count = (int)$$count_stmt->fetchColumn();
+		$count = (int)$count_stmt->fetchColumn();
 		if ($count > 0) {
 			$references[$fk['TABLE_NAME']] = $count;
 		}
