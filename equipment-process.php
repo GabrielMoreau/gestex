@@ -82,8 +82,8 @@ if ($flag_new) { // new
 		exit();
 	}
 	if ($notice != '') {
-		$id_datasheet = set_datasheet_new($pdo, $equipment_id, 'notice');
-		if (!$id_datasheet) {
+		$datasheet_id = set_datasheet_new($pdo, $equipment_id, 'notice');
+		if (!$datasheet_id) {
 			$title        = 'Erreur appareil';
 			$action       = 'equipment-view.php?equipment_id='.$equipment_id;
 			$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l’ajout d’une notice à appareil (pas au format PDF ?)');
@@ -134,8 +134,8 @@ if ($modif) {
 		exit();
 	}
 	if ($notice != '') {
-		$id_datasheet = set_datasheet_new($pdo, $equipment_id, 'notice');
-		if (!$id_datasheet) {
+		$datasheet_id = set_datasheet_new($pdo, $equipment_id, 'notice');
+		if (!$datasheet_id) {
 			$title        = 'Erreur appareil';
 			$action       = 'equipment-view.php?equipment_id='.$equipment_id;
 			$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l’ajout d’une notice à appareil (pas au format PDF ?)');
