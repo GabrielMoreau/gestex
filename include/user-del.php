@@ -12,7 +12,7 @@ if ($user_status === 1)
 	$user_status_msg = 'activé';
 ?>
 
-<?php en_tete('Changer l’état de l’utilisateur '.$user_fullname.' ('.$user_status_msg.')'.$user_status); ?>
+<?php en_tete('Changer l’état de l’utilisateur '.$user_fullname.' ('.$user_status_msg.')'); ?>
 
 <center class="alert">
 <form action="user-del.php" method="POST">
@@ -21,9 +21,11 @@ if ($user_status === 1)
 	Voulez-vous changer l’état de l'utilisateur <?=$user_fullname?> (actuellement <?=$user_status_msg?>) ?
 	<button class="red" type="submit" name="ok" value="yes">Oui</button>
 	<button class="green" type="submit" formaction="user-list.php" value="no">Non</button>
+	<?php if ($user_status === 0): ?>
 	<hr>
 	Voulez-vous supprimer <b>définitivement</b> l'utilisateur <?=$user_fullname?> (#<?=$user_id?>) ?
 	<button class="red" type="submit" name="ok" value="destroy">Supprimer</button>
+	<?php endif; ?>
 	<hr>
 	<button type="submit" name="ok" value="cancel">Annuler</button>
 </form>
