@@ -14,7 +14,7 @@ $logged_id    = (int)$_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
-$user_id = param_post_or_get('user_id', 0);
+$user_id = (int)param_post_or_get('user_id', 0);
 $mode = 'Modifier';
 if ($user_id == 0) // new
 	$mode = 'Ajouter';
