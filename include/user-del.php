@@ -8,7 +8,7 @@
 
 <?php
 $user_status_msg = 'déactivé';
-if ($user_status === 0)
+if ($user_status === 1)
 	$user_status_msg = 'activé';
 ?>
 
