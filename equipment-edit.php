@@ -14,7 +14,7 @@ $logged_id   = (int)$_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $category_id  = (int)param_post_or_get('category_id');
-$equipment_id = param_post_or_get('equipment_id', 0);
+$equipment_id = (int)param_post_or_get('equipment_id', 0);
 $mode = 'Modifier';
 if ($equipment_id == 0) // new
 	$mode   = 'Ajouter';

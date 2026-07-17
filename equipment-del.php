@@ -10,7 +10,7 @@ require_once('module/html-functions.php');
 auth_or_login('equipment-list.php');
 level_or_alert(3, 'Suppression d’un appareil et de ses notices associées');
 
-$equipment_id = param_post_or_get('equipment_id', 0);
+$equipment_id = (int)param_post_or_get('equipment_id', 0);
 $valid        = param_post('ok', 'no');
 
 if ($equipment_id == 0 || $valid == 'cancel')

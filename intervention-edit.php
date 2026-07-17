@@ -10,8 +10,8 @@ require_once('module/html-functions.php');
 auth_or_login('intervention-edit.php.php');
 level_or_alert(3, 'Ajout d’une intervention');
 
-$equipment_id = param_post_or_get('equipment_id', 0);
-$intervention_id = param_post_or_get('intervention_id', 0);
+$equipment_id = (int)param_post_or_get('equipment_id', 0);
+$intervention_id = (int)param_post_or_get('intervention_id', 0);
 
 $mode = 'Ajouter';
 if ($intervention_id == 0) // new
