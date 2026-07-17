@@ -36,6 +36,12 @@ if ($category_id > 0) {
 $team_id = param_get('team_id', 0);
 if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
+	if (!is_array($team_selected) || empty($team_selected)) {
+		$resource_name = 'team_id';
+		$resource_index = $team_id;
+		include_once('include/include/alert-resource.php');
+		exit();
+	}
 	$title .= ' de l’équipe <i>'.$team_selected['name'].'</i>';
 }
 
@@ -43,6 +49,12 @@ if ($team_id > 0) {
 $supplier_id = param_get('supplier_id', 0);
 if ($supplier_id > 0) {
 	$supplier_selected = get_supplier_short_by_id($pdo, $supplier_id);
+	if (!is_array($supplier_selected) || empty($supplier_selected)) {
+		$resource_name = 'supplier_id';
+		$resource_index = $supplier_id;
+		include_once('include/include/alert-resource.php');
+		exit();
+	}
 	$title .= ' du fournisseur <i>'.$supplier_selected['name'].'</i>';
 }
 
@@ -50,6 +62,12 @@ if ($supplier_id > 0) {
 $manager_user_id = param_get('manager_user_id', 0);
 if ($manager_user_id > 0) {
 	$user_selected = get_user_short_by_id($pdo, $manager_user_id);
+	if (!is_array($manage_user_selected) || empty($manage_user_selected)) {
+		$resource_name = 'manage_user_id';
+		$resource_index = $manage_user_id;
+		include_once('include/include/alert-resource.php');
+		exit();
+	}
 	$title .= ' en gestion par l’utilisateur <i>'.$user_selected['firstname'].' '.$user_selected['familyname'].'</i>';
 }
 ?>

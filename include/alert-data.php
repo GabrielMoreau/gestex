@@ -8,11 +8,11 @@
 
 <div class="box-alert">
 	<center>
-		Une erreur est survenue lors de l’accès aux données avec la base de donnée.
+		Une erreur est survenue lors de l’accès à la base de données.
 		<br>
 		<b><?=$message_alert?></b>
 		<br>
-		Veuillez voir avec votre administrateur pour vous corriger éventuellement les problèmes sur votre base de données.
+		Veuillez voir avec votre administrateur pour corriger éventuellement les problèmes liés à cette base de données.
 		En cas d'erreurs systématiques, veuillez remonter un bogue aux développeurs amont.
 	</center>
 </div>
