@@ -13,7 +13,7 @@ level_or_alert(1, 'Liste de tous les utilisateurs');
 $logged_id    = (int)$_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
-$highlight_id = param_post_or_get('highlight', 0);
+$highlight_id = (int)param_post_or_get('highlight', 0);
 
 en_tete('Liste de tous les utilisateurs');
 ?>

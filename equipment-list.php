@@ -16,7 +16,7 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$highlight_id = param_post_or_get('highlight', 0);
+$highlight_id = (int)param_post_or_get('highlight', 0);
 $is_loanable  = param_get('is_loanable');
 
 $title = 'Liste des appareils';

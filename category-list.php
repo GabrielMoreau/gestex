@@ -16,7 +16,7 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$highlight_id = param_post_or_get('highlight', 0);
+$highlight_id = (int)param_post_or_get('highlight', 0);
 
 en_tete('Liste des appareils par catégorie');
 ?>
