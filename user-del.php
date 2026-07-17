@@ -26,14 +26,14 @@ if ($valid === 'yes') {
 	if ($user_status === 0 || $user_status === 1) {
 		$iostat = set_user_valid_by_id($pdo, $user_id, (($user_status + 1) % 2));
 		if ($iostat) // Ça a marché
-			redirect('user-list.php?highlight='.$user_id.'#item'.$user_id);
+			redirect('user-list.php?highlight='.$user_id.'&action=change#item'.$user_id);
 		$message_alert = 'Erreur dans le changement du statut de l’utilisateur : '.$user_fullname.' (#'.$user_id.')';
 		include_once('include/alert-data.php');
 		exit();
 	}
 
 	// Retourner à la page précédente
-	redirect('user-list.php?highlight='.$user_id.'#item'.$user_id);
+	redirect('user-list.php?highlight='.$user_id.'&action=nothing#item'.$user_id);
 }
 
 if ($valid === 'destroy') {
