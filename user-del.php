@@ -36,6 +36,49 @@ if ($valid == 'yes') {
 	redirect('user-list.php?highlight='.$user_id.'#item'.$user_id);
 }
 
+if ($valid == 'destroy') {
+	// Supprimer cet utilisateur
+	// On commence par le déactiver
+	if ($user_selected['valid'] === 0) {
+		$iostat = set_user_valid_by_id($pdo, $user_id, ((0 + 1) % 2));
+		if ($iostat) // Ça a marché
+			redirect('user-list.php?highlight='.$user_id.'#item'.$user_id);
+		$message_alert = 'Erreur dans le changement du statut de l’utilisateur : '.$user_fullname.' (#'.$user_id.')';
+		include_once('include/alert-data.php');
+		exit();
+	}
+
+	$references = get_foreign_key_references($pdo, 'user', 'id', $user_id);
+	if (!empty($references)) {
+		en_tete('Échec de la suppression de l’utilisateur '.$user_fullname);
+		echo "Suppression impossible.<br>";
+		echo "L'utilisateur est référencé dans :<br>";
+		foreach ($references as $table => $count) {
+			echo "- {$table} ({$count})<br>";
+		}
+		pied_page();
+		exit();
+	} else {
+		try {
+			$stmt = $pdo->prepare('DELETE FROM user WHERE id = ?');
+			$stmt->execute([$user_id]);
+		} catch (PDOException $e) {
+			// Erreur 1451 = contrainte de clef étrangère
+			$err_msg = 'Impossible de supprimer cet utilisateur.';
+			if ($e->errorInfo[1] == 1451) {
+				$err_msg = 'Impossible de supprimer cet utilisateur : il est référencé ailleurs.';
+			}
+			en_tete('Échec de la suppression de l’utilisateur '.$user_fullname);
+			echo $err_msg;
+			pied_page();
+			exit();
+		}
+	}
+
+	// Retourner à la page précédente
+	redirect('user-list.php');
+}
+
 // $user_id
 // $user_status
 // $user_fullname
