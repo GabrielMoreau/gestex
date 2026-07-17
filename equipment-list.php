@@ -58,13 +58,13 @@ if ($supplier_id > 0) {
 	$title .= ' du fournisseur <i>'.$supplier_selected['name'].'</i>';
 }
 
-// Récupère l'utilisateur reponsable
+// Récupère l'utilisateur responsable
 $manager_user_id = param_get('manager_user_id', 0);
 if ($manager_user_id > 0) {
 	$user_selected = get_user_short_by_id($pdo, $manager_user_id);
-	if (!is_array($manage_user_selected) || empty($manage_user_selected)) {
-		$resource_name = 'manage_user_id';
-		$resource_index = $manage_user_id;
+	if (!is_array($user_selected) || empty($user_selected)) {
+		$resource_name = 'manager_user_id';
+		$resource_index = $manager_user_id;
 		include_once('include/alert-resource.php');
 		exit();
 	}
