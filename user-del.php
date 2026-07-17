@@ -12,7 +12,7 @@ level_or_alert(3, 'Changer l’état d’un utilisateur');
 
 $user_id     = param_post_or_get('user_id', 0);
 $valid       = param_post('ok', 'no');
-$user_status = param_post_or_get('status', 0);
+$user_status = (int)param_post_or_get('status', 0);
 
 if ($user_id === 0 || $valid === 'cancel')
 	redirect('user-list.php');
