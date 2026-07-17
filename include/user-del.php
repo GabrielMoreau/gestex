@@ -3,12 +3,13 @@
 <?php
 // $user_id
 // $user_status
+// $user_status_actual
 // $user_fullname
 ?>
 
 <?php
 $user_status_msg = 'déactivé';
-if ($user_status === 1)
+if ($user_status_actual === 1)
 	$user_status_msg = 'activé';
 ?>
 
@@ -21,7 +22,7 @@ if ($user_status === 1)
 	Voulez-vous changer l’état de l'utilisateur <?=$user_fullname?> (actuellement <?=$user_status_msg?>) ?
 	<button class="red" type="submit" name="ok" value="yes">Oui</button>
 	<button class="green" type="submit" formaction="user-list.php" value="no">Non</button>
-	<?php if ($user_status === 0): ?>
+	<?php if ($user_status_actual === 0): ?>
 	<hr>
 	Voulez-vous supprimer <b>définitivement</b> l'utilisateur <?=$user_fullname?> (#<?=$user_id?>) ?
 	<button class="red" type="submit" name="ok" value="destroy">Supprimer</button>

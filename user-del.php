@@ -79,7 +79,7 @@ if ($valid === 'destroy') {
 	redirect('user-list.php');
 }
 
-$user_status = $user_selected['valid'];
+$user_status_actual = $user_selected['valid'];
 // $user_id
 // $user_status
 // $user_fullname
