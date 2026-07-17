@@ -15,8 +15,8 @@ $logged_id   = (int)$_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
-$equipment_id = param_get('equipment_id'); // -> new
-$loan_id      = param_get('loan_id');     // -> modify
+$equipment_id = (int)param_get('equipment_id'); // -> new
+$loan_id      = (int)param_get('loan_id');     // -> modify
 $param_mode   = param_get('mode', "loan");
 
 /* if ($loan_id == 0) {

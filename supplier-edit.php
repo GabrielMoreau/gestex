@@ -13,7 +13,7 @@ level_or_alert(2, 'Modification d’une équipe');
 $logged_id   = (int)$_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-$supplier_id = param_post_or_get('supplier_id', 0);
+$supplier_id = (int)param_post_or_get('supplier_id', 0);
 $mode = 'Modifier';
 if ($supplier_id == 0) // new
 	$mode   = 'Ajouter';

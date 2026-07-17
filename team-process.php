@@ -17,14 +17,14 @@ $logged_level = $_SESSION['logged_level'];
 
 unset($err_msg);
 
-$team_id = param_post('team_id', 0); // -> modify
+$team_id = (int)param_post('team_id', 0); // -> modify
 $flag_new = true;
 if ($team_id > 0)
 	$flag_new = false;
 
 $name            = param_post('name');
 $accounting      = param_post('accounting');
-$manager_user_id = param_post('manager_user_id');
+$manager_user_id = (int)param_post('manager_user_id');
 $description     = param_post('description');
 // variables ne pouvant etre nulles
 if (empty($name))

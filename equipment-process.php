@@ -16,19 +16,19 @@ $logged_level = $_SESSION['logged_level'];
 
 unset($err_msg);
 
-$equipment_id = param_post('equipment_id', 0);
+$equipment_id = (int)param_post('equipment_id', 0);
 $flag_new = true;
 if ($equipment_id > 0)
 	$flag_new = false;
 
-$category_id      = param_post('category_id');
+$category_id      = (int)param_post('category_id');
 $name             = param_post('name');
 $model            = param_post('model');
 $feature          = param_post('feature');
-$team_id          = param_post('team_id');
-$supplier_id      = param_post('supplier_id');
+$team_id          = (int)param_post('team_id');
+$supplier_id      = (int)param_post('supplier_id');
 $date_of_purchase = param_post('date_of_purchase');
-$manager_user_id  = param_post('manager_user_id');
+$manager_user_id  = (int)param_post('manager_user_id');
 $repair_comment   = param_post('repair_comment');
 $accessories      = param_post('accessories');
 $inventory_number = empty_to_null(param_post('inventory_number'));

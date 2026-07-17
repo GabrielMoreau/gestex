@@ -14,9 +14,9 @@ level_or_alert(3, 'Ajout ou modification d’un prêt');
 
 unset($err_msg);
 
-$loan_id      = param_post('loan_id', 0); // modify
-$equipment_id = param_post('equipment_id');
-$team_id      = param_post('team_id');
+$loan_id      = (int)param_post('loan_id', 0); // modify
+$equipment_id = (int)param_post('equipment_id');
+$team_id      = (int)param_post('team_id');
 $date_emprunt = param_post('start_date');
 $date_retour  = param_post('end_date');
 $comment      = param_post('comment');
@@ -24,7 +24,7 @@ $comment      = param_post('comment');
 $param_mode   = param_post('mode', 'booking'); // booking, booking-after, edit
 if (isset($_GET['mode']) && param_get('mode') != '') {
 	$param_mode = param_get("mode");
-	$loan_id = param_get('loan_id');
+	$loan_id = (int)param_get('loan_id');
 }
 
 $date_tomorrow = strtotime('+1 day', strtotime(date("Y-m-d", time())));

@@ -16,7 +16,7 @@ $logged_level = $_SESSION['logged_level'];
 
 // validation et modification d'un nouvel utilisateur
 
-$user_id  = param_post('user_id', 0); // -> modify
+$user_id  = (int)param_post('user_id', 0); // -> modify
 $flag_new = true;
 if ($user_id > 0)
 	$flag_new = false;
@@ -30,7 +30,7 @@ $theme      = param_post('theme', 'clair');     // *
 $mail       = param_post('email');     // *
 $firstname  = param_post('firstname');
 $phone      = param_post('phone', 'Na');
-$team_id    = param_post('team_id');
+$team_id    = (int)param_post('team_id');
 
 if (empty($familyname))
 	$err_msg = 'Nom de famille non précisé';

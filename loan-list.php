@@ -20,7 +20,7 @@ $title = 'Liste des prêts';
 
 $pdo = connect_db_or_alert();
 
-$team_id = param_get('team_id', 0);
+$team_id = (int)param_get('team_id', 0);
 if ($team_id > 0) {
 	$team_selected = get_team_by_id($pdo, $team_id);
 	$title        .= ' de l’équipe <i>'.$team_selected['name'].'</i>';

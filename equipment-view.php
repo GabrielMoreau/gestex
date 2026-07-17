@@ -16,7 +16,7 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$equipment_id = param_get('equipment_id');
+$equipment_id = (int)param_get('equipment_id');
 if (empty($equipment_id))
 	redirect('equipment-list.php');
 

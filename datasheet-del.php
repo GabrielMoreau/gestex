@@ -10,7 +10,7 @@ require_once('module/html-functions.php');
 auth_or_login('equipment-list.php');
 level_or_alert(3, 'Suppression d’une notice');
 
-$datasheet_id = param_post_or_get('datasheet_id', 0);
+$datasheet_id = (int)param_post_or_get('datasheet_id', 0);
 $valid        = param_post('ok', 'no');
 
 $equipment_id = 0;

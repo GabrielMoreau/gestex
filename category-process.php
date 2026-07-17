@@ -12,10 +12,8 @@ level_or_alert(3, 'Ajout d’une catégorie');
 
 unset($err_msg);
 
-$category_id = param_post('category_id'); // -> modify
-$flag_new = true;
-if (!empty($category_id))
-	$flag_new = false;
+$category_id = (int)param_post('category_id'); // -> modify
+$flag_new = ($category_id === 0);
 
 //variables ne pouvant etre nulles
 $categorie_name = strtolower(param_post('categorie_name'));
