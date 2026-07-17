@@ -97,10 +97,10 @@ if ($pdo = connect_db()) {
 			echo '    <a href="mailto:'.$user_mail.'">'.ICON_MAIL.'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td>';
-		// Récupère la liste de equipes
+		// Récupère la liste de équipes
 		$team = get_team_by_id($pdo, $user_current['team_id']);
 		if ($team)
-			echo $team['name'].' ('.$user_current['team_id'].')';
+			echo '<a href="equipment-list.php?team_id='.$team['id'].'">'.$team['name'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		if ($logged_level >= 3) {
 			echo '  <td>';
