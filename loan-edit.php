@@ -60,22 +60,21 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 <table>
 	<tbody>
 
-		<?php
-		if ($param_mode == "edit") {?>
-			<tr>
-				<td style="background-color: #a6a6a8;color: black;padding-left: 7px;padding: 4px;">
-					<b>ID <?php if (STATUS_LOAN_BORROWED == get_loan_status_by_id($pdo, $loan_id)) {echo "Emprunt";} else {echo "Réservation";}?></b>
-				</td>
-				<td style="background-color: var(--color-link);color: black;text-align: center;padding: 4px;">
-					<b><?php echo param_get('loan_id', "UNKNOW")?></b>
-				</td>
-			</tr>
+		<?php if ($param_mode == "edit"): ?>
+		<tr>
+			<td style="background-color: #a6a6a8;color: black;padding-left: 7px;padding: 4px;">
+				<b>ID <?php if (STATUS_LOAN_BORROWED == get_loan_status_by_id($pdo, $loan_id)) {echo "Emprunt";} else {echo "Réservation";}?></b>
+			</td>
+			<td style="background-color: var(--color-link);color: black;text-align: center;padding: 4px;">
+				<b><?php echo param_get('loan_id', "UNKNOW")?></b>
+			</td>
+		</tr>
 
-			<tr>
-				<td></td>
-				<td></td>
-			</tr><?php
-		}?>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+		<?php endif; ?>
 
 		<tr>
 			<td>Nom de l'appareil
@@ -107,7 +106,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 			<td>
 				<select name="team_id">
 				<?php
-				// Récupère la liste des equipes
+				// Récupère la liste des équipes
 				$team_fetch = get_team_listshort($pdo);
 				foreach ($team_fetch as $team_current) {
 					echo '<option value="'.$team_current['id'].'"';
