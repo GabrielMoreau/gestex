@@ -6,13 +6,17 @@
 // $user_fullname
 ?>
 
-<?php en_tete('Changer l’état d’un utilisateur'); ?>
+$user_status_str = 'déactivé';
+if ($user_status === '0')
+	$user_status_str = 'activé';
+
+<?php en_tete('Changer l’état de l’utilisateur '.$user_fullname.'('.$user_status_str.')'); ?>
 
 <center class="alert">
 <form action="user-del.php" method="POST">
 	<input type="hidden" name="user_id" value="<?=$user_id?>">
 	<input type="hidden" name="status" value="<?=$user_status?>">
-	Voulez-vous changer l’état de l'utilisateur <?=$user_fullname?> (#<?=$user_id?>) ?
+	Voulez-vous changer l’état de l'utilisateur <?=$user_fullname?> (actuellement <?=$user_status_str?>) ?
 	<button class="red" type="submit" name="ok" value="yes">Oui</button>
 	<button class="green" type="submit" formaction="user-list.php" value="no">Non</button>
 	<hr>
