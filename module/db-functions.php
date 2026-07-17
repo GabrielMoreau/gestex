@@ -1449,7 +1449,7 @@ function get_user_count($pdo) {
  */
 function set_user_new($pdo, $familyname, $firstname, $username, $password, $email, $level, $phone, $team_id, $theme) {
 	error_log('Warn: new user '.$username);
-	$sql = 'INSERT INTO user (familyname, firstname, username, password, email, level, phone, team_id, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?);';
+	$sql = 'INSERT INTO user (familyname, firstname, username, password, email, level, phone, team_id, valid, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, ?);';
 	$stmt = $pdo->prepare($sql);
 	$iostat = $stmt->execute(array($familyname, $firstname, $username, $password, $email, $level, $phone, $team_id, $theme));
 	$err_msg = '';
