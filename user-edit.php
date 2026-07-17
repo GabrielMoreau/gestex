@@ -119,7 +119,7 @@ if ($mode == 'Ajouter') {
 					foreach ($team_fetch as $team_current) {
 						echo '<option value="'.$team_current['id'].'"';
 						// Selectionne la bonne équipe
-						if ($team_current['id'] == param_post_key('team_id', $user_selected, 0))
+						if ($team_current['id'] === (int)param_post_key('team_id', $user_selected, 0))
 							echo ' selected';
 						echo '>'.$team_current['name'].'</option>';
 					} // end foreach

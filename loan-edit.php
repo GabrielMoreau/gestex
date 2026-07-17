@@ -122,7 +122,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 				$team_fetch = get_team_listshort($pdo);
 				foreach ($team_fetch as $team_current) {
 					echo '<option value="'.$team_current['id'].'"';
-					if ($team_current['id'] == param_post_key('team_id', $loan_selected)) {
+					if ($team_current['id'] === (int)param_post_key('team_id', $loan_selected)) {
 						echo ' selected';
 					}
 					echo '>'.$team_current['name'].'</option>';

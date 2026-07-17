@@ -35,7 +35,7 @@ else if ($mode == 'Modifier') {
 	$datasheet_count    = count($datasheet_fetch);
 }
 
-$manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
+$manager_user_id = (int)param_post_key('manager_user_id', $equipment_selected, 0);
 ?>
 
 <div class="form">
@@ -54,7 +54,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 				$category_fetch = get_category_listshort($pdo);
 				foreach ($category_fetch as $category_current) {
 					echo '<option value="'.$category_current['id'].'"';
-					if ($category_current['id'] == param_post_key('category_id', $equipment_selected, $category_id)) {
+					if ($category_current['id'] === (int)param_post_key('category_id', $equipment_selected, $category_id)) {
 						echo " selected";
 					}
 
@@ -104,7 +104,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 				$team_fetch = get_team_listshort($pdo);
 				foreach ($team_fetch as $team_current) {
 					echo '<option value="'.$team_current['id'].'"';
-					if ($team_current['id'] == param_post_key('team_id', $equipment_selected, 0)) {
+					if ($team_current['id'] === (int)param_post_key('team_id', $equipment_selected, 0)) {
 						echo ' selected';
 					}
 					echo '>'.$team_current['name'].'</option>';
@@ -126,7 +126,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 				$supplier_fetch = get_supplier_listshort($pdo);
 				foreach ($supplier_fetch as $supplier_current) {
 					echo '<option value="'.$supplier_current['id'].'"';
-					if ($supplier_current['id'] == param_post_key('supplier_id', $equipment_selected, 0)) {
+					if ($supplier_current['id'] === (int)param_post_key('supplier_id', $equipment_selected, 0)) {
 						echo ' selected';
 						}
 					echo '>'.$supplier_current['name'].'</option>';
