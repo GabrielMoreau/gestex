@@ -14,13 +14,13 @@ if ($pdo = connect_db()) {
 
 	if ($team_count == 0 && $user_count == 0) {
 		$err_msg = '';
-		list($id_team, $err_msg) = set_team_new($pdo, 'srv-system', 'service systeme', '0', '1');
+		list($team_id, $err_msg) = set_team_new($pdo, 'srv-system', 'service systeme', '0', '1');
 		if ($err_msg != '')
 			echo '<br/>Erreur création équipe : '.$err_msg;
 
 		$new_pwhash = password_hash('chief!', PASSWORD_DEFAULT);
 		$err_msg = '';
-		list($id_user, $err_msg) = set_user_new($pdo, 'Admin', 'Sys', 'sysadmin', $new_pwhash, 'sysadmin@example.com', 4, '', $id_team, '');
+		list($user_id, $err_msg) = set_user_new($pdo, 'Admin', 'Sys', 'sysadmin', $new_pwhash, 'sysadmin@example.com', 4, '', $team_id, '');
 		if ($err_msg != '')
 			echo '<br/>Erreur création utilisateur : '.$err_msg;
 		else
