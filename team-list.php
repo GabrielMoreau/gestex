@@ -16,7 +16,7 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$id_highlight = param_post_or_get('highlight', 0);
+$highlight_id = param_post_or_get('highlight', 0);
 
 en_tete('Liste de toutes les équipes');
 ?>
@@ -60,7 +60,7 @@ if ($pdo = connect_db()) {
 		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
-		if ($team_current['id'] == $id_highlight)
+		if ($team_current['id'] == $highlight_id)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		echo '  <td style="vertical-align: top;">';

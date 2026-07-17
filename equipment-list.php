@@ -16,7 +16,7 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$id_highlight = param_post_or_get('highlight', 0);
+$highlight_id = param_post_or_get('highlight', 0);
 $is_loanable  = param_get('is_loanable');
 
 $title = 'Liste des appareils';
@@ -140,7 +140,7 @@ if ($manager_user_id > 0) {
 		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
-		if ($equipment_item['id'] == $id_highlight)
+		if ($equipment_item['id'] == $highlight_id)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 

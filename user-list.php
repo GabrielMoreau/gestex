@@ -13,7 +13,7 @@ level_or_alert(1, 'Liste de tous les utilisateurs');
 $logged_id    = $_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
-$id_highlight = param_post_or_get('highlight', 0);
+$highlight_id = param_post_or_get('highlight', 0);
 
 en_tete('Liste de tous les utilisateurs');
 ?>
@@ -60,7 +60,7 @@ if ($pdo = connect_db()) {
 		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
-		if ($user_current['id'] == $id_highlight)
+		if ($user_current['id'] == $highlight_id)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		if ($logged_level >=3 ) {

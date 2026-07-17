@@ -16,7 +16,7 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$id_highlight = param_post_or_get('highlight', 0);
+$highlight_id = param_post_or_get('highlight', 0);
 
 en_tete('Liste des appareils par catégorie');
 ?>
@@ -45,7 +45,7 @@ if ($pdo = connect_db()) {
 		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
-		if ($category_item['id'] == $id_highlight)
+		if ($category_item['id'] == $highlight_id)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		echo '  <td>';

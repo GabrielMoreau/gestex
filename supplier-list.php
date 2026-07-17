@@ -16,7 +16,7 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$id_highlight = param_post_or_get('highlight', 0);
+$highlight_id = param_post_or_get('highlight', 0);
 $find = param_post('find', true);
 
 en_tete('Liste de tous les fournisseurs', $find);
@@ -73,7 +73,7 @@ if ($pdo = connect_db()) {
 		if ($num_line % 2)
 			$class = 'pair';
 		$num_line++;
-		if ($supplier_item['id'] == $id_highlight)
+		if ($supplier_item['id'] == $highlight_id)
 			$class .= ' highlight';
 		echo '<tr class="'.$class.'">'.PHP_EOL;
 		if ($count_equipment === 0) {
