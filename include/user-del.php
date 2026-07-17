@@ -17,7 +17,7 @@
 	<button class="green" type="submit" formaction="user-list.php" value="no">Non</button>
 	<hr>
 	Voulez-vous supprimer définitivement l'utilisateur <?=$user_fullname?> (#<?=$user_id?>) ?
-	<button class="red" type="submit" name="destroy" value="yes">Supprimer</button>
+	<button class="red" type="submit" name="ok" value="destroy">Supprimer</button>
 	<hr>
 	<button type="submit" name="ok" value="cancel">Annuler</button>
 </form>
