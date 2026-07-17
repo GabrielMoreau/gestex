@@ -6,9 +6,11 @@
 // $user_fullname
 ?>
 
+<?php
 $user_status_msg = 'déactivé';
 if ($user_status === '0')
 	$user_status_msg = 'activé';
+?>
 
 <?php en_tete('Changer l’état de l’utilisateur '.$user_fullname.' ('.$user_status_msg.')'); ?>
 
