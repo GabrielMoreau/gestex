@@ -12,8 +12,8 @@ level_or_alert(3, 'Modification d’une catégorie');
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-$id_category = param_get('category_id'); // -> modify
-if (empty($id_category)){
+$category_id = param_get('category_id'); // -> modify
+if (empty($category_id)){
 	//->nouvelle categorie
 	$mode  = 'Ajouter';
 	$title = 'Ajouter une catégorie';
@@ -22,7 +22,7 @@ else {
 	$mode  = 'Modifier';
 	$title = 'Modifier une catégorie';
 	$pdo   = connect_db();
-	$category = get_category_by_id($pdo, $id_category);
+	$category = get_category_by_id($pdo, $category_id);
 }
 
 en_tete($title);
@@ -30,7 +30,7 @@ en_tete($title);
 
 <div class="form">
 <form action="category-process.php" method="POST" name="inscrForm">
-	<input type="hidden" name="category_id" value="<?php echo $id_category ?>" >
+	<input type="hidden" name="category_id" value="<?php echo $category_id ?>" >
 <table>
 	<tbody>
 		<tr>
