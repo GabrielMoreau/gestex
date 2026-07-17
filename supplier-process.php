@@ -17,19 +17,19 @@ $logged_level = $_SESSION['logged_level'];
 
 unset($err_msg);
 
-$supplier_id = param_post('supplier_id', 0);
+$supplier_id = (int)param_post('supplier_id', 0);
 $flag_new = true;
 if ($supplier_id > 0)
 	$flag_new = false;
 
-$name     = param_post('name');
-$address = param_post('address');
-$www     = param_post('www');
-$phone   = param_post('phone');
-$fax     = param_post('fax');
-$email   = param_post('email');
-$contact = param_post('contact');
-$description   = param_post('description');
+$name        = param_post('name');
+$address     = param_post('address');
+$www         = param_post('www');
+$phone       = param_post('phone');
+$fax         = param_post('fax');
+$email       = param_post('email');
+$contact     = param_post('contact');
+$description = param_post('description');
 // variables ne pouvant etre nulles
 if (empty($name))
 	$err_msg = 'Nom du fournisseur non précisé';
