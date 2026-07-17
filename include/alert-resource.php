@@ -12,7 +12,7 @@
 		Une erreur est survenue lors du traitement de votre demande.
 		L’accès à la ressource est impossible, car celle-ci n’existe pas <i>a priori</i>.
 		<ul>
-			<li>ressource : <?=$message_name?> = <?=$message_index?></li>
+			<li>ressource : <?=$resource_name?> = <?=$resource_index?></li>
 		</ul>
 		<br>
 		Si vous avez été sur ce lien erroné via l'application (en suivant les liens proposés),
