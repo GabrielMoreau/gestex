@@ -25,13 +25,6 @@ if ($is_loanable == 'yes')
 
 $pdo = connect_db_or_alert();
 
-// Récupère la categorie
-$category_id = param_get('category_id', 0);
-if ($category_id > 0) {
-	$category_selected = get_category_by_id($pdo, $category_id);
-	$title .= ' de la catégorie <i>'.$category_selected['name'].'</i>';
-}
-
 // Récupère l'equipe
 $team_id = param_get('team_id', 0);
 if ($team_id > 0) {
@@ -43,6 +36,13 @@ if ($team_id > 0) {
 		exit();
 	}
 	$title .= ' de l’équipe <i>'.$team_selected['name'].'</i>';
+}
+
+// Récupère la categorie
+$category_id = param_get('category_id', 0);
+if ($category_id > 0) {
+	$category_selected = get_category_by_id($pdo, $category_id);
+	$title .= ' de la catégorie <i>'.$category_selected['name'].'</i>';
 }
 
 // Récupère le fournisseur
@@ -58,7 +58,7 @@ if ($supplier_id > 0) {
 	$title .= ' du fournisseur <i>'.$supplier_selected['name'].'</i>';
 }
 
-// Récupère l'utilisateur
+// Récupère l'utilisateur reponsable
 $manager_user_id = param_get('manager_user_id', 0);
 if ($manager_user_id > 0) {
 	$user_selected = get_user_short_by_id($pdo, $manager_user_id);
