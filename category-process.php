@@ -12,9 +12,9 @@ level_or_alert(3, 'Ajout d’une catégorie');
 
 unset($err_msg);
 
-$id_category = param_post('category_id'); // -> modify
+$category_id = param_post('category_id'); // -> modify
 $flag_new = true;
-if (!empty($id_category))
+if (!empty($category_id))
 	$flag_new = false;
 
 //variables ne pouvant etre nulles
@@ -37,13 +37,13 @@ if (!empty($err_msg)) {
 }
 
 if ($flag_new)
-	$id_category = set_category_new($pdo, $categorie_name);
+	$category_id = set_category_new($pdo, $categorie_name);
 else
-	set_category_update($pdo, $id_category, $categorie_name);
+	set_category_update($pdo, $category_id, $categorie_name);
 
 $title        = 'Résultat ajout/modification catégorie';
 $action       = 'category-list.php';
-$highlight    = $id_category;
+$highlight    = $category_id;
 $message_text = 'Ajout/modification de la catégorie '.$categorie_name.' validée';
 include_once('include/message-box.php');
 exit();
