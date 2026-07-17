@@ -18,7 +18,7 @@ $description        = param_post('description');
 $equipment_id       = param_post('equipment_id');
 $supplier_id        = param_post('supplier_id');
 $date               = param_post('date');
-$intervention_id    = param_post('id');
+$intervention_id    = param_post('intervention_id');
 
 
 $recipe = '';
@@ -45,7 +45,7 @@ if ($recipe != '') {
 	$id_recipe = set_recipe_new($pdo, $intervention_id, 'recipe');
 	if (!$id_recipe) {
 		$title        = 'Erreur appareil';
-		$action       = 'equipment-view.php?id='.$equipment_id;
+		$action       = 'equipment-view.php?equipment_id='.$equipment_id;
 		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l’ajout d’une fiche d’intervention à l’appareil (pas au format PDF ?)');
 		include_once('include/message-box.php');
 		exit();

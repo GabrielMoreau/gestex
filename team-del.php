@@ -10,7 +10,7 @@ require_once('module/html-functions.php');
 auth_or_login('team-del.php');
 level_or_alert(3, 'Suppression d’une équipe');
 
-$team_id = param_post_or_get('id', 0);
+$team_id = param_post_or_get('team_id', 0);
 $valid   = param_post('ok', 'no');
 
 if ($team_id == 0 || $valid == 'cancel')

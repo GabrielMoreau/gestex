@@ -74,7 +74,7 @@ if ($pdo = connect_db()) {
 		echo '  <td>';
 		// L’utilisateur a la possibilité de modifier ses coordonnées
 		if ($logged_id == $user_current['id'] || $logged_level >= 3)
-			echo '    <a href="user-edit.php?id='.$user_current['id'].'">'.$user_current['familyname'].'</a>';
+			echo '    <a href="user-edit.php?user_id='.$user_current['id'].'">'.$user_current['familyname'].'</a>';
 		else
 			echo      $user_current['familyname'];
 
@@ -104,12 +104,12 @@ if ($pdo = connect_db()) {
 		echo '  </td>'.PHP_EOL;
 		if ($logged_level >= 3) {
 			echo '  <td>';
-			echo '    <a href="user-edit.php?id='.$user_current['id'].'">';
+			echo '    <a href="user-edit.php?user_id='.$user_current['id'].'">';
 			echo        ICON_PERSON_PROFIL;
 			echo '    </a>';
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
-			echo '    <a href="user-changepwd.php?id='.$user_current['id'].'">';
+			echo '    <a href="user-changepwd.php?user_id='.$user_current['id'].'">';
 			if (preg_match('/^!ldap!/i', $user_current['password']))
 				echo '<span class="check-warn">'.ICON_PERSON_PASWD.'</span>';
 			else
@@ -118,11 +118,11 @@ if ($pdo = connect_db()) {
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
 			if ($user_current['valid'] == 0){
-				echo '<a href="user-del.php?id='.$user_current['id'].'&status=0">';
+				echo '<a href="user-del.php?user_id='.$user_current['id'].'&status=0">';
 				echo ICON_PERSON_BAD;
 				echo '</a>';
 			}else{
-				echo '<a href="user-del.php?id='.$user_current['id'].'&status=1">';
+				echo '<a href="user-del.php?user_id='.$user_current['id'].'&status=1">';
 				echo ICON_PERSON_OK;
 				echo '</a>';
 			}

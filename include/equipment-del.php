@@ -9,7 +9,7 @@
 
 <center class="box-alert">
 <form action="equipment-del.php" method="POST">
-	<input type="hidden" name="id" value="<?=$equipment_id?>">
+	<input type="hidden" name="equipment_id" value="<?=$equipment_id?>">
 	Voulez-vous supprimer l’appareil <i><?=$equipment_name?></i> (#<?=$equipment_id?>) ?
 	<button class="red" type="submit" name="ok" value="yes">Oui</button>
 	<button class="green" type="submit" formaction="equipment-list.php" value="no">Non</button>

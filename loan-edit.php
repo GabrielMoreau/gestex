@@ -16,7 +16,7 @@ $logged_user = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
 $equipment_id = param_get('equipment_id'); // -> new
-$loan_id      = param_get('id');     // -> modify
+$loan_id      = param_get('loan_id');     // -> modify
 $param_mode   = param_get('mode', "loan");
 
 /* if ($loan_id == 0) {
@@ -78,7 +78,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 					<b>ID <?php if (STATUS_LOAN_BORROWED == get_loan_status_by_id($pdo, $loan_id)) {echo "Emprunt";} else {echo "Réservation";}?></b>
 				</td>
 				<td style="background-color: var(--color-link);color: black;text-align: center;padding: 4px;">
-					<b><?php echo param_get('id', "UNKNOW")?></b>
+					<b><?php echo param_get('loan_id', "UNKNOW")?></b>
 				</td>
 			</tr>
 
@@ -152,7 +152,7 @@ loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved, $loan_borr
 	<tbody>
 		<tr>
 			<td colspan="2" class="button">
-				<input class="cancel" type="submit" name="ok" formaction="equipment-view.php?id=<?php echo $equipment_id ?>" value="Annuler">
+				<input class="cancel" type="submit" name="ok" formaction="equipment-view.php?equipment_id=<?php echo $equipment_id ?>" value="Annuler">
 			</td>
 		</tr>
 	</tbody>

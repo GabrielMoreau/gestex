@@ -135,10 +135,10 @@ function nav_bar($pdo, $firstname, $familyname, $level, $logged_id, $find) {
 		<a class="dropbtn"><?php echo "$familyname",   "  $firstname ";?></a>
 		<div class="dropdown-content">
 			<a href="logout.php"><?php echo ICON_LOGIN;?> Se déconnecter</a>
-			<a href="user-edit.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>
-			<a href="user-changepwd.php?id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PASWD;?> Changer le<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a><?php
+			<a href="user-edit.php?user_id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PROFIL;?> Modifier le profil</a>
+			<a href="user-changepwd.php?user_id=<?php echo $logged_id ?>"><?php echo ICON_PERSON_PASWD;?> Changer le<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mot de passe</a><?php
 			if ($level > 3) { echo '<a href="admin-panel.php">'.ICON_ADMIN.' Admin Panel</a>'; } ?>
-			<a href="user-loan.php?id=<?php echo $logged_id ?>"><?php echo ICON_LOAN_BORROWED;?> Mes emprunts</a>
+			<a href="user-loan.php?user_id=<?php echo $logged_id ?>"><?php echo ICON_LOAN_BORROWED;?> Mes emprunts</a>
 		</div>
 	</li>
 	<?php } ?>
@@ -258,18 +258,18 @@ function loan_list_container($pdo, $equipment_loans, $equipment_loan_reserved=fa
 			}
 			echo '&nbsp; <span class="option-right">';
 			if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_BORROWED) {
-				echo '<a href="loan-del.php?id='.$loan_current['id'].'">'.ICON_LOAN_RETURNED.'</a>'.PHP_EOL;
+				echo '<a href="loan-del.php?loan_id='.$loan_current['id'].'">'.ICON_LOAN_RETURNED.'</a>'.PHP_EOL;
 			}
 			if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED && $loan_borrow == false) {
-				echo '<a href="loan-process.php?id='.$loan_current['id'].'&mode=loan">'.ICON_LOAN_BORROWED.'</a>'.PHP_EOL;
+				echo '<a href="loan-process.php?loan_id='.$loan_current['id'].'&mode=loan">'.ICON_LOAN_BORROWED.'</a>'.PHP_EOL;
 			}
 			
 			if ($logged_level >= 3 && $loan_current["status"] == STATUS_LOAN_RESERVED) {
-				echo '<a href="loan-del.php?id='.$loan_current["id"].'">'.ICON_TRASH.'</a>'.PHP_EOL;
+				echo '<a href="loan-del.php?loan_id='.$loan_current["id"].'">'.ICON_TRASH.'</a>'.PHP_EOL;
 			}
 
 			if ($logged_level >= 3 && $loan_current["status"] != STATUS_LOAN_RETURNED) {
-				echo '<a href="loan-edit.php?id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>'.PHP_EOL;
+				echo '<a href="loan-edit.php?loan_id='.$loan_current['id'].'&mode=edit">'.ICON_EDIT.'</a>'.PHP_EOL;
 			}
 			echo '</span>'.PHP_EOL;
 			echo '</h4>'.PHP_EOL;

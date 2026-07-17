@@ -10,7 +10,7 @@ require_once('module/html-functions.php');
 auth_or_login('supplier-list.php');
 level_or_alert(3, 'Suppression d’un fournisseur');
 
-$supplier_id = param_post_or_get('id', 0);
+$supplier_id = param_post_or_get('supplier_id', 0);
 $valid       = param_post('ok', 'no');
 
 if ($supplier_id == 0 || $valid == 'cancel')

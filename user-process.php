@@ -16,7 +16,7 @@ $logged_level = $_SESSION['logged_level'];
 
 // validation et modification d'un nouvel utilisateur
 
-$user_id  = param_post('id', 0); // -> modify
+$user_id  = param_post('user_id', 0); // -> modify
 $flag_new = true;
 if ($user_id > 0)
 	$flag_new = false;
@@ -60,7 +60,7 @@ if ($flag_new and check_val_in_db($pdo, 'user', 'username', $username)) {
 if (!empty($err_msg)) {
 	// erreur
 	$title         = 'Erreur utilisateur';
-	$action        = 'user-edit.php?id='.$user_id;
+	$action        = 'user-edit.php?user_id='.$user_id;
 	$highlight     = $user_id;
 	$message_text  = $err_msg;
 	$transmit_post = true;

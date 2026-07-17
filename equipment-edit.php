@@ -14,7 +14,7 @@ $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $category_id  = param_post_or_get('category_id');
-$equipment_id = param_post_or_get('id', 0);
+$equipment_id = param_post_or_get('equipment_id', 0);
 $mode = 'Modifier';
 if ($equipment_id == 0) // new
 	$mode   = 'Ajouter';
@@ -253,7 +253,7 @@ $manager_user_id = param_post_key('manager_user_id', $equipment_selected, 0);
 		<tr>
 			<td colspan="2" class="button">
 				<?php if ($mode == 'Modifier') { ?>
-				<input class="cancel" type="submit" name="ok" formaction="equipment-view.php?id=<?php echo $equipment_id ?>" value="Annuler">
+				<input class="cancel" type="submit" name="ok" formaction="equipment-view.php?equipment_id=<?php echo $equipment_id ?>" value="Annuler">
 				<?php } else { ?>
 				<input class="cancel" type="submit" name="ok" formaction="equipment-list.php" value="Annuler">
 				<?php } ?>

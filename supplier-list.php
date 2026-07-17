@@ -100,13 +100,13 @@ if ($pdo = connect_db()) {
 		echo '  <td class="max30">'.$supplier_item['description'].'</td>'.PHP_EOL;
 		if ($logged_level >= 2) {
 			echo '  </td><td>';
-			echo '<a href="supplier-edit.php?id='.$supplier_item['id'].'">'.ICON_EDIT.'</a>';
+			echo '<a href="supplier-edit.php?supplier_id='.$supplier_item['id'].'">'.ICON_EDIT.'</a>';
 			echo '</td>'.PHP_EOL;
 		} //end if
 		if ($logged_level >= 3) {
 			echo '  </td><td>';
 			if ($count_equipment === 0) {
-				echo '<a href="supplier-del.php?id='.$supplier_item['id'].'">'.ICON_TRASH.'</a>';
+				echo '<a href="supplier-del.php?supplier_id='.$supplier_item['id'].'">'.ICON_TRASH.'</a>';
 			} else {
 				echo $count_equipment;
 			}

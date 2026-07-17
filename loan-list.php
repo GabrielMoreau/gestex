@@ -73,7 +73,7 @@ if ($team_id > 0) {
 			<?php $num_line++; ?>
 
 			<td>
-				<a href="equipment-view.php?id=<?= $loan_current['equipment_id'] ?>">
+				<a href="equipment-view.php?equipment_id=<?= $loan_current['equipment_id'] ?>">
 					<?= $loan_current['equipment_name'] ?>
 				</a>
 			</td>
@@ -101,13 +101,13 @@ if ($team_id > 0) {
 			</td>
 
 			<td>
-				<a href="loan-edit.php?id=<?= $loan_current['id'] ?>&mode=edit">
+				<a href="loan-edit.php?loan_id=<?= $loan_current['id'] ?>&mode=edit">
 					<?= ICON_EDIT ?>
 				</a>
 			</td>
 
 			<td>
-				<a href="loan-del.php?id=<?= $loan_current['id'] ?>">
+				<a href="loan-del.php?loan_id=<?= $loan_current['id'] ?>">
 					<?= ICON_LOAN_RETURNED ?>
 				</a>
 			</td>

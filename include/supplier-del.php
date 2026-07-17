@@ -9,7 +9,7 @@
 
 <center class="box-alert">
 <form action="supplier-del.php" method="POST">
-	<input type="hidden" name="id" value="<?=$supplier_id?>">
+	<input type="hidden" name="supplier_id" value="<?=$supplier_id?>">
 	Voulez-vous supprimer le fournisseur <i><?=$supplier_name?></i> (#<?=$supplier_id?>) ?
 	<button class="red" type="submit" name="ok" value="yes">Oui</button>
 	<button class="green" type="submit" formaction="supplier-list.php" value="no">Non</button>

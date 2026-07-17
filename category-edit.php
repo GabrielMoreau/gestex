@@ -12,7 +12,7 @@ level_or_alert(3, 'Modification d’une catégorie');
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-$id_category = param_get('id'); // -> modify
+$id_category = param_get('category_id'); // -> modify
 if (empty($id_category)){
 	//->nouvelle categorie
 	$mode  = 'Ajouter';

@@ -17,7 +17,7 @@ if (get_loan_all_by_id($pdo, $loan_id)["status"] == STATUS_LOAN_RESERVED) {
 
 <center class="alert">
 <form action="loan-del.php" method="POST">
-	<input type="hidden" name="id" value="<?=$loan_id?>" >
+	<input type="hidden" name="loan_id" value="<?=$loan_id?>" >
 	Concernant <?=$str_loan_type?> <?=$loan_id?> (<?=$equipment_name?>), voulez-vous :
 	<ul>
 		<li>Modifier / Éditer <?=$str_loan_type?> ? <button type="submit" name="ok" value="edit"><?php echo ICON_EDIT ?></button></li>

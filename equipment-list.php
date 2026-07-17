@@ -154,7 +154,7 @@ if ($manager_user_id > 0) {
 		echo      $equipment_item['id'];
 		echo '  </td>'.PHP_EOL;
 		echo '  <td class="max20">';
-		echo '    <a name="item'.$equipment_item['id'].'"></a><a href="equipment-view.php?id='.$equipment_item['id'].'">'. $equipment_item['name'].'</a>';
+		echo '    <a name="item'.$equipment_item['id'].'"></a><a href="equipment-view.php?equipment_id='.$equipment_item['id'].'">'. $equipment_item['name'].'</a>';
 		echo '  </td>'.PHP_EOL;
 		echo '  <td class="max20">';
 		echo      $equipment_item['model'];
@@ -184,7 +184,7 @@ if ($manager_user_id > 0) {
 		echo '  <td>';
 		// cherche l'existence de la notice
 		if (get_datasheet_count_by_equipment($pdo, $equipment_item['id']) > 0) {
-			echo ' <a href ="equipment-view.php?id='.$equipment_item['id'].'">'.ICON_SEE_DOC.'</a>';
+			echo ' <a href ="equipment-view.php?equipment_id='.$equipment_item['id'].'">'.ICON_SEE_DOC.'</a>';
 		}
 		echo '  </td>'.PHP_EOL;
 
@@ -202,7 +202,7 @@ if ($manager_user_id > 0) {
 
 			echo '  <td>';
 			if ($is_loan) {
-				if ($logged_level >= 3) {echo '    <a href="loan-del.php?id='.$loan['id'].'">';}
+				if ($logged_level >= 3) {echo '    <a href="loan-del.php?loan_id='.$loan['id'].'">';}
 				echo ICON_LOAN_RETURNED;
 				if ($logged_level >= 3) {echo '</a>';}
 			} else {
@@ -225,12 +225,12 @@ if ($manager_user_id > 0) {
 		}
 		if ($logged_level >= 2) {
 			echo '  <td>';
-			echo '    <a href="equipment-edit.php?id='.$equipment_item['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="equipment-edit.php?equipment_idid='.$equipment_item['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 		if ($logged_level >= 3) {
 			echo '  <td>';
-			echo '    <a href="equipment-del.php?id='.$equipment_item['id'].'">'.ICON_TRASH.'</a>';
+			echo '    <a href="equipment-del.php?equipment_idid='.$equipment_item['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		}
 		echo '</tr>'.PHP_EOL;

@@ -10,14 +10,14 @@ require_once('module/html-functions.php');
 auth_or_login('loan-list.php');
 level_or_alert(3, 'Suppression d’un prêt');
 
-$loan_id = param_post_or_get('id', 0);
+$loan_id = param_post_or_get('loan_id', 0);
 $valid   = param_post('ok', 'no');
 
 if ($loan_id == 0 || $valid == 'cancel')
 	redirect('loan-list.php');
 
 if ($valid == 'edit')
-	redirect('loan-edit.php?id='.$loan_id);
+	redirect('loan-edit.php?loan_id='.$loan_id);
 
 $pdo = connect_db_or_alert();
 
@@ -37,7 +37,7 @@ if ($valid == 'yes') {
 		$iostat = set_loan_to_returned($pdo, $loan_id);
 	}
 	if ($iostat) // Ça a marché
-		redirect('equipment-view.php?id='.$equipment_id);
+		redirect('equipment-view.php?equipment_id='.$equipment_id);
 	$message_alert = 'Erreur dans la suppression '.$type.' : '.$loan_id;
 	include_once('include/alert-data.php');
 	exit();

@@ -17,7 +17,7 @@ $logged_level = $_SESSION['logged_level'];
 
 unset($err_msg);
 
-$supplier_id = param_post('id', 0);
+$supplier_id = param_post('supplier_id', 0);
 $flag_new = true;
 if ($supplier_id > 0)
 	$flag_new = false;
@@ -39,7 +39,7 @@ if (empty($address))
 if (!empty($err_msg)) {
 	// erreur
 	$title         = 'Erreur';
-	$action        = 'supplier-edit.php?id='.$supplier_id;
+	$action        = 'supplier-edit.php?supplier_id='.$supplier_id;
 	$message_text  =  $err_msg;
 	$transmit_post = true;
 	include_once('include/warning-box.php');

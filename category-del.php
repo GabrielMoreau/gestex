@@ -10,7 +10,7 @@ require_once('module/html-functions.php');
 auth_or_login('category-list.php');
 level_or_alert(3, 'Suppression d’une catégorie');
 
-$category_id = param_post_or_get('id', 0);
+$category_id = param_post_or_get('category_id', 0);
 $valid       = param_post('ok', 'no');
 
 if ($category_id == 0 || $valid == 'cancel')

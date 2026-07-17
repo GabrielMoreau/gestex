@@ -11,7 +11,7 @@ auth_or_login('intervention-edit.php.php');
 level_or_alert(3, 'Ajout d’une intervention');
 
 $equipment_id = param_post_or_get('equipment_id', 0);
-$intervention_id = param_post_or_get('id', 0);
+$intervention_id = param_post_or_get('intervention_id', 0);
 
 $mode = 'Ajouter';
 if ($intervention_id == 0) // new
@@ -103,7 +103,7 @@ if ($mode == 'Ajouter') {
 		<tr>
 			<td colspan="2" class="button">
 				<?php if ($mode == 'Modifier') { ?>
-				<input class="cancel" type="submit" name="ok" formaction="equipment-view.php?id=<?php echo $equipment_id ?>" value="Annuler">
+				<input class="cancel" type="submit" name="ok" formaction="equipment-view.php?equipment_id=<?php echo $equipment_id ?>" value="Annuler">
 				<?php } else { ?>
 				<input class="cancel" type="submit" name="ok" formaction="equipment-list.php" value="Annuler">
 				<?php } ?>

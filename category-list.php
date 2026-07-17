@@ -57,11 +57,11 @@ if ($pdo = connect_db()) {
 		echo '</td>'.PHP_EOL;
 		if ($logged_level >= 3) {
 			echo '  <td>';
-			echo '    <a href="category-edit.php?id='.$category_item['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="category-edit.php?category_id='.$category_item['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 			echo '  <td>';
 			if ($count === 0) {
-				echo '<a href="category-del.php?id='.$category_item['id'].'">'.ICON_TRASH.'</a>';
+				echo '<a href="category-del.php?category_id='.$category_item['id'].'">'.ICON_TRASH.'</a>';
 			} else {
 				echo $count;
 			}

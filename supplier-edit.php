@@ -13,7 +13,7 @@ level_or_alert(2, 'Modification d’une équipe');
 $logged_id   = $_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-$supplier_id = param_post_or_get('id', 0);
+$supplier_id = param_post_or_get('supplier_id', 0);
 $mode = 'Modifier';
 if ($supplier_id == 0) // new
 	$mode   = 'Ajouter';
@@ -33,7 +33,7 @@ else if ($mode == 'Modifier') {
 
 <div class="form">
 <form action="supplier-process.php" method="POST" name="inscrForm">
-	<input type="hidden" name="id" value="<?php if ($mode == 'Modifier'){ echo $supplier_id; } ?>">
+	<input type="hidden" name="supplier_id" value="<?php if ($mode == 'Modifier'){ echo $supplier_id; } ?>">
 <table>
 	<tbody>
 		<tr>

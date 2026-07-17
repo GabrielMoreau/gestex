@@ -65,7 +65,7 @@ if (isset($_FILES["notice"])) {
 if (!empty($err_msg)) {
 	// erreur
 	$title         = 'Erreur';
-	$action        = 'equipment-edit.php?id='.$equipment_id;
+	$action        = 'equipment-edit.php?equipment_id='.$equipment_id;
 	$message_text  =  $err_msg;
 	$transmit_post = true;
 	include_once('include/warning-box.php');
@@ -85,7 +85,7 @@ if ($flag_new) { // new
 		$id_datasheet = set_datasheet_new($pdo, $equipment_id, 'notice');
 		if (!$id_datasheet) {
 			$title        = 'Erreur appareil';
-			$action       = 'equipment-view.php?id='.$equipment_id;
+			$action       = 'equipment-view.php?equipment_id='.$equipment_id;
 			$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l’ajout d’une notice à appareil (pas au format PDF ?)');
 			include_once('include/message-box.php');
 			exit();
@@ -93,7 +93,7 @@ if ($flag_new) { // new
 	}
 
 	$title        = 'Résultat ajout d’un appareil';
-	$action       = 'equipment-view.php?id='.$equipment_id;
+	$action       = 'equipment-view.php?equipment_id='.$equipment_id;
 	$message_text = 'Ajout d’un appareil '.$name.' validé';
 	include_once('include/message-box.php');
 	exit();
@@ -128,7 +128,7 @@ if ($modif) {
 	$err_msg = set_equipment_update($pdo, $equipment_id, $category_id, $name, $model, $feature, $team_id, $supplier_id, $date_of_purchase, $manager_user_id, $repair_comment, $accessories, $inventory_number, $notice, $barcode, $is_loanable, $max_loan_days);
 	if ($err_msg != '') {
 		$title        = 'Erreur appareil';
-		$action       = 'equipment-view.php?id='.$equipment_id;
+		$action       = 'equipment-view.php?equipment_id='.$equipment_id;
 		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans la mise à jour de la fiche appareil');
 		include_once('include/message-box.php');
 		exit();
@@ -137,18 +137,18 @@ if ($modif) {
 		$id_datasheet = set_datasheet_new($pdo, $equipment_id, 'notice');
 		if (!$id_datasheet) {
 			$title        = 'Erreur appareil';
-			$action       = 'equipment-view.php?id='.$equipment_id;
+			$action       = 'equipment-view.php?equipment_id='.$equipment_id;
 			$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l’ajout d’une notice à appareil (pas au format PDF ?)');
 			include_once('include/message-box.php');
 			exit();
 		}
 	}
 
-	redirect('equipment-view.php?id='.$equipment_id);
+	redirect('equipment-view.php?equipment_id='.$equipment_id);
 }
 
 $title        = 'Modification appareil';
-$action       = 'equipment-view.php?id='.$equipment_id;
+$action       = 'equipment-view.php?equipment_id='.$equipment_id;
 $message_text = 'Aucune modification à faire';
 include_once('include/message-box.php');
 exit();

@@ -14,7 +14,7 @@ $logged_id    = $_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 
-$user_id = param_post_or_get('id', 0);
+$user_id = param_post_or_get('user_id', 0);
 $mode = 'Modifier';
 if ($user_id == 0) // new
 	$mode = 'Ajouter';
@@ -33,7 +33,7 @@ if ($mode == 'Ajouter') {
 
 <div class="form">
 <form action="user-process.php" method="POST"  class="form" name="inscrForm">
-	<input type="hidden" name="id"  value="<?php echo $user_id ?>">
+	<input type="hidden" name="user_id"  value="<?php echo $user_id ?>">
 <table>
 	<tbody>
 		<tr>

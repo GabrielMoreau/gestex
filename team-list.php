@@ -97,12 +97,12 @@ if ($pdo = connect_db()) {
 
 		if ($logged_level >= 2) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="team-edit.php?id='.$team_current['id'].'">'.ICON_EDIT.'</a>';
+			echo '    <a href="team-edit.php?team_id='.$team_current['id'].'">'.ICON_EDIT.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		if ($logged_level >= 3) {
 			echo '  <td style="vertical-align: top;">';
-			echo '    <a href="team-del.php?id='.$team_current['id'].'">'.ICON_TRASH.'</a>';
+			echo '    <a href="team-del.php?team_id='.$team_current['id'].'">'.ICON_TRASH.'</a>';
 			echo '  </td>'.PHP_EOL;
 		} //end if
 		echo '</tr>'.PHP_EOL;

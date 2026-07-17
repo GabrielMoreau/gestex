@@ -16,7 +16,7 @@ if (empty($_SESSION['logged_user'])) {
 	$logged_level = $_SESSION['logged_level'];
 }
 
-$equipment_id = param_get('id');
+$equipment_id = param_get('equipment_id');
 if (empty($equipment_id))
 	redirect('equipment-list.php');
 
@@ -50,8 +50,8 @@ en_tete('Caractéristiques de l’appareil : <b>'.$equipment_selected['name'].'<
 			<span class="option-right"><a href="equipment-list.php?category_id=<?php echo $equipment_selected['category_id'] ?>&highlight=<?php echo $equipment_id ?>#item<?php echo $equipment_id ?>"><?php echo ICON_LIST ?></a></span>
 			<?php
 				if ($logged_level >= 3) {
-					echo '<span class="option-right"><a href="equipment-del.php?id='.$equipment_id.'">'.ICON_TRASH.'</a>&nbsp;</span>'.PHP_EOL;
-					echo '<span class="option-right"><a href="equipment-edit.php?id='.$equipment_id.'">'.ICON_EDIT.'</a>&nbsp;</span>'.PHP_EOL;
+					echo '<span class="option-right"><a href="equipment-del.php?equipment_id='.$equipment_id.'">'.ICON_TRASH.'</a>&nbsp;</span>'.PHP_EOL;
+					echo '<span class="option-right"><a href="equipment-edit.php?equipment_id='.$equipment_id.'">'.ICON_EDIT.'</a>&nbsp;</span>'.PHP_EOL;
 					echo '<span class="option-right"><a href="intervention-edit.php?equipment_id='.$equipment_id.'">'.ICON_INTERVENTION.'</a>&nbsp;</span>'.PHP_EOL;
 				}
 			?>
@@ -165,14 +165,14 @@ en_tete('Caractéristiques de l’appareil : <b>'.$equipment_selected['name'].'<
 				<?php if ($datasheet_count == 1) { ?>
 			<td>
 				<a href="<?php echo $datacheet_path.'/'.$datasheet_fetch[0]['pathname'] ?>" target="_top"><?php echo $datasheet_fetch[0]['description'] ?></a>
-				<?php if ($logged_level >= 3) {echo '<span class="option-right"><a href="datasheet-del.php?id='.$datasheet_fetch[0]['id'].'">'.ICON_TRASH.'</a></span>';} ?>
+				<?php if ($logged_level >= 3) {echo '<span class="option-right"><a href="datasheet-del.php?datasheet_id='.$datasheet_fetch[0]['id'].'">'.ICON_TRASH.'</a></span>';} ?>
 			</td>
 			<?php } else { ?>
 				<?php $first = true; foreach ($datasheet_fetch as $datasheet_current) { ?>
 				<?php if ($first) {$first = false;} else {echo '</tr>'.PHP_EOL.'<tr>'.PHP_EOL;} ?>
 				<td>
 					<a href="<?php echo $datacheet_path.'/'.$datasheet_current['pathname'] ?>" target="_top"><?php echo $datasheet_current['description'] ?></a>
-					<?php if ($logged_level >= 3) {echo '<span class="option-right"><a href="datasheet-del.php?id='.$datasheet_current['id'].'">'.ICON_TRASH.'</a></span>';} ?>
+					<?php if ($logged_level >= 3) {echo '<span class="option-right"><a href="datasheet-del.php?datasheet_id='.$datasheet_current['id'].'">'.ICON_TRASH.'</a></span>';} ?>
 				</td>
 				<?php } ?>
 			<?php } ?>

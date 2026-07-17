@@ -35,7 +35,7 @@ if (empty($accounting))
 if (!empty($err_msg)) {
 	//erreur
 	$title         = 'Erreur équipe';
-	$action        = 'team-edit.php?id='.$team_id;
+	$action        = 'team-edit.php?team_id='.$team_id;
 	$highlight     = $team_id;
 	$message_text  = $err_msg;
 	$transmit_post = true;
