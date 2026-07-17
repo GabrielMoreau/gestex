@@ -9,7 +9,7 @@ require_once('module/html-functions.php');
 auth_or_login('user-list.php');
 level_or_alert(1, 'Prêt d’un utilisateur');
 
-$logged_id    = $_SESSION['logged_id'];
+$logged_id    = (int)$_SESSION['logged_id'];
 $logged_user  = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 

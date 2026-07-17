@@ -11,7 +11,7 @@ require_once('module/base-functions.php');
 auth_or_login('loan-list.php');
 level_or_alert(3, 'Ajout ou modification d’un prêt');
 
-$logged_id   = $_SESSION['logged_id'];
+$logged_id   = (int)$_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 $logged_level = $_SESSION['logged_level'];
 

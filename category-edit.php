@@ -9,7 +9,7 @@ require_once('module/html-functions.php');
 auth_or_login('category-list.php');
 level_or_alert(3, 'Modification d’une catégorie');
 
-$logged_id   = $_SESSION['logged_id'];
+$logged_id   = (int)$_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $category_id = param_get('category_id'); // -> modify

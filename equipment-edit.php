@@ -10,7 +10,7 @@ require_once('module/html-functions.php');
 auth_or_login('equipment-list.php');
 level_or_alert(3, 'Modification d’un appareil');
 
-$logged_id   = $_SESSION['logged_id'];
+$logged_id   = (int)$_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
 $category_id  = param_post_or_get('category_id');

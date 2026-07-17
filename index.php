@@ -9,7 +9,7 @@ session_start();
 if(empty($_SESSION['logged_user'])){
 	$log = false;
 }else{
-	$logged_id    = $_SESSION['logged_id'];
+	$logged_id    = (int)$_SESSION['logged_id'];
 	$logged_user  = strtolower($_SESSION['logged_user']);
 	$logged_level = $_SESSION['logged_level'];
 	$log          = true;
