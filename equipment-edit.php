@@ -13,7 +13,7 @@ level_or_alert(3, 'Modification d’un appareil');
 $logged_id   = (int)$_SESSION['logged_id'];
 $logged_user = strtolower($_SESSION['logged_user']);
 
-$category_id  = param_post_or_get('category_id');
+$category_id  = (int)param_post_or_get('category_id');
 $equipment_id = param_post_or_get('equipment_id', 0);
 $mode = 'Modifier';
 if ($equipment_id == 0) // new
