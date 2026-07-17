@@ -42,8 +42,8 @@ var_dump($supplier_id);
 var_dump($date);
 
 if ($recipe != '') {
-	$id_recipe = set_recipe_new($pdo, $intervention_id, 'recipe');
-	if (!$id_recipe) {
+	$recipe_id = set_recipe_new($pdo, $intervention_id, 'recipe');
+	if (!$recipe_id) {
 		$title        = 'Erreur appareil';
 		$action       = 'equipment-view.php?equipment_id='.$equipment_id;
 		$message_text = ($logged_level > 3 ? $err_msg : 'Erreur dans l’ajout d’une fiche d’intervention à l’appareil (pas au format PDF ?)');
