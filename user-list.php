@@ -99,8 +99,12 @@ if ($pdo = connect_db()) {
 		echo '  <td>';
 		// Récupère la liste de équipes
 		$team = get_team_by_id($pdo, $user_current['team_id']);
-		if ($team)
-			echo '<a href="equipment-list.php?team_id='.$team['id'].'">'.$team['name'].'</a>';
+		if ($team) {
+			if (get_equipment_count_by_team($pdo, $team['id']) > 0)
+				echo '<a href="equipment-list.php?team_id='.$team['id'].'">'.$team['name'].'</a>';
+			else
+				echo $team['name'];
+		}
 		echo '  </td>'.PHP_EOL;
 		if ($logged_level >= 3) {
 			echo '  <td>';
