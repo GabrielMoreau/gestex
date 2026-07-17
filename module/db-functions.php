@@ -1340,7 +1340,7 @@ function del_team_by_id($pdo, $id) {
  * @return false|array Retourne un seul utilisateur
  */
 function get_user_short_by_id($pdo, $id) {
-	$sql = 'SELECT id, familyname, firstname FROM user WHERE id = ?;';
+	$sql = 'SELECT id, familyname, firstname, valid FROM user WHERE id = ?;';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(array($id));
 	$result_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
