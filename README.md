@@ -159,6 +159,122 @@ Par exemple, pour passer de la version 3 à la version 4 du schéma
 mysql -u root -p gestex < db-upgrade-3-4.sql
 ```
 
+#### Schéma de la base
+
+```mermaid
+erDiagram
+
+    category {
+        INT(11) id PK
+        VARCHAR(50) name
+    }
+
+    datasheet {
+        INT(11) id PK
+        VARCHAR(500) pathname
+        VARCHAR(150) description
+        INT(11) equipment_id
+    }
+
+    equipment {
+        INT(11) id PK
+        INT(11) category_id
+        VARCHAR(255) name
+        VARCHAR(255) model
+        VARCHAR(255) feature
+        INT(11) team_id
+        INT(11) supplier_id
+        DATE date_of_purchase
+        INT(11) manager_user_id
+        VARCHAR(30) repair_comment
+        VARCHAR(255) accessories
+        VARCHAR(255) notice
+        VARCHAR(50) inventory_number UK
+        BOOLEAN is_loanable
+        BIGINT(20) barcode
+        INT(11) max_loan_days
+    }
+
+    intervention {
+        INT(11) id PK
+        INT(11) supplier_id
+        INT(11) equipment_id
+        VARCHAR(255) description
+        DATE date
+    }
+
+    loan {
+        INT(11) id PK
+        INT(11) equipment_id
+        INT(11) team_id
+        DATE start_date
+        DATE end_date
+        VARCHAR(100) comment
+        ENUM('LOAN_BORROWED','LOAN_RESERVED','LOAN_RETURNED') status
+    }
+
+    recipe {
+        INT(11) id PK
+        VARCHAR(500) pathname
+        VARCHAR(150) description
+        INT(11) intervention_id
+    }
+
+    supplier {
+        INT(11) id PK
+        VARCHAR(50) name
+        VARCHAR(100) address
+        VARCHAR(50) www
+        VARCHAR(25) phone
+        VARCHAR(15) fax
+        VARCHAR(50) email
+        VARCHAR(255) contact
+        VARCHAR(255) description
+    }
+
+    team {
+        INT(11) id PK
+        VARCHAR(50) name
+        VARCHAR(255) description
+        INT(11) accounting
+        INT(11) manager_user_id
+    }
+
+    user {
+        INT(11) id PK
+        VARCHAR(20) username UK
+        VARCHAR(255) password
+        INT(11) level
+        VARCHAR(20) familyname
+        VARCHAR(20) firstname
+        VARCHAR(25) phone
+        VARCHAR(50) email
+        INT(11) team_id
+        INT(11) valid
+        VARCHAR(50) theme
+    }
+
+    version {
+        INT(11) id PK
+        VARCHAR(20) soft UK
+        INT(11) version
+        TIMESTAMP updated_on
+    }
+
+    team ||--|{ user : "fk_user_team"
+    category ||--o{ equipment : "fk_equipment_category"
+    team ||--o{ equipment : "fk_equipment_team"
+    supplier ||--o{ equipment : "fk_equipment_supplier"
+    user ||--o{ equipment : "fk_equipment_manager"
+    equipment ||--|{ datasheet : "fk_datasheet_equipment"
+    supplier ||--|{ intervention : "fk_intervention_supplier"
+    equipment ||--|{ intervention : "fk_intervention_equipment"
+    equipment ||--o{ loan : "fk_loan_equipment"
+    team ||--o{ loan : "fk_loan_team"
+    intervention ||--|{ recipe : "fk_recipe_intervention"
+    user ||--|{ team : "fk_team_manager"
+```
+
 
 ### Icônes
 
