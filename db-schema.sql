@@ -143,7 +143,7 @@ CREATE TABLE `loan` (
   `comment` VARCHAR(100) DEFAULT NULL,
   `status` ENUM('LOAN_BORROWED','LOAN_RESERVED','LOAN_RETURNED') NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_loan_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`)
+  CONSTRAINT `fk_loan_equipment` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`id`),
   CONSTRAINT `fk_loan_team` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
