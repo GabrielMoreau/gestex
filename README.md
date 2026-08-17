@@ -204,13 +204,13 @@ erDiagram
     }
 
     loan {
-        INT_11 id PK
+        INT(11) id PK
         INT_11 equipment_id
         INT_11 team_id
         DATE start_date
         DATE end_date
         VARCHAR_100 comment
-        ENUM_LOAN_BORROWED_LOAN_RESERVED_LOAN_RETURNED status
+        ENUM(LOAN_BORROWED)(LOAN_RESERVED)(LOAN_RETURNED status)
     }
 
     recipe {
