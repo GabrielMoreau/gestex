@@ -210,7 +210,7 @@ erDiagram
         DATE start_date
         DATE end_date
         VARCHAR_100 comment
-        ENUM_'LOAN_BORROWED'_'LOAN_RESERVED'_'LOAN_RETURNED' status
+        ENUM_LOAN_BORROWED_LOAN_RESERVED_LOAN_RETURNED status
     }
 
     recipe {
