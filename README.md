@@ -164,115 +164,115 @@ mysql -u root -p gestex < db-upgrade-3-4.sql
 ```mermaid
 erDiagram
 
-    category {
-        INT_11 id PK
-        VARCHAR_50 name
-    }
+   category {
+      INT(11) id PK
+      VARCHAR(50) name
+   }
 
-    datasheet {
-        INT_11 id PK
-        VARCHAR_500 pathname
-        VARCHAR_150 description
-        INT_11 equipment_id
-    }
+   datasheet {
+      INT(11) id PK
+      VARCHAR(500) pathname
+      VARCHAR(150) description
+      INT(11) equipment_id
+   }
 
-    equipment {
-        INT_11 id PK
-        INT_11 category_id
-        VARCHAR_255 name
-        VARCHAR_255 model
-        VARCHAR_255 feature
-        INT_11 team_id
-        INT_11 supplier_id
-        DATE date_of_purchase
-        INT_11 manager_user_id
-        VARCHAR_30 repair_comment
-        VARCHAR_255 accessories
-        VARCHAR_255 notice
-        VARCHAR_50 inventory_number UK
-        BOOLEAN is_loanable
-        BIGINT_20 barcode
-        INT_11 max_loan_days
-    }
+   equipment {
+      INT(11) id PK
+      INT(11) category_id
+      VARCHAR(255) name
+      VARCHAR(255) model
+      VARCHAR(255) feature
+      INT(11) team_id
+      INT(11) supplier_id
+      DATE date_of_purchase
+      INT(11) manager_user_id
+      VARCHAR(30) repair_comment
+      VARCHAR(255) accessories
+      VARCHAR(255) notice
+      VARCHAR(50) inventory_number UK
+      BOOLEAN is_loanable
+      BIGINT(20) barcode
+      INT(11) max_loan_days
+   }
 
-    intervention {
-        INT_11 id PK
-        INT_11 supplier_id
-        INT_11 equipment_id
-        VARCHAR_255 description
-        DATE date
-    }
+   intervention {
+      INT(11) id PK
+      INT(11) supplier_id
+      INT(11) equipment_id
+      VARCHAR(255) description
+      DATE date
+   }
 
-    loan {
-        INT(11) id PK
-        INT_11 equipment_id
-        INT_11 team_id
-        DATE start_date
-        DATE end_date
-        VARCHAR_100 comment
-        ENUM(LOAN_BORROWED,LOAN_RESERVED)(LOAN_RETURNED status)
-    }
+   loan {
+      INT(11) id PK
+      INT(11) equipment_id
+      INT(11) team_id
+      DATE start_date
+      DATE end_date
+      VARCHAR(100) comment
+      ENUM(LOAN_BORROWED)(LOAN_RESERVED)(LOAN_RETURNED) status
+   }
 
-    recipe {
-        INT_11 id PK
-        VARCHAR_500 pathname
-        VARCHAR_150 description
-        INT_11 intervention_id
-    }
+   recipe {
+      INT(11) id PK
+      VARCHAR(500) pathname
+      VARCHAR(150) description
+      INT(11) intervention_id
+   }
 
-    supplier {
-        INT_11 id PK
-        VARCHAR_50 name
-        VARCHAR_100 address
-        VARCHAR_50 www
-        VARCHAR_25 phone
-        VARCHAR_15 fax
-        VARCHAR_50 email
-        VARCHAR_255 contact
-        VARCHAR_255 description
-    }
+   supplier {
+      INT(11) id PK
+      VARCHAR(50) name
+      VARCHAR(100) address
+      VARCHAR(50) www
+      VARCHAR(25) phone
+      VARCHAR(15) fax
+      VARCHAR(50) email
+      VARCHAR(255) contact
+      VARCHAR(255) description
+   }
 
-    team {
-        INT_11 id PK
-        VARCHAR_50 name
-        VARCHAR_255 description
-        INT_11 accounting
-        INT_11 manager_user_id
-    }
+   team {
+      INT(11) id PK
+      VARCHAR(50) name
+      VARCHAR(255) description
+      INT(11) accounting
+      INT(11) manager_user_id
+   }
 
-    user {
-        INT_11 id PK
-        VARCHAR_20 username UK
-        VARCHAR_255 password
-        INT_11 level
-        VARCHAR_20 familyname
-        VARCHAR_20 firstname
-        VARCHAR_25 phone
-        VARCHAR_50 email
-        INT_11 team_id
-        INT_11 valid
-        VARCHAR_50 theme
-    }
+   user {
+      INT(11) id PK
+      VARCHAR(20) username UK
+      VARCHAR(255) password
+      INT(11) level
+      VARCHAR(20) familyname
+      VARCHAR(20) firstname
+      VARCHAR(25) phone
+      VARCHAR(50) email
+      INT(11) team_id
+      INT(11) valid
+      VARCHAR(50) theme
+   }
 
-    version {
-        INT_11 id PK
-        VARCHAR_20 soft UK
-        INT_11 version
-        TIMESTAMP updated_on
-    }
+   version {
+      INT(11) id PK
+      VARCHAR(20) soft UK
+      INT(11) version
+      TIMESTAMP updated_on
+   }
 
-    team ||--|{ user : "fk_user_team"
-    category ||--o{ equipment : "fk_equipment_category"
-    team ||--o{ equipment : "fk_equipment_team"
-    supplier ||--o{ equipment : "fk_equipment_supplier"
-    user ||--o{ equipment : "fk_equipment_manager"
-    equipment ||--|{ datasheet : "fk_datasheet_equipment"
-    supplier ||--|{ intervention : "fk_intervention_supplier"
-    equipment ||--|{ intervention : "fk_intervention_equipment"
-    equipment ||--o{ loan : "fk_loan_equipment"
-    team ||--o{ loan : "fk_loan_team"
-    intervention ||--|{ recipe : "fk_recipe_intervention"
-    user ||--|{ team : "fk_team_manager"
+   team ||--|{ user : "fk_user_team"
+   category ||--o{ equipment : "fk_equipment_category"
+   team ||--o{ equipment : "fk_equipment_team"
+   supplier ||--o{ equipment : "fk_equipment_supplier"
+   user ||--o{ equipment : "fk_equipment_manager"
+   equipment ||--|{ datasheet : "fk_datasheet_equipment"
+   supplier ||--|{ intervention : "fk_intervention_supplier"
+   equipment ||--|{ intervention : "fk_intervention_equipment"
+   equipment ||--o{ loan : "fk_loan_equipment"
+   team ||--o{ loan : "fk_loan_team"
+   intervention ||--|{ recipe : "fk_recipe_intervention"
+   user ||--|{ team : "fk_team_manager"
 ```
 
 
