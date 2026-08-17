@@ -210,7 +210,7 @@ erDiagram
       DATE start_date
       DATE end_date
       VARCHAR(100) comment
-      ENUM(LOAN_BORROWED)(LOAN_RESERVED)(LOAN_RETURNED) status
+      "ENUM(LOAN_BORROWED,LOAN_RESERVED)(LOAN_RETURNED)" status
    }
 
    recipe {
@@ -261,18 +261,18 @@ erDiagram
       TIMESTAMP updated_on
    }
 
-   team ||--|{ user : "fk_user_team"
-   category ||--o{ equipment : "fk_equipment_category"
-   team ||--o{ equipment : "fk_equipment_team"
-   supplier ||--o{ equipment : "fk_equipment_supplier"
-   user ||--o{ equipment : "fk_equipment_manager"
-   equipment ||--|{ datasheet : "fk_datasheet_equipment"
-   supplier ||--|{ intervention : "fk_intervention_supplier"
-   equipment ||--|{ intervention : "fk_intervention_equipment"
-   equipment ||--o{ loan : "fk_loan_equipment"
-   team ||--o{ loan : "fk_loan_team"
-   intervention ||--|{ recipe : "fk_recipe_intervention"
-   user ||--|{ team : "fk_team_manager"
+   team ||--|{ user : "[team.id <- user.team_id]"
+   category ||--o{ equipment : "[category.id <- equipment.category_id]"
+   team ||--o{ equipment : "[team.id <- equipment.team_id]"
+   supplier ||--o{ equipment : "[supplier.id <- equipment.supplier_id]"
+   user ||--o{ equipment : "[user.id <- equipment.manager_user_id]"
+   equipment ||--|{ datasheet : "[equipment.id <- datasheet.equipment_id]"
+   supplier ||--|{ intervention : "[supplier.id <- intervention.supplier_id]"
+   equipment ||--|{ intervention : "[equipment.id <- intervention.equipment_id]"
+   equipment ||--o{ loan : "[equipment.id <- loan.equipment_id]"
+   team ||--o{ loan : "[team.id <- loan.team_id]"
+   intervention ||--|{ recipe : "[intervention.id <- recipe.intervention_id]"
+   user ||--|{ team : "[user.id <- team.manager_user_id]"
 ```
 
 
