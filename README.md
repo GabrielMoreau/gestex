@@ -66,6 +66,7 @@ sudo rsync -av --delete --dry-run \
   --exclude connect.php --exclude data --exclude old \
   --exclude .git --exclude .gitignore \
   --exclude Makefile --exclude make-package-debian \
+  --exclude sql2graphviz --exclude db-schema.svg \
   gestex/ /var/www/gestex/
 sudo chown -R www-data:www-data /var/www/gestex/
 ```
