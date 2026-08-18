@@ -1,0 +1,768 @@
+#!/usr/bin/perl
+#
+# Script : sql2graphviz
+# Description: Convert a MySQL SQL schema into a Graphviz DOT diagram
+# Usage:
+#
+#    sql2graphviz schema.sql > schema.dot
+#    dot -Tsvg schema.dot > schema.svg
+#    dot -Tpng schema.dot > schema.png
+#
+# 2026/08/18 Gabriel Moreau <Gabriel.Moreau@univ-grenoble-alpes.fr>
+#
+# perltidy -i=3 -ci=3 -pt=2 -icb -cti=3 -sbt=2 -bt=2 -bbt=2 -nsfs -bar -otr -olc -nolq -l=132 -vmll -msc=1 -iscl -nbbc -nola -b sql2graphviz
+
+use strict;
+use warnings;
+
+# ------------------------------------------------------------
+# Check command line arguments
+# ------------------------------------------------------------
+
+if (@ARGV != 1) {
+   die "Usage: $0 schema.sql > schema.dot\n";
+   }
+
+my $filename = $ARGV[0];
+
+# ------------------------------------------------------------
+# Open SQL file
+# ------------------------------------------------------------
+
+open(my $FILE, '<', $filename)
+   or die "Cannot open $filename: $!\n";
+
+# ------------------------------------------------------------
+# Schema data
+#
+# %tables contains:
+#
+#    columns
+#    primary_key
+#    unique
+#
+# @foreign_keys contains all foreign key definitions.
+# ------------------------------------------------------------
+
+my %tables;
+my @foreign_keys;
+
+# ------------------------------------------------------------
+# Parser state
+# ------------------------------------------------------------
+
+my $current_table       = '';
+my $inside_create_table = 0;
+
+# ============================================================
+# Utility functions
+# ============================================================
+
+# ------------------------------------------------------------
+# Escape text for Graphviz HTML-like labels.
+# ------------------------------------------------------------
+
+sub html_escape {
+   my ($text) = @_;
+
+   $text =~ s/&/&amp;/g;
+   $text =~ s/</&lt;/g;
+   $text =~ s/>/&gt;/g;
+   $text =~ s/"/&quot;/g;
+
+   return $text;
+   }
+
+# ------------------------------------------------------------
+# Return a Graphviz port name.
+#
+# SQL column names are normally safe, but using a generated
+# port name avoids problems with unusual identifiers.
+# ------------------------------------------------------------
+
+sub port_name {
+   my ($table, $column) = @_;
+
+   my $port = $table . '__' . $column;
+
+   $port =~ s/[^A-Za-z0-9_]/_/g;
+
+   return $port;
+   }
+
+# ============================================================
+# Read SQL file
+# ============================================================
+
+while (my $line = <$FILE>) {
+   chomp $line;
+
+   # ---------------------------------------------------------
+   # Ignore comments and empty lines
+   # ---------------------------------------------------------
+
+   next if $line =~ /^\s*--/;
+   next if $line =~ /^\s*$/;
+
+   # =========================================================
+   # CREATE TABLE
+   # =========================================================
+
+   if ($line =~ /^\s*CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?`([^`]+)`/i) {
+      $current_table       = $1;
+      $inside_create_table = 1;
+
+      $tables{$current_table} = {
+         columns     => [],
+         primary_key => {},
+         unique      => {},
+         };
+
+      next;
+      }
+
+   # =========================================================
+   # End of CREATE TABLE
+   # =========================================================
+
+   if ($inside_create_table) {
+      if ($line =~ /^\s*\)\s*(?:ENGINE|;)/i) {
+         $current_table       = '';
+         $inside_create_table = 0;
+
+         next;
+         }
+      }
+
+   # =========================================================
+   # Content of CREATE TABLE
+   # =========================================================
+
+   if ($inside_create_table) {
+
+      # ------------------------------------------------------
+      # PRIMARY KEY
+      # ------------------------------------------------------
+
+      if ($line =~ /PRIMARY\s+KEY\s*\(\s*`([^`]+)`\s*\)/i) {
+         my $column = $1;
+
+         $tables{$current_table}{primary_key}{$column} = 1;
+
+         next;
+         }
+
+      # ------------------------------------------------------
+      # UNIQUE KEY
+      # ------------------------------------------------------
+
+      if (
+         $line =~ /UNIQUE\s+(?:KEY|INDEX)\s+`([^`]+)`\s*
+          \(\s*`([^`]+)`\s*\)/ix
+         ) {
+
+         my $column = $2;
+
+         $tables{$current_table}{unique}{$column} = 1;
+
+         next;
+         }
+
+      # ------------------------------------------------------
+      # FOREIGN KEY
+      #
+      # Example:
+      #
+      # CONSTRAINT `fk_user_team`
+      # FOREIGN KEY (`team_id`)
+      # REFERENCES `team` (`id`)
+      # ------------------------------------------------------
+
+      if (
+         $line =~ /CONSTRAINT\s+`([^`]+)`\s+
+          FOREIGN\s+KEY\s*\(\s*`([^`]+)`\s*\)\s+
+          REFERENCES\s+`([^`]+)`\s*\(\s*`([^`]+)`\s*\)/ix
+         ) {
+
+         my $constraint  = $1;
+         my $from_column = $2;
+         my $to_table    = $3;
+         my $to_column   = $4;
+
+         push @foreign_keys, {
+            name        => $constraint,
+            from_table  => $current_table,
+            from_column => $from_column,
+            to_table    => $to_table,
+            to_column   => $to_column,
+            };
+
+         next;
+         }
+
+      # ------------------------------------------------------
+      # Column definition
+      #
+      # Examples:
+      #
+      # `id` INT(11) NOT NULL AUTO_INCREMENT,
+      # `name` VARCHAR(255) DEFAULT NULL,
+      # `status` ENUM('A','B','C') NOT NULL,
+      # ------------------------------------------------------
+
+      if ($line =~ /^\s*`([^`]+)`\s+([A-Za-z]+)/) {
+         my $column = $1;
+         my $type   = uc($2);
+
+         # ---------------------------------------------------
+         # Type parameters
+         #
+         # INT(11)
+         # VARCHAR(255)
+         # BIGINT(20)
+         # ENUM('A','B','C')
+         # ---------------------------------------------------
+
+         if ($line =~ /^\s*`[^`]+`\s+[A-Za-z]+\s*(\([^)]*\))/) {
+            my $details = $1;
+
+            # ------------------------------------------------
+            # ENUM
+            #
+            # Convert:
+            #
+            # ENUM('A','B','C')
+            #
+            # into:
+            #
+            # ENUM(A,B,C)
+            # ------------------------------------------------
+
+            if ($type eq 'ENUM') {
+               $details =~ s/^\(//;
+               $details =~ s/\)$//;
+               $details =~ s/'//g;
+
+               $type = 'ENUM(' . $details . ')';
+               }
+
+            # ------------------------------------------------
+            # Other types
+            #
+            # Keep the original SQL notation:
+            #
+            # INT(11)
+            # VARCHAR(255)
+            # DECIMAL(10,2)
+            # ------------------------------------------------
+
+            else {
+               $type = $type . $details;
+               }
+            }
+
+         # ---------------------------------------------------
+         # NULL / NOT NULL
+         # ---------------------------------------------------
+
+         my $nullable = 1;
+
+         if ($line =~ /NOT\s+NULL/i) {
+            $nullable = 0;
+            }
+
+         # ---------------------------------------------------
+         # Store column
+         # ---------------------------------------------------
+
+         push @{$tables{$current_table}{columns}}, {
+            name     => $column,
+            type     => $type,
+            nullable => $nullable,
+            };
+
+         next;
+         }
+      }
+
+   # =========================================================
+   # ALTER TABLE
+   # =========================================================
+
+   if ($line =~ /^\s*ALTER\s+TABLE\s+`([^`]+)`/i) {
+      my $alter_table     = $1;
+      my $alter_statement = $line;
+
+      # ------------------------------------------------------
+      # Read the complete ALTER TABLE statement.
+      # ------------------------------------------------------
+
+      while ($alter_statement !~ /;\s*$/) {
+         my $next_line = <$FILE>;
+
+         last unless defined($next_line);
+
+         chomp $next_line;
+
+         $alter_statement .= ' ' . $next_line;
+         }
+
+      # ------------------------------------------------------
+      # FOREIGN KEY
+      #
+      # Example:
+      #
+      # ALTER TABLE `team`
+      # ADD CONSTRAINT `fk_team_manager`
+      # FOREIGN KEY (`manager_user_id`)
+      # REFERENCES `user` (`id`);
+      # ------------------------------------------------------
+
+      if (
+         $alter_statement =~ /ADD\s+CONSTRAINT\s+`([^`]+)`\s+
+          FOREIGN\s+KEY\s*\(\s*`([^`]+)`\s*\)\s+
+          REFERENCES\s+`([^`]+)`\s*\(\s*`([^`]+)`\s*\)/ix
+         ) {
+
+         my $constraint  = $1;
+         my $from_column = $2;
+         my $to_table    = $3;
+         my $to_column   = $4;
+
+         push @foreign_keys, {
+            name        => $constraint,
+            from_table  => $alter_table,
+            from_column => $from_column,
+            to_table    => $to_table,
+            to_column   => $to_column,
+            };
+         }
+
+      next;
+      }
+   }
+
+close($FILE);
+
+# ============================================================
+# Build a list of foreign-key columns
+# ============================================================
+
+my %foreign_key_columns;
+
+foreach my $foreign_key (@foreign_keys) {
+
+   my $table  = $foreign_key->{from_table};
+   my $column = $foreign_key->{from_column};
+
+   $foreign_key_columns{$table}{$column} = 1;
+   }
+
+# ============================================================
+# Generate Graphviz DOT
+# ============================================================
+
+print "digraph schema {\n";
+print "\n";
+
+# ------------------------------------------------------------
+# Graph configuration
+# ------------------------------------------------------------
+
+print "   graph [";
+print "rankdir=LR, ";
+print "splines=polyline, ";
+print "nodesep=0.6, ";
+print "ranksep=1.0";
+print "];\n";
+
+print "   node [";
+print "shape=plain, ";
+print "fontname=\"DejaVu Sans Mono\", ";
+print "margin=0";
+print "];\n";
+
+print "   edge [";
+print "fontname=\"DejaVu Sans Mono\", ";
+print "fontsize=9";
+print "];\n";
+
+print "\n";
+
+# ============================================================
+# Generate table nodes
+# ============================================================
+
+foreach my $table_name (sort keys %tables) {
+
+   # ---------------------------------------------------------
+   # Calculate maximum width of each column.
+   #
+   # The widths are calculated once for the complete table.
+   # Every nested table therefore uses exactly the same
+   # three column widths.
+   # ---------------------------------------------------------
+
+   my $max_name = length('Field');
+   my $max_type = length('Type');
+   my $max_key  = length('Key');
+
+   foreach my $column (@{$tables{$table_name}{columns}}) {
+      my $name = $column->{name};
+      my $type = $column->{type};
+
+      $max_name = length($name) if length($name) > $max_name;
+      $max_type = length($type) if length($type) > $max_type;
+
+      # ------------------------------------------------------
+      # Determine key text
+      # ------------------------------------------------------
+
+      my @keys;
+
+      push @keys, 'PK' if $tables{$table_name}{primary_key}{$name};
+      push @keys, 'UK' if $tables{$table_name}{unique}{$name};
+      push @keys, 'FK' if $foreign_key_columns{$table_name}{$name};
+      my $key = join('/', @keys);
+
+      $max_key = length($key) if length($key) > $max_key;
+      }
+
+   # ---------------------------------------------------------
+   # Convert character counts to Graphviz widths.
+   #
+   # Add one extra character as a safety margin.
+   # ---------------------------------------------------------
+
+   my $name_width = ($max_name + 3) * 8;
+   my $type_width = ($max_type + 3) * 8;
+   my $key_width  = ($max_key + 3) * 8;
+
+   # ---------------------------------------------------------
+   # Node
+   # ---------------------------------------------------------
+
+   print "   \"";
+   print $table_name;
+   print "\" [\n";
+
+   print "      label=<\n";
+
+   # ---------------------------------------------------------
+   # Outer table
+   #
+   # The outer TD of each row receives the PORT.
+   #
+   # The visible three-column table is nested inside it.
+   # ---------------------------------------------------------
+
+   print "         <TABLE BORDER=\"1\" CELLBORDER=\"0\"";
+   print " CELLSPACING=\"0\" CELLPADDING=\"0\">\n";
+
+   # =========================================================
+   # Table name
+   # =========================================================
+
+   print "            <TR>\n";
+
+   print "               <TD";
+   print " BGCOLOR=\"#4F81BD\"";
+   print " CELLPADDING=\"6\"";
+   print ">";
+
+   print "<FONT FACE=\"Arial\" COLOR=\"white\">";
+   print "<B>";
+   print html_escape($table_name);
+   print "</B>";
+   print "</FONT>";
+
+   print "</TD>\n";
+
+   print "            </TR>\n";
+
+   # =========================================================
+   # Column rows
+   # =========================================================
+
+   foreach my $column (@{$tables{$table_name}{columns}}) {
+
+      my $name = $column->{name};
+      my $type = $column->{type};
+
+      # ------------------------------------------------------
+      # Determine keys
+      # ------------------------------------------------------
+
+      my @keys;
+
+      push @keys, 'PK' if $tables{$table_name}{primary_key}{$name};
+      push @keys, 'UK' if $tables{$table_name}{unique}{$name};
+      push @keys, 'FK' if $foreign_key_columns{$table_name}{$name};
+
+      my $key = join('/', @keys);
+
+      # ------------------------------------------------------
+      # Determine row colors.
+      #
+      # The complete row gets a light background.
+      # The key cell gets a slightly stronger background.
+      # ------------------------------------------------------
+
+      my $row_background = '#FFFFFF';
+      my $key_background = '#FFFFFF';
+
+      # ------------------------------------------------------
+      # PK + FK
+      # ------------------------------------------------------
+
+      if ($key =~ /PK/ && $key =~ /FK/) {
+         $row_background = '#FCE4D6';
+         $key_background = '#F4B183';
+         }
+
+      # ------------------------------------------------------
+      # PK
+      # ------------------------------------------------------
+
+      elsif ($key =~ /PK/) {
+         $row_background = '#FFF2CC';
+         $key_background = '#FFD966';
+         }
+
+      # ------------------------------------------------------
+      # FK
+      # ------------------------------------------------------
+
+      elsif ($key =~ /FK/) {
+         $row_background = '#DDEBF7';
+         $key_background = '#9DC3E6';
+         }
+
+      # ------------------------------------------------------
+      # UK
+      # ------------------------------------------------------
+
+      elsif ($key =~ /UK/) {
+         $row_background = '#E2F0D9';
+         $key_background = '#A9D18E';
+         }
+
+      # ------------------------------------------------------
+      # Port name
+      #
+      # The port is attached to the OUTER cell, not to one
+      # of the three visible columns.
+      # ------------------------------------------------------
+
+      my $port = port_name($table_name, $name);
+
+      # ------------------------------------------------------
+      # Outer row
+      # ------------------------------------------------------
+
+      print "            <TR>\n";
+
+      print "               <TD";
+      print " PORT=\"";
+      print $port;
+      print "\"";
+      print " CELLPADDING=\"0\"";
+      print ">\n";
+
+      # ------------------------------------------------------
+      # Inner three-column table
+      # ------------------------------------------------------
+
+      print "                  <TABLE";
+      print " BORDER=\"0\"";
+      print " CELLBORDER=\"1\"";
+      print " CELLSPACING=\"0\"";
+      print " CELLPADDING=\"4\"";
+      print ">\n";
+
+      print "                     <TR>\n";
+
+      # ======================================================
+      # Column 1: field name
+      # ======================================================
+
+      print "                        <TD";
+      print " WIDTH=\"";
+      print $name_width;
+      print "\"";
+      print " ALIGN=\"LEFT\"";
+      print " BGCOLOR=\"";
+      print $row_background;
+      print "\"";
+      print ">";
+
+      print "<FONT FACE=\"DejaVu Sans Mono\">";
+
+      if ($key =~ /PK/) {
+         print "<B>";
+         }
+
+      print html_escape($name);
+
+      if ($key =~ /PK/) {
+         print "</B>";
+         }
+
+      print "</FONT>";
+
+      print "</TD>\n";
+
+      # ======================================================
+      # Column 2: SQL type
+      # ======================================================
+
+      print "                        <TD";
+      print " WIDTH=\"";
+      print $type_width;
+      print "\"";
+      print " ALIGN=\"LEFT\"";
+      print " BGCOLOR=\"";
+      print $row_background;
+      print "\"";
+      print ">";
+
+      print "<FONT FACE=\"DejaVu Sans Mono\" COLOR=\"#555555\">";
+      print html_escape($type);
+      print "</FONT>";
+
+      print "</TD>\n";
+
+      # ======================================================
+      # Column 3: key
+      # ======================================================
+
+      print "                        <TD";
+      print " WIDTH=\"";
+      print $key_width;
+      print "\"";
+      print " ALIGN=\"CENTER\"";
+      print " BGCOLOR=\"";
+      print $key_background;
+      print "\"";
+      print ">";
+
+      if ($key ne '') {
+
+         print "<FONT FACE=\"DejaVu Sans Mono\">";
+         print "<B>";
+         print html_escape($key);
+         print "</B>";
+         print "</FONT>";
+         }
+      else {
+
+         print " ";
+         }
+
+      print "</TD>\n";
+
+      # ------------------------------------------------------
+      # End inner table
+      # ------------------------------------------------------
+
+      print "                     </TR>\n";
+      print "                  </TABLE>\n";
+
+      # ------------------------------------------------------
+      # End outer port cell
+      # ------------------------------------------------------
+
+      print "               </TD>\n";
+      print "            </TR>\n";
+      }
+
+   # ---------------------------------------------------------
+   # End outer table
+   # ---------------------------------------------------------
+
+   print "         </TABLE>\n";
+
+   print "      >\n";
+   print "   ];\n";
+
+   print "\n";
+   }
+
+# ============================================================
+# Generate relationships
+# ============================================================
+
+foreach my $foreign_key (@foreign_keys) {
+   my $from_table  = $foreign_key->{from_table};
+   my $from_column = $foreign_key->{from_column};
+   my $to_table    = $foreign_key->{to_table};
+   my $to_column   = $foreign_key->{to_column};
+
+   # ---------------------------------------------------------
+   # Make sure both tables exist
+   # ---------------------------------------------------------
+
+   next if !exists $tables{$from_table};
+   next if !exists $tables{$to_table};
+
+   # ---------------------------------------------------------
+   # Generate port names
+   # ---------------------------------------------------------
+
+   my $from_port = port_name($from_table, $from_column);
+   my $to_port   = port_name($to_table, $to_column);
+
+   # ---------------------------------------------------------
+   # Determine child-side cardinality.
+   #
+   # NOT NULL:
+   #
+   #    1..*
+   #
+   # NULL:
+   #
+   #    0..*
+   # ---------------------------------------------------------
+
+   my $arrow_label = '0..*';
+
+   foreach my $column (@{$tables{$from_table}{columns}}) {
+      if ($column->{name} eq $from_column) {
+         $arrow_label = '1..*' if $column->{nullable} == 0;
+         last;
+         }
+      }
+
+   # ---------------------------------------------------------
+   # Generate relationship
+   #
+   # No :e or :w is specified.
+   #
+   # Graphviz is therefore free to choose the best side of
+   # the port depending on the final layout.
+   # ---------------------------------------------------------
+
+   print "   \"";
+   print $from_table;
+   print "\":";
+   print $from_port;
+
+   print " -> ";
+
+   print "\"";
+   print $to_table;
+   print "\":";
+   print $to_port;
+
+   print " [";
+   print "xlabel=\"";
+   print $arrow_label;
+   print "\"";
+   print "];\n";
+   }
+
+# ============================================================
+# End of graph
+# ============================================================
+
+print "}\n";
