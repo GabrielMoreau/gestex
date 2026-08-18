@@ -1,8 +1,19 @@
 PHPFILES:=$(wildcard *.php include/*.php module/*.php)
 
-.PHONY: all pkg pkg-ng check
+.PHONY: all schema pkg pkg-ng check
 
 all:
+
+schema: db-schema.svg db-schema.png
+
+db-schema.dot: db-schema.sql
+	@./sql2graphviz db-schema.sql > db-schema.dot
+
+db-schema.svg: db-schema.dot
+	@dot -Tsvg db-schema.dot > db-schema.svg
+
+db-schema.png: db-schema.dot
+	@dot -Tpng db-schema.dot > db-schema.png
 
 pkg:
 	./make-package-debian
