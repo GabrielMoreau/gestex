@@ -2,8 +2,8 @@
 
 ## Inventaire du matériel instrumentation
 
-Ce sont des scripts écrit en PHP liés à un gestionnaire de bases de données MariaDB (MySQL).
-Cet inventaire affiche une liste du matériel instrumentation.
+GestEx est une application écrite en PHP liée à un gestionnaire de bases de données MariaDB (MySQL).
+Initialement, elle permettait de faire un inventaire des matériels instrumentation et des fournisseurs associés, ainsi que de gérer les emprunts.
 Il est cependant possible d'avoir un inventaire d'autres matériels (informatique par exemple).
 
 Le tri se fait par catégorie d'appareil.
