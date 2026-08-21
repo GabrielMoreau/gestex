@@ -47,6 +47,8 @@ open(my $FILE, '<', $filename)
 my %tables;
 my @foreign_keys;
 
+my $IDENTIFIER = qr{`?"?([A-Za-z_][A-Za-z0-9_\$]*)`?"?};
+
 # ------------------------------------------------------------
 # Parser state
 # ------------------------------------------------------------
@@ -108,7 +110,7 @@ while (my $line = <$FILE>) {
    # CREATE TABLE
    # =========================================================
 
-   if ($line =~ /^\s*CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?`([^`]+)`/i) {
+   if ($line =~ /^\s*CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?$IDENTIFIER/i) {
       $current_table       = $1;
       $inside_create_table = 1;
 
@@ -144,7 +146,7 @@ while (my $line = <$FILE>) {
       # PRIMARY KEY
       # ------------------------------------------------------
 
-      if ($line =~ /PRIMARY\s+KEY\s*\(\s*`([^`]+)`\s*\)/i) {
+      if ($line =~ /PRIMARY\s+KEY\s*\(\s*$IDENTIFIER\s*\)/i) {
          my $column = $1;
 
          $tables{$current_table}{primary_key}{$column} = 1;
@@ -157,8 +159,8 @@ while (my $line = <$FILE>) {
       # ------------------------------------------------------
 
       if (
-         $line =~ /UNIQUE\s+(?:KEY|INDEX)\s+`([^`]+)`\s*
-          \(\s*`([^`]+)`\s*\)/ix
+         $line =~ /UNIQUE\s+(?:KEY|INDEX)\s+$IDENTIFIER\s*
+          \(\s*$IDENTIFIER\s*\)/ix
          ) {
 
          my $column = $2;
@@ -179,9 +181,9 @@ while (my $line = <$FILE>) {
       # ------------------------------------------------------
 
       if (
-         $line =~ /CONSTRAINT\s+`([^`]+)`\s+
-          FOREIGN\s+KEY\s*\(\s*`([^`]+)`\s*\)\s+
-          REFERENCES\s+`([^`]+)`\s*\(\s*`([^`]+)`\s*\)/ix
+         $line =~ /CONSTRAINT\s+$IDENTIFIER\s+
+          FOREIGN\s+KEY\s*\(\s*$IDENTIFIER\s*\)\s+
+          REFERENCES\s+$IDENTIFIER\s*\(\s*$IDENTIFIER\s*\)/ix
          ) {
 
          my $constraint  = $1;
@@ -210,7 +212,7 @@ while (my $line = <$FILE>) {
       # `status` ENUM('A','B','C') NOT NULL,
       # ------------------------------------------------------
 
-      if ($line =~ /^\s*`([^`]+)`\s+([A-Za-z]+)/) {
+      if ($line =~ /^\s*$IDENTIFIER\s+([A-Za-z]+)/) {
          my $column = $1;
          my $type   = uc($2);
 
@@ -289,7 +291,7 @@ while (my $line = <$FILE>) {
    # ALTER TABLE
    # =========================================================
 
-   if ($line =~ /^\s*ALTER\s+TABLE\s+`([^`]+)`/i) {
+   if ($line =~ /^\s*ALTER\s+TABLE\s+$IDENTIFIER/i) {
       my $alter_table     = $1;
       my $alter_statement = $line;
 
@@ -319,9 +321,9 @@ while (my $line = <$FILE>) {
       # ------------------------------------------------------
 
       if (
-         $alter_statement =~ /ADD\s+CONSTRAINT\s+`([^`]+)`\s+
-          FOREIGN\s+KEY\s*\(\s*`([^`]+)`\s*\)\s+
-          REFERENCES\s+`([^`]+)`\s*\(\s*`([^`]+)`\s*\)/ix
+         $alter_statement =~ /ADD\s+CONSTRAINT\s+$IDENTIFIER\s+
+          FOREIGN\s+KEY\s*\(\s*$IDENTIFIER\s*\)\s+
+          REFERENCES\s+$IDENTIFIER\s*\(\s*$IDENTIFIER\s*\)/ix
          ) {
 
          my $constraint  = $1;
