@@ -776,3 +776,122 @@ foreach my $foreign_key (@foreign_keys) {
 # ============================================================
 
 print "}\n";
+
+__END__
+
+# ============================================================
+# POD Manual
+# ============================================================
+
+=head1 NAME
+
+sql2graphviz - Convert a MySQL/PostgreSQL SQL schema into a Graphviz diagram
+
+=head1 SYNOPSIS
+
+  sql2graphviz schema.sql > schema.dot
+  sql2graphviz - > schema.dot < schema.sql
+  cat schema.sql | sql2graphviz > schema.dot
+
+  dot -Tsvg schema.dot > schema.svg
+  dot -Tpng schema.dot > schema.png
+  cat schema.sql | sql2graphviz | dot -Tsvg > schema.svg
+
+=head1 DESCRIPTION
+
+B<sql2graphviz> parses a SQL schema and generates a Graphviz DOT
+representation showing tables, columns, keys and foreign-key
+relationships.
+
+The input may be provided as a file argument or through standard input.
+
+The parser accepts identifiers with or without SQL identifier delimiters,
+such as:
+
+  table
+  `table`
+  "table"
+
+The generated DOT file can then be converted to an image using Graphviz.
+
+=head1 INPUT
+
+The SQL schema is read from the file specified on the command line.
+
+A single C<-> argument, or input provided through a pipe, causes the
+schema to be read from standard input.
+
+=head1 OUTPUT
+
+The generated Graphviz DOT description is written to standard output.
+
+It can be converted to an image using Graphviz, for example:
+
+  dot -Tsvg schema.dot > schema.svg
+  dot -Tpng schema.dot > schema.png
+
+=head1 SUPPORTED SQL
+
+The parser is intentionally lightweight and is designed for valid SQL
+schema files.
+
+It currently extracts:
+
+=over 3
+
+=item * CREATE TABLE statements
+
+=item * Column names and SQL types
+
+=item * NULL and NOT NULL attributes
+
+=item * PRIMARY KEY definitions
+
+=item * UNIQUE KEY definitions
+
+=item * FOREIGN KEY definitions
+
+=item * ALTER TABLE foreign-key definitions
+
+=back
+
+The parser is not intended to validate SQL syntax or to replace a
+complete SQL parser.
+
+=head1 EXAMPLES
+
+Generate a DOT file from a schema:
+
+  sql2graphviz schema.sql > schema.dot
+
+Generate an SVG diagram:
+
+  sql2graphviz schema.sql | dot -Tsvg > schema.svg
+
+Read the schema from standard input:
+
+  cat schema.sql | sql2graphviz | dot -Tpng > schema.png
+
+Reformat the schema before processing:
+
+  cat schema.sql | pg_format -f 1 | sql2graphviz
+
+C<pg_format> is provided by the Debian package C<pgformatter>.
+It can be used to reformat SQL schemas before passing them to
+B<sql2graphviz>.
+
+=head1 REQUIREMENTS
+
+=over 3
+
+=item * Perl
+
+=item * Graphviz for rendering the generated DOT file
+
+=back
+
+=head1 AUTHOR
+
+Gabriel Moreau <Gabriel.Moreau@univ-grenoble-alpes.fr>
+
+=cut
